@@ -110,7 +110,7 @@ permalink: /test/
 定义
 : This is the definition of the 定义.
 
-~~删除线~~
+~~删除线~~，==高亮==。
 
 任务列表：
 
