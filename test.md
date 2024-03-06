@@ -1,7 +1,6 @@
 ---
-layout: template
 title: Test
-permalink: /test/
+permalink: /test
 ---
 
 本页用于测试各类markdown的格式。
