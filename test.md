@@ -1,8 +1,7 @@
 ---
-layout: page
+layout: template
 title: Test
 permalink: /test/
-
 ---
 
 本页用于测试各类markdown的格式。
@@ -120,7 +119,7 @@ permalink: /test/
 
 emoji事例：去露营了！:tent:真开心！:joy:
 
-行内公式：\$$\forall\;x\in(-\delta,\delta)$$，\$$\displaystyle\frac{\part f}{\part x}<0$$，\$$\exist\:d,\int_{[0,1]}你\text{d}好$$。
+行内公式：$\forall\;x\in(-\delta,\delta)$，$\displaystyle\frac{\part f}{\part x}<0$，$\exist\:d,\int_{[0,1]}你\text{d}好$。
 
 行间公式：
 
