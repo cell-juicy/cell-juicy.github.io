@@ -15,10 +15,18 @@ gem "minima", "~> 2.5"
 # gem "github-pages", group: :jekyll_plugins
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-  gem "jekyll-analytics", "~> 0.1.14"
-  gem "jekyll-feed", "~> 0.12"
-  gem "jekyll-sitemap"
+  gem "jekyll-coffeescript"
+  gem "jekyll-default-layout"
+  gem "jekyll-feed"
+  gem "jekyll-gist"
+  gem "jekyll-github-metadata"
+  gem "jekyll-optional-front-matter"
+  gem "jekyll-paginate"
+  gem "jekyll-readme-index"
   gem "jekyll-seo-tag"
+  gem "jekyll-sitemap"
+  gem "jekyll-titles-from-headings"
+  gem "jekyll-relative-links"
   gem "jemoji"
 end
 
