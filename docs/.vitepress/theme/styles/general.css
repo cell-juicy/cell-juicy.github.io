@@ -1,0 +1,77 @@
+/* 通用样式 */
+html {
+    box-sizing: border-box;
+    margin: var(--vpj-margin-100);
+    padding: var(--vpj-padding-100);
+    font-size: var(--vpj-font-size-200);
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+/* 通用类 */
+.vpj-icon {
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+}
+
+/* 无换行短文本（垂直居中） */
+.vpj-text {
+    vertical-align: middle;
+    line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 自定义滚动条组件 */
+.vpj-scrollable-x {
+    overflow-x: auto;
+}
+
+.vpj-scrollable-y {
+    overflow-y: auto;
+}
+
+/* 自定义滚动条尺寸 */
+.vpj-scrollable-x::-webkit-scrollbar {
+    height: 6px;
+}
+
+.vpj-scrollable-y::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* 自定义滚动条背景 */
+.vpj-scrollable-x::-webkit-scrollbar-track,
+.vpj-scrollable-y::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* 自定义滚动条滑块 */
+.vpj-scrollable-x::-webkit-scrollbar-thumb,
+.vpj-scrollable-y::-webkit-scrollbar-thumb {
+    background-color: var(--vpj-color-text-100);
+    border-radius: 3px;
+}
+
+/* 自定义滚动条滑块的:hover与:active伪类 */
+.vpj-scrollable-x::-webkit-scrollbar-thumb:hover,
+.vpj-scrollable-y::-webkit-scrollbar-thumb:hover {
+    background-color: var(--vpj-color-text-200);
+}
+
+.vpj-scrollable-x::-webkit-scrollbar-thumb:active,
+.vpj-scrollable-y::-webkit-scrollbar-thumb:active {
+    background-color: var(--vpj-color-text-300);
+}

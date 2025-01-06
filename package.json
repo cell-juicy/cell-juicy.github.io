@@ -1,0 +1,25 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "esbuild": "^0.24.0",
+    "vite": "^6.0.1",
+    "vitepress": "^1.5.0",
+    "vue": "^3.5.12"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "example:dev": "vitepress dev example",
+    "example:build": "vitepress build example",
+    "example:preview": "vitepress preview example"
+  },
+  "dependencies": {
+    "@algolia/client-search": "^5.14.2",
+    "fs-extra": "^11.2.0",
+    "gray-matter": "^4.0.3",
+    "path": "^0.12.7",
+    "tinyglobby": "^0.2.10"
+  }
+}
