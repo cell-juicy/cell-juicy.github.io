@@ -35,43 +35,43 @@ body {
 }
 
 /* 自定义滚动条组件 */
-.vpj-scrollable-x {
+.vpj-scroll-x {
     overflow-x: auto;
 }
 
-.vpj-scrollable-y {
+.vpj-scroll-y {
     overflow-y: auto;
 }
 
 /* 自定义滚动条尺寸 */
-.vpj-scrollable-x::-webkit-scrollbar {
+.vpj-scroll-x::-webkit-scrollbar {
     height: 6px;
 }
 
-.vpj-scrollable-y::-webkit-scrollbar {
+.vpj-scroll-y::-webkit-scrollbar {
     width: 6px;
 }
 
 /* 自定义滚动条背景 */
-.vpj-scrollable-x::-webkit-scrollbar-track,
-.vpj-scrollable-y::-webkit-scrollbar-track {
+.vpj-scroll-x::-webkit-scrollbar-track,
+.vpj-scroll-y::-webkit-scrollbar-track {
     background-color: transparent;
 }
 
 /* 自定义滚动条滑块 */
-.vpj-scrollable-x::-webkit-scrollbar-thumb,
-.vpj-scrollable-y::-webkit-scrollbar-thumb {
+.vpj-scroll-x::-webkit-scrollbar-thumb,
+.vpj-scroll-y::-webkit-scrollbar-thumb {
     background-color: var(--vpj-color-text-100);
     border-radius: 3px;
 }
 
 /* 自定义滚动条滑块的:hover与:active伪类 */
-.vpj-scrollable-x::-webkit-scrollbar-thumb:hover,
-.vpj-scrollable-y::-webkit-scrollbar-thumb:hover {
+.vpj-scroll-x::-webkit-scrollbar-thumb:hover,
+.vpj-scroll-y::-webkit-scrollbar-thumb:hover {
     background-color: var(--vpj-color-text-200);
 }
 
-.vpj-scrollable-x::-webkit-scrollbar-thumb:active,
-.vpj-scrollable-y::-webkit-scrollbar-thumb:active {
+.vpj-scroll-x::-webkit-scrollbar-thumb:active,
+.vpj-scroll-y::-webkit-scrollbar-thumb:active {
     background-color: var(--vpj-color-text-300);
 }
