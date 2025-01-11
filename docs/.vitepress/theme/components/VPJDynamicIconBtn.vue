@@ -33,10 +33,10 @@ const props = defineProps({
     <component :is="props.isLink ? 'a' : 'button'" class="vpj-icon-btn">
         <slot name="icon">
             <img  v-if="typeof props.icon === 'string'" :src="props.icon" class="vpj-icon" v-bind="iconAttrs"/>
-            <component v-else :is="props.icon" class="vpj-icon" v-bind="iconAttrs"/>
+            <component v-if="typeof props.icon.render === 'function'" :is="props.icon" class="vpj-icon" v-bind="iconAttrs"/>
         </slot>
         <slot name="text">
-            <span class="vpj-text" v-bind="textAttrs">{{ props.text }}</span>
+            <span v-if="props.text" class="vpj-text" v-bind="textAttrs">{{ props.text }}</span>
         </slot>
     </component>
 </template>
@@ -44,6 +44,7 @@ const props = defineProps({
 
 <style scoped>
     .vpj-icon-btn {
+        align-items: center;
         display: flex;
         flex-direction: row;
     }
