@@ -5,7 +5,7 @@ import { computed } from 'vue';
 const props = defineProps({
     icon: {
         type: [String, Object],
-        required: true,
+        required: true
     }
 });
 
@@ -14,39 +14,36 @@ const isImagePath = (str) => /\.(png|jpe?g|gif|webp|svg)$/i.test(str);
 const isImage = computed(() => {
     if (typeof props.icon === 'string') {
         return isImagePath(props.icon);
-    }
-    if (typeof props.icon === 'object' && props.icon.img) {
+    } else if (typeof props.icon === 'object' && props.icon.src) {
         return true;
+    } else {
+        return false;
     }
-    return false;
 });
 
-// 是否为组件类型
 const isComponent = computed(() => {
     if (typeof props.icon === 'object' && props.icon.component) {
         return true;
-    }
-    if (typeof props.icon === 'string' && !isImagePath(props.icon)) {
+    } else if (typeof props.icon === 'string' || typeof props.icon.render === 'function') {
         return true;
+    } else {
+        return false;
     }
-    return false;
 });
 
-// 提取图片源
-const imgSource = computed(() => {
+const imageSource = computed(() => {
     if (isImage.value) {
         if (typeof props.icon === 'object') {
-            return props.icon.img;
+            return props.icon;
         }
-        return props.icon;
+        return { src: props.icon };
     }
     return null;
 });
 
-// 提取组件
 const componentSource = computed(() => {
     if (isComponent.value) {
-        if (typeof props.icon === 'object') {
+        if (typeof props.icon === 'object' && props.icon.component) {
             return props.icon.component;
         }
         return props.icon;
@@ -57,7 +54,7 @@ const componentSource = computed(() => {
 
 
 <template>
-    <img v-if="isImagePath" :src="imgSource"/>
+    <img v-if="isImage" :src="imageSource.src" :alt="imageSource.alt"/>
     <component v-else-if="isComponent" :is="componentSource"/>
-    <div class="vpj-error">Invalid Icon input, {{props.icon}} is not a image path/Vue component.</div>
+    <div v-else class="vpj-error">Invalid Icon input, {{props.icon}} is not a image path/Vue component.</div>
 </template>
