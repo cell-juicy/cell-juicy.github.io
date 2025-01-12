@@ -1,3 +1,4 @@
 /node_modules/
 /template/
+/docs/.vitepress/cache/
 _draft
