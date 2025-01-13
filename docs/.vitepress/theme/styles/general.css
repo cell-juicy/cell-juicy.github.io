@@ -21,16 +21,19 @@ body {
 /* 通用类 */
 .vpj-icon {
     display: inline-block;
-    height: 1rem;
-    width: 1rem;
+    flex-shrink: 0;
+    height: 16px;
+    width: 16px;
 }
 
 /* 无换行短文本（垂直居中） */
 .vpj-text {
-    vertical-align: middle;
+    flex: 1;
     line-height: 1;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: start;
+    vertical-align: middle;
     white-space: nowrap;
 }
 
@@ -45,11 +48,11 @@ body {
 
 /* 自定义滚动条尺寸 */
 .vpj-scroll-x::-webkit-scrollbar {
-    height: 6px;
+    height: 5px;
 }
 
 .vpj-scroll-y::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 
 /* 自定义滚动条背景 */
@@ -62,7 +65,7 @@ body {
 .vpj-scroll-x::-webkit-scrollbar-thumb,
 .vpj-scroll-y::-webkit-scrollbar-thumb {
     background-color: var(--vpj-color-text-100);
-    border-radius: 3px;
+    border-radius: 2.5px;
 }
 
 /* 自定义滚动条滑块的:hover与:active伪类 */
