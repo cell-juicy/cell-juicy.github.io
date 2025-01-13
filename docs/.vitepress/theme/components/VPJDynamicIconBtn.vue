@@ -1,6 +1,10 @@
 <script setup>
+import { useTemplateRef } from 'vue';
 import VPJDynamicIcon from './VPJDynamicIcon.vue'
 
+
+
+const elementSelf = useTemplateRef('elementSelf');
 const props = defineProps({
     isLink: {
         type: Boolean
@@ -25,11 +29,15 @@ const props = defineProps({
         default: () => ({})
     }
 })
+
+defineExpose({
+    elementSelf
+})
 </script>
 
 
 <template>
-    <component :is="props.isLink ? 'a' : 'button'" class="vpj-icon-btn">
+    <component :is="props.isLink ? 'a' : 'button'" ref="elementSelf" class="vpj-icon-btn">
         <slot name="icon">
             <VPJDynamicIcon :icon="props.icon" class="vpj-icon" v-bind="props.iconAttrs"/>
         </slot>
