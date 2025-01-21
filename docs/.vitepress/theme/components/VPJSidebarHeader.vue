@@ -35,10 +35,6 @@ onMounted(() => {
             // add EventListener to profile button
             profileBtn.value.elementSelf.addEventListener('click', () => {
                 const rect = profileBtn.value.elementSelf.getBoundingClientRect();
-                console.log('bottom:', rect.bottom,
-                    ',condition:', rect.bottom + 355 < window.innerHeight,
-                    ',vh:', window.innerHeight
-                )
                 if (rect.bottom + 355 < window.innerHeight) {
                     profileProsition.value.bottom = 'auto';
                     profileProsition.value.left = rect.left + 'px';
@@ -98,8 +94,8 @@ onMounted(() => {
         flex-direction: column;
         gap: .625rem;
         padding-bottom: 1rem;
-        padding-left: 12px;
-        padding-right: 12px;
+        padding-left: .75rem;
+        padding-right: .75rem;
     }
 
     /* Row Container */
@@ -158,6 +154,11 @@ onMounted(() => {
     }
 
     /* StyleSheet for collapsed state */
+    .vpj-sidebar-header.collapsed {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
     /* Container */
     .vpj-sidebar-header.collapsed .vpj-sidebar-header__container {
         flex-direction: column;
@@ -168,12 +169,6 @@ onMounted(() => {
     .vpj-sidebar-header.collapsed .vpj-sidebar-header__btn {
         width: 36px;
         padding: 10px;
-    }
-
-    /* Button Icon */
-    .vpj-sidebar-header.collapsed .vpj-sidebar-header__btn :deep(.vpj-icon) {
-        width: 16px;
-        height: 16px;
     }
 
     /* Button Text (hide when collapsed) */

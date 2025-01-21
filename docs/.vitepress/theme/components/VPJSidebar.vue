@@ -15,7 +15,7 @@ const { close } = store;
 
 
 <template>
-    <aside v-if="enabled" :class="['vpj-sidebar', {'collapsed': collapsed}, 'vpj-scroll-y']">
+    <aside v-if="enabled" :class="['vpj-sidebar', {'collapsed': collapsed}]">
         <slot name="sidebar-top"/>
         <slot name="sidebar-header">
             <VPJSidebarHeader>

@@ -105,7 +105,7 @@ const props = defineProps({
         min-height: 0;
         min-width: 0;
         padding-left: 16px;
-        padding-right: 16px;
+        padding-right: 12px;
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
