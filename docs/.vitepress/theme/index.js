@@ -15,7 +15,7 @@ import "./styles/general.css";
 /** @type {import('vitepress').Theme} */
 export default {
     Layout: VPJLayout,
-    enhanceApp({ app, router, siteData }) {
+    enhanceApp: async ({ app, router, siteData }) => {
         // Pinia
         const pinia = createPinia();
         app.use(pinia);
@@ -29,12 +29,12 @@ export default {
 
         // Add custom global components
         const icons = import.meta.glob('./components/icons/*.vue');
-        for (const path in icons) {
+        const iconPromises = Object.entries(icons).map(async ([path, loader]) => {
             const name = path.split('/').pop().replace('.vue', '');
-            icons[path]().then((module) => {
-                app.component(name, module.default || module);
-            });
-        }
+            const module = await loader();
+            app.component(name, module.default || module);
+        });
+        await Promise.all(iconPromises);
     }
 }
 
