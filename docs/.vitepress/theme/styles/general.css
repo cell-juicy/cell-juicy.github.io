@@ -40,19 +40,21 @@ body {
 /* 自定义滚动条组件 */
 .vpj-scroll-x {
     overflow-x: auto;
+    scrollbar-gutter: stable;
 }
 
 .vpj-scroll-y {
     overflow-y: auto;
+    scrollbar-gutter: stable;
 }
 
 /* 自定义滚动条尺寸 */
 .vpj-scroll-x::-webkit-scrollbar {
-    height: 5px;
+    height: 4px;
 }
 
 .vpj-scroll-y::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
 }
 
 /* 自定义滚动条背景 */
@@ -65,7 +67,7 @@ body {
 .vpj-scroll-x::-webkit-scrollbar-thumb,
 .vpj-scroll-y::-webkit-scrollbar-thumb {
     background-color: var(--vpj-color-text-100);
-    border-radius: 2.5px;
+    border-radius: 2px;
 }
 
 /* 自定义滚动条滑块的:hover与:active伪类 */
