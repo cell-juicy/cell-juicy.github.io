@@ -13,6 +13,7 @@ const { collapsed, navConfig } = storeToRefs(store);
 
 <template>
     <nav :class="['vpj-sidebar-nav', 'vpj-scroll-y', {'collapsed': collapsed}]">
+        <slot name="sidebar-nav-top"/>
         <ul class="vpj-sidebar-nav__link-list">
             <li 
                 v-for="item in navConfig.links"
@@ -29,7 +30,8 @@ const { collapsed, navConfig } = storeToRefs(store);
                 />
             </li>
         </ul>
-        <component v-if="navConfig.content" :is="navConfig.content"/>
+        <component v-if="navConfig.content && !collapsed" :is="navConfig.content"/>
+        <slot name="sidebar-nav-bottom"/>
     </nav>
 </template>
 
