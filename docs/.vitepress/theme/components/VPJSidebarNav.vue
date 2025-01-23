@@ -26,6 +26,7 @@ const { collapsed, navConfig } = storeToRefs(store);
                     :link="item.link"
                     :tooltip="item.tooltip"
                     :highlight="item.highlight"
+                    v-bind="item.attrs"
                     class="vpj-sidebar-nav__link"
                 />
             </li>
@@ -43,7 +44,6 @@ const { collapsed, navConfig } = storeToRefs(store);
         display: flex;
         flex: 1;
         flex-direction: column;
-        gap: .625rem;
         min-height: 0;
         overflow-x: hidden;
         padding-bottom: .75rem;
@@ -63,10 +63,6 @@ const { collapsed, navConfig } = storeToRefs(store);
         padding: 0;
         position: relative;
         width: 100%;
-    }
-
-    .vpj-sidebar-nav__link-item {
-        position: relative;
     }
 
     /* StyleSheet for collapsed state */
