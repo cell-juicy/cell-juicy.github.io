@@ -2,7 +2,11 @@ import { useData, useRoute } from 'vitepress';
 import { computed, Ref, ref, watch } from 'vue';
 import { defineStore } from 'pinia';
 
-import type { SidebarConfig, SidebarNavItemData } from '../type';
+import type {
+    SidebarConfig,
+    SidebarNavItemData,
+    SidebarFooterItemData
+} from '../type';
 
 // @ts-ignore
 import defaultAvatar from '../assets/avatar.svg';
@@ -67,33 +71,65 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
             description: sidebar.value.profileDescription || site.value.description || ''
         }
     })
+
     // Nav config
     const navConfig = computed(() => {
+        const invalidAttrsKeys = [
+            'class',
+            'data-tooltip',
+            'hightlight',
+            'href',
+            'icon',
+            'iconAttrs',
+            'isLink',
+            'link',
+            'style',
+            'text',
+            'textAttrs',
+            'tooltip'
+        ];
         return {
             links: sidebar.value.navLinks?.filter((item: SidebarNavItemData) => {
-                return item.link !== undefined &&
-                    item.text !== undefined &&
-                    item.icon !== undefined;
-            }).map((raw: SidebarNavItemData) => {
-                const item = {...raw};
-                // initialize tooltip
-                if (item.tooltip === undefined) {
-                    item.tooltip = item.text;
-                }
-                // initialize highlight
-                if (item.highlight === undefined) {
-                    item.highlight = {};
-                } else if (item.highlight === true) {
-                    item.highlight = {};
-                } else if (typeof item.highlight === 'string') {
-                    item.highlight = {
-                        normal: item.highlight,
-                        hover: item.highlight,
-                        active: item.highlight
+                    return item.link !== undefined &&
+                        item.text !== undefined &&
+                        item.icon !== undefined;
+                }).map((raw: SidebarNavItemData) => {
+                    const item = {...raw};
+                    // initialize tooltip
+                    if (item.tooltip === undefined) {
+                        item.tooltip = item.text;
+                    }
+                    // initialize highlight
+                    if (item.highlight === undefined) {
+                        item.highlight = {};
+                    } else if (item.highlight === true) {
+                        item.highlight = {};
+                    } else if (typeof item.highlight === 'string') {
+                        item.highlight = {
+                            normal: item.highlight,
+                            hover: item.highlight,
+                            active: item.highlight
+                        };
+                    }
+                    // inistialize attrs
+                    if (item.attrs === undefined || typeof item.attrs !== 'object') {
+                        item.attrs = {};
+                    } else {
+                        const attrsCopy = {...item.attrs};
+                        invalidAttrsKeys.forEach((key) => {
+                            if (attrsCopy[key]) {
+                                console.log(
+                                    `Invalid attribute attrs key "${key}" in sidebar nav item({link:${item.link},` +
+                                    `text: ${item.text}, ...}), please check your input.`
+                                );
+                                delete attrsCopy[key];
+                            }
+                        });
+                        item.attrs = attrsCopy;
                     };
-                }
-                return item;
-            }) || [],
+                    return item;
+                }) ||
+                [],
             content: sidebar.value.navContent,
             tooltip: sidebar.value.enableTooltip === undefined ? true : sidebar.value.enableTooltip,
         }
@@ -113,6 +149,52 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
             route.path,
             navConfig.value.links.map((item: SidebarNavItemData): string => item.link)
         );
+    });
+
+    // Footer config
+    const footerConfig = computed(() => {
+        const invalidAttrsKeys = [
+            'class',
+            'href',
+            'icon',
+            'iconAttrs',
+            'isLink',
+            'link',
+            'style',
+            'text',
+            'textAttrs'
+        ];
+        return {
+            show: sidebar.value.showFooterOnCollapse === undefined ? false : sidebar.value.showFooterOnCollapse,
+            links: sidebar.value.footerLinks?.filter((item) => {
+                    return item.link !== undefined &&
+                        item.text !== undefined &&
+                        item.icon !== undefined;
+                }).map((raw: SidebarFooterItemData) => {
+                    // inistialize attrs
+                    let attrsCopy: Record<string, any> = {target: '_blank'};
+                    if (typeof raw.attrs === 'object') {
+                        attrsCopy = {...raw.attrs};
+                        invalidAttrsKeys.forEach((key) => {
+                            if (attrsCopy[key]) {
+                                console.log(
+                                    `Invalid attribute attrs key "${key}" in sidebar footer item({link:${raw.link},` +
+                                    `text: ${raw.text}, ...}), please check your input.`
+                                );
+                                delete attrsCopy[key];
+                            }
+                        });
+                    };
+                    return {
+                        link: raw.link,
+                        text: raw.text,
+                        icon: raw.icon,
+                        showOnCollapse: raw.showOnCollaspe === undefined ? true : raw.showOnCollaspe,
+                        attrs: attrsCopy
+                    };
+                }) ||
+                [],
+        };
     })
 
     // state
@@ -133,6 +215,7 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
         profileConfig,
         navConfig,
         highlightPath,
+        footerConfig,
         collapsed,
         toggle,
         close,
