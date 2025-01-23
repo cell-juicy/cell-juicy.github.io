@@ -1,58 +1,29 @@
-/* 图标列表 */
-[data-mask] {
-    mask-size: cover;
-    mask-repeat: no-repeat;
-    mask-position: center;
-}
-
-[data-mask="about"] {mask-image: url("../assets/icons/about.svg")}
-[data-mask="blog-p"] {mask-image: url("../assets/icons/blog.svg")}
-[data-mask="book"] {mask-image: url("../assets/icons/book.svg")}
-[data-mask="caret-d"] {mask-image: url("../assets/icons/caret-down.svg")}
-[data-mask="caret-l"] {mask-image: url("../assets/icons/caret-left.svg")}
-[data-mask="caret-r"] {mask-image: url("../assets/icons/caret-right.svg")}
-[data-mask="caret-u"] {mask-image: url("../assets/icons/caret-up.svg")}
-[data-mask="check-c"] {mask-image: url("../assets/icons/check-circle.svg")}
-[data-mask="check"] {mask-image: url("../assets/icons/check.svg")}
-[data-mask="comment"] {mask-image: url("../assets/icons/comment.svg")}
-[data-mask="cross"] {mask-image: url("../assets/icons/cross.svg")}
-[data-mask="download"] {mask-image: url("../assets/icons/download.svg")}
-[data-mask="blog"] {mask-image: url("../assets/icons/edit.svg")}
-[data-mask="error-p"] {mask-image: url("../assets/icons/error-page.svg")}
-[data-mask="error"] {mask-image: url("../assets/icons/error.svg")}
-[data-mask="resource"] {mask-image: url("../assets/icons/folder.svg")}
-[data-mask="github"] {mask-image: url("../assets/icons/github.svg")}
-[data-mask="home"] {mask-image: url("../assets/icons/home.svg")}
-[data-mask="left"] {mask-image: url("../assets/icons/left.svg")}
-[data-mask="left-s"] {mask-image: url("../assets/icons/left-s.svg")}
-[data-mask="menu"] {mask-image: url("../assets/icons/menu.svg")}
-[data-mask="meeting"] {mask-image: url("../assets/icons/meeting.svg")}
-[data-mask="mail"] {mask-image: url("../assets/icons/mail.svg")}
-[data-mask="dark"] {mask-image: url("../assets/icons/moon.svg")}
-[data-mask="docs"] {mask-image: url("../assets/icons/note.svg")}
-[data-mask="pdf"] {mask-image: url("../assets/icons/pdf.svg")}
-[data-mask="right"] {mask-image: url("../assets/icons/right.svg")}
-[data-mask="right-s"] {mask-image: url("../assets/icons/right-s.svg")}
-[data-mask="search"] {mask-image: url("../assets/icons/search.svg")}
-[data-mask="light"] {mask-image: url("../assets/icons/sun.svg")}
-[data-mask="tag"] {mask-image: url("../assets/icons/tag.svg")}
-[data-mask="warn"] {mask-image: url("../assets/icons/warn.svg")}
-
 :root {
     --vpj-font-size-100: 12px;
     --vpj-font-size-200: 16px;
+
+    --vpj-font-weight-100: 100;
+    --vpj-font-weight-200: 200;
+    --vpj-font-weight-300: 300;
+    --vpj-font-weight-400: 400;
+    --vpj-font-weight-500: 500;
+    --vpj-font-weight-600: 600;
+    --vpj-font-weight-700: 700;
+    --vpj-font-weight-800: 800;
+    --vpj-font-weight-900: 900;
+    --vpj-font-weight-1000: 1000;
 
     --vpj-margin-100: 0px;
 
     --vpj-padding-100: 0px;
 
-    --vpj-border-width-200: .5px;
+    --vpj-border-width-100: .5px;
     --vpj-border-width-200: 1px;
 
     --vpj-border-radius-100: 4px;
     --vpj-border-radius-200: 8px;
 
-    /* 默认情况下，使用亮色主题的颜色方案，当有body上的data-theme属性后会被覆盖 */
+    /* Default Colors */
     --vpj-color-primary-100: rgb(232, 241, 255);
     --vpj-color-primary-200: rgb(179, 207, 255);
     --vpj-color-primary-300: rgb(128, 171, 255);
@@ -101,18 +72,15 @@
     --vpj-color-border-400: rgb(217, 221, 229);
     --vpj-color-border-500: rgb(201, 205, 212);
 
-    --vpj-state-hover: rgba(0, 0, 0, 0.04);
-    --vpj-state-active: rgba(0, 0, 0, 0.08);
-    --vpj-state-selected: rgba(56, 132, 255, 0.08);
-    --vpj-state-disabled: rgba(0, 0, 0, 0.12);
-
     --vpj-shadow-100: 0 1px 2px rgba(0, 0, 0, 0.05);
     --vpj-shadow-200: 0 2px 4px rgba(0, 0, 0, 0.05);
     --vpj-shadow-300: 0 4px 8px rgba(0, 0, 0, 0.05);
     --vpj-shadow-400: 0 8px 16px rgba(0, 0, 0, 0.05);
     --vpj-shadow-500: 0 16px 24px rgba(0, 0, 0, 0.05);
 
-    --vpj-overlay-100: rgba(0, 0, 0, 0.75);
-    --vpj-overlay-200: rgba(0, 0, 0, 0.5);
-    --vpj-overlay-300: rgba(0, 0, 0, 0.25);
+    --vpj-overlay-100: rgba(0, 0, 0, 1);
+    --vpj-overlay-200: rgba(0, 0, 0, 0.8);
+    --vpj-overlay-300: rgba(0, 0, 0, 0.6);
+    --vpj-overlay-400: rgba(0, 0, 0, 0.4);
+    --vpj-overlay-500: rgba(0, 0, 0, 0.2);
 }
