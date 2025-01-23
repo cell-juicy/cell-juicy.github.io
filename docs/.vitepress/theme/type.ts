@@ -39,6 +39,70 @@ export type SidebarNavItemData = {
         boolean |
         string |
         {normal?: string; hover?: string; active?: string};
+
+    /**
+     * 侧边栏导航项的额外属性，接受一个对象，其中的键值对会直接传入到链接上（详情参考 https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a#%E5%B1%9E%E6%80%A7 ），需要注意以下键值是无效的：
+     * - class
+     * - data-tooltip
+     * - hightlight
+     * - href
+     * - icon
+     * - iconAttrs
+     * - isLink
+     * - link
+     * - style
+     * - text
+     * - textAttrs
+     * - tooltip
+     * @optional
+     * @defaultValue {} 默认不添加额外属性
+     */
+    attrs?: Record<string, any>;
+};
+
+export type SidebarFooterItemData = {
+    /**
+     * 侧边栏底部链接项的图标，可以是一个路径字符串或者一个组件，也可以通过对象指定图片的更多属性
+     * @requires
+     */
+    icon:
+        ImageData |
+        { component: string };
+
+    /**
+     * 侧边栏底部链接项的文本，接受一个字符串
+     * @requires
+     */
+    text: string;
+
+    /**
+     * 侧边栏底部导航项的链接，接受一个路径字符串
+     * @requires
+     */
+    link: string;
+
+    /**
+     * 控制此项是否在侧边栏折叠状态下显示，接受一个boolean值，默认为true（此项设置仅在sidebar配置中showFooterOnCollaspe项设置为true时生效，当sidebar.showFooterOnCollaspe设置为false时此项会被自动覆盖为false）。
+     * @optional
+     * @defaultValue true 默认为true
+     */
+    showOnCollaspe?: boolean;
+
+    /**
+     * 侧边栏底部链接项的额外属性，接受一个对象，其中的键值对会直接传入到链接上（详情参考 https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a#%E5%B1%9E%E6%80%A7 ），需要注意以下键值是无效的：
+     * - class
+     * - href
+     * - icon
+     * - iconAttrs
+     * - isLink
+     * - link
+     * - style
+     * - text
+     * - textAttrs
+     * @optional
+     * @defaultValue {target: "_blank"} 默认情况下，底部链接项的链接会在新标签页打开
+     */
+    attrs?: Record<string, any>;
 };
 
 export interface SidebarConfig {
@@ -125,6 +189,20 @@ export interface SidebarConfig {
      * @optional
      */
     navContent?: string;
+
+    /**
+     * 是否在侧边栏折叠时显示底部内容，接受一个boolean值
+     * @optional
+     * @defaultValue false 默认为false
+     */
+    showFooterOnCollapse?: boolean;
+
+    /**
+     * 自定义侧边栏底部的链接列表，它的行为与导航项列表类似但是不支持高亮路径与提示文本功能。
+     * @optional
+     * @defaultValue [] 默认情况下没有底部链接项
+     */
+    footerLinks?: SidebarFooterItemData[]
 }
 
 
