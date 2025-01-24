@@ -1,7 +1,9 @@
 <script setup>
 import { useData, Content } from 'vitepress';
 import { computed } from 'vue';
+
 import VPJSidebar from './components/VPJSidebar.vue';
+import VPJMobileNavbar from './components/VPJMobileNavbar.vue';
 
 
 const { frontmatter } = useData();
@@ -30,6 +32,9 @@ const activeLayout = computed(() => {
             <template #sidebar-bottom><slot name="sidebar-bottom"/></template>
         </VPJSidebar>
         <div class="vpj-layout__main">
+            <VPJMobileNavbar>
+                <template #mobile-nav-content><slot name="mobile-nav-content"/></template>
+            </VPJMobileNavbar>
             <component :is="activeLayout"/>
         </div>
     </div>

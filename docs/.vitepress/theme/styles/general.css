@@ -29,7 +29,7 @@ body {
 /* 无换行短文本（垂直居中） */
 .vpj-text {
     flex: 1;
-    line-height: 1;
+    line-height: 1.2;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: start;
