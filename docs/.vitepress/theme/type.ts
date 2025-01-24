@@ -105,6 +105,7 @@ export type SidebarFooterItemData = {
     attrs?: Record<string, any>;
 };
 
+
 export interface SidebarConfig {
     /**
      * 是否启用侧边栏，可以接受一个boolean值
@@ -205,6 +206,24 @@ export interface SidebarConfig {
     footerLinks?: SidebarFooterItemData[]
 }
 
+export interface MobileNavConfig {
+    /**
+     * 是否启用移动端顶部导航栏，在PC端此导航栏是强制隐藏的。如果你希望在移动端使用侧边栏的功能，那么建议开启此项，因为在不自定义的情况下，主题内没有提供其它的组件可以呼出隐藏的侧边栏。
+     * @optional
+     * @defaultValue true 默认为true
+     */
+    enable?: boolean;
+
+    /**
+     * 自定义移动端顶部导航栏的标题，接受一个字符串作为输入，也可以使用{component: ...}的输入指定一个全局注册了的组件名。
+     * @optional
+     * @defaultValue theme.sidebar.headerTitle 默认从侧边栏配置里面继承headerTitle
+     */
+    title?:
+        string |
+        { component: string };
+}
+
 
 export interface ThemeConfig {
     /**
@@ -218,4 +237,10 @@ export interface ThemeConfig {
      * @optional
      */
     sidebar?: SidebarConfig;
+
+    /**
+     * 移动端顶部栏的配置项
+     * @optional
+     */
+    mobileNav?: MobileNavConfig;
 }
