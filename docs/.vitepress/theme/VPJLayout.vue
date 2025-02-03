@@ -5,10 +5,14 @@ import { computed } from 'vue';
 import VPJSidebar from './components/VPJSidebar.vue';
 import VPJMobileNavbar from './components/VPJMobileNavbar.vue';
 
+import VPJLayoutNotFound from './layouts/VPJLayoutNotFound.vue';
 
-const { frontmatter } = useData();
+const { page, frontmatter } = useData();
 const activeLayout = computed(() => {
+    if (page.value.isNotFound) return VPJLayoutNotFound;
     switch (frontmatter.value.layout) {
+        case 'not-found':
+            return VPJLayoutNotFound;
         default:
             return Content
     }

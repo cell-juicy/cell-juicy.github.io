@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@algolia/client-search": "^5.14.2",
+    "@unhead/vue": "^1.11.18",
     "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",
     "path": "^0.12.7",

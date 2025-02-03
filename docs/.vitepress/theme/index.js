@@ -7,6 +7,9 @@ import VPJLayout from "./VPJLayout.vue";
 // Pinia
 import { createPinia } from "pinia";
 
+// Unhead
+import { createHead } from "@unhead/vue";
+
 // Global stylesheet
 import "./styles/var.css";
 import "./styles/general.css";
@@ -16,9 +19,13 @@ import "./styles/general.css";
 export default {
     Layout: VPJLayout,
     enhanceApp: async ({ app, router, siteData }) => {
-        // Pinia
+        // Pinia support
         const pinia = createPinia();
         app.use(pinia);
+
+        // Unhead support
+        const head = createHead();
+        app.use(head);
 
         // Add portal root element for VuePortals
         if (typeof document !== "undefined") {

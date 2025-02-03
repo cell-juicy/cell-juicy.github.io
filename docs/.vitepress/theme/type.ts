@@ -1,5 +1,22 @@
+/**
+ * 通用类型定义
+ */
 export type ImageData = string | { src: string; alt?: string };
+export type HeadFaviconData = string |
+    {
+        src: string
+        rel?: string
+        sizes?: string
+        type?: 'image/svg+xml' | 'image/png' | 'image/jpeg' | 'image/webp' | 'image/x-icon'
+        media?: string
+    };
 
+
+/**
+ * 侧边栏相关
+ */
+
+// 侧边栏导航项
 export type SidebarNavItemData = {
     /**
      * 侧边栏导航项的图标，可以是一个路径字符串或者一个组件，也可以通过对象指定图片的更多属性
@@ -105,7 +122,6 @@ export type SidebarFooterItemData = {
     attrs?: Record<string, any>;
 };
 
-
 export interface SidebarConfig {
     /**
      * 是否启用侧边栏，可以接受一个boolean值
@@ -124,7 +140,7 @@ export interface SidebarConfig {
     /**
      * 自定义侧边栏资料卡按钮的logo，可以是一个路径字符串或者一个组件，也可以通过对象提供更多内容
      * @optional
-     * @defaultValue theme.logo 默认从主题配置继承logo，若未配置则启用主题默认logo
+     * @defaultValue theme.logo | defaultAvatar 默认从主题配置继承logo，若未配置则启用主题默认logo
      */
     headerLogo?: 
         ImageData |
@@ -206,6 +222,10 @@ export interface SidebarConfig {
     footerLinks?: SidebarFooterItemData[]
 }
 
+
+/**
+ * 移动端顶部栏相关
+ */
 export interface MobileNavConfig {
     /**
      * 是否启用移动端顶部导航栏，在PC端此导航栏是强制隐藏的。如果你希望在移动端使用侧边栏的功能，那么建议开启此项，因为在不自定义的情况下，主题内没有提供其它的组件可以呼出隐藏的侧边栏。
@@ -225,6 +245,63 @@ export interface MobileNavConfig {
 }
 
 
+/**
+ * 布局相关
+ */
+
+// 404页配置
+export interface VPJNotFoundLayoutConfig {
+    /**
+     * 自定义404页的默认标题，接受一个字符串作为输入（此功能暂不可用）
+     * @optional
+     * @defaultValue site.titleTemplate.replace(/^\{title\}/, "404") | `404 | ${site.title}` | "404" 默认从站点配置继承titleTemplate，如果没有指定则使用site.title作为标题
+     */
+    title?: string;
+
+    /**
+     * 自定义404页的浏览器默认导航栏图标，接受一个路径字符串，或者接受一个带有src属性的对象 (此功能暂不可用)
+     * @optional
+     * @defaultValue theme.logo | VPJIcon404 默认从主题配置继承logo
+     */
+    favicon?: 
+        HeadFaviconData |
+        HeadFaviconData[];
+
+    /**
+     * 自定义404页的错误图标，可以是一个路径字符串或者一个组件，也可以通过对象提供更多内容（如果你提供的是一个没有指定fill属性的svg组件，那么它将会使用主题默认的颜色）
+     * @optional
+     * @defaultValue VPJIconCrossCircle 默认使用主题内置的错误图标
+     */
+    contentIcon?: ImageData | { component: string };
+
+    /**
+     * 自定义404页错误图标下的标题，接受一个字符串
+     * @optional
+     * @defaultValue "页面未找到"
+     */
+    contentTitle?: string;
+
+    /**
+     * 自定义404页错误图标下的文本，接受一个字符串
+     * @optional
+     * @defaultValue "很抱歉，您尝试访问的页面不存在或可能已被删除。"
+     */
+    contentText?: string;
+
+    /**
+     * 自定义404页的底部链接，可以接受一个字符串修改按钮的文本，也可以通过对象自定义此链接指向的页面与文本
+     * @optional
+     * @defaultValue {text: "返回主页", link: "/"} 默认情况或者不通过对象指定link属性时，底部链接会指向站点首页
+     */
+    contentLink?:
+        string |
+        { text?: string; link?: string};
+}
+
+
+/**
+ * 主题配置
+ */
 export interface ThemeConfig {
     /**
      * 自定义主题的logo，接受一个路径字符串，这会在作用于导航栏并且在一些组件中作为默认值提供
@@ -243,4 +320,15 @@ export interface ThemeConfig {
      * @optional
      */
     mobileNav?: MobileNavConfig;
+
+    /**
+     * 布局的配置项
+     * @optional
+     */
+    layouts?: {
+        /**
+         * 404页的布局配置，配置的默认值参考VPJNotFoundLayoutConfig的注释
+         */
+        notFound?: VPJNotFoundLayoutConfig;
+    };
 }
