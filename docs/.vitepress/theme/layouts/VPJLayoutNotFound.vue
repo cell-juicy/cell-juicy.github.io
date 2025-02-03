@@ -1,14 +1,32 @@
 <script setup>
 import { useData } from 'vitepress';
 import { computed } from 'vue';
-import { useHead } from '@unhead/vue';
 
 import VPJDynamicIcon from '../components/VPJDynamicIcon.vue';
 import VPJIconCrossCircle from '../components/icons/VPJIconCrossCircle.vue';
-import VPJIcon404 from '../components/icons/VPJIcon404.vue';
 
 
-const { site, theme } = useData();
+const { site, theme, frontmatter, page } = useData();
+const computedContent = computed(() => {
+    const linkRaw = theme.value.layouts?.notFound?.contentLink ?? {text: '返回主页', link: '/'};
+    const linkData = {};
+    if (typeof linkRaw === 'string') {
+        linkData.text = linkRaw;
+        linkData.href = '/'
+    } else if (linkRaw && typeof linkRaw === 'object') {
+        linkData.text = linkRaw.text ?? '返回主页';
+        linkData.href = linkRaw.link ?? '/';
+    } else {
+        linkData.text = '返回主页';
+        linkData.href = '/';
+    }
+    return {
+        icon: theme.value.layouts?.notFound?.contentIcon ?? VPJIconCrossCircle,
+        title: theme.value.layouts?.notFound?.contentTitle ?? '页面未找到',
+        text: theme.value.layouts?.notFound?.contentText ?? '很抱歉，您尝试访问的页面不存在或可能已被删除。',
+        link: linkData
+    }
+})
 </script>
 
 
@@ -16,21 +34,21 @@ const { site, theme } = useData();
     <div class="vpj-layout-notfound">
         <div class="vpj-layout-notfound__content">
             <VPJDynamicIcon
-                :icon="VPJIconCrossCircle"
+                :icon="computedContent.icon"
                 class="vpj-layout-notfound__content-icon"
             />
             <div class="vpj-layout-notfound__content-title">
-                页面未找到
+                {{ computedContent.title }}
             </div>
             <div class="vpj-layout-notfound__content-text">
-                很抱歉，您尝试访问的页面不存在或可能已被删除。
+                {{ computedContent.text}}
             </div>
             <a
                 class="vpj-layout-notfound__content-link"
-                href="/"
+                :href="computedContent.link.href"
             >
                 <span class="vpj-text">
-                    返回主页
+                    {{ computedContent.link.text }}
                 </span>
             </a>
         </div>
