@@ -61,7 +61,7 @@ export type SidebarNavItemData = {
      * 侧边栏导航项的额外属性，接受一个对象，其中的键值对会直接传入到链接上（详情参考 https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a#%E5%B1%9E%E6%80%A7 ），需要注意以下键值是无效的：
      * - class
      * - data-tooltip
-     * - hightlight
+     * - highlight
      * - href
      * - icon
      * - iconAttrs
@@ -103,7 +103,7 @@ export type SidebarFooterItemData = {
      * @optional
      * @defaultValue true 默认为true
      */
-    showOnCollaspe?: boolean;
+    showOnCollapse?: boolean;
 
     /**
      * 侧边栏底部链接项的额外属性，接受一个对象，其中的键值对会直接传入到链接上（详情参考 https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a#%E5%B1%9E%E6%80%A7 ），需要注意以下键值是无效的：
