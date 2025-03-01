@@ -1,0 +1,117 @@
+import type {
+    ImageData
+} from "./common";
+
+import type {
+    SidebarConfig
+} from "./sidebar";
+
+import type {
+    MobileNavConfig
+} from "./mobileNav"
+
+import type {
+    VPJNotFoundLayoutConfig
+} from "./layoutNotFound"
+
+
+/**
+ * 布局的全局配置接口
+ * 
+ * @remarks
+ * 此接口定义了定义了主题配置中关于布局的，包括404页布局等布局的配置项。
+ * 
+ * @see {@link VPJLayoutsConfig.notFound} 404页与not-found布局的配置
+ * 
+ * @example
+ * 示例1：配置不同布局的参数
+ * ```ts
+ * // config.ts
+ * export default defineConfig({
+ *   themeConfig: {
+ *     ...,
+ *     layouts: {
+ *       notFound: { ... },
+ *       blog: { ... },
+ *       ...
+ *     },
+ *     ...
+ *   }
+ * })
+ * ```
+ */
+export interface VPJLayoutsConfig {
+    /** 
+     * 404页与not-found布局配置
+     * @see {@link VPJNotFoundLayoutConfig} 404页配置接口
+     */
+    notFound?: VPJNotFoundLayoutConfig;
+}
+
+
+/**
+ * 主题全局配置接口
+ * 
+ * @remarks
+ * 此接口定义了主题的所有可配置项，包含以下内容：
+ * 
+ * @see {@link ThemeConfig.logo} 站点 Logo 配置
+ * @see {@link ThemeConfig.sidebar} 侧边栏配置
+ * @see {@link ThemeConfig.mobileNav} 移动端导航配置
+ * @see {@link ThemeConfig.layouts} 布局配置
+ * 
+ * @example
+ * 示例1：配置主题
+ * ```ts
+ * // config.ts
+ * export default defineConfig({
+ *   themeConfig: {
+ *     logo: "/logo.svg",
+ *     sidebar: { ... },
+ *     mobileNav: { ... },
+ *     layouts: { ... },
+ *     ...
+ *   }
+ * })
+ * ```
+ */
+export interface ThemeConfig {
+    /**
+     * 站点 Logo 配置
+     * @optional
+     * @see {@link ImageData} 支持的格式类型
+     * @example
+     * ```ts
+     * // 简写模式
+     * logo: "/logo.png"
+     * 
+     * // 详写模式
+     * logo: { 
+     *   src: "/logo.png",
+     *   alt: "站点 Logo"
+     * }
+     * ```
+     */
+    logo?: ImageData;
+
+    /**
+     * 侧边栏全局配置
+     * @optional
+     * @see {@link SidebarConfig} 完整侧边栏配置接口
+     */
+    sidebar?: SidebarConfig;
+
+    /**
+     * 移动端导航配置
+     * @optional
+     * @see {@link MobileNavConfig} 移动端导航配置接口
+     */
+    mobileNav?: MobileNavConfig;
+
+    /**
+     * 布局配置
+     * @optional
+     * @see {@link VPJLayoutsConfig} 布局配置接口
+     */
+    layouts?: VPJLayoutsConfig;
+}
