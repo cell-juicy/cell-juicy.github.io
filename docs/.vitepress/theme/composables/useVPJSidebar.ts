@@ -60,7 +60,7 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
     const headerConfig = computed(() => {
         return {
             logo: sidebar.value.headerLogo || theme.value.logo || defaultAvatar,
-            title: sidebar.value.headerTitle || site.value.title || 'Vitepress'
+            title: sidebar.value.headerTitle || site.value.title || 'VitePress'
         }
     })
     const profileConfig = computed(() => {
@@ -77,7 +77,7 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
         const invalidAttrsKeys = [
             'class',
             'data-tooltip',
-            'hightlight',
+            'highlight',
             'href',
             'icon',
             'iconAttrs',
@@ -189,7 +189,7 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
                         link: raw.link,
                         text: raw.text,
                         icon: raw.icon,
-                        showOnCollapse: raw.showOnCollaspe === undefined ? true : raw.showOnCollaspe,
+                        showOnCollapse: raw.showOnCollapse === undefined ? true : raw.showOnCollapse,
                         attrs: attrsCopy
                     };
                 }) ||
