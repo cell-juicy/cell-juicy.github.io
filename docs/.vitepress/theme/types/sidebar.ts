@@ -1,4 +1,5 @@
 import type { ImageData } from "./common";
+import type { ThemeConfig } from "./index";
 
 
 /**
@@ -10,15 +11,18 @@ import type { ImageData } from "./common";
  * 可配置的属性列表如下：
  * 
  * 1. 核心属性：
+ * 
  * @see {@link SidebarNavItemData.icon} 图标配置（必填）
  * @see {@link SidebarNavItemData.text} 文本内容（必填）
  * @see {@link SidebarNavItemData.link} 链接路径（必填）
  * 
  * 2. 交互属性：
+ * 
  * @see {@link SidebarNavItemData.tooltip} 提示文本配置
  * @see {@link SidebarNavItemData.highlight} 高亮行为配置
  * 
  * 3. 扩展属性：
+ * 
  * @see {@link SidebarNavItemData.attrs} 额外HTML属性
  * 
  * @example
@@ -51,10 +55,12 @@ export interface SidebarNavItemData {
      * 
      * @remarks
      * 该项控制按钮显示的图标，支持三种类型的图标配置：
+     * 
      * 1. 一个路径字符串，指向图标的位置（建议放在public文件夹下使用）。
      * 2. 一个全局注册的组件名。
      * 3. 一个对象，为图片资源添加更多的扩展属性。
-     * 只输入一个字符串时，会检测输入字符串的尾缀是否是png|jpeg|jpg|gif|webp|svg中的一种，如果是，那么这会被判定为图片路径，否则会被判定为全局注册的组件。
+     * 
+     * 只输入一个字符串时，会检测输入字符串末尾是否包含文件扩展名png|jpeg|jpg|gif|webp|svg中的一种，以此判断是否将此字符串视为文件路径。
      * 
      * @example
      * 示例1：指定图片路径
@@ -244,14 +250,17 @@ export interface SidebarNavItemData {
  * 可配置的属性列表如下：
  * 
  * 1. 核心属性：
+ * 
  * @see {@link SidebarFooterItemData.icon} 图标配置（必填）
  * @see {@link SidebarFooterItemData.text} 文本内容（必填）
  * @see {@link SidebarFooterItemData.link} 链接路径（必填）
  * 
  * 2. 显示控制：
+ * 
  * @see {@link SidebarFooterItemData.showOnCollapse} 折叠状态显示控制
  * 
  * 3. 扩展属性：
+ * 
  * @see {@link SidebarFooterItemData.attrs} 额外HTML属性
  * 
  * @example
@@ -283,10 +292,12 @@ export interface SidebarFooterItemData {
      * 
      * @remarks
      * 该项控制按钮显示的图标，支持三种类型的图标配置：
+     * 
      * 1. 一个路径字符串，指向图标的位置（建议放在public文件夹下使用）。
      * 2. 一个全局注册的组件名。
      * 3. 一个对象，为图片资源添加更多的扩展属性。
-     * 只输入一个字符串时，会检测输入字符串的尾缀是否是png|jpeg|jpg|gif|webp|svg中的一种，如果是，那么这会被判定为图片路径，否则会被判定为全局注册的组件。
+     * 
+     * 只输入一个字符串时，会检测输入字符串末尾是否包含文件扩展名png|jpeg|jpg|gif|webp|svg中的一种，以此判断是否将此字符串视为文件路径。。
      * 
      * @example
      * 示例1：指定图片路径
@@ -410,9 +421,11 @@ export interface SidebarFooterItemData {
  * 可以配置的全部属性如下：
  * 
  * 1. 全局：
+ * 
  * @see {@link SidebarConfig.enable} 启用侧边栏
  * 
  * 2. 头部区域：
+ * 
  * @see {@link SidebarConfig.headerTitle} 头部标题
  * @see {@link SidebarConfig.headerLogo} 头部Logo
  * @see {@link SidebarConfig.enableProfile} 启用资料卡
@@ -421,12 +434,14 @@ export interface SidebarFooterItemData {
  * @see {@link SidebarConfig.profileDescription} 资料卡内容
  * 
  * 3. 导航区域：
+ * 
  * @see {@link SidebarConfig.navLinks} 导航链接列表
  * @see {@link SidebarConfig.enableTooltip} 启用文本提示
  * @see {@link SidebarConfig.enableHighlight} 启用高亮
  * @see {@link SidebarConfig.navContent} 导航附加组件
  * 
  * 4. 底部区域：
+ * 
  * @see {@link SidebarConfig.showFooterOnCollapse} 底部折叠显示
  * @see {@link SidebarConfig.footerLinks} 底部链接列表
  * 
@@ -519,8 +534,6 @@ export interface SidebarConfig {
      *   }
      * }
      * ```
-     * 
-     * @see {@link SiteConfig.title}
      */
     headerTitle?: string;
 
@@ -531,12 +544,15 @@ export interface SidebarConfig {
      * 
      * @remarks
      * 该项控制侧边栏资料卡按钮的logo，支持三种类型的图标配置：
+     * 
      * 1. 一个路径字符串，指向图标的位置（建议放在public文件夹下使用）。
      * 2. 一个全局注册的组件名。
      * 3. 一个对象，为图片资源添加更多的扩展属性。
-     * 只输入一个字符串时，会检测输入字符串的尾缀是否是png|jpeg|jpg|gif|webp|svg中的一种，如果是，那么这会被判定为图片路径，否则会被判定为全局注册的组件。
+     * 
+     * 只输入一个字符串时，会检测输入字符串末尾是否包含文件扩展名png|jpeg|jpg|gif|webp|svg中的一种，以此判断是否将此字符串视为文件路径。
      * 
      * 注意事项：
+     * 
      * * logo的尺寸通过css限制为24px × 24px
      * 
      * > 默认的logo如下：
@@ -590,6 +606,7 @@ export interface SidebarConfig {
      *     ...
      *   }
      * }
+     * ```
      * 
      * @see {@link ThemeConfig.logo} theme.logo
      */
@@ -633,11 +650,15 @@ export interface SidebarConfig {
      * 
      * @remarks
      * 该项控制侧边栏资料卡的logo，支持三种类型的图标配置：
+     * 
      * 1. 一个路径字符串，指向图标的位置（建议放在public文件夹下使用）。
      * 2. 一个全局注册的组件名。
      * 3. 一个对象，为图片资源添加更多的扩展属性。
-     * 只输入一个字符串时，会检测输入字符串的尾缀是否是png|jpeg|jpg|gif|webp|svg中的一种，如果是，那么这会被判定为图片路径，否则会被判定为全局注册的组件。
+     * 
+     * 只输入一个字符串时，会检测输入字符串末尾是否包含文件扩展名png|jpeg|jpg|gif|webp|svg中的一种，以此判断是否将此字符串视为文件路径。
+     * 
      * 注意事项：
+     * 
      * * 只有侧边栏配置中enableProfile为true的时候此配置项才有意义
      * * logo的尺寸通过css限制为24px × 24px（同headerLogo一样）。
      * 
@@ -692,7 +713,8 @@ export interface SidebarConfig {
      * 
      * @remarks
      * 该项控制侧边栏资料卡的标题内容，接受一个字符串作为输入
-     * 注意事项
+     * 
+     * 注意事项：
      * * 标题长度受限于资料卡的宽度，超出最大长度时超出部分会变成"..."
      * * 当sidebar.headerTitle和本项都没有填入值时，会按照headerTitle的默认值逻辑向下查找默认值，具体内容参考sidebar.headerTitle的注释
      * 
@@ -774,8 +796,6 @@ export interface SidebarConfig {
      *   }
      * }
      * ```
-     * 
-     * @see {@link SiteConfig.description} site.description
      */
     profileDescription?: 
         | string
