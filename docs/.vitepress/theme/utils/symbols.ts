@@ -1,0 +1,1 @@
+export const VPJ_PAGE_LAYOUT_SYMBOL = Symbol("page layout");
