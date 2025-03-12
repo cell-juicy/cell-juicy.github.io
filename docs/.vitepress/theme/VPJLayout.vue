@@ -6,6 +6,8 @@ import VPJSidebar from './components/VPJSidebar.vue';
 import VPJMobileNavbar from './components/VPJMobileNavbar.vue';
 
 import VPJLayoutNotFound from './layouts/VPJLayoutNotFound.vue';
+import VPJLayoutPage from './layouts/VPJLayoutPage.vue';
+
 
 const { page, frontmatter } = useData();
 const activeLayout = computed(() => {
@@ -13,6 +15,8 @@ const activeLayout = computed(() => {
     switch (frontmatter.value.layout) {
         case 'not-found':
             return VPJLayoutNotFound;
+        case 'page':
+            return VPJLayoutPage
         default:
             return Content
     }
