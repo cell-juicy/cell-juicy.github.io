@@ -14,6 +14,10 @@ import type {
     VPJNotFoundLayoutConfig
 } from "./layoutNotFound"
 
+import type {
+    VPJPageLayoutConfig
+} from "./layoutPage"
+
 
 /**
  * 布局的全局配置接口
@@ -32,7 +36,7 @@ import type {
  *     ...,
  *     layouts: {
  *       notFound: { ... },
- *       blog: { ... },
+ *       page: { ... },
  *       ...
  *     },
  *     ...
@@ -46,6 +50,12 @@ export interface VPJLayoutsConfig {
      * @see {@link VPJNotFoundLayoutConfig} 404页配置接口
      */
     notFound?: VPJNotFoundLayoutConfig;
+
+    /**
+     * page布局配置
+     * @see {@link VPJPageLayoutConfig} page布局配置接口
+     */
+    page?: VPJPageLayoutConfig;
 }
 
 
