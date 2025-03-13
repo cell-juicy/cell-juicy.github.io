@@ -1,6 +1,6 @@
 <script setup>
 import { Content, useData } from 'vitepress';
-import { computed, provide } from 'vue';
+import { computed, provide, useSlots } from 'vue';
 import { isMobile, isTablet } from '../utils/deviceTypes';
 import { VPJ_PAGE_LAYOUT_SYMBOL } from '../utils/symbols';
 
@@ -66,6 +66,10 @@ const mergeWidthData = resolveMerge({
     desktop: frontmatterWidth.desktop || themeWidth.desktop || DEFAULT.WIDTH.desktop
 });
 const computedWidth = merge2Computed(mergeWidthData);
+// process slots
+const slots = useSlots();
+const hasGutterLeft = computed(() => !!slots['page-gutter-left']?.());
+const hasGutterRight = computed(() => !!slots['page-gutter-right']?.());
 
 
 provide(VPJ_PAGE_LAYOUT_SYMBOL, {
@@ -78,11 +82,25 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
 <template>
     <div class="vpj-layout-page vpj-scroll-y vpj-scroll-x">
         <div class="vpj-layout-page__hero-iamge"/>
+        <slot name="page-top"/>
         <div class="vpj-layout-page__grid-layout">
+            <div
+                v-if="hasGutterLeft"
+                class="vpj-layout-page__gutter-left"
+            >
+                <slot name="page-gutter-left"/>
+            </div>
             <slot>
                 <Content class="vpj-layout-page__content"/>
             </slot>
+            <div
+                v-if="hasGutterRight"
+                class="vpj-layout-page__gutter-right"
+            >
+                <slot name="page-gutter-right"/>
+            </div>
         </div>
+        <slot name="page-bottom"/>
     </div>
 </template>
 
@@ -101,6 +119,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
         width: 100%;
     }
 
+    /* Grid layout */
     .vpj-layout-page__grid-layout {
         display: grid;
         grid-template-columns:
@@ -111,6 +130,19 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
         width: 100%;
     }
 
+    .vpj-layout-page__gutter-left {
+        grid-column: 1;
+        min-height: 0;
+        width: 100%;
+    }
+
+    .vpj-layout-page__gutter-right {
+        grid-column: 3;
+        min-height: 0;
+        width: 100%;
+    }
+
+    /* Content */
     .vpj-layout-page__content {
         grid-column: 2;
         min-height: 0;
