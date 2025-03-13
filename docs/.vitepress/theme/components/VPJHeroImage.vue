@@ -1,7 +1,17 @@
 <script setup>
-import { computed, inject } from 'vue';
+import { useData } from 'vitepress';
+import { computed, inject, ref, watch, watchEffect, onMounted } from 'vue';
 import { isDesktop } from '../utils/deviceTypes';
 import { VPJ_PAGE_LAYOUT_SYMBOL } from '../utils/symbols';
+
+
+function checkImageRoot() {
+    if (typeof document !== 'undefined' && isPageLayout.value) {
+        imageRootExists.value = !!document.querySelector('.vpj-layout-page__hero-iamge')
+    } else {
+        imageRootExists.value = false
+    }
+};
 
 
 const props = defineProps({
@@ -43,7 +53,11 @@ const props = defineProps({
         type: String
     }
 })
-
+const { page } = useData();
+const layoutConfig = inject(VPJ_PAGE_LAYOUT_SYMBOL, null);
+const isPageLayout = computed(() => !!layoutConfig);
+const imageRootExists = ref(false);
+// Computed properties for dynamic styling
 const computedSrc = computed(() => `url(${props.src})`)
 const computedFade = computed(() => {
     if (props.fade) {
@@ -58,19 +72,43 @@ const computedFilter = computed(() => {
     }
     return 'none'
 })
-const { computedGutter, computedWidth } = inject(VPJ_PAGE_LAYOUT_SYMBOL, {
-    computedGutter: computed(() => {
+const computedGutter = computed(() => {
+    if (isPageLayout.value) return layoutConfig.computedGutter?.value;
+    else {
         if (isDesktop.value) return "4rem";
         return "1.5rem";
-    }),
-    computedWidth: computed(() => "61.25rem")
+    };
 });
+const computedWidth = computed(() => {
+    if (isPageLayout.value) return layoutConfig.computedWidth?.value;
+    return "61.25rem"
+})
+
+
+watchEffect(checkImageRoot);
+watch(isPageLayout, (value) => {
+    if (!value) {
+        console.warn('[Juicy Theme Warn]: ' +
+            'The VPJHeroImage component can only be used in a page layout or an extended page layout.' +
+            'Please check if you have used the VPJHeroImage component in a page that does not use a page' + 
+            ' layout or an extended page layout by mistake. The incorrectly used VPJHeroImage component' +
+            ' has been hidden.' + 
+            `${!page.value.isNotFound ? `\n(At file: ${page.value.filePath})` : ''}`
+        )
+    }
+}, { immediate: true });
+onMounted(() => {
+    checkImageRoot()
+})
 </script>
 
 
 <template>
     <ClientOnly>
-        <Teleport to=".vpj-layout-page__hero-iamge">
+        <Teleport
+            to=".vpj-layout-page__hero-iamge"
+            v-if="isPageLayout && imageRootExists"
+        >
             <div
                 class="vpj-hero-image"
                 v-bind="$attrs"
