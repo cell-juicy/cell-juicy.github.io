@@ -1,26 +1,8 @@
 <script setup>
-import { useData, Content } from 'vitepress';
-import { computed } from 'vue';
-
 import VPJSidebar from './components/VPJSidebar.vue';
 import VPJMobileNavbar from './components/VPJMobileNavbar.vue';
 
-import VPJLayoutNotFound from './layouts/VPJLayoutNotFound.vue';
-import VPJLayoutPage from './layouts/VPJLayoutPage.vue';
-
-
-const { page, frontmatter } = useData();
-const activeLayout = computed(() => {
-    if (page.value.isNotFound) return VPJLayoutNotFound;
-    switch (frontmatter.value.layout) {
-        case 'not-found':
-            return VPJLayoutNotFound;
-        case 'page':
-            return VPJLayoutPage
-        default:
-            return Content
-    }
-});
+import VPJContent from './layouts/VPJContent.vue';
 </script>
 
 
@@ -43,7 +25,12 @@ const activeLayout = computed(() => {
             <VPJMobileNavbar>
                 <template #mobile-nav-content><slot name="mobile-nav-content"/></template>
             </VPJMobileNavbar>
-            <component :is="activeLayout"/>
+            <VPJContent>
+                <template #page-top><slot name="page-top"/></template>
+                <template #page-bottom><slot name="page-bottom"/></template>
+                <template #page-gutter-left><slot name="page-gutter-left"/></template>
+                <template #page-gutter-right><slot name="page-gutter-right"/></template>
+            </VPJContent>
         </div>
     </div>
 </template>
