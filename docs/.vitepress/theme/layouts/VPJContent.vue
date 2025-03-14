@@ -25,6 +25,7 @@ const { page, frontmatter } = useData();
 
 <style scoped>
     .vpj-layout-content {
+        align-items: center;
         display: flex;
         flex: 1;
         flex-direction: column;
