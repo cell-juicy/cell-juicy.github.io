@@ -47,7 +47,7 @@ const { collapsed, navConfig } = storeToRefs(store);
         min-height: 0;
         overflow-x: hidden;
         padding-bottom: .75rem;
-        padding-left: .75rem;
+        padding-left: calc(.75rem - 4px);
         padding-right: calc(.75rem - 4px);
         width: 100%;
     }
@@ -67,7 +67,7 @@ const { collapsed, navConfig } = storeToRefs(store);
 
     /* StyleSheet for collapsed state */
     .vpj-sidebar-nav.collapsed {
-        padding-left: 12px;
+        padding-left: 8px;
         padding-right: 8px;
     }
 

@@ -104,7 +104,7 @@ const props = defineProps({
         flex: 1;
         min-height: 0;
         min-width: 0;
-        padding-left: 16px;
+        padding-left: 12px;
         padding-right: 12px;
         padding-top: 12px;
         padding-bottom: 12px;
