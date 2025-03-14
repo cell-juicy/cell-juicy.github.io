@@ -109,9 +109,10 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
     /* Main layout */
     .vpj-layout-page {
         background-color: var(--vpj-color-bg-100);
+        height: 100%;
+        overflow: auto;
         scrollbar-color: var(--vpj-color-text-100) var(--vpj-color-bg-200);
         scrollbar-gutter: auto;
-        height: 100%;
         width: 100%;
     }
 
