@@ -80,7 +80,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
 
 
 <template>
-    <div class="vpj-layout-page vpj-scroll-y vpj-scroll-x">
+    <div class="vpj-layout-page">
         <div class="vpj-layout-page__hero-iamge"/>
         <slot name="page-top"/>
         <div class="vpj-layout-page__grid-layout">
@@ -109,6 +109,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
     /* Main layout */
     .vpj-layout-page {
         background-color: var(--vpj-color-bg-100);
+        scrollbar-color: var(--vpj-color-text-100) var(--vpj-color-bg-200);
         scrollbar-gutter: auto;
         height: 100%;
         width: 100%;
