@@ -63,10 +63,8 @@ const computedContent = computed(() => {
         background-color: var(--vpj-color-bg-100);
         display: flex;
         flex: 1;
-        max-height: 100%;
-        max-width: 100%;
-        min-height: 0;
-        min-width: 0;
+        height: 100%;
+        width: 100%;
     }
 
     .vpj-layout-notfound__content {
