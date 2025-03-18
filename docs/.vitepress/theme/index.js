@@ -8,11 +8,12 @@ import VPJLayout from "./VPJLayout.vue";
 import { createPinia } from "pinia";
 
 // Unhead
-import { createHead } from "@unhead/vue";
+import { createHead } from "@unhead/vue/client";
 
 // Global stylesheet
 import "./styles/var.css";
 import "./styles/general.css";
+import "./styles/markdown.css"
 
 
 /** @type {import('vitepress').Theme} */
