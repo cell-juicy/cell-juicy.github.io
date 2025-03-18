@@ -148,7 +148,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
     .vpj-layout-page__content {
         grid-column: 2;
         min-height: 0;
-        padding-bottom: 1rem;
+        padding-bottom: 2.5rem;
         width: 100%;
     }
 </style>
