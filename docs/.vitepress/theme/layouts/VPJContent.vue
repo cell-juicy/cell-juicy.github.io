@@ -3,6 +3,7 @@ import { useData } from 'vitepress';
 
 import VPJLayoutNotFound from './VPJLayoutNotFound.vue';
 import VPJLayoutPage from './VPJLayoutPage.vue';
+import VPJLayoutBlog from './VPJLayoutBlog.vue';
 
 
 const { page, frontmatter } = useData();
@@ -18,6 +19,9 @@ const { page, frontmatter } = useData();
             <template #page-gutter-left><slot name="page-gutter-left"/></template>
             <template #page-gutter-right><slot name="page-gutter-right"/></template>
         </VPJLayoutPage>
+        <VPJLayoutBlog v-else-if="frontmatter.layout === 'blog'">
+            
+        </VPJLayoutBlog>
         <Content v-else/>
     </div>
 </template>

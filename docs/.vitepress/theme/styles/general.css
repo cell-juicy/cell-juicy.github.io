@@ -18,6 +18,14 @@ body {
     box-sizing: inherit;
 }
 
+* {
+    border-color: var(--vpj-color-border-300);
+    border-style: solid;
+    border-width: 0px;
+    min-height: 0;
+    min-width: 0;
+}
+
 /* 通用类 */
 .vpj-icon {
     display: inline-block;
