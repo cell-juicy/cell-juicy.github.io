@@ -18,10 +18,13 @@ import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight
                 <VPJCoverImage/>
                 <div class="vpj-layout-blog__container">
                     <div class="vpj-layout-blog__aside-controler">
-                        <VPJDynamicIconBtn :icon="VPJIconAngleSquareLeft"/>
+                        <VPJDynamicIconBtn
+                            :icon="VPJIconAngleSquareRight"
+                            class="vpj-layout-blog__aside-toggle"
+                        />
                     </div>
                     <article class="vpj-layout-blog__article">
-                        <Content class="vpj-layout-blog__content vpj-markdown"/>
+                        <Content class="vpj-markdown"/>
                     </article>
                 </div>
             </div>
@@ -65,12 +68,46 @@ import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight
     }
 
     .vpj-layout-blog__aside-controler {
-        background-color: lightyellow;
+        background-color: transparent;
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
         width: 48px;
-        height: 100%
+    }
+
+    .vpj-layout-blog__aside-controler:hover {
+        opacity: 1;
+    }
+
+    .vpj-layout-blog__aside-toggle {
+        align-items: center;
+        background-color: var(--vpj-color-bg-100);
+        border-radius: var(--vpj-border-radius-100);
+        height: 32px;
+        margin: 8px;
+        padding: 8px;
+        position: sticky;
+        top: 8px;
+        width: 32px;
+    }
+
+    .vpj-layout-blog__aside-toggle :deep(.vpj-icon) {
+        fill: var(--vpj-color-text-300);
+        height: 16px;
+        width: 16px;
+    }
+
+    .vpj-layout-blog__aside-toggle:hover,
+    .vpj-layout-blog__aside-toggle:active {
+        background-color: var(--vpj-color-bg-300);
+    }
+
+    .vpj-layout-blog__aside-toggle:hover :deep(.vpj-icon),
+    .vpj-layout-blog__aside-toggle:active :deep(.vpj-icon) {
+        fill: var(--vpj-color-text-400);
     }
 
     .vpj-layout-blog__article {
@@ -79,24 +116,24 @@ import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight
         flex-direction: column;
         justify-content: space-between;
         padding-left: 6rem;
-        padding-right: calc(6rem + 60px);
-    }
-
-    .vpj-layout-blog__content {
-        
+        padding-right: calc(6rem + 48px);
     }
 
     @media screen and (max-width: 1024px) {
         .vpj-layout-blog__article {
             padding-left: 2rem;
-            padding-right: calc(2rem + 60px);
+            padding-right: calc(2rem + 48px);
         }
     }
 
     @media screen and (max-width: 768px) {
+        .vpj-layout-blog__aside-controler {
+            display: none;
+        }
+
         .vpj-layout-blog__article {
             padding-left: 1rem;
-            padding-right: calc(1rem + 60px);
+            padding-right: 1rem;
         }
     }
 </style>
