@@ -18,7 +18,7 @@ body {
     box-sizing: inherit;
 }
 
-* {
+[class^="vpj-"] {
     border-color: var(--vpj-color-border-300);
     border-style: solid;
     border-width: 0px;
@@ -58,7 +58,6 @@ body {
     overflow: auto;
 }
 
-.vpj-scroll-x,
 .vpj-scroll-y,
 .vpj-scroll-xy {
     scrollbar-gutter: stable both-edges;
