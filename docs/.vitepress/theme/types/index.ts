@@ -8,15 +8,19 @@ import type {
 
 import type {
     MobileNavConfig
-} from "./mobileNav"
+} from "./mobileNav";
 
 import type {
     VPJNotFoundLayoutConfig
-} from "./layoutNotFound"
+} from "./layoutNotFound";
 
 import type {
     VPJPageLayoutConfig
-} from "./layoutPage"
+} from "./layoutPage";
+
+import type {
+    VPJBlogLayoutConfig
+} from "./layoutBlog";
 
 
 /**
@@ -56,6 +60,12 @@ export interface VPJLayoutsConfig {
      * @see {@link VPJPageLayoutConfig} page布局配置接口
      */
     page?: VPJPageLayoutConfig;
+
+    /**
+     * blog布局配置
+     * @see {@link VPJBlogLayoutConfig} blog布局配置接口
+     */
+    blog?: VPJBlogLayoutConfig;
 }
 
 

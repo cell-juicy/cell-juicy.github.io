@@ -60,3 +60,14 @@ export type HeadFaviconData =
         type?: 'image/svg+xml' | 'image/png' | 'image/jpeg' | 'image/webp' | 'image/x-icon'
         media?: string
     };
+
+
+/**
+ * blog布局与doc布局的侧边栏标签页数据配置类型
+ */
+export type AsideTabData = {
+    name?: string;
+    component: 
+        | string
+        | null;
+};
