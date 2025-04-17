@@ -22,6 +22,10 @@ import type {
     VPJBlogLayoutConfig
 } from "./layoutBlog";
 
+import {
+    BlogDefaultsConfig
+} from "./blog";
+
 
 /**
  * 布局的全局配置接口
@@ -134,4 +138,11 @@ export interface ThemeConfig {
      * @see {@link VPJLayoutsConfig} 布局配置接口
      */
     layouts?: VPJLayoutsConfig;
+
+    /**
+     * 博客(blog)页默认数据配置
+     * @optional
+     * @see {@link BlogDefaultsConfig} 博客页默认数据配置接口
+     */
+    blog?: BlogDefaultsConfig;
 }

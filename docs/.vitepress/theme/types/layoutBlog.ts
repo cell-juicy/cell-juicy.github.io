@@ -1,4 +1,4 @@
-import { AsideTabData } from "./common";
+import { AsideTabData, ToolbarButtonData, DeviceSpecificInput } from "./common";
 
 
 /**
@@ -7,7 +7,15 @@ import { AsideTabData } from "./common";
 export interface VPJBlogLayoutConfig {
     asideTabs?: AsideTabData[];
 
-    coverHeight?: string;
+    headerTitleTemplate?: string;
+
+    toolbar?: ToolbarButtonData[];
+
+    cover?: string;
+
+    coverAlt?: string;
+
+    coverHeight?: DeviceSpecificInput;
 
     coverFade?: string;
 
@@ -25,14 +33,14 @@ export interface VPJBlogLayoutConfig {
 
         opacity?: string;
 
-        padding?: string;
+        padding?: DeviceSpecificInput;
 
         transform?: string;
 
         transition?: string;
     };
 
-    contentPadding?: string;
+    contentPadding?: DeviceSpecificInput;
 
-    contentMaxWidth?: string;
+    contentMaxWidth?: DeviceSpecificInput;
 }

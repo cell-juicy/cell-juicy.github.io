@@ -14,8 +14,7 @@ export interface BlogDefaultsConfig {
         defaultCallback?: (tag: string) => void;
         
         /** 
-         * 标签文本处理函数 
-         * @example (text) => `#${text}`
+         * 默认的标签文本处理函数
          */
         textProcessor?: (text: string) => string;
     };
