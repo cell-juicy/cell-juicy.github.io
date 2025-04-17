@@ -9,27 +9,27 @@ import VPJDynamicIcon from './VPJDynamicIcon.vue';
 const props = defineProps({
     icon: {
         type: [String, Object],
-        requirded: true
+        required: true
     },
 
     text: {
         type: String,
-        requirded: true
+        required: true
     },
 
     link: {
         type: String,
-        requirded: true
+        required: true
     },
 
     tooltip: {
         type: [String, null],
-        requirded: true
+        required: true
     },
 
     highlight: {
         type: [Object, Boolean],
-        requirded: true
+        required: true
     }
 })
 const store = useVPJSidebar();
