@@ -61,6 +61,23 @@ export type HeadFaviconData =
         media?: string
     };
 
+/**
+ * 设备特定的输入类型，用于根据不同设备显示不同的值。
+ */
+export type DeviceSpecificInput =
+    | undefined
+    | string
+    | DeviceSpecificData;
+
+/**
+ * 设备特定的数据类型，用于根据不同设备显示不同的值。
+ */
+export type DeviceSpecificData = {
+    mobile?: string;
+    tablet?: string;
+    desktop?: string;
+}
+
 
 /**
  * blog布局与doc布局的侧边栏标签页数据配置类型
@@ -70,4 +87,18 @@ export type AsideTabData = {
     component: 
         | string
         | null;
+};
+
+/**
+ * blog布局与doc布局的工具栏按钮数据配置类型
+ */
+export type ToolbarButtonData = {
+    
+    icon?:
+        | string
+        | { component: string};
+    
+    callback?: () => void;
+
+    tooltip?: string;
 };
