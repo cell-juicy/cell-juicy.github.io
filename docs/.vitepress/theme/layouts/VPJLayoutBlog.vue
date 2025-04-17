@@ -1,4 +1,10 @@
 <script setup>
+import { storeToRefs } from 'pinia';
+import { useData } from 'vitepress';
+import { computed } from 'vue';
+
+import { useVPJBlogLayout } from '../composables/useVPJBlogLayout';
+
 import VPJBlogAside from '../components/VPJBlogAside.vue';
 import VPJBlogHeader from '../components/VPJBlogHeader.vue';
 import VPJCoverImage from '../components/VPJCoverImage.vue';
@@ -6,6 +12,15 @@ import VPJDynamicIconBtn from '../components/VPJDynamicIconBtn.vue';
 
 import VPJIconAngleSquareLeft from '../components/icons/VPJIconAngleSquareLeft.vue';
 import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight.vue';
+
+
+const store = useVPJBlogLayout();
+const { asideToggle } = store;
+const { asideCollapsed, coverConfig, contentConfig } = storeToRefs(store);
+// const { } = useData();
+
+const computedPadding = computed(() => contentConfig.value.padding);
+const computedMaxWidth = computed(() => contentConfig.value.maxWidth);
 </script>
 
 
@@ -15,16 +30,24 @@ import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight
         <main class="vpj-layout-blog__main">
             <VPJBlogAside/>
             <div class="vpj-layout-blog__wrapper">
-                <VPJCoverImage/>
+                <VPJCoverImage
+                    src="/assets/Priestess.jpg"
+                    :height="coverConfig.height"
+                    :css="coverConfig.css"
+                    :fade="coverConfig.fade"
+                />
                 <div class="vpj-layout-blog__container">
                     <div class="vpj-layout-blog__aside-controler">
                         <VPJDynamicIconBtn
-                            :icon="VPJIconAngleSquareRight"
+                            :icon="asideCollapsed ? VPJIconAngleSquareRight : VPJIconAngleSquareLeft"
+                            @click="asideToggle"
                             class="vpj-layout-blog__aside-toggle"
                         />
                     </div>
                     <article class="vpj-layout-blog__article">
-                        <Content class="vpj-markdown"/>
+                        <div class="vpj-layout-blog__grid-layout">
+                            <Content class="vpj-markdown"/>
+                        </div>
                     </article>
                 </div>
             </div>
@@ -111,19 +134,27 @@ import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight
     }
 
     .vpj-layout-blog__article {
+        align-items: center;
         display: flex;
         flex: 1;
         flex-direction: column;
         justify-content: space-between;
-        padding-left: 6rem;
-        padding-right: calc(6rem + 48px);
+        padding-right: 48px;
     }
 
-    @media screen and (max-width: 1024px) {
-        .vpj-layout-blog__article {
-            padding-left: 2rem;
-            padding-right: calc(2rem + 48px);
-        }
+    .vpj-layout-blog__grid-layout {
+        display: grid;
+        grid-template-columns:
+            minmax(min(v-bind(computedPadding), 100%), 1fr)
+            minmax(min(calc(2 * v-bind(computedPadding)), 100%), v-bind(computedMaxWidth))
+            minmax(min(v-bind(computedPadding), 100%), 1fr);
+        min-height: 0;
+        width: 100%;
+    }
+
+    .vpj-markdown {
+        grid-column: 2;
+        width: 100%;
     }
 
     @media screen and (max-width: 768px) {
@@ -132,8 +163,7 @@ import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight
         }
 
         .vpj-layout-blog__article {
-            padding-left: 1rem;
-            padding-right: 1rem;
+            padding-right: 0;
         }
     }
 </style>
