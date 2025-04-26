@@ -7,6 +7,13 @@ tags:
   - 网格布局
   - 布局系统
 order: 2
+asideTabs:
+  angularDocs:
+    component: "Something"  # 抑制系列配置
+  customTab:
+    component: "CustomTab"
+  tags:
+    component: null
 ---
 
 # Grid 网格布局的强大之处

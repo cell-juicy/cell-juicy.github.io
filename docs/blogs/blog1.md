@@ -1,10 +1,21 @@
 ---
 layout: blog
-series: 示例
+series: "CSS 精修系列"
 tags:
-  - 示例1
-  - 示例2
-  - 示例3
+  - CSS
+  - 测试中
+  - 布局系统
+  - flex
+order: 0
+asideTabs:
+  series:
+    order: -1
+  tags:
+    order: 1
+  custom:
+    name: "自定义页面"
+    component: "item"
+    order: 2
 ---
 # 这是一个博客的示范页
 
