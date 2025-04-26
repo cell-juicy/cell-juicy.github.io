@@ -1,5 +1,39 @@
-import { AsideTabData } from "./common";
+import {
+    AsideTabInput,
+    DeviceSpecificInput,
+    CoverCssConfig,
+    ToolbarGithubLinkInput,
+    ToolbarDownloadInput,
+    ToolbarButtonInput
+} from "./common";
 
+
+export interface SeriesDefaultData {
+
+    asideTabs?: Record<string, AsideTabInput>;
+
+    headerTitleTemplate?: string;
+
+    github?: ToolbarGithubLinkInput;
+    
+    md?: ToolbarDownloadInput;
+    
+    pdf?: ToolbarDownloadInput;
+
+    toolbar?: Record<string, ToolbarButtonInput>;
+
+    cover?: string;
+
+    coverAlt?: string;
+    
+    coverHeight?: DeviceSpecificInput;
+    
+    coverFade?: string;
+    
+    coverCss?: CoverCssConfig;
+
+    presetTags?: string[];
+}
 
 /**
  * 
@@ -25,19 +59,6 @@ export interface BlogDefaultsConfig {
          * 按系列名称配置的默认值 
          * @key 系列名称（需与 frontmatter 中的 series 字段匹配）
          */
-        [seriesName: string]: {
-
-            cover?: string;
-
-            github?: string;
-
-            download?: string;
-
-            pdf?: string;
-
-            presetTags?: string[];
-
-            asideTabs: AsideTabData[];
-        };
+        [seriesName: string]: SeriesDefaultData;
     };
   }

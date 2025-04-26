@@ -2,50 +2,54 @@ import { useData } from 'vitepress';
 import { Ref, ref, computed, watch } from 'vue';
 import { defineStore } from 'pinia';
 
-import {mergeDeviceData, isMobile, isTablet} from '../utils/deviceTypes'
+import { isMobile, isTablet } from '../utils/deviceTypes'
+import {
+    mergeAsideTabData,
+    mergeDeviceData,
+    mergeDownloadData,
+    mergeGithubLinkData,
+    mergeHeaderTitleTemplateData,
+    mergeToolbarButtonData
+} from '../utils/mergeData';
 
-import type {
-    VPJBlogLayoutConfig
-} from '../types/layoutBlog';
-import type {
-    AsideTabData
-} from '../types/common';
 import type {
     ThemeConfig
 } from '../types';
+import { useBlogData } from './useBlogData';
+import { CoverCssConfig } from '../types/common';
 
-
-// Transfrom user input to triple device data
-function initializeTripleDeviceData(
-    input:
-        | string
-        | { mobile?: string; tablet?: string; desktop?: string },
-    defaults:
-        | { mobile: string; tablet: string; desktop: string }
-): { mobile: string; tablet: string; desktop: string } {
-    if (typeof input === 'string') {
-        return {
-            mobile: input,
-            tablet: input,
-            desktop: input
-        };
-    } else if (typeof input === 'object') {
-        return {
-            mobile: input.mobile ?? defaults.mobile,
-            tablet: input.tablet ?? defaults.tablet,
-            desktop: input.desktop ?? defaults.desktop
-        };
-    }
-    return defaults;
-};
 
 const DEFAULT = {
-    MAXWIDTH: {
+    HEADERTITLETEMPLATE: ":series",
+    GITHUB: {
+        tooltip: "在Github上查看"
+    },
+    PDF: {
+        tooltip: "以pdf格式下载",
+        download: true
+    },
+    MD: {
+        tooltip: "以markdown格式下载",
+        download: true
+    },
+    TOOLBAR: {},
+    ASIDETABS: {
+        series: {name: "系列", component: "VPJBlogAsideSeriesPage", order: 0},
+        tags: {name: "标签", component: "VPJBlogAsideTagsPage", order: 0},
+    },
+    COVERALT: undefined,
+    COVERHEIGHT: "240px",
+    COVERFADE: undefined,
+    COVERCSS: {
+        objectFit: "cover",
+        objectPosition: "center center"
+    },
+    CONTENTMAXWIDTH: {
         mobile: "760px",
         tablet: "760px",
         desktop: "760px"
     },
-    PADDING: {
+    CONTENTPADDING: {
         mobile: "1rem",
         tablet: "1rem",
         desktop: "4rem"
@@ -55,117 +59,182 @@ const DEFAULT = {
 export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
     // Initialize blog layout config
     const {
-        theme,
         frontmatter,
     }: {
-        theme: Ref<ThemeConfig>,
         frontmatter: Ref<{[key: string]: any}>
     } = useData();
     
-    const layoutBlog: Ref<VPJBlogLayoutConfig> = ref(theme.value.layouts?.blog || {});
-    watch(theme, (next, prev) => {
-        if (JSON.stringify(next) !== JSON.stringify(prev)) {
-            layoutBlog.value = theme.value.layouts?.blog || {};
-        };   
+    const {
+        ctx,
+        layoutConfig,
+        seriesConfig
+    } = useBlogData();
+
+    // Aside config
+    const asideConfig = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            const merged = mergeAsideTabData(
+                frontmatter.value.asideTabs,
+                seriesConfig.value.asideTabs,
+                layoutConfig.value.asideTabs,
+                DEFAULT.ASIDETABS
+            );
+            return {
+                tabs: merged
+            }
+        };
+        return undefined;
     });
 
-    // Aside tabs
-    const asideTabsConfig = computed(() => {
-        if (Array.isArray(layoutBlog.value.asideTabs)) {
-            return layoutBlog.value.asideTabs?.filter((tabRawData) => {
-                return typeof tabRawData === "object" &&
-                    (typeof tabRawData.name === "string" || tabRawData.name === undefined) &&
-                    (typeof tabRawData.component === "string" || tabRawData.component === null)
-            }).map((raw) => {
-                const name = raw.name || raw.component || undefined;
-                const component = raw.component;
-                return {
-                    name,
-                    component
-                }
-            }) || []
-        } else {
-            return []
-        }
-    })
-
-    // Cover config
-    const coverConfig = computed(() => {
-        const computedHeight = typeof layoutBlog.value.coverHeight === "string" ?
-            layoutBlog.value.coverHeight :
-            "240px";
-        const computedFade = typeof layoutBlog.value.coverFade === "string" ?
-            layoutBlog.value.coverFade :
-            undefined
-        const computedCss = typeof layoutBlog.value.coverCss === "object" ?
-            {
-                boxShadow: typeof layoutBlog.value.coverCss.boxShadow === "string" ?
-                    layoutBlog.value.coverCss.boxShadow :
-                    undefined,
-                filter: typeof layoutBlog.value.coverCss.filter === "string" ?
-                    layoutBlog.value.coverCss.filter :
-                    undefined,
-                maskImage: typeof layoutBlog.value.coverCss.maskImage === "string" ?
-                    layoutBlog.value.coverCss.maskImage :
-                    undefined,
-                objectFit: typeof layoutBlog.value.coverCss.objectFit === "string" ?
-                    layoutBlog.value.coverCss.objectFit :
-                    "cover",
-                objectPosition: typeof layoutBlog.value.coverCss.objectPosition === "string" ?
-                    layoutBlog.value.coverCss.objectPosition :
-                    "center center",
-                opacity: typeof layoutBlog.value.coverCss.opacity === "string" ?
-                    layoutBlog.value.coverCss.opacity :
-                    "100%",
-                padding: typeof layoutBlog.value.coverCss.padding === "string" ?
-                    initializeTripleDeviceData(
-                        layoutBlog.value.coverCss.padding,
-                        {mobile: "0", tablet: "0", desktop: "0"}
-                    ) :
-                    undefined,
-                transform: typeof layoutBlog.value.coverCss.transform === "string" ?
-                    layoutBlog.value.coverCss.transform :
-                    undefined,
-                transition: typeof layoutBlog.value.coverCss.transition === "string" ?
-                    layoutBlog.value.coverCss.transition :
-                    undefined,
-            } : {}
-
-        return {
-            height: computedHeight,
-            fade: computedFade,
-            css: computedCss,
-        }
-    })
+    // Header config
+    const headerConfig = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            // Calculate header title
+            const hedaerTitle = mergeHeaderTitleTemplateData(
+                // @ts-ignore
+                ctx.value,
+                frontmatter.value.headerTitleTemplate,
+                seriesConfig.value.headerTitleTemplate,
+                layoutConfig.value.headerTitleTemplate,
+                DEFAULT.HEADERTITLETEMPLATE
+            )
+            // Calculate github
+            const github = mergeGithubLinkData(
+                // @ts-ignore
+                ctx.value,
+                frontmatter.value.github,
+                seriesConfig.value.github,
+                layoutConfig.value.github,
+                DEFAULT.GITHUB
+            );
+            // Calculate pdf
+            const pdf = mergeDownloadData(
+                // @ts-ignore
+                ctx.value,
+                frontmatter.value.pdf,
+                seriesConfig.value.pdf,
+                layoutConfig.value.pdf,
+                DEFAULT.PDF
+            );
+            // Calculate md
+            const md = mergeDownloadData(
+                // @ts-ignore
+                ctx.value,
+                frontmatter.value.md,
+                seriesConfig.value.md,
+                layoutConfig.value.md,
+                DEFAULT.MD
+            );
+            // Calculate toolbar button
+            const toolbar = mergeToolbarButtonData(
+                frontmatter.value.toolbar,
+                seriesConfig.value.toolbar,
+                layoutConfig.value.toolbar,
+                DEFAULT.TOOLBAR
+            );
+            return {
+                hedaerTitle,
+                github,
+                pdf,
+                md,
+                toolbar
+            }
+        };
+        return undefined;
+    });
 
     // Content config
     const contentConfig = computed(() => {
-        // Calculate max width
-        const themeMaxWidth = theme.value.layouts?.blog?.contentMaxWidth;
-        const frontmatterMaxWidth = frontmatter.value.contentMaxWidth;
-        const mergeMaxWidth = mergeDeviceData(frontmatterMaxWidth, themeMaxWidth, DEFAULT.MAXWIDTH);
-        // Calculate padding
-        const themePadding = theme.value.layouts?.blog?.contentPadding;
-        const frontmatterPadding = frontmatter.value.contentPadding;
-        const mergePadding = mergeDeviceData(frontmatterPadding, themePadding, DEFAULT.PADDING);
-        // Determine the current device type
-        if (isMobile.value) {
+        if (frontmatter.value.layout === "blog") {
+            // Calculate max width
+            const themeMaxWidth = layoutConfig.value.contentMaxWidth;
+            const frontmatterMaxWidth = frontmatter.value.contentMaxWidth;
+            const mergeMaxWidth = mergeDeviceData(frontmatterMaxWidth, themeMaxWidth, DEFAULT.CONTENTMAXWIDTH);
+            // Calculate padding
+            const themePadding = layoutConfig.value.contentPadding;
+            const frontmatterPadding = frontmatter.value.contentPadding;
+            const mergePadding = mergeDeviceData(frontmatterPadding, themePadding, DEFAULT.CONTENTPADDING);
+            // Determine the current device type
+            if (isMobile.value) {
+                return {
+                    maxWidth: mergeMaxWidth.mobile,
+                    padding: mergePadding.mobile
+                };
+            } else if (isTablet.value) {
+                return {
+                    maxWidth: mergeMaxWidth.tablet,
+                    padding: mergePadding.tablet
+                };
+            } else {
+                return {
+                    maxWidth: mergeMaxWidth.desktop,
+                    padding: mergePadding.desktop
+                };
+            };
+        };
+        return undefined;
+    });
+
+    // Cover config
+    const coverConfig = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            // Calculate alt
+            const alt: string | undefined = [
+                frontmatter.value.coverAlt,
+                seriesConfig.value.coverAlt,
+                layoutConfig.value.coverAlt,
+                DEFAULT.COVERALT,
+            ].map((input) => typeof input === 'string' ? input : undefined)
+            .find((value) => value !== undefined);
+
+            // Calculate fade
+            const fade: number | undefined = [
+                frontmatter.value.coverFade,
+                seriesConfig.value.coverFade,
+                layoutConfig.value.coverFade,
+                DEFAULT.COVERFADE
+            ].map((input) => input ? (isNaN(Number(input)) ? undefined : Number(input)) : undefined)
+            .find((value) => value !== undefined);
+
+            // Calculate height
+            const height: string | undefined = [
+                frontmatter.value.coverHeight,
+                seriesConfig.value.coverHeight,
+                layoutConfig.value.coverHeight,
+                DEFAULT.COVERHEIGHT,
+            ].map((input) => typeof input === 'string' ? input : "")
+            .find((value) => value !== undefined);
+
+            // Calculate css
+            const css: CoverCssConfig = [
+                frontmatter.value.coverCss,
+                seriesConfig.value.coverCss,
+                layoutConfig.value.coverCss,
+                DEFAULT.COVERCSS
+            ].reduce((acc: CoverCssConfig, cur: CoverCssConfig) => {
+                if (!cur) return acc;
+
+                Object.entries(cur).forEach(([key, value]) => {
+                    if (key === "padding") {
+                        acc[key] = mergeDeviceData(acc[key], value);
+                    } else {
+                        acc[key] = (typeof acc[key] === 'string' || typeof value !== 'string')
+                            ? acc[key]
+                            : value;
+                    }
+                })
+                return acc;
+            }, {} as CoverCssConfig);
+
             return {
-                maxWidth: mergeMaxWidth.mobile,
-                padding: mergePadding.mobile
+                alt,
+                fade,
+                height,
+                css
             }
-        } else if (isTablet.value) {
-            return {
-                maxWidth: mergeMaxWidth.tablet,
-                padding: mergePadding.tablet
-            }
-        } else {
-            return {
-                maxWidth: mergeMaxWidth.desktop,
-                padding: mergePadding.desktop
-            }
-        }
-    })
+        };
+        return undefined;
+    });
 
     // state
     const asideCollapsed: Ref<boolean> = ref(true);
@@ -181,12 +250,13 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
     
 
     return {
-        asideTabsConfig,
-        coverConfig,
+        asideConfig,
         contentConfig,
+        headerConfig,
+        coverConfig,
         asideCollapsed,
         asideToggle,
         asideClose,
         asideOpen
-    }
+    };
 })

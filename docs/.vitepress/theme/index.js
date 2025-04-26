@@ -4,6 +4,10 @@ import VPJLayout from "./VPJLayout.vue";
 // ThemeConfig type
 // import type { ThemeConfig } from "./type";
 
+// Blog Data
+import { initVPJBlogData } from "./composables/useBlogData";
+import { VPJ_BLOG_DATA_SYMBOL } from "./utils/symbols"
+
 // Pinia
 import { createPinia } from "pinia";
 
@@ -13,7 +17,7 @@ import { createHead } from "@unhead/vue/client";
 // Global stylesheet
 import "./styles/var.css";
 import "./styles/general.css";
-import "./styles/markdown.css"
+import "./styles/markdown.css";
 
 
 /** @type {import('vitepress').Theme} */
@@ -34,6 +38,10 @@ export default {
             portalRoot.className = "vpj-portals-root";
             document.body.appendChild(portalRoot);
         }
+
+        // Initialize and provide blog data
+        const blogData = initVPJBlogData(router.route, siteData);
+        app.provide(VPJ_BLOG_DATA_SYMBOL, blogData);
 
         // Add custom global components
         const icons = import.meta.glob('./components/icons/*.vue');

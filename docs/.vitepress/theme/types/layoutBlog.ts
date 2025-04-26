@@ -1,15 +1,30 @@
-import { AsideTabData, ToolbarButtonData, DeviceSpecificInput } from "./common";
+import {
+    DeviceSpecificInput,
+    CoverCssConfig,
+    ToolbarGithubLinkInput,
+    ToolbarDownloadInput,
+    AsideTabInput,
+    HeaderTitleTemplateInput,
+    ToolbarButtonInput
+} from "./common";
 
 
 /**
  * 
  */
 export interface VPJBlogLayoutConfig {
-    asideTabs?: AsideTabData[];
 
-    headerTitleTemplate?: string;
+    asideTabs?: Record<string, AsideTabInput>;
 
-    toolbar?: ToolbarButtonData[];
+    headerTitleTemplate?: HeaderTitleTemplateInput;
+
+    github?: ToolbarGithubLinkInput;
+    
+    md?: ToolbarDownloadInput;
+    
+    pdf?: ToolbarDownloadInput;
+
+    toolbar?: Record<string, ToolbarButtonInput>;
 
     cover?: string;
 
@@ -17,28 +32,11 @@ export interface VPJBlogLayoutConfig {
 
     coverHeight?: DeviceSpecificInput;
 
-    coverFade?: string;
+    coverFade?:
+        | string
+        | number;
 
-    coverCss?: {
-
-        boxShadow?: string;
-
-        filter?: string;
-        
-        maskImage?: string;
-
-        objectFit?: string;
-
-        objectPosition?: string;
-
-        opacity?: string;
-
-        padding?: DeviceSpecificInput;
-
-        transform?: string;
-
-        transition?: string;
-    };
+    coverCss?: CoverCssConfig;
 
     contentPadding?: DeviceSpecificInput;
 

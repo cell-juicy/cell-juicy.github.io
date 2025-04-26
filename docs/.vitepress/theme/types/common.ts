@@ -1,3 +1,5 @@
+import type { Route } from "vitepress";
+
 /**
  * 通用的图片数据配置类型
  * 
@@ -78,27 +80,128 @@ export type DeviceSpecificData = {
     desktop?: string;
 }
 
+/**
+ * 用于动态处理布局的上下文类型
+ */
+export type PageContext = {
+    route: Route;
+    layoutConfig:
+        | { layout: "blog"; series?: string; tags?: string[], order?: number }
+        | { layout: "doc"; space?: string; order?: number[] };
+}
+
+/**
+ * blog布局与doc布局的封面图css配置类型
+ */
+export type CoverCssConfig ={
+
+    boxShadow?: string;
+
+    filter?: string;
+    
+    maskImage?: string;
+
+    objectFit?: string;
+
+    objectPosition?: string;
+
+    opacity?: string;
+
+    padding?: DeviceSpecificInput;
+
+    transform?: string;
+
+    transition?: string;
+};
+
+/**
+ * blog布局与doc布局的侧边栏标签页数据输入类型
+ */
+export type AsideTabInput = {
+    name?: string;
+    component?: 
+        | string
+        | null;
+    order?:
+        | number
+        | string;
+};
 
 /**
  * blog布局与doc布局的侧边栏标签页数据配置类型
  */
 export type AsideTabData = {
-    name?: string;
-    component: 
-        | string
-        | null;
+    name: string;
+    component: string;
+    order: number;
 };
+
+/**
+ * blog布局与doc布局的工具栏github按钮的输入与数据类型
+ */
+export type ToolbarGithubLinkInput = 
+    | string
+    | { url?: string, tooltip?: string | null}
+    | ((ctx: PageContext) => ToolbarGithubLinkData)
+
+export type ToolbarGithubLinkData = {
+    url?: string;
+    tooltip?: string | null;
+}
+    
+
+/**
+ * blog布局与doc布局的工具栏下载按钮的配置类型（pdf与md图标按钮）
+ */
+export type ToolbarDownloadInput =
+    | string
+    | {
+        url?: string;
+        target?: "_blank" | "_self";
+        tooltip?: string | null;
+        download?: boolean | string;
+    }
+    | ((ctx: PageContext) => ToolbarDownloadData)
+
+export type ToolbarDownloadData = {
+    url?: string;
+    target?: "_blank" | "_self";
+    tooltip?: string | null;
+    download?: boolean | string;
+}
 
 /**
  * blog布局与doc布局的工具栏按钮数据配置类型
  */
-export type ToolbarButtonData = {
-    
-    icon?:
+export type ToolbarButtonInput = {
+    icon:
         | string
         | { component: string};
     
-    callback?: () => void;
+    callback: () => void;
+
+    order?:
+        | number
+        | string;
 
     tooltip?: string;
 };
+
+export type ToolbarButtonData = {
+    icon:
+        | string
+        | { component: string};
+    
+    callback: () => void;
+
+    order: number;
+
+    tooltip?: string;
+};
+
+/**
+ * blog布局与doc布局头部标题配置类型
+ */
+export type HeaderTitleTemplateInput =
+    | string
+    | ((ctx: PageContext) => string)
