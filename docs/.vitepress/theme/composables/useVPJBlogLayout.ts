@@ -21,6 +21,7 @@ import { CoverCssConfig } from '../types/common';
 
 const DEFAULT = {
     HEADERTITLETEMPLATE: ":series",
+    HEADERICON: undefined,
     GITHUB: {
         tooltip: "在Github上查看"
     },
@@ -73,14 +74,15 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
     // Aside config
     const asideConfig = computed(() => {
         if (frontmatter.value.layout === "blog") {
-            const merged = mergeAsideTabData(
+            // Calculate aside tabs data
+            const tabs = mergeAsideTabData(
                 frontmatter.value.asideTabs,
                 seriesConfig.value.asideTabs,
                 layoutConfig.value.asideTabs,
                 DEFAULT.ASIDETABS
             );
             return {
-                tabs: merged
+                tabs
             }
         };
         return undefined;
@@ -97,7 +99,24 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
                 seriesConfig.value.headerTitleTemplate,
                 layoutConfig.value.headerTitleTemplate,
                 DEFAULT.HEADERTITLETEMPLATE
-            )
+            );
+
+            // Calculate header icon
+            const heaedrIcon = [
+                frontmatter.value.headerIcon,
+                seriesConfig.value.headerIcon,
+                layoutConfig.value.headerIcon,
+                DEFAULT.HEADERICON
+            ].map((input) => {
+                if (typeof input === 'string') {
+                    return input;
+                } else if (typeof input === 'object' && typeof input.component) {
+                    return { component: input.component };
+                } else {
+                    return undefined
+                };
+            }).find((value) => value !== undefined);
+
             // Calculate github
             const github = mergeGithubLinkData(
                 // @ts-ignore
@@ -107,6 +126,7 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
                 layoutConfig.value.github,
                 DEFAULT.GITHUB
             );
+
             // Calculate pdf
             const pdf = mergeDownloadData(
                 // @ts-ignore
@@ -116,6 +136,7 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
                 layoutConfig.value.pdf,
                 DEFAULT.PDF
             );
+
             // Calculate md
             const md = mergeDownloadData(
                 // @ts-ignore
@@ -125,6 +146,7 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
                 layoutConfig.value.md,
                 DEFAULT.MD
             );
+
             // Calculate toolbar button
             const toolbar = mergeToolbarButtonData(
                 frontmatter.value.toolbar,
@@ -134,6 +156,7 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
             );
             return {
                 hedaerTitle,
+                heaedrIcon,
                 github,
                 pdf,
                 md,

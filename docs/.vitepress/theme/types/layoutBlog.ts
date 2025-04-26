@@ -18,6 +18,10 @@ export interface VPJBlogLayoutConfig {
 
     headerTitleTemplate?: HeaderTitleTemplateInput;
 
+    headerIcon?:
+        | string
+        | { component: string };
+
     github?: ToolbarGithubLinkInput;
     
     md?: ToolbarDownloadInput;

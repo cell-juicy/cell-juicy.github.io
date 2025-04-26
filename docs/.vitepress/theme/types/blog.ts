@@ -2,6 +2,7 @@ import {
     AsideTabInput,
     DeviceSpecificInput,
     CoverCssConfig,
+    HeaderTitleTemplateInput,
     ToolbarGithubLinkInput,
     ToolbarDownloadInput,
     ToolbarButtonInput
@@ -12,7 +13,11 @@ export interface SeriesDefaultData {
 
     asideTabs?: Record<string, AsideTabInput>;
 
-    headerTitleTemplate?: string;
+    headerTitleTemplate?: HeaderTitleTemplateInput;
+
+    headerIcon?:
+        | string
+        | { component: string };
 
     github?: ToolbarGithubLinkInput;
     
@@ -28,7 +33,9 @@ export interface SeriesDefaultData {
     
     coverHeight?: DeviceSpecificInput;
     
-    coverFade?: string;
+    coverFade?:
+        | string
+        | number;
     
     coverCss?: CoverCssConfig;
 

@@ -244,7 +244,7 @@ export function mergeAsideTabData(
                                 (typeof acc[key].component === 'string' || acc[key].component === null)
                                 || value.component === undefined)
                                 ? acc[key].component
-                                : value.name, 
+                                : value.component, 
                             order: acc[key].order,
                         }
                     }
