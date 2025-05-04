@@ -19,6 +19,7 @@ export interface VPJBlogLayoutConfig {
     headerTitleTemplate?: HeaderTitleTemplateInput;
 
     headerIcon?:
+        | false
         | string
         | { component: string };
 
@@ -30,16 +31,21 @@ export interface VPJBlogLayoutConfig {
 
     toolbar?: Record<string, ToolbarButtonInput>;
 
-    cover?: string;
+    cover?:
+        | false
+        | string;
 
-    coverAlt?: string;
-
+    coverAlt?:
+        | false
+        | string;
+    
     coverHeight?: DeviceSpecificInput;
-
+    
     coverFade?:
+        | false
         | string
         | number;
-
+    
     coverCss?: CoverCssConfig;
 
     contentPadding?: DeviceSpecificInput;

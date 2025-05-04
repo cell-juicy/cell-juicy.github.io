@@ -18,5 +18,13 @@ export default defineConfigWithTheme<ThemeConfig>({
                 {icon: "VPJIconInfo", text: "关于我们", link: "/about/"}
             ]
         },
-    },
+        layouts: {
+
+        },
+        blog: {
+            series: {
+                
+            }
+        }
+    }
 })

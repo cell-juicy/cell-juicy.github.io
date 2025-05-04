@@ -7,15 +7,6 @@ tags:
   - 布局系统
   - flex
 order: 0
-asideTabs:
-  series:
-    order: -1
-  tags:
-    order: 1
-  custom:
-    name: "自定义页面"
-    component: "item"
-    order: 2
 ---
 # 这是一个博客的示范页
 

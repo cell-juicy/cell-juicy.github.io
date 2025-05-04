@@ -64,23 +64,6 @@ export type HeadFaviconData =
     };
 
 /**
- * 设备特定的输入类型，用于根据不同设备显示不同的值。
- */
-export type DeviceSpecificInput =
-    | undefined
-    | string
-    | DeviceSpecificData;
-
-/**
- * 设备特定的数据类型，用于根据不同设备显示不同的值。
- */
-export type DeviceSpecificData = {
-    mobile?: string;
-    tablet?: string;
-    desktop?: string;
-}
-
-/**
  * 用于动态处理布局的上下文类型
  */
 export type PageContext = {
@@ -91,9 +74,99 @@ export type PageContext = {
 }
 
 /**
+ * 设备特定的输入类型，用于根据不同设备显示不同的值。
+ */
+export type DeviceSpecificInput =
+    | false
+    | string
+    | DeviceSpecificData;
+
+export type NormalizedDeviceSpecificInput = {
+    mobile?: false | string;
+    tablet?: false | string;
+    desktop?: false | string;
+}
+
+export type DeviceSpecificData = {
+    mobile?: string;
+    tablet?: string;
+    desktop?: string;
+}
+
+/**
  * blog布局与doc布局的封面图css配置类型
  */
-export type CoverCssConfig ={
+export type CoverCssConfigInput ={
+
+    boxShadow?: 
+        | false
+        | string;
+
+    filter?: 
+        | false
+        | string;
+    
+    maskImage?: 
+        | false
+        | string;
+
+    objectFit?: 
+        | false
+        | string;
+
+    objectPosition?: 
+        | false
+        | string;
+
+    opacity?: 
+        | false
+        | string;
+
+    transform?: 
+        | false
+        | string;
+
+    transition?: 
+        | false
+        | string;
+};
+
+export type NormalizedCoverCssConfigInput ={
+
+    boxShadow?: 
+        | false
+        | string;
+
+    filter?: 
+        | false
+        | string;
+    
+    maskImage?: 
+        | false
+        | string;
+
+    objectFit?: 
+        | false
+        | string;
+
+    objectPosition?: 
+        | false
+        | string;
+
+    opacity?: 
+        | false
+        | string;
+
+    transform?: 
+        | false
+        | string;
+
+    transition?: 
+        | false
+        | string;
+};
+
+export type CoverCssConfigData ={
 
     boxShadow?: string;
 
@@ -107,8 +180,6 @@ export type CoverCssConfig ={
 
     opacity?: string;
 
-    padding?: DeviceSpecificInput;
-
     transform?: string;
 
     transition?: string;
@@ -117,19 +188,28 @@ export type CoverCssConfig ={
 /**
  * blog布局与doc布局的侧边栏标签页数据输入类型
  */
-export type AsideTabInput = {
+export type AsideTabInput = 
+    | false
+    | string
+    | {
+        name?: string;
+        component?:
+            | false
+            | string;
+        order?:
+            | number
+            | string;
+    };
+
+export type NormalizedAsideTabInput = {
     name?: string;
-    component?: 
-        | string
-        | null;
-    order?:
-        | number
+    component?:
+        | false
         | string;
+    order?:
+        | number;
 };
 
-/**
- * blog布局与doc布局的侧边栏标签页数据配置类型
- */
 export type AsideTabData = {
     name: string;
     component: string;
@@ -140,13 +220,23 @@ export type AsideTabData = {
  * blog布局与doc布局的工具栏github按钮的输入与数据类型
  */
 export type ToolbarGithubLinkInput = 
+    | false
     | string
-    | { url?: string, tooltip?: string | null}
-    | ((ctx: PageContext) => ToolbarGithubLinkData)
+    | { url?: string | false, tooltip?: string | false}
+    | ((ctx: PageContext) => NormalizedToolbarGithubLinkInput)
+
+export type NormalizedToolbarGithubLinkInput = {
+    url?:
+        | false
+        | string,
+    tooltip?:
+        | false
+        | string
+}
 
 export type ToolbarGithubLinkData = {
     url?: string;
-    tooltip?: string | null;
+    tooltip?: string;
 }
     
 
@@ -154,47 +244,76 @@ export type ToolbarGithubLinkData = {
  * blog布局与doc布局的工具栏下载按钮的配置类型（pdf与md图标按钮）
  */
 export type ToolbarDownloadInput =
+    | false
     | string
     | {
-        url?: string;
+        url?: string | false;
         target?: "_blank" | "_self";
-        tooltip?: string | null;
+        tooltip?: string | false;
         download?: boolean | string;
     }
-    | ((ctx: PageContext) => ToolbarDownloadData)
+    | ((ctx: PageContext) => NormalizedToolbarDownloadInput)
+
+export type NormalizedToolbarDownloadInput = {
+    url?: string | false;
+    target?: "_blank" | "_self";
+    tooltip?: string | false;
+    download?: boolean | string;
+}
 
 export type ToolbarDownloadData = {
     url?: string;
     target?: "_blank" | "_self";
-    tooltip?: string | null;
+    tooltip?: string;
     download?: boolean | string;
 }
 
 /**
  * blog布局与doc布局的工具栏按钮数据配置类型
  */
-export type ToolbarButtonInput = {
-    icon:
+export type ToolbarButtonInput = 
+    | false
+    | string
+    | {
+        icon?:
+            | false
+            | string
+            | { component: string};
+        
+        callback?: () => void;
+
+        order?:
+            | number
+            | string;
+
+        tooltip?:
+            | false
+            | string;
+    };
+
+export type NormalizedToolbarButtonInput = {
+    icon?:
+        | false
         | string
         | { component: string};
     
-    callback: () => void;
+    callback?: () => void;
 
-    order?:
-        | number
+    order?: number;
+
+    tooltip?:
+        | false
         | string;
-
-    tooltip?: string;
 };
 
 export type ToolbarButtonData = {
-    icon:
+    icon?:
         | string
         | { component: string};
     
-    callback: () => void;
+    callback?: () => void;
 
-    order: number;
+    order?: number;
 
     tooltip?: string;
 };
@@ -203,5 +322,6 @@ export type ToolbarButtonData = {
  * blog布局与doc布局头部标题配置类型
  */
 export type HeaderTitleTemplateInput =
+    | false
     | string
-    | ((ctx: PageContext) => string)
+    | ((ctx: PageContext) => string | false)

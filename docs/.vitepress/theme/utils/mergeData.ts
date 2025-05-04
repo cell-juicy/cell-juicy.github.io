@@ -1,9 +1,17 @@
 import type {
     AsideTabData,
     AsideTabInput,
+    CoverCssConfigData,
+    CoverCssConfigInput,
     DeviceSpecificData,
     DeviceSpecificInput,
     HeaderTitleTemplateInput,
+    NormalizedAsideTabInput,
+    NormalizedDeviceSpecificInput,
+    NormalizedToolbarButtonInput,
+    NormalizedToolbarDownloadInput,
+    NormalizedToolbarGithubLinkInput,
+    NormalizedCoverCssConfigInput,
     PageContext,
     ToolbarDownloadInput,
     ToolbarDownloadData,
@@ -15,89 +23,156 @@ import type {
 import { processOrder } from "./common";
 
 
+const CssConfigKeyList = [
+    "boxShadow",
+    "filter",
+    "maskImage",
+    "objectFit",
+    "objectPosition",
+    "opacity",
+    "transform",
+    "transition",
+];
+
 // type check
 function isAsideTabInput(input: any): input is AsideTabInput {
     return (
-        typeof input === 'object' &&
-        input !== null &&
-        (typeof input.name === 'string' || input.name === undefined) &&
-        (typeof input.component === 'string' || input.component === null || input.component === undefined) &&
-        (typeof input.order === 'string' || typeof input.order === 'number' || input.order === undefined)
+        (typeof input === 'string') ||
+        (input === false) ||
+        (
+            typeof input === 'object' &&
+            (input !== null) &&
+            (typeof input.name === 'string' || input.name === undefined) &&
+            (typeof input.component === 'string' || input.component === false || input.component === undefined) &&
+            (typeof input.order === 'string' || typeof input.order === 'number' || input.order === undefined)
+        )
     );
 };
 
-function isToolbarGithubLink(input: any): input is ToolbarGithubLinkData {
+function isToolbarGithubLink(input: any): input is NormalizedToolbarGithubLinkInput {
     return (
         typeof input === 'object' &&
-        (typeof input.url === 'string' || input.url === undefined) &&
-        (typeof input.tooltip === 'string' || input.tooltip === null || input.tooltip === undefined)
+        input !== null &&
+        (
+            input.url === undefined ||
+            input.url === false ||
+            typeof input.url === 'string'
+        ) &&
+        (
+            input.tooltip === undefined ||
+            input.tooltip === false ||
+            typeof input.tooltip === 'string'
+        )
     );
 };
   
-function isToolbarDownload(input: any): input is ToolbarDownloadData {
+function isToolbarDownload(input: any): input is NormalizedToolbarDownloadInput {
     return (
         typeof input === 'object' &&
-        (typeof input.url === 'string' || input.url === undefined) &&
-        ['_blank', '_self'].includes(input.target) &&
-        (typeof input.tooltip === 'string' || input.tooltip === null) &&
-        (typeof input.download === 'boolean' || typeof input.download === 'string')
+        input !== null &&
+        (
+            input.url === undefined ||
+            input.url === false ||
+            typeof input.url === 'string'
+        ) &&
+        (
+            input.target === undefined ||
+            ['_blank', '_self'].includes(input.target)
+        ) &&
+        (
+            input.tooltip === undefined ||
+            input.tooltip === false ||
+            typeof input.tooltip === 'string'
+        ) &&
+        (
+            input === undefined ||
+            typeof input.download === 'boolean' ||
+            typeof input.download === 'string'
+        )
     );
 };
 
 function isToolbarButtonInput(input: any): input is ToolbarButtonInput {
     return (
-        typeof input === 'object' &&
-        (typeof input.icon === 'string' || (typeof input.icon === 'object' && typeof input.icon.component === 'string')) &&
-        (typeof input.callback === 'function') &&
-        (typeof input.order === 'string' || typeof input.order === 'number' || input.order === undefined) &&
-        (typeof input.tooltip === 'string' || input.tooltip === undefined)
+        (typeof input === 'string') ||
+        (input === false) ||
+        (
+            typeof input === 'object' &&
+            (
+                input.icon === undefined ||
+                input.icon === false ||
+                typeof input.icon === 'string' ||
+                (typeof input.icon === 'object' && typeof input.icon.component === 'string')
+            ) &&
+            (
+                input.callback === undefined ||
+                typeof input.callback === 'function'
+            ) &&
+            (
+                input.order === undefined ||
+                typeof input.order === 'string' ||
+                typeof input.order === 'number'
+            ) &&
+            (
+                input.tooltip === undefined ||
+                input.tooltip === false ||
+                typeof input.tooltip === 'string'
+            )
+        )
     );
 };
 
 // normalize data
 function normalizeDeviceInput(
-    input?: DeviceSpecificInput
-): DeviceSpecificData {
-    if (typeof input === 'string') {
+    input?: any
+): NormalizedDeviceSpecificInput {
+    if (typeof input === 'string' || input === false) {
         return { mobile: input, tablet: input, desktop: input };
-    } else if (typeof input === 'object') {
-        return { mobile: input.mobile, tablet: input.tablet, desktop: input.desktop };
+    } else if (typeof input === 'object' && input !== null) {
+        return {
+            mobile: (typeof input.mobile === 'string' || input.mobile === false) ? input.mobile : undefined,
+            tablet: (typeof input.tablet === 'string' || input.tablet === false) ? input.tablet : undefined,
+            desktop: (typeof input.desktop === 'string' || input.desktop === false) ? input.desktop : undefined,
+        };
     } else {
         return {};
     }
 };
 
 function normalizeAsideTabInput(
-    input: Record<string, AsideTabInput> | undefined
-): Record<string, AsideTabInput> {
-    if (typeof input === 'object') {
+    input: any
+): Record<string, NormalizedAsideTabInput> {
+    if (typeof input === 'object' && input !== null) {
         return Object.entries(input).reduce((acc, [key, value]) => {
             if (isAsideTabInput(value)) {
-                acc[key] = {
-                    name: value.name,
-                    component: value.component,
-                    order: processOrder(value.order)
+                if (typeof value === 'string' || value === false) {
+                    acc[key] = { component: value }
+                } else {
+                    acc[key] = {
+                        name: value.name,
+                        component: value.component,
+                        order: (value.order === undefined) ? undefined : processOrder(value.order)
+                    };
                 };
-            }
+            };
             return acc;
-        }, {} as Record<string, AsideTabInput>);
+        }, {} as Record<string, NormalizedAsideTabInput>);
     }
     return {};
 };
 
 function normalizeGithubInput(
-    input: ToolbarGithubLinkInput | undefined,
+    input: any,
     ctx: PageContext
-): ToolbarGithubLinkData {
-    if (typeof input === 'string') {
+): NormalizedToolbarGithubLinkInput {
+    if (typeof input === 'string' || input === false) {
         return {
             url: input,
-            tooltip: undefined
         };
-    } else if (typeof input === 'object') {
+    } else if (typeof input === 'object' && input !== null) {
         return {
-            url: input.url,
-            tooltip: input.tooltip
+            url: (typeof input.url === 'string' || input.url === false) ? input.url : undefined,
+            tooltip: (typeof input.tooltip === 'string' || input.tooltip === false) ? input.tooltip : undefined
         };
     } else if (typeof input === 'function') {
         try {
@@ -112,27 +187,25 @@ function normalizeGithubInput(
 };
 
 function normalizeDownloadInput(
-    input: ToolbarDownloadInput,
+    input: any,
     ctx: PageContext
-): ToolbarDownloadData {
-    if (typeof input === 'string') {
+): NormalizedToolbarDownloadInput {
+    if (typeof input === 'string' || input === false) {
+        return { url: input };
+    } else if (typeof input === 'object' && input !== null) {
         return {
-            url: input,
-            target: "_self",
-            download: true
-        }
-    } else if (typeof input === 'object') {
-        return {
-            url: input.url,
+            url: (typeof input.url === 'string' || input.url === false)
+                ? input.url
+                : undefined,
             target: (input.target === "_blank" || input.target === "_self")
                 ? input.target
-                : "_self",
-            tooltip: (typeof input.tooltip === 'string' || input.tooltip === null)
+                : undefined,
+            tooltip: (typeof input.tooltip === 'string' || input.tooltip === false)
                 ? input.tooltip
                 : undefined,
             download: (typeof input.download === 'string' || typeof input.download === 'boolean')
-                ? input.download :
-                true
+                ? input.download
+                : undefined
         };
     } else if (typeof input === 'function') {
         try {
@@ -147,10 +220,12 @@ function normalizeDownloadInput(
 };
 
 function normalizeHeaderTitleTemplateInput(
-    input: HeaderTitleTemplateInput,
+    input: any,
     ctx: PageContext
-): string | undefined {
-    if (typeof input === 'string') {
+): false | string | undefined {
+    if (input === false) {
+        return input;
+    } else if (typeof input === 'string') {
         if (ctx.layoutConfig.layout === "blog") {
             const series = ctx.layoutConfig.series;
             const order = ctx.layoutConfig.order;
@@ -171,7 +246,7 @@ function normalizeHeaderTitleTemplateInput(
         }
     } else if (typeof input === 'function') {
         try {
-            return (typeof input(ctx) === 'string') ? input(ctx) : undefined
+            return (typeof input(ctx) === 'string' || input(ctx) === false) ? input(ctx) : undefined
         } catch(e) {
             console.error(`[Juicy Theme]Fail to resolve header title template: ${e}`);
             return undefined;
@@ -182,45 +257,98 @@ function normalizeHeaderTitleTemplateInput(
 };
 
 function normalizeToolbarButtonData(
-    input: Record<string, ToolbarButtonInput> | undefined
-): Record<string, ToolbarButtonData> {
-    if (typeof input === 'object') {
+    input: any
+): Record<string, NormalizedToolbarButtonInput> {
+    if (typeof input === 'object' && input !== null) {
         return Object.entries(input).reduce((acc, [key, value]) => {
             if (isToolbarButtonInput(value)) {
-                acc[key] = {
-                    icon: value.icon,
-                    callback: value.callback,
-                    order: processOrder(value.order),
-                    tooltip: value.tooltip,
+                if (typeof value === 'string' || value === false) {
+                    acc[key] = {icon: value}
+                } else {
+                    acc[key] = {
+                        icon: value.icon,
+                        callback: value.callback,
+                        order: value.order ? processOrder(value.order) : undefined,
+                        tooltip: value.tooltip,
+                    };
                 };
-            }
+            };
             return acc;
-        }, {} as Record<string,ToolbarButtonData>);
-    }
+        }, {} as Record<string, NormalizedToolbarButtonInput>);
+    };
     return {};
 };
 
+function normalizeCoverCssConfig(
+    input: any
+): NormalizedCoverCssConfigInput {
+    if (typeof input === 'object' && input !== null) {
+        const normalized: NormalizedCoverCssConfigInput = {};
+        CssConfigKeyList.forEach((key) => {
+            if (typeof input[key] === 'string' || input[key] === false) {
+                normalized[key] = input[key];
+            };
+        })
+        return normalized;
+    };
+    return {} as NormalizedCoverCssConfigInput;
+};
+
 // merge data
+export function mergeSimpleData<T>(
+    validator: (input: T) => boolean,
+    cancel: any,
+    ...sources: (T | undefined)[]
+) {
+    if (Array.isArray(sources) && typeof validator === 'function') {
+        const merged = sources.map((value) => {
+            return (value !== undefined && validator(value)) ? value : undefined;
+        }).find((value) => {
+            return value !== undefined;
+        })
+        if (cancel !== undefined) {
+            return (merged === cancel) ? undefined : merged;
+        } else {
+            return merged;
+        }
+    }
+    return undefined;
+};
+
 export function mergeDeviceData(
-    ...sources: DeviceSpecificInput[]
+    ...sources: (DeviceSpecificInput | undefined)[]
 ): DeviceSpecificData {
     if (Array.isArray(sources)) {
-        return sources
+        const merged = sources
             .map(normalizeDeviceInput)
             .reduce((acc, cur) => {
-                const result = { ...acc as DeviceSpecificData };
-                if (typeof cur.mobile === 'string' && !result.mobile) {
-                    result.mobile = cur.mobile
+                return {
+                    mobile: (
+                        (typeof cur.mobile === 'string' || cur.mobile === false) &&
+                        acc.mobile === undefined
+                    )
+                        ? cur.mobile
+                        : acc.mobile,
+                    tablet: (
+                        (typeof cur.tablet === 'string' || cur.tablet === false) &&
+                        acc.tablet === undefined
+                    )
+                        ? cur.tablet
+                        : acc.tablet,
+                    desktop: (
+                        (typeof cur.desktop === 'string' || cur.desktop === false) &&
+                        acc.desktop === undefined
+                    )
+                        ? cur.desktop
+                        : acc.desktop,
                 };
-                if (typeof cur.tablet === 'string' && !result.tablet) {
-                    result.tablet = cur.tablet
-                }
-                if (typeof cur.desktop === 'string' && !result.desktop) {
-                    result.desktop = cur.desktop
-                }
-                return result;
             },
-            {} as DeviceSpecificData)
+            {} as DeviceSpecificData);
+        return {
+            mobile: (merged.mobile === false) ? undefined : merged.mobile,
+            tablet: (merged.tablet === false) ? undefined : merged.tablet,
+            desktop: (merged.desktop === false) ? undefined : merged.desktop,
+        };
     };
     return {};
 };
@@ -234,110 +362,131 @@ export function mergeAsideTabData(
             .reduce((acc, cur) => {
                 Object.entries(cur).forEach(([key, value]) => {
                     if (!acc[key]) {
-                        acc[key] = { ...value }
+                        acc[key] = { ...value };
                     } else {
                         acc[key] = {
-                            name: (typeof acc[key].name === 'string' || value.name === undefined)
+                            name: (
+                                typeof acc[key].name === 'string' ||
+                                value.name === undefined
+                            )
                                 ? acc[key].name
                                 : value.name,
                             component: (
-                                (typeof acc[key].component === 'string' || acc[key].component === null)
-                                || value.component === undefined)
+                                typeof acc[key].component === 'string' ||
+                                acc[key].component === false ||
+                                value.component === undefined
+                            )
                                 ? acc[key].component
                                 : value.component, 
-                            order: acc[key].order,
-                        }
-                    }
+                            order: (
+                                typeof acc[key].order === 'number' ||
+                                value.order === undefined
+                            )
+                                ? acc[key].order
+                                : value.order,
+                        };
+                    };
                 })
                 return acc;
             });
         
         return Object.entries(merged).reduce((result, [key, value]) => {
-            // filter invalid items
-            if (value.component === null || value.component === undefined) return result;
-            // provide default name
+            if (value.component === false || value.component === undefined) return result;
+            
             const name = value.name ?? value.component;
             const order = processOrder(value.order);
             result[key] = { name, component: value.component, order };
             return result;
         }, {} as Record<string, AsideTabData>);
-    }
+    };
     return {};
 };
 
 export function mergeGithubLinkData(
     ctx: PageContext,
-    ...sources: ToolbarGithubLinkInput[]
+    ...sources: (ToolbarGithubLinkInput | undefined)[]
 ): ToolbarGithubLinkData{
     if (Array.isArray(sources)) {
-        return sources
+        const merged = sources
             .map((input) => normalizeGithubInput(input, ctx))
             .reduce((acc, cur) => {
-                const result = { ...acc };
-                if (typeof cur.url === 'string' && !result.url) {
-                    result.url = cur.url;
-                };
-                if (
-                    (typeof cur.tooltip === 'string' || cur.tooltip === null) &&
-                    result.tooltip === undefined
-                ) {
-                    result.tooltip = cur.tooltip;
-                };
-                return result
+                return {
+                    url: (
+                        (typeof cur.url === 'string' || cur.url === false) &&
+                        acc.url === undefined
+                    )
+                        ? cur.url
+                        : acc.url,
+                    tooltip: (
+                        (typeof cur.tooltip === 'string' || cur.tooltip === false) &&
+                        acc.tooltip === undefined
+                    )
+                        ? cur.tooltip
+                        : acc.tooltip
+                }
             }, {} as ToolbarGithubLinkData)
-    }
+        return {
+            url: (merged.url === false) ? undefined : merged.url,
+            tooltip: (merged.tooltip === false) ? undefined : merged.tooltip
+        };
+    };
     return {};
 };
 
 export function mergeDownloadData(
     ctx: PageContext,
-    ...sources: ToolbarDownloadInput[]
+    ...sources: (ToolbarDownloadInput | undefined)[]
 ): ToolbarDownloadData {
     if (Array.isArray(sources)) {
-        return sources
+        const merged = sources
             .map((input) => normalizeDownloadInput(input, ctx))
             .reduce((acc, cur) => {
-                const result = { ...acc };
-                if (typeof cur.url === 'string' && !result.url) {
-                    result.url = cur.url;
+                return {
+                    download: (
+                        (typeof cur.download === 'string' || typeof cur.download === 'boolean') &&
+                        acc.download === undefined
+                    )
+                        ? cur.download
+                        : acc.download,
+                    target: ( 
+                        (cur.target === "_blank" || cur.target === "_self") &&
+                        acc.target === undefined
+                    )
+                        ? cur.target
+                        : acc.target,
+                    tooltip: (
+                        (typeof cur.tooltip === 'string' || cur.tooltip === false) &&
+                        acc.tooltip === undefined
+                    )
+                        ? cur.tooltip
+                        : acc.tooltip,
+                    url: (
+                        (typeof cur.url === 'string' || cur.url === false) &&
+                        acc.url === undefined
+                    )
+                        ? cur.url
+                        : acc.url,
                 };
-                if ( 
-                    (cur.target === "_blank" || cur.target === "_self") &&
-                    result.target === undefined
-                ) {
-                    result.target = cur.target;
-                }
-                if (
-                    (typeof cur.tooltip === 'string' || cur.tooltip === null) &&
-                    result.tooltip === undefined
-                ) {
-                    result.tooltip = cur.tooltip;
-                };
-                if (
-                    (typeof cur.download === 'string' || typeof cur.download === 'boolean') &&
-                    result.download === undefined
-                ) {
-                    result.download = cur.download;
-                }
-                return result;
             }, {});
-    }
+        return {
+            download: merged.download,
+            target: merged.target,
+            tooltip: (merged.tooltip === false) ? undefined : merged.tooltip,
+            url: (merged.url === false) ? undefined : merged.url,
+        };
+    };
     return {};
 };
 
 export function mergeHeaderTitleTemplateData(
     ctx: PageContext,
-    ...sources: HeaderTitleTemplateInput[]
+    ...sources: (HeaderTitleTemplateInput | undefined)[]
 ): string | undefined {
     if (Array.isArray(sources)) {
-        return sources
+        const merged = sources
             .map((input) => normalizeHeaderTitleTemplateInput(input, ctx))
-            .reduce((acc, cur) => {
-                if (typeof cur === 'string' && cur.length > 0 && !acc) {
-                    return cur;
-                };
-                return acc;
-            });
+            .find((value) => value !== undefined)
+        return (merged === false) ? undefined : merged
     };
     return undefined;
 };
@@ -346,18 +495,85 @@ export function mergeToolbarButtonData(
     ...sources: (Record<string, ToolbarButtonInput> | undefined)[]
 ): Record<string, ToolbarButtonData> {
     if (Array.isArray(sources)) {
-        return sources
+        const merged = sources
             .map(normalizeToolbarButtonData)
             .reduce((acc, cur) => {
                 Object.entries(cur).forEach(([key, value]) => {
                     if (!acc[key]) {
                         acc[key] = { ...value }
-                    } else if (!acc[key].tooltip) {
-                        acc[key].tooltip = value.tooltip
+                    } else {
+                        acc[key] = {
+                            icon: (
+                                typeof acc[key].icon === 'string' ||
+                                acc[key].icon === false ||
+                                (typeof acc[key].icon === 'object' && typeof acc[key].icon.component === 'string') ||
+                                value.icon === undefined
+                            )
+                                ? acc[key].icon
+                                : value.icon,
+                            callback: (
+                                typeof acc[key].callback === 'function' ||
+                                value.callback === undefined
+                            )
+                                ? acc[key].callback
+                                : value.callback,
+                            order: (
+                                typeof acc[key].order === 'number' ||
+                                value.order === undefined
+                            )
+                                ? acc[key].order
+                                : value.order,
+                            tooltip: (
+                                typeof acc[key].tooltip === 'string' ||
+                                acc[key].tooltip === false ||
+                                value.tooltip === undefined
+                            )
+                                ? acc[key].tooltip
+                                : value.tooltip,
+                        };
                     }
-                })
+                });
                 return acc;
             });
-    }
+        return Object.entries(merged).reduce((result, [key, value]) => {
+            // filter invalid items
+            if (
+                value.icon !== false &&
+                value.icon !== undefined &&
+                typeof value.callback === 'function'
+            ) {
+                result[key] = {
+                    icon: value.icon,
+                    callback: value.callback,
+                    order: value.order,
+                    tooltip: (value.tooltip === false) ? undefined : value.tooltip
+                }
+            };
+            return result;
+        }, {} as Record<string, ToolbarButtonData>);
+    };
     return {};
+};
+
+export function mergeCoverCssConfig(
+    ...sources: (CoverCssConfigInput | undefined)[]
+): CoverCssConfigData {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map(normalizeCoverCssConfig)
+            .reduce((acc, cur) => {
+                CssConfigKeyList.forEach((key) => {
+                    acc[key] = (typeof acc[key] === 'string' || acc[key] === false || cur[key] === undefined)
+                        ? acc[key]
+                        : cur[key];
+                });
+                return acc;
+            }, {});
+        const result: CoverCssConfigData = {};
+        CssConfigKeyList.forEach((key) => {    
+            result[key] = (merged[key] === false) ? undefined : merged[key];
+        });
+        return result;
+    };
+    return {} as CoverCssConfigData;
 };

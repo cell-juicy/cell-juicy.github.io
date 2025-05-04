@@ -5,10 +5,12 @@ import { defineStore } from 'pinia';
 import { isMobile, isTablet } from '../utils/deviceTypes'
 import {
     mergeAsideTabData,
+    mergeCoverCssConfig,
     mergeDeviceData,
     mergeDownloadData,
     mergeGithubLinkData,
     mergeHeaderTitleTemplateData,
+    mergeSimpleData,
     mergeToolbarButtonData
 } from '../utils/mergeData';
 
@@ -16,7 +18,7 @@ import type {
     ThemeConfig
 } from '../types';
 import { useBlogData } from './useBlogData';
-import { CoverCssConfig } from '../types/common';
+import { CoverCssConfigData, CoverCssConfigInput } from '../types/common';
 
 
 const DEFAULT = {
@@ -55,7 +57,7 @@ const DEFAULT = {
         tablet: "1rem",
         desktop: "4rem"
     },
-}
+};
 
 export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
     // Initialize blog layout config
@@ -83,7 +85,7 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
             );
             return {
                 tabs
-            }
+            };
         };
         return undefined;
     });
@@ -102,20 +104,21 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
             );
 
             // Calculate header icon
-            const heaedrIcon = [
+            const headerIcon = mergeSimpleData<false | string | { component: string }>(
+                (v) => {
+                    return typeof v === 'string' ||
+                        v === false || 
+                        (
+                            typeof v === 'object' &&
+                            typeof v.component === 'string'
+                        )
+                },
+                false,
                 frontmatter.value.headerIcon,
                 seriesConfig.value.headerIcon,
                 layoutConfig.value.headerIcon,
                 DEFAULT.HEADERICON
-            ].map((input) => {
-                if (typeof input === 'string') {
-                    return input;
-                } else if (typeof input === 'object' && typeof input.component) {
-                    return { component: input.component };
-                } else {
-                    return undefined
-                };
-            }).find((value) => value !== undefined);
+            );
 
             // Calculate github
             const github = mergeGithubLinkData(
@@ -156,7 +159,7 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
             );
             return {
                 hedaerTitle,
-                heaedrIcon,
+                headerIcon,
                 github,
                 pdf,
                 md,
@@ -170,29 +173,30 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
     const contentConfig = computed(() => {
         if (frontmatter.value.layout === "blog") {
             // Calculate max width
-            const themeMaxWidth = layoutConfig.value.contentMaxWidth;
-            const frontmatterMaxWidth = frontmatter.value.contentMaxWidth;
-            const mergeMaxWidth = mergeDeviceData(frontmatterMaxWidth, themeMaxWidth, DEFAULT.CONTENTMAXWIDTH);
+            const mergedMaxWidth = mergeDeviceData(
+                frontmatter.value.contentMaxWidth,
+                layoutConfig.value.contentMaxWidth,
+                DEFAULT.CONTENTMAXWIDTH
+            );
+            let maxWidth: string | undefined
+            if (isMobile.value) {maxWidth = mergedMaxWidth.mobile}
+            else if (isTablet.value) {maxWidth = mergedMaxWidth.tablet}
+            else {maxWidth = mergedMaxWidth.desktop};
+
             // Calculate padding
-            const themePadding = layoutConfig.value.contentPadding;
-            const frontmatterPadding = frontmatter.value.contentPadding;
-            const mergePadding = mergeDeviceData(frontmatterPadding, themePadding, DEFAULT.CONTENTPADDING);
-            // Determine the current device type
-            if (isMobile.value) {
-                return {
-                    maxWidth: mergeMaxWidth.mobile,
-                    padding: mergePadding.mobile
-                };
-            } else if (isTablet.value) {
-                return {
-                    maxWidth: mergeMaxWidth.tablet,
-                    padding: mergePadding.tablet
-                };
-            } else {
-                return {
-                    maxWidth: mergeMaxWidth.desktop,
-                    padding: mergePadding.desktop
-                };
+            const mergedPadding = mergeDeviceData(
+                frontmatter.value.contentPadding,
+                layoutConfig.value.contentPadding,
+                DEFAULT.CONTENTPADDING
+            );
+            let padding: string | undefined
+            if (isMobile.value) {padding = mergedPadding.mobile}
+            else if (isTablet.value) {padding = mergedPadding.tablet}
+            else {padding = mergedPadding.desktop};
+
+            return {
+                maxWidth,
+                padding
             };
         };
         return undefined;
@@ -202,52 +206,44 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
     const coverConfig = computed(() => {
         if (frontmatter.value.layout === "blog") {
             // Calculate alt
-            const alt: string | undefined = [
+            const alt = mergeSimpleData<false | string>(
+                (v) => typeof v === 'string' || v === false,
+                false,
                 frontmatter.value.coverAlt,
                 seriesConfig.value.coverAlt,
                 layoutConfig.value.coverAlt,
-                DEFAULT.COVERALT,
-            ].map((input) => typeof input === 'string' ? input : undefined)
-            .find((value) => value !== undefined);
+                DEFAULT.COVERALT
+            );
 
             // Calculate fade
-            const fade: number | undefined = [
+            const fade = mergeSimpleData<false | number | string>(
+                (v) => typeof v === 'number' || v === false || typeof v === 'string',
+                false,
                 frontmatter.value.coverFade,
                 seriesConfig.value.coverFade,
                 layoutConfig.value.coverFade,
                 DEFAULT.COVERFADE
-            ].map((input) => input ? (isNaN(Number(input)) ? undefined : Number(input)) : undefined)
-            .find((value) => value !== undefined);
+            );;
 
             // Calculate height
-            const height: string | undefined = [
+            const mergedHeight = mergeDeviceData(
                 frontmatter.value.coverHeight,
                 seriesConfig.value.coverHeight,
                 layoutConfig.value.coverHeight,
                 DEFAULT.COVERHEIGHT,
-            ].map((input) => typeof input === 'string' ? input : "")
-            .find((value) => value !== undefined);
+            );
+            let height: string | undefined
+            if (isMobile.value) {height = mergedHeight.mobile}
+            else if (isTablet.value) {height = mergedHeight.tablet}
+            else {height = mergedHeight.desktop};
 
             // Calculate css
-            const css: CoverCssConfig = [
+            const css: CoverCssConfigData = mergeCoverCssConfig(
                 frontmatter.value.coverCss,
                 seriesConfig.value.coverCss,
                 layoutConfig.value.coverCss,
                 DEFAULT.COVERCSS
-            ].reduce((acc: CoverCssConfig, cur: CoverCssConfig) => {
-                if (!cur) return acc;
-
-                Object.entries(cur).forEach(([key, value]) => {
-                    if (key === "padding") {
-                        acc[key] = mergeDeviceData(acc[key], value);
-                    } else {
-                        acc[key] = (typeof acc[key] === 'string' || typeof value !== 'string')
-                            ? acc[key]
-                            : value;
-                    }
-                })
-                return acc;
-            }, {} as CoverCssConfig);
+            );
 
             return {
                 alt,

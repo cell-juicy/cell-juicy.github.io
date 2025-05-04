@@ -16,6 +16,7 @@ export interface SeriesDefaultData {
     headerTitleTemplate?: HeaderTitleTemplateInput;
 
     headerIcon?:
+        | false
         | string
         | { component: string };
 
@@ -27,13 +28,18 @@ export interface SeriesDefaultData {
 
     toolbar?: Record<string, ToolbarButtonInput>;
 
-    cover?: string;
+    cover?:
+        | false
+        | string;
 
-    coverAlt?: string;
+    coverAlt?:
+        | false
+        | string;
     
     coverHeight?: DeviceSpecificInput;
     
     coverFade?:
+        | false
         | string
         | number;
     
