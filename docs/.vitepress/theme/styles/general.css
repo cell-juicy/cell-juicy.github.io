@@ -26,7 +26,11 @@ body {
     min-width: 0;
 }
 
-/* 通用类 */
+.vpj-btn {
+    display: flex;
+    align-items: center;
+}
+
 .vpj-icon {
     display: inline-block;
     flex-shrink: 0;
@@ -34,7 +38,6 @@ body {
     width: 16px;
 }
 
-/* 无换行短文本（垂直居中） */
 .vpj-text {
     flex: 1;
     line-height: 1.2;
@@ -43,6 +46,12 @@ body {
     text-align: start;
     vertical-align: middle;
     white-space: nowrap;
+}
+
+.vpj-teleport {
+    pointer-events: none;
+    position: fixed;
+    z-index: 100;
 }
 
 /* 自定义滚动条组件 */
