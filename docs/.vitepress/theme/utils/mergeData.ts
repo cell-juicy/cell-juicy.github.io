@@ -545,7 +545,7 @@ export function mergeToolbarButtonData(
                 result[key] = {
                     icon: value.icon,
                     callback: value.callback,
-                    order: value.order,
+                    order: processOrder(value.order),
                     tooltip: (value.tooltip === false) ? undefined : value.tooltip
                 }
             };

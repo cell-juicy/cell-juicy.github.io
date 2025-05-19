@@ -313,7 +313,7 @@ export type ToolbarButtonData = {
     
     callback?: () => void;
 
-    order?: number;
+    order: number;
 
     tooltip?: string;
 };
