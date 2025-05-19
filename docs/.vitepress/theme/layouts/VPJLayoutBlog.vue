@@ -4,10 +4,11 @@ import { useData } from 'vitepress';
 import { computed } from 'vue';
 
 import { useVPJBlogLayout } from '../composables/useVPJBlogLayout';
+import { useBlogData } from '../composables/useBlogData';
 
-import VPJBlogAside from '../components/VPJBlogAside.vue';
-import VPJBlogHeader from '../components/VPJBlogHeader.vue';
-import VPJCoverImage from '../components/VPJCoverImage.vue';
+import VPJArticleAside from '../components/VPJArticleAside.vue';
+import VPJArticleHeader from '../components/VPJArticleHeader.vue';
+import VPJArticleCover from '../components/VPJArticleCover.vue';
 import VPJDynamicIconBtn from '../components/VPJDynamicIconBtn.vue';
 
 import VPJIconAngleSquareLeft from '../components/icons/VPJIconAngleSquareLeft.vue';
@@ -15,26 +16,56 @@ import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight
 
 
 const store = useVPJBlogLayout();
-const { asideToggle } = store;
-const { asideCollapsed, coverConfig, contentConfig } = storeToRefs(store);
-// const { } = useData();
+const { asideToggle, asideClose, asideOpen } = store;
+const {
+    asideCollapsed,
+    headerConfig,
+    coverConfig,
+    contentConfig,
+    asideConfig
+} = storeToRefs(store);
+const { cover } = useBlogData();
 
-const computedPadding = computed(() => contentConfig.value.padding);
-const computedMaxWidth = computed(() => contentConfig.value.maxWidth);
+const computedPadding = computed(() => {
+    return contentConfig.value.padding || "0"
+});
+const computedMaxWidth = computed(() => {
+    return contentConfig.value.maxWidth || "100%"
+});
+const computedMarginTop = computed(() => {
+    return contentConfig.value.marginTop || "0"
+});
+const computedMarginBottom = computed(() => {
+    return contentConfig.value.marginBottom || "0"
+});
 </script>
 
 
 <template>
     <div class="vpj-layout-blog">
-        <VPJBlogHeader/>
+        <VPJArticleHeader 
+            :config="headerConfig"
+            :state="{
+                collapsed: asideCollapsed,
+                toggle: asideToggle,
+                close: asideClose,
+                open: asideOpen
+            }"
+        />
         <main class="vpj-layout-blog__main">
-            <VPJBlogAside/>
+            <VPJArticleAside
+                :config="asideConfig"
+                :state="{
+                    collapsed: asideCollapsed,
+                    toggle: asideToggle,
+                    close: asideClose,
+                    open: asideOpen
+                }"
+            />
             <div class="vpj-layout-blog__wrapper">
-                <VPJCoverImage
-                    src="/assets/Priestess.jpg"
-                    :height="coverConfig.height"
-                    :css="coverConfig.css"
-                    :fade="coverConfig.fade"
+                <VPJArticleCover
+                    :cover="cover"
+                    :config="coverConfig"
                 />
                 <div class="vpj-layout-blog__container">
                     <div class="vpj-layout-blog__aside-controler">
@@ -69,6 +100,7 @@ const computedMaxWidth = computed(() => contentConfig.value.maxWidth);
         display: flex;
         flex: 1;
         flex-direction: row;
+        position: relative;
         width: 100%;
     }
 
@@ -139,6 +171,8 @@ const computedMaxWidth = computed(() => contentConfig.value.maxWidth);
         flex: 1;
         flex-direction: column;
         justify-content: space-between;
+        margin-bottom: v-bind(computedMarginBottom);
+        margin-top: v-bind(computedMarginTop);
         padding-right: 48px;
     }
 
@@ -154,14 +188,16 @@ const computedMaxWidth = computed(() => contentConfig.value.maxWidth);
 
     .vpj-markdown {
         grid-column: 2;
-        width: 100%;
+        max-width: 100%;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
         .vpj-layout-blog__aside-controler {
             display: none;
         }
+    }
 
+    @media screen and (max-width: 768px) {
         .vpj-layout-blog__article {
             padding-right: 0;
         }
