@@ -3,10 +3,11 @@ layout: blog
 series: "CSS 精修系列"
 tags:
   - CSS
-  - 测试中
-  - 布局系统
   - flex
 order: 0
+cover: /assets/Priestess.jpg
+coverCss:
+  objectPosition: "center 40%"
 ---
 # 这是一个博客的示范页
 
