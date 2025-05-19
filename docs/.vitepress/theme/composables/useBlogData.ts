@@ -1,7 +1,8 @@
 import { ref, computed, inject, watch, Ref } from "vue";
 import { Route } from "vitepress";
 
-import blogData from "../data/blog.data";
+// @ts-ignore
+import { data } from "../data/blog.data";
 
 import { VPJ_BLOG_DATA_SYMBOL } from "../utils/symbols";
 import { processOrder } from "../utils/common";
@@ -20,12 +21,28 @@ import type {
 } from '../types/common';
 
 
+interface FilterOption {
+    series?:
+        | string
+        | ((series: string) => boolean);
+    
+    tags?:
+        | string
+        | Array<string>
+        | ((tags: Array<string>) => boolean);
+    
+    order?:
+        | number
+        | ((order: number) => boolean);
+}
+
 interface BlogData {
     series: Ref<string | undefined>;
     tags: Ref<string[] | undefined>;
     order: Ref<number | undefined>;
     cover: Ref<string | undefined>;
     ctx: Ref<PageContext | undefined>;
+    filter: (option: FilterOption | undefined) => Array<any> | undefined;
     layoutConfig: Ref<VPJBlogLayoutConfig>;
     seriesConfig: Ref<SeriesDefaultData>;
 }
@@ -35,8 +52,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
     const theme: Ref<ThemeConfig> = computed(() => siteData.value.themeConfig);
 
     // Get theme config and series config
-    const layoutConfig: Ref<VPJBlogLayoutConfig> = ref(theme.value.layouts?.blog || {});
-        
+    const layoutConfig: Ref<VPJBlogLayoutConfig> = ref({});
     const seriesConfig: Ref<SeriesDefaultData> = ref({});
 
     watch([theme, frontmatter], (next, prev) => {
@@ -46,7 +62,11 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
             // Update series config
             if (typeof frontmatter.value.series === 'string' && frontmatter.value.layout === "blog") {
                 const name = frontmatter.value.series;
-                if (theme.value.blog?.series && typeof theme.value.blog.series === 'object') {
+                if (
+                    theme.value.blog?.series &&
+                    typeof theme.value.blog.series === 'object' &&
+                    theme.value.blog.series !== null
+                ) {
                     seriesConfig.value = theme.value.blog.series[name] || {};
                 };
             };
@@ -69,7 +89,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
                 }).forEach((tag) => {
                     tags.push(tag)
                 })
-            }
+            };
             if (Array.isArray(frontmatter.value.tags)) {
                 frontmatter.value.tags.filter((tag: string) => {
                     return typeof tag === 'string' && tag.length > 0;
@@ -77,7 +97,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
                     tags.push(tag)
                 })
             };
-            return tags;
+            return Array.from(new Set(tags));
         } else {
             return undefined;
         };
@@ -93,16 +113,18 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
 
     // Calculate the cover
     const cover = computed(() => {
-        if (typeof frontmatter.value.cover === "string") {
-            return frontmatter.value.cover;
-        } else if (typeof seriesConfig.value.cover === "string") {
-            return seriesConfig.value.cover;
-        } else if (typeof layoutConfig.value.cover === "string") {
-            return layoutConfig.value.cover;
+        let cover: false | string | undefined
+        if (typeof frontmatter.value.cover === "string" || frontmatter.value.cover === false) {
+            cover = frontmatter.value.cover;
+        } else if (typeof seriesConfig.value.cover === "string" || seriesConfig.value.cover === false) {
+            cover = seriesConfig.value.cover;
+        } else if (typeof layoutConfig.value.cover === "string"  || layoutConfig.value.cover === false) {
+            cover = layoutConfig.value.cover;
         } else {
-            return undefined
-        }
-    })
+            cover = undefined;
+        };
+        return (cover === false) ? undefined : cover;
+    });
 
     // Calculate the context
     const ctx: Ref<PageContext | undefined> = computed(() => {
@@ -118,7 +140,95 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
             }
         }
         return undefined;
-    })
+    });
+
+    const blogDataBase = computed(() => {
+        const blogDataSet = data.map((raw: any) => {
+            const blogData = { ...raw };
+            const seriesData = (
+                typeof blogData.series === 'string' &&
+                theme.value.blog?.series &&
+                typeof theme.value.blog.series === 'object' &&
+                theme.value.blog.series !== null
+            )
+                ? theme.value.blog.series[blogData.series] || {}
+                : {};
+            const layoutData = layoutConfig.value;
+            
+            // process tags
+            if (
+                typeof seriesData === 'object' &&
+                seriesData !== null &&
+                Array.isArray(seriesData.presetTags)
+            ) {
+                blogData.tags.unshift(
+                    ...seriesData.presetTags.filter((tag) => {
+                        return typeof tag === 'string' && tag.length > 0;
+                    })
+                );
+            };
+            blogData.tags = Array.from(new Set(blogData.tags));
+
+            // process cover
+            if (typeof blogData.cover === 'string' || blogData.cover === false) {
+                blogData.cover = (blogData.cover === false) ? undefined : blogData.cover;
+            } else if (typeof seriesData.cover === 'string' || seriesData.cover === false) {
+                blogData.cover = (seriesData.cover === false) ? undefined : seriesData.cover;
+            } else if (typeof layoutData.cover === 'string' || layoutData.cover === false) {
+                blogData.cover = (layoutData.cover === false) ? undefined : layoutData.cover;
+            } else {
+                blogData.cover = undefined;
+            }
+
+            return blogData;
+        });
+        return blogDataSet;
+    });
+
+    function filter(option: FilterOption | undefined) {
+        if (!option) {
+            return blogDataBase.value
+        } else if (typeof option === 'object' && option !== null) {
+            // Calculate seriesFilter
+            let seriesFilter: (series: string) => boolean
+            if (typeof option.series === 'string') {
+                seriesFilter = (series: string) => series === option.series
+            } else if (typeof option.series === 'function') {
+                seriesFilter = (series: string) => !!(option.series as (series: string) => boolean)(series)
+            } else {
+                seriesFilter = () => true;
+            };
+
+            // Calculate tagsFilter
+            let tagsFilter: (tags: Array<string>) => boolean
+            if (typeof option.tags === 'string') {
+                tagsFilter = (tags: Array<string>) => tags.includes((option.tags as string))
+            } else if (Array.isArray(option.tags)) {
+                tagsFilter = (tags: Array<string>) => (option.tags as Array<string>).every((tag) => tags.includes(tag))
+            } else if (typeof option.tags === 'function') {
+                tagsFilter = (tags: Array<string>) => !!(option.tags as (tags: Array<string>) => boolean)(tags)
+            } else {
+                tagsFilter = () => true;
+            };
+
+            // Calculate orderFilter
+            let orderFilter: (order: number) => boolean
+            if (typeof option.order === 'number') {
+                orderFilter = (order: number) => order === option.order
+            } else if (typeof option.order === 'function') {
+                orderFilter = (order: number) => !!(option.order as (order: number) => boolean)(order)
+            } else {
+                orderFilter = () => true;
+            };
+
+            return blogDataBase.value
+                .filter((blog) => seriesFilter(blog.series))
+                .filter((blog) => tagsFilter(blog.tags))
+                .filter((blog) => orderFilter(blog.order))
+        } else {
+            return [];
+        };
+    };
 
     return {
         series,
@@ -126,10 +236,11 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
         order,
         cover,
         ctx,
+        filter,
         seriesConfig,
-        layoutConfig
+        layoutConfig,
     };
-}
+};
 
 export function useBlogData(): BlogData {
     const data = inject<BlogData>(VPJ_BLOG_DATA_SYMBOL);
@@ -137,4 +248,4 @@ export function useBlogData(): BlogData {
         throw new Error('vitepress-theme-juicy blog data not properly injected in app');
     }
     return data;
-}
+};
