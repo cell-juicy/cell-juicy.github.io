@@ -1,7 +1,9 @@
 <script setup>
 import { Content, useData } from 'vitepress';
 import { computed, provide } from 'vue';
-import { isMobile, isTablet, mergeDeviceData } from '../utils/deviceTypes';
+
+import { mergeDeviceData } from '../utils/mergeData'
+import { isMobile, isTablet } from '../utils/deviceTypes';
 import { VPJ_PAGE_LAYOUT_SYMBOL } from '../utils/symbols';
 
 
