@@ -1,7 +1,7 @@
 import {
     AsideTabInput,
     DeviceSpecificInput,
-    CoverCssConfig,
+    CoverCssConfigInput,
     HeaderTitleTemplateInput,
     ToolbarGithubLinkInput,
     ToolbarDownloadInput,
@@ -43,7 +43,7 @@ export interface SeriesDefaultData {
         | string
         | number;
     
-    coverCss?: CoverCssConfig;
+    coverCss?: CoverCssConfigInput;
 
     presetTags?: string[];
 }
