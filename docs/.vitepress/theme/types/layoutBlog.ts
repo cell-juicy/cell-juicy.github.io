@@ -1,6 +1,6 @@
 import {
     DeviceSpecificInput,
-    CoverCssConfig,
+    CoverCssConfigInput,
     ToolbarGithubLinkInput,
     ToolbarDownloadInput,
     AsideTabInput,
@@ -46,7 +46,11 @@ export interface VPJBlogLayoutConfig {
         | string
         | number;
     
-    coverCss?: CoverCssConfig;
+    coverCss?: CoverCssConfigInput;
+
+    contentMarginBottom?: DeviceSpecificInput;
+
+    contentMarginTop?: DeviceSpecificInput;
 
     contentPadding?: DeviceSpecificInput;
 

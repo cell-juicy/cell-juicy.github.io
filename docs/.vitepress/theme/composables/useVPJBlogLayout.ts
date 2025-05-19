@@ -47,14 +47,12 @@ const DEFAULT = {
         objectFit: "cover",
         objectPosition: "center center"
     },
-    CONTENTMAXWIDTH: {
-        mobile: "760px",
-        tablet: "760px",
-        desktop: "760px"
-    },
+    CONTENTMARGINBOTTOM: "1.5rem",
+    CONTENTMARGINTOP: "1.5rem",
+    CONTENTMAXWIDTH: "760px",
     CONTENTPADDING: {
         mobile: "1rem",
-        tablet: "1rem",
+        tablet: "2rem",
         desktop: "4rem"
     },
 };
@@ -94,7 +92,7 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
     const headerConfig = computed(() => {
         if (frontmatter.value.layout === "blog") {
             // Calculate header title
-            const hedaerTitle = mergeHeaderTitleTemplateData(
+            const headerTitle = mergeHeaderTitleTemplateData(
                 // @ts-ignore
                 ctx.value,
                 frontmatter.value.headerTitleTemplate,
@@ -158,7 +156,7 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
                 DEFAULT.TOOLBAR
             );
             return {
-                hedaerTitle,
+                headerTitle,
                 headerIcon,
                 github,
                 pdf,
@@ -172,13 +170,35 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
     // Content config
     const contentConfig = computed(() => {
         if (frontmatter.value.layout === "blog") {
+            // Calculate margin top
+            const mergedMarginBottom = mergeDeviceData(
+                frontmatter.value.contentMarginBottom,
+                layoutConfig.value.contentMarginBottom,
+                DEFAULT.CONTENTMARGINBOTTOM
+            );
+            let marginBottom: string | undefined;
+            if (isMobile.value) {marginBottom = mergedMarginBottom.mobile}
+            else if (isTablet.value) {marginBottom = mergedMarginBottom.tablet}
+            else {marginBottom = mergedMarginBottom.desktop};
+
+            // Calculate margin top
+            const mergedMarginTop = mergeDeviceData(
+                frontmatter.value.contentMarginTop,
+                layoutConfig.value.contentMarginTop,
+                DEFAULT.CONTENTMARGINTOP
+            );
+            let marginTop: string | undefined;
+            if (isMobile.value) {marginTop = mergedMarginTop.mobile}
+            else if (isTablet.value) {marginTop = mergedMarginTop.tablet}
+            else {marginTop = mergedMarginTop.desktop};
+
             // Calculate max width
             const mergedMaxWidth = mergeDeviceData(
                 frontmatter.value.contentMaxWidth,
                 layoutConfig.value.contentMaxWidth,
                 DEFAULT.CONTENTMAXWIDTH
             );
-            let maxWidth: string | undefined
+            let maxWidth: string | undefined;
             if (isMobile.value) {maxWidth = mergedMaxWidth.mobile}
             else if (isTablet.value) {maxWidth = mergedMaxWidth.tablet}
             else {maxWidth = mergedMaxWidth.desktop};
@@ -189,12 +209,14 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
                 layoutConfig.value.contentPadding,
                 DEFAULT.CONTENTPADDING
             );
-            let padding: string | undefined
+            let padding: string | undefined;
             if (isMobile.value) {padding = mergedPadding.mobile}
             else if (isTablet.value) {padding = mergedPadding.tablet}
             else {padding = mergedPadding.desktop};
 
             return {
+                marginBottom,
+                marginTop,
                 maxWidth,
                 padding
             };
