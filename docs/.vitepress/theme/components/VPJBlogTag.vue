@@ -16,9 +16,16 @@ const props = defineProps({
 
 const callbackFunction = computed(() => {
     if (props.callback && typeof props.callback === 'function') {
-        return () => props.callback(props.tag)
+        return (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            props.callback(props.tag);
+        }
     } else {
-        return () => {}
+        return (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+        }
     }
 })
 </script>
@@ -40,11 +47,12 @@ const callbackFunction = computed(() => {
     .vpj-blog-tag {
         align-items: center;
         background-color: var(--vpj-color-primary-100);
-        border-radius: 1rem;
+        border-radius: .75rem;
         display: flex;
-        height: 2rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        flex-shrink: 0;
+        height: 1.5rem;
+        padding-left: .75rem;
+        padding-right: .75rem;
         width: auto;
     }
 

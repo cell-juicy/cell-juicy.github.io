@@ -1,36 +1,23 @@
 <script setup>
 import { ref } from 'vue';
+
+import { useBlogData } from '../composables/useBlogData';
+
 import VPJBlogTag from './VPJBlogTag.vue';
 
 
-const tags = [
-    '标签1',
-    '阿哲，这是标签2',
-    '标签3',
-    '测试标签4',
-    '也许是标签5',
-    '测试标签6',
-    '一个非常长长长长长长长长长长长长长长长长长长长长的标签名',
-    '标签1',
-    '阿哲，这是标签2',
-    '标签3',
-    '测试标签4',
-    '标签3',
-    '测试标签4',
-    '也许是标签5',
-    '测试标签6',
-    '一个非常长长长长长长长长长长长长长长长长长长长长的标签名',
-]
+const { tags, blogData } = useBlogData();
 </script>
 
 
 <template>
-    <div class="vpj-layout-blog__aside-tab-page vpj-scroll-y">
+    <div class="vpj-layout-blog__aside-tab-page vpj-scroll-xy">
         <VPJBlogTag
             v-for="tag in tags"
             :tag="tag"
             :callback="(tag) => console.log(tag)"
         />
+        <pre>{{ JSON.stringify(blogData, null, 2) }}</pre>
     </div>
 </template>
 
