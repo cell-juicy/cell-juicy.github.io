@@ -229,14 +229,14 @@ function normalizeHeaderTitleTemplateInput(
         if (ctx.layoutConfig.layout === "blog") {
             const series = ctx.layoutConfig.series;
             const order = ctx.layoutConfig.order;
-            const title = ctx.route.data.title;
+            const title = ctx.layoutConfig.title;
             return input
                 .replaceAll(":series", series || "")
                 .replaceAll(":title", title || "")
                 .replaceAll(":order", order?.toString() || "")
         } else if (ctx.layoutConfig.layout === "doc") {
             const space = ctx.layoutConfig.space;
-            const title = ctx.route.data.title;
+            const title = ctx.layoutConfig.title;
             return input
                 .replaceAll(":space", space || "")
                 .replaceAll(":title", title || "")

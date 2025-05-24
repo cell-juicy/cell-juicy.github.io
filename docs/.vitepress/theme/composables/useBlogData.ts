@@ -37,6 +37,7 @@ interface FilterOption {
 }
 
 interface BlogData {
+    title: Ref<string | undefined>;
     series: Ref<string | undefined>;
     tags: Ref<string[] | undefined>;
     order: Ref<number | undefined>;
@@ -72,6 +73,50 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
             };
         };   
     }, { immediate: true });
+
+    // Process blog data
+    const blogDataBase = computed(() => {
+        const blogDataSet = data.map((raw: any) => {
+            const blogData = { ...raw };
+            const seriesData = (
+                typeof blogData.series === 'string' &&
+                theme.value.blog?.series &&
+                typeof theme.value.blog.series === 'object' &&
+                theme.value.blog.series !== null
+            )
+                ? theme.value.blog.series[blogData.series] || {}
+                : {};
+            const layoutData = layoutConfig.value;
+            
+            // process tags
+            if (
+                typeof seriesData === 'object' &&
+                seriesData !== null &&
+                Array.isArray(seriesData.presetTags)
+            ) {
+                blogData.tags.unshift(
+                    ...seriesData.presetTags.filter((tag) => {
+                        return typeof tag === 'string' && tag.length > 0;
+                    })
+                );
+            };
+            blogData.tags = Array.from(new Set(blogData.tags));
+
+            // process cover
+            if (typeof blogData.cover === 'string' || blogData.cover === false) {
+                blogData.cover = (blogData.cover === false) ? undefined : blogData.cover;
+            } else if (typeof seriesData.cover === 'string' || seriesData.cover === false) {
+                blogData.cover = (seriesData.cover === false) ? undefined : seriesData.cover;
+            } else if (typeof layoutData.cover === 'string' || layoutData.cover === false) {
+                blogData.cover = (layoutData.cover === false) ? undefined : layoutData.cover;
+            } else {
+                blogData.cover = undefined;
+            }
+
+            return blogData;
+        });
+        return blogDataSet;
+    });
 
     // Calculate the series
     const series = computed(() => {
@@ -126,6 +171,18 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
         return (cover === false) ? undefined : cover;
     });
 
+    // Calculate the title
+    // useBlogData.ts
+    const title = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            const currentData = blogDataBase.value.find((data) => {
+                return (data.url || undefined) === route.path
+            });
+            if (currentData) return currentData.title;
+        }
+        return undefined;
+    });
+
     // Calculate the context
     const ctx: Ref<PageContext | undefined> = computed(() => {
         if (frontmatter.value.layout === "blog") {
@@ -133,6 +190,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
                 route: { ...route },
                 layoutConfig: {
                     layout: "blog",
+                    title: title.value,
                     series: series.value,
                     tags: tags.value,
                     order: order.value
@@ -140,49 +198,6 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
             }
         }
         return undefined;
-    });
-
-    const blogDataBase = computed(() => {
-        const blogDataSet = data.map((raw: any) => {
-            const blogData = { ...raw };
-            const seriesData = (
-                typeof blogData.series === 'string' &&
-                theme.value.blog?.series &&
-                typeof theme.value.blog.series === 'object' &&
-                theme.value.blog.series !== null
-            )
-                ? theme.value.blog.series[blogData.series] || {}
-                : {};
-            const layoutData = layoutConfig.value;
-            
-            // process tags
-            if (
-                typeof seriesData === 'object' &&
-                seriesData !== null &&
-                Array.isArray(seriesData.presetTags)
-            ) {
-                blogData.tags.unshift(
-                    ...seriesData.presetTags.filter((tag) => {
-                        return typeof tag === 'string' && tag.length > 0;
-                    })
-                );
-            };
-            blogData.tags = Array.from(new Set(blogData.tags));
-
-            // process cover
-            if (typeof blogData.cover === 'string' || blogData.cover === false) {
-                blogData.cover = (blogData.cover === false) ? undefined : blogData.cover;
-            } else if (typeof seriesData.cover === 'string' || seriesData.cover === false) {
-                blogData.cover = (seriesData.cover === false) ? undefined : seriesData.cover;
-            } else if (typeof layoutData.cover === 'string' || layoutData.cover === false) {
-                blogData.cover = (layoutData.cover === false) ? undefined : layoutData.cover;
-            } else {
-                blogData.cover = undefined;
-            }
-
-            return blogData;
-        });
-        return blogDataSet;
     });
 
     function filter(option: FilterOption | undefined) {
@@ -231,6 +246,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
     };
 
     return {
+        title,
         series,
         tags,
         order,

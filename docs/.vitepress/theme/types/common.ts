@@ -88,8 +88,8 @@ export type HeadFaviconData =
 export type PageContext = {
     route: Route;
     layoutConfig:
-        | { layout: "blog"; series?: string; tags?: string[], order?: number }
-        | { layout: "doc"; space?: string; order?: number[] };
+        | { layout: "blog"; series?: string; tags?: string[], order?: number; title?: string }
+        | { layout: "doc"; space?: string; order?: number[]; title?: string };
 }
 
 /**
