@@ -1340,14 +1340,14 @@ export interface BlogDefaultsConfig {
          *   ```
          * 
          * @example
-         * 示例1：配置所有的VPJTag默认在点击时在控制台打印其tag值
+         * 示例1：配置所有的VPJTag默认显示文本改成“#tag”的形式
          * ```ts
          * // config.ts
          * export default defineConfig({
          *   themeConfig: {
          *     blog: {
          *       tag: {
-         *         defaultCallback(tag) {console.log(tag)},
+         *         textProcessor(tag) {return `#${tag}`},
          *       },
          *     }
          *   }

@@ -4,7 +4,7 @@ import { ref, computed } from 'vue';
 
 import { useBlogData } from '../composables/useBlogData';
 
-import VPJBlogTag from './VPJBlogTag.vue';
+import VPJTag from './VPJTag.vue';
 
 import VPJIconBlogPencil from './icons/VPJIconBlogPencil.vue';
 
@@ -38,7 +38,7 @@ const articles = computed(() => filter({ series: series.value }).sort((a, b) => 
                 <div class="vpj-layout-blog__aside-blog-tagboxmask">
                     <div class="vpj-layout-blog__aside-blog-tagbox vpj-scroll-x">
                         <div class="vpj-layout-blog__aside-blog-taglist">
-                            <VPJBlogTag v-for="tag in article.tags" :key="tag" :tag="tag"/>
+                            <VPJTag v-for="tag in article.tags" :key="tag" :tag="tag"/>
                         </div>
                     </div>
                 </div>

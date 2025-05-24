@@ -51,9 +51,14 @@ export default {
             app.component(name, module.default || module);
         });
         await Promise.all(iconPromises);
+
         // custom component(page-layout)
         const VPJHeroImageModule = await import('./components/VPJHeroImage.vue');
         app.component('VPJHeroImage', VPJHeroImageModule.default);
+
+        // custom component(blog-layout)
+        const VPJTagModule = await import('./components/VPJTag.vue');
+        app.component('VPJTag', VPJTagModule.default);
     }
 }
 

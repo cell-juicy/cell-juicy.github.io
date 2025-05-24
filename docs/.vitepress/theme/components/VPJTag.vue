@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+import { useData } from 'vitepress';
 
 
 const props = defineProps({
@@ -9,35 +10,56 @@ const props = defineProps({
     },
     callback: {
         type: Function,
-        default: () => {}
+        default: undefined
+    },
+    processor: {
+        type: Function,
+        default: undefined
     }
 })
 
+const { theme } = useData()
+const resolvedCallback = computed(() => {
+    if (props.callback && typeof props.callback === 'function') return props.callback;
+    if (typeof theme.value.blog?.tag?.defaultCallback === 'function') return theme.value.blog.tag.defaultCallback;
+    return () => {}
+})
+const resolvedProcessor = computed(() => {
+    if (props.processor && typeof props.processor === 'function') return props.processor;
+    if (typeof theme.value.blog?.tag?.textProcessor === 'function') return theme.value.blog.tag.textProcessor;
+    return (tag) => tag;
+})
 
-const callbackFunction = computed(() => {
-    if (props.callback && typeof props.callback === 'function') {
-        return (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            props.callback(props.tag);
-        }
-    } else {
-        return (event) => {
-            event.preventDefault();
-            event.stopPropagation();
+const callback = computed(() => {
+    if (props.tag && typeof props.tag === 'string') {
+        return (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            resolvedCallback.value(props.tag);
         }
     }
+    return () => {}
+});
+
+const text = computed(() => {
+    if (props.tag && typeof props.tag === 'string') {
+        const processed = resolvedProcessor.value(props.tag);
+        return (typeof processed === 'string' && processed.trim().length > 0) 
+            ? processed
+            : props.tag;
+    }
+    return ""
 })
 </script>
 
 
 <template>
     <button
-        @click="callbackFunction"
+        @click="callback"
         class="vpj-blog-tag"
     >
         <div class="vpj-text">
-            {{ props.tag }}
+            {{ text }}
         </div>
     </button>
 </template>

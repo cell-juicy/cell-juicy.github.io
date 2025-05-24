@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 import { useBlogData } from '../composables/useBlogData';
 
-import VPJBlogTag from './VPJBlogTag.vue';
+import VPJTag from './VPJTag.vue';
 
 
 const { tags, blogData } = useBlogData();
@@ -12,7 +12,7 @@ const { tags, blogData } = useBlogData();
 
 <template>
     <div class="vpj-layout-blog__aside-tab-page vpj-scroll-xy">
-        <VPJBlogTag
+        <VPJTag
             v-for="tag in tags"
             :tag="tag"
             :callback="(tag) => console.log(tag)"
