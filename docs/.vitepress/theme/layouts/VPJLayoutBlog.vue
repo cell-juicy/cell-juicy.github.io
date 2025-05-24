@@ -43,30 +43,40 @@ const computedMarginBottom = computed(() => {
 
 <template>
     <div class="vpj-layout-blog">
-        <VPJArticleHeader 
-            :config="headerConfig"
-            :state="{
-                collapsed: asideCollapsed,
-                toggle: asideToggle,
-                close: asideClose,
-                open: asideOpen
-            }"
-        />
-        <main class="vpj-layout-blog__main">
-            <VPJArticleAside
-                :config="asideConfig"
+        <slot name="blog-header">
+            <VPJArticleHeader 
+                :config="headerConfig"
                 :state="{
                     collapsed: asideCollapsed,
                     toggle: asideToggle,
                     close: asideClose,
                     open: asideOpen
                 }"
-            />
-            <div class="vpj-layout-blog__wrapper">
-                <VPJArticleCover
-                    :cover="cover"
-                    :config="coverConfig"
+            >
+                <template #blog-header-before><slot name="blog-header-before"/></template>
+                <template #blog-header-between><slot name="blog-header-between"/></template>
+                <template #blog-header-after><slot name="blog-header-after"/></template>
+            </VPJArticleHeader>
+        </slot>
+        <main class="vpj-layout-blog__main">
+            <slot name="blog-aside">
+                <VPJArticleAside
+                    :config="asideConfig"
+                    :state="{
+                        collapsed: asideCollapsed,
+                        toggle: asideToggle,
+                        close: asideClose,
+                        open: asideOpen
+                    }"
                 />
+            </slot>
+            <div class="vpj-layout-blog__wrapper">
+                <slot name="blog-cover">
+                    <VPJArticleCover
+                        :cover="cover"
+                        :config="coverConfig"
+                    />
+                </slot>
                 <div class="vpj-layout-blog__container">
                     <div class="vpj-layout-blog__aside-controler">
                         <VPJDynamicIconBtn
@@ -74,11 +84,22 @@ const computedMarginBottom = computed(() => {
                             @click="asideToggle"
                             class="vpj-layout-blog__aside-toggle"
                         />
+                        <slot name="blog-controler"/>
                     </div>
                     <article class="vpj-layout-blog__article">
+                        <slot name="blog-top"/>
                         <div class="vpj-layout-blog__grid-layout">
-                            <Content class="vpj-markdown"/>
+                            <div class="vpj-layout-blog__article-padding-left">
+                                <slot name="blog-padding-left"/>
+                            </div>
+                            <slot>
+                                <Content class="vpj-markdown"/>
+                            </slot>
+                            <div class="vpj-layout-blog__article-padding-right">
+                                <slot name="blog-padding-right"/>
+                            </div>
                         </div>
+                        <slot name="blog-bottom"/>
                     </article>
                 </div>
             </div>
@@ -184,6 +205,16 @@ const computedMarginBottom = computed(() => {
             minmax(min(v-bind(computedPadding), 100%), 1fr);
         min-height: 0;
         width: 100%;
+    }
+
+    .vpj-layout-blog__article-padding-left {
+        grid-column: 1;
+        max-width: 100%;
+    }
+
+    .vpj-layout-blog__article-padding-right {
+        grid-column: 3;
+        max-width: 100%;
     }
 
     .vpj-markdown {

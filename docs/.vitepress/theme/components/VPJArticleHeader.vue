@@ -100,6 +100,7 @@ const showDivider = computed(() => {
 
 <template>
     <header class="vpj-article-header">
+        <slot name="blog-header-before"/>
         <div class="vpj-article-header__info">
             <VPJDynamicIconBtn
                 v-if="!isDesktop"
@@ -200,12 +201,14 @@ const showDivider = computed(() => {
                 </Teleport>
             </ClientOnly>
         </div>
+        <slot name="blog-header-between"/>
         <div
             v-show="!isDesktop && showActions"
             class="vpj-article-header__actions"
         >
             
         </div>
+        <slot name="blog-header-after"/>
     </header>
 </template>
 
