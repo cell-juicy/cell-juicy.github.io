@@ -48,6 +48,7 @@ describe("mergeToolbarButtonData 工具栏按钮合并", () => {
             button2: {
                 icon: "iconB",
                 callback: someCallback,
+                order: 0
             }
         });
     });
@@ -101,7 +102,7 @@ describe("mergeToolbarButtonData 工具栏按钮合并", () => {
             button4: {
                 icon: "iconD",
                 callback: validCallback,
-                order: undefined,
+                order: 0,
                 tooltip: undefined
             }
         });

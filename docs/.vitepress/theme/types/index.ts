@@ -31,9 +31,11 @@ import {
  * 布局的全局配置接口
  * 
  * @remarks
- * 此接口定义了定义了主题配置中关于布局的，包括404页布局等布局的配置项。
+ * 此接口定义了主题配置中关于布局的配置接口，包括404页布局等布局的配置项。
  * 
  * @see {@link VPJLayoutsConfig.notFound} 404页与not-found布局的配置
+ * @see {@link VPJLayoutsConfig.page} page布局的配置
+ * @see {@link VPJLayoutsConfig.blog} blog布局的配置
  * 
  * @example
  * 示例1：配置不同布局的参数
