@@ -61,7 +61,8 @@ const imageRootExists = ref(false);
 const computedSrc = computed(() => `url(${props.src})`)
 const computedFade = computed(() => {
     if (props.fade) {
-        const percentage = Math.min(Math.max(props.fade, 0), 1) * 100
+        const fadeNumber = Number(props.fade) === NaN ? 0 : Number(props.fade)
+        const percentage = Math.min(Math.max(fadeNumber, 0), 1) * 100
         return `linear-gradient(to top, transparent 0%, black ${percentage}%, black)`
     }
     return 'none'

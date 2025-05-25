@@ -1,5 +1,6 @@
 import { defineConfigWithTheme } from 'vitepress';
 import type { ThemeConfig } from './theme/type';
+import vueDevTools from 'vite-plugin-vue-devtools'
 
 
 export default defineConfigWithTheme<ThemeConfig>({
@@ -18,5 +19,19 @@ export default defineConfigWithTheme<ThemeConfig>({
                 {icon: "VPJIconInfo", text: "关于我们", link: "/about/"}
             ]
         },
+        layouts: {
+            
+        },
+        blog: {
+            tag: {
+                textProcessor: (tag) => `# ${tag}`
+            },
+        }
     },
+    vite: {
+        plugins: [
+            // @ts-ignore
+            vueDevTools()
+        ]
+    }
 })

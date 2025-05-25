@@ -4,15 +4,20 @@ import VPJLayout from "./VPJLayout.vue";
 // ThemeConfig type
 // import type { ThemeConfig } from "./type";
 
+// Blog Data
+import { initVPJBlogData } from "./composables/useBlogData";
+import { VPJ_BLOG_DATA_SYMBOL } from "./utils/symbols"
+
 // Pinia
 import { createPinia } from "pinia";
 
 // Unhead
-import { createHead } from "@unhead/vue";
+import { createHead } from "@unhead/vue/client";
 
 // Global stylesheet
 import "./styles/var.css";
 import "./styles/general.css";
+import "./styles/markdown.css";
 
 
 /** @type {import('vitepress').Theme} */
@@ -34,6 +39,10 @@ export default {
             document.body.appendChild(portalRoot);
         }
 
+        // Initialize and provide blog data
+        const blogData = initVPJBlogData(router.route, siteData);
+        app.provide(VPJ_BLOG_DATA_SYMBOL, blogData);
+
         // Add custom global components
         const icons = import.meta.glob('./components/icons/*.vue');
         const iconPromises = Object.entries(icons).map(async ([path, loader]) => {
@@ -42,9 +51,14 @@ export default {
             app.component(name, module.default || module);
         });
         await Promise.all(iconPromises);
+
         // custom component(page-layout)
         const VPJHeroImageModule = await import('./components/VPJHeroImage.vue');
         app.component('VPJHeroImage', VPJHeroImageModule.default);
+
+        // custom component(blog-layout)
+        const VPJTagModule = await import('./components/VPJTag.vue');
+        app.component('VPJTag', VPJTagModule.default);
     }
 }
 

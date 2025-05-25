@@ -8,24 +8,34 @@ import type {
 
 import type {
     MobileNavConfig
-} from "./mobileNav"
+} from "./mobileNav";
 
 import type {
     VPJNotFoundLayoutConfig
-} from "./layoutNotFound"
+} from "./layoutNotFound";
 
 import type {
     VPJPageLayoutConfig
-} from "./layoutPage"
+} from "./layoutPage";
+
+import type {
+    VPJBlogLayoutConfig
+} from "./layoutBlog";
+
+import {
+    BlogDefaultsConfig
+} from "./blog";
 
 
 /**
  * 布局的全局配置接口
  * 
  * @remarks
- * 此接口定义了定义了主题配置中关于布局的，包括404页布局等布局的配置项。
+ * 此接口定义了主题配置中关于布局的配置接口，包括404页布局等布局的配置项。
  * 
  * @see {@link VPJLayoutsConfig.notFound} 404页与not-found布局的配置
+ * @see {@link VPJLayoutsConfig.page} page布局的配置
+ * @see {@link VPJLayoutsConfig.blog} blog布局的配置
  * 
  * @example
  * 示例1：配置不同布局的参数
@@ -56,6 +66,12 @@ export interface VPJLayoutsConfig {
      * @see {@link VPJPageLayoutConfig} page布局配置接口
      */
     page?: VPJPageLayoutConfig;
+
+    /**
+     * blog布局配置
+     * @see {@link VPJBlogLayoutConfig} blog布局配置接口
+     */
+    blog?: VPJBlogLayoutConfig;
 }
 
 
@@ -124,4 +140,11 @@ export interface ThemeConfig {
      * @see {@link VPJLayoutsConfig} 布局配置接口
      */
     layouts?: VPJLayoutsConfig;
+
+    /**
+     * 博客(blog)页默认数据配置
+     * @optional
+     * @see {@link BlogDefaultsConfig} 博客页默认数据配置接口
+     */
+    blog?: BlogDefaultsConfig;
 }

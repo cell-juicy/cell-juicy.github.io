@@ -3,10 +3,16 @@ import { computed, Ref, ref, watch } from 'vue';
 import { defineStore } from 'pinia';
 
 import type {
+    SiteData
+} from 'vitepress';
+import type {
+    ThemeConfig
+} from '../types'
+import type {
     SidebarConfig,
     SidebarNavItemData,
     SidebarFooterItemData
-} from '../type';
+} from '../types/sidebar';
 
 // @ts-ignore
 import defaultAvatar from '../assets/avatar.svg';
@@ -43,13 +49,19 @@ function getNavHighlightFunc(
 
 export const useVPJSidebar = defineStore('vpj-sidebar', () => {
     // Initialize sidebar config
-    const { theme, site } = useData();
+    const {
+        theme,
+        site
+    }: {
+        theme: Ref<ThemeConfig>,
+        site: Ref<SiteData>
+    } = useData();
     const route = useRoute();
 
     const sidebar: Ref<SidebarConfig> = ref(theme.value.sidebar || {});
     watch(theme, (next, prev) => {
         if (JSON.stringify(next) !== JSON.stringify(prev)) {
-            sidebar.value = theme.value.sidebar;
+            sidebar.value = theme.value.sidebar || {};
         };   
     });
     const enabled = computed(() => {
@@ -89,7 +101,7 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
             'tooltip'
         ];
         return {
-            links: sidebar.value.navLinks?.filter((item: SidebarNavItemData) => {
+            links: Array.isArray(sidebar.value.navLinks) ? sidebar.value.navLinks?.filter((item: SidebarNavItemData) => {
                     return item.link !== undefined &&
                         item.text !== undefined &&
                         item.icon !== undefined;
@@ -128,8 +140,8 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
                         item.attrs = attrsCopy;
                     };
                     return item;
-                }) ||
-                [],
+                }) || []
+                : [],
             content: sidebar.value.navContent,
             tooltip: sidebar.value.enableTooltip === undefined ? true : sidebar.value.enableTooltip,
         }
@@ -166,7 +178,7 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
         ];
         return {
             show: sidebar.value.showFooterOnCollapse === undefined ? false : sidebar.value.showFooterOnCollapse,
-            links: sidebar.value.footerLinks?.filter((item) => {
+            links: Array.isArray(sidebar.value.footerLinks) ? sidebar.value.footerLinks?.filter((item) => {
                     return item.link !== undefined &&
                         item.text !== undefined &&
                         item.icon !== undefined;
@@ -192,8 +204,8 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
                         showOnCollapse: raw.showOnCollapse === undefined ? true : raw.showOnCollapse,
                         attrs: attrsCopy
                     };
-                }) ||
-                [],
+                }) || []
+                : [],
         };
     })
 

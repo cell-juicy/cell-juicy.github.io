@@ -4,8 +4,10 @@
     "@types/node": "^22.10.2",
     "esbuild": "^0.24.0",
     "vite": "^6.0.1",
+    "vite-plugin-vue-devtools": "^7.7.6",
     "vitepress": "^1.5.0",
-    "vue": "^3.5.12"
+    "vitest": "^3.1.2",
+    "vue": "^3.5.13"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
@@ -13,11 +15,12 @@
     "docs:preview": "vitepress preview docs",
     "example:dev": "vitepress dev example",
     "example:build": "vitepress build example",
-    "example:preview": "vitepress preview example"
+    "example:preview": "vitepress preview example",
+    "test": "vitest"
   },
   "dependencies": {
     "@algolia/client-search": "^5.14.2",
-    "@unhead/vue": "^1.11.18",
+    "@unhead/vue": "^2.0.0-rc.13",
     "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",
     "path": "^0.12.7",
