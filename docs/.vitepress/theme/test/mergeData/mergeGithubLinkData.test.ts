@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
-import { mergeGithubLinkData } from '../../docs/.vitepress/theme/utils/mergeData';
-import type { PageContext } from '../../docs/.vitepress/theme/types/common';
+import { mergeGithubLinkData } from '../../utils/mergeData';
+import type { PageContext } from '../../types/common';
 
 const mockContext: PageContext = {
     // @ts-ignore 测试用数据

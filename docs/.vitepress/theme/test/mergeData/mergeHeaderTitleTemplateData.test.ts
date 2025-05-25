@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
-import { mergeHeaderTitleTemplateData } from '../../docs/.vitepress/theme/utils/mergeData';
-import type { PageContext } from '../../docs/.vitepress/theme/types/common';
+import { mergeHeaderTitleTemplateData } from '../../utils/mergeData';
+import type { PageContext } from '../../types/common';
 
 const blogContext: PageContext = {
     // @ts-ignore 测试用数据
