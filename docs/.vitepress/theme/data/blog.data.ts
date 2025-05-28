@@ -1,6 +1,6 @@
 import { createContentLoader } from "vitepress";
 
-import { processOrder } from "../utils/common";
+import { processBlogOrder } from "../utils/common";
 
 
 export default createContentLoader("**/*.md", {
@@ -17,7 +17,7 @@ export default createContentLoader("**/*.md", {
                     tags: Array.isArray(raw.frontmatter.tags)
                         ? raw.frontmatter.tags.filter((tag) => typeof tag === "string" && tag.length > 0)
                         : [],
-                    order: processOrder(raw.frontmatter.order),
+                    order: processBlogOrder(raw.frontmatter.order),
                     cover: (typeof raw.frontmatter.cover === "string" || raw.frontmatter.cover === false)
                         ? raw.frontmatter.cover
                         : undefined,

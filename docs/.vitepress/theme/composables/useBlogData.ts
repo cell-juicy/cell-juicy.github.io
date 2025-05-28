@@ -5,7 +5,7 @@ import { Route } from "vitepress";
 import { data } from "../data/blog.data";
 
 import { VPJ_BLOG_DATA_SYMBOL } from "../utils/symbols";
-import { processOrder } from "../utils/common";
+import { processBlogOrder } from "../utils/common";
 
 import type {
     ThemeConfig
@@ -151,7 +151,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
     // Calculate the order
     const order = computed(() => {
         if (frontmatter.value.layout === "blog") {
-            return processOrder(frontmatter.value.order);
+            return processBlogOrder(frontmatter.value.order);
         }
         return undefined;
     });
