@@ -172,7 +172,6 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
     });
 
     // Calculate the title
-    // useBlogData.ts
     const title = computed(() => {
         if (frontmatter.value.layout === "blog") {
             const currentData = blogDataBase.value.find((data) => {

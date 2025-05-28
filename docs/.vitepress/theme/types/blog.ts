@@ -1,11 +1,17 @@
 import {
     AsideTabInput,
+    NormalizedAsideTabInput,
     DeviceSpecificInput,
+    NormalizedDeviceSpecificInput,
     CoverCssConfigInput,
     HeaderTitleTemplateInput,
     ToolbarGithubLinkInput,
+    NormalizedToolbarGithubLinkInput,
     ToolbarDownloadInput,
-    ToolbarButtonInput
+    NormalizedToolbarDownloadInput,
+    ToolbarButtonInput,
+    NormalizedToolbarButtonInput,
+    PageContext
 } from "./common";
 
 import {
