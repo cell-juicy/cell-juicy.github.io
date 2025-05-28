@@ -4,14 +4,14 @@ import type { PageContext } from '../../types/common';
 
 const blogContext: PageContext = {
     // @ts-ignore 测试用数据
-    route: { path: '/blog', data: { title: '测试文章' } },
-    layoutConfig: { layout: "blog", series: "技术专题", order: 2 }
+    route: { path: '/blog', data: { title: '测试文章1' } },
+    layoutConfig: { layout: "blog", series: "技术专题", order: 2, title: '测试文章' }
 };
 
 const docContext: PageContext = {
     // @ts-ignore 测试用数据
-    route: { path: '/doc', data: { title: 'API文档' } },
-    layoutConfig: { layout: "doc", space: "核心模块", order: [1,2] }
+    route: { path: '/doc', data: { title: 'API文档1' } },
+    layoutConfig: { layout: "doc", space: "核心模块", order: [1,2], title: 'API文档' }
 };
 
 describe("mergeHeaderTitleTemplateData 标题模板合并", () => {
@@ -35,7 +35,7 @@ describe("mergeHeaderTitleTemplateData 标题模板合并", () => {
             "默认标题模板"
         );
 
-        expect(result).toBe("核心模块 - API文档");
+        expect(result).toBe("核心模块 - API文档1");
     });
 
     test("false显式禁用标题", () => {
