@@ -19,7 +19,8 @@
     "example:dev": "vitepress dev example",
     "example:build": "vitepress build example",
     "example:preview": "vitepress preview example",
-    "test": "vitest --config docs/.vitepress/theme/test/vitest.config.ts"
+    "test": "vitest --config docs/.vitepress/theme/test/vitest.config.ts",
+    "test:coverage": "vitest --config docs/.vitepress/theme/test/vitest.config.ts --coverage"
   },
   "dependencies": {
     "@algolia/client-search": "^5.14.2",
