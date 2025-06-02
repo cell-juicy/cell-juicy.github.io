@@ -18,7 +18,8 @@ const props = defineProps({
     }
 })
 
-const { theme } = useData()
+const { theme } = useData();
+
 const resolvedCallback = computed(() => {
     if (props.callback && typeof props.callback === 'function') return props.callback;
     if (typeof theme.value.blog?.tag?.defaultCallback === 'function') return theme.value.blog.tag.defaultCallback;
@@ -48,7 +49,7 @@ const text = computed(() => {
             ? processed
             : props.tag;
     }
-    return ""
+    return "";
 })
 </script>
 
