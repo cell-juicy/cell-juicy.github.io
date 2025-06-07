@@ -24,54 +24,41 @@ const props = defineProps({
         default: "350px"
     },
     fade: {
-        type: String
+        type: [String, Number],
+        default: undefined
     },
-    filter: {
-        type: String,
-        default: "none"
-    },
-    bgAttachment: {
-        type: String,
-        default: "scroll"
-    },
-    bgPosition: {
-        type: String,
-        default: "center center"
-    },
-    bgRepeat: {
-        type: String,
-        default: "no-repeat"
-    },
-    bgSize: {
-        type: String,
-        default: "cover"
-    },
-    bgClass: {
-        type: String
-    },
-    contentClass: {
-        type: String
+    bgCss: {
+        type: Object,
+        default: () => ({})
     }
 })
 const { page } = useData();
 const layoutConfig = inject(VPJ_PAGE_LAYOUT_SYMBOL, null);
 const isPageLayout = computed(() => !!layoutConfig);
 const imageRootExists = ref(false);
+
 // Computed properties for dynamic styling
-const computedSrc = computed(() => `url(${props.src})`)
-const computedFade = computed(() => {
-    if (props.fade) {
-        const fadeNumber = Number(props.fade) === NaN ? 0 : Number(props.fade)
-        const percentage = Math.min(Math.max(fadeNumber, 0), 1) * 100
-        return `linear-gradient(to top, transparent 0%, black ${percentage}%, black)`
+const computedCss = computed(() => {
+    // Calculate fade percentage and mask image
+    const fadeNumber = isNaN(Number(props.fade)) ? 0 : Number(props.fade);
+    const fadePercentage = Math.min(Math.max(fadeNumber, 0), 1) * 100;
+    const maskImage = (props.bgCss?.maskImage)
+        ? props.bgCss.maskImage
+        : (fadePercentage > 0)
+            ? `linear-gradient(to top, transparent 0%, black ${fadePercentage}%, black)`
+            : undefined;
+
+    // Calculate background image
+    const backgroundImage = (props.src) ? `url(${props.src})` : undefined;
+
+    return {
+        ...props.bgCss,
+        maskImage,
+        backgroundImage,
+        backgroundPosition: props.bgCss?.backgroundPosition ?? "center",
+        backgroundSize: props.bgCss?.backgroundSize ?? "cover",
+        backgroundRepeat: props.bgCss?.backgroundRepeat ?? "no-repeat"
     }
-    return 'none'
-})
-const computedFilter = computed(() => {
-    if (props.filter) {
-        return `${props.filter}`
-    }
-    return 'none'
 })
 const computedGutter = computed(() => {
     if (isPageLayout.value) return layoutConfig.computedGutter?.value;
@@ -112,12 +99,21 @@ onMounted(() => {
         >
             <div
                 class="vpj-hero-image"
-                v-bind="$attrs"
+                :style="{ height: props.height }"
             >
-                <div :class="bgClass || 'vpj-hero-image__bg'"></div>
+                <div
+                    class="vpj-hero-image__bg"
+                    :style="computedCss"
+                />
                 <div class="vpj-hero-image__grid-layout">
-                    <div :class="contentClass || 'vpj-hero-image__content'">
+                    <div class="vpj-hero-image__gutter-left">
+                        <slot name="gutter-left"/>
+                    </div>
+                    <div class="vpj-hero-image__content">
                         <slot/>
+                    </div>
+                    <div class="vpj-hero-image__gutter-right">
+                        <slot name="gutter-right"/>
                     </div>
                 </div>
             </div>
@@ -128,21 +124,13 @@ onMounted(() => {
 
 <style scoped>
     .vpj-hero-image {
-        height: v-bind("props.height");
         width: 100%;
         position: relative;
     }
 
     .vpj-hero-image__bg {
-        background-image: v-bind(computedSrc);
-        background-attachment: v-bind("props.bgAttachment");
-        background-position: v-bind("props.bgPosition");
-        background-repeat: v-bind("props.bgRepeat");
-        background-size: v-bind("props.bgSize");
-        filter: v-bind(computedFilter);
         height: 100%;
         left: 0;
-        mask-image: v-bind(computedFade);
         position: absolute;
         top: 0;
         width: 100%;
@@ -159,6 +147,20 @@ onMounted(() => {
         position: absolute;
         top: 0;
         width: 100%;
+    }
+
+    .vpj-hero-image__gutter-left,
+    .vpj-hero-image__gutter-right {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .vpj-hero-image__gutter-left {
+        grid-column: 1;
+    }
+
+    .vpj-hero-image__gutter-right {
+        grid-column: 3;
     }
 
     .vpj-hero-image__content {

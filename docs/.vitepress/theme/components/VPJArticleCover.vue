@@ -32,10 +32,11 @@ const computedSrc = computed(() => {
     return typeof props.cover === "string" ? props.cover : undefined;
 });
 const computedCss = computed(() => {
-    const fadePercentage = Math.min(Math.max(Number(props.config.fade), 0), 1) * 100;
+    const fadeNumber = isNaN(Number(props.config.fade)) ? 0 : Number(props.config.fade);
+    const fadePercentage = Math.min(Math.max(fadeNumber, 0), 1) * 100;
     const maskImage = (props.config.css?.maskImage)
         ? props.config.css.maskImage
-        : (fadePercentage)
+        : (fadePercentage > 0)
             ? `linear-gradient(to top, transparent 0%, black ${fadePercentage}%, black)`
             : undefined
     return {
