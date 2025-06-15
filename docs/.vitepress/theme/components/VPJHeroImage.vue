@@ -49,13 +49,13 @@ const computedCss = computed(() => {
             : undefined;
 
     // Calculate background image
-    const backgroundImage = (props.src) ? `url(${props.src})` : undefined;
+    const backgroundImage = (props.src) ? `url("${props.src}")` : undefined;
 
     return {
         ...props.bgCss,
         maskImage,
         backgroundImage,
-        backgroundPosition: props.bgCss?.backgroundPosition ?? "center",
+        backgroundPosition: props.bgCss?.backgroundPosition ?? "center center",
         backgroundSize: props.bgCss?.backgroundSize ?? "cover",
         backgroundRepeat: props.bgCss?.backgroundRepeat ?? "no-repeat"
     }
@@ -70,6 +70,13 @@ const computedGutter = computed(() => {
 const computedWidth = computed(() => {
     if (isPageLayout.value) return layoutConfig.computedWidth?.value;
     return "61.25rem"
+});
+const computedGrid = computed(() => {
+    return [
+        `minmax(min(${computedGutter.value}, 100%), 1fr) `,
+        `minmax(min(calc(2 * ${computedGutter.value}), 100%), ${computedWidth.value}) `,
+        `minmax(min(${computedGutter.value}, 100%), 1fr)`
+    ].join(" ")
 })
 
 
@@ -105,14 +112,16 @@ onMounted(() => {
                     class="vpj-hero-image__bg"
                     :style="computedCss"
                 />
-                <div class="vpj-hero-image__grid-layout">
-                    <div class="vpj-hero-image__gutter-left">
+                <div class="vpj-hero-image__grid-layout" :style="{
+                    gridTemplateColumns: computedGrid
+                }">
+                    <div class="vpj-hero-image__gutter-left" style="grid-column: 1;">
                         <slot name="gutter-left"/>
                     </div>
-                    <div class="vpj-hero-image__content">
+                    <div class="vpj-hero-image__content" style="grid-column: 2;">
                         <slot/>
                     </div>
-                    <div class="vpj-hero-image__gutter-right">
+                    <div class="vpj-hero-image__gutter-right" style="grid-column: 3;">
                         <slot name="gutter-right"/>
                     </div>
                 </div>
@@ -138,10 +147,6 @@ onMounted(() => {
 
     .vpj-hero-image__grid-layout {
         display: grid;
-        grid-template-columns: 
-            minmax(min(v-bind(computedGutter), 100%), 1fr)
-            minmax(min(calc(2 * v-bind(computedGutter)), 100%), v-bind(computedWidth))
-            minmax(min(v-bind(computedGutter), 100%), 1fr);
         height: 100%;
         left: 0;
         position: absolute;
@@ -155,16 +160,7 @@ onMounted(() => {
         overflow: hidden;
     }
 
-    .vpj-hero-image__gutter-left {
-        grid-column: 1;
-    }
-
-    .vpj-hero-image__gutter-right {
-        grid-column: 3;
-    }
-
     .vpj-hero-image__content {
-        grid-column: 2;
         height: 100%;
         width: 100%;
     }

@@ -16,7 +16,6 @@ export default defineConfig({
                 '.vite/**',
                 'docs/.vitepress/theme/test/**',
                 'docs/.vitepress/theme/docs/**',
-
             ],
             include: [
                 'docs/.vitepress/theme/components/*.vue',
@@ -24,7 +23,7 @@ export default defineConfig({
                 'docs/.vitepress/theme/layouts/**/*.vue',
                 'docs/.vitepress/theme/composables/**/*.[jt]s'
             ],
-            reportsDirectory: "./docs/.vitepress/theme/test/coverage"
+            reportsDirectory: "docs/.vitepress/theme/test/coverage"
         }
     },
 })
