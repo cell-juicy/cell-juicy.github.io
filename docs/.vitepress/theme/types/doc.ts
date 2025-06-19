@@ -13,30 +13,27 @@ import {
 } from "./layoutDoc"
 
 
-export interface VirtualNodeMetadata {
+export interface NodeMetadata {
     title?: string;
+    cover?: string | false;
+    inherit?: boolean;
 }
 
-export interface SpaceDefaultData {
+export interface SpaceMetaData {
 
     asideTabs?: Record<string, AsideTabInput>;
 
-
     headerTitleTemplate?: HeaderTitleTemplateInput;
-
 
     headerIcon?:
         | false
         | string
         | { component: string };
 
-
     github?: ToolbarGithubLinkInput;
     
-
     md?: ToolbarDownloadInput;
     
-
     pdf?: ToolbarDownloadInput;
 
     toolbar?: Record<string, ToolbarButtonInput>;
@@ -45,14 +42,11 @@ export interface SpaceDefaultData {
         | false
         | string;
 
-
     coverAlt?:
         | false
         | string;
     
-
     coverHeight?: DeviceSpecificInput;
-    
 
     coverFade?:
         | false
@@ -61,11 +55,18 @@ export interface SpaceDefaultData {
 
     coverCss?: CoverCssConfigInput;
 
-    virtualNodes: Record<string, VirtualNodeMetadata>;
+    nodeMeta?: {
+
+        global?: NodeMetadata;
+
+        [orderString: string]: NodeMetadata | undefined;
+    }
 }
 
 
 export interface DocDefaultsConfig {
 
-    space?: Record<string, SpaceDefaultData>;
+    space?: Record<string, SpaceMetaData>;
+
+    enableVirtual?: boolean;
 }

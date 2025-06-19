@@ -12,14 +12,19 @@ export default createContentLoader("**/*.md", {
             .map((raw) => {
                 return {
                     // @ts-ignore
-                    title: raw.src.match(/^#\s+(.+)/m) ? raw.src.match(/^#\s+(.+)/m)[1] : "",
-                    space: typeof raw.frontmatter.space === 'string' ? raw.frontmatter.space : undefined,
+                    title: raw.src.match(/^#\s+(.+)/m) ? raw.src.match(/^#\s+(.+)/m)[1] : undefined,
+                    space: (typeof raw.frontmatter.space === 'string' && raw.frontmatter.space.length > 0)
+                        ? raw.frontmatter.space
+                        : undefined,
                     order: processDocOrder(raw.frontmatter.order),
-                    cover: (typeof raw.frontmatter.cover === "string" || raw.frontmatter.cover === false)
+                    cover: (typeof raw.frontmatter.cover === 'string' || raw.frontmatter.cover === false)
                         ? raw.frontmatter.cover
                         : undefined,
+                    inherit: (raw.frontmatter.inherit === undefined)
+                        ? undefined
+                        : !!raw.frontmatter.inherit,
                     ...raw
                 }
-            });
+            })
     },
 })

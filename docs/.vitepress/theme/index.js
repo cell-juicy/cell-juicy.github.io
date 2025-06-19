@@ -6,7 +6,11 @@ import VPJLayout from "./VPJLayout.vue";
 
 // Blog Data
 import { initVPJBlogData } from "./composables/useBlogData";
-import { VPJ_BLOG_DATA_SYMBOL } from "./utils/symbols"
+import { VPJ_BLOG_DATA_SYMBOL } from "./utils/symbols";
+
+// Doc Data
+import { initVPJDocData } from "./composables/useDocData";
+import { VPJ_DOC_DATA_SYMBOL } from "./utils/symbols";
 
 // Pinia
 import { createPinia } from "pinia";
@@ -42,6 +46,10 @@ export default {
         // Initialize and provide blog data
         const blogData = initVPJBlogData(router.route, siteData);
         app.provide(VPJ_BLOG_DATA_SYMBOL, blogData);
+
+        // Initialize and provide doc data
+        const docData = initVPJDocData(router.route, siteData);
+        app.provide(VPJ_DOC_DATA_SYMBOL, docData);
 
         // Add custom global components
         const icons = import.meta.glob('./components/icons/*.vue');

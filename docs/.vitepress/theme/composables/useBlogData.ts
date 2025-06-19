@@ -14,7 +14,7 @@ import type {
     VPJBlogLayoutConfig
 } from '../types/layoutBlog';
 import type {
-    SeriesDefaultData
+    SeriesMetaData
 } from '../types/blog';
 import type {
     PageContext
@@ -45,7 +45,7 @@ interface BlogData {
     ctx: Ref<PageContext | undefined>;
     filter: (option: FilterOption | undefined) => Array<any> | undefined;
     layoutConfig: Ref<VPJBlogLayoutConfig>;
-    seriesConfig: Ref<SeriesDefaultData>;
+    seriesConfig: Ref<SeriesMetaData>;
 }
 
 export function initVPJBlogData(route: Route, siteData): BlogData {
@@ -54,12 +54,13 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
 
     // Get theme config and series config
     const layoutConfig: Ref<VPJBlogLayoutConfig> = ref({});
-    const seriesConfig: Ref<SeriesDefaultData> = ref({});
+    const seriesConfig: Ref<SeriesMetaData> = ref({});
 
     watch([theme, frontmatter], (next, prev) => {
         if (JSON.stringify(next) !== JSON.stringify(prev)) {
             // Update layout config
             layoutConfig.value = theme.value.layouts?.blog || {};
+            
             // Update series config
             if (typeof frontmatter.value.series === 'string' && frontmatter.value.layout === "blog") {
                 const name = frontmatter.value.series;
@@ -71,7 +72,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
                     seriesConfig.value = theme.value.blog.series[name] || {};
                 };
             };
-        };   
+        };
     }, { immediate: true });
 
     // Process blog data
