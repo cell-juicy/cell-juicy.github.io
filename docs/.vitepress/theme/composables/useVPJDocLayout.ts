@@ -53,7 +53,7 @@ const DEFAULT = {
     },
 };
 
-export const useVPJBlogLayout = defineStore('vpj-layout-doc', () => {
+export const useVPJDocLayout = defineStore('vpj-layout-doc', () => {
     // Initialize doc layout config
     const {
         frontmatter,

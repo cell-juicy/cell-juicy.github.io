@@ -1,9 +1,10 @@
 <script setup>
 import { storeToRefs } from 'pinia';
+import { useData } from 'vitepress';
 import { computed } from 'vue';
 
-import { useVPJBlogLayout } from '../composables/useVPJBlogLayout';
-import { useBlogData } from '../composables/useBlogData';
+import { useVPJDocLayout } from '../composables/useVPJDocLayout';
+import { useDocData } from '../composables/useDocData';
 
 import VPJArticleAside from '../components/VPJArticleAside.vue';
 import VPJArticleHeader from '../components/VPJArticleHeader.vue';
@@ -14,7 +15,7 @@ import VPJIconAngleSquareLeft from '../components/icons/VPJIconAngleSquareLeft.v
 import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight.vue';
 
 
-const store = useVPJBlogLayout();
+const store = useVPJDocLayout();
 const { asideToggle, asideClose, asideOpen } = store;
 const {
     asideCollapsed,
@@ -23,7 +24,7 @@ const {
     contentConfig,
     asideConfig
 } = storeToRefs(store);
-const { cover } = useBlogData();
+const { cover } = useDocData();
 
 const computedPadding = computed(() => {
     return contentConfig.value.padding || "0"
@@ -41,8 +42,8 @@ const computedMarginBottom = computed(() => {
 
 
 <template>
-    <div class="vpj-layout-blog">
-        <slot name="blog-header">
+    <div class="vpj-layout-doc">
+        <slot name="doc-header">
             <VPJArticleHeader 
                 :config="headerConfig"
                 :state="{
@@ -52,13 +53,13 @@ const computedMarginBottom = computed(() => {
                     open: asideOpen
                 }"
             >
-                <template #header-before><slot name="blog-header-before"/></template>
-                <template #header-between><slot name="blog-header-between"/></template>
-                <template #header-after><slot name="blog-header-after"/></template>
+                <template #header-before><slot name="doc-header-before"/></template>
+                <template #header-between><slot name="doc-header-between"/></template>
+                <template #header-after><slot name="doc-header-after"/></template>
             </VPJArticleHeader>
         </slot>
-        <main class="vpj-layout-blog__main">
-            <slot name="blog-aside">
+        <main class="vpj-layout-doc__main">
+            <slot name="doc-aside">
                 <VPJArticleAside
                     :config="asideConfig"
                     :state="{
@@ -69,36 +70,36 @@ const computedMarginBottom = computed(() => {
                     }"
                 />
             </slot>
-            <div class="vpj-layout-blog__wrapper">
-                <slot name="blog-cover">
+            <div class="vpj-layout-doc__wrapper">
+                <slot name="doc-cover">
                     <VPJArticleCover
                         :cover="cover"
                         :config="coverConfig"
                     />
                 </slot>
-                <div class="vpj-layout-blog__container">
-                    <div class="vpj-layout-blog__aside-controler">
+                <div class="vpj-layout-doc__container">
+                    <div class="vpj-layout-doc__aside-controler">
                         <VPJDynamicIconBtn
                             :icon="asideCollapsed ? VPJIconAngleSquareRight : VPJIconAngleSquareLeft"
                             @click="asideToggle"
-                            class="vpj-layout-blog__aside-toggle"
+                            class="vpj-layout-doc__aside-toggle"
                         />
-                        <slot name="blog-controler"/>
+                        <slot name="doc-controler"/>
                     </div>
-                    <article class="vpj-layout-blog__article">
-                        <slot name="blog-top"/>
-                        <div class="vpj-layout-blog__grid-layout">
-                            <div class="vpj-layout-blog__article-padding-left">
-                                <slot name="blog-padding-left"/>
+                    <article class="vpj-layout-doc__article">
+                        <slot name="doc-top"/>
+                        <div class="vpj-layout-doc__grid-layout">
+                            <div class="vpj-layout-doc__article-padding-left">
+                                <slot name="doc-padding-left"/>
                             </div>
                             <slot>
                                 <Content class="vpj-markdown"/>
                             </slot>
-                            <div class="vpj-layout-blog__article-padding-right">
-                                <slot name="blog-padding-right"/>
+                            <div class="vpj-layout-doc__article-padding-right">
+                                <slot name="doc-padding-right"/>
                             </div>
                         </div>
-                        <slot name="blog-bottom"/>
+                        <slot name="doc-bottom"/>
                     </article>
                 </div>
             </div>
@@ -108,7 +109,7 @@ const computedMarginBottom = computed(() => {
 
 
 <style scoped>
-    .vpj-layout-blog {
+    .vpj-layout-doc {
         background-color: var(--vpj-color-bg-100);
         display: flex;
         flex-direction: column;
@@ -116,7 +117,7 @@ const computedMarginBottom = computed(() => {
         width: 100%;
     }
 
-    .vpj-layout-blog__main {
+    .vpj-layout-doc__main {
         display: flex;
         flex: 1;
         flex-direction: row;
@@ -124,7 +125,7 @@ const computedMarginBottom = computed(() => {
         width: 100%;
     }
 
-    .vpj-layout-blog__wrapper {
+    .vpj-layout-doc__wrapper {
         display: flex;
         flex: 1;
         flex-direction: column;
@@ -134,7 +135,7 @@ const computedMarginBottom = computed(() => {
         scrollbar-gutter: auto;
     }
 
-    .vpj-layout-blog__container {
+    .vpj-layout-doc__container {
         display: flex;
         flex: 1;
         flex-direction: row;
@@ -142,7 +143,7 @@ const computedMarginBottom = computed(() => {
         width: 100%;
     }
 
-    .vpj-layout-blog__aside-controler {
+    .vpj-layout-doc__aside-controler {
         background-color: transparent;
         display: flex;
         flex-direction: column;
@@ -153,11 +154,11 @@ const computedMarginBottom = computed(() => {
         width: 48px;
     }
 
-    .vpj-layout-blog__aside-controler:hover {
+    .vpj-layout-doc__aside-controler:hover {
         opacity: 1;
     }
 
-    .vpj-layout-blog__aside-toggle {
+    .vpj-layout-doc__aside-toggle {
         align-items: center;
         background-color: var(--vpj-color-bg-100);
         border-radius: var(--vpj-border-radius-100);
@@ -169,23 +170,23 @@ const computedMarginBottom = computed(() => {
         width: 32px;
     }
 
-    .vpj-layout-blog__aside-toggle :deep(.vpj-icon) {
+    .vpj-layout-doc__aside-toggle :deep(.vpj-icon) {
         fill: var(--vpj-color-text-300);
         height: 16px;
         width: 16px;
     }
 
-    .vpj-layout-blog__aside-toggle:hover,
-    .vpj-layout-blog__aside-toggle:active {
+    .vpj-layout-doc__aside-toggle:hover,
+    .vpj-layout-doc__aside-toggle:active {
         background-color: var(--vpj-color-bg-300);
     }
 
-    .vpj-layout-blog__aside-toggle:hover :deep(.vpj-icon),
-    .vpj-layout-blog__aside-toggle:active :deep(.vpj-icon) {
+    .vpj-layout-doc__aside-toggle:hover :deep(.vpj-icon),
+    .vpj-layout-doc__aside-toggle:active :deep(.vpj-icon) {
         fill: var(--vpj-color-text-400);
     }
 
-    .vpj-layout-blog__article {
+    .vpj-layout-doc__article {
         align-items: center;
         display: flex;
         flex: 1;
@@ -196,7 +197,7 @@ const computedMarginBottom = computed(() => {
         padding-right: 48px;
     }
 
-    .vpj-layout-blog__grid-layout {
+    .vpj-layout-doc__grid-layout {
         display: grid;
         grid-template-columns:
             minmax(min(v-bind(computedPadding), 100%), 1fr)
@@ -206,12 +207,12 @@ const computedMarginBottom = computed(() => {
         width: 100%;
     }
 
-    .vpj-layout-blog__article-padding-left {
+    .vpj-layout-doc__article-padding-left {
         grid-column: 1;
         max-width: 100%;
     }
 
-    .vpj-layout-blog__article-padding-right {
+    .vpj-layout-doc__article-padding-right {
         grid-column: 3;
         max-width: 100%;
     }
@@ -222,13 +223,13 @@ const computedMarginBottom = computed(() => {
     }
 
     @media screen and (max-width: 1024px) {
-        .vpj-layout-blog__aside-controler {
+        .vpj-layout-doc__aside-controler {
             display: none;
         }
     }
 
     @media screen and (max-width: 768px) {
-        .vpj-layout-blog__article {
+        .vpj-layout-doc__article {
             padding-right: 0;
         }
     }
