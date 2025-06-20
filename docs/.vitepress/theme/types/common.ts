@@ -479,3 +479,20 @@ export type HeaderTitleTemplateInput =
     | false
     | string
     | ((ctx: PageContext) => string | false)
+
+
+export type ResourceInput = 
+    | false
+    | string
+    | ResourceData;
+
+export type ResourceData = {
+    url?: string | false,
+    label?: string,
+    icon?:
+        | string
+        | { component: string },
+    order?: number,
+    download?: boolean | string,
+    type?: "file" | "image" | "website" | "download"
+}

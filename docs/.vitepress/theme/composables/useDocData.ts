@@ -1,12 +1,12 @@
 import { ref, computed, inject, watch, Ref } from "vue";
 import { Route } from "vitepress";
-import { cloneDeep } from "lodash"
+import { cloneDeep, result } from "lodash"
 
 // @ts-ignore
 import { data } from "../data/doc.data";
 
 import { VPJ_DOC_DATA_SYMBOL } from "../utils/symbols";
-import { processDocOrder } from "../utils/common";
+import { any2Number, processDocOrder } from "../utils/common";
 
 import type {
     ThemeConfig
@@ -20,7 +20,9 @@ import type {
     DocDefaultsConfig
 } from "../types/doc";
 import type {
-    PageContext
+    PageContext,
+    ResourceInput,
+    ResourceData
 } from '../types/common';
 
 
@@ -52,6 +54,7 @@ interface RawDocPageData {
     space?: string;
     order: number[];
     cover?: string | false;
+    resources?: Record<string, ResourceInput>;
     url?: string;
     frontmatter?: Record<string, any>;
     src?: string;
@@ -61,9 +64,112 @@ interface RawDocPageData {
 }
 
 interface StoreDocPageData extends RawDocPageData {
+    resources: Record<string, ResourceData>;
     id: string;
     virtual: boolean;
 }
+
+function resolveResourceInput(input: any):Record<string, ResourceData> {
+    const normalized: Record<string, ResourceInput> = 
+        (typeof input === 'object' && input !== null)
+            ? input
+            : {};;
+    const result: Record<string, ResourceData> = {};
+
+    Object.entries(normalized).forEach(([key, value]) => {
+        if (value === false) {
+            result[key] = { url: false };
+        } else if (typeof value === 'string') {
+            result[key] = {
+                url: value,
+                label: value
+            }
+        } else if (typeof value === 'object') {
+            result[key] = {
+                url: (typeof value.url === 'string' || value.url === false)
+                    ? value.url
+                    : undefined,
+                label: (typeof value.label === 'string')
+                    ? value.label
+                    : undefined,
+                icon: (
+                    typeof value.icon === 'string' ||
+                    (
+                        typeof value.icon === 'object' &&
+                        value.icon !== null &&
+                        typeof value.icon.component === 'string'
+                    )
+                )
+                    ? value.icon
+                    : undefined,
+                download: (typeof value.download === 'boolean' || typeof value.download === 'string')
+                    ? value.download
+                    : undefined,
+                order: ("order" in value) ? any2Number(value.order) : undefined,
+                type: (["file", "image", "website", "download"].includes(value.type || ""))
+                    ? value.type
+                    : undefined,
+            };
+        };
+    });
+
+    return result;
+};
+
+function mergeResourceData(child: Record<string, ResourceData>, parent: Record<string, ResourceData>) {
+    const result: Record<string, ResourceData> = {...child};
+    Object.entries(parent).forEach(([key, value]) => {
+        if (!(key in result)) {
+            result[key] = value;
+        } else {
+            result[key] = {
+                url: (
+                    (typeof value.url === 'string' || value.url === false) &&
+                    result[key].url === undefined
+                )
+                    ? value.url
+                    : result[key].url,
+                label: (
+                    (typeof value.label === 'string') &&
+                    result[key].label === undefined
+                )
+                    ? value.label
+                    : result[key].label,
+                icon: (
+                    (
+                        typeof value.icon === 'string' || (
+                        typeof value.icon === 'object' &&
+                        value.icon !== null &&
+                        typeof value.icon.component === 'string'
+                    )) &&
+                    result[key].icon === undefined
+                )
+                    ? value.icon
+                    : result[key].icon,
+                download: (
+                    (typeof value.download === 'boolean' || typeof value.download === 'string') &&
+                    result[key].download === undefined
+                )
+                    ? value.download
+                    : result[key].download,
+                order: (
+                    ("order" in value) &&
+                    result[key].order === undefined
+                )
+                    ? value.order
+                    : result[key].order,
+                type: (
+                    ["file", "image", "website", "download"].includes(value.type || "") &&
+                    result[key].type === undefined
+                )
+                    ? value.type
+                    : result[key].type,
+            };
+        };
+    });
+
+    return result;
+};
 
 class DocPageData {
     static #idMap: Map<string, DocPageData> = new Map();
@@ -79,6 +185,7 @@ class DocPageData {
         // Initialization
         this.#store = {
             ...cloneDeep(raw),
+            resources: resolveResourceInput(raw.resources),
             id: 'unknown',
             virtual: (raw.virtual === true) ? true : false,
         };
@@ -99,6 +206,7 @@ class DocPageData {
     get order() { return this.#store.order; }
     get cover() { return this.#store.cover; }
     get inherit() { return this.#store.inherit; }
+    get resources() { return this.#store.resources; }
 
     get url() { return this.#store.url; }
     get frontmatter() { return this.#store.frontmatter; }
@@ -141,6 +249,11 @@ class DocPageData {
             ) {
                 this.#store.cover = parent.cover;
             };
+
+            // Inherit resources
+            this.#store.resources = mergeResourceData(
+                this.#store.resources, parent.resources
+            );
         }
     };
 
@@ -184,7 +297,13 @@ class DocPageData {
         ) {
             target.inherit = true;
         };
-    }
+
+        if (meta.resources !== undefined) {
+            const metaResources = resolveResourceInput(meta.resources);
+            const targetResources = resolveResourceInput(target.resources);
+            target.resources = mergeResourceData(targetResources, metaResources);
+        }
+    };
 
     static applySpaceConfig(dataBase: RawDocPageData[], config: Record<string, SpaceMetaData>) {
         Object.entries(config).forEach(([space, meta]) => {
@@ -212,6 +331,7 @@ class DocPageData {
 
         });
     };
+
     static generateVirtualNodes(dataBase: RawDocPageData[]) {
         const existingNodes: Set<string> = new Set();
         const virtualNodes: RawDocPageData[] = [];

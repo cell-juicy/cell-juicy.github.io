@@ -5,7 +5,8 @@ import {
     HeaderTitleTemplateInput,
     ToolbarGithubLinkInput,
     ToolbarDownloadInput,
-    ToolbarButtonInput
+    ToolbarButtonInput,
+    ResourceInput,
 } from "./common";
 
 import {
@@ -16,6 +17,7 @@ import {
 export interface NodeMetadata {
     title?: string;
     cover?: string | false;
+    resources?: Record<string, ResourceInput>;
     inherit?: boolean;
 }
 
