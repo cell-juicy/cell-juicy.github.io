@@ -9,7 +9,7 @@ export default createContentLoader("**/*.md", {
     render: true,
     transform(rawData) {
         return rawData
-            .filter((raw) => raw.frontmatter.layout === "blog")
+            .filter((raw) => raw.frontmatter.layout === "doc")
             .map((raw) => {
                 // Filter resources
                 const rawResources: Record<string, ResourceInput> = 

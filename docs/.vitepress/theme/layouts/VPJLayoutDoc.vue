@@ -24,7 +24,7 @@ const {
     contentConfig,
     asideConfig
 } = storeToRefs(store);
-const { cover } = useDocData();
+const { cover, space, title, data } = useDocData();
 
 const computedPadding = computed(() => {
     return contentConfig.value.padding || "0"

@@ -39,10 +39,12 @@ interface FilterOption {
 }
 
 interface DocData {
+    data: Ref<DocPageData | undefined>;
     title: Ref<string | undefined>;
     space: Ref<string | undefined>;
     order: Ref<number[] | undefined>;
     cover: Ref<string | undefined>;
+    resources: Ref<Record<string, ResourceInput> | undefined>;
     ctx: Ref<PageContext | undefined>;
     filter: (option: FilterOption | undefined) => DocPageData[];
     spaceConfig: Ref<SpaceMetaData>;
@@ -462,7 +464,7 @@ export function initVPJDocData(route: Route, siteData): DocData {
 
     const currentData = computed(() => {
         if (frontmatter.value.layout === "doc") {
-            return docDataBase.value.find((data) => (data.url || null) === route.path);
+            return docDataBase.value.find((data) => (data.url || undefined) === route.path);
         };
         return undefined;
     })
@@ -495,6 +497,13 @@ export function initVPJDocData(route: Route, siteData): DocData {
     const title = computed(() => {
         if (frontmatter.value.layout === "doc") {
             return currentData.value?.title || undefined;
+        };
+        return undefined;
+    });
+
+    const resources = computed(() => {
+        if (frontmatter.value.layout === "doc") {
+            return currentData.value?.resources || undefined;
         };
         return undefined;
     });
@@ -536,10 +545,12 @@ export function initVPJDocData(route: Route, siteData): DocData {
     };
 
     return {
+        data: currentData,
         title,
         space,
         order,
         cover,
+        resources,
         ctx,
         filter,
         spaceConfig,
