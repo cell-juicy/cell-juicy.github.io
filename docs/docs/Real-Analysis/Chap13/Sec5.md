@@ -1,0 +1,920 @@
+---
+layout: doc
+space: 实分析
+order:
+  - 13
+  - 5
+cover: /assets/reunite.jpg
+coverCss:
+  objectPosition: 30% center
+coverFade: 0.3
+coverHeight: 320px
+---
+# 13.5 拓扑空间<span style='color:blue'>（选学）</span>
+
+## 摘录
+
+1. <span style='color:red'>（度量空间的回顾与拓扑空间的开始）</span>度量空间中我们将**度量**$d$作为基础对象，而对于更具一般性的拓扑空间来说，不存在度量的概念。拓扑空间以**开集簇**作为基本概念。在拓扑空间中，我们从开集入手，因此度量和度量球等在度量空间中有用的定义都是不必要的。不过对于前面章节中的概念（例如收敛，紧致性，连通性等），我们仍然能找到拓扑空间之中的拓展。
+
+---
+
+## 定义
+
+1. <span style='color:red'>（13.5.1 拓扑空间）</span>一个**拓扑空间**是一个有序对$(X,\mathcal{F})$，其中$X$是一个集合，而$\mathcal{F}\subset 2^X$是$X$的一个子集簇，该集簇中的元素叫做**开集**。此外，集簇$\mathcal{F}$还必须满足如下性质：
+
+   > * 空集$\varnothing$与整个集合本身$X$都是开集，也即$\varnothing\in\mathcal{F}$与$X\in\mathcal{F}$。
+   > * 任意有限多个开集的交都是开集，也即若有$V_1,...,V_n$都是$\mathcal{F}$中的元素，那么$V_1\cap...\cap V_n$也属于$\mathcal F$。
+   > * 任意多个（包括无限个）开集的并都是开集，也即若有$(V_\alpha)_{\alpha\in I}$是$\mathcal{F}$中的一簇集合，那么$\displaystyle\bigcup_{\alpha\in I}V_\alpha$也属于$\mathcal F$。
+
+   <span style='color:blue'>（注：因此我们可以看到，任何的度量空间都是一个拓扑空间（我们只要将度量空间中所有的开集组成集合簇与原空间组成序对）。但是不是所有的拓扑空间都能通过度量生成，例如习题13.5.6中的例子）</span>
+
+2. <span style='color:red'>（13.5.2 邻域）</span>设$(X,\mathcal{F})$是一个拓扑空间，并设$x\in X$。$x$的**邻域**是指$\mathcal{F}$中包含$x$的开集。
+
+   <span style='color:blue'>（注：让我们回到度量空间，考虑某个度量空间$(X,d)$，某个实数$r>0$与某个点$x\in X$，度量球$B(x,r)$就是$x$的一个邻域）</span>
+
+3. <span style='color:red'>（13.5.4 拓扑收敛）</span>设$m$是一个整数，$(X,\mathcal{F})$是一个拓扑空间，$(x^{(n)})_{n=m}^\infty$是$X$中的点列，并设$x$是$X$中的点。我们称序列$(x^{(n)})_{n=m}^\infty$**收敛于**$x$，当且仅当对于$x$的每一个邻域$V$，都存在$N\geq m$使得对所有的$n\geq N$均有$x^{(n)}\in V$。
+
+   <span style='color:blue'>（注：这个概念也是同度量空间中收敛的概念是一致的，但是对于拓扑空间中极限是否具有唯一性这个问题，如果拓扑空间满足一个称为**豪斯道夫特性**的性质那么这个问题就是肯定的，对于其它的拓扑空间则不一定）</span>
+
+4. <span style='color:red'>（13.5.5 内点，外点和边界点）</span>设$(X,\mathcal{F})$是拓扑空间，$E$是$X$的子集，并设$x_0$是$X$中的点。如果存在$x_0$的一个邻域$V$使得$V\subseteq E$，那么我们称$x_0$是$E$的**内点**；如果存在$x_0$的一个邻域$V$使得$V\cap E=\varnothing$，那么我们称$x_0$是$E$的**外点**；如果$x_0$既不是$E$的内点也不是$E$的外点，那么我们称$x_0$是$E$的**边界点**。
+
+   <span style='color:blue'>（注：这个概念也是同度量空间中的概念是一致的）</span>
+
+5. <span style='color:red'>（13.5.6 闭包）</span>设$(X,\mathcal{F})$是拓扑空间，$E$是$X$的子集，并设$x_0$是$X$中的点。如果$x_0$的每一个邻域$V$都与$E$有非空的交集，那么我们称$x_0$是$E$的**附着点**。由$E$的全体附着点所构成的集合被称为$E$的**闭包**。记作$\overline{E}$。
+
+   <span style='color:blue'>（注：有一个[定理12.2.10](../Chap12/Sec2.md)的部分类比，参见习题13.5.10）</span>
+
+6. <span style='color:red'>（无编号 闭集）</span>设$(X,\mathcal{F})$是拓扑空间，$E$是$X$的子集。我们称集合$E$是**闭的**，当且仅当它的补集$X\verb|\|E$是开的（也即$X\verb|\|E\in\mathcal{F}$）。
+
+   <span style='color:blue'>（注：由[命题12.2.15(e)](../Chap12/Sec2.md)我们知道这个定义于度量空间中的定义也是一致的，还有部分类比[命题12.2.15](../Chap12/Sec2.md)的命题也是成立的，参见习题13.5.11）</span>
+
+7. <span style='color:red'>（13.5.7 相对拓扑）</span>设$(X,\mathcal{F})$是拓扑空间，并设$Y$是$X$的子集，我们定义$\mathcal{F}_Y:=\{V\cap Y:V\in\mathcal{F}\}$，并称其为由$(X,\mathcal{F})$**导出的**$Y$**上的拓扑**。我们称$(Y,\mathcal{F}_Y)$是$(X,\mathcal{F})$的**拓扑子空间**。
+
+   <span style='color:blue'>（注：事实上$(Y,\mathcal{F}_Y)$就是一个拓扑空间，并且根据[命题12.3.4](../Chap12/Sec3.md)我们知道这个概念于度量空间中相应的概念是一致的）</span>
+
+8. <span style='color:red'>（13.5.8 连续函数）</span>设$(X,\mathcal{F}_X)$与$(Y,\mathcal{F}_Y)$都是拓扑空间，$f:X\to Y$是一个函数，并设$x_0\in X$。我们称$f$在$x_0$处是**连续的**，当且仅当对于$f(x_0)$的每一个邻域$V$都存在一个$x_0$的邻域$U$使得$f(U)\subseteq V$。我们称$f$是**连续的**，当且仅当$f$在每一点$x\in X$处都连续。
+
+   <span style='color:blue'>（注：这个定义与[定义13.1.1](../Chap13/Sec1.md)是一致的，对[定理13.1.4](../Chap13/Sec1.md)和[定理13.1.5](../Chap13/Sec1.md)的部分类比是成立的）</span>
+
+9. <span style='color:red'>（13.5.9 紧致拓扑空间）</span>设$(X,\mathcal{F})$是拓扑空间，如果$X$的每一个开覆盖都有一个有限子覆盖，那么我们称空间$(X,\mathcal{F})$是**紧致的**。设$Y$是$X$的子集，如果$(X,\mathcal{F})$导出的$Y$上的拓扑子空间是紧致的，那么我们称$Y$是**紧致的**。
+
+   <span style='color:blue'>（注：紧致度量空间中的许多内容在紧致拓扑空间中也是成立的，尤其是[定理13.3.1](../Chap13/Sec3.md)和[命题13.3.2](../Chap13/Sec3.md)；相比于度量空间，遗憾的是拓扑空间中不存在柯西序列，完备空间，有界空间，一致连续等概念；通过逐字重复[定义13.4.1](../Chap13/Sec4.md)和[定义13.4.3](../Chap13/Sec4.md)我们还可以为拓扑空间定义连通性的概念（当然，需要用相对拓扑的概念替换掉[定义12.3.3](../Chap12/Sec3.md)），[13.4节](../Chap13/Sec4.md)中大部分的结论和习题在拓扑空间中仍然成立）</span>
+
+---
+
+## 课后习题
+
+##### 13.5.1 设$X$是一个集合，并设$\mathcal{F}:=\{\varnothing,X\}$。证明：$(X,\mathcal{F})$是一个拓扑空间<span style='color:blue'>（$\mathcal{F}$被称为$X$上的<span style='color:red'>平凡拓扑</span>）</span>；如果$X$中包含不止一个元素，证明：平凡拓扑无法由在$X$上定义一个度量来得到，并证明：这个拓扑空间既是紧致的又是连通的
+
+> 证明：$(X,\mathcal{F})$是一个拓扑空间。
+>
+> 于是要证明：
+>
+> * 空集$\varnothing$与整个集合本身$X$都是开集，也即$\varnothing\in\mathcal{F}$与$X\in\mathcal{F}$。
+>
+>   > 这个是显然的。
+>
+> * 任意有限多个开集的交都是开集，也即若有$V_1$，$...$，$V_n$都是$\mathcal{F}$中的元素，那么$V_1\cap...\cap V_n$也属于$\mathcal F$。
+>
+>   > 注意到这任意多个开集要么是$X$要么是$\varnothing$，于是当存在$1\leq i\leq n$使得$V_n=\varnothing$时，可以得到$V_1\cap...\cap V_n=\varnothing$；否则我们可以得到$V_1\cap...\cap V_n=X\cap...\cap X=X$。
+>
+> * 任意多个（包括无限个）开集的并都是开集，也即若有$(V_\alpha)_{\alpha\in I}$是$\mathcal{F}$中的一簇集合，那么$\displaystyle\bigcup_{\alpha\in I}V_\alpha$也属于$\mathcal F$。
+>
+>   > 注意到这任意多个开集要么是$X$要么是$\varnothing$，于是当存在$1\leq i\leq n$使得$V_n=X$时，可以得到$V_1\cup...\cup V_n=X$；否则我们可以得到$V_1\cup...\cup V_n=\varnothing\cup...\cup\varnothing=\varnothing$。
+>
+> 综上，于是根据定义13.5.1可得$(X,\mathcal{F})$是一个拓扑空间。
+>
+> ---
+>
+> 证明：如果$X$中包含不止一个元素，平凡拓扑无法由在$X$上定义一个度量来得到。
+>
+> 不妨使用反证，我们假设平凡拓扑是可以通过在$X$上定义某个度量$d$得到，并且由于$X$中包含不止一个元素，我们记有$a$，$b\in X$。那么根据度量的定义，我们知道$r:=d(a,b)>0$。然后我们考虑度量球$B(a,r)$，根据度量球的定义可知$a\in B(a,r)$且$b\notin B(a,r)$，因此$B(a,r)$不可能等于$X$或者$\varnothing$；此外注意到在命题12.2.15(c)我们知道$B(a,r)$是开集（于是$B(a,r)\in\mathcal{F}$），这和平凡拓扑$\mathcal{F}$只包含$X$和$\varnothing$的结论相矛盾。
+>
+> 综上，于是反证假设不成立，平凡拓扑不可能由在$X$上定义一个度量来得到。
+>
+> ---
+>
+> 证明：带有平凡拓扑$\mathcal{F}$的拓扑空间$(X,\mathcal{F})$既是紧致的又是连通的。
+>
+> 我们先证明$(X,\mathcal{F})$是紧致的。
+>
+> 考虑由$\mathcal{F}$中开集组成的集合簇$(V_{\alpha})_{\alpha\in I}^\infty$满足$\displaystyle X\subseteq\bigcup_{\alpha\in I}V_{\alpha}$。注意到平凡拓扑$\mathcal{F}$中只有$X$与$\varnothing$，于是$\displaystyle X\subseteq\bigcup_{\alpha\in I}V_{\alpha}$当且仅当存在$\alpha_0\in I$使得$V_{\alpha_0}=X$（如果全是空集则并集$\displaystyle\bigcup_{\alpha\in I}V_{\alpha}$也是空集）。于是我们可以得到$\displaystyle X\subseteq\bigcup_{\alpha\in\{\alpha_0\}}V_{\alpha}(=X)$，而单点集显然是有限的。
+>
+> 于是综合可以得到对$X$的每一个开覆盖都有一个有限子覆盖，根据定义13.5.9我们可以得到$(X,\mathcal{F})$是紧致的。
+>
+> 然后我们证明$(X,\mathcal{F})$是连通的。
+>
+> 注意到平凡拓扑$\mathcal{F}$中只有$X$与$\varnothing$，而不连通的定义（定义13.4.1）中隐含要求$V$，$W$均不等于$X$（否则另外一个开集就是空集了），因此无法找到两个非空不相交的开集满足$V\cup W=X$。从而$(X,\mathcal{F})$不是不连通的，即$(X,\mathcal{F})$是连通的。
+>
+> 综上，于是题目结论得证。
+
+##### 13.5.2 设$(X,d)$是一个度量空间（从而它也是一个拓扑空间），证明：[定义12.1.14](../Chap12/Sec1.md)和定义13.5.4中序列收敛的概念是一致的
+
+> 即需要证明：对任意$(x^{(n)})_{n=m}^\infty$是$X$中的点列与$x$是$X$中的一个点，$(x^{(n)})_{n=m}^\infty$是在定义12.1.14下收敛于$x$的当且仅当$(x^{(n)})_{n=m}^\infty$是在定义13.5.4下收敛于$x$的。
+>
+> 若$(x^{(n)})_{n=m}^\infty$是在定义13.5.4下收敛于$x$的，则对于$x$的每一个邻域$V$，都存在$N\geq m$使得对所有的$n\geq N$均有$x^{(n)}\in V$。然后根据命题12.2.15(c)我们知道对任意的$\varepsilon>0$，度量球$B(x,\varepsilon)$是一个开集，从而$B(x,\varepsilon)$是$x$的一个邻域；并且根据定义13.5.4的结论存在$N\geq m$使得对任意$n\geq N$都有：
+> $$
+> x^{(n)}\in B(x,\varepsilon)\Longrightarrow d(x^{(n)},x)\leq\varepsilon
+> $$
+> 总结即有：对任意的$\varepsilon>0$，在$N\geq m$使得对任意$n\geq N$都有$d(x^{(n)},x)\leq\varepsilon$。于是根据定义12.1.14的内容我们知道$(x^{(n)})_{n=m}^\infty$是定义12.1.14下的收敛于$x$的。
+>
+> 反过来，若$(x^{(n)})_{n=m}^\infty$是在定义12.1.14下收敛于$x$的，则对于任意的$\varepsilon>0$，存在一个$N\geq m$使得$d(x^{(n)},x)\leq\varepsilon$对所有的$n\geq N$均成立。于是对任意$V$是$x$的邻域，由于$V\subseteq X$是开集因此$x$是$V$的内点，从而存在$\varepsilon>0$使得$B(x,2\varepsilon)\subseteq V$。于是此时根据定义12.1.14的结论存在一个$N\geq m$使得对任意$n\geq N$都有：
+> $$
+> d(x^{(n)},x)\leq\varepsilon\Longrightarrow x^{(n)}\in B(x,2\varepsilon)\subseteq V
+> $$
+> 即$x^{(n)}\in V$。总结即有：对任意$V$是$x$的邻域，都存在$N\geq m$使得对所有的$n\geq N$均有$x^{(n)}\in V$。于是根据定义13.5.4我们可以知道$(x^{(n)})_{n=m}^\infty$是在定义13.5.4下收敛于$x$的。
+>
+> 综上，于是我们证明了定义12.1.14和定义13.5.4中序列收敛的概念是一致的。
+
+##### 13.5.3 设$(X,d)$是一个度量空间（从而自然也是一个拓扑空间）。证明：[定义12.2.5](../Chap12/Sec2.md)和定义13.5.5中的内点、外点和边界点的概念是一致的
+
+> 注意到定义12.2.5与定义13.5.5中边界点的定义都是空间中既不是集合的内点也不是集合的外点的元素，因此只要证明两个定义的内点与外点概念是一致的，那么边界点的概念自然也就是一致的。
+>
+> * 内点的证明：
+>
+>   > 若$x_0$是定义12.2.5下$E$的内点，那么存在一个$r>0$使得$B(x_0,r)\subseteq E$。注意到根据命题12.2.15(c)$B(x_0,r)$是$X$中的开集，因此根据定义13.5.2于是$B(x_0,r)$是$x_0$的一个邻域，也即$x_0$是定义13.5.5下$E$的内点。
+>   >
+>   > 反过来，若$x_0$是定义13.5.5下$E$的内点，那么存在一个$x_0$的邻域$V$使得$V\subseteq E$。又因为邻域的定义（定义13.5.2）我们知道$V$是包含$x_0$的开集，从而根据度量空间中开集的定义有$x_0$是$V$的一个内点，于是存在$r>0$使得$B(x_0,r)\subseteq V\subseteq E$，从而$x_0$是定义12.2.5下$E$的内点。
+>
+> * 外点的证明：
+>
+>   > 若$x_0$是定义12.2.5下$E$的外点，那么存在一个$r>0$使得$B(x_0,r)\cap E=\varnothing$。注意到根据命题12.2.15(c)$B(x_0,r)$是$X$中的开集，因此根据定义13.5.2于是$B(x_0,r)$是$x_0$的一个邻域，也即$x_0$是定义13.5.5下$E$的外点。
+>   >
+>   > 反过来，若$x_0$是定义13.5.5下$E$的外点，那么存在一个$x_0$的邻域$V$使得$V\cap E=\varnothing$。又因为邻域的定义我们知道$V$是包含$x_0$的开集，从而根据开集的定义有$x_0$是$V$的一个内点，于是存在$r>0$使得$B(x_0,r)\subseteq V\Longrightarrow B(x_0,r)\cap E=\varnothing$，从而$x_0$是定义12.2.5下$E$的外点。
+>
+> 于是综上，我们证明了定义12.2.5与定义13.5.5中内点和外点的概念是一致的，从而如最开始所说边界点的概念也是一致的。于是我们证明了题目结论。
+
+##### 13.5.4 设$(X,\mathcal{F})$是一个拓扑空间，如果对于任意两个不同的点$x$，$y\in X$，都存在$x$的邻域$V$和$y$的邻域$W$使得$V\cap W=\varnothing$，那么$(X,\mathcal{F})$就被称为<span style='color:red'>豪斯道夫空间</span>。证明：每一个度量空间生成的拓扑空间都是豪斯道夫空间；证明：平凡拓扑空间不是豪斯道夫空间；证明：对于豪斯道夫空间，[命题12.1.20](../Chap12/Sec1.md)的类比成立；举例：存在非豪斯道夫空间，使得[命题12.1.20](../Chap12/Sec1.md)的类比不成立<span style='color:blue'>（实际上我们遇到的绝大多数拓扑空间都是豪斯道夫空间。非豪斯道夫空间有一些病态倾向，所以研究它们没有多少价值）</span>
+
+> 证明：每一个度量空间生成的拓扑空间都是豪斯道夫空间。
+>
+> 考虑度量空间$(X,d)$中的任意两个点$x$，$y$满足$x\ne y$。于是根据度量满足的公理我们知道必然有$r:=d(x,y)>0$。然后我们考虑集合$B(x,r/2)$与$B(y,r/2)$，根据命题12.2.15(c)与度量球的定义它们分别是$x$和$y$的邻域，然后注意到：
+> $$
+> B(x,r/2)\cap B(y,r/2)=\{z\in X:d(x,z)<r/2\wedge d(y,z)<r/2\}
+> $$
+> 若存在$z\in X$满足$d(x,z)<r/2$与$d(y,z)<r/2$，则根据度量空间中的三角不等式我们有：
+> $$
+> d(x,y)\leq d(x,z)+d(z,y)<r=d(x,z)
+> $$
+> 导出了矛盾，于是即有$B(x,r/2)\cap B(y,r/2)$只能是空集。
+>
+> 于是我们证明了对任意度量空间$(X,d)$中的任意两个点$x$，$y$满足$x\ne y$都存在$V$，$W$（也就是我们上面提到的两个度量球）分别是$x$，$y$的邻域满足$V\cap W=\varnothing$，即每一个度量空间生成的拓扑空间都是豪斯道夫空间。
+>
+> ---
+>
+> 证明：平凡拓扑空间不是豪斯道夫空间。
+>
+> 事实上这个命题有个成立的前提是平凡拓扑空间至少存在两个元素，只有一个元素或者不存在元素的拓扑空间显然都是豪斯道夫空间（在这样的空间下根本找不到两个不同的元素，因此豪斯道夫空间的要求自动满足了）。
+>
+> 对某个平凡拓扑空间$(X,\mathcal{F})$，考虑两个$x$，$y\in X$且$x\ne y$。由于$\mathcal{F}$是平凡拓扑因此有$\mathcal{F}=\{\varnothing,X\}$。$\varnothing$显然不是$x$或$y$的邻域，因此$X$是$x$和$y$的在平凡拓扑下的唯一邻域，而显然$X\cap X\ne\varnothing$。从而不可能存在$x$的一个邻域$V$和$y$的一个邻域$W$满足$V\cap W=\varnothing$。
+>
+> 于是综上，我们证明了至少存在两个元素的平凡拓扑空间不是豪斯道夫空间。
+>
+> ---
+>
+> 证明：对于豪斯道夫空间，命题12.1.20的类比成立。
+>
+> 即证明：设$(X,\mathcal{F})$是一个拓扑空间，$(x^{(n)})_{n=m}^\infty$是$X$中的收敛点列，如果存在两个点$x$，$x'\in X$使得$(x^{(n)})_{n=m}^\infty$同时收敛于$x$与$x'$，那么有$x=x'$。
+>
+> 我们使用反证法，假设有$x\ne x'$，则根据豪斯道夫空间的要求，存在$V$是$x$的邻域与$V'$是$x'$的邻域满足$V\cap V'=\varnothing$。然后根据定义13.5.4，对$V$存在$N\geq m$使得对任意$n\geq N$都有$x^{(n)}\in V$；对$V'$存在$N'\geq m$使得对任意$n\geq N'$都有$x^{(n)}\in V'$。然后我们考虑任意的$n\geq\max(N,N')$有：
+> $$
+> x^{(n)}\in V\wedge x^{(n)}\in V'
+> $$
+> 这和$V\cap V'=\varnothing$的假设矛盾。于是反证结束，反证假设不成立，只能有$x=x'$。
+>
+> ---
+>
+> 举例：存在非豪斯道夫空间，使得命题12.1.20的类比不成立。
+>
+> 如同我们上面证明的，考虑带有平凡拓扑的实数集$\mathbb R$与常数序列$(0)_{n=0}^\infty$。根据定义13.5.4我们不难发现对任意$x\in\mathbb R$，我们都有：对任意$x$的邻域$V$（实际上对平凡拓扑$V$只能是$\mathbb R$），存在$0(N)\geq 0$使得对任意$n\geq 0(N)$我们都有$0(x^{(n)})\in\mathbb R$（括号里面是注释对应定义中的内容）。
+>
+> 于是即对任意$x\in\mathbb R$我们都有常数序列$(0)_{n=0}^\infty$收敛于$x$，也就是说在这个非豪斯道夫空间中，序列的极限不是唯一的，命题12.1.20的类比不成立。
+
+##### 13.5.5 设$X$是任意给定的一个全序集，它具有序关系$\leq$。称集合$V\subseteq X$是开的，如果对于任意的$x\in V$，总能在$V$中找到一个区间$\{y\in X:a<y<b\}$，或者一条射线$\{y\in X:a<y\}$，或者一条射线$\{y\in X:y<b\}$（其中$a,b\in X$），或者整个空间$X$，使得$x$被包含在其中并包含于$V$。设$\mathcal{F}$是由$X$中全体开集所构成的集合。证明：$(X,\mathcal{F})$是一个拓扑空间<span style='color:blue'>（其中$\mathcal{F}$被称为全序集$(X,\leq)$上的<span style='color:red'>序拓扑</span>）</span>，并且该空间是习题13.5.4意义下的豪斯道夫空间。证明：在实直线$\mathbb R$上（具有标准的序$\leq$），序拓扑与标准拓扑（即由标准度量生成的拓扑）是一致的。如果考虑将序拓扑应用到广义实数集$\mathbb R^*$上，证明：$\mathbb R$是具有边界$\{-\infty,+\infty\}$的开集。设$(x_n)_{n=1}^\infty$是$\mathbb R$中的序列（从而也是$\mathbb R^*$中的序列），证明：$x_n$收敛于$+\infty$，当且仅当$\displaystyle\liminf_{n\to\infty}x_n=+\infty$；$x_n$收敛于$-\infty$，当且仅当$\displaystyle\limsup_{n\to\infty}x_n=-\infty$
+
+> 证明：$(X,\mathcal{F})$是一个拓扑空间，并且该空间是习题13.5.4意义下的豪斯道夫空间。
+>
+> 于是需要证明：
+>
+> * $X\in\mathcal{F}$且$\varnothing\in\mathcal{F}$。
+>
+>   > 由于空集不存在元素因此它显然是序拓扑下的开集，然后对于$X$，对任意的$x\in X$我们都知道有$x\in X$且$X\subseteq X$，于是根据序拓扑定义即有$X$是开集，从而$X\in\mathcal{F}$。
+>
+> * 若有$V_1$，$...$，$V_n$都是$\mathcal{F}$中的元素，那么$V_1\cap...\cap V_n$也属于$\mathcal F$。
+>
+>   > 考虑任意的$x\in V_1\cap...\cap V_n$，于是对任意的$1\leq m\leq n$都有$x\in V_m$。由于对任意的$1\leq m\leq n$都有$V_m$是开集，于是根据序拓扑定义存在一个形如序拓扑要求的四种集合形式之一的$V_m$的子集$U$满足$x\in U$且$U\subseteq V_m$。此时我们利用选择公理，为每一个$1\leq m\leq n$指定一个$W_m$是满足上面要求的$U\subseteq V_m$。
+>   >
+>   > 于是我们考虑下面的两个集合：
+>   > $$
+>   > \begin{gather}
+>   > A:=\{a\in X:\exists\:1\leq m\leq n,W_n具有\{y\in X:a<y\}或\{y\in X:a<y<b\}的形式\}\\
+>   > B:=\{b\in X:\exists\:1\leq m\leq n,W_n具有\{y\in X:y<b\}或\{y\in X:a<y<b\}的形式\}
+>   > \end{gather}
+>   > $$
+>   > 这两个集合显然是有限的（当然，它们有可能是空集），然后我们依照下面的准则构造一个新的集合$W$：
+>   > $$
+>   > W:=\begin{cases}
+>   > \{y\in X:\max A<y<\min B\}&\text{if}\;A\ne\varnothing\wedge B\ne\varnothing\\
+>   > \{y\in X:\max A<y\}&\text{if}\;A\ne\varnothing\wedge B=\varnothing\\
+>   > \{y\in X:y<\min B\}&\text{if}\;A=\varnothing\wedge B\ne\varnothing\\
+>   > X&\text{if}\;A=\varnothing\wedge B=\varnothing\\
+>   > \end{cases}
+>   > $$
+>   > 其中$\min S$与$\max S$分别表示集合$S$的最大元素与最小元素（在序关系$\leq$下），显然$W$总会是满足序拓扑四种集合形式之一的集合。我们来$W\subseteq V_1\cap...\cap V_n$且有$x\in W$。
+>   >
+>   > 可以列出$A$，$B$可能的情况与对应的证明如下：
+>   >
+>   > * $A\ne\varnothing\wedge B\ne\varnothing$：
+>   >
+>   >   > 由于$A$是全序集$X$的有限子集因此我们知道它肯定存在唯一的最大元素与最小元素（习题8.5.8与习题8.5.7），并且最大元素与最小元素都属于集合本身（归纳易得），换言之即存在$1\leq m\leq n$使得$W_m$具有$\{y\in X:\max A<y\}$或$\{y\in X:\max A<y<b\}$的形式，又因为$x\in W_m$于是我们知道有$\max A<x$为真；类似地我们可以论证得到$x<\min B$为真，于是此情景下我们有$x\in W$。
+>   >   >
+>   >   > 然后对任意的$y\in X$满足$\max A<y<\min B$，考虑任意的$1\leq m\leq n$下$W_m$的形式，可以列出有：
+>   >   > $$
+>   >   > \begin{cases}
+>   >   > \xRightarrow[\min B是最小元素,\min B<b]{\max A是最大元素,a<\max A} y\in W_m\xRightarrow{W_m\subseteq V_m}x\in V_m&\text{if}\;W_m=\{z\in X:a<z<b\}\\
+>   >   > \xRightarrow{\max A是最大元素,a<\max A} y\in W_m\xRightarrow{W_m\subseteq V_m}y\in V_m&\text{if}\;W_m=\{z\in X:a<z\}\\
+>   >   > \xRightarrow{\min B是最小元素,\min B<b} y\in W_m\xRightarrow{W_m\subseteq V_m}y\in V_m&\text{if}\;W_m=\{z\in X:z<b\}\\
+>   >   > \xRightarrow{前提:y\in X}y\in W_m\xRightarrow{W_m\subseteq V_m}y\in V_m&\text{if}\;W_m=X\\
+>   >   > \end{cases}
+>   >   > $$
+>   >   > （上面的推论过程还需要用到序关系的传递性）于是即有$y\in V_1\cap...\cap V_n$，从而即此情景下$W\subseteq V_1\cap...\cap V_n$。
+>   >
+>   > * $A\ne\varnothing\wedge B=\varnothing$：
+>   >
+>   >   > 注意到$B=\varnothing$表明不存在$W_m$（$1\leq m\leq n$）具有$\{y\in X:y<b\}$或$\{y\in X:a<y<b\}$的形式，从而对任意的$1\leq m\leq n$，$W_m$要么是形如$\{y\in X:a<y\}$的集合要么是$X$，结合$x\in W_m$于是我们可以得到$\max A<x$（在上面$A\ne\varnothing\wedge B\ne\varnothing$的情况里面我们已经叙述了存在一个$1\leq m\leq n$使得$W_m$具有$\{y\in X:\max A<y\}$的形式），于是此情景下我们有$x\in W$。
+>   >   >
+>   >   > 然后对任意的$y\in X$满足$\max A<y$，考虑任意的$1\leq m\leq n$。如果$W_m$是$X$，那么有$y\in W_m\xRightarrow{W_m\subseteq V_m}y\in V_m$；如果$W_m$是形如$\{z\in X:a<z\}$的集合，那么由于最大元素的性质我们有$a<\max A\xRightarrow[序的传递性]{\max A<y}a<y$，于是即有$y\in W_m\xRightarrow{W_m\subseteq V_m}y\in V_m$。于是即有$y\in V_1\cap...\cap V_n$，从而即此情景下有$W\subseteq V_1\cap...\cap V_n$。
+>   >
+>   > * $A=\varnothing\wedge B\ne\varnothing$：
+>   >
+>   >   > 这个情景的证明和$A\ne\varnothing\wedge B=\varnothing$的情况很类似，稍作修改即可：
+>   >   >
+>   >   > 注意到$A=\varnothing$表明不存在$W_m$（$1\leq m\leq n$）具有$\{y\in X:a<y\}$或$\{y\in X:a<y<b\}$的形式，从而对任意的$1\leq m\leq n$，$W_m$要么是形如$\{y\in X:y<b\}$的集合要么是$X$，结合$x\in W_m$于是我们可以得到$x<\min B$（在上面$A\ne\varnothing\wedge B\ne\varnothing$的情况里面我们已经叙述了存在一个$1\leq m\leq n$使得$W_m$具有$\{y\in X:y<\min B\}$的形式），于是此情景下我们有$x\in W$。
+>   >   >
+>   >   > 然后对任意的$y\in X$满足$y<\min B$，考虑任意的$1\leq m\leq n$。如果$W_m$是$X$，那么有$y\in W_m\xRightarrow{W_m\subseteq V_m}y\in V_m$；如果$W_m$是形如$\{z\in X:z<b\}$的集合，那么由于最小元素的性质我们有$\min B<b\xRightarrow[序的传递性]{y<\min B}y<b$，于是即有$y\in W_m\xRightarrow{W_m\subseteq V_m}y\in V_m$。于是即有$y\in V_1\cap...\cap V_n$，从而即此情景下有$W\subseteq V_1\cap...\cap V_n$。
+>   >
+>   > * $A=\varnothing\wedge B=\varnothing$：
+>   >
+>   >   > 注意到$A$，$B$都是空集，这表明对任意的$1\leq m\leq n$，$W_m$都是$X$，由于$W_m\subseteq V_m\subseteq X$，于是这有限个开集全都是$X$，即有$V_1\cap...\cap V_n=X$。此时根据我们的构造$W$也是$X$，于是显然有$W\subseteq V_1\cap...\cap V_n$与$x\in W$。
+>   >
+>   > 综上，于是$V_1\cap...\cap V_n$是满足序拓扑定义的开集。
+>
+> * 即若有$(V_\alpha)_{\alpha\in I}$是$\mathcal{F}$中的一簇集合，那么$\displaystyle\bigcup_{\alpha\in I}V_\alpha$也属于$\mathcal F$。
+>
+>   > 考虑任意的$\displaystyle x\in\bigcup_{\alpha\in I}V_\alpha$，于是存在$\alpha\in I$使得$x\in V_\alpha$。由于$V_\alpha$是开集，于是存在一个$V_\alpha$的子集$W$是满足序拓扑定义中的四种形式之一的集合，并且有$x\in W$。特别地，注意到$W$是$V_\alpha$的子集则必然有$\displaystyle W\subseteq\bigcup_{\alpha\in I}V_\alpha$，于是此时根据序拓扑定义可以直接得到$\displaystyle\bigcup_{\alpha\in I}V_\alpha$是开集，也即$\displaystyle\bigcup_{\alpha\in I}V_\alpha\in\mathcal{F}$。
+>
+> 综上，于是我们证明了$(X,\mathcal{F})$是一个拓扑空间，然后我们来证明$(X,\mathcal{F})$还是一个豪斯道夫空间。
+>
+> 首先我们需要证明一个子结论：对任意$X$的形如$\{y\in X:a<y\}$，$\{y\in X:y<b\}$或$\{y\in X:a<y<b\}$（其中$a$，$b\in X$）的子集$V$，$V$都是序拓扑下的开集。这是因为对任意的$x\in V$，都有$V$属于序拓扑要求的四种形式之一且满足$x\in V$与$V\subseteq X$，因此$V$是序拓扑定义下的开集。
+>
+> 于是不妨使用反证法，我们假设$(X,\mathcal{F})$不是一个豪斯道夫空间。于是存在一对$x$，$y\in X$且$x\ne y$使得对任意$V$是$x$的邻域与$W$是$y$的邻域，都有$V\cap W\ne\varnothing$。由于$X$是全序的，于是不失一般性地我们假设$x<y$。然后根据上面的结论，显然有$\{z\in X:z<y\}$是$x$的一个邻域，$\{z\in X:x<z\}$是$y$的邻域。于是即：
+> $$
+> \{z\in X:z<y\}\cap\{z\in X:x<z\}\ne\varnothing\iff\exists\:c\in X,x<c<y
+> $$
+> 然后此时我们取$V:=\{z\in X:z<c\}$与$W:=\{z\in X:c<z\}$。显然$V$是$x$的邻域且$W$是$y$的邻域，但是注意到$V\cap W$必然是空集（不可能存在元素$z\in X$使得$z<c$且$z>c$同时为真），这和我们的反证假设相矛盾。于是反正假设不成立，只能有$(X,\mathcal{F})$是一个豪斯道夫空间。
+>
+> ---
+>
+> 证明：在实直线$\mathbb R$上，序拓扑与标准拓扑是一致的。
+>
+> 即证明任意$\mathbb R$的子集$S$是序拓扑下的子集当且仅当它是在标准度量下的开集。考虑到命题12.2.15(a)与序拓扑的定义，于是只需要证明：
+>
+> 对任意$x\in S$，存在形如$(a,b)$，$(a,+\infty)$，$(-\infty,b)$（其中$a$，$b\in\mathbb R$）的区间或整个实数集$\mathbb R$是$S$的子集且包含$x$当且仅当存在$r>0$使得$(x-r,x+r)\subseteq S$。
+>
+> 下面开始我们的证明：
+>
+> 若存在$r>0$使得$(x-r,x+r)\subseteq S$，注意到$(x-r,x+r)$实际上就是一个形如$(a,b)$的区间，于是即存在形如$(a,b)$的区间是$S$的子集且包含$x$。
+>
+> 反过来，若有存在形如$(a,b)$，$(a,+\infty)$，$(-\infty,b)$（其中$a$，$b\in\mathbb R$）的区间或整个实数集$\mathbb R$是$S$的子集且包含$x$。我们考虑将$\mathbb R$写为$(-\infty,+\infty)$的形式，这样我们可以将这四种可能的形式统一改写为区间$(c,d)$的形式（其中$c$，$d\in\mathbb R^*$），然后额外定义任意实数减去$-\infty$都等于$+\infty$，$+\infty$减去任意实数都为$+\infty$（这个定义只是为了表述方便，不需要考虑它是否合理），然后令有：
+> $$
+> r:=\min\{1,x-c,d-x\}
+> $$
+> 然后此时可以验证有：
+> $$
+> \begin{gather}
+> 1>0,x-c>0,d-x>0\Longrightarrow r>0\\
+> x-r\geq x-(x-c)=c\\
+> x+r\leq x+(d-x)=d
+> \end{gather}
+> $$
+> 于是$(x-r,x+r)\subseteq(c,d)\Longrightarrow(x-r,x+r)\subseteq S$，并且显然有$x\in (x-r,x+r)$。于是即存在$r>0$使得$(x-r,x+r)\subseteq S$。
+>
+> 综上，于是结论得证。
+>
+>
+> ---
+>
+> 证明：$\mathbb R$是具有边界$\{-\infty,+\infty\}$的开集。
+>
+> 首先证明$\mathbb R$是开集，对任意$x\in\mathbb R$我们知道存在$(x-1,x+1)$满足$(x-1,x+1)\subseteq\mathbb R$与$x\in(x-1,x+1)$，于是根据序拓扑的定义我们知道$\mathbb R$是开的。
+>
+> 然后我们证明$\mathbb R$的边界是$\{-\infty,+\infty\}$。显然$+\infty$和$-\infty$是唯二两个不是$\mathbb R$的内点的广义实数（不属于$\mathbb R$），因此只要能证明$+\infty$和$-\infty$也不是$\mathbb R$的外点就得证了$\partial E=\{-\infty,+\infty\}$。
+>
+> 以$+\infty$为例，考虑任意$+\infty$的邻域$V$，由于$V$是开集因此根据序拓扑的定义，存在形如$(a,b)$，$(a,+\infty]$，$[-\infty,b)$或$\mathbb R^*$的集合$W$包含于$V$且包含$+\infty$。注意到$+\infty$大于等于任何的广义实数，因此$W$不可能是形如$(a,b)$或$[-\infty,b)$（$b$不可能大于$+\infty$）；如果$W$是$\mathbb R^*$则此时只能有$V=\mathbb R^*$，于是$\mathbb R^*\cap\mathbb R=\mathbb R\ne\varnothing$；如果$W$是形如$(a,+\infty]$的区间，则当$a=-\infty$的时候我们知道$0\in W\Longrightarrow 0\in V$，因此$V\cap\mathbb R$至少包含$0$肯定是非空的。当$a\in\mathbb R$时我们知道$a+1\in W\Longrightarrow a+1\in V$，因此$V\cap\mathbb R$至少包含$a+1$肯定是非空的。
+>
+> 于是综上即有，对任意$V$是$+\infty$的邻域，都有$V\cap\mathbb R\ne\varnothing$，于是根据外点的定义显然$+\infty$不是$\mathbb R$的一个外点。类似地也可以证明$-\infty$不是$\mathbb R$的一个外点。
+>
+> 综上，于是结论得证。
+>
+> ---
+>
+> 证明：$x_n$收敛于$+\infty$，当且仅当$\displaystyle\liminf_{n\to\infty}x_n=+\infty$；$x_n$收敛于$-\infty$，当且仅当$\displaystyle\limsup_{n\to\infty}x_n=-\infty$。
+>
+> 我们证明第一个结论，第二个结论可以使用类似地方法证明。
+>
+> 若$(x_n)_{n=0}^\infty$收敛于$+\infty$，则对任意$+\infty$的邻域$V$，都存在$N\geq 0$使得对任意$n\geq N$都有$x_n\in V$。特别地，根据上面已经讨论过的结论我们有对任意的实数$c$都有$(c,+\infty]$是$+\infty$的邻域，于是对任意实数$c$都存在$N_c\geq 0$使得对任意$n\geq N$都有：
+> $$
+> x_n\in(c,+\infty]\iff x_n>c\xRightarrow{比较原理}\inf_{n\geq N_c}x_n\geq c
+> $$
+> 于是序列$\displaystyle\left(\inf_{n\geq N}x_n\right)_{N=0}^\infty$不以任何实数$c$为上界，然后根据上确界的确定方法（定义5.5.10），即有：
+> $$
+> \liminf_{n\to\infty}x_n=\sup_{N\geq 0}\inf_{n\geq N}x_n=+\infty
+> $$
+> 于是结论证明完备，类似地我们也可以证明$x_n$收敛于$-\infty$，当且仅当$\displaystyle\limsup_{n\to\infty}x_n=-\infty$。
+
+##### 13.5.6 设$X$是一个不可数集，并设$\mathcal{F}$是由$X$中所有满足下列条件的子集$E$构成的集簇：$E$要么是空集，要么是余有限的<span style='color:blue'>（也就是说$X\verb|\|E$是有限的）</span>。证明：$(X,\mathcal{F})$是一个拓扑空间<span style='color:blue'>（$\mathcal{F}$被称为$X$上的<span style='color:red'>余有限拓扑</span>）</span>，它不是习题13.5.4意义下的豪斯道夫空间，但它是紧致的连通空间。此外，证明：如果$x\in X$并且$(V_n)_{n=1}^{\infty}$是由可数个包含$x$的开集构成的集簇，那么$\displaystyle\bigcap_{n=1}^{\infty}V_n\ne\{x\}$。据此证明：余有限拓扑空间无法由在$X$上定义一个度量$d$来得到<span style='color:blue'>（提示：在度量空间中，$\displaystyle\bigcap_{n=1}^{\infty}B\left(x,\frac{1}{n}\right)$等于什么）</span>
+
+> 证明：$(X,\mathcal{F})$是一个拓扑空间。
+>
+> 于是即证明$\mathcal{F}$满足：
+>
+> * 空集$\varnothing$与整个集合本身$X$都是开集，也即$\varnothing\in\mathcal{F}$与$X\in\mathcal{F}$。
+>
+>   > 根据$\mathcal{F}$的定义直接有$\varnothing$是开的，于是$\varnothing\in\mathcal{F}$；然后注意到$X\verb|\|X=\varnothing$是个有限集，因此根据余有限拓扑定义$X$也是开的，于是$X\in\mathcal{F}$。
+>
+> * 任意有限多个开集的交都是开集，也即若有$V_1$，$...$，$V_n$都是$\mathcal{F}$中的元素，那么$V_1\cap...\cap V_n$也属于$\mathcal F$。
+>
+>   > 注意到根据布尔代数$V_1\cap...\cap V_n$的补集有：
+>   > $$
+>   > X\verb|\|(V_1\cap...\cap V_n)=\bigcup_{i=1}^{n}X\verb|\|V_i
+>   > $$
+>   > 注意到这是有限个有限集的并集，于是根据基数运算的定理我们知道它必然也是有限的。于是根据余有限拓扑的定义我们知道$V_1\cap...\cap V_n$也是开的，即$V_1\cap...\cap V_n\in\mathcal{F}$。
+>
+> * 任意多个（包括无限个）开集的并都是开集，也即若有$(V_\alpha)_{\alpha\in I}$是$\mathcal{F}$中的一簇集合，那么$\displaystyle\bigcup_{\alpha\in I}V_\alpha$也属于$\mathcal F$。
+>
+>   > 注意到$\displaystyle\bigcup_{\alpha\in I}V_\alpha$的补集有：
+>   > $$
+>   > \begin{align}
+>   > x\in X\verb|\|\bigcup_{\alpha\in I}V_\alpha&\iff x\in X\wedge\forall\:\alpha\in I,x\notin V_{\alpha}\\
+>   > &\iff\forall\:\alpha\in I,x\notin V_{\alpha}\wedge x\in X\\
+>   > &\iff x\in\bigcap_{\alpha\in I}X\verb|\|V_\alpha
+>   > \end{align}
+>   > $$
+>   > 即有$\displaystyle X\verb|\|\bigcup_{\alpha\in I}V_\alpha=\bigcap_{\alpha\in I}X\verb|\|V_\alpha$。然后根据交集的性质我们知道对任意的$\beta\in I$都有$\displaystyle\bigcap_{\alpha\in I}X\verb|\|V_\alpha$是$X\verb|\|V_\beta$的子集，而由于余有限拓扑的定义要求$X\verb|\|V_\beta$是有限的，从而根据基数运算的定理$\displaystyle\bigcap_{\alpha\in I}X\verb|\|V_\alpha$也应该是有限的。此时根据余有限拓扑的定义即$\displaystyle\bigcup_{\alpha\in I}V_\alpha$是开的，即$\displaystyle\bigcup_{\alpha\in I}V_\alpha\in\mathcal{F}$。
+>
+> 综上，于是我们证明了$(X,\mathcal{F})$是一个拓扑空间。
+>
+> ---
+>
+> 证明：$(X,\mathcal{F})$不是一个豪斯道夫空间。
+>
+> 使用反证法，如果$(X,\mathcal{F})$是一个豪斯道夫空间，那么任取$x$，$y\in X$且$x\ne y$，根据豪斯道夫空间的定义分别存在$x$的邻域$V$与$y$的邻域$W$使得$V\cap W=\varnothing$。注意到邻域不可能为空，于是$V$只能是余有限的（即$X\verb|\|V$是有限的）。然后考虑任意的$w\in W$应该有：
+> $$
+> w\in W\xRightarrow{V\cap W=\varnothing}w\notin V\xRightarrow{W\subseteq X\Longrightarrow w\in X} w\in X\verb|\|V
+> $$
+> 于是根据子集的定义$W$是$X\verb|\|V$的子集，因此$W$也应该是有限的。考虑到上面对$V$的推论也可以应用到$W$，因此$W$也只能是余有限的，从而$X=W\cup(X\verb|\|W)$也应该是有限的，这和$X$不可数的前提矛盾。
+>
+> 综上，于是反证假设不成立，$(X,\mathcal{F})$不可能是一个豪斯道夫空间。
+>
+> ---
+>
+> 证明：$(X,\mathcal{F})$是一个紧致空间。
+>
+> 考虑任意由$(X,\mathcal{F})$中的开集簇$\{V_\alpha\}_{\alpha\in I}$构成$X$的一个开覆盖$\displaystyle\bigcup_{\alpha\in I}V_{\alpha}$。注意到$I$肯定是非空的，因此我们可以选出一个$\alpha_0\in I$，于是$V_{\alpha_0}$是一个开集。然后根据余有限拓扑的定义，$X\verb|\|V_{\alpha_0}$是有限的，我们不妨假设它是一个形如：
+> $$
+> X\verb|\|V_{\alpha_0}=\{x_i\in X:1\leq i\leq n\}
+> $$
+> 的集合（也就是说假设$X\verb|\|V_{\alpha_0}$的基数为自然数$n$），然后根据开覆盖的定义我们有：
+> $$
+> \{x_i\in X:1\leq i\leq n\}\subseteq X\subseteq\bigcup_{\alpha\in I}V_{\alpha}
+> $$
+> 于是对任意的$1\leq i\leq n$，$\displaystyle x_i\in\bigcup_{\alpha\in I}V_{\alpha}$表明存在$\alpha_i\in I$使得$x_i\in V_{\alpha_i}$，然后我们考虑下面的并集：
+> $$
+> \bigcup_{\alpha\in\{\alpha_i\in I:0\leq i\leq n\}}V_{\alpha}
+> $$
+> 首先注意到$\{\alpha_i\in I:0\leq i\leq n\}$显然是$I$的一个有限子集，并且还可以注意到：
+> $$
+> x\in X\Longrightarrow
+> \begin{cases}
+> \displaystyle x\in\bigcup_{\alpha\in\{\alpha_i\in I:0\leq i\leq n\}}V_{\alpha}&\text{if}\;x\in V_{\alpha_0}\\
+> \displaystyle x\in X\verb|\|V_{\alpha_0}\Longrightarrow\exists\:1\leq i\leq n,x=x_i\Longrightarrow x\in V_{\alpha_i}\Longrightarrow x\in\bigcup_{\alpha\in\{\alpha_i\in I:0\leq i\leq n\}}V_{\alpha}&\text{if}\;x\notin V_{\alpha_0}
+> \end{cases}
+> $$
+> 于是根据子集定义有$\displaystyle X\subseteq\bigcup_{\alpha\in\{\alpha_i\in I:0\leq i\leq n\}}V_{\alpha}$，于是$\displaystyle\bigcup_{\alpha\in\{\alpha_i\in I:0\leq i\leq n\}}V_{\alpha}$是开覆盖$\displaystyle\bigcup_{\alpha\in I}V_{\alpha}$的一个有限子覆盖。
+>
+> 综上，于是我们证明了$X$的任意开覆盖都存在有限子覆盖，于是根据定义13.5.9有$(X,\mathcal{F})$是一个紧致空间。
+>
+> ---
+>
+> 证明：$(X,\mathcal{F})$是一个连通空间。
+>
+> 不妨使用反证法，我们假设$(X,\mathcal{F})$是不连通的，于是存在两个互不相交的非空开集$V$与$W$使得$V\cup W=X$。显然这表明$V$和$W$互相为对方的补集，因此根据余有限拓扑的定义我们知道这表明$W$和$V$都是有限集，从而根据基数运算我们有$X$也是有限的，这和$X$是不可数集的前提是矛盾的。
+>
+> 综上，于是反证假设不成立，$(X,\mathcal{F})$必然是一个连通空间。
+>
+> ---
+>
+> 证明：如果$x\in X$并且$(V_n)_{n=1}^{\infty}$是由可数个包含$x$的开集构成的集簇，那么$\displaystyle\bigcap_{n=1}^{\infty}V_n\ne\{x\}$。
+>
+> 不妨使用反证法，我们假设$\displaystyle\bigcap_{n=1}^{\infty}V_n=\{x\}$。注意到：
+> $$
+> \begin{align}
+> \forall\:x\in X\verb|\|\bigcap_{n=1}^{\infty}V_n&\iff x\in X\wedge\exists\:n\in\mathbb N,x\notin V_n\\
+> &\iff\exists\:n\in\mathbb N,x\in X\verb|\|V_n\\
+> &\iff x\in\bigcup_{n=1}^{\infty}X\verb|\|V_n
+> \end{align}
+> $$
+> 然后由于余有限拓扑的定义，对任意$n\geq 1$都有$X\verb|\|V_n$是有限的。于是根据习题8.1.9的结论，我们知道$\displaystyle\bigcup_{n=1}^{\infty}X\verb|\|V_n$是至多可数的，进而$\displaystyle\{x_0\}\cup\left(\bigcup_{n=1}^{\infty}X\verb|\|V_n\right)$也是至多可数的，此时由于：
+> $$
+> \{x_0\}\cup\left(\bigcup_{n=1}^{\infty}X\verb|\|V_n\right)=\left(\bigcap_{n=1}^{\infty}V_n\right)\cup\left(X\verb|\|\bigcap_{n=1}^{\infty}V_n\right)=X
+> $$
+> 于是即$X$是至多可数的，这和$X$是不可数的前提矛盾，反证假设不成立，只能有$\displaystyle\bigcap_{n=1}^{\infty}V_n\ne\{x\}$。
+>
+> ---
+>
+> 证明：余有限拓扑不可能由$X$上定义一个度量$d$导出。
+>
+> 使用反证法，我们假设存在某个$X$上的度量$d$使得余有限拓扑可以被$d$导出。那么由于度量球总是开的，对任意的$x\in X$，我们考虑交集$\displaystyle\bigcap_{n=1}^{\infty}B(x,1/n)$。显然$x$属于这个交集，并且对任意$y\ne x$，根据度量的定义我们知道$r:=d(x,y)>0$，然后根据阿基米德性质我们知道存在一个$n\geq 1$使得$\displaystyle\frac{1}{n}< r\Longrightarrow y\notin B\left(x,\frac{1}{n}\right)$，从而即$\displaystyle y\notin\bigcap_{n=1}^{\infty}B(x,1/n)$。
+>
+> 于是我们证明了在反证假设下有$\displaystyle\bigcap_{n=1}^{\infty}B(x,1/n)=\{x\}$，但是这和我们上面证明了的结论矛盾，于是反证假设不成立，余有限拓扑不可能由$X$上定义一个度量$d$导出。
+>
+> （题外话，证明这个结论只需要利用$(X,\mathcal{F})$是非豪斯道夫空间就行了吧，毕竟我们已经在习题13.5.4中证明了任意的度量空间都是豪斯道夫空间，于是$(X,\mathcal{F})$作为非豪斯道夫空间不应该能够通过任何$X$上的度量导出）
+
+##### 13.5.7 设$X$是一个不可数集，并设$\mathcal{F}$是由$X$中所有满足下列条件的子集$E$构成的集簇：$E$要么是空集，要么是余可数的<span style='color:blue'>（也就是说$X\verb|\|E$是至多可数的）</span>。证明：$(X,\mathcal{F})$是一个拓扑空间<span style='color:blue'>（$\mathcal{F}$被称为$X$上的<span style='color:red'>余可数拓扑</span>）</span>，它不是习题13.5.4意义下的豪斯道夫空间，它是一个连通空间，但它不能由度量空间生成，也不是一个紧致空间
+
+> 证明：$(X,\mathcal{F})$是一个拓扑空间。
+>
+> 于是即证明$\mathcal{F}$满足：
+>
+> * 空集$\varnothing$与整个集合本身$X$都是开集，也即$\varnothing\in\mathcal{F}$与$X\in\mathcal{F}$。
+>
+>   > 根据$\mathcal{F}$的定义直接有$\varnothing$是开的，于是$\varnothing\in\mathcal{F}$；然后注意到$X\verb|\|X=\varnothing$是个至多可数集，因此根据余可数拓扑定义$X$也是开的，于是$X\in\mathcal{F}$。
+>
+> * 任意有限多个开集的交都是开集，也即若有$V_1$，$...$，$V_n$都是$\mathcal{F}$中的元素，那么$V_1\cap...\cap V_n$也属于$\mathcal F$。
+>
+>   > 注意到根据布尔代数$V_1\cap...\cap V_n$的补集有：
+>   > $$
+>   > X\verb|\|(V_1\cap...\cap V_n)=\bigcup_{i=1}^{n}X\verb|\|V_i
+>   > $$
+>   > 注意到这是有限个至多可数集的并集，于是根据习题8.1.9我们知道它必然也是至多可数的。于是根据余可数拓扑的定义我们知道$V_1\cap...\cap V_n$也是开的，即$V_1\cap...\cap V_n\in\mathcal{F}$。
+>
+> * 任意多个（包括无限个）开集的并都是开集，也即若有$(V_\alpha)_{\alpha\in I}$是$\mathcal{F}$中的一簇集合，那么$\displaystyle\bigcup_{\alpha\in I}V_\alpha$也属于$\mathcal F$。
+>
+>   > 注意到$\displaystyle\bigcup_{\alpha\in I}V_\alpha$的补集有：
+>   > $$
+>   > \begin{align}
+>   > x\in X\verb|\|\bigcup_{\alpha\in I}V_\alpha&\iff x\in X\wedge\forall\:\alpha\in I,x\notin V_{\alpha}\\
+>   > &\iff\forall\:\alpha\in I,x\notin V_{\alpha}\wedge x\in X\\
+>   > &\iff x\in\bigcap_{\alpha\in I}X\verb|\|V_\alpha
+>   > \end{align}
+>   > $$
+>   > 即$\displaystyle X\verb|\|\bigcup_{\alpha\in I}V_\alpha=\bigcap_{\alpha\in I}X\verb|\|V_\alpha$。然后根据交集的性质我们知道对任意的$\beta\in I$都有$\displaystyle\bigcap_{\alpha\in I}X\verb|\|V_\alpha$是$X\verb|\|V_\beta$的子集，而由于余可数拓扑的定义要求$X\verb|\|V_\beta$是至多可数的，从而根据命题8.1.7$\displaystyle\bigcap_{\alpha\in I}X\verb|\|V_\alpha$也应该是至多可数的。此时根据余可数拓扑的定义即$\displaystyle\bigcup_{\alpha\in I}V_\alpha$是开的，即$\displaystyle\bigcup_{\alpha\in I}V_\alpha\in\mathcal{F}$。
+>
+> 综上，于是我们证明了$(X,\mathcal{F})$是一个拓扑空间。
+>
+> ---
+>
+> 证明：$(X,\mathcal{F})$不是一个豪斯道夫空间。
+>
+> 使用反证法，如果$(X,\mathcal{F})$是一个豪斯道夫空间，那么任取$x$，$y\in X$且$x\ne y$，根据豪斯道夫空间的定义分别存在$x$的邻域$V$与$y$的邻域$W$使得$V\cap W=\varnothing$。注意到邻域不可能为空，于是$V$只能是余可数的（即$X\verb|\|V$是至多可数的）。然后考虑任意的$w\in W$应该有：
+> $$
+> w\in W\xRightarrow{V\cap W=\varnothing}w\notin V\xRightarrow{W\subseteq X\Longrightarrow w\in X} w\in X\verb|\|V
+> $$
+> 于是根据子集的定义$W$是$X\verb|\|V$的子集，因此根据命题8.1.7$W$也应该是至多可数的。考虑到上面对$V$的推论也可以应用到$W$，因此$W$也只能是余可数的，从而$X=W\cup(X\verb|\|W)$也应该是至多可数的（命题8.1.10），这和$X$不可数的前提矛盾。
+>
+> 综上，于是反证假设不成立，$(X,\mathcal{F})$不可能是一个豪斯道夫空间。
+>
+> ---
+>
+> 证明：$(X,\mathcal{F})$不是一个紧致空间。
+>
+> 由于$X$是不可数的，因此我们可以使用选择公理从$X$中选择出一个元素$x_0$，然后对任意的$n>0$，我们递归地定义$x_n$是从非空集合$X\verb|\|\{x_i\in X:0\leq i\leq n-1\}$中通过选择公理得到的元素。从而我们得到了集合
+> $$
+> S:=\{x_i\in X:i\in\mathbb N\}
+> $$
+> 显然是一个可数集。从而我们定义开集簇$(V_\alpha)_{\alpha=0}^\infty$有：
+> $$
+> V_\alpha:=(X\verb|\|S)\cup\{x_\alpha\}
+> $$
+> 显然我们有：
+> $$
+> \bigcup_{\alpha\in\mathbb N}V_\alpha=(X\verb|\|S)\cup\{x_\alpha:\alpha\in\mathbb N\}=X
+> $$
+> 于是开集簇$(V_\alpha)_{\alpha=0}^\infty$构成了$X$的一个开覆盖，但是对任意$\mathbb N$的有限子集$F$，都可以得到：
+> $$
+> \bigcup_{\alpha\in\mathbb N}V_\alpha=(X\verb|\|S)\cup\{x_\alpha:\alpha\in F\}\Longrightarrow x_{\max(F)+1}\in X\wedge x_{\max(F)+1}\notin\bigcup_{\alpha\in\mathbb N}V_\alpha
+> $$
+> 于是开覆盖$\displaystyle\bigcup_{\alpha\in\mathbb N}V_\alpha$不存在任何有限子覆盖，根据紧致空间的定义这表明$(X,\mathcal{F})$不是一个紧致空间。
+>
+> ---
+>
+> 证明：$(X,\mathcal{F})$是一个连通空间。
+>
+> 不妨使用反证法，我们假设$(X,\mathcal{F})$是不连通的，于是存在两个互不相交的非空开集$V$与$W$使得$V\cup W=X$。显然这表明$V$和$W$互相为对方的补集，因此根据余可数拓扑的定义我们知道这表明$W$和$V$都是至多可数集，从而根据命题8.1.10我们有$X$也是至多可数的，这和$X$是不可数集的前提是矛盾的。
+>
+> 综上，于是反证假设不成立，$(X,\mathcal{F})$必然是一个连通空间。
+>
+> ---
+>
+> 证明：余可数拓扑不可能由$X$上定义一个度量$d$导出。
+>
+> 使用反证法，如果余可数拓扑是可以由$X$上定义一个度量$d$导出的，那么根据我们在习题13.5.4中的结论我们知道$(X,\mathcal{F})$必然是一个豪斯道夫空间，但是在上面我们已经证明了$(X,\mathcal{F})$不可能是一个豪斯道夫空间，这导出了矛盾。
+>
+> 综上，于是反证假设不成立，余可数拓扑不可能由$X$上定义一个度量$d$导出。
+
+##### 13.5.8 证明：存在一个不可数的良序集$\omega_1+1$，它的最大元素为$\infty$。并且对任意的$y\in\omega_1+1\verb|\|\{\infty\}$，前段$\{x\in\omega_1+1:x<y\}$都是可数的<span style='color:blue'>（提示：利用[习题8.5.19](../Chap8/Sec5.md)给实数排序，取全体可数前段的并集，然后添加上最大元素$\infty$）</span>。如果给$\omega_1+1$附加上习题13.5.5中的序拓扑，证明：$\omega_1+1$是紧致的，但是并非所有的序列都存在一个收敛的子序列<span style='color:blue'>（于是我们在度量空间中知道的两个紧致性等价描述在拓扑空间内不是等价的）</span>
+
+> 注：本题已经在第三版勘误表中被标记为错误删除，$\omega_1+1$事实上同时是列紧且紧的，详情见：[Analysis II:Errata](https://terrytao.wordpress.com/books/analysis-ii/)。（但是由于这个不可数良序集的存在很有趣，关系到最小不可数基数$\aleph_1$的一些相关内容，所以还是写了一点）
+>
+> ---
+>
+> 根据良序原理我们知道实数集上存在一个良序关系$\preceq$，然后我们定义下面的集合$\Omega$：
+> $$
+> \Omega:=\{x\in\mathbb R:\{y\in\mathbb R:y\prec x\}是不可数的\}
+> $$
+> $\Omega$如果是空集，那么也就是说对所有的$x\in\mathbb R$都有$\{y\in\mathbb R:y\prec x\}$可数，此时只要我们为序关系$\preceq$额外定义对所有的$x\in\mathbb R$都有$x\prec\infty$，那么就可以得到所要求的$\omega_1+1$（实数集$\mathbb R$添加一个元素后依然是不可数的）。
+>
+> $\Omega$如果不是空集，那么由于$(\mathbb R,\preceq)$是良序的，因此$\Omega$存在一个最小元素$x_0$，此时我们定义集合$\omega_1$有：
+> $$
+> \omega_1:=\{x\in\mathbb R:x\prec x_0\}
+> $$
+> 由于$x_0\in\Omega$，因此$\omega_1$是不可数的。另一方面，对任意的$x\in\omega_1$，由于$x_0$是$\Omega$的最小元素且$x\prec x_0$，因此有$x\notin\Omega$，换言之即前段$\{y\in\mathbb R:y\prec x\}$是可数的，再注意到序关系的传递性（$y\prec x,x\prec x_0\Longrightarrow y\prec x_0\Longrightarrow y\in\omega_1$），因此也即有：
+> $$
+> \{y\in\mathbb R:y\prec x\}=\{y\in\omega_1:y\prec x\}
+> $$
+> 于是类似上面的做法，为序关系$\preceq$额外定义对所有的$x\in\mathbb R$都有$x\prec\infty$，然后定义$\omega_1+1:=\omega_1\cup\{\infty\}$，于是我们就得到了要求的不可数良序集$\omega_1+1$。
+>
+
+##### 13.5.9 设$(X,\mathcal{F})$是一个紧致的拓扑空间。假设这个空间是<span style='color:red'>第一可数的</span>，也就是说，对于任意的$x\in X$，存在由$x$的可数个邻域$V_1,V_2,...$构成的邻域簇，使得$x$的任意一个邻域都包含该邻域簇中的一个$V_n$。证明：$X$中的每一个序列都有一个收敛的子序列，从而$X$是序列紧致的<span style='color:blue'>（修改[习题12.5.11](../Chap12/Sec5.md)）</span>，解释这为什么不与习题13.5.8矛盾
+
+> 我们首先需要说明在拓扑空间下序列$(x^{(n)})_{n=m}^\infty$存在一个收敛的子序列意味着什么。为了给出一个明确的概念我们需要尝试将度量空间下“极限点”的概念扩展到拓扑空间，我们定义有：
+>
+> > 设$(x^{(n)})_{n=m}^\infty$是拓扑空间$(X,\mathcal{F})$中的一个点列，并设$L\in X$。我们称$L$是$(x^{(n)})_{n=m}^\infty$的一个极限点，当且仅当对于$L$的任意一个邻域$V$与任意的$N\geq m$，存在$n\geq N$使得$x^{(n)}\in V$。
+>
+> 然后我们可以证明在第一可数的拓扑空间下也有类似于度量空间中的结论：序列$(x^{(n)})_{n=m}^\infty$存在一个收敛于$x$的子序列当且仅当$x$是$(x^{(n)})_{n=m}^\infty$的极限点。
+>
+> > 证明：
+> >
+> > 若$(x^{(n)})_{n=m}^\infty$存在一个收敛于$x$的子序列$(x^{(n_j)})_{j=m}^\infty$，则根据拓扑收敛的定义可知对任意$x$的邻域$V$存在$J\geq m$使得对所有的$j\geq J$都有$x^{(n_j)}\in V$。特别注意到根据子序列的要求我们有$n_j\geq j$，从而对任意的$N\geq m$，我们可以选取序列项$x^{(n_{\max(J,N)})}$，此时必然有$n_{\max(J,N)}\geq N$与$n_{\max(J,N)}\geq J$，从而$x^{(n_{\max(J,N)})}$是满足$x^{(n_{\max(J,N)})}\in V$的序列项。此时根据极限点的定义即有$x$是$(x^{(n)})_{n=m}^\infty$的极限点。
+> >
+> > 另一方面，若$x$是$(x^{(n)})_{n=m}^\infty$的极限点，首先根据第一可数空间的性质我们知道存在$x$的可数个邻域$(V_i)_{i=m}^{\infty}$；然后我们定义$n_m:=m$，并递归地定义$n_j$（$j>m$）为通过极限点定义确定的满足$n\geq n_{j-1}$与$x^{(n)}\in V_{m}\cap ...\cap V_{j-1}$的整数$n$（这需要用到选择公理）。从而显然$(x^{(n_j)})_{j=m}^\infty$是$(x^{(n)})_{n=m}^\infty$的子序列，并且对于任意$x$的邻域$V$，根据第一可数空间的要求我们知道存在某个$i\geq m$使得$V_i\subseteq V$，从而对任意的$j\geq i+1$都有$x^{(n_j)}\in V_i\Longrightarrow x^{(n_j)}\in V$，此时根据拓扑极限的定义我们就可以得到子序列$(x^{(n_j)})_{j=m}^\infty$收敛于$x$。
+> >
+> > （从上面的证明其实也可以看出第一可数空间使得在有极限点的情况下可以推断出一个收敛子序列）
+>
+> 于是我们得到了拓扑$(X,\mathcal{F})$中的序列$(x^{(n)})_{n=m}^\infty$存在一个收敛的子序列当且仅当存在$x\in X$满足对任意$x$的邻域$V$与任意的$N\geq m$，存在$n\geq N$使得$x^{(n)}\in V$。
+>
+> 接下来开始我们正式的证明。
+>
+> ---
+>
+> 使用反证法，我们假设存在$(X,\mathcal{F})$中的序列$(x^{(n)})_{n=0}^\infty$不存在任何收敛的子序列，于是根据上面的证明我们知道即有对任意的$x\in X$都有$x$不是$(x^{(n)})_{n=0}^\infty$的极限点。即：
+>
+> > 对任意的$x\in X$，存在$x$的邻域$V_x$与某个$N_x\geq 0$，对任意的$n\geq N_x$都有$x^{(n)}\notin V$。
+>
+> 换言之即$V_x$至多只能包含$(x^{(n)})_{n=0}^\infty$的前$N_x$个项，此时我们考虑并集$\displaystyle\bigcup_{x\in X}V_x$，显然它构成了$X$的一个开覆盖，因此由于$X$是紧致的存在$X$的一个有限子集$S$使得$\displaystyle\bigcup_{x\in S}V_x$构成了$X$的一个有限覆盖（于是$\displaystyle\bigcup_{x\in S}V_x=X$）。然后此时令有：
+> $$
+> N:=\max\{N_x:x\in S\}
+> $$
+> 由于$\{N_x:x\in S\}$是有限的，因此$N$也必然是一个存在的有限整数，从而对任意的$n\geq N$，对任意的$x\in S$根据$N_x$的定义有：
+> $$
+> n\geq N\geq N_x\Longrightarrow x^{(n)}\notin V_x
+> $$
+> 也即对所有的$n\geq N$都有$\displaystyle x^{(n)}\notin\bigcup_{x\in S}V_x=X$，这和$(x^{(n)})_{n=0}^\infty$是$X$中序列的前提矛盾。于是反证结束，只能有$(x^{(n)})_{n=0}^\infty$必然存在一个收敛的子序列。
+>
+
+##### 13.5.10 证明[命题12.2.10](../Chap12/Sec2.md)在拓扑空间中的下述部分类比：(c)蕴含着(a)和(b)，而(a)和(b)是等价的。证明：在习题13.5.7的余可数拓扑空间中，(a)和(b)同时成立，但(c)不成立的情况是有可能发生的
+
+> 贴一下扩展到拓扑空间后命题12.2.10应该有的样子：
+>
+> > 设$(X,\mathcal{F})$是一个拓扑空间，且有$E\subseteq X$与$x_0\in X$，那么我们有下面几个命题等价：
+> >
+> > 1. $x_0$是$E$的附着点。
+> > 2. $x_0$要么是$E$的内点，要么是$E$的边界点。
+> > 3. 在$E$中能够找到一个依拓扑$\mathcal{F}$收敛于点$x_0$的序列$(x_n)_{n=1}^{\infty}$。
+>
+> ---
+>
+> 我们先证明(c)蕴含着(a)，再证明(a)和(b)是等价的。
+>
+> (c)蕴含着(a)：若在$E$中能找到一个收敛于$x_0$的序列$(x_n)_{n=1}^{\infty}$，则根据定义对任意$x_0$的邻域$V$，存在$N\geq 1$使得对任意的$n\geq N$都有$x_n\in V\iff E\cap V\ne\varnothing$。从而根据定义13.5.6我们有$x_0$是$E$的一个附着点，于是便验证了(c)蕴含着(a)。
+>
+> (a)和(b)是等价的：需要注意到拓扑空间下，内点、外点与边界点存在所谓的“三岐性”（即一个点$x_0$总是恰好是$E$的内点、外点、边界点中的一种）。若有$x_0$是$E$的附着点，则根据定义13.5.6对任意$x_0$的邻域$V$都有$V\cap E\ne\varnothing$，从而根据定义13.5.5我们只能有$x_0$是$E$的内点或边界点；反过来，如果$x_0$是$E$的内点或边界点，那么$x_0$不是$E$的外点，从而对任意$V$是$x_0$的邻域都只能有$V\cap E\ne\varnothing$，也即$x_0$是$E$的附着点。综上我们验证了(a)和(b)是等价的。
+>
+> ---
+>
+> 然后我们去讨论余可数拓扑空间下的一些特殊情况，为了方便讨论，我们假定整个空间是$\mathbb R$。
+>
+> 由于(a)，(b)已经被证明等价了，因此我们只需要寻找一个$x_0$是$E$的附着点但是不存在$E$中收敛于$x_0$的序列的例子即可。我们考虑点$x_0=0$与$E=\mathbb R\verb|\|\mathbb Z$，一方面$E$中不应该存在一个收敛于$x_0$的序列，如果存在某个收敛于$x_0$的序列的序列$(x_n)_{n=1}^{\infty}$，则我们考虑$x_0$的邻域$V$：
+> $$
+> V:=\mathbb R\verb|\|\{x_n:n\geq 1\}
+> $$
+> （因为$x_0\notin E$，从而对所有$n\geq 1$都有$x_0\ne x_n$，因此必然有$x_0\in V$）
+>
+> 显然我们有对任意的$n\geq 1$都有$x_n\notin V$，换言之即$(x_n)_{n=1}^{\infty}$不是符合收敛要求的序列（于是我们用反证证明了(c)不成立）。但是另一方面，对任意$x_0$的邻域$V$，都应该有$V\cap E\ne\varnothing$（否则有$V\subseteq\mathbb Z$是一个至多可数集，那么它就不可能是余可数的，换言之即$V$不会是余可数拓扑下的一个开集），从而根据定义13.5.6我们知道有$x_0$是$E$的一个附着点（于是我们证明了(a)和(b)同时成立）。
+
+##### 13.5.11 设$E$是拓扑空间$(X,\mathcal{F})$的子集。证明：$E$是开的，当且仅当$E$中的每一个元素都是$E$的内点。$E$是闭的，当且仅当$E$包含其全体附着点。证明：[命题12.2.15(e)~(h)](../Chap12/Sec2.md)的类比成立<span style='color:blue'>（其中某些结论可以由定义直接推出）</span>。如果假设$X$是一个豪斯道夫空间，证明：[命题12.2.15(d)](../Chap12/Sec2.md)的类比也成立。举例说明，当$X$不是豪斯道夫空间空间时，(d)是不成立的
+
+> 贴一下扩展到拓扑空间后命题12.2.15(d)~(e)应该有的样子：
+>
+> > 设$(X,\mathcal{F})$是一个拓扑空间，那么我们有：
+> >
+> > 4. 任何一个单点集$\{x_0\}$都是闭的，其中$x_0\in X$。
+> >
+> > 5. 如果$E$是$X$的一个子集，那么$E$是开的，当且仅当它的补集$X\verb|\|E:=\{x\in X:x\notin E\}$是闭的。
+> >
+> > 6. 如果$E_1,E_2,...,E_n$是$X$中的有限个开集，那么$E_1\cap E_2\cap...\cap E_n$也是开的；如果$E_1,E_2,...,E_n$是$X$中的有限个闭集，那么$E_1\cup E_2\cup...\cup E_n$也是闭的。
+> >
+> > 7. 如果$\{E_\alpha\}_{\alpha\in I}$是$X$中的一簇开集（这里的指标集没有限制，可以是无限的或者有限的），那么并集$\displaystyle\bigcup_{\alpha\in I}E_\alpha$也是开的；如果$\{E_\alpha\}_{\alpha\in I}$是$X$中的一簇闭集，那么交集$\displaystyle\bigcap_{\alpha\in I}E_\alpha$也是闭的。
+> >
+> > 8. 如果$E$是$X$的任意一个子集，那么$\text{int}(E)$是包含在$E$中的最大开集。换言之，$\text{int}(E)$是开集，并且对任意给定的其它开集$V\subseteq E$均有$V\subseteq\text{int}(E)$；类似地，$\overline{E}$是包含$E$中的最小闭集。换言之，$\overline{E}$是闭集，并且对任意给定的其它闭集$K\supseteq E$均有$K\supseteq\overline{E}$。
+>
+> ---
+>
+> 我们先证明第一个结论，即$E$是开的，当且仅当$E$中的每一个元素都是$E$的内点。$E$是闭的，当且仅当$E$包含其全体附着点。
+>
+> 若$E$是开集，则对于任意的$x\in E$，我们都有$E\subseteq E$是$x$的邻域，从而根据定义即有$x$是$E$的内点；反过来，若对任意的$x\in E$都有$x$是$E$的内点，则根据选择公理，我们可以为每一个$x\in E$指定一个$V_x\subseteq E$是它的邻域。此时考虑集合：
+> $$
+> \bigcup_{x\in E}V_x
+> $$
+> 显然由于邻域的性质我们有$\displaystyle\bigcup_{x\in E}V_x=E$，然后根据拓扑空间的要求我们知道任意数量的开集并集也是开集，从而$E$也是开集。
+>
+> 于是我们证明了$E$是开的，当且仅当$E$中的每一个元素都是$E$的内点。然后对另一个命题，根据闭集定义有$E$是闭的当且仅当补集$E^c$是开的，再根据上面的证明我们知道这当且仅当$E^c$中的每一个元素都是$E^c$的内点。然后注意到$x$是$E^c$的内点当且仅当$x$是$E$的外点。于是综上我们得到了：
+>
+> > $E$是闭的，当且仅当$E^c$恰好只包含了$E$所有的外点。
+>
+> 而由于内点、外点与边界点的“三岐性”，$E^c$恰好只包含了$E$所有的外点等价于$E$包含了自身所有的内点与边界点，再结合习题13.5.10的结论于是即有$E$是闭的，当且仅当$E$包含其全体附着点，结论得证。
+>
+> ---
+>
+> 然后我们证明第二个结论，也就是命题12.2.15(e)~(h)的类比成立。
+>
+> (e)：在拓扑空间中这是定义，不需要证明。
+>
+> (f)：前半部分是拓扑空间的定义，而对于后者，注意到拓扑空间的定义，我们知道$X\verb|\|E_1,X\verb|\|E_2,...,X\verb|\|E_n$都是开集，从而集合：
+> $$
+> \bigcap_{i=1}^{n}X\verb|\|E_i=X\verb|\|\bigcup_{i=1}^{n}E_i
+> $$
+> 也是一个开集，从而根据闭集定义我们有$E_1\cup E_2\cup...\cup E_n$也是闭集。
+>
+> (g)：前半部分同样是拓扑空间的定义，对于后者，类似地考虑到$\{X\verb|\|E_\alpha\}_{\alpha\in I}$是一簇开集，从而有：
+> $$
+> \bigcup_{\alpha\in I}X\verb|\|E_\alpha=X\verb|\|\bigcap_{\alpha\in I}E_\alpha
+> $$
+> 也是一个开集，从而根据闭集定义我们有$\displaystyle\bigcap_{\alpha\in I}E_\alpha$也是闭的。
+>
+> (h)：首先我们证明$\text{int}(E)$是一个开集。考虑任意的$x\in\text{int}(E)$，根据内点的定义我们知道存在一个$x$的邻域$V_x$满足$V_x\subseteq E$，特别地，对所有的$y\in V_x$都有$y$是$E$的内点，从而我们可以得到$V_x\subseteq\text{int}(E)$，于是此时可以注意到：
+> $$
+> \bigcup_{x\in\text{int}(E)}V_x=\text{int}(E)
+> $$
+> 于是根据拓扑空间的定义，任意数量开集的并也是开集，所以$\text{int}(E)$也是一个开集。并且在上面的证明中我们可以注意到，对任意的开集$V\subseteq E$，都有其中任意元素都是$E$的内点，于是即有$V\subseteq\text{int}(E)$。从而我们证明了前半段的内容。
+>
+> 然后对于后半段，注意到$x$是$E$的内点当且仅当$x$是$X\verb|\|E$的外点，且$x$是$E$的边界点当且仅当$x$是$X\verb|\|E$的边界点，结合习题13.5.10的结论，由于$\overline{E}$包含了$E$全部的内点和边界点，因此$X\verb|\|\overline{E}$包含了$X\verb|\|E$的所有内点（于是$X\verb|\|\overline{E}=\text{int}(X\verb|\|E)$是一个开集），因此我们有$\overline{E}$是一个闭集；另一方面，对任意包含$E$的闭集$W$，我们有$X\verb|\|W\subseteq X\verb|\|E$是一个开集，然后由于$X\verb|\|\overline{E}=\text{int}(X\verb|\|E)$是$X\verb|\|E$中最大开集，因此我们有$X\verb|\|W\subseteq X\verb|\|\overline{E}\iff W\supseteq\overline{E}$，得证$\overline{E}$是包含$E$的最小闭集。
+>
+> ---
+>
+> 最后我们来证明命题12.2.15(d)在豪斯道夫空间下成立，但是在非豪斯道夫空间中某些情况下不成立。
+>
+> 若$X$是一个豪斯道夫空间，则对任意的$x_0\in X$，对任意的$V$是$x_0$的邻域都有$V\cap\{x_0\}=\{x_0\}\ne\varnothing$，从而$x_0$是$\{x_0\}$的附着点；另一方面，对所有的$x\in X$满足$x\ne x_0$，由于$X$是豪斯道夫空间因此存在两个开集$V,W$满足$x\in V$，$x_0\in W$且$V\cap W=\varnothing$。再注意到$V$是$x$的邻域与$\{x_0\}\subseteq W$，因此这表明存在某个$x$的邻域$V$满足$V\cap\{x_0\}=\varnothing$，也即$x$是$\{x_0\}$的外点。于是综合即可得到$\{x_0\}$包含了自身所有的附着点，再利用上面第一个结论，于是便得证了$\{x_0\}$是闭的。
+>
+> 另一方面，如果$X$不是一个豪斯道夫空间，则命题12.2.15(d)并不总是成立，一个简单但是极端的例子就是考虑具有平凡拓扑双元素集$\{a,b\}$，在习题13.5.4中我们已经阐述过这是一个非豪斯道夫空间，同时根据闭集的定义这个空间中的闭集只有$\{a,b\}$和$\varnothing$，$\{a\}$与$\{b\}$都不是这个空间下的开集或者闭集。
+
+##### 13.5.12 证明：定义13.5.7中的序对$(Y,\mathcal{F}_Y)$确实是一个拓扑空间
+
+> 于是即要证明：
+>
+> * 空集$\varnothing$与整个集合本身$Y$都是开集，也即$\varnothing\in\mathcal{F}_Y$与$Y\in\mathcal{F}_Y$。
+>
+>   > 注意到由于$(X,\mathcal{F})$是拓扑空间，因此有$\varnothing\in\mathcal{F}$与$Y\in\mathcal{F}$，然后根据$\mathcal{F}_Y$的定义有$\varnothing\cap Y=\varnothing\in\mathcal{F}_Y$与$X\cap Y=Y\in\mathcal{F}_Y$。
+>
+> * 任意有限多个开集的交都是开集，也即若有$V_1,...,V_n$都是$\mathcal{F}_Y$中的元素，那么$V_1\cap...\cap V_n$也属于$\mathcal{F}_Y$。
+>
+>   > 根据$\mathcal{F}_Y$的定义我们知道分别存在开集$W_1,...,W_n\in\mathcal{F}$使得$V_i=W_i\cap X$对所有的$1\leq i\leq n$。然后注意到：
+>   > $$
+>   > V_1\cap...\cap V_n=(W_1\cap E)\cap...\cap(W_n\cap E)=Y\cap(W_1\cap...\cap W_n)
+>   > $$
+>   > 由于$(X,\mathcal{F})$是拓扑空间，因此$W_1\cap...\cap W_n\in\mathcal{F}$，然后根据$\mathcal{F}_Y$的定义有$V_1\cap...\cap V_n\in\mathcal{F}_Y$。
+>
+> * 任意多个（包括无限个）开集的并都是开集，也即若有$(V_\alpha)_{\alpha\in I}$是$\mathcal{F}_Y$中的一簇集合，那么$\displaystyle\bigcup_{\alpha\in I}V_\alpha$也属于$\mathcal{F}_Y$。
+>
+>   > 根据$\mathcal{F}_Y$的定义我们知道存在$\mathcal{F}$中开集簇$(W_\alpha)_{\alpha\in I}$使得$V_\alpha=W_\alpha\cap X$对所有的$\alpha\in I$。然后注意到：
+>   > $$
+>   > \bigcup_{\alpha\in I}V_\alpha=\bigcup_{\alpha\in I}(Y\cap W_\alpha)=Y\cap\bigcup_{\alpha\in I}W_\alpha
+>   > $$
+>   > 由于$(X,\mathcal{F})$是拓扑空间，因此$\displaystyle\bigcup_{\alpha\in I}W_\alpha\in\mathcal{F}$，然后根据$\mathcal{F}_Y$的定义有$\displaystyle\bigcup_{\alpha\in I}V_\alpha\in\mathcal{F}_Y$。
+>
+> 于是结论得证。
+
+##### 13.5.13 把[推论12.5.9](../Chap12/Sec5.md)推广到豪斯道夫空间中的紧致集合上
+
+> 我们先给出推广后的结论：
+>
+> > 设$(X,\mathcal{F})$是一个豪斯道夫空间，并设$K_1,K_2,K_3,...$是由$X$的非空紧致子集组成的序列，并且满足
+> > $$
+> > K_1\supset K_2\supset K_3\supset ...
+> > $$
+> > 那么交集$\displaystyle\bigcap_{n=1}^\infty K_n$是非空的。
+>
+> 下面给出证明。
+>
+> ---
+>
+> 本题结论的证明需要用到习题13.5.14的一些结论。
+>
+> 由于$(X,\mathcal{F})$是一个豪斯道夫空间，且$K_1$是$X$的紧致子集，因此根据习题13.5.14的结论我们知道对所有的$i>1$都有$K_i$是闭的，即如果我们考虑拓扑子空间$(K_1,\mathcal{F}_{K_1})$为背景，则对所有的$i>1$都有$K_1\verb|\|K_i$是开的。
+>
+> 于是使用反证法，我们设交集交集$\displaystyle\bigcap_{n=1}^\infty K_n$是空集。从而它关于$K_1$的补集：
+> $$
+> K_1\verb|\|\bigcap_{n=1}^\infty K_n=\bigcup_{n=2}^\infty(K_1\verb|\|K_n)=K_1
+> $$
+> （默认去除掉$K_1\verb|\|K_1=\varnothing$这个对并集没有任何建设意义的成员）
+>
+> 结合上面的结论，即集簇$(K_1\verb|\|K_i)_{i>1}$构成了$(K_1,\mathcal{F}_{K_1})$的一个开覆盖，再根据$K_1$的紧致性可知存在一个有限子覆盖$(K_1\verb|\|K_i)_{i\in S}$，由于$S$是自然数集的有限子集因此它必然存在最大元素$n$，再结合关系$K_1\supset K_2\supset K_3\supset ...$不难得到：
+> $$
+> \bigcup_{i\in S}(K_1\verb|\|K_i)=K_1\verb|\|K_n=K_1\Longrightarrow K_n=\varnothing
+> $$
+> 这与所有的$i\geq 1$都有$K_i$非空的前提矛盾，从而反证假设不成立，只能有交集$\displaystyle\bigcap_{n=1}^\infty K_n$是非空的。
+
+##### 13.5.14 把[定理12.5.10](../Chap12/Sec5.md)推广到豪斯道夫空间中的紧致集合上
+
+> 我们先给出推广后的结论：
+>
+> > 设$(X,\mathcal{F})$是一个豪斯道夫空间，那么有：
+> >
+> > > 1. 如果$Y$是$X$的紧致子集，并且$Z\subseteq Y$，那么$Z$是紧致的，当且仅当$Z$是闭的。
+> > > 2. 如果$Y_1,...,Y_n$是由$X$的紧致子集组成的一个有限集簇，那么它们的并集$Y_1\cup ...\cup Y_n$也是紧致的。
+> > > 3. $X$的任意一个有限子集（包括空集）都是紧致的。
+>
+> 下面逐条给出证明。
+>
+> ---
+>
+> 1. 如果$Y$是$X$的紧致子集，并且$Z\subseteq Y$，那么$Z$是紧致的，当且仅当$Z$是闭的。
+>
+> 若$Z$是闭集，则此时$Y\verb|\|Z$是一个开集。于是考虑任意一个拓扑子空间$(Z,\mathcal{F}_Z)$中的集簇$(V_\alpha)_{\alpha\in I}$是$Z$的一个开覆盖，根据导出拓扑的定义我们知道拓扑子空间$(Y,\mathcal{F}_Y)$中存在开集簇$(W_\alpha)_{\alpha\in I}$满足$V_\alpha=W_\alpha\cap Z$对所有的$\alpha\in I$成立。此时可以注意到：
+> $$
+> Y=Z\cup(Y\verb|\|Z)=(Y\verb|\|Z)\cup\bigcup_{\alpha\in I}V_\alpha\subseteq(Y\verb|\|Z)\cup\bigcup_{\alpha\in I}W_\alpha\subseteq Y\iff(Y\verb|\|Z)\cup\bigcup_{\alpha\in I}W_\alpha=Y
+> $$
+> （最后一个包含关系需要注意到所有的$W_\alpha$和$Y\verb|\|Z$都是$Y$的子集）
+>
+> 于是集簇$(W_\alpha)_{\alpha\in I}\cup\{Y\verb|\|Z\}$是$Y$的一个开覆盖，此时由于$Y$是紧致的我们知道存在存在一个有限子覆盖$S$，特别地，应该有集合：
+> $$
+> I':=\{\alpha\in I:W_\alpha\in S\}
+> $$
+> 是$I$的一个有限子集，由于$S$已经是$Y$的一个覆盖，因此无论$S$包含或是不包含$Y\verb|\|Z$都应该有$(W_\alpha)_{\alpha\in I'}$是$Z$的一个覆盖，从而即：
+> $$
+> Z\subseteq\bigcup_{\alpha\in I'}W_\alpha\Longrightarrow Z\subseteq\bigcup_{\alpha\in I'} V_\alpha=\bigcup_{\alpha\in I'}(Z\cap W_\alpha)
+> $$
+> 从而即$Z$的开覆盖$(V_\alpha)_{\alpha\in I}$存在一个有限子覆盖$(V_\alpha)_{\alpha\in I'}$，这表明$Z$是紧致的。
+>
+> 反过来，若$Z$是紧致的，则使用反证法。我们假设$Z$不是一个闭集，那么$Z$至少存在一个不属于自身的附着点$z$，此时根据豪斯道夫空间空间的性质我们知道对所有的$x\in Z$都存在开集$V_x,W_x$满足$x\in V_x$，$z\in W_x$且$V_x\cap W_x=\varnothing$。此时我们考虑集簇$(V_x)_{x\in Z}$，它显然是$Z$的一个开覆盖，于是根据$Z$的紧致性我们知道存在$(V_x)_{x\in Z}$的一个有限子覆盖$(V_x)_{x\in S}$。此时考虑令有：
+> $$
+> W:=\bigcap_{x\in S}W_x
+> $$
+> 由于拓扑空间要求有限个开集的交集是开集，因此$W$显然是$z$的一个邻域，并且注意到$W$有：
+> $$
+> W\cap Z\subseteq W\cap\bigcup_{x\in S}V_x=\varnothing
+> $$
+> 从而根据外点定义这表明$z$是一个外点，同$z$是不属于$Z$的附着点前提导出了矛盾，于是反证假设不成立，只能有$Z$是一个闭集。
+>
+> ---
+>
+> 2. 如果$Y_1,...,Y_n$是由$X$的紧致子集组成的一个有限集簇，那么它们的并集$Y_1\cup ...\cup Y_n$也是紧致的。
+>
+> 考虑集簇$(V_\alpha)_{\alpha\in I}$是$Y_1\cup ...\cup Y_n$的一个开覆盖。相应的，它同时也是所有$Y_i(1\leq i\leq n)$的开覆盖，由于$Y_1,...,Y_n$都是紧致的，因此对应地存在$n$个$I$的有限子集$S_i(1\leq i\leq n)$使得：
+> $$
+> Y_i\subseteq\bigcup_{\alpha\in S_i}V_\alpha
+> $$
+> 此时我们注意到集合$S:=S_1\cup...\cup S_n$也是$I$的一个有限子集，并且满足
+> $$
+> Y_1\cup ...\cup Y_n\subseteq\bigcup_{\alpha\in S}V_\alpha
+> $$
+> 从而即$(V_\alpha)_{\alpha\in I}$存在一个有限子覆盖$(V_\alpha)_{\alpha\in S}$，于是我们得证了$Y_1\cup ...\cup Y_n$也是紧致的。
+>
+> ---
+>
+> 3. $X$的任意一个有限子集（包括空集）都是紧致的。
+>
+> 根据集合的基本知识我们知道如果一个集合$S$是有限的且基数为$\#(S)$，那么它的全体子集构成的幂集$2^S$也是有限的且基数为$2^{\#(S)}$。根据拓扑空间的定义我们知道任取$X$的一个有限子集$S$，则拓扑子空间的开集簇$\mathcal{F}_S$必然是$2^S$的子集，而任取的$S$的开覆盖$(V_\alpha)_{\alpha\in I}$又必然$\mathcal{F}_S$的子集，从而$(V_\alpha)_{\alpha\in I}$本身就是一个有限覆盖（自然也就是子集的有限子覆盖），于是根据紧致集的定义即有$S$是紧的，结论得证。
+
+##### 13.5.15 设$(X,d_X)$和$(Y,d_Y)$是两个度量空间<span style='color:blue'>（从而也是拓扑空间）</span>。证明：[定义13.1.1](../Chap13/Sec1.md)和定义13.5.8中函数$f:X\to Y$的连续性概念<span style='color:blue'>（在一点处的连续概念以及在整个定义域上的连续概念）</span>是一致的
+
+> 两个在定义域上连续的定义都是在所有点上连续，因此我们只需要验证在一点上的连续概念一致就自然验证了在整个定义域上的连续概念一致。于是考虑任意的$x_0\in X$。
+>
+> 若$f$是定义13.1.1下在$x_0$处连续的函数，则考虑任意$f(x_0)$的邻域$V$，由于$V$是开集因此根据度量空间的要求可知存在一个足够小的度量球$B_{(Y,d_Y)}(f(x_0),\varepsilon)\subseteq V$（$\varepsilon>0$），然后根据定义13.1.1的要求可知存在$\delta>0$使得对所有的$x\in X$满足$d_X(x,x_0)<\delta$都有$d_Y(f(x),f(x_0))<\varepsilon$。然后注意到：
+> $$
+> \begin{gather}
+> x\in X\wedge d_X(x,x_0)<\delta\iff x\in B_{(X,d_X)}(x_0,\delta)\\
+> f(x)\in X\wedge d_Y(f(x),f(x_0))<\varepsilon\iff f(x)\in B_{(Y,d_Y)}(f(x_0),\varepsilon)\\
+> \end{gather}
+> $$
+> 且所有度量球在度量空间下都是开集，于是上面的结论即说明存在$x_0$的邻域$B_{(X,d_X)}(x_0,\delta)\subseteq X$满足$f(B_{(X,d_X)}(x_0,\delta))\subseteq V$，也即$f$是定义13.5.8下在$x_0$处连续的函数。
+>
+> 若$f$是定义13.5.8下在$x_0$处连续的函数，则对所有的$\varepsilon>0$，由于度量球$B_{(Y,d_Y)}(f(x_0),\varepsilon)$是$f(x_0)$的一个邻域，因此根据定义13.5.8的要求可知存在某个$x_0$的邻域$U$满足$f(U)\subseteq B_{(Y,d_Y)}(f(x_0),\varepsilon)$。再注意到由于$U$是开集，因此根据度量空间开集的要求可知存在某个$\delta>0$使得$B_{(X,d_X)}(x_0,\delta)\subseteq U$。从而此时有$f(B_{(X,d_X)}(x_0,\delta))\subseteq B_{(Y,d_Y)}(f(x_0),\varepsilon)$，即对所有的$x\in X$满足$d_X(x,x_0)<\delta$都有$f(x)$满足$d_Y(f(x),f(x_0))<\varepsilon$，从而$f$是定义13.1.1下在$x_0$处连续的函数。
+>
+> 综上，于是结论得证。
+
+##### 13.5.16 证明：如果把[定理13.1.4](../Chap13/Sec1.md)推广到拓扑空间，那么(a)就蕴含了(b)<span style='color:blue'>（逆命题不成立，但构造一个反例并不容易）</span>；证明：如果把[定理13.1.5](../Chap13/Sec1.md)推广到拓扑空间，那么(a)、(c)、(d)三者是等价的，它们都蕴含着(b)<span style='color:blue'>（同样，逆向的蕴含关系不成立，但想证明这一点比较困难）</span>
+
+> 我们先给出推广后的命题：
+>
+> > 1. （13.1.4）设$(X,\mathcal{F}_X)$和$(Y,\mathcal{F}_Y)$是两个拓扑空间，$f:X\to Y$是函数，并设$x_0\in X$是$X$中的一点。那么下面三个命题在逻辑上是等价的：
+> >
+> >    > 1. $f$在$x_0$处是连续的。
+> >    > 2. 如果$(x^{(n)})_{n=1}^\infty$是$X$中依拓扑$\mathcal{F}_X$收敛于$x_0$的序列，那么序列$(f(x^{(n)}))_{n=1}^\infty$就依拓扑$\mathcal{F}_Y$收敛于$f(x_0)$。
+> >    > 3. 对于任意$f(x_0)$的邻域$V$，都存在一个$x_0$的邻域$U$使得$f(U)\subseteq V$。
+> >
+> > 2. （13.1.5）设$(X,\mathcal{F}_X)$和$(Y,\mathcal{F}_Y)$是两个拓扑空间，并设$f:X\to Y$是一个函数。那么下面四个命题在逻辑上是等价的：
+> >
+> >    > 1. $f$是连续的。
+> >    > 2. 只要$(x^{(n)})_{n=1}^\infty$是$X$中依拓扑$\mathcal{F}_X$收敛于某个点$x_0\in X$的序列，那么序列$(f(x^{(n)}))_{n=1}^\infty$就依拓扑$\mathcal{F}_Y$收敛于$f(x_0)$。
+> >    > 3. 如果$V$是$Y$中的开集，那么集合$f^{-1}(V)$就是$X$中的开集。
+> >    > 4. 如果$F$是$Y$中的闭集，那么集合$f^{-1}(F)$就是$X$中的闭集。
+>
+> 下面给出证明。
+>
+> ---
+>
+> 定理13.1.4(a)，(c)等价这个是拓扑空间里的定义就没必要阐述了。我们来证明(a)蕴含着(b)。
+>
+> 考虑$f(x_0)$的任意一个邻域$V$，由于$f$是在$x_0$处连续的因此存在某个$x_0$的邻域$U$满足$f(U)\subseteq V$，然后由于$(x^{(n)})_{n=1}^\infty$是$X$中依拓扑$\mathcal{F}_X$收敛于$x_0$的序列，因此存在$N\geq 1$使得对任意的$n\geq N$都有$x^{(n)}\in U$，从而有$f(x^{(n)})\in f(U)\subseteq V$。于是综上即：
+>
+> 对$f(x_0)$的任意一个邻域$V$，存在$N\geq 1$使得对任意的$n\geq N$都有$f(x^{(n)})\in V$。
+>
+> 即$(f(x^{(n)}))_{n=1}^\infty$依拓扑$\mathcal{F}_Y$收敛于$f(x_0)$（定义13.5.4）。
+>
+> ---
+>
+> 定理13.1.5里面的(a)蕴含着(b)在已经证明了定理13.1.4的情况下就很简单了，只需要将特殊点$x_0$应用到空间中每一个点就行。所以为了完成题目证明我们只需要证明(a)，(c)，(d)是等价的。分两步进行，一个是(a)等价于(c)，另一个是(c)等价于(d)。
+>
+> 首先证明(a)等价于(c)。
+>
+> 若有$f$是连续的，则考虑任意$V$是$Y$中的开集。对所有的$x\in f^{-1}(V)$都有$f(x)\in V$，然后根据连续性的要求我们知道存在$x$的邻域$U_x$使得$f(U_x)\subseteq V$成立。特别地，$U_x$应该是$f^{-1}(V)$的子集（因为对所有的$x\in U_x$都有$f(x)\in V\Longrightarrow x\in f^{-1}(V)$），从而我们可以得到：
+> $$
+> f^{-1}(V)=\bigcup_{x\in f^{-1}(V)}U_x
+> $$
+> 从而根据拓扑空间的定义，我们知道任意个开集的并也是一个开集，从而得证$f^{-1}(V)$是开集。
+>
+> 反过来，若有对所有$V$是$Y$中的开集都有$f^{-1}(V)$是$X$中的开集，则对任意的$x_0\in X$，考虑任意$f(x_0)$的邻域$V$。根据前提我们知道有$f^{-1}(V)$是$X$中的开集，并且显然有$x_0\in f^{-1}(V)$，从而$f^{-1}(V)$也是$x_0$的一个邻域。然后注意到必然有$f(f^{-1}(V))\subseteq V$（参见习题3.4.2），从而我们得证了对所有$f(x_0)$的邻域$V$都存在一个$x_0$的邻域$f^{-1}(V)$满足$f(f^{-1}(V))\subseteq V$，也即$f$在任意的$x_0\in X$处连续的。从而$f$是连续的。
+>
+> 然后证明(c)等价于(d)。
+>
+> 我们注意到对任意的$F\subseteq Y$与它关于$Y$的补集$F^c$有：
+> $$
+> \begin{gather}
+> f^{-1}(F)=\{x\in X:f(x)\in F\}\\
+> f^{-1}(F^c)=\{x\in X:f(x)\notin F\}\\
+> \end{gather}
+> $$
+> 于是可以引申得到$f^{-1}(F)\cap f^{-1}(F^c)=\varnothing$与$f^{-1}(F)\cup f^{-1}(F^c)=X$，也即$f^{-1}(F^c)$是$f^{-1}(F)$关于$X$的补集。
+>
+> 从而若有对所有$V$是$Y$中的开集都有$f^{-1}(V)$是$X$中的开集，则对任意$F$是$Y$中的闭集都有补集$F^c$是$Y$中开集，进而有$f^{-1}(F^c)$是$X$中的开集，于是$f^{-1}(F)$是$X$中的闭集；反之若有对所有$F$是$Y$中的闭集都有$f^{-1}(F)$是$X$中的闭集，则对任意$V$是$Y$中的开集都有补集$V^c$是$Y$中闭集，进而有$f^{-1}(V^c)$是$X$中的闭集，于是$f^{-1}(V)$是$X$中的开集。于是便证明了(c)等价于(d)。
+>
+> 综上，于是结论得证。
+
+##### 13.5.17 把[定理13.3.1](../Chap13/Sec3.md)和[命题13.3.2](../Chap13/Sec3.md)推广到拓扑空间中的紧致集合上
+
+> 我们先给出推广后的命题：
+>
+> > 1. （13.3.1）设$f:X\to Y$是从拓扑空间$(X,\mathcal{F}_X)$到另一个拓扑空间$(Y,\mathcal{F}_Y)$的连续映射，并设$K\subseteq X$是$X$的任意一个紧致子集。那么$K$的象$f(K)$也是紧致的。
+> >
+> > 2. （13.3.2）设$(X,\mathcal{F}_X)$是一个紧致拓扑空间，并设$f:X\to\mathbb R$是一个连续函数，那么$f$是有界的。更进一步的，$f$在某个点$x_{\max}\in X$处达到最大值，并且在某个点$x_{\min}\in X$处达到最小值。
+>
+> 下面给出证明。
+>
+> ---
+>
+> 先证明定理13.3.1。
+>
+> 考虑$f(K)$的任意一个开覆盖$(V_\alpha)_{\alpha\in I}$。由于$f$是一个连续函数，因此对所有的$\alpha\in I$我们有$f^{-1}(V_{\alpha})$是一个开集（习题13.5.16）。并且可以注意到对所有的$x\in K$，由于$f(x)\in f(K)$且$(V_\alpha)_{\alpha\in I}$是$f(K)$的一个开覆盖，因此必然存在一个$\alpha\in I$使得$x\in f^{-1}(V_\alpha)$，这表明有：
+> $$
+> K\subseteq\bigcup_{\alpha\in I}f^{-1}(V_{\alpha})
+> $$
+> 即$(f^{-1}(V_\alpha))_{\alpha\in I}$是$K$的一个开覆盖，从而由于$K$是紧致的存在$(f^{-1}(V_\alpha))_{\alpha\in I}$的一个有限子覆盖$(f^{-1}(V_\alpha))_{\alpha\in S}$。然后注意到对所有的$y\in f(K)$，它必然存在某个$x\in K$使得$f(x)=y$，而由于$(f^{-1}(V_\alpha))_{\alpha\in S}$是$X$的覆盖我们知道存在$\beta\in S$使得$x\in f^{-1}(V_{\beta})$，也就是说有$y=f(x)\in V_\beta$。因此这表明对所有的$y\in f(K)$都因该存在一个$\beta\in S$满足$y\in V_{\beta}$，从而即：
+> $$
+> f(K)\subseteq\bigcup_{\alpha\in S}V_{\alpha}
+> $$
+> 也即$(V_\alpha)_{\alpha\in S}$是$f(K)$的一个开覆盖，又因为$S$是有限的因此这表明$(V_\alpha)_{\alpha\in I}$存在一个有限子覆盖，于是我们证明了$f(K)$是紧致的。
+>
+> 然后证明定理13.3.2。
+>
+> 根据定理13.3.1我们可以得知有$f(X)$是$\mathbb R$的紧致子集（序拓扑下），而在习题13.5.5中我们已经证明了拥有序拓扑的实直线$\mathbb R$与标准度量生成的度量空间$\mathbb R$是等价的，从而根据海涅-博雷尔定理（定理12.5.7）我们知道$f(X)$必然是有界闭集（于是有界性得证）。然后令$\displaystyle M:=\sup_{x\in X}f(x)$与$\displaystyle m:=\inf_{x\in X}f(x)$。根据上确界与下确界的性质它们必然是$f(X)$的附着点，从而由于$f(X)$是闭集因此必然有$m\in f(X)$与$M\in f(X)$，换言之即$f$在某个点$x_{\max}\in X$处达到最大值$M$，并且在某个点$x_{\min}\in X$处达到最小值$m$。
+
+---
+
+## 本节相关跳转
+
+[实分析 8.5 有序集](../Chap8/Sec5.md)
+
+[实分析 12.1 定义和例子](../Chap12/Sec1.md)
+
+[实分析 12.2 度量空间中的一些点集拓扑知识](../Chap12/Sec2.md)
+
+[实分析 12.3 相对拓扑](../Chap12/Sec3.md)
+
+[实分析 12.5 紧致度量空间](../Chap12/Sec5.md)
+
+[实分析 13.1 连续函数](../Chap13/Sec1.md)
+
+[实分析 13.3 连续性与紧致性](../Chap13/Sec3.md)
+
+[实分析 13.4 连续性与连通性](../Chap13/Sec4.md)

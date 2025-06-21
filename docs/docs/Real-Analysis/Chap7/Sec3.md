@@ -1,0 +1,154 @@
+---
+layout: doc
+space: 实分析
+order:
+  - 7
+  - 3
+cover: /assets/unknown.png
+coverCss:
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight: 320px
+---
+# 7.3 非负数的和
+
+## 命题
+
+1. <span style='color:red'>（7.3.1 上界推断？）</span>设$\displaystyle \sum_{n=m}^{\infty}a_n$是一个**非负实数**的形式级数，则这个级数是收敛的，当且仅当存在一个实数$M$使得：
+	$$
+	\sum_{n=m}^{N}a_n\leq M
+	$$
+	
+	对所有整数$N\geq m$成立。
+	
+	推论：<span style='color:red'>（7.3.2 比较判别法）</span>设$\displaystyle \sum_{n=m}^{\infty}a_n$与$\displaystyle \sum_{n=m}^{\infty}b_n$是两个非负实数的形式级数，且对任意$n\geq m$均有$|a_n|\leq b_n$，则若有$\displaystyle \sum_{n=m}^{\infty}b_n$收敛，那么$\displaystyle \sum_{n=m}^{\infty}a_n$是绝对收敛的，并且有：
+	
+	$$
+	\left|\sum_{n=m}^{\infty}a_n\right|\leq \sum_{n=m}^{\infty}|a_n|\leq \sum_{n=m}^{\infty}b_n
+	$$
+	
+	<span style='color:blue'>（比较判别法中常使用几何级数$\displaystyle \sum_{q=0}^{\infty}x^q$）</span>
+	
+2. <span style='color:red'>（7.3.3 几何级数）</span>设$x$是实数，若$|x|\geq 1$，则级数$\displaystyle \sum_{q=0}^{\infty}x^q$发散，反之若$|x|<1$，则级数$\displaystyle \sum_{q=0}^{\infty}x^q$绝对收敛，且有：
+	$$
+	\sum_{q=0}^{\infty}x^q=\frac{1}{1-x}
+	$$
+	
+3. <span style='color:red'>（7.3.4 柯西准则）</span>设$(a_n)_{n=1}^\infty$是一个**递减的非负实数**序列，则级数是$\displaystyle \sum_{n=1}^{\infty}a_n$收敛的，当且仅当级数：
+	$$
+	\sum_{k=0}^{\infty}2^k a_{2^k}=a_1+2a_2+4a_4+……
+	$$
+	
+	是收敛的。
+	
+4. <span style='color:red'>（7.3.6 柯西准则相关？）</span>设$(a_n)_{n=1}^\infty$是一个**递减的非负实数**序列，则对任意的自然数$K$，有$S_{2^{K+1}-1}\leq T_K\leq 2 S_{2^K}$，其中，$\displaystyle T_K=\sum_{k=0}^{K}2^ka_{2^k}$，$\displaystyle S_N=\sum_{n=0}^{N}a_n$。
+
+	<span style='color:blue'>（于是$\displaystyle S_{2^{K+1}-1}=\sum_{n=0}^{2^{K+1}-1}a_n$，$\displaystyle 2 S_{2^K}=2\sum_{n=0}^{2^K}a_n$。该引理用于柯西准则的证明）</span>
+	
+5. <span style='color:red'>（7.3.7 调和级数与柯西准则？）</span>设$q>0$为有理数，那么当$q>1$时，级数$\displaystyle \sum_{n=1}^{\infty}\frac{1}{n^q}$收敛；当$q\leq 1$时，级数$\displaystyle \sum_{n=1}^{\infty}\frac{1}{n^q}$发散。
+
+---
+
+## 课后习题
+
+##### 7.3.1 利用命题7.3.1证明推论7.3.2
+
+>根据题设有对任意$n\geq m$，$b_n\geq|a_n|$恒成立。我们取部分和$\displaystyle S_N={\sum_{n=m}^{N}b_n}$，$\displaystyle S'_N={\sum_{n=m}^{N}|a_n|}$。
+>
+>根据命题7.3.1，有存在某个实数$M$使得对任意$N\geq m$，$S_N\leq M$恒成立。
+>
+>根据命题7.1.4(f)的内容，我们又由对任意整数$N\geq m$都有$b_i\geq |a_i|$对任意$m\leq i\leq N$成立可以得到$S_N\geq S_N'$对任意$N\geq m$都成立。于是结合前文有存在某个实数$M$使得对任意$N\geq m$都有$S'_N\leq S_N\leq M$恒成立，于是根据命题7.3.1可以得到$\displaystyle\sum_{n=m}^{\infty}a_n$绝对收敛。
+>
+>现在已知三个级数均收敛，于是有$(S_N)_{N=m}^\infty$，$(S'_N)_{N=m}^\infty$收敛，于是它们的极限也就是它们的上极限（说下极限也可以），于是运用比较原理，由$S_N\geq S_N'$对任意$N\geq m$都成立我们可以得到：
+>$$
+>{\sum_{n=m}^{\infty}|a_n|}\leq{\sum_{n=m}^{\infty}b_n}
+>$$
+>又根据7.2.9绝对收敛审敛法的结论可以将上面结论升级为：
+>
+>$$
+>{\left|\sum_{n=m}^{\infty}a_n\right|}\leq{\sum_{n=m}^{\infty}|a_n|}\leq{\sum_{n=m}^{\infty}b_n}
+>$$
+>于是命题得证。
+
+##### 7.3.2 证明引理7.3.3<span style='color:blue'>（提示：对第一部分使用[零判别法](../Chap7/Sec2.md)，对于第二部分，首先利用归纳法建立一个<span style='color:red'>几何级数公式</span></span>
+
+$$
+\color{blue}{\sum_{n=0}^{N}x^n=\frac{(1-x^{N+1})}{1-x}}
+$$
+
+##### <span style='color:blue'>然后使用[引理6.5.2](../Chap6/Sec5.md)）</span>
+
+> 分类讨论：
+>
+> 当$|x|\geq 1$时：
+>
+> 根据引理6.5.2，此时有$\displaystyle\lim_{n\to\infty}x^n$等于$1$或发散，从而根据命题7.2.6零判别法我们有此时$\displaystyle\sum_{n=0}^\infty x^n$发散。
+>
+> 当$|x|\leq 1$时：
+>
+> 我们先对$N$做归纳，证明几何级数公式：
+>
+> 当$N=0$时：
+>
+> 此时左式等于$x^0=1$，右式等于$\displaystyle\frac{1-x}{1-x}=1(x\ne 1)$，于是此时成立结论。
+>
+> 现归纳性假设在$N=c$时成立结论，对$N=c+1$时讨论：
+>
+> 此时有：
+> $$
+> \begin{align}
+> \sum_{n=0}^{c+1}x^n&\xlongequal{定义7.1.1}\sum_{n=0}^{c}x^n+x^{c+1}\\
+> &\xlongequal{归纳假设}\frac{1-x^{c+1}}{1-x}+\frac{x^{c+1}-x^{c+2}}{1-x}\\
+> &\xlongequal{化简}\frac{1-x^{(c+1)+1}}{1-x}
+> \end{align}
+> $$
+>
+> 于是此时等式也成立，从而归纳结束，几何级数公式得证。
+>
+> 根据定义7.2.2与几何级数公式，可以得到有$\displaystyle\sum_{n=0}^{\infty}x^n=\lim_{N\to\infty}\frac{(1-x^{N+1})}{1-x}=\lim_{N\to\infty}\frac{1}{1-x}-\lim_{N\to\infty}\frac{x^{N+1}}{1-x}$。前者是常数于是极限即为$\displaystyle\frac{1}{1-x}$，后者分母是常数，分子根据引理6.5.2有$\displaystyle\lim_{N\to\infty}x^{N+1}=0$，于是使用极限定律有后者等于$0$。总结上面结论即有：
+> $$
+> \sum_{q=0}^{\infty}x^q=\frac{1}{1-x}
+> $$
+> 于是结论得证。
+
+##### 7.3.3 设$\displaystyle{\sum_{n=0}^{\infty}a_n}$是一个绝对收敛的实数级数，并且满足$\displaystyle{\sum_{n=0}^{\infty}\left|a_n\right|=0}$证明：对任意自然数$n$都有$a_n=0$
+
+>为了下面的结论证明，我们要证明一个辅助结论：
+>
+>假设对于每个自然数$n$我们都指定一个实数$a_n$，那么$S_N\leq S_M\;(N,M\in\mathbb N)$对任意$M\geq N$都成立，其中$\displaystyle S_N=\sum_{n=0}^N|a_n|$。
+>
+>对任意的自然数$N$，我们对$M$归纳证明：
+>
+>当$M=N$时：
+>
+>此时显然有$S_N\leq S_N=S_M$，成立结论。
+>
+>现假设在$M=K$时成立结论，对$M=K+1$时：
+>$$
+>S_{K+1}=\sum_{n=0}^{K+1}|a_n|=\sum_{n=0}^K|a_n|+|a_{K+1}|=S_K+|a_{K+1}|
+>$$
+>根据归纳假设，我们有$S_{K}\geq S_N$，又有$|a_{K+1}|\geq 0$，于是$S_K+|a_{K+1}|\geq S_N$，即$S_{K+1}\geq S_N$。
+>
+>综上，结论得证。
+>
+>---
+>
+>使用反证法证明：
+>
+>不妨假设存在$n_0\geq 0$使得$a_{n_0}=k\ne 0$并且对任意$n<n_0$，$a_n=0$（即$a_{n_0}$是第一个非$0$项）
+>
+>定义$\displaystyle S_N=\sum_{n=0}^N|a_n|$，于是可以计算得到部分和$S_{n_0}=|a_{n_0}|$。
+>
+>根据辅助结论，我们始终有$S_{N}\geq S_{n_0}=|a_{n_0}|$对任意$N\geq n_0$恒成立。
+>
+>此时根据题设有$\displaystyle\lim_{N\to\infty}S_N=0$，那么对于$\displaystyle\varepsilon=\frac{|a_{n_0}|}{2}$，应当存在一个自然数$n_1$使得$n\geq n_1$时总有$\displaystyle d(S_n,0)\leq \frac{|a_{n_0}|}{2}$恒成立，但是对任意$n\geq\max(n_0,n_1)$我们又应该有$d(S_n,0)\geq|a_{n_0}|$，这导出了矛盾。
+>
+>于是假设错误，题目结论得证。
+
+---
+
+## 本节相关跳转
+
+[实分析 6.5 一些基本的极限](../Chap6/Sec5.md)
+
+[实分析 7.2 无限级数](../Chap7/Sec2.md)

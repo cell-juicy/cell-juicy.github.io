@@ -1,7 +1,7 @@
 ---
 layout: doc
 space: book1
-order: 5-0
+order: 5/0
 ---
 
 # 测试用的书1，章节6，子节1
