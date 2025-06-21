@@ -33,5 +33,8 @@ export default defineConfigWithTheme<ThemeConfig>({
             // @ts-ignore
             vueDevTools()
         ]
+    },
+    markdown: {
+        math: true
     }
 })
