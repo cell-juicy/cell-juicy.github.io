@@ -1,6 +1,5 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { useRoute } from 'vitepress';
 import { computed } from 'vue';
 
 import { useVPJDocLayout } from '../composables/useVPJDocLayout';
@@ -24,7 +23,7 @@ const {
     contentConfig,
     asideConfig
 } = storeToRefs(store);
-const { cover, space, title, data } = useDocData();
+const { cover } = useDocData();
 
 const computedPadding = computed(() => {
     return contentConfig.value.padding || "0"
@@ -226,9 +225,7 @@ const computedMarginBottom = computed(() => {
         .vpj-layout-doc__aside-controler {
             display: none;
         }
-    }
 
-    @media screen and (max-width: 768px) {
         .vpj-layout-doc__article {
             padding-right: 0;
         }

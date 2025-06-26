@@ -225,9 +225,7 @@ const computedMarginBottom = computed(() => {
         .vpj-layout-blog__aside-controler {
             display: none;
         }
-    }
 
-    @media screen and (max-width: 768px) {
         .vpj-layout-blog__article {
             padding-right: 0;
         }
