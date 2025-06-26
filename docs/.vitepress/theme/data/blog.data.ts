@@ -11,6 +11,8 @@ export default createContentLoader("**/*.md", {
             .filter((raw) => raw.frontmatter.layout === "blog")
             .map((raw) => {
                 return {
+                    ...raw,
+                    url: encodeURI(raw.url),
                     // @ts-ignore
                     title: raw.src.match(/^#\s+(.+)/m) ? raw.src.match(/^#\s+(.+)/m)[1] : "",
                     series: typeof raw.frontmatter.series === 'string' ? raw.frontmatter.series : undefined,
@@ -21,7 +23,6 @@ export default createContentLoader("**/*.md", {
                     cover: (typeof raw.frontmatter.cover === "string" || raw.frontmatter.cover === false)
                         ? raw.frontmatter.cover
                         : undefined,
-                    ...raw
                 }
             });
     },

@@ -56,6 +56,8 @@ export default createContentLoader("**/*.md", {
                 })
 
                 return {
+                    ...raw,
+                    url: encodeURI(raw.url),
                     // @ts-ignore
                     title: raw.src.match(/^#\s+(.+)/m) ? raw.src.match(/^#\s+(.+)/m)[1] : undefined,
                     space: (typeof raw.frontmatter.space === 'string' && raw.frontmatter.space.length > 0)
@@ -69,7 +71,6 @@ export default createContentLoader("**/*.md", {
                         ? undefined
                         : !!raw.frontmatter.inherit,
                     resources,
-                    ...raw
                 }
             })
     },
