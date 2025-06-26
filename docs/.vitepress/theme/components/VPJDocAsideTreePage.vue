@@ -1,6 +1,5 @@
 <script setup>
-import { useRoute } from 'vitepress';
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 
 import { useDocData } from '../composables/useDocData';
 
@@ -10,7 +9,6 @@ import VPJDocAsideTreeItem from './VPJDocAsideTreeItem.vue';
 const { filter, space } = useDocData();
 const rootDocData = computed(() => {
     if (!space.value) {
-        // console.log(`space is ${space.value}, not rendering doc tree`)
         return [];
     }
     return filter({ space: space.value }).filter((data) => !data.parent)
@@ -51,6 +49,7 @@ const rootDocData = computed(() => {
         display: flex;
         flex-direction: column;
         gap: .25rem;
+        min-height: min-content;
         width: 100%;
     }
 </style>

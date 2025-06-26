@@ -14,10 +14,9 @@ const { tags, blogData } = useBlogData();
     <div class="vpj-layout-blog__aside-tab-page vpj-scroll-xy">
         <VPJTag
             v-for="tag in tags"
+            :key="tag"
             :tag="tag"
-            :callback="(tag) => console.log(tag)"
         />
-        <pre>{{ JSON.stringify(blogData, null, 2) }}</pre>
     </div>
 </template>
 

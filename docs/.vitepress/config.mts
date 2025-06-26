@@ -26,7 +26,19 @@ export default defineConfigWithTheme<ThemeConfig>({
             tag: {
                 textProcessor: (tag) => `# ${tag}`
             },
-        }
+        },
+        doc: {
+            space: {
+                "book1": {
+                    nodeMeta: {
+                        global: {
+                            inherit: true
+                        },
+                    },
+                },
+            },
+            enableVirtual: true
+        },
     },
     vite: {
         plugins: [
@@ -34,7 +46,4 @@ export default defineConfigWithTheme<ThemeConfig>({
             vueDevTools()
         ]
     },
-    markdown: {
-        math: true
-    }
 })

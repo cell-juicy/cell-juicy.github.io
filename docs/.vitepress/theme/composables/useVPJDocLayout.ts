@@ -35,6 +35,7 @@ const DEFAULT = {
     TOOLBAR: {},
     ASIDETABS: {
         tree: {name: "目录", component: "VPJDocAsideTreePage", order: 0},
+        resources: {name: "资源", component: "VPJDocAsideResourcesPage", order: 0}
     },
     COVERALT: undefined,
     COVERHEIGHT: "240px",

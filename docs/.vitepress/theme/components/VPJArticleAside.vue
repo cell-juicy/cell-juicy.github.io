@@ -1,10 +1,13 @@
 <script setup>
+import { useData } from 'vitepress';
 import { ref, computed, watch, onUnmounted } from 'vue';
 
 import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes';
 
 import VPJBlogAsideSeriesPage from './VPJBlogAsideSeriesPage.vue';
 import VPJBlogAsideTagsPage from './VPJBlogAsideTagsPage.vue';
+import VPJDocAsideTreePage from './VPJDocAsideTreePage.vue';
+import VPJDocAsideResourcesPage from './VPJDocAsideResourcesPage.vue';
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 
 import VPJIconCrossSmall from './icons/VPJIconCrossSmall.vue';
@@ -29,6 +32,8 @@ const props = defineProps({
     }
 });
 
+const { frontmatter } = useData();
+const layout = computed(() => frontmatter.value.layout);
 
 const tabsData = computed(() => {
     if (typeof props.config.tabs === 'object' && props.config.tabs !== null) {
@@ -50,8 +55,10 @@ const activeTabComponent = computed(() => {
     if (Array.isArray(tabsData.value)) {
         const tab = tabsData.value.find((data) => data.key === activeTabKey.value);
         if (tab) {
-            if (tab.component === "VPJBlogAsideTagsPage") return VPJBlogAsideTagsPage;
-            if (tab.component === "VPJBlogAsideSeriesPage") return VPJBlogAsideSeriesPage;
+            if (tab.component === "VPJBlogAsideTagsPage" && layout.value === "blog") return VPJBlogAsideTagsPage;
+            if (tab.component === "VPJBlogAsideSeriesPage" && layout.value === "blog") return VPJBlogAsideSeriesPage;
+            if (tab.component === "VPJDocAsideTreePage" && layout.value === "doc") return VPJDocAsideTreePage;
+            if (tab.component === "VPJDocAsideResourcesPage" && layout.value === "doc") return VPJDocAsideResourcesPage;
             return tab.component;
         };
     };
