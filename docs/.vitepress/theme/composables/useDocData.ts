@@ -68,6 +68,7 @@ interface RawDocPageData {
 interface StoreDocPageData extends RawDocPageData {
     resources: Record<string, ResourceData>;
     id: string;
+    inherit: boolean;
     virtual: boolean;
 }
 
@@ -189,6 +190,7 @@ class DocPageData {
             ...cloneDeep(raw),
             resources: resolveResourceInput(raw.resources),
             id: 'unknown',
+            inherit: (raw.inherit === true) ? true : false,
             virtual: (raw.virtual === true) ? true : false,
         };
 
@@ -203,25 +205,26 @@ class DocPageData {
     }
 
     // Getters
-    get title() { return this.#store.title; }
-    get space() { return this.#store.space; }
-    get order() { return this.#store.order; }
-    get cover() { return this.#store.cover; }
-    get inherit() { return this.#store.inherit; }
-    get resources() { return this.#store.resources; }
+    get title(): string | undefined { return this.#store.title; }
+    get space(): string | undefined { return this.#store.space; }
+    get order(): number[] { return this.#store.order; }
+    get cover(): string | false | undefined { return this.#store.cover; }
+    get inherit(): boolean { return this.#store.inherit; }
+    get resources(): Record<string, ResourceData> { return this.#store.resources; }
 
-    get url() { return this.#store.url; }
-    get frontmatter() { return this.#store.frontmatter; }
-    get src() { return this.#store.src; }
-    get html() { return this.#store.html; }
+    get url(): string | undefined { return this.#store.url; }
+    get frontmatter(): Record<string, any> | undefined { return this.#store.frontmatter; }
+    get src(): string | undefined { return this.#store.src; }
+    get html(): string | undefined { return this.#store.html; }
 
-    get parent() { return this.#parentId ? DocPageData.#idMap.get(this.#parentId) : undefined; }
-    get children() {
+    get parent(): DocPageData | undefined { return this.#parentId ? DocPageData.#idMap.get(this.#parentId) : undefined; }
+    get children(): DocPageData[] {
         return this.#childrenIds
             .map(id => DocPageData.#idMap.get(id))
             .filter((child): child is DocPageData => child !== undefined);
     }
-    get isVirtual() { return this.#store.virtual; }
+    get id(): string { return this.#store.id; }
+    get isVirtual(): boolean { return this.#store.virtual; }
 
     // Methods
     #bindParent() {

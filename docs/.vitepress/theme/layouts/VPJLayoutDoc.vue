@@ -1,6 +1,6 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { useData } from 'vitepress';
+import { useRoute } from 'vitepress';
 import { computed } from 'vue';
 
 import { useVPJDocLayout } from '../composables/useVPJDocLayout';
