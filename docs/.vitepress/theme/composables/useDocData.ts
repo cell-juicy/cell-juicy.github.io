@@ -57,6 +57,9 @@ interface RawDocPageData {
     order: number[];
     cover?: string | false;
     resources?: Record<string, ResourceInput>;
+    treeTitle?:
+        | string
+        | ((data: DocPageData) => string | undefined);
     url?: string;
     frontmatter?: Record<string, any>;
     src?: string;
@@ -174,7 +177,7 @@ function mergeResourceData(child: Record<string, ResourceData>, parent: Record<s
     return result;
 };
 
-class DocPageData {
+export class DocPageData {
     static #idMap: Map<string, DocPageData> = new Map();
     static #duplicateCount: Map<string, number> = new Map();
 
@@ -211,6 +214,15 @@ class DocPageData {
     get cover(): string | false | undefined { return this.#store.cover; }
     get inherit(): boolean { return this.#store.inherit; }
     get resources(): Record<string, ResourceData> { return this.#store.resources; }
+    get treeTitle(): string {
+        if (typeof this.#store.treeTitle === 'string') {
+            return this.#store.treeTitle;
+        } else if (typeof this.#store.treeTitle === 'function') {
+            const title  = this.#store.treeTitle(this);
+            if (typeof title === 'string') return title;
+        }
+        return this.title || this.id;
+    }
 
     get url(): string | undefined { return this.#store.url; }
     get frontmatter(): Record<string, any> | undefined { return this.#store.frontmatter; }
@@ -259,7 +271,7 @@ class DocPageData {
             this.#store.resources = mergeResourceData(
                 this.#store.resources, parent.resources
             );
-        }
+        };
     };
 
     // Static methods
@@ -282,6 +294,7 @@ class DocPageData {
     };
 
     static applyMetaData(target: RawDocPageData, meta: NodeMetadata) {
+        // Apply title
         if (
             target.title === undefined &&
             typeof meta.title === 'string'
@@ -289,6 +302,7 @@ class DocPageData {
             target.title = meta.title;
         };
 
+        // Apply cover
         if (
             target.cover === undefined &&
             (typeof meta.cover === 'string' || meta.cover === false)
@@ -296,6 +310,7 @@ class DocPageData {
             target.cover = meta.cover;
         };
 
+        // Apply inherit
         if (
             target.inherit === undefined &&
             typeof meta.inherit === 'boolean'
@@ -303,11 +318,20 @@ class DocPageData {
             target.inherit = true;
         };
 
+        // Apply resources
         if (meta.resources !== undefined) {
             const metaResources = resolveResourceInput(meta.resources);
             const targetResources = resolveResourceInput(target.resources);
             target.resources = mergeResourceData(targetResources, metaResources);
-        }
+        };
+
+        // Apply treeTitle
+        if (
+            target.treeTitle === undefined &&
+            (typeof meta.treeTitle === 'string' || typeof meta.treeTitle === 'function')
+        ) {
+            target.treeTitle = meta.treeTitle;
+        };
     };
 
     static applySpaceConfig(dataBase: RawDocPageData[], config: Record<string, SpaceMetaData>) {
@@ -413,7 +437,7 @@ class DocPageData {
 
         // Sort nodes by space/order
         return DocPageData.sortDataBase(copy);
-    }
+    };
 
     static reset() {
         DocPageData.#idMap.clear();

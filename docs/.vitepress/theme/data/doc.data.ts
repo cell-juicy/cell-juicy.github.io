@@ -71,6 +71,9 @@ export default createContentLoader("**/*.md", {
                         ? undefined
                         : !!raw.frontmatter.inherit,
                     resources,
+                    treeTitle: (typeof raw.frontmatter.treeTitle === 'string')
+                        ? raw.frontmatter.treeTitle
+                        : undefined,
                 }
             })
     },

@@ -29,10 +29,17 @@ export default defineConfigWithTheme<ThemeConfig>({
         },
         doc: {
             space: {
-                "book1": {
+                "实分析": {
                     nodeMeta: {
                         global: {
-                            inherit: true
+                            inherit: true,
+                            treeTitle(data) {
+                                if (data.isVirtual) {
+                                    return `第${data.order[0]}章`
+                                } else {
+                                    return data.title?.replace(/(\d+)\.(\d+)[^\S\r\n]*(.*)/, '$1.$2节 $3') || data.id;
+                                }
+                            },
                         },
                     },
                 },

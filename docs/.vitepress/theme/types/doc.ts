@@ -1,4 +1,4 @@
-import {
+import type {
     AsideTabInput,
     DeviceSpecificInput,
     CoverCssConfigInput,
@@ -9,9 +9,13 @@ import {
     ResourceInput,
 } from "./common";
 
-import {
+import type {
     VPJDocLayoutConfig
-} from "./layoutDoc"
+} from "./layoutDoc";
+
+import type {
+    DocPageData
+} from "../composables/useDocData"
 
 
 export interface NodeMetadata {
@@ -19,6 +23,9 @@ export interface NodeMetadata {
     cover?: string | false;
     resources?: Record<string, ResourceInput>;
     inherit?: boolean;
+    treeTitle?:
+        | string
+        | ((data: DocPageData) => string);
 }
 
 export interface SpaceMetaData {

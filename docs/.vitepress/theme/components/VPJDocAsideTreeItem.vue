@@ -41,7 +41,7 @@ const childrenCollapsed = ref(true);
                     {'current': route.path === data.url}
                 ]"
             >
-                <span class="vpj-text">{{ data.title || data.id }}</span>
+                <span class="vpj-text">{{ data.treeTitle }}</span>
                 <VPJDynamicIconBtn
                     v-if="children.length > 0"
                     @click.stop.prevent="childrenCollapsed = !childrenCollapsed"
@@ -54,7 +54,7 @@ const childrenCollapsed = ref(true);
                 @click.stop.prevent="childrenCollapsed = !childrenCollapsed"
                 class="vpj-layout-doc__aside-doc-node-link"
             >
-                <span class="vpj-text">{{ data.title || data.id }}</span>
+                <span class="vpj-text">{{ data.treeTitle }}</span>
                 <VPJDynamicIcon
                     v-if="children.length > 0"
                     :icon="childrenCollapsed ? VPJIconCaretLeft : VPJIconCaretDown"
