@@ -52,7 +52,7 @@ import {
  * @see {@link SeriesMetaData.coverFade} 渐变过渡  
  * @see {@link SeriesMetaData.coverCss} CSS样式
  * 
- * 4. **内容区配置**  
+ * 4. **页面数据配置**  
  * @see {@link SeriesMetaData.presetTags} 预设标签
  * 
  * 注意事项：
@@ -1256,6 +1256,12 @@ export interface SeriesMetaData {
  */
 export interface BlogDefaultsConfig {
     /**
+     * 系列默认配置
+     * @see {@link SeriesMetaData} blog系列默认数据接口
+     */
+    series?: Record<string, SeriesMetaData>;
+
+    /**
      * VPJTag默认配置
      * 
      * @remarks
@@ -1363,10 +1369,4 @@ export interface BlogDefaultsConfig {
          */
         textProcessor?: (tag: string) => string;
     };
-  
-    /**
-     * 系列默认配置
-     * @see {@link SeriesMetaData} blog系列默认数据接口
-     */
-    series?: Record<string, SeriesMetaData>;
 }

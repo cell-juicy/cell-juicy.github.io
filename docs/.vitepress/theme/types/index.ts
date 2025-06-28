@@ -32,7 +32,7 @@ import {
 
 import {
     DocDefaultsConfig
-} from "./doc"
+} from "./doc";
 
 
 
@@ -82,6 +82,10 @@ export interface VPJLayoutsConfig {
      */
     blog?: VPJBlogLayoutConfig;
 
+    /**
+     * doc布局配置
+     * @see {@link VPJDocLayoutConfig} doc布局配置接口
+     */
     doc?: VPJDocLayoutConfig;
 }
 
@@ -159,5 +163,10 @@ export interface ThemeConfig {
      */
     blog?: BlogDefaultsConfig;
 
+    /**
+     * 文档(doc)页默认数据配置
+     * @optional
+     * @see {@link DocDefaultsConfig} 文档页默认数据配置接口
+     */
     doc?: DocDefaultsConfig;
 }
