@@ -1,6 +1,6 @@
 import { defineConfigWithTheme } from 'vitepress';
 import type { ThemeConfig } from './theme/type';
-import vueDevTools from 'vite-plugin-vue-devtools'
+import vueDevTools from 'vite-plugin-vue-devtools';
 
 
 export default defineConfigWithTheme<ThemeConfig>({
