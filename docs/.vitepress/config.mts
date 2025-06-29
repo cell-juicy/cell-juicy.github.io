@@ -30,6 +30,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         doc: {
             space: {
                 "实分析": {
+                    enableVirtual: true,
                     nodeMeta: {
                         global: {
                             inherit: true,
@@ -44,7 +45,6 @@ export default defineConfigWithTheme<ThemeConfig>({
                     },
                 },
             },
-            enableVirtual: true
         },
     },
     vite: {

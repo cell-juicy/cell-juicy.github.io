@@ -74,6 +74,9 @@ export default createContentLoader("**/*.md", {
                     treeTitle: (typeof raw.frontmatter.treeTitle === 'string')
                         ? raw.frontmatter.treeTitle
                         : undefined,
+                    allowVirtualParents: (raw.frontmatter.allowVirtualParents === undefined)
+                        ? undefined
+                        : !!raw.frontmatter.allowVirtualParents,
                 }
             })
     },

@@ -24,6 +24,75 @@ import type {
 } from "../composables/useDocData"
 
 
+/**
+ * 节点元数据配置
+ * 
+ * @remarks
+ * 此接口用于为文档页面节点（包括真实页面与虚拟节点）提供补充信息，通常通过 {@link SpaceMetaData.nodeMeta} 中的 `global` 或 `order` 定位配置项设置。其主要目的是为节点添加或覆盖特定属性，以支持目录结构构建、资源继承、节点展示等功能。
+ * 
+ * 除了显式设置页面 frontmatter 外，你还可以通过此结构集中式为多个节点设置统一元数据，或为无法直接设置 frontmatter 的虚拟节点补充所需信息。
+ * 
+ * 配置项说明如下：
+ * 
+ * - `title`：用于覆盖或补充页面标题，优先级低于 frontmatter。
+ * - `treeTitle`：用于替代页面在默认的目录树组件中的显示文本，支持函数动态生成。
+ * - `cover`：覆盖页面封面图路径，支持图片地址或设置为 `false` 隐藏。
+ * - `resources`：页面相关的资源信息（如下载链接、视频地址等）。
+ * - `inherit`：设置该节点是否启用资源继承机制，从其父节点继承 `cover` 和 `resources`，默认情况下所有节点的继承都是关闭的。
+ * 
+ * 注意事项：
+ * 
+ * - 所有字段仅在页面数据中对应字段未设置时才会生效。
+ * - 当用于补充虚拟节点信息时（如通过 `enableVirtual` 自动生成的），这些配置是唯一可为其赋予标题、资源等内容的方式。
+ * - `treeTitle` 为函数时会接收该节点对应的 {@link DocPageData} 实例作为参数，返回字符串作为目录树的显示文本（如果返回的类型不是字符串，则会采用默认文本逻辑）。
+ * 
+ * @example
+ * 为 `1/2` 节点补充标题并启用继承
+ * ```ts
+ * export default {
+ *   themeConfig: {
+ *     doc: {
+ *       space: {
+ *         "guides": {
+ *           nodeMeta: {
+ *             "1/2": {
+ *               title: "入门指引",
+ *               inherit: true
+ *             }
+ *           }
+ *         }
+ *       }
+ *     }
+ *   }
+ * }
+ * ```
+ * 
+ * @example
+ * 为所有节点配置统一的目录树显示文本
+ * ```ts
+ * export default {
+ *   themeConfig: {
+ *     doc: {
+ *       space: {
+ *         "reference": {
+ *           nodeMeta: {
+ *             global: {
+ *               treeTitle(data) {
+ *                 return `[${data.order.join('.')}] ${data.title ?? '未命名'}`
+ *               }
+ *             }
+ *           }
+ *         }
+ *       }
+ *     }
+ *   }
+ * }
+ * ```
+ * 
+ * @see {@link SpaceMetaData.nodeMeta} 节点元数据的配置入口
+ * @see {@link DocPageData} 页面节点的数据结构
+ * @see {@link DocPageData.treeTitle} 目录树显示文本生成逻辑
+ */
 export interface NodeMetadata {
     title?: string;
     cover?: string | false;
@@ -1107,7 +1176,58 @@ export interface SpaceMetaData {
      * @see {@link VPJDocLayoutConfig.coverFade}
      */
     coverCss?: CoverCssConfigInput;
-    
+
+    /**
+     * 是否启用虚拟父节点生成逻辑
+     * @optional
+     * @defaults false
+     * 
+     * @remarks
+     * 此项用于控制是否为当前文档空间下的页面节点自动生成缺失的虚拟父节点。生成逻辑基于 `order` 推导上级节点的存在性，若上级不存在，则将其以“结构占位”的形式补足为虚拟节点。
+     * 
+     * 生成逻辑如下：
+     * 
+     * 1. 每个页面节点会检查其是否要求生成虚拟父节点（详见注意事项）。
+     * 2. 如果要求生成，则根据其 order 从尾部开始依次截断，构造出可能的父节点路径（例如 order: [1, 2, 3] 会依次尝试 [1, 2] → [1]）。
+     * 3. 依据生成的路径逐级查询是否存在有效的父页面节点，如果不存在则生成一个对应 order 的虚拟页面节点添加到数据集中。
+     * 4. 当找到第一个已经存在的父节点或穷尽父节点路径时，停止生成。
+     * 
+     * 生成的虚拟节点数据默认只包含以下字段：
+     * 
+     * - `id`：由 `space` 与 `order` 生成的唯一标识符
+     * - `space`：继承自子节点的文档空间
+     * - `order`：对应的位序
+     * - `virtual`：标记为 `true`
+     * 
+     * 除非通过 {@link SpaceMetaData.nodeMeta} 指定补充字段，否则不会包含 `title`、`treeTitle`、`cover` 等其他信息。
+     * 
+     * 注意事项：
+     * 
+     * - 此配置项为空间控制项，仅影响未显式设置 `allowVirtualParents` 的页面节点。
+     * - 若页面节点设置了 `allowVirtualParents: false`，则此页面节点不会生成任何虚拟父节点。
+     * - 若页面节点设置了 `allowVirtualParents: true`，即使此配置项为 `false` 也会独立参与虚拟节点生成。
+     * - 通过`useDocData().filter`筛选返回的节点中将包含虚拟节点。
+     * - 虚拟节点在默认的目录树组件中点击时仅执行展开/收起子节点目录的操作。
+     * 
+     * @example
+     * 启用 guides 空间的虚拟父节点自动生成
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       space: {
+     *         "guides": {
+     *           enableVirtual: true
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link SpaceMetaData.nodeMeta} 用于为虚拟节点补全其他字段
+     * @see {@link DocPageData.generateVirtualNodes} 虚拟节点生成逻辑方法
+     */
     enableVirtual?: boolean;
 
     /**
@@ -1135,6 +1255,7 @@ export interface SpaceMetaData {
      *   - 斜杠（/）
      *   例如，`"1/-2|6,9.5，7"` 表示将配置应用于 `order` 为 [1, -2, 6, 9.5, 7] 的页面节点。
      * - 如果你希望通过函数形式设置默认doc目录树标签页中节点的文本，你只能在这里通过配置对应节点的treeTitle属性来设置。
+     * - 该属性的配置只对实际存在的页面节点/虚拟节点生效，例如如果空间中不存在 `order` 为 [1, 2]的节点，那么即使为"1/2"添加配置也不会生效。
      * 
      * @example
      * 为文档空间guides下所有页面开启继承与添加目录树节点文本函数，同时为order为[1,2]的节点设置特殊标题。

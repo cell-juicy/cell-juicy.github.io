@@ -57,6 +57,7 @@ interface RawDocPageData {
     order: number[];
     cover?: string | false;
     resources?: Record<string, ResourceInput>;
+    allowVirtualParents?: boolean;
     treeTitle?:
         | string
         | ((data: DocPageData) => string | undefined);
@@ -361,7 +362,7 @@ export class DocPageData {
         });
     };
 
-    static generateVirtualNodes(dataBase: RawDocPageData[]) {
+    static generateVirtualNodes(dataBase: RawDocPageData[], docConfig: DocDefaultsConfig) {
         const existingNodes: Set<string> = new Set();
         const virtualNodes: RawDocPageData[] = [];
 
@@ -372,7 +373,20 @@ export class DocPageData {
             }
         });
 
-        dataBase.forEach((node) => { 
+        dataBase.forEach((node) => {
+            // Skip nodes that do not allow virtual parents
+            if (node.allowVirtualParents === false) return;
+
+            const nodeSpace = node.space;
+            const spaceConfig = (
+                typeof nodeSpace === 'string' &&
+                (typeof docConfig.space === 'object' && docConfig.space !== null) &&
+                (typeof docConfig.space[nodeSpace] === 'object' && docConfig.space[nodeSpace] !== null)
+            ) ? docConfig.space[nodeSpace] : {};
+
+            // Skip nodes whose space is set to disable virtual node generation
+            if (node.allowVirtualParents === undefined && !spaceConfig.enableVirtual) return;
+
             const currentOrder = [...node.order];
 
             while (currentOrder.length > 1) {
@@ -390,7 +404,7 @@ export class DocPageData {
                     virtual: true,
                 });
                 existingNodes.add(expectedParentid);
-            }
+            };
         });
 
         dataBase.push(...virtualNodes)
@@ -426,9 +440,7 @@ export class DocPageData {
         if (typeof config !== 'object' || !config) return copy;
         
         // Generate virtual nodes
-        if (!!config.enableVirtual) {
-            DocPageData.generateVirtualNodes(copy);
-        }
+        DocPageData.generateVirtualNodes(copy, config);
 
         // Apply space meta data
         if (typeof config.space === 'object' && config.space !== null) {
