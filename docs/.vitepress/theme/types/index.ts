@@ -23,8 +23,17 @@ import type {
 } from "./layoutBlog";
 
 import {
+    VPJDocLayoutConfig
+} from "./layoutDoc";
+
+import {
     BlogDefaultsConfig
 } from "./blog";
+
+import {
+    DocDefaultsConfig
+} from "./doc";
+
 
 
 /**
@@ -72,6 +81,12 @@ export interface VPJLayoutsConfig {
      * @see {@link VPJBlogLayoutConfig} blog布局配置接口
      */
     blog?: VPJBlogLayoutConfig;
+
+    /**
+     * doc布局配置
+     * @see {@link VPJDocLayoutConfig} doc布局配置接口
+     */
+    doc?: VPJDocLayoutConfig;
 }
 
 
@@ -147,4 +162,11 @@ export interface ThemeConfig {
      * @see {@link BlogDefaultsConfig} 博客页默认数据配置接口
      */
     blog?: BlogDefaultsConfig;
+
+    /**
+     * 文档(doc)页默认数据配置
+     * @optional
+     * @see {@link DocDefaultsConfig} 文档页默认数据配置接口
+     */
+    doc?: DocDefaultsConfig;
 }

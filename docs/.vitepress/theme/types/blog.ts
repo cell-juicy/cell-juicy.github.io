@@ -1,11 +1,17 @@
 import {
     AsideTabInput,
+    NormalizedAsideTabInput,
     DeviceSpecificInput,
+    NormalizedDeviceSpecificInput,
     CoverCssConfigInput,
     HeaderTitleTemplateInput,
     ToolbarGithubLinkInput,
+    NormalizedToolbarGithubLinkInput,
     ToolbarDownloadInput,
-    ToolbarButtonInput
+    NormalizedToolbarDownloadInput,
+    ToolbarButtonInput,
+    NormalizedToolbarButtonInput,
+    PageContext
 } from "./common";
 
 import {
@@ -29,25 +35,25 @@ import {
  * 可配置的全部属性如下：
  *
  * 1. **侧边栏配置**  
- * @see {@link SeriesDefaultData.asideTabs} 标签页配置
+ * @see {@link SeriesMetaData.asideTabs} 标签页配置
  * 
  * 2. **顶部栏配置**  
- * @see {@link SeriesDefaultData.headerTitleTemplate} 标题模板  
- * @see {@link SeriesDefaultData.headerIcon} 图标配置  
- * @see {@link SeriesDefaultData.github} GitHub按钮  
- * @see {@link SeriesDefaultData.md} Markdown下载  
- * @see {@link SeriesDefaultData.pdf} PDF下载  
- * @see {@link SeriesDefaultData.toolbar} 自定义工具按钮
+ * @see {@link SeriesMetaData.headerTitleTemplate} 标题模板  
+ * @see {@link SeriesMetaData.headerIcon} 图标配置  
+ * @see {@link SeriesMetaData.github} GitHub按钮  
+ * @see {@link SeriesMetaData.md} Markdown下载  
+ * @see {@link SeriesMetaData.pdf} PDF下载  
+ * @see {@link SeriesMetaData.toolbar} 自定义工具按钮
  * 
  * 3. **封面配置**  
- * @see {@link SeriesDefaultData.cover} 封面图路径  
- * @see {@link SeriesDefaultData.coverAlt} 描述文本  
- * @see {@link SeriesDefaultData.coverHeight} 高度配置  
- * @see {@link SeriesDefaultData.coverFade} 渐变过渡  
- * @see {@link SeriesDefaultData.coverCss} CSS样式
+ * @see {@link SeriesMetaData.cover} 封面图路径  
+ * @see {@link SeriesMetaData.coverAlt} 描述文本  
+ * @see {@link SeriesMetaData.coverHeight} 高度配置  
+ * @see {@link SeriesMetaData.coverFade} 渐变过渡  
+ * @see {@link SeriesMetaData.coverCss} CSS样式
  * 
- * 4. **内容区配置**  
- * @see {@link SeriesDefaultData.presetTags} 预设标签
+ * 4. **页面数据配置**  
+ * @see {@link SeriesMetaData.presetTags} 预设标签
  * 
  * 注意事项：
  * - 通过此接口配置会根据键值来为series名称等于此键值的blog页进行配置。
@@ -89,7 +95,7 @@ import {
  * }
  * ```
  */
-export interface SeriesDefaultData {
+export interface SeriesMetaData {
     /**
      * 侧边栏标签页配置
      * @optional
@@ -987,7 +993,7 @@ export interface SeriesDefaultData {
      * - 此处的配置在主题合并配置时比起themeConfig.layouts.blog中的同名配置（参见 {@link VPJBlogLayoutConfig.coverFade}）拥有更高优先级，但合并优先级始终低于页面frontmatter的配置
      * - 输入值会被规范化为0-1之间的数值，超出范围的值会被钳制（如1.5→1.0，-0.3→0.0）
      * - 实际效果通过CSS的mask-image属性实现，生成格式为：`linear-gradient(to top, transparent 0%, black ${num * 100}%, black)`
-     * - 当coverCss的合并结果中显式设置maskImage属性时（参见 {@link SeriesDefaultData.coverCss}），本配置将被覆盖
+     * - 当coverCss的合并结果中显式设置maskImage属性时（参见 {@link SeriesMetaData.coverCss}），本配置将被覆盖
      * 
      * @example
      * 示例1：为设计系列添加中度渐变
@@ -1250,6 +1256,12 @@ export interface SeriesDefaultData {
  */
 export interface BlogDefaultsConfig {
     /**
+     * 系列默认配置
+     * @see {@link SeriesMetaData} blog系列默认数据接口
+     */
+    series?: Record<string, SeriesMetaData>;
+
+    /**
      * VPJTag默认配置
      * 
      * @remarks
@@ -1357,10 +1369,4 @@ export interface BlogDefaultsConfig {
          */
         textProcessor?: (tag: string) => string;
     };
-  
-    /**
-     * 系列默认配置
-     * @see {@link SeriesDefaultData} blog系列默认数据接口
-     */
-    series?: Record<string, SeriesDefaultData>;
-  }
+}

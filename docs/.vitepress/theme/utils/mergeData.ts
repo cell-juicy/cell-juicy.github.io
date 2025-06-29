@@ -20,7 +20,7 @@ import type {
     ToolbarButtonData,
     ToolbarButtonInput,
 } from "../types/common";
-import { processOrder } from "./common";
+import { any2Number } from "./common";
 
 
 const CssConfigKeyList = [
@@ -151,7 +151,7 @@ function normalizeAsideTabInput(
                     acc[key] = {
                         name: value.name,
                         component: value.component,
-                        order: (value.order === undefined) ? undefined : processOrder(value.order)
+                        order: (value.order === undefined) ? undefined : any2Number(value.order)
                     };
                 };
             };
@@ -268,7 +268,7 @@ function normalizeToolbarButtonData(
                     acc[key] = {
                         icon: value.icon,
                         callback: value.callback,
-                        order: value.order ? processOrder(value.order) : undefined,
+                        order: value.order ? any2Number(value.order) : undefined,
                         tooltip: value.tooltip,
                     };
                 };
@@ -394,7 +394,7 @@ export function mergeAsideTabData(
             if (value.component === false || value.component === undefined) return result;
             
             const name = value.name ?? value.component;
-            const order = processOrder(value.order);
+            const order = any2Number(value.order);
             result[key] = { name, component: value.component, order };
             return result;
         }, {} as Record<string, AsideTabData>);
@@ -545,7 +545,7 @@ export function mergeToolbarButtonData(
                 result[key] = {
                     icon: value.icon,
                     callback: value.callback,
-                    order: processOrder(value.order),
+                    order: any2Number(value.order),
                     tooltip: (value.tooltip === false) ? undefined : value.tooltip
                 }
             };

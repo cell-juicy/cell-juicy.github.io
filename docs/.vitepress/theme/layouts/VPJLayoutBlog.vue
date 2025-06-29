@@ -1,6 +1,5 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { useData } from 'vitepress';
 import { computed } from 'vue';
 
 import { useVPJBlogLayout } from '../composables/useVPJBlogLayout';
@@ -53,9 +52,9 @@ const computedMarginBottom = computed(() => {
                     open: asideOpen
                 }"
             >
-                <template #blog-header-before><slot name="blog-header-before"/></template>
-                <template #blog-header-between><slot name="blog-header-between"/></template>
-                <template #blog-header-after><slot name="blog-header-after"/></template>
+                <template #header-before><slot name="blog-header-before"/></template>
+                <template #header-between><slot name="blog-header-between"/></template>
+                <template #header-after><slot name="blog-header-after"/></template>
             </VPJArticleHeader>
         </slot>
         <main class="vpj-layout-blog__main">
@@ -226,9 +225,7 @@ const computedMarginBottom = computed(() => {
         .vpj-layout-blog__aside-controler {
             display: none;
         }
-    }
 
-    @media screen and (max-width: 768px) {
         .vpj-layout-blog__article {
             padding-right: 0;
         }

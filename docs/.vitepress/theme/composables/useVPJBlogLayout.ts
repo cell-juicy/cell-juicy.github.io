@@ -1,5 +1,5 @@
 import { useData } from 'vitepress';
-import { Ref, ref, computed, watch } from 'vue';
+import { Ref, ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 
 import { isMobile, isTablet } from '../utils/deviceTypes'
@@ -14,11 +14,8 @@ import {
     mergeToolbarButtonData
 } from '../utils/mergeData';
 
-import type {
-    ThemeConfig
-} from '../types';
 import { useBlogData } from './useBlogData';
-import { CoverCssConfigData, CoverCssConfigInput } from '../types/common';
+import { CoverCssConfigData } from '../types/common';
 
 
 const DEFAULT = {
@@ -170,7 +167,7 @@ export const useVPJBlogLayout = defineStore('vpj-layout-blog', () => {
     // Content config
     const contentConfig = computed(() => {
         if (frontmatter.value.layout === "blog") {
-            // Calculate margin top
+            // Calculate margin bottom
             const mergedMarginBottom = mergeDeviceData(
                 frontmatter.value.contentMarginBottom,
                 layoutConfig.value.contentMarginBottom,

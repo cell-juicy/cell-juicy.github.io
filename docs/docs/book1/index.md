@@ -1,7 +1,7 @@
 ---
 layout: doc
 space: book1
-order: main
+order: -1
 ---
 
 # 这是一本假书

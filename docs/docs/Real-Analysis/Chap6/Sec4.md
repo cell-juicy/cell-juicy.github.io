@@ -1,0 +1,375 @@
+---
+layout: doc
+space: 实分析
+order:
+  - 6
+  - 4
+cover: /assets/unknown.png
+coverCss:
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight: 320px
+---
+# 6.4 上极限、下极限和极限点
+
+## 定义
+
+1. <span style='color:red'>（6.4.1 极限点）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，$x$是一个实数，并且$\varepsilon>0$是一个实数。称$x$是**$\varepsilon$-附着**于$(a_n)_{n=m}^\infty$的，当且仅当存在一个$n\geq m$使得$a_n$是$\varepsilon$-接近于$x$的。
+
+   ​    称$x$是**持续$\varepsilon$-附着**于$(a_n)_{n=m}^\infty$的，当且仅当对每一个整数$N\geq m$，$x$都是$\varepsilon$-附着于$(a_n)_{n=N}^\infty$的。
+
+   ​    称$x$是$(a_n)_{n=m}^\infty$的**极限点**或**附着点**，当且仅当对任意$\varepsilon>0$，$x$都是持续$\varepsilon$-附着于$(a_n)_{n=m}^\infty$的。
+
+   <span style='color:blue'>（展开的表述：称$x$是$(a_n)_{n=m}^\infty$的极限点，当且仅当对任意$\varepsilon>0$与$N\geq m$，都存在一个$n\geq N$使得$|a_n-x|\leq\varepsilon$）</span>
+
+   > <span style='color:blue'>注：极限是极限点的一个**特殊情形**。</span>
+
+2. <span style='color:red'>（6.4.6 上极限与下极限）</span>设$(a_n)_{n=m}^\infty$是一个序列，定义一新序列$(A_N^+)_{N=m}^\infty$，其中有：
+   $$
+   A_N^+:=\sup (a_n)_{n=N}^\infty
+   $$
+    于是定义序列$(a_n)_{n=m}^\infty$的**上极限**，记作$\displaystyle\limsup_{n\to \infty}a_n$，有：
+   $$
+   \limsup_{n\to \infty}a_n:=\inf (A_N^+)_{N=m}^\infty
+   $$
+   类似的，可以定义：
+   $$
+   A_N^-:=\inf (a_n)_{n=N}^\infty
+   $$
+   并定义序列的**下极限**，记为$\displaystyle\liminf_{n\to \infty}a_n$：
+   $$
+   \liminf_{n\to \infty}a_n:=\sup (A_N^-)_{n=m}^\infty
+   $$
+   <span style='color:blue'>（注：上极限与下极限是极限点的一种）</span>
+
+---
+
+## 命题
+
+1. <span style='color:red'>（6.4.5 极限是极限点）</span>设$(a_n)_{n=m}^\infty$是一个收敛于$c$的序列，那么$c$是$(a_n)_{n=m}^\infty$的一个极限点。进一步的，它是$(a_n)_{n=m}^\infty$唯一一个极限点。
+
+2. <span style='color:red'>（6.4.12 上下极限的一些基本性质）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，$L^+$是该序列上极限，$L^-$是该序列下极限<span style='color:blue'>（于是有$L^+$，$L^-$均为广义实数）</span>
+
+   > 1. 对任意的$x>L^+$，存在一个$N\geq m$使得$a_n<x$对所有的$n\geq N$成立。对任意的$y<L^-$，存在一个$N\geq m$使得$a_n>y$对所有的$n\geq N$成立。<span style='color:blue'>（通俗点说，就是总是可以找到一个$N$，从$N$往后所有自然数均满足所有项小于上极限或所有项大于下极限）</span>
+   > 2. 对任意的$x<L^+$和任意的$N\geq m$，存在一个$n\geq N$使得$a_n>x$。对任意的$y>L^-$与任意的$N\geq m$，存在一个$n\geq N$使得$a_n<y$。<span style='color:blue'>（通俗点说，就是$x$总是会被$a_n$无限次超越，$y$总是会无限次超越$a_n$）</span>
+   > 3. $\inf (a_n)_{n=m}^\infty\leq L^-\leq L^+\leq\sup (a_n)_{n=m}^\infty$。
+   > 4. 如果$c$是$(a_n)_{n=m}^\infty$的一个极限点，那么有$L^-\leq c\leq L^+$。
+   > 5. 如果$L^+$或$L^-$是有限的，则它们同时也会是$(a_n)_{n=m}^\infty$的极限点。
+   > 6. 设$c$是一个实数，$(a_n)_{n=m}^\infty$收敛于$c$，当且仅当$L^+=L^-=c$。
+
+3. <span style='color:red'>（6.4.13 比较原理）</span>假设$(a_n)_{n=m}^\infty$和$(b_n)_{n=m}^\infty$是两个实数序列，且有$a_n\leq b_n$对全部$n\geq m$成立则有不等式：
+   $$
+   \begin{gather}
+   \sup (a_n)_{n=m}^\infty\leq\sup (b_n)_{n=m}^\infty\\
+   \inf (a_n)_{n=m}^\infty\leq\inf (b_n)_{n=m}^\infty\\
+   \limsup_{n\to \infty}a_n\leq\limsup_{n\to \infty}b_n\\
+   \liminf_{n\to \infty}a_n\leq\liminf_{n\to \infty}b_n
+   \end{gather}
+   $$
+   
+4. <span style='color:red'>（6.4.14 夹逼定理）</span>假设$(a_n)_{n=m}^\infty$，$(b_n)_{n=m}^\infty$与$(c_n)_{n=m}^\infty$均为实数序列，且对所有$n\geq m$均有：
+   $$
+   a_n\leq b_n\leq c_n
+   $$
+
+   如果又有$(a_n)_{n=m}^\infty$与$(c_n)_{n=m}^\infty$收敛于同一个极限$L$，那么$(b_n)_{n=m}^\infty$也收敛于$L$。
+
+5. <span style='color:red'>（6.4.17 序列的$0$判别法）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，那么极限$a_n$存在且等于$0$，当且仅当$\displaystyle\lim_{n\to\infty}|a_n|$存在且等于$0$。
+
+6. <span style='color:red'>（6.4.18 实数的完备性）</span>实数序列$(a_n)_{n=1}^\infty$是柯西序列，当且仅当它是收敛的。
+
+   <span style='color:blue'>（注：用度量空间语言来说，上定理断定了实数集是一个完备的度量空间，即实数集不像有理数集那样包含“洞”）</span>
+
+---
+
+## 课后习题
+
+##### 6.4.1 证明命题6.4.5
+
+> 先证明$c$是$(a_n)_{n=m}^\infty$的一个极限点：
+>
+> 对任意实数$\varepsilon>0$，由于$(a_n)_{n=m}^\infty$收敛于$c$，于是存在$N\geq m$使得$|a_n-c|\leq\varepsilon$对任意$n\geq N$成立，于是对任意整数$M\geq m$，我们定义整数$L$选取规则如下：
+> $$
+> L=
+> \begin{cases}
+> N&\text{if}\;M\leq N\\
+> M&\text{if}\;M>N
+> \end{cases}
+> $$
+> 于是我们可以得到有$L\geq N\iff|a_L-c|<\varepsilon$成立，并且有$L\geq M$成立。于是此时可以总结得到：
+>
+> 对任意实数$\varepsilon>0$与任意整数$M\geq m$，都存在整数$L\geq M$使得$|a_L-c|\leq\varepsilon$成立，于是根据定义6.4.1，我们可以得到$c$是序列$(a_n)_{n=m}^\infty$的一个极限点。
+>
+> ---
+>
+> 再证明$c$是$(a_n)_{n=m}^\infty$唯一的极限点：
+>
+> 使用反证法，不妨假设序列$(a_n)_{n=m}^\infty$还有另一个极限点$c'\ne c$，于是对任意$\varepsilon>0$与任意整数$N\geq m$，总存在整数$n_1$，$n_2\geq N$使得$|a_{n_1}-c|$与$|a_{n_2}-c'|$均小于$\varepsilon$成立。
+>
+> 又序列$(a_n)_{n=m}^\infty$收敛于$c$，于是我们令有$\displaystyle b=\frac{|c'-c|}{3}$。对$a$，可以得到存在整数$N\geq m$使得对任意$n\geq N$都有$|a_n-c|\leq b$成立；又根据$c'$是序列$(a_n)_{n=m}^\infty$的极限点，于是对于$b$与$N$存在一个整数$n_2\geq N$使得$|a_{n_2}-c'|\leq b$成立。此时简单讨论：
+>
+> > * 若$c'>c$，则有：
+> >   $$
+> >   \begin{cases}
+> >   \forall n\geq N,|a_n-c|\leq b\Longrightarrow\forall n\geq N,a_n\leq c+b\\
+> >   \exists n_2\geq N,|a_{n_2}-c'|\leq b\Longrightarrow\exists n_2\geq N,a_{n_2}\geq c'-b
+> >   \end{cases}
+> >   $$
+> >   于是对$n_2$，我们此时有$a_{n_2}\geq c'-b\geq c+b$，于是$c'$是极限点同序列$(a_n)_{n=m}^\infty$收敛的前提矛盾，此时$c'$不可能是极限点。
+> >
+> > * 若$c'<c$，则有：
+> >   $$
+> >   \begin{cases}
+> >   \forall n\geq N,|a_n-c|\leq b\Longrightarrow\forall n\geq N,a_n\geq c-b\\
+> >   \exists n_2\geq N,|a_{n_2}-c'|\leq b\Longrightarrow\exists n_2\geq N,a_{n_2}\leq c'+b
+> >   \end{cases}
+> >   $$
+> >   于是对$n_2$，我们此时有$a_{n_2}\leq c'+b\leq c-b$，于是$c'$是极限点同序列$(a_n)_{n=m}^\infty$收敛的前提矛盾，此时$c'$不可能是极限点。
+>
+> 综上，于是$c$只能是序列$(a_n)_{n=m}^\infty$唯一的极限点。
+
+##### 6.4.2 对于极限点、上极限、下极限，叙述并证明与[习题6.1.3](../Chap6/Sec1.md)和[习题6.1.4](../Chap6/Sec1.md)类似的结论
+
+>叙述：
+>
+>设$(a_n)_{n=m}^{\infty}$是一个实数序列，$c$是一个实数，证明：
+>
+>* 若$m'\geq m$是一个整数，则$c$是$(a_n)_{n=m}^{\infty}$的极限点，当且仅当$c$也是$(a_n)_{n=m'}^{\infty}$的极限点。
+>* 若$k\geq 0$是一个非负整数，则$c$是$(a_n)_{n=m}^{\infty}$的极限点，当且仅当$c$也是$(a_{n+k})_{n=m}^{\infty}$的极限点。
+>
+>证明：
+>
+>按顺序证明，先证明前者：
+>
+>必要性：
+>
+>若$c$是$(a_n)_{n=m}^{\infty}$的极限点，则对任意实数$\varepsilon>0$与整数$N\geq m$，都存在整数$n\geq N$使得$|a_n-c|\leq\varepsilon$成立。于是特别的，对任意实数$\varepsilon>0$与整数$N\geq m'$也成立这个结论（因为$N\geq m'\geq m$，于是整数$N\geq m$，满足条件），于是$c$也是$(a_n)_{n=m'}^{\infty}$的极限点。
+>
+>充分性：
+>
+>若$c$是$(a_n)_{n=m'}^{\infty}$的极限点，则对任意实数$\varepsilon>0$与整数$N\geq m'$，都存在整数$n\geq N$使得$|a_n-c|\leq\varepsilon$成立。于是当给出任意一组$\varepsilon>0$与整数$N\geq m$时，我们做讨论：
+>
+>> * 若$N\geq m'$成立，则直接依据前置结论存在某个整数$n\geq N$使得$|a_n-c|\leq\varepsilon$成立。
+>> * 若$N<m'$成立，则依据前结论对给定$\varepsilon>0$与$m'$存在某整数$n\geq m'$使得$|a_n-c|\leq\varepsilon$成立，又由$N<m'$可推知有$n\geq N$成立，于是此时依旧存在某整数$n\geq m'$使得$|a_n-c|\leq\varepsilon$成立。
+>
+>综上，此时总有对任意实数$\varepsilon>0$与整数$N\geq m$，总存在$n\geq N$使得$|a_n-c|\leq\varepsilon$成立，于是此时$c$也是$(a_n)_{n=m}^{\infty}$的极限点。
+>
+>综上，于是结论得证。
+>
+>---
+>
+>然后是后者的证明：
+>
+>必要性：
+>
+>若$c$是$(a_n)_{n=m}^{\infty}$的极限点，则对任意实数$\varepsilon>0$与整数$N\geq m$，都存在整数$n\geq N$使得$|a_n-c|\leq\varepsilon$成立。于是对任意实数$\varepsilon>0$与整数$N\geq m$，取$N'=N+k$，由前置结论我们有存在某个整数$n\geq N+k$使得$|a_{n}-c|\leq \varepsilon$成立，此时令有$l=n-k$，于是我们有$l\geq N$与$|a_{l+k}-c|\leq\varepsilon$成立。
+>
+>综上，即对任意实数$\varepsilon>0$与整数$N\geq m$，总存在某个整数$l\geq N$使得$|a_{l+k}-c|\leq\varepsilon$成立，于是此时根据定义有$c$是$(a_{n+k})_{n=m}^{\infty}$的极限点。
+>
+>充分性：
+>
+>若$c$是$(a_{n+k})_{n=m}^{\infty}$的极限点，则对任意实数$\varepsilon>0$与整数$N\geq m$，都存在整数$n\geq N$使得$|a_{n+k}-c|\leq\varepsilon$成立。于是对任意实数$\varepsilon>0$与整数$N\geq m$，根据前置结论此时存在整数$n\geq N$使得$|a_{n+k}-c|\leq\varepsilon$成立。此时令有$l=n+k$，由$k\geq 0$于是我们有$l\geq N$且$|a_l-c|\leq\varepsilon$成立。
+>
+>综上，即对任意实数$\varepsilon>0$与整数$N\geq m$，总存在某个整数$l\geq N$使得$|a_l-c|\leq\varepsilon$成立，于是此时根据定义有$c$是$(a_n)_{n=m}^{\infty}$的极限点。
+>
+>综上，于是结论得证。
+
+##### 6.4.3 证明命题6.4.12的(c)、(d)、(e)和(f)四个部分<span style='color:blue'>（就是3,4,5,6）（提示：可以利用该命题前面的结论去证明后面的结论）</span>
+
+> * $\inf (a_n)_{n=m}^\infty\leq L^-\leq L^+\leq\sup (a_n)_{n=m}^\infty$。
+>
+> 分三个部分证明：
+>
+> $L^+\leq\sup (a_n)_{n=m}^\infty$：
+>
+> 根据定义，有$L^+=\inf(A_N^+)_{N=m}^\infty$，其中$A_N^+=\sup(a_n)_{n=N}^\infty$。于是题目可以等价为$\inf(A_N^+)_{N=m}^\infty\leq A_m^+$，根据命题6.3.6变种的下确界性质，于是该命题为真。
+>
+> $\inf (a_n)_{n=m}^\infty\leq L^-$：
+>
+> 根据定义，有$L^-=\sup(A_N^-)_{N=m}^\infty$，其中$A_N^-=\inf(a_n)_{n=N}^\infty$。于是题目可以等价为$A_m^-\leq\sup(A_N^-)_{N=m}^\infty$，根据命题6.3.6的上确界性质，于是该命题为真。
+>
+> $L^-\leq L^+$：
+>
+> 使用反证法，我们假设有$L^->L^+$，于是取两个实数$x$，$y$使得$L^->y>x>L^+$（根据命题5.4.14，这样的操作是可行的）。根据结论(a)，此时有存在两个整数$N_1$，$N_2$有对任意$n\geq N_1$，$a_n<x$恒成立；对任意$n\geq N_2$，$a_n>y$恒成立。于是此时对任意$n$大于$\max(N_1,N_2)$，有$a_n>y>x>a_n$恒成立，于是导出了矛盾，于是反证结束，不可能有$L^->L^+$，于是根据实数序的三歧性，必然有$L^-\leq L^+$。
+>
+> ---
+>
+> * 如果$c$是$(a_n)_{n=m}^\infty$的一个极限点，那么有$L^-\leq c\leq L^+$。
+>
+> 不妨使用反证法，我们假设有$c>L^+$，于是取一个$\displaystyle c'=\frac{c+L^+}{2}>L^+$，根据结论(a)有存在整数$N\geq m$使得对任意$n\geq m$都有$a_n<c'$成立，又根据$c$是$(a_n)_{n=m}^\infty$的极限点，于是对于$\varepsilon=c-c'$与整数$N$存在一个$n_0\geq N$使得$|a_{n_0}-c|\leq\varepsilon$成立。综合上面内容，化简一下可以得到：
+> $$
+> \forall n\geq N,a_n<c'\\
+> \exists n_0\geq N,|a_{n_0}-c|\leq\varepsilon\iff c'\leq a_{n_0}\leq 2c-c'
+> $$
+> 于是$a_{n_0}$同时满足$a_{n_0}<c'$与$a_{n_0}\geq c'$，导出矛盾，反证结束。结合实数序的三歧性此时只能有$c\leq L^+$成立。
+>
+> 对下极限，同理，我们使用反证法，具体过程见下：
+>
+> 我们假设有$c<L^-$，于是取一个$\displaystyle c'=\frac{c+L^-}{2}<L^-$，根据结论(a)有存在整数$N\geq m$使得对任意$n\geq m$都有$a_n>c'$成立，又根据$c$是$(a_n)_{n=m}^\infty$的极限点，于是对于$\varepsilon=c'-c$与整数$N$存在一个$n_0\geq N$使得$|a_{n_0}-c|\leq\varepsilon$成立。综合上面内容，化简一下可以得到：
+> $$
+> \forall n\geq N,a_n>c'\\
+> \exists n_0\geq N,|a_{n_0}-c|\leq\varepsilon\iff 2c-c'\leq a_{n_0}\leq c'
+> $$
+> 于是$a_{n_0}$同时满足$a_{n_0}\leq c'$与$a_{n_0}>c'$，导出矛盾，反证结束。结合实数序的三歧性此时只能有$c\geq L^-$成立。
+>
+> ---
+>
+> * 如果$L^+$或$L^-$是有限的，则它们同时也会是$(a_n)_{n=m}^\infty$的极限点。
+>
+> 先证明$L^+$是$(a_n)_{n=m}^\infty$的极限点：
+>
+> 对任意实数$\varepsilon>0$与任意整数$N\geq m$，根据结论(a)，于是对$L^++\varepsilon$，存在整数$N_1$使得对任意$n\geq N_1$总有$a_n<L^++\varepsilon$成立；根据结论(b)，对整数$N_2=\max(N,N_1)$与实数$L^+-\varepsilon<L^+$，存在一个整数$n\geq N_2$使得$a_n>L^+-\varepsilon$，特别地，此时$n$也是大于$N$与$N_1$的。于是综合上面两个子结论我们有：
+> $$
+> L^+-\varepsilon<a_n<L^++\varepsilon\iff|a_n-L^+|<\varepsilon
+> $$
+> 综合有：对任意实数$\varepsilon>0$与任意整数$N\geq m$，总存在一个整数$n\geq N$使得$|a_n-L^+|\leq\varepsilon$成立。于是根据极限点定义可以知有$L^+$是$(a_n)_{n=m}^\infty$的极限点。
+>
+> 再证明$L^-$是$(a_n)_{n=m}^\infty$的极限点：
+>
+> 对任意实数$\varepsilon>0$与任意整数$N\geq m$，根据结论(a)，于是对$L^--\varepsilon$，存在整数$N_1$使得对任意$n\geq N_1$总有$a_n>L^--\varepsilon$成立；根据结论(b)，对整数$N_2=\max(N,N_1)$与实数$L^-+\varepsilon>L^-$，存在一个整数$n\geq N_2$使得$a_n>L^-+\varepsilon$，特别地，此时$n$也是大于$N$与$N_1$的。于是综合上面两个子结论我们有：
+> $$
+> L^--\varepsilon<a_n<L^-+\varepsilon\iff|a_n-L^-|<\varepsilon
+> $$
+> 综合有：对任意实数$\varepsilon>0$与任意整数$N\geq m$，总存在一个整数$n\geq N$使得$|a_n-L^-|\leq\varepsilon$成立。于是根据极限点定义可以知有$L^-$是$(a_n)_{n=m}^\infty$的极限点。
+>
+> ---
+>
+> * 设$c$是一个实数，$(a_n)_{n=m}^\infty$收敛于$c$，当且仅当$L^+=L^-=c$。
+>
+> 必要性：
+>
+> 根据结论(e)，我们有$L^+$与$L^-$是序列的极限点，又根据命题6.4.5，序列收敛于$c$则$c$是序列唯一的极限点，于是此时必然有$L^+$与$L^-$都等于$c$，即$L^+=L^-=c$。
+>
+> 充分性：
+>
+> 若有$L^+=L^-=c$，于是对任意实数$\varepsilon>0$，分别对$L^++\varepsilon$与$L^--\varepsilon$应用结论(a)，此时有存在整数$N_1$，$N_2\geq m$使得$a_n<c+\varepsilon$与$a_l>c-\varepsilon$对任意$n\geq N_1$，$l\geq N_2$成立，于是对任意$n\geq\max(N_1,N_2)$我们有：
+> $$
+> c-\varepsilon<a_n<c+\varepsilon\iff|a_n-c|<\varepsilon
+> $$
+> 综合有：对任意实数$\varepsilon>0$，总存在整数$N\geq m$使得对任意$n\geq N$都有$|a_n-c|\leq\varepsilon$成立。由序列收敛定义，即$(a_n)_{n=m}^\infty$收敛于$c$。
+
+##### 6.4.4 证明引理6.4.13
+
+> 先证明前两条关于上下确界的结论，再证明后两条关于上下极限的结论。
+>
+> 上下确界的比较原理：
+>
+> 若有$a_n\leq b_n$对全部$n\geq m$成立，则$\sup (a_n)_{n=m}^\infty\leq\sup (b_n)_{n=m}^\infty$：
+>
+> 令有$\sup(a_n)_{n=m}^\infty=A$，$\sup(b_n)_{n=m}^\infty=B$，我们使用反证法。不妨假设此时有$A>B$，于是根据命题6.3.6，存在某整数$n\geq m$使得有$A\geq a_n> B$成立，并且对任意$n\geq m$，都有$B\geq b_n$成立。于是此时有：
+> $$
+> \exists n\geq m,A\geq a_n>B\geq b_n\Longrightarrow\exists n\geq m,a_n>b_n
+> $$
+> 然而根据题目条件，有$a_n\leq b_n$对全部$n\geq m$成立，导出矛盾，反证结束。此时必有$\sup (a_n)_{n=m}^\infty\leq\sup (b_n)_{n=m}^\infty$成立。
+>
+> 若有$a_n\leq b_n$对全部$n\geq m$成立，则$\inf(a_n)_{n=m}^\infty\leq\inf(b_n)_{n=m}^\infty$：
+>
+> 对上确界的比较原理证明过程稍作修改即可，附上本人的修改版本：
+>
+> 令有$\inf(a_n)_{n=m}^\infty=A$，$\inf(b_n)_{n=m}^\infty=B$，我们使用反证法。不妨假设此时有$A>B$，于是根据命题6.3.6的下确界变种，存在某整数$n\geq m$使得有$A>b_n\geq B$成立，并且对任意$n\geq m$，都有$a_n\geq A$成立。于是此时有：
+> $$
+> \exists n\geq m,a_n\geq A>b_n\geq B\Longrightarrow\exists n\geq m,a_n>b_n
+> $$
+> 然而根据题目条件，有$a_n\leq b_n$对全部$n\geq m$成立，导出矛盾，反证结束。此时必有$\inf(a_n)_{n=m}^\infty\leq\inf(b_n)_{n=m}^\infty$成立。
+>
+> ---
+>
+> 上下极限的比较原理：
+>
+> 对任意整数$N\geq m$，由于$a_n\leq b_n$对全部$n\geq m$成立，于是可以得到对任意$n\geq N$也有$a_n\leq b_n$成立，于是根据上下确界的比较引理，对任意$N\geq m$有$\sup(a_n)_{n=N}^\infty\leq\sup(b_n)_{n=N}^\infty$与$\inf(a_n)_{n=N}^\infty\leq\inf(b_n)_{n=N}^\infty$。令$A_N^+=\sup(a_n)_{n=N}^\infty$，$A_N^-=\inf(a_n)_{n=N}^\infty$，$B_N^+=\sup(b_n)_{n=N}^\infty$，$B_N^-=\inf(b_n)_{n=N}^\infty$。于是再次使用上下确界的比较原理，我们有：
+> $$
+> \begin{gather}
+> \inf(A_N^+)_{N=m}^\infty\leq\inf(B_N^+)_{N=m}^\infty\\
+> \sup(A_N^-)_{N=m}^\infty\leq\sup(B_N^-)_{N=m}^\infty
+> \end{gather}
+> $$
+> 再根据定义6.4.6，于是即当$a_n\leq b_n$对全部$n\geq m$成立，则有$\displaystyle\limsup_{n\to \infty}a_n\leq\limsup_{n\to \infty}b_n$与$\displaystyle\liminf_{n\to \infty}a_n\leq\liminf_{n\to \infty}b_n$成立，于是上下极限的比较原理得证。
+>
+> 综上，于是命题得证。
+
+##### 6.4.5 利用引理6.4.13证明推论6.4.14
+
+> 令$L_A^+$，$L_A^-$，$L_B^+$，$L_B^-$，$L_C^+$，$L_C^-$分别是序列$(a_n)_{n=m}^\infty$，$(b_n)_{n=m}^\infty$，$(c_n)_{n=m}^\infty$的上下极限。
+>
+> $(a_n)_{n=m}^\infty$与$(c_n)_{n=m}^\infty$收敛于同一个极限$L$，于是根据命题6.4.12，有$L_A^+$，$L_C^+$，$L_A^-$，$L_C^+$均等于$L$。根据比较原理，由对任意$n\geq m$有$a_n\leq b_n\leq c_n$可以得到$L_A^+\leq L_B^+\leq L_C^+$与$L_A^-\leq L_B^-\leq L_C^-$。于是结合两个结论我们可以得到$L_B^+=L_B^-=L$，于是根据命题6.4.12，此时有$(b_n)_{n=m}^\infty$收敛于$L$，于是推论6.4.14成立。
+
+##### 6.4.6 给出有界序列$(a_n)_{n=1}^\infty$和$(b_n)_{n=1}^\infty$的一个例子，其中$a_n<b_n$对所有的$n\geq 1$均成立，但$\text{sup}(a_n)_{n=1}^\infty\nless\text{sup}(b_n)_{n=1}^\infty$。解释为什么这与引理6.4.13不矛盾
+
+> 我们令有序列$\displaystyle a_n=-\frac{2}{n}$，$\displaystyle b_n=-\frac{1}{n}$，显然我们有对任意$n\geq 1$都有$a_n<b_n$成立，但是显然有$\sup(a_n)_{n=1}^\infty=\sup(b_n)_{n=1}^\infty=0$，于是即$\sup(a_n)_{n=1}^\infty\nless\sup(b_n)_{n=1}^\infty$。对于比较原理，比较原理结论有$\sup(a_n)_{n=1}^\infty\leq\sup(b_n)_{n=1}^\infty$，与两者相等的事实并不冲突。
+
+##### 6.4.8 我们称一个实数序列$(a_n)_{n=m}^\infty$以$+\infty$为极限点，当且仅当该序列不存在有限的上界；称该实数序列$(a_n)_{n=m}^\infty$以$-\infty$为极限点，当且仅当它不存在有限的下界。利用这个定义证明：$\lim \sup\limits_{n\to\infty}a_n$ 是$(a_n)_{n=m}^\infty$的一个极限点，并且它比$(a_n)_{n=m}^\infty$的其他任何极限点都大。换言之，上极限是序列的最大极限点。类似地证明下极限是序列的最小极限点<span style='color:blue'>（在证明过程中，可以利用命题6.4.12）</span>
+
+> 令有$L^+=\lim \sup\limits_{n\to\infty}a_n$，$L^-=\lim \inf\limits_{n\to\infty}a_n$，先给出上极限的相关证明，下极限在上极限的证明基础上稍作修改即可。
+>
+> 证明：$\lim \sup\limits_{n\to\infty}a_n$ 是$(a_n)_{n=m}^\infty$的一个极限点，并且它比$(a_n)_{n=m}^\infty$的其他任何极限点都大
+>
+> 先证明上极限是极限点：
+>
+> 我们已经知道当$L^+\in\mathbb R$的时候根据命题6.4.12(e)有$L^+$是极限点，于是我们只需要考虑$L^+$是无穷的情况。
+>
+> > * 若有$L^+$为$-\infty$，则根据定义6.3.1与定义6.2.6此时有集合$\{\sup(a_n)_{n=N}^\infty:N\geq m\}$是空集，然而这不可能，于是此情况无需考虑。
+> > * 若有$L^+$为$+\infty$，则根据命题6.4.12(b)我们有对任意实数$x$，由$x<+\infty$可知有存在某个整数$n\geq m$使得$a_n>x$成立，从而$(a_n)_{n=m}^\infty$不存在任何有限的上界（因为若有某实数$x$是$(a_n)_{n=m}^\infty$的上界，则存在某$n\geq m$使得$a_n>x$，从而$x$不满足上界定义，导出矛盾）。于是根据题目中定义我们有$+\infty$是$(a_n)_{n=m}^\infty$的极限点，也即$L^+$是$(a_n)_{n=m}^\infty$的极限点。
+>
+> 然后证明上极限是最大的极限点：
+>
+> 我们已经知道$L^+$仅可能是有限的或者是$+\infty$，如果$L^+$是$+\infty$，那么由于极限点本身必然是一个广义实数可以得到上极限就是最大的极限点，于是我们只需要对$L^+$有限的情况对$(a_n)_{n=m}^\infty$的极限点作讨论。
+>
+> 我们假设$c$是$(a_n)_{n=m}^\infty$的一个极限点，讨论：
+>
+> > * 若$c$是$-\infty$，那么它自然会小于有限的上极限$L^+$。
+> > * 若$c$是有限的，那么可以套用命题6.4.12(d)的证明以得到$c\leq L^+$成立。
+> > * 若$c$是$+\infty$，那么根据极限点的定义，此时$(a_n)_{n=m}^\infty$不存在有限的上界，于是$\sup(a_n)_{n=m}^\infty=+\infty$，并且对任意$N\geq m$，都会有$\sup(a_n)_{n=N}^\infty=+\infty$成立（因为若有$\sup(a_n)_{n=N}^\infty$是某个有限实数$M$，那么根据有限序列的有界性可以得到序列$(a_n)_{n=m}^N$也存在一个有限实数界$G$，于是序列$(a_n)_{n=m}^\infty$以有限实数$\max(M,G)$为界，与$(a_n)_{n=m}^\infty$不存在有限上界相矛盾），于是序列$(\sup(a_n)_{n=N}^\infty)_{N=m}^\infty$是全部元素均为$+\infty$的广义实数序列，从而根据上极限定义此时有$L^+=+\infty$，仍有$c\leq L^+$成立。
+>
+> 综上，于是上极限必然是最大的极限点。
+>
+> ---
+>
+> 对上极限的证明方法稍作修改，
+>
+> 证明：$\lim \inf\limits_{n\to\infty}a_n$ 是$(a_n)_{n=m}^\infty$的一个极限点，并且它比$(a_n)_{n=m}^\infty$的其他任何极限点都小。
+>
+> 先证明下极限是极限点：
+>
+> 我们已经知道当$L^-\in\mathbb R$的时候根据命题6.4.12(e)有$L^-$是极限点，于是我们只需要考虑$L^-$是无穷的情况。
+>
+> > * 若有$L^-$为$+\infty$，则根据定义6.3.1与定义6.2.6此时有集合$\{\inf(a_n)_{n=N}^\infty:N\geq m\}$是空集，然而这不可能，于是此情况无需考虑。
+> > * 若有$L^-$为$-\infty$，则根据命题6.4.12(b)我们有对任意实数$x$，由$x>-\infty$可知有存在某个整数$n\geq m$使得$a_n<x$成立，从而$(a_n)_{n=m}^\infty$不存在任何有限的下界（因为若有某实数$x$是$(a_n)_{n=m}^\infty$的下界，则存在某$n\geq m$使得$a_n<x$，从而$x$不满足下界定义，导出矛盾）。于是根据题目中定义我们有$-\infty$是$(a_n)_{n=m}^\infty$的极限点，也即$L^-$是$(a_n)_{n=m}^\infty$的极限点。
+>
+> 然后证明下极限是最小的极限点：
+>
+> 我们已经知道$L^-$仅可能是有限的或者是$-\infty$，如果$L^-$是$-\infty$，那么由于极限点本身必然是一个广义实数可以得到下极限就是最小的极限点，于是我们只需要对$L^-$有限的情况对$(a_n)_{n=m}^\infty$的极限点作讨论。
+>
+> 我们假设$c$是$(a_n)_{n=m}^\infty$的一个极限点，讨论：
+>
+> > * 若$c$是$+\infty$，那么它自然会大于有限的下极限$L^-$。
+> > * 若$c$是有限的，那么可以套用命题6.4.12(d)的证明以得到$c\geq L^-$成立。
+> > * 若$c$是$-\infty$，那么根据极限点的定义，此时$(a_n)_{n=m}^\infty$不存在有限的下界，于是$\inf(a_n)_{n=m}^\infty=-\infty$，并且对任意$N\geq m$，都会有$\inf(a_n)_{n=N}^\infty=+\infty$成立（因为若有$\inf(a_n)_{n=N}^\infty$是某个有限实数$M$，那么根据有限序列的有界性可以得到序列$(a_n)_{n=m}^N$也存在一个有限实数下界$-G$，于是序列$(a_n)_{n=m}^\infty$以有限实数$\min(M,-G)$为界，与$(a_n)_{n=m}^\infty$不存在有限下界相矛盾），于是序列$(\inf(a_n)_{n=N}^\infty)_{N=m}^\infty$是全部元素均为$-\infty$的广义实数序列，从而根据下极限定义此时有$L^-=-\infty$，仍有$c\leq L^-$成立。
+>
+> 综上，于是下极限必然是最小的极限点。
+
+##### 6.4.9 利用习题6.4.8中的定义，构造一个序列$(a_n)_{n=1}^\infty$使得该序列恰有$-\infty$、$0$和$+\infty$这三个极限点
+
+> 给出一个这样的序列，其中归纳定义$a_n$有：
+> $$
+> a_{n+2}:=-(a_n+1)\quad (n\geq 1)
+> $$
+> 
+> 并且定义$a_1=1$，$a_2=0$，于是$(a_n)_{n=1}^\infty$是形如$1$，$0$，$-2$，$0$，$...$的序列，这个序列显然不存在有限的上界与下界，并且对任意$\varepsilon>0$与整数$N\geq 1$，我们都有$a_{2N}=0\Longrightarrow|a_{2N}-0|\leq\varepsilon$，从而$0$是序列的极限点。
+
+##### 6.4.10 设$(a_n)_{n=N}^\infty$是一个是实数序列，$(b_m)_{m=M}^\infty$是另一个实数序列，其中每个$b_m$均是$(a_n)_{n=N}^\infty$的极限点，设$c$是$(b_m)_{m=M}^\infty$的一个极限点。证明：$c$也是$(a_n)_{n=N}^\infty$的极限点<span style='color:blue'>（换言之，极限点的极限点还是原序列的极限点）</span>
+
+> 对任意实数$\varepsilon>0$与整数$L\geq N$，我们取$\displaystyle\varepsilon'=\frac{\varepsilon}{2}$，由于$c$是$(b_m)_{m=M}^\infty$的一个极限点，于是对$\varepsilon'$与整数$M\geq M$，存在某个整数$m\geq M$使得$|b_m-c|\leq\varepsilon'$。
+>
+> 又根据$b_m$是$(a_n)_{n=N}^\infty$的极限点，于是对$\varepsilon'$与整数$L$，存在某个整数$n\geq L$使得$|b_m-a_n|\leq\varepsilon'$成立。
+>
+> 综合上面两个结论，于是有：
+> $$
+> |a_n-c|\leq|a_n-b_m|+|b_m-c|\leq2\varepsilon'=\varepsilon
+> $$
+> 总结有：对任意实数$\varepsilon>0$与整数$L\geq N$，存在某个整数$n\geq L$使得$|a_n-c|\leq\varepsilon$成立。于是$c$是$(a_n)_{n=N}^\infty$的一个极限点。
+
+---
+
+## 本节相关跳转
+
+[实分析 6.1 收敛与极限定律](../Chap6/Sec1.md)

@@ -1,0 +1,51 @@
+---
+layout: doc
+space: 实分析
+order:
+  - 5
+  - 1
+cover: /assets/unknown.png
+coverCss:
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight: 320px
+---
+# 5.1 柯西序列
+
+## 定义
+
+1. <span style='color:red'>（5.1.1 序列）</span>设$m$是一个整数。有理数序列$(a_n)^\infty_{n=m}$是一个从集合$\{n\in Z:n\geq m\}$到$\mathbb Q$的函数，它对每一个大于或等于$m$的整数$n$都指定了一个有理数$a_n$。<span style='color:blue'>（即$n\to a_n$）</span>
+
+2. <span style='color:red'>（5.1.3 $\varepsilon$-稳定性）</span>设$\varepsilon>0$，序列$(a_n)^\infty_{n=0}$是$\varepsilon$-稳定的，当且仅当元素中每一对$a_j$与$a_k$对任意的自然数$j$与$k$都是$\varepsilon$-接近的<span style='color:blue'>（见上一章[4.3节定义4.3.4](../Chap4/Sec3.md)）</span>。或者说序列$(a_n)^\infty_{n=0}$是$\varepsilon$-稳定的，当且仅当$d(a_j,a_k)\leq\varepsilon$对任意的自然数$j$，$k$均成立。
+
+   <span style='color:blue'>（注：在文献中，这个定义并不是标准定义。在本节之外，我们也不会用到这个定义，下文最终$\varepsilon$-稳定性的定义也是如此）</span>
+
+3. <span style='color:red'>（5.1.6 最终$\varepsilon$-稳定性）</span>设$\varepsilon>0$，称序列$(a_n)^\infty_{n=0}$是最终$\varepsilon$-稳定的，当且仅当存在某个自然数$N\geq0$使得$a_N$，$a_{N+1}$，…...是$\varepsilon$-稳定的。
+
+4. <span style='color:red'>（5.1.8 柯西序列）</span>有理数序列$(a_n)^\infty_{n=0}$被称为是**柯西序列**，当且仅当对任意**有理数**$\varepsilon>0$，序列$(a_n)^\infty_{n=0}$是最终$\varepsilon$-稳定的。
+   
+   <span style='color:blue'>（注：事实上对上加粗部分最终可证明$\varepsilon$为实数时结论依旧成立，不过在这里，我们还没有给出实数的定义）</span>
+   
+5. <span style='color:red'>（5.1.12 有界序列）</span>设$M\geq0$是有理数，称序列$a_1$，$a_2$，……，$a_n$以$M$为界，当且仅当$|a_i|\leq M$，对任意$1\leq i\leq n$成立。类似地可以定义无限序列$(a_n)^\infty_{n=1}$的有界性。
+
+---
+
+## 命题
+
+1. <span style='color:red'>（5.1.11 例子？）</span> 定义$a_n:=\frac{1}{n}$的序列$a_1$，$a_2$，$a_3$，......<span style='color:blue'>（即序列$1$，$1/2$，$1/3$，.......）</span>是柯西序列。
+2. <span style='color:red'>（5.1.14 有限序列是有界的）</span>任意一个**有限序列**都是有界的。
+3. <span style='color:red'>（5.1.15 柯西序列是有界的）</span>任意一个**柯西序列**都是有界的。
+
+---
+
+## 课后习题
+
+##### 5.1.1 证明引理5.1.15<span style='color:blue'>（提示：利用$(a_n)_{n=1}^{\infty}$是最终$\varepsilon$-稳定的。所以它能够被划分成一个有限序列和一个$1$-稳定的序列。然后，对有限部分使用引理5.1.14。注意，这里使用的数字$1$没有任何特别的地方，其他任何正数都足以用在这里）</span>
+
+> 对任意一个柯西序列$(a_n)_{n=1}^{\infty}$，根据定义对任意有理数$\varepsilon>0$，都应该有$(a_n)_{n=1}^{\infty}$是最终$\varepsilon$-稳定的。不妨取$\varepsilon=1$，于是存在某一个正整数$N$，使得对任意$n\geq N$都有$|a_n-a_N|\leq 1$，于是可以将$(a_n)_{n=1}^{\infty}$分成两个部分，即有限序列的$(a_n)_{n=1}^{N-1}$部分与无限序列的$(a_n)_{n=N}^{\infty}$部分。对前者，根据命题5.1.14我们可以得到它的一个界$A$，对后者，由于对任意$n\geq N$都有$|a_n-a_N|\leq 1$，由此可以推导出$a_N-1\leq a_n\leq a_N+1$，于是有$|a_n|\leq\max(|a_N-1|,|a_N+1|)=C$，即$C$是后者的界。于是取$M=\max(C,A)$，此时应当有对任意$n\geq 1$，$|a_n|\leq M$（对任意$1\leq n\leq N-1$，$|a_n|\leq A\leq M$；对任意$N\leq n$，$|a_n|\leq C\leq M$），于是可以得到$M$是$(a_n)_{n=1}^{\infty}$的界，即任意一个柯西序列都是有界的。
+
+---
+
+## 本节相关跳转
+
+[实分析 4.3 绝对值与指数运算](../Chap4/Sec3.md)

@@ -1,5 +1,6 @@
 import type { Route } from "vitepress";
 
+
 /**
  * 通用的图片数据配置类型
  * 
@@ -27,6 +28,7 @@ import type { Route } from "vitepress";
 export type ImageData = 
     | string
     | { src: string; alt?: string };
+
 
 /**
  * 通用的网页头部图标（Favicon）配置类型
@@ -63,6 +65,7 @@ export type HeadFaviconData =
         media?: string
     };
 
+
 /**
  * blog/doc布局页面上下文类型
  * 
@@ -91,6 +94,7 @@ export type PageContext = {
         | { layout: "blog"; series?: string; tags?: string[], order?: number; title?: string }
         | { layout: "doc"; space?: string; order?: number[]; title?: string };
 }
+
 
 /**
  * 设备特定输入类型
@@ -136,6 +140,7 @@ export type DeviceSpecificData = {
     tablet?: string;
     desktop?: string;
 }
+
 
 /**
  * blog/doc布局封面图CSS配置输入类型
@@ -248,6 +253,7 @@ export type CoverCssConfigData ={
 
     transition?: string;
 };
+
 
 /**
  * blog/doc布局侧边栏标签页输入类型
@@ -479,3 +485,91 @@ export type HeaderTitleTemplateInput =
     | false
     | string
     | ((ctx: PageContext) => string | false)
+
+
+/**
+ * 页面资源配置输入类型
+ *
+ * @remarks
+ * 此类型用于为文档页配置右侧工具栏中的资源链接区域，每个资源可显示图标、文本、URL，并支持下载等交互功能。配置方式支持以下几种形式：
+ *
+ * 1. **禁用资源**：使用 `false` 表示禁用当前资源项，等效于输入 `{ url: false }`。
+ * 2. **快捷模式**：直接输入一个字符串作为资源 URL，等效于 `{ url: "资源地址" }`。
+ * 3. **对象模式**：完整指定资源的各个字段，包括 URL、图标、标签文本、下载标志等，详见 {@link ResourceData}。
+ *
+ * 注意事项：
+ *
+ * - 所有资源项在解析时会被标准化为 {@link ResourceData} 结构。
+ * - 若配置为 `false` 或 `{ url: false }`，该资源不会被渲染到页面。
+ * - 如果资源的 `url` 字段缺失或为空字符串，视为无效资源，将被自动过滤。
+ * - 若资源为可下载类型（如 PDF、Markdown 等），建议使用 `download: true` 明确提示浏览器下载，如果需要自定义下载文件名，请使用 `download: "自定义文件名"`。
+ * - `type` 字段可用于显式声明资源类型，用于渲染时进行样式或排序优化，支持值包括 `"file"`、`"image"`、`"website"`、`"download"` 等。
+ * - 资源在最终页面中显示顺序受 `order` 字段影响，未指定时默认按定义顺序排列。
+ *
+ * @example
+ * 示例：快捷方式配置 PDF 下载链接
+ * ```ts
+ * export default {
+ *   themeConfig: {
+ *     doc: {
+ *       space: {
+ *         "api-guide": {
+ *           nodeMeta: {
+ *             global: {
+ *               resources: {
+ *                 pdf: "/downloads/api-guide.pdf"
+ *               }
+ *             }
+ *           }
+ *         }
+ *       }
+ *     }
+ *   }
+ * }
+ * ```
+ *
+ * @example
+ * 示例：完整对象模式配置图标链接
+ * ```ts
+ * export default {
+ *   themeConfig: {
+ *     doc: {
+ *       space: {
+ *         "design-notes": {
+ *           nodeMeta: {
+ *             "1": {
+ *               resources: {
+ *                 figma: {
+ *                   url: "https://figma.com/file/xyz",
+ *                   label: "设计原稿",
+ *                   icon: { component: "figma-icon" },
+ *                   type: "website",
+ *                   order: 2
+ *                 }
+ *               }
+ *             }
+ *           }
+ *         }
+ *       }
+ *     }
+ *   }
+ * }
+ * ```
+ *
+ * @see {@link ResourceData} 资源字段结构
+ */
+export type ResourceInput = 
+    | false
+    | string
+    | ResourceData;
+
+export type ResourceData = {
+    url?: string | false,
+    label?: string,
+    icon?:
+        | string
+        | { component: string },
+    order?: number,
+    download?: boolean | string,
+    type?: "file" | "image" | "website" | "download"
+}

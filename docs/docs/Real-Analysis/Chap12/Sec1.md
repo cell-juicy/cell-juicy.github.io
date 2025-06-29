@@ -1,0 +1,830 @@
+---
+layout: doc
+space: 实分析
+order:
+  - 12
+  - 1
+cover: /assets/reunite.jpg
+coverCss:
+  objectPosition: 30% center
+coverFade: 0.3
+coverHeight: 320px
+---
+# 12.1 定义和例子
+
+## 摘录
+
+1. <span style='color:red'>（距离函数）</span>在[定义6.1.5](../Chap6/Sec1.md)中我们定义了实数序列收敛于某个实数的概念，从直观上看序列$(x_n)_{n=m}^{\infty}$收敛于$x$，那么序列中的元素$x_n$最终会以某种方式无限趋近于$x$。若定义两个实数$x$，$y$的**距离函数**$d(x,y):=|x-y|$，则我们可以将序列的收敛表述为$d(x,x_n)$收敛于$0$<span style='color:blue'>（也就是引理12.1.1的内容）</span>。
+
+2. <span style='color:red'>（空间）</span>**空间**是指由某种特定类型的对象所构成的集合，例如全体实数的空间，全体$3\times 3$矩阵的空间。从数学角度来说，空间和集合之间没特别大的区别，但是一般来说空间会包含更多的结构，例如实数空间包含了加法，乘法这样的运算，但普通的集合并没有这类的性质。<span style='color:blue'>（也就是说，空间是具有一定特殊性质或者额外结构的集合）</span>
+
+3. <span style='color:red'>（序列收敛的拓展）</span>考虑拓展“序列的收敛”这一定义，我们希望不止能对实数序列取极限，还能对复数，向量，矩阵，函数甚至序列的序列取极限。当然，我们可以在每次研究新的对象的时候重新定义一次收敛的概念，但是这种方法显然不仅重复性高而且十分枯燥。另一种更为高效的方法是抽象地定义更一般化的空间——它包含了实数，复数，向量空间等标准空间，然后统一为这些空间定义收敛的概念。
+
+   ​    实际上，存在两种非常有用的空间，第一种是我们将要研究的**度量空间**，另一种是更为一般的**拓扑空间**。虽然拓扑空间非常重要，但是本书只在[13.5节](../Chap13/Sec5.md)中简单介绍。
+
+   <span style='color:blue'>（所以为什么这类作为简单介绍的章节习题都这么多？）</span>
+
+4. <span style='color:red'>（关于例子）</span>这一节中有大量的内容作为例子给出，根据我个人的笔记习惯不会将例子中的内容正式开一个栏目<span style='color:blue'>（如同我在[额外注释](..\..\额外注释\md\额外注释.md)中所说）</span>而是放在蓝字注释中，但是这一部分的例子内容显然不适合全部放在注释中（毫无疑问这样也会影响观感和阅读），因此对于我认为有用的例子在本节中我会自行总结放到定义栏内，对应的，我会在其编号中添加“例”以区分它们与书中的正式定义。
+
+---
+
+## 定义
+
+1. <span style='color:red'>（12.1.2 度量空间）</span>**度量空间**$(X,d)$是一个空间$X$，我们称$X$中的元素为**点**，并且$X$包含一个**距离函数**（也称为**度量**）$d:X\times X\to[0,+\infty)$，它对$X\times X$中的每一对点$(x,y)$都给出了一个对应非负实数$d(x,y)\geq 0$。此外，度量函数需要满足下面的四个公理：
+
+   > 1. 对任意$x\in X$，$d(x,x)=0$。
+   > 2. <span style='color:red'>（正性）</span>对任意两个**不同的**$x$，$y\in X$，我们都有$d(x,y)>0$。
+   > 3. <span style='color:red'>（对称性）</span>对任意的$x$，$y\in X$，我们有$d(x,y)=d(y,x)$。
+   > 4. <span style='color:red'>（三角不等式）</span>对任意的$x$，$y$，$z\in X$，我们有$d(x,z)\leq d(x,y)+d(y,z)$。
+
+   在一些情况下，我们能清楚的知道度量$d$是什么，因此此时可以将$(X,d)$缩写为$X$<span style='color:blue'>（就像对偏序集做的那样）</span>。
+
+   <span style='color:blue'>（注：上面的条件(a)与(b)也可以合并为同一条：对任意的$x$，$y\in X$有$d(x,y)=0$当且仅当$x=y$；关于度量空间一个很简单的例子就是实数集$\mathbb R$与定义为$d(x,y):=|x-y|$的度量函数$d:\mathbb R\times\mathbb R\to[0,+\infty)$所组成的序对$(\mathbb R,d)$是一个度量空间，我们一般称这个$d$为$\mathbb R$上的**标准度量**，如果没有特殊说明，那么只要提到度量空间$\mathbb R$都是指标准度量$d$）</span>
+
+2. <span style='color:red'>（12.1.5 例·导出的度量空间）</span>设$(X,d)$是一个度量空间，$Y$是$X$的一个子集。我们称限制函数$d|_{Y\times Y}:Y\times Y\to[0,+\infty)$是由$X$上的度量**导出**的$Y$上的**度量**。序对$(Y,d|_{Y\times Y})$被称为由$Y$**导出**的$(X,d)$的**子空间**，并且可以证明$(Y,d|_{Y\times Y})$也是一个度量空间。
+
+3. <span style='color:red'>（12.1.6 例·欧几里得空间）</span>设$n\geq 1$是一个自然数，并且设$\mathbb R^n$是$n$元有序实数组空间：
+   $$
+   \mathbb R^n=\{(x_1,x_2,...,x_n):x_1,...,x_n\in\mathbb R\}
+   $$
+   则定义**欧几里得度量**（也称$l^2$**度量**）$d_{l^2}:\mathbb R^n\times\mathbb R^n\to[0,+\infty)$为：
+   $$
+   \begin{align}
+   d_{l^2}((x_1,x_2,...,x_n),(y_1,y_2,...,y_n))&:=\sqrt{(x_1-y_1)^2+...+(x_n-y_n)^2}\\
+   &=\left(\sum_{i=1}^{n}(x_i-y_i)^2\right)^{\frac{1}{2}}
+   \end{align}
+   $$
+   这个度量等于毕达哥拉斯定理所给出的两点$(x_1,x_2,...,x_n)$和$(y_1,y_2,...,y_n)$之间的几何距离。我们称$(\mathbb R^n,d_{l^2})$是一个$n$**维欧几里得空间**。如同实数空间那样，在没有特殊说明的情况下只要提到了$\mathbb R^n$是一个度量空间都是指欧几里得度量。
+
+4. <span style='color:red'>（12.1.7 例·出租车度量）</span>仍然沿用例12.1.6对$n$与$\mathbb R^n$的假设，我们定义另一个不同的度量**出租车度量**（也称$l^1$**度量**）$d_{l^1}:\mathbb R^n\times\mathbb R^n\to[0,+\infty)$，其定义为：
+   $$
+   \begin{align}
+   d_{l^1}((x_1,x_2,...,x_n),(y_1,y_2,...,y_n))&:=|x_1-y_1|+...+|x_n-y_n|\\
+   &=\sum_{i=1}^{n}|x_i-y_i|
+   \end{align}
+   $$
+   这个度量的直观解释是假设出租车只能沿坐标方向走，出租车从一点驶向另一点的距离就是$d_{l^1}$（这也是它的名字由来），并且可以证明$(\mathbb R^n,d_{l^1})$也是一个度量空间，并且对所有的$x$，$y\in\mathbb R^n$都有下方不等式成立：
+   $$
+   d_{l^2}(x,y)\leq d_{l^1}(x,y)\leq\sqrt{n}d_{l^2}(x,y)
+   $$
+   <span style='color:blue'>（注：出租车度量可以在很多不同的领域发挥作用，例如纠错码理论中，将$n$个二进制数组成的二进制数串可以看做一个有序$n$元组，于是出租车距离就表示了两个二进制数串中不同的比特个数）</span>
+
+5. <span style='color:red'>（12.1.9 例·上确界范数度量）</span>仍然沿用例12.1.6对$n$与$\mathbb R^n$的假设，我们定义另一个不同的度量**上确界范数度量**（也称$l^{\infty}$**度量**）$d_{l^{\infty}}:\mathbb R^n\times\mathbb R^n\to[0,+\infty)$，其定义为：
+   $$
+   d_{l^\infty}((x_1,x_2,...,x_n),(y_1,y_2,...,y_n)):=\sup\{|x_i-y_i|:1\leq i\leq n\}
+   $$
+   对所有的$x$，$y\in\mathbb R^n$，$l^{\infty}$度量与$l^2$度量之间也满足一个不等式：
+   $$
+   \frac{1}{\sqrt{n}}d_{l^2}(x,y)\leq d_{l^\infty}(x,y)\leq d_{l^2}(x,y)
+   $$
+   <span style='color:blue'>（注：$l^1$度量，$l^2$度量与$l^{\infty}$度量都是更一般的$l^p$度量（其中$p\in[1,+\infty]$）的特殊情形，但是在本书中不讨论这些内容）</span>
+
+6. <span style='color:red'>（12.1.11 例·离散度量）</span>设$X$施任意的一个集合，**离散度量**$d_{\text{disc}}:X\times X\to\mathbb R$定义为：
+   $$
+   d_{\text{disc}}(x,y)=\begin{cases}
+   0&\text{if}\;x=y\\
+   1&\text{if}\;x\ne y\\
+   \end{cases}
+   $$
+   在这个度量下所有的点之间距离相等，并且空间$(X,d_{\text{disc}})$是一个度量空间。因此每个集合$X$上都至少有一个度量。
+
+7. <span style='color:red'>（12.1.12 例·测地距离（非正式））</span>设$X$是球面$\{(x,y,z)\in\mathbb R^3:x^2+y^2+z^2=1\}$，并且设对任意的两点$(x,y,z)$与$(x',y',z')$属于$X$，定义度量$d((x,y,z),(x',y',z'))$是从点$(x,y,z)$沿球面$X$到点$(x',y',z')$的最短曲线长度。这个度量$d$使得$X$成为一个度量空间。
+
+   <span style='color:blue'>（注：这条曲线事实上是一个大圆的一段弧，证明需要用到多元微积分的内容；并且应当注意到在证明$(X,d)$是度量空间的过程中三角不等式几乎是可以直接从定义中导出的（不适用关于球面的任何几何性质））</span>
+
+8. <span style='color:red'>（12.1.14 度量空间中序列的收敛）</span>设$m$是一个整数，$(X,d)$是一个度量空间，并且设$(x^{(n)})_{n=m}^\infty$是$X$中的点列，即对任意的整数$n\geq m$，我们都假设$x^{(n)}$是$X$中的元素。设$x$是$X$中的一个点，我们称$(x^{(n)})_{n=m}^\infty$**依度量**$d$**收敛于**$x$，当且仅当极限$\displaystyle\lim_{n\to\infty}d(x^{(n)},x)$存在且等于$0$。换言之，$(x^{(n)})_{n=m}^\infty$依度量$d$收敛于$x$当且仅当对于任意的$\varepsilon>0$，存在一个$N\geq m$使得$d(x^{(n)},x)\leq\varepsilon$对所有的$n\geq N$均成立。
+
+   <span style='color:blue'>（注：根据引理12.1.1我们可以知道实数序列的收敛事实上就是依标准度量的收敛，在很多情况下我们能够明确知道度量$d$是什么，因此在不会混淆的情况下我们也会使用简单的使用“$(x^{(n)})_{n=m}^\infty$收敛于$x$”来代替“$(x^{(n)})_{n=m}^\infty$依度量$d$收敛于$x$”。有时候我们也会记这个过程为“当$n\to\infty$时，$x^{(n)}\to x$”）</span>
+
+---
+
+## 命题
+
+1. <span style='color:red'>（12.1.1）</span>设$(x_n)_{n=m}^{\infty}$是一个实数序列，并且设$x$是一个实数，那么$(x_n)_{n=m}^{\infty}$收敛于$x$当且仅当$\displaystyle\lim_{n\to\infty}d(x_n,x)=0$。
+
+2. <span style='color:red'>（12.1.18 $l^1$、$l^2$、$l^{\infty}$的等价性）</span>设$\mathbb R^n$是一个欧几里得空间，$(x^{(k)})_{k=m}^\infty$是$\mathbb R^n$中的一个点列，我们记$x^{(k)}=(x^{(k)}_1,x^{(k)}_2,...,x^{(k)}_n)$，也即对$j=1,2,...,n$，我们令有$x^{(k)}_j$是$x^{(k)}$的第$j$个坐标分量。设$x=(x_1,x_2,...,x_n)$是$\mathbb R^n$中的一个点，那么下面的四个命题是等价的：
+
+   > 1. $(x^{(k)})_{k=m}^\infty$依欧几里得度量$d_{l^2}$收敛于$x$。
+   > 2. $(x^{(k)})_{k=m}^\infty$依出租车度量$d_{l^1}$收敛于$x$。
+   > 3. $(x^{(k)})_{k=m}^\infty$依上确界范数度量$d_{l^2}$收敛于$x$。
+   > 4. 对任意的$1\leq j\leq n$，序列$(x^{(k)}_j)_{k=m}^\infty$收敛于$x_j$。
+
+   <span style='color:blue'>（注：也就是说欧几里得度量，出租车度量与上确界范数度量都是等价的。但是需要注意的是，当推广到无限维的情况三者并不是等价的，一个例子是习题12.1.15所构建出的空间）</span>
+
+3. <span style='color:red'>（12.1.19 依离散度量收敛）</span>设$X$是任意一个集合，$d_{\text{disc}}$是$X$上的离散度量，并且设$(x^{(n)})_{n=m}^\infty$是$X$中的一个点列，$x$是$X$中的一个点。那么$(x^{(n)})_{n=m}^\infty$依离散度量收敛于$x$当且仅当存在一个$N\geq m$使得对所有的$n\geq N$均有$x^{(n)}=x$。
+
+4. <span style='color:red'>（12.1.20 极限的唯一性）</span>设$(X,d)$是一个度量空间，并且设$(x^{(n)})_{n=m}^\infty$是$X$中的一个点列。如果存在两个点$x$，$x'\in S$使得$(x^{(n)})_{n=m}^\infty$依度量$d$同时收敛于$x$与$x'$，那么有$x=x'$。
+
+   <span style='color:blue'>（注：由于极限是唯一的，因此我们可以引入下面的符号：如果$(x^{(n)})_{n=m}^\infty$依度量$d$收敛于$x$，那么记作$\displaystyle d-\lim_{n\to\infty}x^{(n)}=x$，如果能不引起混淆地确定度量$d$，那么进一步简写为$\displaystyle\lim_{n\to\infty}x^{(n)}=x$）</span>
+
+---
+
+## 课后习题
+
+##### 12.1.1 证明引理12.1.1
+
+> 分别证明充分必要性。
+>
+> 若有$(x_n)_{n=m}^{\infty}$收敛于$x$，则根据定义6.1.5，对任意实数$\varepsilon>0$都存在一个自然数$N\geq m$，对任意自然数$n\geq N$都有$|x_n-x|\leq\varepsilon$，考虑到绝对值的非负性，于是即：
+> $$
+> 0\leq|x_n-x|\leq\varepsilon\iff ||x_n-x|-0|\leq\varepsilon
+> $$
+> 也即对任意$n\geq N$都有$|d(x_n,x)-0|\leq\varepsilon$，于是根据收敛的定义可以得到$\displaystyle\lim_{n\to\infty}d(x_n,x)=0$。
+>
+> 反过来，若有$\displaystyle\lim_{n\to\infty}d(x_n,x)=0$，则根据定义6.1.5，对任意实数$\varepsilon>0$都存在一个自然数$N\geq m$，对任意自然数$n\geq N$都有$|d(x_n,x)-0|\leq\varepsilon$，考虑到绝对值的非负性，于是即：
+> $$
+> ||x_n-x|-0|\leq\varepsilon\iff 0\leq|x_n-x|\leq\varepsilon
+> $$
+> 也即对任意$n\geq N$都有$|x_n-x|\leq\varepsilon$，于是根据收敛的定义可以得到$(x_n)_{n=m}^{\infty}$收敛于$x$。
+>
+> 综上，于是引理12.1.1证明完毕。
+
+##### 12.1.2 证明具有度量$d(x,y):=|x-y|$的实直线的确是一个度量空间<span style='color:blue'>（提示：可以回顾对[命题4.3.3](../Chap4/Sec3.md)的证明）</span>
+
+> 根据定义12.1.2，我们需要证明$d$满足下面四个条件：
+>
+> 1. 对任意$x\in\mathbb R$，都有$d(x,x)=0$：
+>
+>    > 显然对任意$x\in\mathbb R$都有$|x-x|=0$，于是满足条件。
+>
+> 2. 对任意$x$，$y\in\mathbb R$满足$x\ne y$，都有$d(x,y)>0$：
+>
+>    > 若$x>y$，则$x-y>0$，于是$d(x,y)=|x-y|=x-y>0$；若$x<y$，则$x-y<0$，于是$d(x,y)=|x-y|=y-x>0$。于是总是有$d(x,y)>0$，从而$d$是满足条件的。
+>
+> 3. 对任意$x$，$y\in\mathbb R$都有$d(x,y)=d(y,x)$：
+>
+>    > 我们可以对$x$，$y$的情况讨论：若$x\leq y$，则$d(x,y)=y-x=d(y,x)$；若$x>y$，则$d(x,y)=x-y=d(y,x)$。于是总是有$d(x,y)=d(y,x)$，从而$d$是满足条件的。
+>
+> 4. 对任意的$x$，$y$，$z\in\mathbb R$都有$d(x,z)\leq d(x,y)+d(y,z)$：
+>
+>    > 注意到对任意的实数$c$，$d$都有$-|c|\leq c\leq|c|$与$-|d|\leq d\leq|d|$，于是有：
+>    > $$
+>    > -|c|-|d|\leq c+d\leq|c|+|d|
+>    > $$
+>    > 若$c+d\geq 0$，则$|c+d|=c+d\leq|c|+|d|$；若$c+d<0$，则$|c+d|=-c-d\leq|-c|+|-d|=|c|+|d|$。于是我们总有：
+>    > $$
+>    > |c+d|\leq|c|+|d|
+>    > $$
+>    > 带入$c=x-y$与$d=y-z$即可得证$d$满足三角不等式。
+>
+> 综上，于是$(\mathbb R,d)$确实是一个度量空间。
+
+##### 12.1.3 设$X$是一个集合，$d:X\times X\to[0,+\infty)$是一个函数
+
+###### (a) 给出一个$(X,d)$的例子，使其满足定义12.1.2中的公理(b)，(c)，(d)，但不满足公理(a)<span style='color:blue'>（提示：修改离散度量）</span>
+
+> 考虑对任意的$x$，$y\in X$令有$d(x,y):=1$，于是显然可以看到$(X,d)$是满足公理(b)，(c)，(d)但不满足公理(a)的。
+
+###### (b) 给出一个$(X,d)$的例子，使其满足定义12.1.2中的公理(a)，(c)，(d)，但不满足公理(b)
+
+> 考虑对任意的$x$，$y\in X$令有$d(x,y):=0$，于是显然可以看到$(X,d)$是满足公理(a)，(c)，(d)但不满足公理(b)的。
+
+###### (c) 给出一个$(X,d)$的例子，使其满足定义12.1.2中的公理(a)，(b)，(d)，但不满足公理(c)
+
+> 考虑令$X=\mathbb N$，对任意的$x$，$y\in X$，若$x> y$则令有$\displaystyle d(x,y):=|x-y|+0.1$；若$x\leq y$则令有$d(x,y):=|x-y|$。于是显然$(X,d)$是满足公理(a)，(b)但不满足公理(b)的，对于公理(c)，我们考虑$x$与$z$的情况：
+>
+> * 若$x\leq z$：
+>
+>   > 则此时$d(x,z)=|x-z|$，于是任意的$y\in\mathbb N$根据绝对值的三角不等式都有：
+>   > $$
+>   > d(x,z)=|x-z|\leq|x-y|+|y-z|\leq d(x,y)+d(y,z)
+>   > $$
+>
+> * 若$x>z$：
+>
+>   > 则此时$d(x,z)=|x-z|+0.1$，此时对任意$y\in\mathbb N$，若有$y>z$，则可以直接计算有：
+>   > $$
+>   > d(x,y)+d(y,z)\geq|x-y|+|y-z|+0.1\geq|x-z|+0.1=d(x,z)
+>   > $$
+>   > 若有$y\leq z$，则此时有$x>y$，于是可以计算有：
+>   > $$
+>   > d(x,y)+d(y,z)\geq|x-y|+0.1+|y-z|\geq|x-z|+0.1=d(x,z)
+>   > $$
+>   > 从而总是有$d(x,z)\leq d(x,y)+d(y,z)$。
+>
+> 于是$(X,d)$是满足公理(c)的。
+
+###### (d) 给出一个$(X,d)$的例子，使其满足定义12.1.2中的公理(a)，(b)，(c)，但不满足公理(d)
+
+> 考虑令$X=\mathbb R$，对任意的$x$，$y\in X$，若$x\ne y$则令有$\displaystyle d(x,y):=\frac{1}{|x-y|}$；若$x=y$则令有$d(x,y):=0$。显然可以根据绝对值的性质注意到$(X,d)$是满足公理(a)，(b)，(c)的，但是对公理(d)显然有很多情形下是不满足的（例如考虑令$x=10$，$y=0$与$z=11$）。
+
+##### 12.1.4 证明例12.1.5中定义的$(Y,d|_{Y\times Y})$确实是一个度量空间
+
+> 于是根据定义12.1.2，需要证明$d|_{Y\times Y}$满足：
+>
+> 1. 对任意$x\in Y$，都有$d|_{Y\times Y}(x,x)=0$：
+>
+>    > 由于$x\in X$，于是由于$(X,d)$是度量空间有$d_{Y\times Y}(x,x)=d(x,x)=0$，于是满足条件。
+>
+> 2. 对任意$x$，$y\in X$满足$x\ne y$，都有$d|_{Y\times Y}(x,y)>0$：
+>
+>    > 由于$x$，$y\in X$，于是由于$(X,d)$是度量空间有$d_{Y\times Y}(x,y)=d(x,y)\ne 0$，于是满足条件。
+>
+> 3. 对任意$x$，$y\in X$都有$d|_{Y\times Y}(x,y)=d|_{Y\times Y}(y,x)$：
+>
+>    > 由于$x$，$y\in X$，于是由于$(X,d)$是度量空间有$d_{Y\times Y}(x,y)=d(x,y)=d(y,x)=d_{Y\times Y}(y,x)$，于是满足条件。
+>
+> 4. 对任意的$x$，$y$，$z\in Y$都有$d|_{Y\times Y}(x,z)\leq d|_{Y\times Y}(x,y)+d|_{Y\times Y}(y,z)$：
+>
+>    > 由于$x$，$y$，$z\in X$，于是由于$(X,d)$是度量空间有：
+>    > $$
+>    > d_{Y\times Y}(x,z)=d(x,z)\leq d(x,y)+d(y,z)=d_{Y\times Y}(x,y)+d_{Y\times Y}(y,z)
+>    > $$
+>    > 于是满足条件。
+>
+> 综上，于是$(Y,d|_{Y\times Y})$确实是一个度量空间。
+
+##### 12.1.5 设$n\geq 1$，$a_1$，$a_2$，$...$，$a_n$与$b_1$，$b_2$，$...$，$b_n$都是实数。证明恒等式：
+
+$$
+\left(\sum_{i=1}^{n}a_ib_i\right)^2+\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}(a_ib_j-a_jb_i)^2=\left(\sum_{i=1}^{n}a_i^2\right)\left(\sum_{i=1}^{n}b_i^2\right)
+$$
+
+##### 并推导出<span style='color:red'>柯西-施瓦茨不等式</span>：
+
+$$
+\left|\sum_{i=1}^{n}a_ib_i\right|\leq\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}
+$$
+
+##### 然后利用柯西-施瓦茨不等式证明三角不等式
+
+$$
+\left(\sum_{i=1}^{n}(a_i+b_i)^2\right)^{1/2}\leq\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}+\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}
+$$
+
+> 在这一部分中我们证明题目中的恒等式，即：
+> $$
+> \left(\sum_{i=1}^{n}a_ib_i\right)^2+\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}(a_ib_j-a_jb_i)^2=\left(\sum_{i=1}^{n}a_i^2\right)\left(\sum_{i=1}^{n}b_i^2\right)
+> $$
+> 先考虑恒等式的右半部分与左半部分第一项，反复应用有限级数的运算性质（命题7.1.4(d)），我们有：
+> $$
+> \begin{gather}
+> \begin{aligned}
+> \left(\sum_{i=1}^{n}a_i^2\right)\left(\sum_{i=1}^{n}b_i^2\right)&=\sum_{i=1}^{n}\left(a_i^2\sum_{j=1}^{n}b_j^2\right)\\
+> &=\sum_{i=1}^{n}\sum_{j=1}^{n}a_i^2b_j^2
+> \end{aligned}\\
+> \begin{aligned}
+> \left(\sum_{i=1}^{n}a_ib_i\right)^2&=\sum_{i=1}^{n}\left(a_ib_i\sum_{j=1}^{n}a_jb_j\right)\\
+> &=\sum_{i=1}^{n}\sum_{j=1}^{n}a_ia_jb_ib_j
+> \end{aligned}
+> \end{gather}
+> $$
+> 然后对恒等式左半部分第二项，根据有限级数的富比尼定理（命题7.1.14）我们有：
+> $$
+> \begin{align}
+> \frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}(a_ib_j-a_jb_i)^2&=\frac{1}{2}\left(\sum_{i=1}^{n}\sum_{j=1}^{n}a_i^2b_j^2+a_j^2b_i^2-2a_ia_jb_ib_j\right)\\
+> &=\frac{1}{2}\left(\sum_{i=1}^{n}\sum_{j=1}^{n}a_i^2b_j^2+\sum_{j=1}^{n}\sum_{i=1}^{n}a_j^2b_i^2-\sum_{i=1}^{n}\sum_{j=1}^{n}2a_ia_jb_ib_j\right)\\
+> &=\sum_{i=1}^{n}\sum_{j=1}^{n}a_i^2b_j^2-\sum_{i=1}^{n}\sum_{j=1}^{n}a_ia_jb_ib_j
+> \end{align}
+> $$
+> 于是可以计算恒等式两端有：
+> $$
+> \begin{gather}
+> \begin{aligned}
+> &\left(\sum_{i=1}^{n}a_ib_i\right)^2+\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}(a_ib_j-a_jb_i)^2\\=&\sum_{i=1}^{n}\sum_{j=1}^{n}a_ia_jb_ib_j+\sum_{i=1}^{n}\sum_{j=1}^{n}a_i^2b_j^2-\sum_{i=1}^{n}\sum_{j=1}^{n}a_ia_jb_ib_j\\
+> =&\sum_{i=1}^{n}\sum_{j=1}^{n}a_i^2b_j^2
+> \end{aligned}\\
+> \begin{aligned}
+> &\left(\sum_{i=1}^{n}a_i^2\right)\left(\sum_{i=1}^{n}b_i^2\right)\\
+> =&\sum_{i=1}^{n}\left(a_i^2\sum_{j=1}^{n}b_j^2\right)\\
+> =&\sum_{i=1}^{n}\sum_{j=1}^{n}a_i^2b_j^2
+> \end{aligned}
+> \end{gather}
+> $$
+> 于是恒等式的左半部分等于右半部分，恒等式得证。
+>
+> ---
+>
+> 在这一部分中我们证明柯西-施瓦茨不等式：
+> $$
+> \left|\sum_{i=1}^{n}a_ib_i\right|\leq\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}
+> $$
+> 注意到在上面的恒等式中左半部分的第二项，由于求和项$(a_ib_j-a_jb_i)^2$始终是非负的，因此该项也只能是非负的。从而根据实数序的定义我们有：
+> $$
+> \left(\sum_{i=1}^{n}a_ib_i\right)^2\leq\left(\sum_{i=1}^{n}a_i^2\right)\left(\sum_{i=1}^{n}b_i^2\right)
+> $$
+> 然后由于正数幂次不改变正数的序关系（命题6.7.3(d)），于是对左右两数取$1/2$次方有：
+> $$
+> \left[\left(\sum_{i=1}^{n}a_ib_i\right)^2\right]^{1/2}=\left|\sum_{i=1}^{n}a_ib_i\right|\leq\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}
+> $$
+> 也就是柯西-施瓦茨不等式，于是不等式得证。
+>
+> ---
+>
+> 在这个部分中我们利用柯西-施瓦茨不等式证明三角不等式，该式子会在证明$(\mathbb R^n,d_{l^2})$是一个度量空间中有帮助。
+>
+> 由于不等式两端都是非负的，因此我们可以对不等式的两边取平方而不改变其序关系（命题6.7.3(d)），即该不等式等价于：
+> $$
+> \sum_{i=1}^{n}(a_i+b_i)^2\leq\left[\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}+\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}\right]^2
+> $$
+> 化简此等价不等式，可以化简得到：
+> $$
+> \sum_{i=1}^{n}a_i^2+b_i^2+2a_ib_i\leq\sum_{i=1}^{n}a_i^2+\sum_{i=1}^{n}b_i^2+2\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}
+> $$
+> 最终可以得到题目三角不等式等价于下面这个不等式：
+> $$
+> \sum_{i=1}^{n}a_ib_i\leq\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}
+> $$
+> 由柯西-施瓦茨不等式有$\displaystyle\left|\sum_{i=1}^{n}a_ib_i\right|\leq\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}$；然后由于绝对值的性质我们又有$\displaystyle\sum_{i=1}^{n}a_ib_i\leq\left|\sum_{i=1}^{n}a_ib_i\right|$。于是上面的等价不等式始终成立，从而题目三角不等式也是成立的，结论得证。
+
+##### 12.1.6 证明例12.1.6中的$(\mathbb R^n,d_{l^2})$确实是一个度量空间<span style='color:blue'>（提示：利用习题12.1.5的结论）</span>
+
+> 对任意$a\in\mathbb R^n$，我们记$a_i(1\leq i\leq n)$表示$a$的第$i$个坐标分量。根据定义12.1.2，即要证明：
+>
+> 1. 对任意$x\in\mathbb R^n$，都有$d_{l^2}(x,x)=0$：
+>
+>    > 可以直接计算有：
+>    > $$
+>    > d_{l^2}(x,x)=\left(\sum_{i=1}^{n}(x_i-x_i)^2\right)^{1/2}=0
+>    > $$
+>    > 于是总是满足此条件。
+>
+> 2. 对任意$x$，$y\in\mathbb R^n$满足$x\ne y$，都有$d_{l^2}(x,y)>0$：
+>
+>    > 由于对任意的实数都有其平方值大于等于$0$，并且由于$x\ne y$，于是至少存在一个$1\leq j\leq n$使得$x_i-y_i\ne 0$，从而我们有$(x_i-y_i)^2>0$。于是有：
+>    > $$
+>    > d_{l^2}(x,y)=\left(\sum_{i=1}^{n}(x_i-y_i)^2\right)^{1/2}\geq\left((x_j-y_j)^2\right)^{1/2}>0
+>    > $$
+>    > 于是总是满足此条件。
+>
+> 3. 对任意$x$，$y\in\mathbb R^n$都有$d_{l^2}(x,y)=d_{l^2}(y,x)$：
+>
+>    > 注意到对任意的实数$n$都有$n^2=(-n)^{2}$，于是我们总有$(x_i-y_i)^2=(y_i-x_i)^2$，从而：
+>    > $$
+>    > \left(\sum_{i=1}^{n}(x_i-y_i)^2\right)^{1/2}=\left(\sum_{i=1}^{n}(y_i-x_i)^2\right)^{1/2}\iff d_{l^2}(x,y)=d_{l^2}(y,x)
+>    > $$
+>    > 于是总是满足此条件。
+>
+> 4. 对任意的$x$，$y$，$z\in\mathbb R^n$都有$d_{l^2}(x,z)\leq d_{l^2}(x,y)+d_{l^2}(y,z)$：
+>
+>    > 在习题12.1.5中我们已经证明了一个三角不等式：
+>    > $$
+>    > \left(\sum_{i=1}^{n}(a_i+b_i)^2\right)^{1/2}\leq\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}+\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}
+>    > $$
+>    > 考虑对任意$1\leq i\leq n$令有$a_i:=x_i-y_i$，$b_i:=y_i-z_i$，此时$a_i+b_i=x_i-z_i$，于是有：
+>    > $$
+>    > \left(\sum_{i=1}^{n}(x_i-z_i)^2\right)^{1/2}\leq\left(\sum_{i=1}^{n}(x_i-y_i)^2\right)^{1/2}+\left(\sum_{i=1}^{n}(y_i-z_i)^2\right)^{1/2}
+>    > $$
+>    > 根据$d_{l^2}$的定义这就是$d_{l^2}(x,z)\leq d_{l^2}(x,y)+d_{l^2}(y,z)$，于是总是满足此条件。
+>
+> 综上，于是$(\mathbb R^n,d_{l^2})$确实是一个度量空间。
+
+##### 12.1.7 证明例12.1.7中的$(\mathbb R^n,d_{l^1})$确实是一个度量空间
+
+> 对任意$a\in\mathbb R^n$，我们记$a_i(1\leq i\leq n)$表示$a$的第$i$个坐标分量。根据定义12.1.2，即要证明：
+>
+> 1. 对任意$x\in\mathbb R^n$，都有$d_{l^1}(x,x)=0$：
+>
+>    > 可以直接计算有：
+>    > $$
+>    > d_{l^1}(x,x)=\sum_{i=1}^{n}|x_i-x_i|=0
+>    > $$
+>    > 于是总是满足此条件。
+>
+> 2. 对任意$x$，$y\in\mathbb R^n$满足$x\ne y$，都有$d_{l^1}(x,y)>0$：
+>
+>    > 由于对任意的实数都有其绝对值大于等于$0$，并且由于$x\ne y$，于是至少存在一个$1\leq j\leq n$使得$x_i-y_i\ne 0$，从而我们有$|x_i-y_i|>0$。于是有：
+>    > $$
+>    > d_{l^1}(x,y)=\sum_{i=1}^{n}|x_i-y_i|\geq|x_j-y_j|>0
+>    > $$
+>    > 于是总是满足此条件。
+>
+> 3. 对任意$x$，$y\in\mathbb R^n$都有$d_{l^1}(x,y)=d_{l^1}(y,x)$：
+>
+>    > 注意到对任意的实数$n$都有$|n|=|-n|$，于是我们总有$|x_i-y_i|=|y_i-x_i|$，从而：
+>    > $$
+>    > \sum_{i=1}^{n}|x_i-y_i|=\sum_{i=1}^{n}|y_i-x_i|\iff d_{l^1}(x,y)=d_{l^1}(y,x)
+>    > $$
+>    > 于是总是满足此条件。
+>
+> 4. 对任意的$x$，$y$，$z\in\mathbb R^n$都有$d_{l^1}(x,z)\leq d_{l^1}(x,y)+d_{l^1}(y,z)$：
+>
+>    > 由于绝对值本身满足三角不等式，即对任意的$1\leq i\leq n$都有：
+>    > $$
+>    > |x_i-z_i|\leq|x_i-y_i|+|y_i-z_i|
+>    > $$
+>    > 从而根据有限级数的运算法则（命题7.1.4），我们总有：
+>    > $$
+>    > \sum_{i=1}^{n}|x_i-z_i|\leq\sum_{i=1}^{n}|x_i-y_i|+\sum_{i=1}^{n}|y_i-z_i|
+>    > $$
+>    > 根据$d_{l^1}$的定义这就是$d_{l^1}(x,z)\leq d_{l^1}(x,y)+d_{l^1}(y,z)$，于是总是满足此条件。
+>
+> 综上，于是$(\mathbb R^n,d_{l^1})$确实是一个度量空间。
+
+##### 12.1.8 证明例12.1.7下所附的不等式：对所有的$x$，$y\in\mathbb R^n$都有$d_{l^2}(x,y)\leq d_{l^1}(x,y)\leq\sqrt{n}d_{l^2}(x,y)$成立<span style='color:blue'>（提示：对第一个不等式，将其两端同时取平方；对第二个不等式，利用习题12.1.5）</span>
+
+> 对任意$a\in\mathbb R^n$，我们记$a_i(1\leq i\leq n)$表示$a$的第$i$个坐标分量。先证明$d_{l^2}(x,y)\leq d_{l^1}(x,y)$：
+>
+> > 由于度量总是非负的，于是根据正数幂次不改变正数的序关系（命题6.7.3(d)）我们对不等式两端取平方可以得到题目不等式等价于：
+> > $$
+> > \sum_{i=1}^{n}(x_i-y_i)^2\leq\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i-y_i||x_j-y_j|
+> > $$
+> > 注意到$(x_i-y_i)^2=|x_i-y_i|^2$，此时令有$X:=\{i\in\mathbb N:1\leq i\leq n\}$，于是我们可以注意到上面的不等式可以化为有限集上求和的等价形式：
+> > $$
+> > \sum_{(i,j)\in X\times X;i=j}|x_i-y_i||x_j-y_j|\leq \sum_{(i,j)\in X\times X}|x_i-y_i||x_j-y_j|
+> > $$
+> > 最终可以得到题目不等式等价于下面这不等式：
+> > $$
+> > 0\leq \sum_{(i,j)\in X\times X;i\ne j}|x_i-y_i||x_j-y_j|
+> > $$
+> > 由于绝对值的非负性因此上面的等价形式显然为真，从而题目不等式也始终成立。
+>
+> 然后证明$d_{l^1}(x,y)\leq\sqrt{n}d_{l^2}(x,y)$：
+>
+> > 即证明：
+> > $$
+> > \sum_{i=1}^{n}|x_i-y_i|\leq\sqrt{n}\left(\sum_{i=1}^{n}(x_i-y_i)^2\right)^{1/2}
+> > $$
+> > 我们考虑对任意$1\leq i\leq n$令有$a_i:=|x_i-y_i|$与$b_i:=1$，于是根据柯西-施瓦茨不等式我们有：
+> > $$
+> > \begin{align}
+> > \sum_{i=1}^{n}|x_i-y_i|\leq\left|\sum_{i=1}^{n}|x_i-y_i|\right|&\leq\left(\sum_{i=1}^{n}(x_i-y_i)^2\right)^{1/2}\left(\sum_{i=1}^{n}1^2\right)^{1/2}\\
+> > &=\sqrt{n}\left(\sum_{i=1}^{n}(x_i-y_i)^2\right)^{1/2}
+> > \end{align}
+> > $$
+> > 于是证明完毕。
+>
+> 综上，我们有此不等式成立。
+
+##### 12.1.9 证明例12.1.9中的$(\mathbb R^n,d_{l^\infty})$确实是一个度量空间
+
+> 对任意$a\in\mathbb R^n$，我们记$a_i(1\leq i\leq n)$表示$a$的第$i$个坐标分量。根据定义12.1.2，即要证明：
+>
+> 1. 对任意$x\in\mathbb R^n$，都有$d_{l^\infty}(x,x)=0$：
+>
+>    > 可以直接计算有：
+>    > $$
+>    > d_{l^\infty}(x,x)=\sup\{|x_i-x_i|:1\leq i\leq n\}=\sup\{0\}=0
+>    > $$
+>    > 于是总是满足此条件。
+>
+> 2. 对任意$x$，$y\in\mathbb R^n$满足$x\ne y$，都有$d_{l^\infty}(x,y)>0$：
+>
+>    > 由于$x\ne y$，于是至少存在一个$1\leq j\leq n$使得$x_i-y_i\ne 0$，从而我们有$|x_i-y_i|>0$，于是根据上确界范数度量的定义，$d_{l^\infty}(x,y)$作为上确界必须满足$d_{l^\infty}(x,y)\geq|x_i-y_i|>0$。
+>    >
+>    > 于是总是满足此条件。
+>
+> 3. 对任意$x$，$y\in\mathbb R^n$都有$d_{l^\infty}(x,y)=d_{l^\infty}(y,x)$：
+>
+>    > 注意到对任意的实数$n$都有$|n|=|-n|$，于是我们总有$|x_i-y_i|=|y_i-x_i|$，从而：
+>    > $$
+>    > \{|x_i-y_i|:1\leq i\leq n\}=\{|y_i-x_i|:1\leq i\leq n\}
+>    > $$
+>    > 进而两个集合应当拥有相同的上确界，即$d_{l^\infty}(x,y)=d_{l^\infty}(y,x)$。于是总是满足此条件。
+>
+> 4. 对任意的$x$，$y$，$z\in\mathbb R^n$都有$d_{l^\infty}(x,z)\leq d_{l^\infty}(x,y)+d_{l^\infty}(y,z)$：
+>
+>    > 由于绝对值本身满足三角不等式，即对任意的$1\leq i\leq n$都有：
+>    > $$
+>    > |x_i-z_i|\leq|x_i-y_i|+|y_i-z_i|
+>    > $$
+>    > 又根据上确界范数度量的定义我们有对任意的$1\leq i\leq n$都有$|x_i-y_i|\leq d_{l^\infty}(x,y)$与$|y_i-z_i|\leq d_{l^\infty}(y,z)$，于是我们有$|x_i-z_i|\leq d_{l^\infty}(x,y)+d_{l^\infty}(y,z)$对任意的$1\leq i\leq n$都成立，即$d_{l^\infty}(x,y)+d_{l^\infty}(y,z)$是$\{|x_i-z_i|:1\leq i\leq n\}$的一个上界，进而有$d_{l^\infty}(x,z)\leq d_{l^\infty}(x,y)+d_{l^\infty}(y,z)$。于是总是满足此条件。
+> 
+> 综上，于是$(\mathbb R^n,d_{l^\infty})$确实是一个度量空间。
+
+##### 12.1.10 证明例12.1.9下所附的不等式：对所有的$x$，$y\in\mathbb R^n$都有$\displaystyle\frac{1}{\sqrt{n}}d_{l^2}(x,y)\leq d_{l^\infty}(x,y)\leq d_{l^2}(x,y)$成立
+
+> 对任意$a\in\mathbb R^n$，我们记$a_i(1\leq i\leq n)$表示$a$的第$i$个坐标分量。先证明$\displaystyle\frac{1}{\sqrt{n}}d_{l^2}(x,y)\leq d_{l^\infty}(x,y)$：
+>
+> > 由于度量总是非负的，于是根据正数幂次不改变正数的序关系（命题6.7.3(d)）我们对不等式两端取平方可以得到题目不等式等价于：
+> > $$
+> > \sum_{i=1}^{n}(x_i-y_i)^2\leq n(d_{l^\infty}(x,y))^2
+> > $$
+> > 于是将上方不等式右端改写为级数形式：
+> > $$
+> > \sum_{i=1}^{n}(x_i-y_i)^2\leq\sum_{i=1}^{n}(d_{l^\infty}(x,y))^2
+> > $$
+> > 注意到对任意的$1\leq i\leq n$都有$|x_i-y_i|\leq d_{l^\infty}(x,y)$，于是结合命题6.7.3(d)与命题7.1.4(f)可以直接得到上面的不等式始终成立，进而总是有$\displaystyle\frac{1}{\sqrt{n}}d_{l^2}(x,y)\leq d_{l^\infty}(x,y)$。
+>
+> 然后证明$\displaystyle d_{l^\infty}(x,y)\leq d_{l^2}(x,y)$：
+>
+> > 由于$\{|x_i-y_i|:1\leq i\leq n\}$是有限的，因此必然存在至少一个$1\leq j\leq n$使得$d_{l^\infty}(x,y)=|x_j-y_j|$，于是根据绝对值的非负性我们有：
+> > $$
+> > \left(\sum_{i=1}^{n}(x_i-y_i)^2\right)^{\frac{1}{2}}\geq\left((x_j-y_j)^2\right)^{\frac{1}{2}}=|x_j-y_j|
+> > $$
+> > 即有$\displaystyle d_{l^\infty}(x,y)\leq d_{l^2}(x,y)$始终为真。
+>
+> 综上，我们有此不等式成立。
+
+##### 12.1.11 证明例12.1.11中的$(X,d_{\text{disc}})$确实是一个度量空间
+
+> 根据定义12.1.2，即要证明：
+>
+> 1. 对任意$x\in X$，都有$d_{\text{disc}}(x,x)=0$：
+>
+>    > 根据定义离散度量总是满足$d_{\text{disc}}(x,x)=0$，于是总是满足此条件。
+>
+> 2. 对任意$x$，$y\in X$满足$x\ne y$，都有$d_{\text{disc}}(x,y)>0$：
+>
+>    > 由于$x\ne y$，根据离散度量定义可以得到$d_{\text{disc}}(x,y)=1>0$，于是总是满足此条件。
+>    >
+>
+> 3. 对任意$x$，$y\in X$都有$d_{\text{disc}}(x,y)=d_{\text{disc}}(y,x)$：
+>
+>    > 若$x=y$则可以计算$d_{\text{disc}}(x,y)=d_{\text{disc}}(y,x)=0$；若$x\ne y$则可以计算$d_{\text{disc}}(x,y)=d_{\text{disc}}(y,x)=1$，于是总是满足此条件。
+>
+> 4. 对任意的$x$，$y$，$z\in X$都有$d_{\text{disc}}(x,z)\leq d_{\text{disc}}(x,y)+d_{\text{disc}}(y,z)$：
+>
+>    > 若$x=z$，则此时$d_{\text{disc}}(x,z)=0$，于是由于度量的非负性可以直接得到不等式成立；若$x\ne z$，则此时$d_{\text{disc}}(x,z)=1$，并且$y$不可能同时等于$x$与$z$。换言之，$d_{\text{disc}}(x,y)$与$d_{\text{disc}}(y,z)$中至少有一个是$1$，然后由于度量的非负性也可以得到结论成立。于是总是满足此条件。
+>
+> 综上，于是$(X,d_{\text{disc}})$确实是一个度量空间。
+
+##### 12.1.12 证明命题12.1.18
+
+> 对任意$a\in\mathbb R^n$，我们记$a_i(1\leq i\leq n)$表示$a$的第$i$个坐标分量。分别证明：
+>
+> * 证明：若(a)成立，则可以推出(b)成立
+>
+> 也即证明：若点列$(x^{(k)})_{k=m}^\infty$依欧几里得度量$d_{l^2}$收敛于$x$，则点列$(x^{(k)})_{k=m}^\infty$依出租车度量$d_{l^1}$收敛于$x$。
+>
+> 由于点列$(x^{(k)})_{k=m}^\infty$依欧几里得度量$d_{l^2}$收敛于$x$，于是极限：
+> $$
+> \lim_{k\to\infty}d_{l^2}(x^{(k)},x)=0
+> $$
+> 而在例12.1.7中，我们给出了这个不等式：
+> $$
+> d_{l^2}(x,y)\leq d_{l^1}(x,y)\leq\sqrt{n}d_{l^2}(x,y)
+> $$
+> 于是根据比较原理，可以得到：
+> $$
+> \lim_{k\to\infty}d_{l^1}(x^{(k)},x)=0
+> $$
+> 即点列$(x^{(k)})_{k=m}^\infty$依出租车度量$d_{l^1}$收敛于$x$。
+>
+> ---
+>
+> * 证明：若(b)成立，则可以推出(c)成立
+>
+> 也即证明：若点列$(x^{(k)})_{k=m}^\infty$依出租车度量$d_{l^1}$收敛于$x$，则点列$(x^{(k)})_{k=m}^\infty$依上确界范数度量$d_{l^\infty}$收敛于$x$。
+>
+> 由于点列$(x^{(k)})_{k=m}^\infty$依出租车度量$d_{l^1}$收敛于$x$，于是极限：
+> $$
+> \lim_{k\to\infty}d_{l^1}(x^{(k)},x)=0
+> $$
+> 并且对任意的$y$，$z\in\mathbb R^n$，由于上确界范数度量的定义，我们有对任意$1\leq i\leq n$，都有$d_{l^\infty}(y,z)\geq |y_i-z_i|$；于是可以推知：
+> $$
+> d_{l^1}(y,z)=\sum_{i=1}^{n}|y_i-z_i|\leq\sum_{i=1}^{n}d_{l^\infty}(y,z)=n\cdot d_{l^\infty}(y,z)
+> $$
+> 又由于上确界范数度量是有限集的上确界，因此存在$1\leq j\leq n$使得$d_{l^\infty}(y,z)=|y_j-z_j|$。于是可以由绝对值的非负性推知：
+> $$
+> d_{l^\infty}(y,z)=|y_j-z_j|\leq\sum_{i=1}^{n}|y_i-z_i|=d_{l^1}(y,z)
+> $$
+> 综上我们可以得到不等式：
+> $$
+> \frac{1}{n}d_{l^1}(y,z)\leq d_{l^\infty}(y,z)\leq d_{l^1}(y,z)
+> $$
+> 结合上面的$k\to\infty$时有$d_{l^\infty}(x^{(k)},x)\to 0$，根据比较原理即可得到：
+> $$
+> \lim_{k\to\infty}d_{l^\infty}(x^{(k)},x)=0
+> $$
+> 即点列$(x^{(k)})_{k=m}^\infty$依上确界范数度量$d_{l^\infty}$收敛于$x$。
+>
+> ---
+>
+> * 证明：若(c)成立，则可以推出(d)成立
+>
+> 也即证明：若点列$(x^{(k)})_{k=m}^\infty$依上确界范数度量$d_{l^\infty}$收敛于$x$，则对任意的$1\leq j\leq n$，序列$(x^{(k)}_j)_{k=m}^\infty$收敛于$x_j$。
+>
+> 由于点列$(x^{(k)})_{k=m}^\infty$依上确界范数度量$d_{l^\infty}$收敛于$x$，于是极限：
+> $$
+> \lim_{k\to\infty}d_{l^\infty}(x^{(k)},x)=0
+> $$
+> 并且对任意的$y$，$z\in\mathbb R^n$，由于上确界范数度量的定义，我们有对任意$1\leq i\leq n$，都有$d_{l^\infty}(y,z)\geq |y_i-z_i|$，也即$d_{l^\infty}(y,z)\geq d(y_i,z_i)$，其中$d$是$\mathbb R$上的标准度量。然后由度量的非负性与比较原理，对任意$1\leq i\leq n$我们有：
+> $$
+> 0\leq d(x^{(k)}_i,x_i)\leq d_{l^\infty}(x^{(k)},x)\Longrightarrow\lim_{k\to\infty}d(x^{(k)}_i,x_i)=0
+> $$
+> 于是根据引理12.1.1，即有对任意的$1\leq i\leq n$，序列$(x^{(k)}_i)_{k=m}^\infty$收敛于$x_j$。
+>
+> ---
+>
+> * 证明：若(d)成立，则可以推出(a)成立
+>
+> 也即证明：若对任意的$1\leq i\leq n$，序列$(x^{(k)}_j)_{k=m}^\infty$收敛于$x_j$。点列$(x^{(k)})_{k=m}^\infty$依欧几里得度量$d_{l^2}$收敛于$x$。
+>
+> 由于对任意$1\leq i\leq n$都有序列$(x^{(k)}_j)_{k=m}^\infty$收敛于$x_j$，于是对任意$1\leq i\leq n$有极限：
+> $$
+> \lim_{k\to\infty}d(x^{(k)}_i,x_i)=0
+> $$
+> 根据习题7.1.5的结论，我们有：
+> $$
+> \lim_{k\to\infty}d_{l^1}(x^{(k)}_i,x_i)=\lim_{k\to\infty}\sum_{i=1}^{n}d(x^{(k)}_i,x_i)=\sum_{i=1}^{n}\lim_{k\to\infty}d(x^{(k)}_i,x_i)=0
+> $$
+> 然后结合例12.1.7中的不等式，度量的非负性与比较原理，我们有：
+> $$
+> 0\leq d_{l^2}(x,y)\leq d_{l^1}(x,y)\Longrightarrow\lim_{k\to\infty}d_{l^2}(x^{(k)},x)=0
+> $$
+> 即点列$(x^{(k)})_{k=m}^\infty$依欧几里得度量$d_{l^2}$收敛于$x$。
+>
+> ---
+>
+> 综上，于是四个命题是等价的。
+
+##### 12.2.13 证明命题12.1.19
+
+> 根据定义12.2.14，$(x^{(n)})_{n=m}^\infty$依离散度量$d_{\text{disc}}$收敛于$x$当且仅当对任意的$\varepsilon>0$，存在一个$N\geq m$使得$d_{\text{disc}}(x^{(n)},x)\leq\varepsilon$对所有的$n\geq N$均成立。
+>
+> 若$(x^{(n)})_{n=m}^\infty$依离散度量$d_{\text{disc}}$收敛于$x$，特别地，我们考虑$\varepsilon=0.5$，并且注意到离散度量的取值只能是$1$或者$0$，于是总结可以得到：
+>
+> 存在一个$N\geq m$使得$d_{\text{disc}}(x^{(n)},x)=0$对所有的$n\geq N$均成立。
+>
+> 于是根据离散度量定义可以得引申为：存在一个$N\geq m$使得$x^{(n)}=x$对所有的$n\geq N$均成立。
+>
+> 反之，若存在一个$N\geq m$使得$x^{(n)}=x$对所有的$n\geq N$均成立，则对任意的实数$\varepsilon>0$都有对任意的$n\geq N$满足$d_{\text{disc}}(x^{(n)},x)=0\leq\varepsilon$，于是根据定义12.2.14可以得到$(x^{(n)})_{n=m}^\infty$依离散度量$d_{\text{disc}}$收敛于$x$。
+>
+> 综上，于是充分必要性得证。
+
+##### 12.2.14 证明命题12.1.20<span style='color:blue'>（提示：修改[命题6.1.7](../Chap6/Sec1.md)的证明）</span>
+
+> 根据定义12.2.14，于是题设等价于对任意的$\varepsilon>0$，都存在$N$，$N'\geq m$使得对任意的$n\geq N$都有$d(x^{(n)},x)\leq\varepsilon/2$与对任意$n\geq N'$都有$d(x^{(n)},x')\leq\varepsilon/2$。于是对任意的$n\geq\max(N,N')$，根据度量空间的三角不等式我们有：
+> $$
+> d(x,x')\leq d(x,x^{(n)})+d(x',x^{(n)})\leq\varepsilon
+> $$
+> 注意到上面的结论对任意的实数$\varepsilon>0$都成立，于是只能有$d(x,x')=0$，根据度量空间的公理(a)可得$x=x'$。
+
+##### 12.2.15 设
+
+$$
+X:=\left\{(a_n)_{n=0}^\infty:\sum_{n=0}^\infty|a_n|<\infty\right\}
+$$
+
+##### 是绝对收敛序列的空间。在这个空间上，定义$l^1$度量和$l^\infty$度量分别为
+
+$$
+\begin{gather}
+d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty):=\sum_{n=0}^{\infty}|a_n-b_n|\\
+d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty):=\sup_{n\in\mathbb N}|a_n-b_n|\\
+\end{gather}
+$$
+
+##### 证明：两者皆为$X$上的度量，而且存在一个由$X$中元素构成的序列$x^{(1)}$，$x^{(2)}$，$...$（这是一个序列的序列），它依度量$d_{l^\infty}$收敛但是不依度量$d_{l^1}$收敛。反过来，证明：任意一个依度量$d_{l^1}$收敛的序列必然依度量$d_{l^\infty}$收敛
+
+> 证明：两者皆为$X$上的度量。
+>
+> 于是根据定义12.1.2，即要证明$l^1$度量和$l^\infty$度量满足：
+>
+> * 对任意$(a_n)_{n=0}^\infty$属于$X$，都有$d_{l^1}((a_n)_{n=0}^\infty,(a_n)_{n=0}^\infty)$与$d_{l^\infty}((a_n)_{n=0}^\infty,(a_n)_{n=0}^\infty)$等于$0$。
+>
+>   > 显然可以直接计算有：
+>   > $$
+>   > \begin{gather}
+>   > d_{l^1}((a_n)_{n=0}^\infty,(a_n)_{n=0}^\infty)=\sum_{n=0}^\infty|a_n-a_n|=\sum_{n=0}^\infty0=0\\
+>   > d_{l^\infty}((a_n)_{n=0}^\infty,(a_n)_{n=0}^\infty)=\sup_{n\in\mathbb N}|a_n-a_n|=\sup_{n\in\mathbb N}0=0
+>   > \end{gather}
+>   > $$
+>   > 于是总是满足此条件。
+> * 对任意$(a_n)_{n=0}^\infty$，$(b_n)_{n=0}^\infty$属于$X$且$(a_n)_{n=0}^\infty\ne(b_n)_{n=0}^\infty$，都有$d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)$与$d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)$大于$0$。
+>
+>   > 由于$(a_n)_{n=0}^\infty\ne(b_n)_{n=0}^\infty$，于是至少存在一个$m\in\mathbb N$使得$a_m\ne b_m$，从而有$|a_m-b_m|>0$。于是结合绝对值的非负性与上确界的性质可以计算有：
+>   > $$
+>   > \begin{gather}
+>   > d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)=\sum_{n=0}^\infty|a_n-b_n|\geq|a_m-b_m|>0\\
+>   > d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)=\sup_{n\in\mathbb N}|a_n-b_n|\geq|a_m-b_m|>0
+>   > \end{gather}
+>   > $$
+>   > 于是总是满足此条件。
+> * 对任意$(a_n)_{n=0}^\infty$，$(b_n)_{n=0}^\infty$属于$X$，都有对称性：
+>   $$
+>   \begin{gather}
+>   d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)=d_{l^1}((b_n)_{n=0}^\infty,(a_n)_{n=0}^\infty)\\
+>   d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)=d_{l^\infty}((b_n)_{n=0}^\infty,(a_n)_{n=0}^\infty)
+>   \end{gather}
+>   $$
+>
+>   > 注意到绝对值满足对任意的$x$，$y\in\mathbb R$都有$|x-y|=|y-x|$，于是可以计算有：
+>   > $$
+>   > \begin{gather}
+>   > \sum_{n=0}^\infty|a_n-b_n|=\sum_{n=0}^\infty|b_n-a_n|\Longrightarrow d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)=d_{l^1}((b_n)_{n=0}^\infty,(a_n)_{n=0}^\infty)\\
+>   > \{|a_n-b_n|:n\in\mathbb N\}=\{|b_n-a_n|:n\in\mathbb N\}\Longrightarrow d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)=d_{l^\infty}((b_n)_{n=0}^\infty,(a_n)_{n=0}^\infty)
+>   > \end{gather}
+>   > $$
+>   > 于是总是满足此条件。
+> * 对任意$(a_n)_{n=0}^\infty$，$(b_n)_{n=0}^\infty$与$(c_n)_{n=0}^\infty$属于$X$，都有三角不等式：
+>   $$
+>   \begin{gather}
+>   d_{l^1}((a_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)\leq d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)+d_{l^1}((b_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)\\
+>   d_{l^\infty}((a_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)\leq d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)+d_{l^\infty}((b_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)
+>   \end{gather}
+>   $$
+>
+>   > 注意到绝对值满足对任意的$x$，$y$与$z\in\mathbb R$都有$|x-z|\leq|x-y|+|y-z|$，于是根据命题7.1.4与比较原理可以计算有：
+>   > $$
+>   > \begin{align}
+>   > d_{l^1}((a_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)=\sum_{n=0}^\infty|a_n-c_n|&\leq\sum_{n=0}^\infty|a_n-b_n|+|b_n-c_n|\\
+>   > &=\sum_{n=0}^\infty|a_n-b_n|+\sum_{n=0}^\infty|b_n-c_n|\\
+>   > &=d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)+d_{l^1}((b_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)
+>   > \end{align}
+>   > $$
+>   > 然后注意到对任意的$n\in\mathbb N$，都有$|a_n-b_n|\leq d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)$与$|b_n-c_n|\leq d_{l^\infty}((b_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)$，于是可以推导有：
+>   > $$
+>   > \begin{gather}
+>   > \forall\:n\in\mathbb N,|a_n-c_n|\leq|a_n-b_n|+|b_n-c_n|\\
+>   > \Downarrow\\
+>   > \forall\:n\in\mathbb N,|a_n-c_n|\leq d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)+d_{l^\infty}((b_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)\\
+>   > \Downarrow\\
+>   > d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)+d_{l^\infty}((b_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)是\{|a_n-c_n|:n\in\mathbb N\}的上界\\
+>   > \Downarrow\\
+>   > \sup_{n\in\mathbb N}|a_n-c_n|\leq d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)+d_{l^\infty}((b_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)
+>   > \end{gather}
+>   > $$
+>   > 即有$d_{l^\infty}((a_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)\leq d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)+d_{l^\infty}((b_n)_{n=0}^\infty,(c_n)_{n=0}^\infty)$。
+>   >
+>   > 综上，于是总是满足此条件。
+>
+> 综上，有两者皆为$X$上的度量。
+>
+> ---
+>
+> 举例：存在一个由$X$中元素构成的序列$x^{(1)}$，$x^{(2)}$，$...$，它依度量$d_{l^\infty}$收敛但是不依度量$d_{l^1}$收敛。
+>
+> 对任意的$n\geq 1$，我们定义序列$x^{(n)}:=(x^{(n)}_m)_{m=0}^\infty$有（记有$x^{(n)}_m$是序列$x^{(n)}$对整数$m$指定的实数）：
+> $$
+> x^{(n)}_m:=\begin{cases}
+> \displaystyle\frac{1}{n}&\text{if}\;0\leq m<n\\
+> \displaystyle0&\text{if}\;n\leq m
+> \end{cases}
+> $$
+> 显然对任意的$n\geq 1$都有$x^{(n)}$满足$\displaystyle\sum_{m=0}^\infty|x_m^{(n)}|=1<\infty$，于是$(x^{(n)})_{n=1}^\infty$是由$X$中元素构成的序列。
+>
+> 注意到显然有$(x^{(n)})_{n=1}^\infty$依度量$d_{l^\infty}$收敛于常数序列$(0)_{n=0}^\infty$（不难根据定义得到$\displaystyle d_{l^\infty}(x^{(n)},(0)_{n=0}^\infty)=\frac{1}{n}$），我们来证明$(x^{(n)})_{n=1}^\infty$不可能依度量$d_{l^1}$收敛于任何序列$(a_n)_{n=0}^\infty\in X$（下面的证明中我们使用“收敛”简写“依度量$d_{l^1}$收敛”）。
+>
+> 注意到对任意的$i>j\geq 1$都有：
+> $$
+> \begin{align}
+> d_{l^1}(x^{(i)},x^{(j)})&=\sum_{m=0}^\infty|x^{(i)}_m-x^{(j)}_m|\\
+> &=\sum_{m=0}^{j-1}\left|\frac{1}{i}-\frac{1}{j}\right|+\sum_{m=j}^{i-1}\left|\frac{1}{i}\right|\\
+> &=\frac{i-j}{i}+\frac{i-j}{i}\\
+> &=2\left(1-\frac{j}{i}\right)
+> \end{align}
+> $$
+> 于是不妨使用反证法，我们假设存在序列$(a_n)_{n=0}^\infty\in X$使得$(x^{(n)})_{n=1}^\infty$收敛于$(a_n)_{n=0}^\infty$。根据定义12.1.14，对任意的$\varepsilon>0$都存在整数$N\geq 1$使得对任意的$n\geq N$都有：
+> $$
+> d_{l^1}(x^{(n)},(a_m)_{m=0}^\infty)\leq\varepsilon\Longrightarrow\sum_{m=0}^\infty|x^{(n)}_m-a_m|\leq\varepsilon
+> $$
+> 特别地，我们考虑$\varepsilon\ll 1$的情况，然后任取$i>j\geq N$，根据度量的三角不等式应该有：
+> $$
+> d_{l^1}(x^{(i)},x^{(j)})\leq d_{l^1}(x^{(i)},(a_m)_{m=0}^\infty)+d_{l^1}((a_m)_{m=0}^\infty,x^{(j)})\leq 2\varepsilon
+> $$
+> 然后根据我们前面的计算，于是即对任意的$i>j\geq N$都应该有：
+> $$
+> 2\left(1-\frac{j}{i}\right)\leq 2\varepsilon\Longrightarrow i(1-\varepsilon)\leq j
+> $$
+> 但是由于$j$和$i$都是任意的，我们完全可以通过选择足够大的$i$使得$i(1-\varepsilon)\leq j$。于是导出了矛盾，反证假设不成立，$(x^{(n)})_{n=1}^\infty$不可能依度量$d_{l^1}$收敛于任何序列$(a_n)_{n=0}^\infty\in X$。
+>
+> ---
+>
+> 证明：任意一个依度量$d_{l^1}$收敛的序列必然依度量$d_{l^\infty}$收敛。
+>
+> 我们先证明一个辅助用的结论：
+>
+> > 结论：对任意$(a_n)_{n=0}^\infty$，$(b_n)_{n=0}^\infty$属于$X$，都有$d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)\leq d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)$。
+> >
+> > 证明：
+> >
+> > 根据上确界的性质，对任意的实数$\varepsilon>0$都应该存在一个$m\in\mathbb N$使得：
+> > $$
+> > \sup_{n\in\mathbb N}|a_n-b_n|-\varepsilon\leq|a_m-b_m|\leq \sup_{n\in\mathbb N}|a_n-b_n|
+> > $$
+> > 然后根据绝对值的非负性，我们有：
+> > $$
+> > d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)=\sum_{n=0}^\infty|a_n-b_n|\geq |a_m-b_m|
+> > $$
+> > 于是即对任意的实数$\varepsilon>0$都有：
+> > $$
+> > d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)-\varepsilon\leq d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)
+> > $$
+> > 从而只能有$d_{l^\infty}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)\leq d_{l^1}((a_n)_{n=0}^\infty,(b_n)_{n=0}^\infty)$，否则会导出矛盾。
+>
+> 若有序列$(x^{(n)})_{n=0}^\infty$依度量$d_{l^1}$收敛于序列$x\in X$，根据定义12.1.14即有对任意的$\varepsilon>0$，都存在$N\geq 0$使得对任意的$n\geq N$都有：
+> $$
+> d_{l^1}(x^{(n)},x)\leq\varepsilon
+> $$
+> 然后根据辅助结论也即有$d_{l^\infty}(x^{(n)},x)\leq\varepsilon$，于是根据定义12.1.14有序列$(x^{(n)})_{n=0}^\infty$依度量$d_{l^\infty}$收敛于$x$。
+
+##### 12.2.16 设$(x_n)_{n=1}^\infty$和$(y_n)_{n=1}^\infty$是度量空间$(X,d)$中的两个序列，并设$(x_n)_{n=1}^\infty$收敛于点$x\in X$且$(y_n)_{n=1}^\infty$收敛于点$y\in X$。证明：$\displaystyle\lim_{n\to\infty}d(x_n,y_n)=d(x,y)$<span style='color:blue'>（提示：多次使用三角不等式）</span>
+
+> 根据定义12.1.14，于是题设即有：对任意的$\varepsilon>0$，都存在$N_x$，$N_y\geq 1$使得对任意的$n\geq N_x$都有$d(x_n,x)\leq\varepsilon/2$与对任意$n\geq N_y$都有$d(y_n,y)\leq\varepsilon/2$。于是对任意的$n\geq\max(N_x,N_y)$都有：
+> $$
+> \begin{gather}
+> d(x_n,y_n)\leq d(x_n,x)+d(x,y_n)\leq d(x_n,x)+d(x,y)+d(y,y_n)\\
+> d(x,y)\leq d(x,x_n)+d(x_n,y)\leq d(x,x_n)+d(x_n,y_n)+d(y_n,y)\\
+> \Downarrow\\
+> d(x,y)-d(x_n,x)-d(y_n,y)\leq d(x_n,y_n)\leq d(x,y)+d(x_n,x)+d(y_n,y)\\
+> \Downarrow\\
+> |d(x_n,y_n)-d(x,y)|\leq\varepsilon
+> \end{gather}
+> $$
+> 由于$\max(N_x,N_y)$也是一个整数，我们将其记为$N$，于是可以综合上面的内容有：
+>
+> 对任意的$\varepsilon>0$，存在$N\geq 1$使得对任意的$n\geq N$都有$|d(x_n,y_n)-d(x,y)|\leq\varepsilon$成立。
+>
+> 于是根据实数序列收敛的定义即有$\displaystyle\lim_{n\to\infty}d(x_n,y_n)=d(x,y)$，题目结论得证。
+
+---
+
+## 本节相关跳转
+
+[实分析 4.3 绝对值与指数运算](../Chap4/Sec3.md)
+
+[实分析 6.1 收敛与极限定律](../Chap6/Sec1.md)
+
+[实分析 13.5 拓扑空间](../Chap13/Sec5.md)

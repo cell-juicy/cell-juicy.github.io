@@ -4,6 +4,7 @@ import { useData } from 'vitepress';
 import VPJLayoutNotFound from './VPJLayoutNotFound.vue';
 import VPJLayoutPage from './VPJLayoutPage.vue';
 import VPJLayoutBlog from './VPJLayoutBlog.vue';
+import VPJLayoutDoc from './VPJLayoutDoc.vue';
 
 
 const { page, frontmatter } = useData();
@@ -32,6 +33,19 @@ const { page, frontmatter } = useData();
             <template #blog-padding-left><slot name="blog-padding-left"/></template>
             <template #blog-padding-right><slot name="blog-padding-right"/></template>
         </VPJLayoutBlog>
+        <VPJLayoutDoc v-if="frontmatter.layout === 'doc'">
+            <template #doc-header><slot name="doc-header"/></template>
+            <template #doc-header-before><slot name="doc-header-before"/></template>
+            <template #doc-header-between><slot name="doc-header-between"/></template>
+            <template #doc-header-after><slot name="doc-header-after"/></template>
+            <template #doc-aside><slot name="doc-aside"/></template>
+            <template #doc-cover><slot name="doc-cover"/></template>
+            <template #doc-controler><slot name="doc-controler"/></template>
+            <template #doc-top><slot name="doc-top"/></template>
+            <template #doc-bottom><slot name="doc-bottom"/></template>
+            <template #doc-padding-left><slot name="doc-padding-left"/></template>
+            <template #doc-padding-right><slot name="doc-padding-right"/></template>
+        </VPJLayoutDoc>
         <Content v-else/>
     </div>
 </template>

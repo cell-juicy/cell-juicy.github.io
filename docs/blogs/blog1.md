@@ -5,7 +5,7 @@ tags:
   - CSS
   - flex
 order: 0
-cover: /assets/Priestess.jpg
+cover: /assets/reunite.jpg
 coverCss:
   objectPosition: "center 40%"
 ---

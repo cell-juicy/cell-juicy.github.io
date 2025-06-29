@@ -5,7 +5,7 @@ import { Route } from "vitepress";
 import { data } from "../data/blog.data";
 
 import { VPJ_BLOG_DATA_SYMBOL } from "../utils/symbols";
-import { processOrder } from "../utils/common";
+import { processBlogOrder } from "../utils/common";
 
 import type {
     ThemeConfig
@@ -14,7 +14,7 @@ import type {
     VPJBlogLayoutConfig
 } from '../types/layoutBlog';
 import type {
-    SeriesDefaultData
+    SeriesMetaData
 } from '../types/blog';
 import type {
     PageContext
@@ -45,7 +45,7 @@ interface BlogData {
     ctx: Ref<PageContext | undefined>;
     filter: (option: FilterOption | undefined) => Array<any> | undefined;
     layoutConfig: Ref<VPJBlogLayoutConfig>;
-    seriesConfig: Ref<SeriesDefaultData>;
+    seriesConfig: Ref<SeriesMetaData>;
 }
 
 export function initVPJBlogData(route: Route, siteData): BlogData {
@@ -54,12 +54,13 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
 
     // Get theme config and series config
     const layoutConfig: Ref<VPJBlogLayoutConfig> = ref({});
-    const seriesConfig: Ref<SeriesDefaultData> = ref({});
+    const seriesConfig: Ref<SeriesMetaData> = ref({});
 
     watch([theme, frontmatter], (next, prev) => {
         if (JSON.stringify(next) !== JSON.stringify(prev)) {
             // Update layout config
             layoutConfig.value = theme.value.layouts?.blog || {};
+            
             // Update series config
             if (typeof frontmatter.value.series === 'string' && frontmatter.value.layout === "blog") {
                 const name = frontmatter.value.series;
@@ -71,7 +72,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
                     seriesConfig.value = theme.value.blog.series[name] || {};
                 };
             };
-        };   
+        };
     }, { immediate: true });
 
     // Process blog data
@@ -151,7 +152,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
     // Calculate the order
     const order = computed(() => {
         if (frontmatter.value.layout === "blog") {
-            return processOrder(frontmatter.value.order);
+            return processBlogOrder(frontmatter.value.order);
         }
         return undefined;
     });
@@ -172,7 +173,6 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
     });
 
     // Calculate the title
-    // useBlogData.ts
     const title = computed(() => {
         if (frontmatter.value.layout === "blog") {
             const currentData = blogDataBase.value.find((data) => {
