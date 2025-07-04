@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（6.3.1 序列的$\sup $与$\inf $）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，则定义$\sup(a_n)_{n=m}^\infty$<span style='color:blue'>（有时也记作$\displaystyle\sup_{n\geq m}a_n$）</span>为集合$E$：
+1. <span style='color:red'>（6.3.1 序列的$\sup$与$\inf$）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，则定义$\sup(a_n)_{n=m}^\infty$<span style='color:blue'>（有时也记作$\displaystyle\sup_{n\geq m}a_n$）</span>为集合$E$：
    $$
    E=\{a_n:n≥m\}
    $$
