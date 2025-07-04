@@ -70,4 +70,7 @@ export default defineConfigWithTheme<ThemeConfig>({
             vueDevTools()
         ]
     },
+    markdown: {
+        math: true
+    }
 })
