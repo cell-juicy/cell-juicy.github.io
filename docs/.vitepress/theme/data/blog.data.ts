@@ -5,7 +5,6 @@ import { processBlogOrder } from "../utils/common";
 
 export default createContentLoader("**/*.md", {
     includeSrc: true,
-    render: true,
     transform(rawData) {
         return rawData
             .filter((raw) => raw.frontmatter.layout === "blog")
