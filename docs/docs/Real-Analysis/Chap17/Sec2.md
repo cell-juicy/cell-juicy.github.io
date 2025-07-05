@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 摘录
 
-1. <span style='color:red'>（从$1\to 1$到$n\to m$）</span>在单变量微积分中，我们曾经给过一个函数$f:E\to\mathbb R$在$x_0\in E$处微分的定义，即：
+1. <span style="color:red">（从$1\to 1$到$n\to m$）</span>在单变量微积分中，我们曾经给过一个函数$f:E\to\mathbb R$在$x_0\in E$处微分的定义，即：
    $$
    f'(x_0):=\lim_{x\to x_0;x\in E\verb|\|\{x_0\}}\frac{f(x)-f(x_0)}{x-x_0}
    $$
@@ -28,7 +28,7 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（17.2.2 可微性）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0\in E$是一个点，并设$L:\mathbb R^n\to\mathbb R^m$是一个线性变换。如果有：
+1. <span style="color:red">（17.2.2 可微性）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0\in E$是一个点，并设$L:\mathbb R^n\to\mathbb R^m$是一个线性变换。如果有：
    $$
    \lim_{x\to x_0;x\in E\verb|\|\{x_0\}}\frac{\Vert f(x)-(f(x_0)+L(x-x_0))\Vert}{\Vert x-x_0\Vert}=0
    $$
@@ -38,22 +38,22 @@ coverHeight: 320px
    $$
    则我们称**$f$在$x_0$处是可微的**，并且**导数为$L$**。
 
-   <span style='color:blue'>（注：使用原始定义去计算导数太过麻烦（原书有个例子），之后会用更好的方式去计算；如同一元微积分一样，我们也可以将$f$在$x_0$处的导数记为$f'(x_0)$（这需要引理17.2.4去保证唯一性），于是$f'(x_0)$是满足$f(x)-f(x_0)\approx f'(x_0)(x-x_0)$的线性变换（这也被称为**牛顿近似**，与[命题10.1.7](../Chap10/Sec1.md)比较）；有时候我们称$f'$为$f$的**全导数**（为了和后面的偏导数与方向导数区分），并且全导数$f'$同**导数矩阵**$Df$有密切的联系，这个是[下一节](../Chap17/Sec3.md)的内容了）</span>
+   <span style="color:blue">（注：使用原始定义去计算导数太过麻烦（原书有个例子），之后会用更好的方式去计算；如同一元微积分一样，我们也可以将$f$在$x_0$处的导数记为$f'(x_0)$（这需要引理17.2.4去保证唯一性），于是$f'(x_0)$是满足$f(x)-f(x_0)\approx f'(x_0)(x-x_0)$的线性变换（这也被称为**牛顿近似**，与[命题10.1.7](../Chap10/Sec1.md)比较）；有时候我们称$f'$为$f$的**全导数**（为了和后面的偏导数与方向导数区分），并且全导数$f'$同**导数矩阵**$Df$有密切的联系，这个是[下一节](../Chap17/Sec3.md)的内容了）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（17.2.2 可微性描述的改写？）</span>设$E$是$\mathbb R$的子集，$f:E\to\mathbb R$是一个函数，且$x_0\in E$且$L\in\mathbb R$。那么下面这两个命题是等价的：
+1. <span style="color:red">（17.2.2 可微性描述的改写？）</span>设$E$是$\mathbb R$的子集，$f:E\to\mathbb R$是一个函数，且$x_0\in E$且$L\in\mathbb R$。那么下面这两个命题是等价的：
 
    > 1. $f$在$x_0$处是可微的，并且$f'(x_0)=L$。
    > 2. $\displaystyle\lim_{x\to x_0;x\in E\verb|\|\{x_0\}}\frac{|f(x)-(f(x_0)+L(x-x_0))|}{|x-x_0|}=0$。
 
-   <span style='color:blue'>（注：这个等价关系相当于给出了近似式$f(x)-f(x_0)=L(x-x_0)$，这个定义看起来与微分差别不大，但是最注意到的是这个命题给出了不使用$x-x_0$作为除数，这样就规避了向量“除法”的问题。然后从这个等价定义出发，我们去思考找出如何有一个对应的$L$作用于$n$维向量$x-x_0$，使得$m$维向量$f(x)-f(x_0)$近似$L(x-x_0)$。从这个角度出发，我们不难想到$L$应该有一个线性变换的形式）</span>
+   <span style="color:blue">（注：这个等价关系相当于给出了近似式$f(x)-f(x_0)=L(x-x_0)$，这个定义看起来与微分差别不大，但是最注意到的是这个命题给出了不使用$x-x_0$作为除数，这样就规避了向量“除法”的问题。然后从这个等价定义出发，我们去思考找出如何有一个对应的$L$作用于$n$维向量$x-x_0$，使得$m$维向量$f(x)-f(x_0)$近似$L(x-x_0)$。从这个角度出发，我们不难想到$L$应该有一个线性变换的形式）</span>
    
-2. <span style='color:red'>（17.2.4 导数的唯一性）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0\in E$是一个点，并设$L_1:\mathbb R^n\to\mathbb R^m$和$L_2:\mathbb R^n\to\mathbb R^m$都是线性变换。如果$f$在$x_0$处可微，并且导数为$L_1$的同时还有导数为$L_2$，那么$L_1=L_2$。
+2. <span style="color:red">（17.2.4 导数的唯一性）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0\in E$是一个点，并设$L_1:\mathbb R^n\to\mathbb R^m$和$L_2:\mathbb R^n\to\mathbb R^m$都是线性变换。如果$f$在$x_0$处可微，并且导数为$L_1$的同时还有导数为$L_2$，那么$L_1=L_2$。
 
-   <span style='color:blue'>（注：需要注意的是这里强调了$x_0$是一个内点，这个结论在边界点上面并不一定，书里给了个很极端的单点集的例子）</span>
+   <span style="color:blue">（注：需要注意的是这里强调了$x_0$是一个内点，这个结论在边界点上面并不一定，书里给了个很极端的单点集的例子）</span>
 
 ---
 
@@ -67,7 +67,7 @@ coverHeight: 320px
 > $$
 > 而我们又注意到$x=x_0$处$|f(x)-(f(x_0)+L(x-x_0))|\leq\varepsilon|x-x_0|$是显然成立的，与$f$和$\varepsilon$无关。因此我们可以得到等价关系有：$\displaystyle\lim_{x\to x_0;x\in E\verb|\|\{x_0\}}\frac{|f(x)-(f(x_0)+L(x-x_0))|}{|x-x_0|}=0$当且仅当对任意的$\varepsilon>0$，存在$\delta>0$使得对任意的$x\in E$满足$|x-x_0|\leq\delta$都有$|f(x)-(f(x_0)+L(x-x_0))|\leq\varepsilon|x-x_0|$。然后利用牛顿逼近法（命题10.1.7）我们就可以进一步得到这等价于$f$在$x_0$处的导数为$L$。
 
-##### 17.2.2 证明引理17.2.4<span style='color:blue'>（提示：利用反证法。如果$L_1\ne L_2$，那么存在一个向量$v$使得$L_1v\ne L_2v$，并且这个向量一定不是零向量。（为什么？）然后再利用导数的定义，专门考察$x=x_0+tv$（其中$t$时一个标量）时的情景来导出矛盾）</span>
+##### 17.2.2 证明引理17.2.4<span style="color:blue">（提示：利用反证法。如果$L_1\ne L_2$，那么存在一个向量$v$使得$L_1v\ne L_2v$，并且这个向量一定不是零向量。（为什么？）然后再利用导数的定义，专门考察$x=x_0+tv$（其中$t$时一个标量）时的情景来导出矛盾）</span>
 
 > 使用反证法，若$L_1\ne L_2$，那么至少存在一个$v\in\mathbb R^n$使得$L_1v\ne L_2v$。特别地，我们可以假定这个$v$不是零向量，这是因为：
 >
@@ -99,7 +99,7 @@ coverHeight: 320px
 > $$
 > 这与$L_1v\ne L_2v$导出了矛盾，于是反证结束，反证假设不成立，只能有$L_1=L_2$。
 
-##### 17.2.3 设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的一个内点，并设$f_1,...,f_n:E\to\mathbb R^m$是$f$的分量函数<span style='color:blue'>（即$f=(f_1,...,f_m)$）</span>。证明：$f$是在$x_0$处可微的当且仅当所有的分量函数$f_1,...,f_m$都是在$x_0$处可微的
+##### 17.2.3 设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的一个内点，并设$f_1,...,f_n:E\to\mathbb R^m$是$f$的分量函数<span style="color:blue">（即$f=(f_1,...,f_m)$）</span>。证明：$f$是在$x_0$处可微的当且仅当所有的分量函数$f_1,...,f_m$都是在$x_0$处可微的
 
 > 注：本题来自第四版勘误表，详情请参考[Analysis II:Errata](https://terrytao.wordpress.com/books/analysis-ii/)。
 >

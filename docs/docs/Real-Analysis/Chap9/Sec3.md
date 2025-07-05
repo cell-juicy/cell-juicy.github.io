@@ -14,28 +14,28 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（9.3.1 $\varepsilon$-接近性）</span>设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$L$是一个实数，并且设$\varepsilon>0$也是一个实数。我们称函数$f$是**$\varepsilon$-接近于**$L$的，当且仅当对任意$x\in X$，都有$|f(x)-L|\leq\varepsilon$。
-1. <span style='color:red'>（9.3.3 局部$\varepsilon$-接近性）</span>设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$L$是一个实数，$x_0$是$X$的一个附着点，并且设$\varepsilon>0$也是一个实数。我们称函数$f$**在$x_0$附近是$\varepsilon$-接近于**$L$的，当且仅当存在一个实数$\delta>0$使得当$f$被限制在集合$\{x\in X:|x-x_0|\leq\delta\}$上时，有$f$是$\varepsilon$-接近于$L$的<span style='color:blue'>（即$f|_{[x_0-\delta,x_0+\delta]}$是$\varepsilon$-接近于$L$的）</span>。
-1. <span style='color:red'>（9.3.6 函数在一点处收敛）</span>设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$L$是一个实数。我们称$f$**在点$x_0$处沿着$E$收敛于$L$**，并且记作$\displaystyle\lim_{x\to x_0;x\in E}f(x)=L$，当且仅当对任意的$\varepsilon>0$，被限制在$E$上的函数$f$都是在$x_0$附近是$\varepsilon$-接近于$L$的。如果$f$在$x_0$处不收敛于任何数，那么我们称$f$在$x_0$处是**发散**，并且此时认为$\displaystyle\lim_{x\to x_0;x\in E}f(x)$是无定义的。
+1. <span style="color:red">（9.3.1 $\varepsilon$-接近性）</span>设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$L$是一个实数，并且设$\varepsilon>0$也是一个实数。我们称函数$f$是**$\varepsilon$-接近于**$L$的，当且仅当对任意$x\in X$，都有$|f(x)-L|\leq\varepsilon$。
+1. <span style="color:red">（9.3.3 局部$\varepsilon$-接近性）</span>设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$L$是一个实数，$x_0$是$X$的一个附着点，并且设$\varepsilon>0$也是一个实数。我们称函数$f$**在$x_0$附近是$\varepsilon$-接近于**$L$的，当且仅当存在一个实数$\delta>0$使得当$f$被限制在集合$\{x\in X:|x-x_0|\leq\delta\}$上时，有$f$是$\varepsilon$-接近于$L$的<span style="color:blue">（即$f|_{[x_0-\delta,x_0+\delta]}$是$\varepsilon$-接近于$L$的）</span>。
+1. <span style="color:red">（9.3.6 函数在一点处收敛）</span>设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$L$是一个实数。我们称$f$**在点$x_0$处沿着$E$收敛于$L$**，并且记作$\displaystyle\lim_{x\to x_0;x\in E}f(x)=L$，当且仅当对任意的$\varepsilon>0$，被限制在$E$上的函数$f$都是在$x_0$附近是$\varepsilon$-接近于$L$的。如果$f$在$x_0$处不收敛于任何数，那么我们称$f$在$x_0$处是**发散**，并且此时认为$\displaystyle\lim_{x\to x_0;x\in E}f(x)$是无定义的。
 
    ​	换言之，即$\displaystyle\lim_{x\to x_0;x\in E}f(x)=L$当且仅当对任意$\varepsilon>0$，存在一个$\delta>0$使得$|f(x)-L|\leq\varepsilon$对任意满足$|x-x_0|\leq\delta$的$x\in E$均成立。
 
-   <span style='color:blue'>（注：通常情况下，我们会在一定上下文条件下忽略$E$（即直接说$f$在$x_0$处收敛于$E$，或者说$\displaystyle\lim_{x\to x_0}f(x)=L$），但是这样的做法在事实上是有一定风险的，举个例子，当$E$不包含$x_0$时就可能对结果产生很大影响：定义一个函数$f:\mathbb R\to\mathbb R$，当$x=0$时$f(x)=1$，当$x\ne 0$时$f(x)=0$，此时我们有$\displaystyle\lim_{x\to0;x\in\mathbb R\verb|\|\{0\}}f(x)=0$与$\displaystyle\lim_{x\to0;x\in\mathbb R}f(x)$无定义同时成立。此外，这个定义也比较复杂，我们通常会选择它的替代形式使用，详情见命题9.3.9）</span>
+   <span style="color:blue">（注：通常情况下，我们会在一定上下文条件下忽略$E$（即直接说$f$在$x_0$处收敛于$E$，或者说$\displaystyle\lim_{x\to x_0}f(x)=L$），但是这样的做法在事实上是有一定风险的，举个例子，当$E$不包含$x_0$时就可能对结果产生很大影响：定义一个函数$f:\mathbb R\to\mathbb R$，当$x=0$时$f(x)=1$，当$x\ne 0$时$f(x)=0$，此时我们有$\displaystyle\lim_{x\to0;x\in\mathbb R\verb|\|\{0\}}f(x)=0$与$\displaystyle\lim_{x\to0;x\in\mathbb R}f(x)$无定义同时成立。此外，这个定义也比较复杂，我们通常会选择它的替代形式使用，详情见命题9.3.9）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（9.3.9 收敛定义的替换？）</span>设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$L$是一个实数。则下面两个命题在逻辑上是等价的：
+1. <span style="color:red">（9.3.9 收敛定义的替换？）</span>设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$L$是一个实数。则下面两个命题在逻辑上是等价的：
 
    > * $f$在点$x_0$处沿着$E$收敛于$L$。
    > * 对任意一个完全由$E$中元素构成并且收敛于$x_0$的序列$(a_n)_{n=0}^\infty$，序列$(f(a_n))^\infty_{n=0}$都收敛于$L$。
 
-   <span style='color:blue'>（注：使用命题9.3.9里的符号，我们可以得到推论：如有$\displaystyle\lim_{x\to x_0;x\in E}f(x)=L$且$\displaystyle\lim_{n\to\infty}a_n=x_0$，那么有$\displaystyle\lim_{n\to\infty}f(a_n)=L$）</span>
+   <span style="color:blue">（注：使用命题9.3.9里的符号，我们可以得到推论：如有$\displaystyle\lim_{x\to x_0;x\in E}f(x)=L$且$\displaystyle\lim_{n\to\infty}a_n=x_0$，那么有$\displaystyle\lim_{n\to\infty}f(a_n)=L$）</span>
 
-2. <span style='color:red'>（9.3.12 函数极限的唯一性？）</span>设$X$是实数集$\mathbb R$的一个子集，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$f:X\to\mathbb R$是一个函数。那么$f$在$x_0$处沿着$E$至多只能有一个极限。
+2. <span style="color:red">（9.3.12 函数极限的唯一性？）</span>设$X$是实数集$\mathbb R$的一个子集，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$f:X\to\mathbb R$是一个函数。那么$f$在$x_0$处沿着$E$至多只能有一个极限。
 
-3. <span style='color:red'>（9.3.14 函数的极限定律）</span>设$X$是实数集$\mathbb R$的一个子集，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$f:X\to\mathbb R$与$g:X\to\mathbb R$都是函数。假设$f$在$x_0$处沿着$E$收敛于$L$，$g$在$x_0$处沿着$E$收敛于$M$。那么有：
+3. <span style="color:red">（9.3.14 函数的极限定律）</span>设$X$是实数集$\mathbb R$的一个子集，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$f:X\to\mathbb R$与$g:X\to\mathbb R$都是函数。假设$f$在$x_0$处沿着$E$收敛于$L$，$g$在$x_0$处沿着$E$收敛于$M$。那么有：
 
    > 1. $f+g$在$x_0$处沿着$E$收敛于$L+M$：
    >    $$
@@ -72,9 +72,9 @@ coverHeight: 320px
    >    \lim_{x\to x_0;x\in E}(f/g)(x)=\frac{\displaystyle\lim_{x\to x_0;x\in E}f(x)}{\displaystyle\lim_{x\to x_0;x\in E}g(x)}
    >    $$
    >
-   > <span style='color:blue'>（简写的话，能根据上下文确定$E$时省略$x\in E$也可以）</span>
+   > <span style="color:blue">（简写的话，能根据上下文确定$E$时省略$x\in E$也可以）</span>
 
-   <span style='color:blue'>（注：关于是否注明集合$E$，还是之前那个例子函数$f:\mathbb R\to\mathbb R$：</span>
+   <span style="color:blue">（注：关于是否注明集合$E$，还是之前那个例子函数$f:\mathbb R\to\mathbb R$：</span>
    $$
    \color{blue}{
    f(x):=
@@ -84,9 +84,9 @@ coverHeight: 320px
    \end{cases}
    }
    $$
-   <span style='color:blue'>有有$\displaystyle\lim_{x\to0;x\in\mathbb R\verb|\|\{0\}}f(x)=0$与$\displaystyle\lim_{x\to0;x\in\mathbb R}f(x)$无定义，这种情况下我们称$f$在$0$处有“**可去奇点**”或者“**可去间断点**”，并且由于这种奇点的存在，我们有时约定写$\displaystyle\lim_{x\to x_0}f(x)$时默认将$x_0$排除在外，例如在本书里就有$\displaystyle\lim_{x\to x_0}f(x)=\lim_{x\to0;x\in X\verb|\|\{x_0\}}f(x)$）</span>
+   <span style="color:blue">有有$\displaystyle\lim_{x\to0;x\in\mathbb R\verb|\|\{0\}}f(x)=0$与$\displaystyle\lim_{x\to0;x\in\mathbb R}f(x)$无定义，这种情况下我们称$f$在$0$处有“**可去奇点**”或者“**可去间断点**”，并且由于这种奇点的存在，我们有时约定写$\displaystyle\lim_{x\to x_0}f(x)$时默认将$x_0$排除在外，例如在本书里就有$\displaystyle\lim_{x\to x_0}f(x)=\lim_{x\to0;x\in X\verb|\|\{x_0\}}f(x)$）</span>
 
-4. <span style='color:red'>（9.3.18 极限是局部的）</span>设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$L$是一个实数，$\delta>0$是一个实数。则我们有：
+4. <span style="color:red">（9.3.18 极限是局部的）</span>设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$L$是一个实数，$\delta>0$是一个实数。则我们有：
    $$
    \lim_{x\to x_0;x\in E}f(x)=L
    $$
@@ -98,7 +98,7 @@ coverHeight: 320px
    $$
    \lim_{x\to x_0;x\in E\cap(x_0-\delta,x_0+\delta)}f(x)=\lim_{x\to x_0;x\in E}f(x)
    $$
-   <span style='color:blue'>（即$x_0$处的极限值只与$x_0$附近的函数值有关，与远离$x_0$的函数值无关）</span>
+   <span style="color:blue">（即$x_0$处的极限值只与$x_0$附近的函数值有关，与远离$x_0$的函数值无关）</span>
 
 ---
 
@@ -126,7 +126,7 @@ coverHeight: 320px
 >
 > 综上，必然有对任意的$\varepsilon>0$需要证明存在一个$\delta>0$满足若$|x-x_0|\leq\delta$且$x\in X$则有$|f(x)-L|\leq\varepsilon$成立。即$f$在点$x_0$处沿着$E$收敛于$L$。
 
-##### 9.3.2 证明命题9.3.14中剩下的部分<span style='color:blue'>（即除去第一条外的其它内容）</span>
+##### 9.3.2 证明命题9.3.14中剩下的部分<span style="color:blue">（即除去第一条外的其它内容）</span>
 
 > 即假设有$X$是实数集$\mathbb R$的一个子集，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$f:X\to\mathbb R$与$g:X\to\mathbb R$都是函数。假设$f$在$x_0$处沿着$E$收敛于$L$，$g$在$x_0$处沿着$E$收敛于$M$。
 >
@@ -301,7 +301,7 @@ coverHeight: 320px
 >
 > 若有$\displaystyle\lim_{x\to x_0;x\in E\cap(x_0-\delta,x_0+\delta)}f(x)=L$，则有$\displaystyle\lim_{x\to x_0;x\in E}f(x)=L$。
 
-##### 9.3.4 给出上极限$\displaystyle\limsup_{x\to x_0;x\in E}f(x)$与下极限$\displaystyle\liminf_{x\to x_0;x\in E}f(x)$的定义，然后根据你给出的定义，提出一个类似于命题9.3.9的结论<span style='color:blue'>（附加挑战：证明这个结论）</span>
+##### 9.3.4 给出上极限$\displaystyle\limsup_{x\to x_0;x\in E}f(x)$与下极限$\displaystyle\liminf_{x\to x_0;x\in E}f(x)$的定义，然后根据你给出的定义，提出一个类似于命题9.3.9的结论<span style="color:blue">（附加挑战：证明这个结论）</span>
 
 > 设$X$是实数集$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$L$是一个实数。
 >
@@ -435,7 +435,7 @@ coverHeight: 320px
 >
 > 综上，于是有内容得证。
 
-##### 9.3.5 <span style='color:red'>（夹逼定理的连续形式）</span>设$X$是实数集$\mathbb R$的一个子集，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$f:X\to\mathbb R$，$g:X\to\mathbb R$与$h:X\to\mathbb R$都是函数，并且有$f(x)\leq g(x)\leq h(x)$对任意$x\in E$都成立。若存在实数$L$有$\displaystyle\lim_{x\to x_0;x\in E}f(x)=\lim_{x\to x_0;x\in E}h(x)=L$，则尝试证明：$\displaystyle\lim_{x\to x_0;x\in E}g(x)=L$
+##### 9.3.5 <span style="color:red">（夹逼定理的连续形式）</span>设$X$是实数集$\mathbb R$的一个子集，$E$是$X$的一个子集，$x_0$是$E$的一个附着点，并且设$f:X\to\mathbb R$，$g:X\to\mathbb R$与$h:X\to\mathbb R$都是函数，并且有$f(x)\leq g(x)\leq h(x)$对任意$x\in E$都成立。若存在实数$L$有$\displaystyle\lim_{x\to x_0;x\in E}f(x)=\lim_{x\to x_0;x\in E}h(x)=L$，则尝试证明：$\displaystyle\lim_{x\to x_0;x\in E}g(x)=L$
 
 > 根据命题9.3.9，则可以得到对任意一个完全由$E$中元素组成的收敛于$x_0$的序列$(a_n)_{n=0}^\infty$，都有：
 > $$

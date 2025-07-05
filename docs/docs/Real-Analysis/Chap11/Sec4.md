@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（11.4.1 黎曼积分定律）</span>设$I$是一个有界区间，并且$f:I\to\mathbb R$与$g:I\to\mathbb R$都是$I$上黎曼可积的函数，那么：
+1. <span style="color:red">（11.4.1 黎曼积分定律）</span>设$I$是一个有界区间，并且$f:I\to\mathbb R$与$g:I\to\mathbb R$都是$I$上黎曼可积的函数，那么：
 
    > 1. 函数$f+g$是黎曼可积的，并且$\displaystyle\int_I(f+g)=\int_If+\int_Ig$。
    >
@@ -42,19 +42,19 @@ coverHeight: 320px
    >    \int_If=\int_Jf|_J+\int_Kf|_K
    >    $$
 
-   <span style='color:blue'>（注：我们有时候会把$\displaystyle\int_Jf|_J$简写为$\displaystyle\int_Jf$，尽管$f$是定义在比$J$大的区间上的）</span>
+   <span style="color:blue">（注：我们有时候会把$\displaystyle\int_Jf|_J$简写为$\displaystyle\int_Jf$，尽管$f$是定义在比$J$大的区间上的）</span>
 
-2. <span style='color:red'>（11.4.3 最大值与最小值保持可积性）</span>设$I$是一个有界区间，并且设$f:I\to\mathbb R$与$g:I\to\mathbb R$都是$I$上黎曼可积的函数，那么函数$\max(f,g)$与函数$\min(f,g)$都是在$I$上黎曼可积的。
+2. <span style="color:red">（11.4.3 最大值与最小值保持可积性）</span>设$I$是一个有界区间，并且设$f:I\to\mathbb R$与$g:I\to\mathbb R$都是$I$上黎曼可积的函数，那么函数$\max(f,g)$与函数$\min(f,g)$都是在$I$上黎曼可积的。
 
-3. <span style='color:red'>（11.4.4 绝对值保持可积性）</span>设$I$是一个有界区间，并且设$f:I\to\mathbb R$与$g:I\to\mathbb R$都是$I$上黎曼可积的函数，那么正数部分$f_+:=\max(f,0)$与负数部分$f_-:=\min(f,0)$都是在$I$上黎曼可积的，并且绝对值$|f|:=f_+-f_-$也是在$I$上黎曼可积的。
+3. <span style="color:red">（11.4.4 绝对值保持可积性）</span>设$I$是一个有界区间，并且设$f:I\to\mathbb R$与$g:I\to\mathbb R$都是$I$上黎曼可积的函数，那么正数部分$f_+:=\max(f,0)$与负数部分$f_-:=\min(f,0)$都是在$I$上黎曼可积的，并且绝对值$|f|:=f_+-f_-$也是在$I$上黎曼可积的。
 
-4. <span style='color:red'>（11.4.5 乘积保持可积性）</span>设$I$是一个有界区间，并且设$f:I\to\mathbb R$与$g:I\to\mathbb R$都是$I$上黎曼可积的函数，那么函数$fg$是在$I$上黎曼可积的。
+4. <span style="color:red">（11.4.5 乘积保持可积性）</span>设$I$是一个有界区间，并且设$f:I\to\mathbb R$与$g:I\to\mathbb R$都是$I$上黎曼可积的函数，那么函数$fg$是在$I$上黎曼可积的。
 
 ---
 
 ## 课后习题
 
-##### 11.4.1 证明定理11.4.1<span style='color:blue'>（提示：对于这里的证明[定理11.2.6](../Chap11/Sec2.md)或许有一些帮助。对于(b)，首先考察$c>0$的情形，然后再分别考察$c=-1$与$c=0$的情形，利用这些结果完成对$c<0$情形的证明。你可以使用前面的证明完成后面的证明）</span>
+##### 11.4.1 证明定理11.4.1<span style="color:blue">（提示：对于这里的证明[定理11.2.6](../Chap11/Sec2.md)或许有一些帮助。对于(b)，首先考察$c>0$的情形，然后再分别考察$c=-1$与$c=0$的情形，利用这些结果完成对$c<0$情形的证明。你可以使用前面的证明完成后面的证明）</span>
 
 > 逐条证明：
 >
@@ -333,7 +333,7 @@ coverHeight: 320px
 > $$
 > 即题目结论得证。
 
-##### 11.4.2 设$a<b$是实数，并且设$f:[a,b]\to\mathbb R$是一个连续且非负<span style='color:blue'>（从而对任意$x\in[a,b]$都有$f(x)\geq 0$）</span>的函数。若有$\displaystyle\int_{[a,b]}f=0$，试证明：对任意$x\in[a,b]$都有$f(x)=0$<span style='color:blue'>（提示：利用反证法）</span>
+##### 11.4.2 设$a<b$是实数，并且设$f:[a,b]\to\mathbb R$是一个连续且非负<span style="color:blue">（从而对任意$x\in[a,b]$都有$f(x)\geq 0$）</span>的函数。若有$\displaystyle\int_{[a,b]}f=0$，试证明：对任意$x\in[a,b]$都有$f(x)=0$<span style="color:blue">（提示：利用反证法）</span>
 
 > 使用反证法，我们不妨假设存在$x_0\in[a,b]$使得$f(x_0)=y_0$，由于$f$是非负的，于是$y_0>0$。
 >
@@ -425,7 +425,7 @@ $$
 >
 > 综上，于是我们总是有假设$n=c$时有结论成立，对$n=c+1$时结论也成立，于是根据归纳原理我们可以得到对任意基数为自然数的划分都有题目结论成立，换言之，对任意$I$的划分$P$都成立题目结论，于是证明完毕。
 
-##### 11.4.4 不重复证明中的全部推理内容，简单解释一下为什么定理11.4.3与定理11.4.5的证明中所有剩下的情形都可以从书上已有证明的情形中自动地推导得到<span style='color:blue'>（提示：根据定理11.4.1我们可以知道如果$f$是黎曼可积的，那么$-f$也是黎曼可积的）</span>
+##### 11.4.4 不重复证明中的全部推理内容，简单解释一下为什么定理11.4.3与定理11.4.5的证明中所有剩下的情形都可以从书上已有证明的情形中自动地推导得到<span style="color:blue">（提示：根据定理11.4.1我们可以知道如果$f$是黎曼可积的，那么$-f$也是黎曼可积的）</span>
 
 > 定理11.4.3的证明：
 >

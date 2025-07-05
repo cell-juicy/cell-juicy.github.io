@@ -14,17 +14,17 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（10.4.1 反函数的导数？）</span>设$f:X\to Y$是一个可逆函数，它的反函数为$f^{-1}:Y\to X$，并且设$x_0\in X$与$y_0\in Y$使得$y_0=f(x_0)$<span style='color:blue'>（这同时蕴含了$x_0=f^{-1}(y_0)$）</span>。若有$f$在$x_0$处是可微的，并且$f^{-1}$也在$y_0$处是可微的，那么有：
+1. <span style="color:red">（10.4.1 反函数的导数？）</span>设$f:X\to Y$是一个可逆函数，它的反函数为$f^{-1}:Y\to X$，并且设$x_0\in X$与$y_0\in Y$使得$y_0=f(x_0)$<span style="color:blue">（这同时蕴含了$x_0=f^{-1}(y_0)$）</span>。若有$f$在$x_0$处是可微的，并且$f^{-1}$也在$y_0$处是可微的，那么有：
    $$
    (f^{-1})'(y_0)=\frac{1}{f'(x_0)}
    $$
-   <span style='color:blue'>（注：这个引理可以通过[链式法则（定理10.1.5）](../Chap10/Sec1.md)推知；需要注意的是，虽然这个引理看似给出了一个非常简单的反函数微分计算方法，但是它有一个重大的缺陷：必须假定$f^{-1}$也在$y_0$处可微，当面对反函数的可微性难以证明时这样的缺陷是致命的，因此我们给出下面条件更加宽松的反函数定理来解决这个问题）</span>
+   <span style="color:blue">（注：这个引理可以通过[链式法则（定理10.1.5）](../Chap10/Sec1.md)推知；需要注意的是，虽然这个引理看似给出了一个非常简单的反函数微分计算方法，但是它有一个重大的缺陷：必须假定$f^{-1}$也在$y_0$处可微，当面对反函数的可微性难以证明时这样的缺陷是致命的，因此我们给出下面条件更加宽松的反函数定理来解决这个问题）</span>
 
-2. <span style='color:red'>（10.4.2 反函数定理）</span>设$f:X\to Y$是一个可逆函数，它的反函数为$f^{-1}:Y\to X$，并且设$x_0\in X$与$y_0\in Y$使得$y_0=f(x_0)$<span style='color:blue'>（这同时蕴含了$x_0=f^{-1}(y_0)$）</span>。若有$f$在$x_0$处是可微的，$f^{-1}$在$y_0$处是连续的，且$f'(x_0)\ne 0$，那么$f^{-1}$在$y_0$处可微，并且有：
+2. <span style="color:red">（10.4.2 反函数定理）</span>设$f:X\to Y$是一个可逆函数，它的反函数为$f^{-1}:Y\to X$，并且设$x_0\in X$与$y_0\in Y$使得$y_0=f(x_0)$<span style="color:blue">（这同时蕴含了$x_0=f^{-1}(y_0)$）</span>。若有$f$在$x_0$处是可微的，$f^{-1}$在$y_0$处是连续的，且$f'(x_0)\ne 0$，那么$f^{-1}$在$y_0$处可微，并且有：
    $$
    (f^{-1})'(y_0)=\frac{1}{f'(x_0)}
    $$
-   <span style='color:blue'>（注：反函数定理的证明需要用到[极限定律](../Chap9/Sec3.md)与[命题9.3.9](../Chap9/Sec3.md)，在翻回课本前不妨先大致设想一下怎么证明；本节的习题都是关于反函数定理的实际运用）</span>
+   <span style="color:blue">（注：反函数定理的证明需要用到[极限定律](../Chap9/Sec3.md)与[命题9.3.9](../Chap9/Sec3.md)，在翻回课本前不妨先大致设想一下怎么证明；本节的习题都是关于反函数定理的实际运用）</span>
 
 ---
 
@@ -32,11 +32,11 @@ coverHeight: 320px
 
 ##### 10.4.1 设$n\geq 1$是一个自然数，并且设$g:(0,+\infty)\to(0,+\infty)$是函数$g(x):=x^{1/n}$
 
-###### (a)证明：$g$在$(0,+\infty)$上是连续的<span style='color:blue'>（提示：利用[命题9.8.3](../Chap9/Sec8.md)）</span>
+###### (a)证明：$g$在$(0,+\infty)$上是连续的<span style="color:blue">（提示：利用[命题9.8.3](../Chap9/Sec8.md)）</span>
 
 > 我们知道有$g$是定义为$f(y)=y^n$的函数$f:(0,+\infty)\to(0,+\infty)$的反函数，并且$f$显然是一个严格单调递增的连续函数，于是根据命题9.8.3，我们有$g$也是严格单调递增的连续函数。
 
-###### (b)证明：$g$在$(0,+\infty)$上是可微的，并且对所有的$x\in(0,+\infty)$均有$\displaystyle g'(x)=\frac{1}{n}x^{\frac{1}{n}-1}$<span style='color:blue'>（提示：利用反函数定理和(a)的结论）</span>
+###### (b)证明：$g$在$(0,+\infty)$上是可微的，并且对所有的$x\in(0,+\infty)$均有$\displaystyle g'(x)=\frac{1}{n}x^{\frac{1}{n}-1}$<span style="color:blue">（提示：利用反函数定理和(a)的结论）</span>
 
 > 接上(a)，根据习题10.1.5的结论，我们知道有$f$是在$(0,+\infty)$上可微的，并且对任意所有的$y\in(0,+\infty)$均有$f'(y)=n y^{n-1}$，于是根据反函数定理有：
 >
@@ -48,7 +48,7 @@ coverHeight: 320px
 
 ##### 10.4.2 设$q$是一个有理数，并且设$f:(0,+\infty)\to\mathbb R$是函数$f(x):=x^q$
 
-###### (a)证明：$f$在$(0,+\infty)$上是可微的，并且对所有的$x\in(0,+\infty)$均有$f'(x)=qx^{q-1}$<span style='color:blue'>（提示：利用习题10.4.1、[微分计算（定理10.1.13）](../Chap10/Sec1.md)与[链式法则（定理10.1.15）](../Chap10/Sec1.md)）</span>
+###### (a)证明：$f$在$(0,+\infty)$上是可微的，并且对所有的$x\in(0,+\infty)$均有$f'(x)=qx^{q-1}$<span style="color:blue">（提示：利用习题10.4.1、[微分计算（定理10.1.13）](../Chap10/Sec1.md)与[链式法则（定理10.1.15）](../Chap10/Sec1.md)）</span>
 
 > 由于$q$是有理数，不妨令有$q=a/b$，其中$a$，$b\in\mathbb Z$且$b>0$是一个正整数。于是有：
 > $$
@@ -65,7 +65,7 @@ coverHeight: 320px
 > $$
 > 于是结论得证。
 
-###### (b)证明：$\displaystyle\lim_{x\to 1;x\in(0,+\infty)\verb|\|\{1\}}\frac{x^q-1}{x-1}=q$对任意有理数$q$均成立<span style='color:blue'>（提示：利用(a)的结论和[定义10.1.1](../Chap10/Sec1.md)，还有一种方法是使用下一节的[洛必达法则](../Chap10/Sec5.md)，当然在这里由于进度还没到该节因此不推荐这么做）</span>
+###### (b)证明：$\displaystyle\lim_{x\to 1;x\in(0,+\infty)\verb|\|\{1\}}\frac{x^q-1}{x-1}=q$对任意有理数$q$均成立<span style="color:blue">（提示：利用(a)的结论和[定义10.1.1](../Chap10/Sec1.md)，还有一种方法是使用下一节的[洛必达法则](../Chap10/Sec5.md)，当然在这里由于进度还没到该节因此不推荐这么做）</span>
 
 > 注：本题中原书为证明$\displaystyle\lim_{x\to 1;x\in(0,+\infty)}\frac{x^q-1}{x-1}=q$（这在原版和翻译版都是一样的），但是$\displaystyle\frac{x^q-1}{x-1}$在$x=1$处是没有定义的，因此此处个人认为是原书错误，应当将题目改为证明$\displaystyle\lim_{x\to 1;x\in(0,+\infty)\verb|\|\{1\}}\frac{x^q-1}{x-1}=q$。
 >
@@ -79,7 +79,7 @@ coverHeight: 320px
 
 ##### 10.4.3 设$\alpha$是一个实数，并且设$f:(0,+\infty)\to\mathbb R$是函数$f(x):=x^\alpha$
 
-###### (a)证明：$\displaystyle\lim_{x\to 1;x\in(0,+\infty)\verb|\|\{1\}}\frac{f(x)-f(1)}{x-1}=\alpha$<span style='color:blue'>（提示：利用习题10.4.2和[比较原理（命题6.4.13）](../Chap6/Sec4.md)，你可能需要分别考虑右极限和左极限，[命题5.4.14](../Chap5/Sec4.md)也会有帮助）</span>
+###### (a)证明：$\displaystyle\lim_{x\to 1;x\in(0,+\infty)\verb|\|\{1\}}\frac{f(x)-f(1)}{x-1}=\alpha$<span style="color:blue">（提示：利用习题10.4.2和[比较原理（命题6.4.13）](../Chap6/Sec4.md)，你可能需要分别考虑右极限和左极限，[命题5.4.14](../Chap5/Sec4.md)也会有帮助）</span>
 
 > 要证明$\displaystyle\lim_{x\to 1;x\in(0,+\infty)\verb|\|\{1\}}\frac{f(x)-f(1)}{x-1}=\alpha$，根据命题9.3.9，这等价于对任意完全由$(0,+\infty)-\{1\}$中元素构成且收敛于$1$的序列$(a_n)_{n=0}^\infty$，都有$(\delta(a_n))_{n=0}^\infty$收敛于$\alpha$（其中$\displaystyle\delta(x):=\frac{f(x)-f(1)}{x-1}$，在下面的证明中我们还会使用到这个简写记号，下面不再重复说明）。
 >
@@ -105,7 +105,7 @@ coverHeight: 320px
 > $$
 > 由于上下极限相等，根据命题6.4.12即有极限$\displaystyle\lim_{n\to\infty}\delta(a_n)=\alpha$，从而我们得证对任意完全由$(0,+\infty)-\{1\}$中元素构成且收敛于$1$的序列$(a_n)_{n=0}^\infty$，都有$(\delta(a_n))_{n=0}^\infty$收敛于$\alpha$，从而有$\displaystyle\lim_{x\to 1;x\in(0,+\infty)\verb|\|\{1\}}\frac{f(x)-f(1)}{x-1}=\alpha$成立，结论得证。
 
-###### (b)证明：$f$在$(0,+\infty)$上是可微的，并且$f'(x)=\alpha x^{\alpha-1}$<span style='color:blue'>（提示：利用(a)的结论、[指数运算定律（命题6.7.3）](../Chap6/Sec7.md)以及[定义10.1.1](../Chap10/Sec1.md)）</span>
+###### (b)证明：$f$在$(0,+\infty)$上是可微的，并且$f'(x)=\alpha x^{\alpha-1}$<span style="color:blue">（提示：利用(a)的结论、[指数运算定律（命题6.7.3）](../Chap6/Sec7.md)以及[定义10.1.1](../Chap10/Sec1.md)）</span>
 
 > 即要证明：对所有的$x_0\in(0,+\infty)$，都有：
 > $$

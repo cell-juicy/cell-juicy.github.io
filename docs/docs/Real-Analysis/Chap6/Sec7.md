@@ -14,22 +14,22 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（6.7.2 实数次幂的指数运算）</span>设$x>0$是一个实数，且$\alpha $是一个实数，则我们定义$x^\alpha $为$\displaystyle x^\alpha =\lim_{n\to\infty}x^{(q_n)}$，其中$(q_n)_{n=1}^\infty$是任意一个收敛于$\alpha $的有理数序列。
+1. <span style="color:red">（6.7.2 实数次幂的指数运算）</span>设$x>0$是一个实数，且$\alpha $是一个实数，则我们定义$x^\alpha $为$\displaystyle x^\alpha =\lim_{n\to\infty}x^{(q_n)}$，其中$(q_n)_{n=1}^\infty$是任意一个收敛于$\alpha $的有理数序列。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（6.7.1 指数运算的连续性）</span>设$x>0$且$\alpha $是一个实数。令$(q_n)_{n=1}^\infty$是任意一个收敛于$\alpha $的有理数序列，那么$(x^{(q_n)})_{n=1}^\infty$也是一个收敛的序列。更进一步的，如果$(p_n)_{n=1}^\infty$是另外任意一个收敛于$\alpha $的有理数序列，那么$(x^{(p_n)})_{n=1}^\infty$与$(x^{(q_n)})_{n=1}^\infty$有相同的极限：
+1. <span style="color:red">（6.7.1 指数运算的连续性）</span>设$x>0$且$\alpha $是一个实数。令$(q_n)_{n=1}^\infty$是任意一个收敛于$\alpha $的有理数序列，那么$(x^{(q_n)})_{n=1}^\infty$也是一个收敛的序列。更进一步的，如果$(p_n)_{n=1}^\infty$是另外任意一个收敛于$\alpha $的有理数序列，那么$(x^{(p_n)})_{n=1}^\infty$与$(x^{(q_n)})_{n=1}^\infty$有相同的极限：
    $$
    \lim_{n\to\infty}x^{q_n}=\lim_{n\to\infty}x^{p_n}
    $$
 
-2. <span style='color:red'>（6.7.3 定理升级？）</span>[引理5.6.9](../Chap5/Sec6.md)中对有理数$q$与$r$成立的结论对全部实数$q$与$r$也成立。
+2. <span style="color:red">（6.7.3 定理升级？）</span>[引理5.6.9](../Chap5/Sec6.md)中对有理数$q$与$r$成立的结论对全部实数$q$与$r$也成立。
 
-   <span style='color:blue'>（贴一下引理5.6.9：）</span>
+   <span style="color:blue">（贴一下引理5.6.9：）</span>
 
-   > <span style='color:blue'>（5.6.9 有理数次幂的运算性质？）</span>设$x$，$y>0$是正实数，且$q$与$r$是有理数，则：
+   > <span style="color:blue">（5.6.9 有理数次幂的运算性质？）</span>设$x$，$y>0$是正实数，且$q$与$r$是有理数，则：
    >
    > > * $x^q$是一个正实数。
    > > * $x^{q+r}=x^q\cdot x^r$且有$x^{qr}=(x^q)^r$。
@@ -41,7 +41,7 @@ coverHeight: 320px
 
 ## 课后习题
 
-##### 6.7.1 证明命题6.7.3中剩余的部分<span style='color:blue'>（即除去$x^{q+r}=x^q\cdot x^r$以外的全部内容）</span>
+##### 6.7.1 证明命题6.7.3中剩余的部分<span style="color:blue">（即除去$x^{q+r}=x^q\cdot x^r$以外的全部内容）</span>
 
 > 不妨假设有$(q_n)_{n=1}^\infty$收敛于$q$，$(r_n)_{n=1}^\infty$收敛于$r$。我们证明下面的命题：
 >

@@ -68,7 +68,7 @@ $$
 $$
 S=1-(1-1)-(1-1)-...=1-0-0-...=1
 $$
-上面的这三种说法，哪一个是对的？<span style='color:blue'>（答案在[习题7.2.1](../Chap7/Sec2.md)）</span>
+上面的这三种说法，哪一个是对的？<span style="color:blue">（答案在[习题7.2.1](../Chap7/Sec2.md)）</span>
 
 ---
 
@@ -88,7 +88,7 @@ L=x\lim_{m+1\to\infty}x^{m}=x\lim_{m\to\infty}x^{m}=xL
 $$
 于是左右消去$L$，我们可以得到对任何实数$x$，$x=0$，这样的结论显然是荒谬的。
 
-当然，我们也可以说$L=0$，这样上面的消去律使用就是不恰当的，这样似乎给出了个合理的解释，即对任意实数$x$，$\displaystyle\lim_{n\to\infty}x^n=0$恒成立。但是对于一些实数$x$<span style='color:blue'>（比如$x=1$）</span>，这样的结论依然是荒谬的，上面的论证出现了什么问题？<span style='color:blue'>（答案在[习题6.3.4](../Chap6/Sec3.md)）</span>
+当然，我们也可以说$L=0$，这样上面的消去律使用就是不恰当的，这样似乎给出了个合理的解释，即对任意实数$x$，$\displaystyle\lim_{n\to\infty}x^n=0$恒成立。但是对于一些实数$x$<span style="color:blue">（比如$x=1$）</span>，这样的结论依然是荒谬的，上面的论证出现了什么问题？<span style="color:blue">（答案在[习题6.3.4](../Chap6/Sec3.md)）</span>
 
 ---
 
@@ -106,7 +106,7 @@ $$
 $$
 \lim_{x\to\infty}\left(\sin(x)^2+\cos(x)^2\right)=0
 $$
-但是我们又有$\sin(x)^2+\cos(x)^2=1$恒成立，于是我们得到了惊人的结论即$1=0$<span style='color:blue'>（数学大厦的崩塌（实分析ver）.jpg）</span>，上面的论证究竟哪里出现了问题？
+但是我们又有$\sin(x)^2+\cos(x)^2=1$恒成立，于是我们得到了惊人的结论即$1=0$<span style="color:blue">（数学大厦的崩塌（实分析ver）.jpg）</span>，上面的论证究竟哪里出现了问题？
 
 ---
 
@@ -134,13 +134,13 @@ $$
 $$
 \begin{pmatrix}1&0&0&0&\cdots\\-1&1&0&0&\cdots\\0&-1&1&0&\cdots\\0&0&-1&1&\cdots\\0&0&0&-1&\cdots\\\vdots&\vdots&\vdots&\vdots&\ddots\end{pmatrix}
 $$
-如果你对该矩阵每一行元素求和，然后将得到的所有行和相加，那么你会得到$1$。但是，如果你对该矩阵每一列元素求和，然后将得到的所有列和相加，那么你会得到$0$！因此，这是否意味着对无穷级数求和不能采用交换次序的方法，而且任何采用交换次序方法所得到的结论都是不可信的？<span style='color:blue'>（答案见[定理8.2.2](../Chap8/Sec2.md)）</span>
+如果你对该矩阵每一行元素求和，然后将得到的所有行和相加，那么你会得到$1$。但是，如果你对该矩阵每一列元素求和，然后将得到的所有列和相加，那么你会得到$0$！因此，这是否意味着对无穷级数求和不能采用交换次序的方法，而且任何采用交换次序方法所得到的结论都是不可信的？<span style="color:blue">（答案见[定理8.2.2](../Chap8/Sec2.md)）</span>
 
 ------
 
 ### 例1.2.6 交换积分次序
 
-交换积分次序与交换求和次序一样，都是数学中很常见的运算技巧。假设我们想要计算某个曲面$z=f(x,y)$之下的体积<span style='color:blue'>（此处我们暂时不考虑积分上下限）</span>。一种方法是平行于$x$轴进行切割：对任意给定的$y$，我们能够计算出与之对应的一部分面积为$\displaystyle \int f(x,y)\text dx$，然后我们把这部分以$y$为变量的面积进行积分就得到了要求的体积：
+交换积分次序与交换求和次序一样，都是数学中很常见的运算技巧。假设我们想要计算某个曲面$z=f(x,y)$之下的体积<span style="color:blue">（此处我们暂时不考虑积分上下限）</span>。一种方法是平行于$x$轴进行切割：对任意给定的$y$，我们能够计算出与之对应的一部分面积为$\displaystyle \int f(x,y)\text dx$，然后我们把这部分以$y$为变量的面积进行积分就得到了要求的体积：
 $$
 V=\iint f(x,y)\text dx\text dy
 $$
@@ -164,7 +164,7 @@ $$
 $$
 \int^{\infty}_{0}(e^{-xy}-xye^{-xy})\text dy=\left.xe^{-xy}\right|^{x=\infty}_{x=0}=e^{-x}=0
 $$
-所以式$(1.1)$的等号右侧表达式为$\displaystyle \int^{1}_{0}0\;\text dy=0$。显然$1\ne0$因此上文中的某处存在错误；然而你会发现，除了交换积分号这一步骤，上面的过程并不存在其他的错误。那么，我们如何判断什么时候可以放心地进行交换积分次序的运算呢？<span style='color:blue'>（[定理19.5.1](../Chap19/Sec5.md)会给出部分答案） </span>
+所以式$(1.1)$的等号右侧表达式为$\displaystyle \int^{1}_{0}0\;\text dy=0$。显然$1\ne0$因此上文中的某处存在错误；然而你会发现，除了交换积分号这一步骤，上面的过程并不存在其他的错误。那么，我们如何判断什么时候可以放心地进行交换积分次序的运算呢？<span style="color:blue">（[定理19.5.1](../Chap19/Sec5.md)会给出部分答案） </span>
 
 ------
 
@@ -178,7 +178,7 @@ $$
 $$
 \lim_{y\to 0}\frac{x^2}{x^2+y^2}=\frac{x^2}{x^2+0^2}=1
 $$
-因此，式$(1.2)$等号右侧表达式等于$1$；由于$1$显然不等于$0$，所以这表明了交换极限运算次序是不可信的。然而，是否存在某些情况，交换极限运算次序能够成立呢？<span style='color:blue'>（[习题14.3.2](../Chap14/Sec3.md)给出了部分答案）</span>
+因此，式$(1.2)$等号右侧表达式等于$1$；由于$1$显然不等于$0$，所以这表明了交换极限运算次序是不可信的。然而，是否存在某些情况，交换极限运算次序能够成立呢？<span style="color:blue">（[习题14.3.2](../Chap14/Sec3.md)给出了部分答案）</span>
 
 ------
 
@@ -188,7 +188,7 @@ $$
 $$
 \lim_{x\to 1^-}\lim_{n\to \infty}x^n=\lim_{n\to \infty}\lim_{x\to 1^-}x^n
 $$
-其中，记号$x\to 1^-$表示$x$从$1$的左侧趋向于$1$。当$x$在$1$的左侧时，$\lim\limits_{n\to \infty}x^n=0$，因此上面等式的左端等于$0$。但是对于任意给定的$n$，我们总可以得到$\lim\limits_{x\to 1^-}x^n=1$。因此，上面等式右端的极限为$1$。这是否意味着这种类型的极限运算次序交换都是不可信的？<span style='color:blue'>（答案见[命题14.3.3](../Chap14/Sec3.md)）</span>
+其中，记号$x\to 1^-$表示$x$从$1$的左侧趋向于$1$。当$x$在$1$的左侧时，$\lim\limits_{n\to \infty}x^n=0$，因此上面等式的左端等于$0$。但是对于任意给定的$n$，我们总可以得到$\lim\limits_{x\to 1^-}x^n=1$。因此，上面等式右端的极限为$1$。这是否意味着这种类型的极限运算次序交换都是不可信的？<span style="color:blue">（答案见[命题14.3.3](../Chap14/Sec3.md)）</span>
 
 ------
 
@@ -202,7 +202,7 @@ $$
 $$
 \int^{+\infty}_{-\infty}\lim_{y\to \infty}\frac{\text dx}{1+(x-y)^2}=\lim_{y\to \infty}\int^{+\infty}_{-\infty}\frac{\text dx}{1+(x-y)^2}=\pi
 $$
-但是对于任意$x$，我们有$\displaystyle \lim_{y\to \infty}\frac{\text dx}{1+(x-y)^2}=0$。因此，我们似乎可以推导出$0=\pi$。上述论证出现了什么问题？是否应该舍弃（非常有用的）交换极限运算与积分运算次序的技巧？<span style='color:blue'>（[定理14.6.1](../Chap14/Sec6.md)给出了部分答案）</span>
+但是对于任意$x$，我们有$\displaystyle \lim_{y\to \infty}\frac{\text dx}{1+(x-y)^2}=0$。因此，我们似乎可以推导出$0=\pi$。上述论证出现了什么问题？是否应该舍弃（非常有用的）交换极限运算与积分运算次序的技巧？<span style="color:blue">（[定理14.6.1](../Chap14/Sec6.md)给出了部分答案）</span>
 
 ------
 
@@ -220,13 +220,13 @@ $$
 $$
 \left.\frac{\text d}{\text dx}\left(\frac{x^3}{x^2+0}\right)\right|_{x=0}=0
 $$
-但是该式左端为：$\displaystyle \frac{\text d}{\text dx}x=1$。那么，这是否表明交换极限运算和求导运算的次序总是错误的？<span style='color:blue'>（答案见[定理14.7.1](../Chap14/Sec7.md)）</span>
+但是该式左端为：$\displaystyle \frac{\text d}{\text dx}x=1$。那么，这是否表明交换极限运算和求导运算的次序总是错误的？<span style="color:blue">（答案见[定理14.7.1](../Chap14/Sec7.md)）</span>
 
 ------
 
 ### 例1.2.11 交换求导次序
 
-定义$f(x,y)$为下列函数：$\displaystyle f(x,y) ：=\frac{xy^3}{x^2+y^2}$<span style='color:blue'>（可能有人提出这样的质疑，函数$f(x,y)$在$(x,y)=(0,0)$处没有定义。但是如果我们规定$f(0,0):=0$，那么该函数对任意的$(x,y)$都是连续且可微的；并且事实上，偏导数$\displaystyle \frac{\partial f}{\partial x}$与$\displaystyle \frac{\partial f}{\partial y}$对任意的$(x,y)$也是连续且可微的！）</span>。分析理论中常用的一个策略是交换两个偏导数的次序，从而我们期望得到：
+定义$f(x,y)$为下列函数：$\displaystyle f(x,y) ：=\frac{xy^3}{x^2+y^2}$<span style="color:blue">（可能有人提出这样的质疑，函数$f(x,y)$在$(x,y)=(0,0)$处没有定义。但是如果我们规定$f(0,0):=0$，那么该函数对任意的$(x,y)$都是连续且可微的；并且事实上，偏导数$\displaystyle \frac{\partial f}{\partial x}$与$\displaystyle \frac{\partial f}{\partial y}$对任意的$(x,y)$也是连续且可微的！）</span>。分析理论中常用的一个策略是交换两个偏导数的次序，从而我们期望得到：
 $$
 \frac{\partial^2 f}{\partial y\partial x}(0,0)=\frac{\partial^2 f}{\partial x\partial y}(0,0)
 $$
@@ -254,7 +254,7 @@ $$
 $$
 \frac{\partial^2 f}{\partial y\partial x}(0,0)=1
 $$
-由于$1\ne 0$，所以我们似乎已经推出了这样一个结论：交换求导次序是不可信的。然而，是否存在某些其他情况使得交换求导次序可以成立？<span style='color:blue'>（定理11.37.4和习题11.37.1给出了一些回答）</span>
+由于$1\ne 0$，所以我们似乎已经推出了这样一个结论：交换求导次序是不可信的。然而，是否存在某些其他情况使得交换求导次序可以成立？<span style="color:blue">（定理11.37.4和习题11.37.1给出了一些回答）</span>
 
 ------
 
@@ -276,7 +276,7 @@ $$
 $$
 \begin{flalign}\lim_{x\to 0}\frac{x^2\sin(x^{-4})}{x}&=\lim_{x\to 0}\frac{2x\sin(x^{-4})-4x^{-3}\cos(x^{-4})}{1}\\&=\lim_{x\to 0}2x\sin(x^{-4})-\lim_{x\to 0}4x^{-3}\cos(x^{-4})\end{flalign}
 $$
-根据夹逼定理可知，第一个极限收敛于$0$ <span style='color:blue'>（因为函数$2x\sin(x^{-4})$有上界$2|x|$和下界$-2|x|$，并且当$x\to 0$时，$2|x|$和$-2|x|$都是趋向于$0$的）</span>，都是第二个极限却是发散的<span style='color:blue'>（因为当$x\to 0$时，$x^{-3}$趋向于无穷且$\cos(x^{-4})$不趋向于$0$）</span>。因此，极限 $\lim\limits_{x\to 0}\frac{2x\sin(x^{-4})-4x^{-3}\cos(x^{-4})}{1}$发散。于是，有人可能会根据洛必达法则推出 $\lim\limits_{x\to 0}\frac{x^2\sin(x^{-4})}{x}$也是发散的。但是我们可以聪明地把这个极限改写成 $\lim\limits_{x\to 0}x\sin(x^{-4})$，那么根据夹逼定理，当$x\to 0$时，该极限是趋向于$0$的。这并非说明洛必达法则不可信<span style='color:blue'>（事实上，洛必达法则是非常严格的，见[10.5节](../Chap10/Sec5.md)）</span>，而是告诉我们在使用它的时候需要更加小心。
+根据夹逼定理可知，第一个极限收敛于$0$ <span style="color:blue">（因为函数$2x\sin(x^{-4})$有上界$2|x|$和下界$-2|x|$，并且当$x\to 0$时，$2|x|$和$-2|x|$都是趋向于$0$的）</span>，都是第二个极限却是发散的<span style="color:blue">（因为当$x\to 0$时，$x^{-3}$趋向于无穷且$\cos(x^{-4})$不趋向于$0$）</span>。因此，极限 $\lim\limits_{x\to 0}\frac{2x\sin(x^{-4})-4x^{-3}\cos(x^{-4})}{1}$发散。于是，有人可能会根据洛必达法则推出 $\lim\limits_{x\to 0}\frac{x^2\sin(x^{-4})}{x}$也是发散的。但是我们可以聪明地把这个极限改写成 $\lim\limits_{x\to 0}x\sin(x^{-4})$，那么根据夹逼定理，当$x\to 0$时，该极限是趋向于$0$的。这并非说明洛必达法则不可信<span style="color:blue">（事实上，洛必达法则是非常严格的，见[10.5节](../Chap10/Sec5.md)）</span>，而是告诉我们在使用它的时候需要更加小心。
 
 ---
 

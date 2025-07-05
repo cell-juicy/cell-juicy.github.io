@@ -16,54 +16,54 @@ coverHeight: 320px
 
 ### 策梅洛-弗兰克尔-选择系统（终章）
 
->1. <span style='color:red'>（8.1 选择公理）</span>设$I$是一个集合，并且对任意$\alpha\in I$，假设$X_\alpha$是一个非空集合，那么集合$\displaystyle\prod_{\alpha\in I}X_\alpha$也是非空的。换言之，存在一个函数$(x_\alpha)_{\alpha\in I}$对每个$\alpha\in I$指定了一个元素$x_\alpha\in X_\alpha$。
+>1. <span style="color:red">（8.1 选择公理）</span>设$I$是一个集合，并且对任意$\alpha\in I$，假设$X_\alpha$是一个非空集合，那么集合$\displaystyle\prod_{\alpha\in I}X_\alpha$也是非空的。换言之，存在一个函数$(x_\alpha)_{\alpha\in I}$对每个$\alpha\in I$指定了一个元素$x_\alpha\in X_\alpha$。
 
-<span style='color:blue'>（虽然选择公理是[8.4节](../Chap8/Sec4.md)的内容，但是这节的习题好多都要用到选择公理，故在此先贴出，在[8.4节](../Chap8/Sec4.md)会再次重复一遍）</span>
+<span style="color:blue">（虽然选择公理是[8.4节](../Chap8/Sec4.md)的内容，但是这节的习题好多都要用到选择公理，故在此先贴出，在[8.4节](../Chap8/Sec4.md)会再次重复一遍）</span>
 
 ---
 
 ## 定义
 
-1. <span style='color:red'>（8.1.1 可数集）</span>集合$X$是**可数无限**的<span style='color:blue'>（或简称**可数的**）</span>，当且仅当$X$与自然数集$\mathbb N$有相同的基数。集合$X$是**至多可数**的，当且仅当$X$是可数的或者是有限的。如果一个集合无限的并且不是可数的，则称这个集合是**不可数的**。<span style='color:blue'>（可数无限集也被称作可列集）</span>
+1. <span style="color:red">（8.1.1 可数集）</span>集合$X$是**可数无限**的<span style="color:blue">（或简称**可数的**）</span>，当且仅当$X$与自然数集$\mathbb N$有相同的基数。集合$X$是**至多可数**的，当且仅当$X$是可数的或者是有限的。如果一个集合无限的并且不是可数的，则称这个集合是**不可数的**。<span style="color:blue">（可数无限集也被称作可列集）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（8.1.4 良序原理）</span>设$X$是自然数集$\mathbb N$的一个非空子集，则恰好存在一个元素$n\in X$，使得对所有的$m\in X$均有$m\geq n$。换言之，对任意自然数集$\mathbb N$的非空子集均有一个最小元素。<span style='color:blue'>（由良序原理给出的元素$n$一般称作$X$的最小值，记为$\min(X)$，这个最小值显然与[定义5.5.10](../Chap5/Sec5.md)中$X$的下确界是一致的）</span>
+1. <span style="color:red">（8.1.4 良序原理）</span>设$X$是自然数集$\mathbb N$的一个非空子集，则恰好存在一个元素$n\in X$，使得对所有的$m\in X$均有$m\geq n$。换言之，对任意自然数集$\mathbb N$的非空子集均有一个最小元素。<span style="color:blue">（由良序原理给出的元素$n$一般称作$X$的最小值，记为$\min(X)$，这个最小值显然与[定义5.5.10](../Chap5/Sec5.md)中$X$的下确界是一致的）</span>
 
-2. <span style='color:red'>（8.1.5）</span>设$X$是自然数集$\mathbb N$的一个无限子集，那么存在唯一一个递增双射$f:\mathbb N\to X$<span style='color:blue'>（递增即对任意$n\in \mathbb N$，有$f(n+1)>f(n)$）</span>。特别地，$X$与$\mathbb N$具有相同的基数，所以$X$是可数的。
-
-   >推论：
-   >
-   >1. <span style='color:red'>（8.1.6）</span>自然数的所有子集都是至多可数的。
-   >2. <span style='color:red'>（8.1.7）</span>如果$X$是一个至多可数的集合，并且$Y$是$X$的一个子集，那么$Y$也是至多可数的。
-
-3. <span style='color:red'>（8.1.8）</span>设$Y$是一个集合，并且$f:\mathbb N\to Y$是一个函数，那么$f(\mathbb N)$是至多可数的。
-
-   > 推论：
-   >
-   > 1. <span style='color:red'>（8.1.9）</span>设$X$是一个可数集，并且设$f:X\to Y$是一个函数。那么$f(X)$是至多可数的。
-
-4. <span style='color:red'>（8.1.10）</span>设$X$是一个可数集，并且设$Y$也是一个可数集，那么$X\cup Y$也是一个可数集。
-
-   > 推论：
-   >
-   > 1. <span style='color:red'>（8.1.11）</span>整数集$\mathbb Z$也是一个可数集。
-
-5. <span style='color:red'>（8.1.12）</span>集合$A:=\{(n,m)\in\mathbb N\times\mathbb N:0\leq m\leq n\}$是可数集。
+2. <span style="color:red">（8.1.5）</span>设$X$是自然数集$\mathbb N$的一个无限子集，那么存在唯一一个递增双射$f:\mathbb N\to X$<span style="color:blue">（递增即对任意$n\in \mathbb N$，有$f(n+1)>f(n)$）</span>。特别地，$X$与$\mathbb N$具有相同的基数，所以$X$是可数的。
 
    >推论：
    >
-   >1. <span style='color:red'>（8.1.13）</span>集合$\mathbb N\times\mathbb N$是可数集。
-   >2. <span style='color:red'>（8.1.14）</span>如果$X$和$Y$都是可数集，那么$X\times Y$也是可数集。
-   >3. <span style='color:red'>（8.1.15）</span>有理数集$\mathbb Q$是可数集。
+   >1. <span style="color:red">（8.1.6）</span>自然数的所有子集都是至多可数的。
+   >2. <span style="color:red">（8.1.7）</span>如果$X$是一个至多可数的集合，并且$Y$是$X$的一个子集，那么$Y$也是至多可数的。
+
+3. <span style="color:red">（8.1.8）</span>设$Y$是一个集合，并且$f:\mathbb N\to Y$是一个函数，那么$f(\mathbb N)$是至多可数的。
+
+   > 推论：
+   >
+   > 1. <span style="color:red">（8.1.9）</span>设$X$是一个可数集，并且设$f:X\to Y$是一个函数。那么$f(X)$是至多可数的。
+
+4. <span style="color:red">（8.1.10）</span>设$X$是一个可数集，并且设$Y$也是一个可数集，那么$X\cup Y$也是一个可数集。
+
+   > 推论：
+   >
+   > 1. <span style="color:red">（8.1.11）</span>整数集$\mathbb Z$也是一个可数集。
+
+5. <span style="color:red">（8.1.12）</span>集合$A:=\{(n,m)\in\mathbb N\times\mathbb N:0\leq m\leq n\}$是可数集。
+
+   >推论：
+   >
+   >1. <span style="color:red">（8.1.13）</span>集合$\mathbb N\times\mathbb N$是可数集。
+   >2. <span style="color:red">（8.1.14）</span>如果$X$和$Y$都是可数集，那么$X\times Y$也是可数集。
+   >3. <span style="color:red">（8.1.15）</span>有理数集$\mathbb Q$是可数集。
 
 ---
 
 ## 课后习题
 
-##### 8.1.1 设$X$是一个集合，证明：$X$是无限集，当且仅当存在$X$的一个真子集$Y\subsetneq X$与$X$具有相同的基数<span style='color:blue'>（本题要用到[选择公理](../Chap8/Sec4.md)和[公理8.1](../Chap8/Sec4.md)）</span>
+##### 8.1.1 设$X$是一个集合，证明：$X$是无限集，当且仅当存在$X$的一个真子集$Y\subsetneq X$与$X$具有相同的基数<span style="color:blue">（本题要用到[选择公理](../Chap8/Sec4.md)和[公理8.1](../Chap8/Sec4.md)）</span>
 
 >分别证明充分必要性：
 >
@@ -84,7 +84,7 @@ coverHeight: 320px
 >
 >于是题目结论得证。
 
-##### 8.1.2 证明命题8.1.4<span style='color:blue'>（提示：可以利用[归纳法](../Chap2/Sec1.md)、[无穷递降原理](../Chap4/Sec4.md)、[习题 4.4.2](../Chap4/Sec4.md)、[最小上界（或最大下界）原理](../Chap5/Sec5.md)或[定理5.5.9](../Chap5/Sec5.md)）</span>如果把良序原理中的自然数替换成整数，那么该原理还成立吗？如果把自然数替换成正有理数，结果又如何？请给出解释
+##### 8.1.2 证明命题8.1.4<span style="color:blue">（提示：可以利用[归纳法](../Chap2/Sec1.md)、[无穷递降原理](../Chap4/Sec4.md)、[习题 4.4.2](../Chap4/Sec4.md)、[最小上界（或最大下界）原理](../Chap5/Sec5.md)或[定理5.5.9](../Chap5/Sec5.md)）</span>如果把良序原理中的自然数替换成整数，那么该原理还成立吗？如果把自然数替换成正有理数，结果又如何？请给出解释
 
 >考虑使用反证法：
 >
@@ -150,13 +150,13 @@ coverHeight: 320px
 >
 >于是综上，此时只可能有$g(m)=\min\{x\in X:对任意t<m均有x\ne a_t\}=a_m$成立。
 
-##### 8.1.4 证明命题8.1.8<span style='color:blue'>（提示：这里基本的问题是没有假设$f$是一对一的。定义$A$为集合</span>
+##### 8.1.4 证明命题8.1.8<span style="color:blue">（提示：这里基本的问题是没有假设$f$是一对一的。定义$A$为集合</span>
 
 $$
 \color{blue}{A:=\{n\in \mathbb N:f(m)\ne f(n) 对所有的 0\leq m<n 均成立\}}
 $$
 
-##### <span style='color:blue'>通俗地说，$A$是由满足如下条件的自然数$n$构成的集合：$n$所对应的$f(n)$不出现在序列$f(0)$，$f(1)$，...，$f(n-1)$中。证明如果把$f$限制在$A$上，那么$f$就成为从$A$到$f(A)$的双射，然后利用命题8.1.5）</span>
+##### <span style="color:blue">通俗地说，$A$是由满足如下条件的自然数$n$构成的集合：$n$所对应的$f(n)$不出现在序列$f(0)$，$f(1)$，...，$f(n-1)$中。证明如果把$f$限制在$A$上，那么$f$就成为从$A$到$f(A)$的双射，然后利用命题8.1.5）</span>
 
 >定义$A$为集合：
 >$$
@@ -226,7 +226,7 @@ $$
 >
 > 综上，于是当$A$是至多可数的集合时，必然存在从$A$到$\mathbb N$的单射$f:A\to \mathbb N$。
 
-##### 8.1.7 证明命题8.1.10<span style='color:blue'>（提示：根据假设，我们有双射$f:\mathbb N\to X$和双射$g:\mathbb N\to Y$。现定义$h:\mathbb N\to X\cup Y$如下：对任意的自然数$n$，令$h(2n):=f(n)$且$h(2n+1):=g(n)$，证明$h(\mathbb N)=X\cup Y$。然后利用推论8.1.9并证明$X\cup Y$不可能是有限集）</span>
+##### 8.1.7 证明命题8.1.10<span style="color:blue">（提示：根据假设，我们有双射$f:\mathbb N\to X$和双射$g:\mathbb N\to Y$。现定义$h:\mathbb N\to X\cup Y$如下：对任意的自然数$n$，令$h(2n):=f(n)$且$h(2n+1):=g(n)$，证明$h(\mathbb N)=X\cup Y$。然后利用推论8.1.9并证明$X\cup Y$不可能是有限集）</span>
 
 >若$X$，$Y$均是可数集，于是根据可数集定义存在两个双射$f:\mathbb N\to X$与$g:\mathbb N\to Y$。于是我们定义函数$h:\mathbb N\to X\cup Y$有下述映射关系：
 >$$
@@ -268,7 +268,7 @@ $$
 >
 >综上，于是$h$是一个双射，进一步地可以得到$X\times Y$与$\mathbb N\times\mathbb N$有相同的基数，而根据推论8.1.13有$\mathbb N\times\mathbb N$是一个可数集，于是$X\times Y$也是一个可数集。
 
-##### 8.1.9 设$I$是一个至多可数的集合，并且对每个$\alpha\in I$，令$A_\alpha$为一个至多可数的集合。证明：集合$\displaystyle\bigcup_{\alpha\in I}A_\alpha$也是至多可数的。特别的，可数个可数集的并集是可数集<span style='color:blue'>（本题要用到选择公理，参见[8.4节](../Chap8/Sec4.md)）</span>
+##### 8.1.9 设$I$是一个至多可数的集合，并且对每个$\alpha\in I$，令$A_\alpha$为一个至多可数的集合。证明：集合$\displaystyle\bigcup_{\alpha\in I}A_\alpha$也是至多可数的。特别的，可数个可数集的并集是可数集<span style="color:blue">（本题要用到选择公理，参见[8.4节](../Chap8/Sec4.md)）</span>
 
 > 我们约定下面几个符号，在后文中我们会直接用函数名字引用它而不再对它们的性质做过多重复：
 >
@@ -347,7 +347,7 @@ $$
 >
 > 我们已经构建了一个单射$h:\displaystyle\bigcup_{\alpha\in I}A_\alpha\to\mathbb N\times\mathbb N$，而根据推论8.1.13，我们又可根据$\mathbb N\times\mathbb N$是可数的获得一个双射$g:\mathbb N\times\mathbb N\to\mathbb N$，于是可以得到复合函数$g\circ h:\displaystyle\bigcup_{\alpha\in I}A_\alpha\to\mathbb N$是一个单射。于是根据习题8.1.6，可以得证$\displaystyle\bigcup_{\alpha\in I}A_\alpha$是至多可数的，于是题目结论成立。
 
-##### 8.1.10 找到一个从自然数集到有理数集的双射$f:\mathbb N\to \mathbb Q$<span style='color:blue'>（注意：真正找到一个具体的$f$需要非常高超的技巧，并且使得$f$同时是单射和满射是很困难的）</span>
+##### 8.1.10 找到一个从自然数集到有理数集的双射$f:\mathbb N\to \mathbb Q$<span style="color:blue">（注意：真正找到一个具体的$f$需要非常高超的技巧，并且使得$f$同时是单射和满射是很困难的）</span>
 
 >对任意自然数$n\in\mathbb N$，定义下面这样的集合$A_n$：
 >$$

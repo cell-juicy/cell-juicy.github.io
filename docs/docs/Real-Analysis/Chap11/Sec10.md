@@ -14,46 +14,46 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（11.10.1 分部积分法）</span>设$I=[a,b]$，设$F:I\to\mathbb R$和$G:I\to\mathbb R$都是$[a,b]$上的可微函数，并且$F'$和$G'$在$I$上都是黎曼可积的。那么我们有：
+1. <span style="color:red">（11.10.1 分部积分法）</span>设$I=[a,b]$，设$F:I\to\mathbb R$和$G:I\to\mathbb R$都是$[a,b]$上的可微函数，并且$F'$和$G'$在$I$上都是黎曼可积的。那么我们有：
    $$
    \int_{I}FG'=F(b)G(b)-F(a)G(a)-\int_{I}F'G
    $$
 
-2. <span style='color:red'>（11.10.2 黎曼-斯蒂尔杰斯积分与黎曼积分？）</span>设$\alpha:[a,b]\to\mathbb R$是一个在$[a,b]$上单调递增的可微函数，$\alpha'$是黎曼可积的，并且$f:[a,b]\to\mathbb R$是$[a,b]$上的**分段常数函数**。那么$f\alpha'$在$[a,b]$上黎曼可积，并且：
+2. <span style="color:red">（11.10.2 黎曼-斯蒂尔杰斯积分与黎曼积分？）</span>设$\alpha:[a,b]\to\mathbb R$是一个在$[a,b]$上单调递增的可微函数，$\alpha'$是黎曼可积的，并且$f:[a,b]\to\mathbb R$是$[a,b]$上的**分段常数函数**。那么$f\alpha'$在$[a,b]$上黎曼可积，并且：
    $$
    \int_{[a,b]}f\text{d}\alpha=\int_{[a,b]}f\alpha'
    $$
-   <span style='color:blue'>（注：这个定理使得我们可以在特定的条件下将一个黎曼-斯蒂尔杰斯积分写成黎曼积分，对于这个定理它有一个更为泛用的形式，即推论11.10.3）</span>
+   <span style="color:blue">（注：这个定理使得我们可以在特定的条件下将一个黎曼-斯蒂尔杰斯积分写成黎曼积分，对于这个定理它有一个更为泛用的形式，即推论11.10.3）</span>
 
    > 推论：
    >
-   > 1. <span style='color:red'>（11.10.3）</span>设$\alpha:[a,b]\to\mathbb R$是一个在$[a,b]$上单调递增的可微函数，$\alpha'$是黎曼可积的，并且$f:[a,b]\to\mathbb R$是$[a,b]$上的关于$\alpha$**黎曼-斯蒂尔杰斯可积**的函数。那么$f\alpha'$在$[a,b]$上黎曼可积，并且：
+   > 1. <span style="color:red">（11.10.3）</span>设$\alpha:[a,b]\to\mathbb R$是一个在$[a,b]$上单调递增的可微函数，$\alpha'$是黎曼可积的，并且$f:[a,b]\to\mathbb R$是$[a,b]$上的关于$\alpha$**黎曼-斯蒂尔杰斯可积**的函数。那么$f\alpha'$在$[a,b]$上黎曼可积，并且：
    >    $$
    >    \int_{[a,b]}f\text{d}\alpha=\int_{[a,b]}f\alpha'
    >    $$
-   >    <span style='color:blue'>（注：通俗来说，推论11.10.3断言了当$\alpha$可微时，$f\text{d}\alpha$和$\displaystyle f\frac{\text{d}\alpha}{\text{d}x}\text{d}x$本质上是等价的。但是黎曼-斯蒂尔杰斯积分的优势在于，即使$\alpha$是一个不可微的函数，积分也是有意义的）</span>
+   >    <span style="color:blue">（注：通俗来说，推论11.10.3断言了当$\alpha$可微时，$f\text{d}\alpha$和$\displaystyle f\frac{\text{d}\alpha}{\text{d}x}\text{d}x$本质上是等价的。但是黎曼-斯蒂尔杰斯积分的优势在于，即使$\alpha$是一个不可微的函数，积分也是有意义的）</span>
 
-3. <span style='color:red'>（11.10.5 变量替换公式 I）</span>设$[a,b]$是一个闭区间，并且设$\phi:[a,b]\to[\phi(a),\phi(b)]$是一个**单调递增**的**连续函数**，设$f:[\phi(a),\phi(b)]\to\mathbb R$是$[\phi(a),\phi(b)]$上的**分段常数函数**。那么$f\circ\phi:[a,b]\to\mathbb R$是$[a,b]$上的分段常数函数，并且：
+3. <span style="color:red">（11.10.5 变量替换公式 I）</span>设$[a,b]$是一个闭区间，并且设$\phi:[a,b]\to[\phi(a),\phi(b)]$是一个**单调递增**的**连续函数**，设$f:[\phi(a),\phi(b)]\to\mathbb R$是$[\phi(a),\phi(b)]$上的**分段常数函数**。那么$f\circ\phi:[a,b]\to\mathbb R$是$[a,b]$上的分段常数函数，并且：
    $$
    \int_{[a,b]}f\circ\phi\text{d}\phi=\int_{[\phi(a),\phi(b)]}f
    $$
 
-4. <span style='color:red'>（11.10.6 变量替换公式 II）</span>设$[a,b]$是一个闭区间，并且设$\phi:[a,b]\to[\phi(a),\phi(b)]$是一个**单调递增**的**连续函数**，设$f:[\phi(a),\phi(b)]\to\mathbb R$是$[\phi(a),\phi(b)]$上的黎曼可积的函数。那么$f\circ\phi:[a,b]\to\mathbb R$是$[a,b]$上关于$\phi$是**黎曼-斯蒂尔杰斯可积的**，并且：
+4. <span style="color:red">（11.10.6 变量替换公式 II）</span>设$[a,b]$是一个闭区间，并且设$\phi:[a,b]\to[\phi(a),\phi(b)]$是一个**单调递增**的**连续函数**，设$f:[\phi(a),\phi(b)]\to\mathbb R$是$[\phi(a),\phi(b)]$上的黎曼可积的函数。那么$f\circ\phi:[a,b]\to\mathbb R$是$[a,b]$上关于$\phi$是**黎曼-斯蒂尔杰斯可积的**，并且：
    $$
    \int_{[a,b]}f\circ\phi\text{d}\phi=\int_{[\phi(a),\phi(b)]}f
    $$
 
-5. <span style='color:red'>（11.10.7 变量替换公式 III）</span>设$[a,b]$是一个闭区间，并且设$\phi:[a,b]\to[\phi(a),\phi(b)]$是一个**单调递增**的**可微函数**，而且$\phi'$是黎曼可积的。设$f:[\phi(a),\phi(b)]\to\mathbb R$是$[\phi(a),\phi(b)]$上的黎曼可积的函数。那么$(f\circ\phi)\phi':[a,b]\to\mathbb R$在$[a,b]$上是黎曼可积的，并且：
+5. <span style="color:red">（11.10.7 变量替换公式 III）</span>设$[a,b]$是一个闭区间，并且设$\phi:[a,b]\to[\phi(a),\phi(b)]$是一个**单调递增**的**可微函数**，而且$\phi'$是黎曼可积的。设$f:[\phi(a),\phi(b)]\to\mathbb R$是$[\phi(a),\phi(b)]$上的黎曼可积的函数。那么$(f\circ\phi)\phi':[a,b]\to\mathbb R$在$[a,b]$上是黎曼可积的，并且：
    $$
    \int_{[a,b]}(f\circ\phi)\phi'=\int_{[\phi(a),\phi(b)]}f
    $$
-   <span style='color:blue'>（注：结合推论11.10.3与变量替换公式 II就可以得到本结论）</span>
+   <span style="color:blue">（注：结合推论11.10.3与变量替换公式 II就可以得到本结论）</span>
 
 ---
 
 ## 课后习题
 
-##### 11.10.1 证明命题11.10.1<span style='color:blue'>（提示：首先利用[推论11.5.2](../Chap11/Sec5.md)和[定理11.4.5](../Chap11/Sec4.md)证明$FG'$和$F'G$都是黎曼可积的，然后再使用乘积法则（[定理10.1.13(d)](../Chap10/Sec1.md)））</span>
+##### 11.10.1 证明命题11.10.1<span style="color:blue">（提示：首先利用[推论11.5.2](../Chap11/Sec5.md)和[定理11.4.5](../Chap11/Sec4.md)证明$FG'$和$F'G$都是黎曼可积的，然后再使用乘积法则（[定理10.1.13(d)](../Chap10/Sec1.md)））</span>
 
 > 由于$F$，$G$都是在$I$上的可微函数，因此根据命题10.1.10有$F$和$G$也是在$I$上连续的，进而根据推论11.5.2有$F$和$G$是在$I$上黎曼可积的。于是由于$G'$与$F'$也是在$I$上黎曼可积的，根据定理11.4.5有$FG'$与$F'G$都是黎曼可积的。
 >
@@ -179,7 +179,7 @@ coverHeight: 320px
 > $$
 > 也即有$\displaystyle\int_{[-b,-a]}g=\int_{[a,b]}f$，于是结论得证。
 
-##### 11.10.4 如果把命题11.10.7中的$\phi$替换成单调递减的$\phi$，那么命题将变成什么样？<span style='color:blue'>（当$\phi$既不单调递增也不单调递减时，情况将会明显复杂许多）</span>
+##### 11.10.4 如果把命题11.10.7中的$\phi$替换成单调递减的$\phi$，那么命题将变成什么样？<span style="color:blue">（当$\phi$既不单调递增也不单调递减时，情况将会明显复杂许多）</span>
 
 > 命题应当变为：
 >

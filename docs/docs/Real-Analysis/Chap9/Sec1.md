@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（9.1.1 区间）</span>设$a$，$b\in\mathbb R^*$是广义实数，定义**闭区间**$[a,b]$为：
+1. <span style="color:red">（9.1.1 区间）</span>设$a$，$b\in\mathbb R^*$是广义实数，定义**闭区间**$[a,b]$为：
    $$
    [a,b]:=\{x\in\mathbb R^*:a\leq x\leq b\}
    $$
@@ -31,43 +31,43 @@ coverHeight: 320px
    $$
    我们称$a$为这些区间的**左端点**，$b$为这些区间的**右端点**，$a$与$b$称为这些区间的**端点**。
 
-   <span style='color:blue'>（注：有时我们也会称某个端点为无穷（$+\infty$或$-\infty$）的区间为**半无限区间**；称两个端点都是无穷的区间为**双无限区间**；其余区间统称为**有界区间**。此外，当左端点$a$与右端点$b$相等时，我们可以证明有开区间$(a,b)$，半开区间$(a,b]$与$[a,b)$都是空集，闭区间$[a,b]$是单元素集$\{a\}$，此时我们称这些区间是**退化的**，通常来说，我们分析理论的讨论范围都是非退化的区间）</span>
+   <span style="color:blue">（注：有时我们也会称某个端点为无穷（$+\infty$或$-\infty$）的区间为**半无限区间**；称两个端点都是无穷的区间为**双无限区间**；其余区间统称为**有界区间**。此外，当左端点$a$与右端点$b$相等时，我们可以证明有开区间$(a,b)$，半开区间$(a,b]$与$[a,b)$都是空集，闭区间$[a,b]$是单元素集$\{a\}$，此时我们称这些区间是**退化的**，通常来说，我们分析理论的讨论范围都是非退化的区间）</span>
    
-2. <span style='color:red'>（9.1.5 $\varepsilon$-附着）</span>设$X$是$\mathbb R$的子集，实数$\varepsilon>0$，并且设$x\in\mathbb R$，我们称$x$是$\varepsilon$-附着于$X$的，当且仅当存在一个$y\in X$使得$x$与$y$是$\varepsilon$-接近的，即$|x-y|\leq\varepsilon$。
+2. <span style="color:red">（9.1.5 $\varepsilon$-附着）</span>设$X$是$\mathbb R$的子集，实数$\varepsilon>0$，并且设$x\in\mathbb R$，我们称$x$是$\varepsilon$-附着于$X$的，当且仅当存在一个$y\in X$使得$x$与$y$是$\varepsilon$-接近的，即$|x-y|\leq\varepsilon$。
 
-   <span style='color:blue'>（注：“$\varepsilon$-附着于”并不是文献中的标准术语，但是我们可以利用这个定义来构建实数集子集的附着点的概念（定义9.1.8），其中附着点是标准术语）</span>
+   <span style="color:blue">（注：“$\varepsilon$-附着于”并不是文献中的标准术语，但是我们可以利用这个定义来构建实数集子集的附着点的概念（定义9.1.8），其中附着点是标准术语）</span>
 
-3. <span style='color:red'>（9.1.8 实数集合的附着点）</span>设$X$是$\mathbb R$的子集，并且设$x\in\mathbb R$，我们称$x$是$X$的一个**附着点**，当且仅当对任意实数$\varepsilon>0$，$x$都是$\varepsilon$-附着于$X$的。
+3. <span style="color:red">（9.1.8 实数集合的附着点）</span>设$X$是$\mathbb R$的子集，并且设$x\in\mathbb R$，我们称$x$是$X$的一个**附着点**，当且仅当对任意实数$\varepsilon>0$，$x$都是$\varepsilon$-附着于$X$的。
 
-4. <span style='color:red'>（9.1.10 闭包）</span>设$X$是$\mathbb R$的子集，定义$X$的**闭包**为$X$的全体附着点所构成的集合，有时我们把$X$的闭包记作$\overline{X}$。
+4. <span style="color:red">（9.1.10 闭包）</span>设$X$是$\mathbb R$的子集，定义$X$的**闭包**为$X$的全体附着点所构成的集合，有时我们把$X$的闭包记作$\overline{X}$。
 
-5. <span style='color:red'>（9.1.15 闭的？）</span>设$X$是$\mathbb R$的子集，如果有$X=\overline{X}$，即$X$的所有附着点都包含于$X$中，那么我们称$X$是**闭的**。
+5. <span style="color:red">（9.1.15 闭的？）</span>设$X$是$\mathbb R$的子集，如果有$X=\overline{X}$，即$X$的所有附着点都包含于$X$中，那么我们称$X$是**闭的**。
 
-6. <span style='color:red'>（9.1.18 极限点）</span>设$X$是实直线的一个子集，我们称$x$是$X$的一个**极限点**<span style='color:blue'>（或**聚点**）</span>，当且仅当$x$是$X\verb|\|\{x\}$的一个附着点。如果$x\in X$，并且存在某个$\varepsilon>0$使得对任意$y\in X\verb|\|\{x\}$都有$|x-y|\geq\varepsilon$成立，那么我们称$x$是$X$的**孤立点**。
+6. <span style="color:red">（9.1.18 极限点）</span>设$X$是实直线的一个子集，我们称$x$是$X$的一个**极限点**<span style="color:blue">（或**聚点**）</span>，当且仅当$x$是$X\verb|\|\{x\}$的一个附着点。如果$x\in X$，并且存在某个$\varepsilon>0$使得对任意$y\in X\verb|\|\{x\}$都有$|x-y|\geq\varepsilon$成立，那么我们称$x$是$X$的**孤立点**。
 
-7. <span style='color:red'>（9.1.22 有界集合）</span>设$X$是实直线的一个子集，如果存在某个正实数$M>0$使得$X\subseteq[-M,M]$，那么称$X$是有界的。
+7. <span style="color:red">（9.1.22 有界集合）</span>设$X$是实直线的一个子集，如果存在某个正实数$M>0$使得$X\subseteq[-M,M]$，那么称$X$是有界的。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（9.1.11 闭包的初等性质）</span>设$X$，$Y$是$\mathbb R$的任意两个子集，那么$X\subseteq\overline X$，$\overline{X\cup Y}=\overline X\cup\overline Y$，且$\overline{X\cap Y}\subseteq\overline X\cap\overline Y$。此外，如果此时有$X\subseteq Y$，则有$\overline X\subseteq\overline Y$。
-2. <span style='color:red'>（9.1.12 区间的闭包）</span>设$a<b$都是实数，并且设$I$是区间$(a,b)$，$(a,b]$，$[a,b)$，$[a,b]$中的任意一个，那么此时有$I$的闭包是$[a,b]$；类似的，还有$(a,+\infty)$与$[a,+\infty)$的闭包是$[a,+\infty)$，$(-\infty,a)$与$(-\infty,a]$的闭包是$(-\infty,a]$，$(-\infty,+\infty)$的闭包是$(-\infty,+\infty)$。
-3. <span style='color:red'>（9.1.13 闭包的例子？）</span>$\mathbb N$的闭包是$\mathbb N$，$\mathbb Z$的闭包是$\mathbb Z$，$\mathbb Q$的闭包是$\mathbb R$，$\mathbb R$的闭包是$\mathbb R$，$\varnothing$的闭包是$\varnothing$。
-4. <span style='color:red'>（9.1.14）</span>设$X$是$\mathbb R$的子集，并且设$x\in\mathbb R$。那么$x$是$X$的一个附着点，当且仅当存在一个完全由$X$中元素组成的序列$(a_n)_{n=0}^\infty$收敛于$x$。
+1. <span style="color:red">（9.1.11 闭包的初等性质）</span>设$X$，$Y$是$\mathbb R$的任意两个子集，那么$X\subseteq\overline X$，$\overline{X\cup Y}=\overline X\cup\overline Y$，且$\overline{X\cap Y}\subseteq\overline X\cap\overline Y$。此外，如果此时有$X\subseteq Y$，则有$\overline X\subseteq\overline Y$。
+2. <span style="color:red">（9.1.12 区间的闭包）</span>设$a<b$都是实数，并且设$I$是区间$(a,b)$，$(a,b]$，$[a,b)$，$[a,b]$中的任意一个，那么此时有$I$的闭包是$[a,b]$；类似的，还有$(a,+\infty)$与$[a,+\infty)$的闭包是$[a,+\infty)$，$(-\infty,a)$与$(-\infty,a]$的闭包是$(-\infty,a]$，$(-\infty,+\infty)$的闭包是$(-\infty,+\infty)$。
+3. <span style="color:red">（9.1.13 闭包的例子？）</span>$\mathbb N$的闭包是$\mathbb N$，$\mathbb Z$的闭包是$\mathbb Z$，$\mathbb Q$的闭包是$\mathbb R$，$\mathbb R$的闭包是$\mathbb R$，$\varnothing$的闭包是$\varnothing$。
+4. <span style="color:red">（9.1.14）</span>设$X$是$\mathbb R$的子集，并且设$x\in\mathbb R$。那么$x$是$X$的一个附着点，当且仅当存在一个完全由$X$中元素组成的序列$(a_n)_{n=0}^\infty$收敛于$x$。
 
-   <span style='color:blue'>（注：于是$X$的附着点都可以由$X$中的元素的极限而得到，借助这个引理，我们也可以重新定义闭包的概念）</span>
+   <span style="color:blue">（注：于是$X$的附着点都可以由$X$中的元素的极限而得到，借助这个引理，我们也可以重新定义闭包的概念）</span>
 
-5. <span style='color:red'>（9.1.17 推论与闭包的重新定义）</span>设$X$是$\mathbb R$的子集，如果$X$是闭的，并且$(a_n)_{n=0}^\infty$是一个完全由$X$中元素组成的收敛序列，那么有$\displaystyle\lim_{n\to\infty}a_n$也属于$X$；反过来，如果每一个由$X$中元素组成的收敛序列$(a_n)_{n=0}^\infty$的极限也都属于$X$，那么$X$一定是闭的。
+5. <span style="color:red">（9.1.17 推论与闭包的重新定义）</span>设$X$是$\mathbb R$的子集，如果$X$是闭的，并且$(a_n)_{n=0}^\infty$是一个完全由$X$中元素组成的收敛序列，那么有$\displaystyle\lim_{n\to\infty}a_n$也属于$X$；反过来，如果每一个由$X$中元素组成的收敛序列$(a_n)_{n=0}^\infty$的极限也都属于$X$，那么$X$一定是闭的。
 
-6. <span style='color:red'>（9.1.21）</span>设$I$是一个区间<span style='color:blue'>（可以是无限的）</span>，即$I$是一个形如$(a,b)$，$(a,b]$，$[a,b)$，$[a,b]$，$(a,+\infty)$，$[a,+\infty)$，$(-\infty,a)$，$(-\infty,a]$或$(-\infty,+\infty)$的集合，并且对前四种情形有$a<b$成立，那么$I$中每一个元素都是$I$的极限点。
+6. <span style="color:red">（9.1.21）</span>设$I$是一个区间<span style="color:blue">（可以是无限的）</span>，即$I$是一个形如$(a,b)$，$(a,b]$，$[a,b)$，$[a,b]$，$(a,+\infty)$，$[a,+\infty)$，$(-\infty,a)$，$(-\infty,a]$或$(-\infty,+\infty)$的集合，并且对前四种情形有$a<b$成立，那么$I$中每一个元素都是$I$的极限点。
 
-7. <span style='color:red'>（9.1.24 直线上的海涅-博雷尔定理）</span>设$X$是实直线的一个子集，那么下面两个命题是等价的：
+7. <span style="color:red">（9.1.24 直线上的海涅-博雷尔定理）</span>设$X$是实直线的一个子集，那么下面两个命题是等价的：
 
    > * $X$是闭的且有界的。
-   > * 给定任意一个在$X$中取值的序列$(a_n)_{n=0}^\infty$<span style='color:blue'>（即对任意$n$均有$a_n\in X$）</span>，则存在一个它的子序列$(a_{n_j})_{j=0}^\infty$收敛于$X$中的某个数$L$。
+   > * 给定任意一个在$X$中取值的序列$(a_n)_{n=0}^\infty$<span style="color:blue">（即对任意$n$均有$a_n\in X$）</span>，则存在一个它的子序列$(a_{n_j})_{j=0}^\infty$收敛于$X$中的某个数$L$。
 
-   <span style='color:blue'>（注：该定理在本章后面几节有非常大的作用，以距离空间拓扑学的语言来说，该定理断定了实直线的任意一个闭的且有界的子集都是紧的，参见[12.5节](../Chap12/Sec5.md)，该定理更一般的形式由爱德华·海涅与埃米尔·博雷尔给出，参见[定理12.5.7](../Chap12/Sec5.md)）</span>
+   <span style="color:blue">（注：该定理在本章后面几节有非常大的作用，以距离空间拓扑学的语言来说，该定理断定了实直线的任意一个闭的且有界的子集都是紧的，参见[12.5节](../Chap12/Sec5.md)，该定理更一般的形式由爱德华·海涅与埃米尔·博雷尔给出，参见[定理12.5.7](../Chap12/Sec5.md)）</span>
 
 ---
 
@@ -166,7 +166,7 @@ coverHeight: 320px
 >
 > 综上，对任意的$e\in\overline{X}$，都有$e\in\overline{Y}$，即$\overline X\subseteq\overline Y$。
 
-##### 9.1.3 证明引理9.1.13<span style='color:blue'>（提示：为了证明$\mathbb Q$的闭包是$\mathbb R$，你可能需要用到[命题5.4.14](../Chap5/Sec4.md)）</span>
+##### 9.1.3 证明引理9.1.13<span style="color:blue">（提示：为了证明$\mathbb Q$的闭包是$\mathbb R$，你可能需要用到[命题5.4.14](../Chap5/Sec4.md)）</span>
 
 > 逐个证明：
 >
@@ -228,7 +228,7 @@ coverHeight: 320px
 > $$
 > 显然$\overline{X\cap Y}\ne\overline{X}\cap\overline{Y}$。
 
-##### 9.1.5 证明引理9.1.14<span style='color:blue'>（提示：为了证明两个蕴含关系中的其中一个，你需要用到[选择公理](../Chap8/Sec4.md)，就像在[引理8.4.5](../Chap8/Sec4.md)的证明里那样）</span>
+##### 9.1.5 证明引理9.1.14<span style="color:blue">（提示：为了证明两个蕴含关系中的其中一个，你需要用到[选择公理](../Chap8/Sec4.md)，就像在[引理8.4.5](../Chap8/Sec4.md)的证明里那样）</span>
 
 > 分别证明充分必要条件：
 >
@@ -244,7 +244,7 @@ coverHeight: 320px
 >
 > 根据序列收敛的定义，从而对任意$\varepsilon>0$，都存在$N\in\mathbb N$满足对任意$n\geq N$都有$|a_n-x|\leq\varepsilon$，特别地，$|a_N-x|\leq\varepsilon$，考虑到序列$(a_n)_{n=0}^\infty$是完全$X$中元素组成的，于是上结论可改为：对任意$\varepsilon>0$，都存在$a_N\in X$满足$|a_N-x|\leq\varepsilon$成立。这也就是附着点的定义，从而$x$是$X$的一个附着点。
 
-##### 9.1.6 设$X$是$\mathbb R$的子集，证明：$\overline{X}$是闭的<span style='color:blue'>（即$\overline{X}=\overline{\overline{X}}$）</span>。另外证明：如果$Y$是任意一个包含$X$的闭集，那么$Y$也包含$\overline{X}$，从而$X$的闭包$\overline{X}$是包含$X$的最小闭集<span style='color:blue'>（注：注意区分闭包和闭集（闭的集合）的概念，一个是来自已有集合的构造，另一个则是描述集合的所拥有的性质）</span>
+##### 9.1.6 设$X$是$\mathbb R$的子集，证明：$\overline{X}$是闭的<span style="color:blue">（即$\overline{X}=\overline{\overline{X}}$）</span>。另外证明：如果$Y$是任意一个包含$X$的闭集，那么$Y$也包含$\overline{X}$，从而$X$的闭包$\overline{X}$是包含$X$的最小闭集<span style="color:blue">（注：注意区分闭包和闭集（闭的集合）的概念，一个是来自已有集合的构造，另一个则是描述集合的所拥有的性质）</span>
 
 > 证明：$\overline{X}$是闭的。
 >
@@ -292,7 +292,7 @@ coverHeight: 320px
 >
 > 综上，于是归纳得证，我们得到若$X_1$，$X_2$，$...$，$X_n$都是$\mathbb R$的闭子集，则$X_1\cup X_2\cup...\cup X_n$也是闭集。
 
-##### 9.1.8 设$I$是一个集合<span style='color:blue'>（可以是无限的）</span>，并且对任意$\alpha\in I$，设$X_\alpha$为$\mathbb R$的闭子集。证明<span style='color:blue'>（[式(3.3)（并集公理下方内容）](../Chap3/Sec4.md)中定义的）</span>的交集$\displaystyle\bigcap_{\alpha\in I}X_\alpha$也是闭集
+##### 9.1.8 设$I$是一个集合<span style="color:blue">（可以是无限的）</span>，并且对任意$\alpha\in I$，设$X_\alpha$为$\mathbb R$的闭子集。证明<span style="color:blue">（[式(3.3)（并集公理下方内容）](../Chap3/Sec4.md)中定义的）</span>的交集$\displaystyle\bigcap_{\alpha\in I}X_\alpha$也是闭集
 
 > 令有$\displaystyle A:=\bigcap_{\alpha\in I}X_\alpha$，在下面的证明中我们不会写$\displaystyle\bigcap_{\alpha\in I}X_\alpha$而是用$A$替代。
 >
@@ -408,7 +408,7 @@ coverHeight: 320px
 >
 > 对$\mathbb R$的任意无限多个有界子集的并集，上面的结论显然是不成立的。不妨对任意$i\in\mathbb N$令有$A_i=\{i\}$，显然$A_i$是有界的，从而我们获得了无限个$\mathbb R$的有界子集，但是它们的并集$\mathbb N$显然是一个无界集合。
 
-##### 9.1.13 证明定理9.1.24<span style='color:blue'>（提示：利用[波尔查诺-魏尔斯特拉斯定理（定理6.6.8）](../Chap6/Sec6.md)和推论9.1.17去证明(a)蕴含着(b)；采用反证法证明(b)蕴含着(a)，其中利用推论9.1.17证明$X$是闭的，还要用[选择公理](../Chap8/Sec4.md)证明$X$是有界的，就像在[引理8.4.5](../Chap8/Sec4.md)中那样）</span>
+##### 9.1.13 证明定理9.1.24<span style="color:blue">（提示：利用[波尔查诺-魏尔斯特拉斯定理（定理6.6.8）](../Chap6/Sec6.md)和推论9.1.17去证明(a)蕴含着(b)；采用反证法证明(b)蕴含着(a)，其中利用推论9.1.17证明$X$是闭的，还要用[选择公理](../Chap8/Sec4.md)证明$X$是有界的，就像在[引理8.4.5](../Chap8/Sec4.md)中那样）</span>
 
 > 分别证明充分必要条件：
 >
@@ -456,7 +456,7 @@ coverHeight: 320px
 > $$
 > 并且对任意的$1\leq i\leq n$，都显然有$A_i$都是有界的且闭的。于是此时根据习题9.1.7与习题9.1.12的结论，可以得证$X$作为它们的并集也既是闭的又是有界的。
 
-##### 9.1.15 设$E$是$\mathbb R$的一个有界子集，并且设$S:=\sup(E)$是$E$的最小上界<span style='color:blue'>（注：根据[最小上界原理（即定理5.5.9）](../Chap5/Sec5.md)可知，$S$是一个实数）</span>。证明：$S$是$E$的一个附着点，同时也是$\mathbb R\verb|\|E$的一个附着点
+##### 9.1.15 设$E$是$\mathbb R$的一个有界子集，并且设$S:=\sup(E)$是$E$的最小上界<span style="color:blue">（注：根据[最小上界原理（即定理5.5.9）](../Chap5/Sec5.md)可知，$S$是一个实数）</span>。证明：$S$是$E$的一个附着点，同时也是$\mathbb R\verb|\|E$的一个附着点
 
 > 根据最小上界的性质，我们有：
 >

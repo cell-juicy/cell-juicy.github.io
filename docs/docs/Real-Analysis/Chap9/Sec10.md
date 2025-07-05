@@ -14,11 +14,11 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（9.10.1 无限附着点）</span>设$X$是$\mathbb R$的一个子集，我们称$+\infty$是**附着于**$X$的，当且仅当对任意的$M\in\mathbb R$都存在一个$x\in X$使得$x>M$；我们称$-\infty$是**附着于**$X$的，当且仅当对任意的$M\in\mathbb R$都存在一个$x\in X$使得$x<M$。换言之，$+\infty$是附着于$X$的，当且仅当$X$没有上界<span style='color:blue'>（即$\sup(X)=+\infty$）</span>；类似地，$-\infty$是附着于$X$的，当且仅当$X$没有下界<span style='color:blue'>（即$\inf(X)=+\infty$）</span>。于是一个集合是有界的，当且仅当$+\infty$与$-\infty$都不是它的附着点。
+1. <span style="color:red">（9.10.1 无限附着点）</span>设$X$是$\mathbb R$的一个子集，我们称$+\infty$是**附着于**$X$的，当且仅当对任意的$M\in\mathbb R$都存在一个$x\in X$使得$x>M$；我们称$-\infty$是**附着于**$X$的，当且仅当对任意的$M\in\mathbb R$都存在一个$x\in X$使得$x<M$。换言之，$+\infty$是附着于$X$的，当且仅当$X$没有上界<span style="color:blue">（即$\sup(X)=+\infty$）</span>；类似地，$-\infty$是附着于$X$的，当且仅当$X$没有下界<span style="color:blue">（即$\inf(X)=+\infty$）</span>。于是一个集合是有界的，当且仅当$+\infty$与$-\infty$都不是它的附着点。
 
-   <span style='color:blue'>（注：这个定义同我们在[定义9.1.8](../Chap9/Sec1.md)中看到的附着概念相当不同，但是利用广义实数系$\mathbb R^*$的拓扑结构我们可以将它们统一起来，这里我们不作展开讨论，仅需要知道这点即可）</span>
+   <span style="color:blue">（注：这个定义同我们在[定义9.1.8](../Chap9/Sec1.md)中看到的附着概念相当不同，但是利用广义实数系$\mathbb R^*$的拓扑结构我们可以将它们统一起来，这里我们不作展开讨论，仅需要知道这点即可）</span>
 
-1. <span style='color:red'>（9.10.3 在无限处的极限）</span>设$X$是$\mathbb R$的一个子集，并且$+\infty$是$X$的附着点，设$f:X\to\mathbb R$是一个函数。我们称当$x\to+\infty$时，$f(x)$沿着$X$收敛于$L$，并记为$\displaystyle\lim_{x\to+\infty;x\in X}f(x)=L$，当且仅当对于任意$\varepsilon>0$都存在一个$M$使得$f$在$X\cap(M,+\infty)$上是$\varepsilon$-接近于$L$的。<span style='color:blue'>（即对所有满足$x>M$的$x\in X$，均有$|f(x)-L|\leq\varepsilon$）</span>；类似地，我们称当$x\to-\infty$时，$f(x)$收敛于$L$，当且仅当对于任意$\varepsilon>0$都存在一个$M$使得$f$在$X\cap(-\infty,M)$上是$\varepsilon$-接近于$L$的。
+1. <span style="color:red">（9.10.3 在无限处的极限）</span>设$X$是$\mathbb R$的一个子集，并且$+\infty$是$X$的附着点，设$f:X\to\mathbb R$是一个函数。我们称当$x\to+\infty$时，$f(x)$沿着$X$收敛于$L$，并记为$\displaystyle\lim_{x\to+\infty;x\in X}f(x)=L$，当且仅当对于任意$\varepsilon>0$都存在一个$M$使得$f$在$X\cap(M,+\infty)$上是$\varepsilon$-接近于$L$的。<span style="color:blue">（即对所有满足$x>M$的$x\in X$，均有$|f(x)-L|\leq\varepsilon$）</span>；类似地，我们称当$x\to-\infty$时，$f(x)$收敛于$L$，当且仅当对于任意$\varepsilon>0$都存在一个$M$使得$f$在$X\cap(-\infty,M)$上是$\varepsilon$-接近于$L$的。
 
 ---
 

@@ -14,13 +14,13 @@ coverHeight: 320px
 
 ## 摘录
 
-1. <span style='color:red'>（实值函数的定义域与值域？）</span>当我们拥有一个实值函数$f:\mathbb R\to\mathbb R$<span style='color:blue'>（不论它是不是[代数的](..\..\额外注释\md\额外注释.md)）</span>，我们可以选择将它的定义域限制在一个更小的范围$X\subseteq\mathbb R$中，从而构造一个从$X$到$\mathbb R$的新函数，这个函数我们通常记为$f|_X$。这个新函数与原函数具有完全一致的映射关系，不过其定义域被限制在了一个更小的范围<span style='color:blue'>（即当$x\in X$，则$f|_X(x):=f(x)$；当$x\notin X$，则$f|_X(x)$无定义）</span>。比如，我们可以限制$\mathbb R$到$\mathbb R$的函数$f(x):=x^2$在区间$[1,2]$上，于是得到新函数即$f|_{[1,2]}:[1,2]\to\mathbb R$，其中对任意$x\in[1,2]$，$f(x)=x^2$，对其它情况则没有定义。
+1. <span style="color:red">（实值函数的定义域与值域？）</span>当我们拥有一个实值函数$f:\mathbb R\to\mathbb R$<span style="color:blue">（不论它是不是[代数的](../Extra.md)）</span>，我们可以选择将它的定义域限制在一个更小的范围$X\subseteq\mathbb R$中，从而构造一个从$X$到$\mathbb R$的新函数，这个函数我们通常记为$f|_X$。这个新函数与原函数具有完全一致的映射关系，不过其定义域被限制在了一个更小的范围<span style="color:blue">（即当$x\in X$，则$f|_X(x):=f(x)$；当$x\notin X$，则$f|_X(x)$无定义）</span>。比如，我们可以限制$\mathbb R$到$\mathbb R$的函数$f(x):=x^2$在区间$[1,2]$上，于是得到新函数即$f|_{[1,2]}:[1,2]\to\mathbb R$，其中对任意$x\in[1,2]$，$f(x)=x^2$，对其它情况则没有定义。
 
    ​	类似的，如果$f(x)$的取值始终限制在一个实数集子集$Y\subseteq\mathbb R$上，那么我们也可以将$f$的值域从$\mathbb R$限制为$Y$。比如上文所提到的例子$f(x):=x^2$，我们在知晓它值域必然是$[0,+\infty)$情况下也可以限制其变为从$\mathbb R$到$[0,+\infty)$的函数。正式来说，这两个函数是不同的，但是这两个函数之间的差别非常小，我们通常讨论也很少涉及函数的值域。
 
-2. <span style='color:red'>（实值函数的函数与函数值？）</span>**函数**与**函数值**是两个不同的概念，$f$是一个函数，$f(x)$则是一个函数值。实际写题或者叙述时，我们有时候会忽略这样的区别使用一些简单的说法代替严谨但是复杂的函数概念，一个例子就是使用 “考虑函数$x^2+2x+3$” 代替 “考虑定义为$f(x):=x^2+2x+3$的函数$f:\mathbb R\to\mathbb R$”，但是并不能因为这样的简写就轻易混淆两者。
+2. <span style="color:red">（实值函数的函数与函数值？）</span>**函数**与**函数值**是两个不同的概念，$f$是一个函数，$f(x)$则是一个函数值。实际写题或者叙述时，我们有时候会忽略这样的区别使用一些简单的说法代替严谨但是复杂的函数概念，一个例子就是使用 “考虑函数$x^2+2x+3$” 代替 “考虑定义为$f(x):=x^2+2x+3$的函数$f:\mathbb R\to\mathbb R$”，但是并不能因为这样的简写就轻易混淆两者。
 
-3. <span style='color:red'>（实值函数的图？）</span> 如果$X$是$\mathbb R$的一个子集，并且$f:X\to\mathbb R$是一个函数，则可以构造函数$f$的**图**，其定义为下面这样一个集合：
+3. <span style="color:red">（实值函数的图？）</span> 如果$X$是$\mathbb R$的一个子集，并且$f:X\to\mathbb R$是一个函数，则可以构造函数$f$的**图**，其定义为下面这样一个集合：
    $$
    \{(x,f(x)):x\in X\}
    $$
@@ -30,7 +30,7 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（9.2.1 函数的算术运算）</span>给定两个函数$f:X\to\mathbb R$与$g:X\to\mathbb R$。
+1. <span style="color:red">（9.2.1 函数的算术运算）</span>给定两个函数$f:X\to\mathbb R$与$g:X\to\mathbb R$。
 
    > 1. 定义$f$与$g$的和$f+g:X\to\mathbb R$为：
    >    $$

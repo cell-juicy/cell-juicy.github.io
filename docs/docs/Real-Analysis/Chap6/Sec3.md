@@ -14,37 +14,37 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（6.3.1 序列的$\sup$与$\inf$）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，则定义$\sup(a_n)_{n=m}^\infty$<span style='color:blue'>（有时也记作$\displaystyle\sup_{n\geq m}a_n$）</span>为集合$E$：
+1. <span style="color:red">（6.3.1 序列的$\sup$与$\inf$）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，则定义$\sup(a_n)_{n=m}^\infty$<span style="color:blue">（有时也记作$\displaystyle\sup_{n\geq m}a_n$）</span>为集合$E$：
    $$
    E=\{a_n:n≥m\}
    $$
-   的**上确界**，并定义$\inf(a_n)_{n=m}^\infty$<span style='color:blue'>（有时也记作$\displaystyle\inf_{n\geq m}a_n$）</span>为同一个集合$E$的**下确界**。
+   的**上确界**，并定义$\inf(a_n)_{n=m}^\infty$<span style="color:blue">（有时也记作$\displaystyle\inf_{n\geq m}a_n$）</span>为同一个集合$E$的**下确界**。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（6.3.6 最小上界性质）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，且设$x$是广义实数有：
+1. <span style="color:red">（6.3.6 最小上界性质）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，且设$x$是广义实数有：
    $$
    x:=\sup (a_n)_{n=m}^\infty
    $$
-   那么$a_n≤x$对所有$n≥m$均成立，且只要$M\in \mathbb R^*$是$(a_n)_{n=m}^\infty$的一个上界<span style='color:blue'>（即对所有$n≥m$均有$a_n≤M$）</span>，则有$M≥x$。最后，对每一个满足$y<x$的广义实数$y$，至少有存在一个$n≥m$使得$y<a_n\leq x$。
+   那么$a_n≤x$对所有$n≥m$均成立，且只要$M\in \mathbb R^*$是$(a_n)_{n=m}^\infty$的一个上界<span style="color:blue">（即对所有$n≥m$均有$a_n≤M$）</span>，则有$M≥x$。最后，对每一个满足$y<x$的广义实数$y$，至少有存在一个$n≥m$使得$y<a_n\leq x$。
 
-2. <span style='color:red'>（6.3.8 单调有界序列收敛）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，它存在一个上界$M\in \mathbb R$，并且它还是单调递增的<span style='color:blue'>（即对全部$n≥m$，均有$a_{n+1}\geq a_n$）</span>。那么$(a_n)_{n=m}^\infty$是收敛的，并且实际上有：
+2. <span style="color:red">（6.3.8 单调有界序列收敛）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，它存在一个上界$M\in \mathbb R$，并且它还是单调递增的<span style="color:blue">（即对全部$n≥m$，均有$a_{n+1}\geq a_n$）</span>。那么$(a_n)_{n=m}^\infty$是收敛的，并且实际上有：
    $$
    \lim_{n\to \infty}a_n=\sup (a_n)_{n=m}^\infty≤M
    $$
    
    类似的，我们有若$(a_n)_{n=m}^\infty$存在一个下界$M\in\mathbb R$，并且还是单调递减的，那么$(a_n)_{n=m}^\infty$收敛于$\inf(a_n)_{n=m}^\infty$。
 
-   <span style='color:blue'>（对于一个序列，如果它是递增的或者是递减的，则我们称该序列是**单调的**，根据命题6.3.8与[推论6.1.17](../Chap6/Sec1.md)我们可以得到：一个单调序列是收敛的，当且仅当它是有界的）</span>
+   <span style="color:blue">（对于一个序列，如果它是递增的或者是递减的，则我们称该序列是**单调的**，根据命题6.3.8与[推论6.1.17](../Chap6/Sec1.md)我们可以得到：一个单调序列是收敛的，当且仅当它是有界的）</span>
    
-3. <span style='color:red'>（6.3.10 一个特例？）</span>设$0<x<1$，那么有：
+3. <span style="color:red">（6.3.10 一个特例？）</span>设$0<x<1$，那么有：
    $$
    \lim_{n\to \infty}x^n=0
    $$
 
-   上式在$x>1$时不成立。<span style='color:blue'>（课本[例1.2.3](../Chap1/Sec2.md)的谜团之一）</span>
+   上式在$x>1$时不成立。<span style="color:blue">（课本[例1.2.3](../Chap1/Sec2.md)的谜团之一）</span>
 
 ---
 
@@ -54,7 +54,7 @@ coverHeight: 320px
 
 > 例6.3.4内容如下：
 >
-> > 设$a_n=1/n$，于是$(a_n)_{n=1}^\infty$是序列$1$，$1/2$，$1/3$，$...$。因此集合$\{a_n:n\geq 1\}$是一个可数集$\{1,1/2,1/3,...\}$<span style='color:blue'>（怎么又是没有学的概念先用了）</span>，于是$\sup(a_n)_{n=1}^\infty=1$且$\inf(a_n)_{n=1}^\infty=0$（习题6.3.1）。注意该序列的下确界事实上并不是集合中的元素，尽管最终这个下确界与集合非常接近。<span style='color:blue'>（所以直接的认为上确界与下确界是“序列的最大元素”与“序列的最小元素”事实上是不太准确的。）</span>
+> > 设$a_n=1/n$，于是$(a_n)_{n=1}^\infty$是序列$1$，$1/2$，$1/3$，$...$。因此集合$\{a_n:n\geq 1\}$是一个可数集$\{1,1/2,1/3,...\}$<span style="color:blue">（怎么又是没有学的概念先用了）</span>，于是$\sup(a_n)_{n=1}^\infty=1$且$\inf(a_n)_{n=1}^\infty=0$（习题6.3.1）。注意该序列的下确界事实上并不是集合中的元素，尽管最终这个下确界与集合非常接近。<span style="color:blue">（所以直接的认为上确界与下确界是“序列的最大元素”与“序列的最小元素”事实上是不太准确的。）</span>
 >
 > ---
 >
@@ -80,7 +80,7 @@ coverHeight: 320px
 >
 > 综上，于是例6.3.4结论得证。
 
-##### 6.3.2 证明命题6.3.6<span style='color:blue'>（提示：利用[定理6.2.11](../Chap6/Sec2.md)）</span>
+##### 6.3.2 证明命题6.3.6<span style="color:blue">（提示：利用[定理6.2.11](../Chap6/Sec2.md)）</span>
 
 > 分开证明，若有$x:=\sup (a_n)_{n=m}^\infty$，则：
 >
@@ -102,7 +102,7 @@ coverHeight: 320px
 >
 > 对存在$a_n$使得$y<a_n$，我们使用反证法。我们假设对任意$n\geq m$都有$a_n\leq y$成立，于是此时有$y$是序列$(a_n)_{n=m}^\infty$的一个上界，于是根据结论(b)，此时有$y\geq x$成立，然而我们有$y<x$，于是此时与前置结论发生矛盾，反证结束。此时应该有存在至少一个$n\geq m$使得$y<a_n\leq x$成立，于是结论成立。
 
-##### 6.3.3 证明命题6.3.8<span style='color:blue'>（提示：利用命题6.3.6以及$(a_n)_{n=m}^\infty$是递增序列的假设取证明$(a_n)_{n=m}^\infty$收敛于$\text{sup}(a_n)_{n=m}^\infty$）</span>
+##### 6.3.3 证明命题6.3.8<span style="color:blue">（提示：利用命题6.3.6以及$(a_n)_{n=m}^\infty$是递增序列的假设取证明$(a_n)_{n=m}^\infty$收敛于$\text{sup}(a_n)_{n=m}^\infty$）</span>
 
 > 即证明递增有界序列$(a_n)_{n=m}^\infty$收敛于$\sup(a_n)_{n=m}^\infty$：
 >
@@ -123,7 +123,7 @@ coverHeight: 320px
 > \lim_{n\to\infty}a_n=\sup(a_n)_{n=m}^\infty\leq M
 > $$
 
-##### 6.3.4 解释为什么当$x>1$时命题6.3.10不成立。实际上就是相当于证明当$x>1$时，序列$(x^n)_{n=1}^\infty$是发散的<span style='color:blue'>（提示：利用反证法，恒等式$\displaystyle\left(\frac{1}{x}\right)^nx^n=1$和[定理6.1.19](../Chap6/Sec1.md)中的极限定律）</span>。并将本结论与[例1.2.3](../Chap1/Sec2.md)中的论述进行比较，现在你能理解为什么[例1.2.3](../Chap1/Sec2.md)推理过程中存在缺陷吗？
+##### 6.3.4 解释为什么当$x>1$时命题6.3.10不成立。实际上就是相当于证明当$x>1$时，序列$(x^n)_{n=1}^\infty$是发散的<span style="color:blue">（提示：利用反证法，恒等式$\displaystyle\left(\frac{1}{x}\right)^nx^n=1$和[定理6.1.19](../Chap6/Sec1.md)中的极限定律）</span>。并将本结论与[例1.2.3](../Chap1/Sec2.md)中的论述进行比较，现在你能理解为什么[例1.2.3](../Chap1/Sec2.md)推理过程中存在缺陷吗？
 
 > 使用反证法，不妨假设有当$x>1$时$\displaystyle\lim_{n\to\infty}x^n=L$。$x>1\iff1>1/x$，由命题6.3.10，有$\displaystyle\lim_{n\to\infty}\left(\frac{1}{x}\right)^n=0$，于是根据极限定律，我们有：
 > $$

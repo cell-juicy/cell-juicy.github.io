@@ -13,34 +13,34 @@ coverHeight: 320px
 # 2.3 乘法
 
 ## 定义
-1. <span style='color:red'>（2.3.1 自然数的乘法）</span>令$m$表示任意一个自然数，定义$0×m:=0$表示把$0$乘到$m$上。归纳假设：已定义如何将$n$乘到$m$上，则定义$(n++)×m=(n×m)+m$。
-2. <span style='color:red'>（2.3.11 指数定义）</span>设$m$是一个自然数，定义$m^0:=1$，特别地，定义$0^0:=1$，归纳假设：已定义$m$升到$n$次幂，则定义$m^{n++}:=m^n×m$。
+1. <span style="color:red">（2.3.1 自然数的乘法）</span>令$m$表示任意一个自然数，定义$0×m:=0$表示把$0$乘到$m$上。归纳假设：已定义如何将$n$乘到$m$上，则定义$(n++)×m=(n×m)+m$。
+2. <span style="color:red">（2.3.11 指数定义）</span>设$m$是一个自然数，定义$m^0:=1$，特别地，定义$0^0:=1$，归纳假设：已定义$m$升到$n$次幂，则定义$m^{n++}:=m^n×m$。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（2.3.2 交换律）</span>令$m$与$n$为任意两个自然数，有$n×m=m×n$恒成立。
+1. <span style="color:red">（2.3.2 交换律）</span>令$m$与$n$为任意两个自然数，有$n×m=m×n$恒成立。
 
-2. <span style='color:red'>（2.3.3 正自然数没有0因子）</span>$m×n=0$，当且仅当$m$，$n$中至少有一个为$0$，特别地，若$m，n$均为正数，则$m×n$为正数。
+2. <span style="color:red">（2.3.3 正自然数没有0因子）</span>$m×n=0$，当且仅当$m$，$n$中至少有一个为$0$，特别地，若$m，n$均为正数，则$m×n$为正数。
 
-3. <span style='color:red'>（2.3.4 分配律）</span>对任意自然数$a$，$b$，$c$，总有$a×(b+c)=a×b+a×c$。
+3. <span style="color:red">（2.3.4 分配律）</span>对任意自然数$a$，$b$，$c$，总有$a×(b+c)=a×b+a×c$。
 
-4. <span style='color:red'>（2.3.5 结合律）</span>对任意自然数$a$，$b$，$c$，恒有$a×(b×c)=(a×b)×c$成立。
+4. <span style="color:red">（2.3.5 结合律）</span>对任意自然数$a$，$b$，$c$，恒有$a×(b×c)=(a×b)×c$成立。
 
-5. <span style='color:red'>（2.3.6 正数乘法保持序不变）</span>如果满足$a<b$，且$c$为正数，则有$ac<bc$。
+5. <span style="color:red">（2.3.6 正数乘法保持序不变）</span>如果满足$a<b$，且$c$为正数，则有$ac<bc$。
 
-6. <span style='color:red'>（2.3.7 消去律）</span>设自然数$a$，$b$，$c$满足$ac=bc$且$c$不为$0$，则有$a=b$。
+6. <span style="color:red">（2.3.7 消去律）</span>设自然数$a$，$b$，$c$满足$ac=bc$且$c$不为$0$，则有$a=b$。
 
-   <span style='color:blue'>（消去律的存在体现了一种“虚拟除法”的思想，这对后面除法的定义至关重要）</span>
+   <span style="color:blue">（消去律的存在体现了一种“虚拟除法”的思想，这对后面除法的定义至关重要）</span>
 
-7. <span style='color:red'>（2.3.9 欧几里得算法）</span>设$n$是一个自然数，$q$表示一个正自然数，则存在自然数$m$与$r$使得下述条件成立：$n=mq+r$且$0≤r＜q$。
+7. <span style="color:red">（2.3.9 欧几里得算法）</span>设$n$是一个自然数，$q$表示一个正自然数，则存在自然数$m$与$r$使得下述条件成立：$n=mq+r$且$0≤r＜q$。
 
 ---
 
 ## 课后习题
 
-##### 2.3.1 证明交换律<span style='color:blue'>（提示：参照加法交换律与其引理的证明）</span>
+##### 2.3.1 证明交换律<span style="color:blue">（提示：参照加法交换律与其引理的证明）</span>
 
 > 分成3步：
 >
@@ -114,7 +114,7 @@ coverHeight: 320px
 >    >
 >    > 于是结论得证
 
-##### 2.3.2 证明正自然数没有零因子的两个结论<span style='color:blue'>（提示：先证明第二个）</span>
+##### 2.3.2 证明正自然数没有零因子的两个结论<span style="color:blue">（提示：先证明第二个）</span>
 
 > 证明结论2：
 >

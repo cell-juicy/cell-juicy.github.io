@@ -14,38 +14,38 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（7.3.1 上界推断？）</span>设$\displaystyle \sum_{n=m}^{\infty}a_n$是一个**非负实数**的形式级数，则这个级数是收敛的，当且仅当存在一个实数$M$使得：
+1. <span style="color:red">（7.3.1 上界推断？）</span>设$\displaystyle \sum_{n=m}^{\infty}a_n$是一个**非负实数**的形式级数，则这个级数是收敛的，当且仅当存在一个实数$M$使得：
 	$$
 	\sum_{n=m}^{N}a_n\leq M
 	$$
 	
 	对所有整数$N\geq m$成立。
 	
-	推论：<span style='color:red'>（7.3.2 比较判别法）</span>设$\displaystyle \sum_{n=m}^{\infty}a_n$与$\displaystyle \sum_{n=m}^{\infty}b_n$是两个非负实数的形式级数，且对任意$n\geq m$均有$|a_n|\leq b_n$，则若有$\displaystyle \sum_{n=m}^{\infty}b_n$收敛，那么$\displaystyle \sum_{n=m}^{\infty}a_n$是绝对收敛的，并且有：
+	推论：<span style="color:red">（7.3.2 比较判别法）</span>设$\displaystyle \sum_{n=m}^{\infty}a_n$与$\displaystyle \sum_{n=m}^{\infty}b_n$是两个非负实数的形式级数，且对任意$n\geq m$均有$|a_n|\leq b_n$，则若有$\displaystyle \sum_{n=m}^{\infty}b_n$收敛，那么$\displaystyle \sum_{n=m}^{\infty}a_n$是绝对收敛的，并且有：
 	
 	$$
 	\left|\sum_{n=m}^{\infty}a_n\right|\leq \sum_{n=m}^{\infty}|a_n|\leq \sum_{n=m}^{\infty}b_n
 	$$
 	
-	<span style='color:blue'>（比较判别法中常使用几何级数$\displaystyle \sum_{q=0}^{\infty}x^q$）</span>
+	<span style="color:blue">（比较判别法中常使用几何级数$\displaystyle \sum_{q=0}^{\infty}x^q$）</span>
 	
-2. <span style='color:red'>（7.3.3 几何级数）</span>设$x$是实数，若$|x|\geq 1$，则级数$\displaystyle \sum_{q=0}^{\infty}x^q$发散，反之若$|x|<1$，则级数$\displaystyle \sum_{q=0}^{\infty}x^q$绝对收敛，且有：
+2. <span style="color:red">（7.3.3 几何级数）</span>设$x$是实数，若$|x|\geq 1$，则级数$\displaystyle \sum_{q=0}^{\infty}x^q$发散，反之若$|x|<1$，则级数$\displaystyle \sum_{q=0}^{\infty}x^q$绝对收敛，且有：
 	$$
 	\sum_{q=0}^{\infty}x^q=\frac{1}{1-x}
 	$$
 	
-3. <span style='color:red'>（7.3.4 柯西准则）</span>设$(a_n)_{n=1}^\infty$是一个**递减的非负实数**序列，则级数是$\displaystyle \sum_{n=1}^{\infty}a_n$收敛的，当且仅当级数：
+3. <span style="color:red">（7.3.4 柯西准则）</span>设$(a_n)_{n=1}^\infty$是一个**递减的非负实数**序列，则级数是$\displaystyle \sum_{n=1}^{\infty}a_n$收敛的，当且仅当级数：
 	$$
 	\sum_{k=0}^{\infty}2^k a_{2^k}=a_1+2a_2+4a_4+……
 	$$
 	
 	是收敛的。
 	
-4. <span style='color:red'>（7.3.6 柯西准则相关？）</span>设$(a_n)_{n=1}^\infty$是一个**递减的非负实数**序列，则对任意的自然数$K$，有$S_{2^{K+1}-1}\leq T_K\leq 2 S_{2^K}$，其中，$\displaystyle T_K=\sum_{k=0}^{K}2^ka_{2^k}$，$\displaystyle S_N=\sum_{n=0}^{N}a_n$。
+4. <span style="color:red">（7.3.6 柯西准则相关？）</span>设$(a_n)_{n=1}^\infty$是一个**递减的非负实数**序列，则对任意的自然数$K$，有$S_{2^{K+1}-1}\leq T_K\leq 2 S_{2^K}$，其中，$\displaystyle T_K=\sum_{k=0}^{K}2^ka_{2^k}$，$\displaystyle S_N=\sum_{n=0}^{N}a_n$。
 
-	<span style='color:blue'>（于是$\displaystyle S_{2^{K+1}-1}=\sum_{n=0}^{2^{K+1}-1}a_n$，$\displaystyle 2 S_{2^K}=2\sum_{n=0}^{2^K}a_n$。该引理用于柯西准则的证明）</span>
+	<span style="color:blue">（于是$\displaystyle S_{2^{K+1}-1}=\sum_{n=0}^{2^{K+1}-1}a_n$，$\displaystyle 2 S_{2^K}=2\sum_{n=0}^{2^K}a_n$。该引理用于柯西准则的证明）</span>
 	
-5. <span style='color:red'>（7.3.7 调和级数与柯西准则？）</span>设$q>0$为有理数，那么当$q>1$时，级数$\displaystyle \sum_{n=1}^{\infty}\frac{1}{n^q}$收敛；当$q\leq 1$时，级数$\displaystyle \sum_{n=1}^{\infty}\frac{1}{n^q}$发散。
+5. <span style="color:red">（7.3.7 调和级数与柯西准则？）</span>设$q>0$为有理数，那么当$q>1$时，级数$\displaystyle \sum_{n=1}^{\infty}\frac{1}{n^q}$收敛；当$q\leq 1$时，级数$\displaystyle \sum_{n=1}^{\infty}\frac{1}{n^q}$发散。
 
 ---
 
@@ -70,13 +70,13 @@ coverHeight: 320px
 >$$
 >于是命题得证。
 
-##### 7.3.2 证明引理7.3.3<span style='color:blue'>（提示：对第一部分使用[零判别法](../Chap7/Sec2.md)，对于第二部分，首先利用归纳法建立一个<span style='color:red'>几何级数公式</span></span>
+##### 7.3.2 证明引理7.3.3<span style="color:blue">（提示：对第一部分使用[零判别法](../Chap7/Sec2.md)，对于第二部分，首先利用归纳法建立一个<span style="color:red">几何级数公式</span></span>
 
 $$
 \color{blue}{\sum_{n=0}^{N}x^n=\frac{(1-x^{N+1})}{1-x}}
 $$
 
-##### <span style='color:blue'>然后使用[引理6.5.2](../Chap6/Sec5.md)）</span>
+##### <span style="color:blue">然后使用[引理6.5.2](../Chap6/Sec5.md)）</span>
 
 > 分类讨论：
 >

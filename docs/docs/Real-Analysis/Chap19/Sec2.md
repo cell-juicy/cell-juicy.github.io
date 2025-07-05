@@ -14,21 +14,21 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（19.2.1 从上方控制）</span>设$f:\Omega\to\mathbb R$和$g:\Omega\to\mathbb R$都是函数。我们称$f$**从上方控制**$g$，或者$g$**从下方控制**$f$，当且仅当对于所有的$x\in\Omega$都有$f(x)\geq g(x)$。
+1. <span style="color:red">（19.2.1 从上方控制）</span>设$f:\Omega\to\mathbb R$和$g:\Omega\to\mathbb R$都是函数。我们称$f$**从上方控制**$g$，或者$g$**从下方控制**$f$，当且仅当对于所有的$x\in\Omega$都有$f(x)\geq g(x)$。
 
-   <span style='color:blue'>（注：这个概念同[定义11.3.1](..\..\第11章\pdf\实分析 11.3 上黎曼积分和下黎曼积分.pdf)是一样的；有时候我们使用“$f$支配$g$”来代替“$f$从上方控制$g$”）</span>
+   <span style="color:blue">（注：这个概念同[定义11.3.1](..\..\第11章\pdf\实分析 11.3 上黎曼积分和下黎曼积分.pdf)是一样的；有时候我们使用“$f$支配$g$”来代替“$f$从上方控制$g$”）</span>
    
-2. <span style='color:red'>（19.2.2 非负函数的勒贝格积分）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to[0,\infty]$是一个非负的可测函数。那么，我们把$f$在$\Omega$上的**勒贝格积分**$\displaystyle\int_{\Omega}f$定义为：
+2. <span style="color:red">（19.2.2 非负函数的勒贝格积分）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to[0,\infty]$是一个非负的可测函数。那么，我们把$f$在$\Omega$上的**勒贝格积分**$\displaystyle\int_{\Omega}f$定义为：
    $$
    \int_{\Omega}f:=\sup\left\{\int_{\Omega}s:s是一个简单函数，且s从下方控制f\right\}
    $$
-   <span style='color:blue'>（注：应当将这个概念同[定义11.3.2](..\..\第11章\pdf\实分析 11.3 上黎曼积分和下黎曼积分.pdf)中的下黎曼积分的概念作比较。有趣的是，在这里我们不需要让这个下积分与上积分相等（个人理解，因为可测函数上可以取到$\infty$，而简单函数值域仍然限制在$\mathbb R$，追求上积分的数据有些情况下是不可能找到合适的简单函数）；如果$\Omega'$是$\Omega$的一个可测子集，那么通过把$f$限制到$\Omega'$，我们也可以将$\displaystyle\int_{\Omega'}f$定义为$\displaystyle\int_{\Omega'}f:=\int_{\Omega'}f|_{\Omega'}$；特别地，我们需要注意到这个定义与[19.1节](..\..\第19章\pdf\实分析 19.1 简单函数.pdf)中非负简单函数的勒贝格积分概念是一致的（这一点很好证明，如果需要思路可以参阅原书注19.2.4与注19.2.5之间的内容））</span>
+   <span style="color:blue">（注：应当将这个概念同[定义11.3.2](..\..\第11章\pdf\实分析 11.3 上黎曼积分和下黎曼积分.pdf)中的下黎曼积分的概念作比较。有趣的是，在这里我们不需要让这个下积分与上积分相等（个人理解，因为可测函数上可以取到$\infty$，而简单函数值域仍然限制在$\mathbb R$，追求上积分的数据有些情况下是不可能找到合适的简单函数）；如果$\Omega'$是$\Omega$的一个可测子集，那么通过把$f$限制到$\Omega'$，我们也可以将$\displaystyle\int_{\Omega'}f$定义为$\displaystyle\int_{\Omega'}f:=\int_{\Omega'}f|_{\Omega'}$；特别地，我们需要注意到这个定义与[19.1节](..\..\第19章\pdf\实分析 19.1 简单函数.pdf)中非负简单函数的勒贝格积分概念是一致的（这一点很好证明，如果需要思路可以参阅原书注19.2.4与注19.2.5之间的内容））</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（19.2.6）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to[0,\infty]$是$g:\Omega\to[0,\infty]$都是非负可测函数，那么有：
+1. <span style="color:red">（19.2.6）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to[0,\infty]$是$g:\Omega\to[0,\infty]$都是非负可测函数，那么有：
 
    > 1. $\displaystyle 0\leq\int_{\Omega}f\leq\infty$。另外，$\displaystyle\int_{\Omega}f=0$当且仅当$f(x)=0$几乎对于$\Omega$中的每一个$x$都成立。
    > 2. 对于任意的正数$c$，有$\displaystyle\int_{\Omega}cf=c\int_{\Omega}f$。
@@ -36,9 +36,9 @@ coverHeight: 320px
    > 4. 如果$f(x)=g(x)$几乎对于$\Omega$中的每一个$x$都成立，那么$\displaystyle\int_{\Omega}f=\int_{\Omega}g$。
    > 5. 如果$\Omega'\subseteq\Omega$是一个可测集，那么$\displaystyle\int_{\Omega'}f=\int_{\Omega}f\chi_{\Omega'}\leq \int_{\Omega}f$。
 
-   <span style='color:blue'>（注：命题19.2.6(d)是一个相当有趣的结论，它指出我们可以修改函数在任意测度为零的集合上的值（例如，你可以修改函数在每一个有理数上的值），而且这不会对其积分值产生任何影响。这似乎表明测度为零的点集对函数积分的结果没有任何“贡献”，只有正测度的点集才会对积分产生影响；在黎曼积分的同一进度下我们还给出了积分和加法的可交换性（即$\displaystyle\int_{\Omega}(f+g)=\int_{\Omega}f+\int_{\Omega}g$），但是对于勒贝格积分，证明这一点并不那么容易，参见原书引理19.2.10的证明）</span>
+   <span style="color:blue">（注：命题19.2.6(d)是一个相当有趣的结论，它指出我们可以修改函数在任意测度为零的集合上的值（例如，你可以修改函数在每一个有理数上的值），而且这不会对其积分值产生任何影响。这似乎表明测度为零的点集对函数积分的结果没有任何“贡献”，只有正测度的点集才会对积分产生影响；在黎曼积分的同一进度下我们还给出了积分和加法的可交换性（即$\displaystyle\int_{\Omega}(f+g)=\int_{\Omega}f+\int_{\Omega}g$），但是对于勒贝格积分，证明这一点并不那么容易，参见原书引理19.2.10的证明）</span>
 
-2. <span style='color:red'>（19.2.9 勒贝格单调收敛定理）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$(f_n)_{n=1}^{\infty}$是一个非负可测函数序列，其中$f_i:\Omega\to\mathbb R$，而且这个序列还是单调递增的，即对于每一个$x\in\Omega$都有：
+2. <span style="color:red">（19.2.9 勒贝格单调收敛定理）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$(f_n)_{n=1}^{\infty}$是一个非负可测函数序列，其中$f_i:\Omega\to\mathbb R$，而且这个序列还是单调递增的，即对于每一个$x\in\Omega$都有：
    $$
    0\leq f_1(x)\leq f_2(x)\leq f_3(x)\leq...
    $$
@@ -51,25 +51,25 @@ coverHeight: 320px
    \int_{\Omega}\sup_{n}f_n=\sup_{n}\int_{\Omega}f_n
    $$
 
-3. <span style='color:red'>（19.2.10 交换加法运算与积分运算的次序）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to[0,\infty]$是$g:\Omega\to[0,\infty]$都是可测函数，那么$\displaystyle\int_{\Omega}(f+g)=\int_{\Omega}f+\int_{\Omega}g$。
+3. <span style="color:red">（19.2.10 交换加法运算与积分运算的次序）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to[0,\infty]$是$g:\Omega\to[0,\infty]$都是可测函数，那么$\displaystyle\int_{\Omega}(f+g)=\int_{\Omega}f+\int_{\Omega}g$。
 
    > 推论：
    >
-   > 1. <span style='color:red'>（19.2.11 无限和运算？）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$g_1,g_2,...$是一个非负可测函数序列，其中$g_i:\Omega\to[0,\infty]$，那么有$\displaystyle\int_{\Omega}\sum_{n=1}^{\infty}g_n=\sum_{n=1}^{\infty}\int_{\Omega}g_n$。
+   > 1. <span style="color:red">（19.2.11 无限和运算？）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$g_1,g_2,...$是一个非负可测函数序列，其中$g_i:\Omega\to[0,\infty]$，那么有$\displaystyle\int_{\Omega}\sum_{n=1}^{\infty}g_n=\sum_{n=1}^{\infty}\int_{\Omega}g_n$。
    >
-   >    <span style='color:blue'>（注：需要注意的是，我们不必对上面的和式做收敛性的假设（它们可以同时等于$+\infty$），但是有必要假定函数的非负性，参见习题19.2.4）</span>
+   >    <span style="color:blue">（注：需要注意的是，我们不必对上面的和式做收敛性的假设（它们可以同时等于$+\infty$），但是有必要假定函数的非负性，参见习题19.2.4）</span>
 
-4. <span style='color:red'>（19.2.13 法都引理）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$g_1,g_2,...$是一个从$\Omega$到$[0,\infty]$的非负可测函数序列，那么有：
+4. <span style="color:red">（19.2.13 法都引理）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$g_1,g_2,...$是一个从$\Omega$到$[0,\infty]$的非负可测函数序列，那么有：
    $$
    \int_{\Omega}\liminf_{n\to\infty}f_n\leq\liminf_{n\to\infty}\int_{\Omega}f_n
    $$
-   <span style='color:blue'>（注：我们会很自然地提问能否交换极限运算与积分运算的次序，也就是问是否成立有等式$\displaystyle\int_{\Omega}\lim_{n\to\infty}f_n=\lim_{n\to\infty}\int_{\Omega}f_n$，但是很遗憾的是这个结论同黎曼积分时一样并不成立，一个很有用的例子就是所谓的“移动颠簸”函数序列，考虑$f_n:\mathbb R\to\mathbb R$是函数$f_n=\chi_{[n,n+1)}$，那么显然对于每一个$x$有$\displaystyle\lim_{n\to\infty}f_n(x)=0$且对每一个$n$有$\displaystyle\int_{\mathbb R}f_n=1$，从而得到$\displaystyle\int_{\Omega}\lim_{n\to\infty}f_n=0$与$\displaystyle\lim_{n\to\infty}\int_{\Omega}f_n=1$，也就是说极限函数$\displaystyle\lim_{n\to\infty}f_n$的积分最终将小于任何一个初始积分。但是，法都引理给出了一个结果，即反过来的结论是不成立的，极限函数的积分不可能大于初始积分的极限；这个引理的证明可以很简单地由勒贝格单调收敛定理得证，参见原书）</span>
+   <span style="color:blue">（注：我们会很自然地提问能否交换极限运算与积分运算的次序，也就是问是否成立有等式$\displaystyle\int_{\Omega}\lim_{n\to\infty}f_n=\lim_{n\to\infty}\int_{\Omega}f_n$，但是很遗憾的是这个结论同黎曼积分时一样并不成立，一个很有用的例子就是所谓的“移动颠簸”函数序列，考虑$f_n:\mathbb R\to\mathbb R$是函数$f_n=\chi_{[n,n+1)}$，那么显然对于每一个$x$有$\displaystyle\lim_{n\to\infty}f_n(x)=0$且对每一个$n$有$\displaystyle\int_{\mathbb R}f_n=1$，从而得到$\displaystyle\int_{\Omega}\lim_{n\to\infty}f_n=0$与$\displaystyle\lim_{n\to\infty}\int_{\Omega}f_n=1$，也就是说极限函数$\displaystyle\lim_{n\to\infty}f_n$的积分最终将小于任何一个初始积分。但是，法都引理给出了一个结果，即反过来的结论是不成立的，极限函数的积分不可能大于初始积分的极限；这个引理的证明可以很简单地由勒贝格单调收敛定理得证，参见原书）</span>
 
-5. <span style='color:red'>（19.2.14）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to[0,\infty]$是一个非负可测函数，并且$\displaystyle\int_{\Omega}f$是有限的。那么$f$几乎处处有限，也即有集合$\{x\in\Omega:f(x)=+\infty\}$的测度为$0$。
+5. <span style="color:red">（19.2.14）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to[0,\infty]$是一个非负可测函数，并且$\displaystyle\int_{\Omega}f$是有限的。那么$f$几乎处处有限，也即有集合$\{x\in\Omega:f(x)=+\infty\}$的测度为$0$。
 
-   <span style='color:blue'>（注：这个引理说明了只要积分是有限的，那么函数一定几乎处处有限）</span>
+   <span style="color:blue">（注：这个引理说明了只要积分是有限的，那么函数一定几乎处处有限）</span>
 
-6. <span style='color:red'>（19.2.15 Borel-Cantelli引理）</span>$\Omega_1,\Omega_2,...$是$\mathbb R^n$的一列可测子集，并且$\displaystyle\sum_{n=1}^{\infty}m(\Omega_n)$是有限的。那么集合：
+6. <span style="color:red">（19.2.15 Borel-Cantelli引理）</span>$\Omega_1,\Omega_2,...$是$\mathbb R^n$的一列可测子集，并且$\displaystyle\sum_{n=1}^{\infty}m(\Omega_n)$是有限的。那么集合：
    $$
    \{x\in\mathbb R^n:存在无限多个n使得x\in\Omega_n\}
    $$
@@ -79,7 +79,7 @@ coverHeight: 320px
 
 ## 课后习题
 
-##### 19.2.1 证明命题19.2.6<span style='color:blue'>（提示：不要试图模仿[命题19.1.10](..\..\第19章\pdf\实分析 19.1 简单函数.pdf)的证明，而应该试着使用[命题19.1.10](..\..\第19章\pdf\实分析 19.1 简单函数.pdf)和定义19.2.2。对于(a)的一个方向，从$\displaystyle\int_{\Omega}f=0$入手推导出“对于每一个$n=1,2,3,...$都有$m(\{x\in\Omega:f(x)>1/n\})=0$”，然后再使用可数次可加性。为了证明(e)，先证明它关于简单函数的结果）</span>
+##### 19.2.1 证明命题19.2.6<span style="color:blue">（提示：不要试图模仿[命题19.1.10](..\..\第19章\pdf\实分析 19.1 简单函数.pdf)的证明，而应该试着使用[命题19.1.10](..\..\第19章\pdf\实分析 19.1 简单函数.pdf)和定义19.2.2。对于(a)的一个方向，从$\displaystyle\int_{\Omega}f=0$入手推导出“对于每一个$n=1,2,3,...$都有$m(\{x\in\Omega:f(x)>1/n\})=0$”，然后再使用可数次可加性。为了证明(e)，先证明它关于简单函数的结果）</span>
 
 > 逐条证明：
 >
@@ -210,7 +210,7 @@ coverHeight: 320px
 > $$
 > 由于$\varepsilon$是任意的正数，因此也即有$\displaystyle\int_{\Omega}(f+g)\geq\int_{\Omega}f+\int_{\Omega}g$，结论得证。
 
-##### 19.2.3 证明推论19.2.11<span style='color:blue'>（提示：对$\displaystyle f_N:=\sum_{n=1}^{N}g_n$使用单调收敛定理）</span>
+##### 19.2.3 证明推论19.2.11<span style="color:blue">（提示：对$\displaystyle f_N:=\sum_{n=1}^{N}g_n$使用单调收敛定理）</span>
 
 > 对任意的$N\geq 1$，我们定义函数$f_N$：
 > $$
@@ -273,7 +273,7 @@ $$
 >
 > 综上，于是引理19.2.14得证。
 
-##### 19.2.6 利用推论19.2.11和引理19.2.14取证明引理19.2.15<span style='color:blue'>（提示：使用指示函数$\chi_{\Omega_n}$）</span>
+##### 19.2.6 利用推论19.2.11和引理19.2.14取证明引理19.2.15<span style="color:blue">（提示：使用指示函数$\chi_{\Omega_n}$）</span>
 
 > 我们定义函数：
 > $$
@@ -295,7 +295,7 @@ $$
 \left\{x\in[0,1]:存在无限多个正整数a和q使得\left|x-\frac{a}{q}\right|\leq\frac{c}{q^p}\right\}
 $$
 
-##### 的测度为$0$<span style='color:blue'>（提示：我们只需要考虑满足$0\leq a\leq q$的整数$a$（为什么？）。利用[推论11.6.5](..\..\第11章\pdf\实分析 11.6 单调函数的黎曼可积性.pdf)证明和式$\displaystyle\sum_{q=1}^{\infty}\frac{c(q+1)}{q^p}$是有限的）</span>
+##### 的测度为$0$<span style="color:blue">（提示：我们只需要考虑满足$0\leq a\leq q$的整数$a$（为什么？）。利用[推论11.6.5](..\..\第11章\pdf\实分析 11.6 单调函数的黎曼可积性.pdf)证明和式$\displaystyle\sum_{q=1}^{\infty}\frac{c(q+1)}{q^p}$是有限的）</span>
 
 > 对任意的正整数$a,q$，我们定义集合$\Omega(a,q)$有：
 > $$
@@ -355,7 +355,7 @@ $$
 >
 > 题外话：所以提示里面这个$\displaystyle\sum_{q=1}^{\infty}\frac{c(q+1)}{q^p}$级数是哪冒出来的，想了半天也没拼出来，害得我陷入自我怀疑了都。
 
-##### 19.2.8 对于实数$x\in\mathbb R$，如果存在实数$p>0$和$C>0$，使得对于所有的非零整数$q$和所有的整数$a$都有$\displaystyle\left|x-\frac{a}{q}\right|>\frac{C}{|q|^p}$，那么就称$x$是<span style='color:red'>丢番图数</span>。利用习题19.2.7，证明：几乎每一个实数都是丢番图数<span style='color:blue'>（提示：先在区间$[0,1]$中考察，证明$p$和$C$都可以取有理数，并且还可以令$p>2$。然后再利用“$0$测度集的可数并集仍然是测度为$0$的集合”这一事实）</span>
+##### 19.2.8 对于实数$x\in\mathbb R$，如果存在实数$p>0$和$C>0$，使得对于所有的非零整数$q$和所有的整数$a$都有$\displaystyle\left|x-\frac{a}{q}\right|>\frac{C}{|q|^p}$，那么就称$x$是<span style="color:red">丢番图数</span>。利用习题19.2.7，证明：几乎每一个实数都是丢番图数<span style="color:blue">（提示：先在区间$[0,1]$中考察，证明$p$和$C$都可以取有理数，并且还可以令$p>2$。然后再利用“$0$测度集的可数并集仍然是测度为$0$的集合”这一事实）</span>
 
 > 于是也即要证明集合
 > $$
@@ -455,7 +455,7 @@ $$
 \int_{\mathbb R}f_n\leq\frac{1}{4^n}
 $$
 
-##### 证明：对于任意的$\varepsilon>0$，存在一个勒贝格测度小于或等于$\varepsilon$的集合$E$，即$m(E)\leq\varepsilon$，它使得对于所有的$x\in\mathbb R\verb|\|E$，$f_n(x)$都收敛于零<span style='color:blue'>（提示：首先证明对于所有的$n=1,2,3,...$都有$\displaystyle m\left(\left\{x\in\mathbb R:f_n(x)>\frac{1}{\varepsilon 2^n}\right\}\right)\leq\frac{\varepsilon}{2^n}$，然后考察所有集合$\displaystyle\left\{x\in\mathbb R:f_n(x)>\frac{1}{\varepsilon 2^n}\right\}$的并集）</span>
+##### 证明：对于任意的$\varepsilon>0$，存在一个勒贝格测度小于或等于$\varepsilon$的集合$E$，即$m(E)\leq\varepsilon$，它使得对于所有的$x\in\mathbb R\verb|\|E$，$f_n(x)$都收敛于零<span style="color:blue">（提示：首先证明对于所有的$n=1,2,3,...$都有$\displaystyle m\left(\left\{x\in\mathbb R:f_n(x)>\frac{1}{\varepsilon 2^n}\right\}\right)\leq\frac{\varepsilon}{2^n}$，然后考察所有集合$\displaystyle\left\{x\in\mathbb R:f_n(x)>\frac{1}{\varepsilon 2^n}\right\}$的并集）</span>
 
 > 对每一个正整数$n$，定义下面的集合：
 > $$
@@ -485,7 +485,7 @@ $$
 >
 > 题外话：这个结论似乎可以在一定程度上扩展？只要$(a_n)_{n=1}^{\infty}$是满足$\displaystyle\sum_{n=1}^{\infty}a_n=1$的实数序列且$(b_n)_{n=1}^{\infty}$是满足$\displaystyle\lim_{n\to\infty}b_n=0$的实数序列，同时对于每一个正整数$n$都有$\displaystyle\int_{\mathbb R}f_n\leq a_nb_n$，那么就有题目的结论成立。不过这么写的话那么证明思路相比题目就显得过分暴露了。
 
-##### 19.2.10 对于每一个正整数$n$，设$f_n:[0,1]\to[0,\infty)$是一个非负可测函数，而且函数序列$f_n$逐点收敛于$0$。证明：对于任意的$\varepsilon>0$，存在一个集合$E$，其勒贝格测度$m(E)\leq\varepsilon$，它使得$f_n(x)$在$[0,1]\verb|\|E$上一致收敛于$0$<span style='color:blue'>（这是[叶戈罗夫定理](https://zh.wikipedia.org/wiki/%E5%8F%B6%E6%88%88%E7%BD%97%E5%A4%AB%E5%AE%9A%E7%90%86)的一种特殊情形。为了证明这个结论，首先证明对于任意的正整数$m$，我们能够找到一个$N>0$使得$m(\{x\in[0,1]:f_n(x)>1/m\})\leq\varepsilon/2^m$对所有的$n\geq N$都成立）</span>。如果把$[0,1]$换成$\mathbb R$，那么结论是否仍然成立，给出说明
+##### 19.2.10 对于每一个正整数$n$，设$f_n:[0,1]\to[0,\infty)$是一个非负可测函数，而且函数序列$f_n$逐点收敛于$0$。证明：对于任意的$\varepsilon>0$，存在一个集合$E$，其勒贝格测度$m(E)\leq\varepsilon$，它使得$f_n(x)$在$[0,1]\verb|\|E$上一致收敛于$0$<span style="color:blue">（这是[叶戈罗夫定理](https://zh.wikipedia.org/wiki/%E5%8F%B6%E6%88%88%E7%BD%97%E5%A4%AB%E5%AE%9A%E7%90%86)的一种特殊情形。为了证明这个结论，首先证明对于任意的正整数$m$，我们能够找到一个$N>0$使得$m(\{x\in[0,1]:f_n(x)>1/m\})\leq\varepsilon/2^m$对所有的$n\geq N$都成立）</span>。如果把$[0,1]$换成$\mathbb R$，那么结论是否仍然成立，给出说明
 
 > 注：思路不是我的，我是菜狗抄别人的思路的。
 >
@@ -538,7 +538,7 @@ $$
 \lim_{n\to\infty}\displaystyle\sum_{m=1}^{\infty}f(n,m)\ne\sum_{m=1}^{\infty}\lim_{n\to\infty}f(n,m)
 $$
 
-##### <span style='color:blue'>（提示：修改“移动颠簸”的例子，甚至可以使用取值只有$0$和$1$的函数$f$）</span>这表明交换极限运算与无限和运算的次序是危险的
+##### <span style="color:blue">（提示：修改“移动颠簸”的例子，甚至可以使用取值只有$0$和$1$的函数$f$）</span>这表明交换极限运算与无限和运算的次序是危险的
 
 > 考虑函数$f(n,m)$：
 > $$

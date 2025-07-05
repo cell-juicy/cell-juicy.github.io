@@ -14,43 +14,43 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（5.3.1 实数）</span>实数被定义为形如${\rm LIM}_{n\to\infty}a_n$的对象，其中$(a_n)^\infty_{n=1}$是有理数的一个**柯西序列**。称两个实数${\rm LIM}_{n\to\infty}a_n$与${\rm LIM}_{n\to\infty}b_n$是相等的，当且仅当序列$(a_n)^\infty_{n=1}$与$(b_n)^\infty_{n=1}$是**等价的柯西序列**。记由全体实数构成的集合为$\mathbb R$。
+1. <span style="color:red">（5.3.1 实数）</span>实数被定义为形如${\rm LIM}_{n\to\infty}a_n$的对象，其中$(a_n)^\infty_{n=1}$是有理数的一个**柯西序列**。称两个实数${\rm LIM}_{n\to\infty}a_n$与${\rm LIM}_{n\to\infty}b_n$是相等的，当且仅当序列$(a_n)^\infty_{n=1}$与$(b_n)^\infty_{n=1}$是**等价的柯西序列**。记由全体实数构成的集合为$\mathbb R$。
 
-2. <span style='color:red'>（5.3.2 形式极限）</span>称${\rm LIM}_{n\to\infty}a_n$为序列为$(a_n)^\infty_{n=1}$**形式极限**。
+2. <span style="color:red">（5.3.2 形式极限）</span>称${\rm LIM}_{n\to\infty}a_n$为序列为$(a_n)^\infty_{n=1}$**形式极限**。
 
-   <span style='color:blue'>（小节临时辅助定义，如同之前的形式减法与形式除法一样）</span>
+   <span style="color:blue">（小节临时辅助定义，如同之前的形式减法与形式除法一样）</span>
 
-3. <span style='color:red'>（5.3.4 实数的加法）</span>设$x={\rm LIM}_{n\to\infty}a_n$和$y={\rm LIM}_{n\to\infty}b_n$是实数，则定义它们的和$x+y$为$x+y:={\rm LIM}_{n\to\infty}(a_n+b_n)$。
+3. <span style="color:red">（5.3.4 实数的加法）</span>设$x={\rm LIM}_{n\to\infty}a_n$和$y={\rm LIM}_{n\to\infty}b_n$是实数，则定义它们的和$x+y$为$x+y:={\rm LIM}_{n\to\infty}(a_n+b_n)$。
 
-4. <span style='color:red'>（5.3.9 实数的乘法）</span>设$x={\rm LIM}_{n\to\infty}a_n$和$y={\rm LIM}_{n\to\infty}a_n$是实数，则定义它们的乘积$xy$为$xy:={\rm LIM}_{n\to\infty}(a_n\times b_n)$。
+4. <span style="color:red">（5.3.9 实数的乘法）</span>设$x={\rm LIM}_{n\to\infty}a_n$和$y={\rm LIM}_{n\to\infty}a_n$是实数，则定义它们的乘积$xy$为$xy:={\rm LIM}_{n\to\infty}(a_n\times b_n)$。
 
-5. <span style='color:red'>（5.3.12 远离$0$的有理数序列）</span>称有理数序列$(a_n)^\infty_{n=1}$是远离$0$的，当且仅当存在一个有理数$c>0$使得$|a_n|≥c$对一切$n≥1$均成立。
+5. <span style="color:red">（5.3.12 远离$0$的有理数序列）</span>称有理数序列$(a_n)^\infty_{n=1}$是远离$0$的，当且仅当存在一个有理数$c>0$使得$|a_n|≥c$对一切$n≥1$均成立。
 
-6. <span style='color:red'>（5.3.16 实数的倒数）</span>设$x$是一个不为零的实数，设$(a_n)^\infty_{n=1}$是一个远离$0$的柯西序列并且使得$x={\rm LIM}_{n\to\infty}a_n$<span style='color:blue'>（由引理5.3.14可证明这样的序列存在）</span>，则定义$x^{-1}$为$x^{-1}:={\rm LIM}_{n\to\infty}{a_n}^{-1}$。
+6. <span style="color:red">（5.3.16 实数的倒数）</span>设$x$是一个不为零的实数，设$(a_n)^\infty_{n=1}$是一个远离$0$的柯西序列并且使得$x={\rm LIM}_{n\to\infty}a_n$<span style="color:blue">（由引理5.3.14可证明这样的序列存在）</span>，则定义$x^{-1}$为$x^{-1}:={\rm LIM}_{n\to\infty}{a_n}^{-1}$。
 
-   <span style='color:blue'>（由引理5.3.17可证明$x^{-1}$是一个实数）</span>
+   <span style="color:blue">（由引理5.3.17可证明$x^{-1}$是一个实数）</span>
 
-7. <span style='color:red'>（无编号 消去律）</span>如果$x$，$y$，$z$是实数，它们满足$xz=yz$且$z$不为零，则可以得到$x=y$。
+7. <span style="color:red">（无编号 消去律）</span>如果$x$，$y$，$z$是实数，它们满足$xz=yz$且$z$不为零，则可以得到$x=y$。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（5.3.3 形式极限是定义明确的）</span>设$x={\rm LIM}_{n\to\infty}a_n$，$y={\rm LIM}_{n\to\infty}b_n$是与$z={\rm LIM}_{n\to\infty}c_n$都是实数，则由定义可知，$x=x$。而且如果有$x=y$，则$y=x$。最后，若有$x=y$且$y=z$，则$x=z$。
+1. <span style="color:red">（5.3.3 形式极限是定义明确的）</span>设$x={\rm LIM}_{n\to\infty}a_n$，$y={\rm LIM}_{n\to\infty}b_n$是与$z={\rm LIM}_{n\to\infty}c_n$都是实数，则由定义可知，$x=x$。而且如果有$x=y$，则$y=x$。最后，若有$x=y$且$y=z$，则$x=z$。
 
-   <span style='color:blue'>（自反，对称，可传递性）</span>
+   <span style="color:blue">（自反，对称，可传递性）</span>
 
-2. <span style='color:red'>（5.3.6 柯西序列的和是柯西序列）</span>设$x={\rm LIM}_{n\to\infty}a_n$和$y={\rm LIM}_{n\to\infty}b_n$都是实数，那么$x+y$同样也是一个实数。
+2. <span style="color:red">（5.3.6 柯西序列的和是柯西序列）</span>设$x={\rm LIM}_{n\to\infty}a_n$和$y={\rm LIM}_{n\to\infty}b_n$都是实数，那么$x+y$同样也是一个实数。
 
-   <span style='color:blue'>（即$(a_n+b_n)^\infty_{n=1}$是有理数的一个柯西序列）</span>
+   <span style="color:blue">（即$(a_n+b_n)^\infty_{n=1}$是有理数的一个柯西序列）</span>
 
-3. <span style='color:red'>（5.3.7 等价的柯西序列之和是等价的）</span>设$x={\rm LIM}_{n\to\infty}a_n$，$x'={\rm LIM}_{n\to\infty}a'_n$和$y={\rm LIM}_{n\to\infty}b_n$是实数，设$x=x'$，则有$x+y=x'+y$。
+3. <span style="color:red">（5.3.7 等价的柯西序列之和是等价的）</span>设$x={\rm LIM}_{n\to\infty}a_n$，$x'={\rm LIM}_{n\to\infty}a'_n$和$y={\rm LIM}_{n\to\infty}b_n$是实数，设$x=x'$，则有$x+y=x'+y$。
 
-   <span style='color:blue'>（按理说这个才是定义明确的吧）</span>
+   <span style="color:blue">（按理说这个才是定义明确的吧）</span>
 
-4. <span style='color:red'>（5.3.10 乘法的定义是明确的）</span>设$x={\rm LIM}_{n\to\infty}a_n$，$x'={\rm LIM}_{n\to\infty}a'_n$和$y={\rm LIM}_{n\to\infty}b_n$是实数，则$xy$也是实数，另外，如有$x=x'$，则有$xy=x'y$。
+4. <span style="color:red">（5.3.10 乘法的定义是明确的）</span>设$x={\rm LIM}_{n\to\infty}a_n$，$x'={\rm LIM}_{n\to\infty}a'_n$和$y={\rm LIM}_{n\to\infty}b_n$是实数，则$xy$也是实数，另外，如有$x=x'$，则有$xy=x'y$。
 
-5. <span style='color:red'>（5.3.11 实数的代数定律）</span>第四章中的所有代数定律<span style='color:blue'>（命题4.2.4）</span>不止对于整数与有理数成立，对于实数也是成立的。内容见下：
+5. <span style="color:red">（5.3.11 实数的代数定律）</span>第四章中的所有代数定律<span style="color:blue">（命题4.2.4）</span>不止对于整数与有理数成立，对于实数也是成立的。内容见下：
 
    > * $x+y=y+x$。
    > * $(x+y)+z=x+(y+z)$。
@@ -62,17 +62,17 @@ coverHeight: 320px
    > * $(y+z)x=yx+zx$。
    > * $x\cdot x^{-1}=x^{-1}\cdot x(x\ne0)$。
 
-6. <span style='color:red'>（5.3.14 远离$0$的序列性质1）</span>设$x$是一个不为零的实数，那么存在某个远离$0$的柯西序列$(a_n)^\infty_{n=1}$使得$x={\rm LIM}_{n\to\infty}a_n$。
+6. <span style="color:red">（5.3.14 远离$0$的序列性质1）</span>设$x$是一个不为零的实数，那么存在某个远离$0$的柯西序列$(a_n)^\infty_{n=1}$使得$x={\rm LIM}_{n\to\infty}a_n$。
 
-7. <span style='color:red'>（5.3.15 远离$0$的序列性质2）</span>设$(a_n)^\infty_{n=1}$是一个远离$0$的柯西序列，那么序列$(a_n^{-1})^\infty_{n=1}$也是一个的柯西序列。
+7. <span style="color:red">（5.3.15 远离$0$的序列性质2）</span>设$(a_n)^\infty_{n=1}$是一个远离$0$的柯西序列，那么序列$(a_n^{-1})^\infty_{n=1}$也是一个的柯西序列。
 
-8. <span style='color:red'>（5.3.17 倒数运算是定义明确的）</span>现假设$(a_n)^\infty_{n=1}$与$(b_n)^\infty_{n=1}$是两个远离$0$的柯西序列，且有${\rm LIM}_{n\to\infty}a_n={\rm LIM}_{n\to\infty}b_n$，则${\rm LIM}_{n\to\infty}a_n^{-1}={\rm LIM}_{n\to\infty}b_n^{-1}$。
+8. <span style="color:red">（5.3.17 倒数运算是定义明确的）</span>现假设$(a_n)^\infty_{n=1}$与$(b_n)^\infty_{n=1}$是两个远离$0$的柯西序列，且有${\rm LIM}_{n\to\infty}a_n={\rm LIM}_{n\to\infty}b_n$，则${\rm LIM}_{n\to\infty}a_n^{-1}={\rm LIM}_{n\to\infty}b_n^{-1}$。
 
 ---
 
 ## 课后习题
 
-##### 5.3.1 证明命题5.3.3<span style='color:blue'>（提示：你也许会发现[命题4.3.7](../Chap4/Sec3.md)对本题是有用的）</span>
+##### 5.3.1 证明命题5.3.3<span style="color:blue">（提示：你也许会发现[命题4.3.7](../Chap4/Sec3.md)对本题是有用的）</span>
 
 > 自反性：
 >
@@ -90,7 +90,7 @@ coverHeight: 320px
 >
 > 若有$x=y$且$y=z$，则$x=z$，这等价于若有$(a_n)_{n=1}^\infty$与$(b_n)_{n=1}^\infty$等价与$(b_n)_{n=1}^\infty$与$(c_n)_{n=1}^\infty$等价，则$(a_n)_{n=1}^\infty$与$(c_n)_{n=1}^\infty$等价。对任意$\varepsilon>0$，取$\varepsilon'=\varepsilon/2$，于是由$(a_n)_{n=1}^\infty$与$(b_n)_{n=1}^\infty$等价与$(b_n)_{n=1}^\infty$与$(c_n)_{n=1}^\infty$等价，可以得到分别存在正自然数$N_1$，$N_2$使得$n\geq N_1$时有$d(a_n,b_n)\leq\varepsilon'$与$n\geq N_2$时有$d(b_n,c_n)\leq\varepsilon'$。此时取$N=\max(N_1,N_2)$，于是根据命题4.3.7，有对任意$\varepsilon>0$，存在正自然数$N$使得$a_n$是$2\varepsilon'=\varepsilon$-接近于$c_n$的对任意$n\geq N$成立，于是$(a_n)_{n=1}^\infty$与$(c_n)_{n=1}^\infty$等价。
 
-##### 5.3.2 证明命题5.3.10<span style='color:blue'>（提示：[命题4.3.7](../Chap4/Sec3.md)对本题同样有用）</span>
+##### 5.3.2 证明命题5.3.10<span style="color:blue">（提示：[命题4.3.7](../Chap4/Sec3.md)对本题同样有用）</span>
 
 > $xy$也是实数：
 >
@@ -102,7 +102,7 @@ coverHeight: 320px
 >
 > 即证明$(a_n)_{n=1}^\infty$与$(a'_n)_{n=1}^\infty$是等价的柯西序列时，$(a_nb_n)_{n=1}^\infty$与$(a'_nb_n)_{n=1}^\infty$也是等价的柯西序列。于是对任意$\varepsilon>0$，取$\varepsilon'=\varepsilon/B$，其中$B$是$(b_n)_{n=1}^\infty$的一个界。由于$(a_n)_{n=1}^\infty$与$(a'_n)_{n=1}^\infty$是等价的，于是对$\varepsilon'$，总存在自然数$N\geq 1$使得$n\geq N$时总有$a_n$与$a'_n$是$\varepsilon'$-接近的，于是根据命题4.3.7结论，$a_nb_n$与$a'_nb_n$是$|b_n|\varepsilon'$-接近的，又$B$是$(b_n)_{n=1}^\infty$的一个界，于是对任意$n\geq N$，$B\geq|b_n|$，进而有$a_nb_n$与$a'_nb_n$也是$B\varepsilon'$-接近的。于是可以得到$a_nb_n$与$a'_nb_n$是$\varepsilon$-接近的，进而可以得到$(a_nb_n)_{n=1}^\infty$与$(a'_nb_n)_{n=1}^\infty$也是等价的柯西序列，于是原结论得证。
 
-##### 5.3.3 设$a$，$b$是有理数， 证明：$a=b$，当且仅当${\rm LIM}_{n\to\infty}a={\rm LIM}_{n\to\infty}b$<span style='color:blue'>（即柯西序列$a$，$a$，$...$与$b$，$b$，$...$是等价的，当且仅当$a=b$）</span>，这样我们能够明确的把有理数嵌入到实数中
+##### 5.3.3 设$a$，$b$是有理数， 证明：$a=b$，当且仅当${\rm LIM}_{n\to\infty}a={\rm LIM}_{n\to\infty}b$<span style="color:blue">（即柯西序列$a$，$a$，$...$与$b$，$b$，$...$是等价的，当且仅当$a=b$）</span>，这样我们能够明确的把有理数嵌入到实数中
 
 > 充分性：
 >

@@ -14,11 +14,11 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（9.9.2 一致连续）</span>设$X$是$\mathbb R$的一个子集，并设$f:X\to\mathbb R$是一个函数。如果对任意$\varepsilon>0$，都存在$\delta>0$使得只要$x$，$x_0\in X$是$X$中两个$\delta$-接近的点，$f(x)$，$f(x_0)$就是$\varepsilon$-接近的，则我们称$f$是**一致连续的**。
+1. <span style="color:red">（9.9.2 一致连续）</span>设$X$是$\mathbb R$的一个子集，并设$f:X\to\mathbb R$是一个函数。如果对任意$\varepsilon>0$，都存在$\delta>0$使得只要$x$，$x_0\in X$是$X$中两个$\delta$-接近的点，$f(x)$，$f(x_0)$就是$\varepsilon$-接近的，则我们称$f$是**一致连续的**。
 
-   <span style='color:blue'>（注：我们应当把这个概念同函数的连续性做比较，两者的区别在于：对一个给出的$\varepsilon$，在一致连续中我们可以取到一个$\delta$使这个$\delta$对所有$x_0\in X$满足，而在连续中不同的$x_0\in X$可能使用不同的$\delta$。因此，每个一致连续的函数都是连续的，反过来则不一定）</span>
+   <span style="color:blue">（注：我们应当把这个概念同函数的连续性做比较，两者的区别在于：对一个给出的$\varepsilon$，在一致连续中我们可以取到一个$\delta$使这个$\delta$对所有$x_0\in X$满足，而在连续中不同的$x_0\in X$可能使用不同的$\delta$。因此，每个一致连续的函数都是连续的，反过来则不一定）</span>
    
-2. <span style='color:red'>（9.9.5 等价序列）</span>设$m$是一个整数，$(a_n)_{n=m}^\infty$与$(b_n)_{n=m}^\infty$是两个实数序列，并且设$\varepsilon_0>0$是给定的。
+2. <span style="color:red">（9.9.5 等价序列）</span>设$m$是一个整数，$(a_n)_{n=m}^\infty$与$(b_n)_{n=m}^\infty$是两个实数序列，并且设$\varepsilon_0>0$是给定的。
 
    ​    称$(a_n)_{n=m}^\infty$是**$\varepsilon_0$-接近于**$(b_n)_{n=m}^\infty$的，当且仅当对任意$n\geq m$都有$a_n$是$\varepsilon_0$-接近于$b_n$的。
 
@@ -26,36 +26,36 @@ coverHeight: 320px
 
    ​    称$(a_n)_{n=m}^\infty$与$(b_n)_{n=m}^\infty$是**等价的**，当且仅当对任意$\varepsilon>0$都有$(a_n)_{n=m}^\infty$是最终$\varepsilon$-接近于$(b_n)_{n=m}^\infty$的。
 
-   <span style='color:blue'>（注：在[5.2节](../Chap5/Sec2.md)中我们学习了一个与之相似的概念，这里相比[定义5.2.6](../Chap5/Sec2.md)，我们去掉了对$\varepsilon$的限制（在那节还没有实数的概念），对于这样的去除我们也在[习题6.1.10](../Chap6/Sec1.md)中证明了这样的限制完全是无所谓的。）</span>
+   <span style="color:blue">（注：在[5.2节](../Chap5/Sec2.md)中我们学习了一个与之相似的概念，这里相比[定义5.2.6](../Chap5/Sec2.md)，我们去掉了对$\varepsilon$的限制（在那节还没有实数的概念），对于这样的去除我们也在[习题6.1.10](../Chap6/Sec1.md)中证明了这样的限制完全是无所谓的。）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（9.9.7 等价序列的极限表述？）</span>设$(a_n)_{n=1}^\infty$与$(b_n)_{n=1}^\infty$是两个实数序列<span style='color:blue'>（不一定是有界的或者是收敛的）</span>，则$(a_n)_{n=1}^\infty$与$(b_n)_{n=1}^\infty$是等价的当且仅当$\displaystyle\lim_{n\to\infty}(a_n-b_n)=0$。
+1. <span style="color:red">（9.9.7 等价序列的极限表述？）</span>设$(a_n)_{n=1}^\infty$与$(b_n)_{n=1}^\infty$是两个实数序列<span style="color:blue">（不一定是有界的或者是收敛的）</span>，则$(a_n)_{n=1}^\infty$与$(b_n)_{n=1}^\infty$是等价的当且仅当$\displaystyle\lim_{n\to\infty}(a_n-b_n)=0$。
 
-2. <span style='color:red'>（9.9.8 一致连续的等价序列表述？）</span>设$X$是$\mathbb R$的一个子集，并设$f:X\to\mathbb R$是一个函数。那么下面两个命题逻辑上是等价的：
+2. <span style="color:red">（9.9.8 一致连续的等价序列表述？）</span>设$X$是$\mathbb R$的一个子集，并设$f:X\to\mathbb R$是一个函数。那么下面两个命题逻辑上是等价的：
 
    > * $f$在$X$上是一致连续的。
    > * 若$(x_n)_{n=0}^\infty$与$(y_n)_{n=0}^\infty$是完全由$X$中元素构成的等价序列，那么序列$(f(x_n))_{n=0}^\infty$与$(f(y_n))_{n=0}^\infty$也是等价的。
 
-   <span style='color:blue'>（注：我们应当将这个命题同[命题9.4.7](../Chap9/Sec4.md)比较，[命题9.4.7]()断定若$f$是连续的，那么$f$将收敛的序列映射到收敛的序列；命题9.9.8断定若$f$是一致连续的，那么$f$将等价的序列映射到等价的序列。为找出两者的关联，根据引理9.9.7我们有$(x_n)_{n=1}^\infty$收敛于$x_*$当且仅当序列$(x_n)_{n=1}^\infty$与$(x_*)_{n=1}^\infty$等价，从而我们可以将两个命题联系到一起）</span>
+   <span style="color:blue">（注：我们应当将这个命题同[命题9.4.7](../Chap9/Sec4.md)比较，[命题9.4.7](../Chap9/Sec4.md)断定若$f$是连续的，那么$f$将收敛的序列映射到收敛的序列；命题9.9.8断定若$f$是一致连续的，那么$f$将等价的序列映射到等价的序列。为找出两者的关联，根据引理9.9.7我们有$(x_n)_{n=1}^\infty$收敛于$x_*$当且仅当序列$(x_n)_{n=1}^\infty$与$(x_*)_{n=1}^\infty$等价，从而我们可以将两个命题联系到一起）</span>
 
-3. <span style='color:red'>（9.9.12 一致连续与柯西序列？）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个一致连续的函数，并且设$(x_n)_{n=0}^\infty$是完全由$X$中元素构成的柯西序列，那么$(f(x_n))_{n=0}^\infty$也是一个柯西序列。
+3. <span style="color:red">（9.9.12 一致连续与柯西序列？）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个一致连续的函数，并且设$(x_n)_{n=0}^\infty$是完全由$X$中元素构成的柯西序列，那么$(f(x_n))_{n=0}^\infty$也是一个柯西序列。
 
-   <span style='color:blue'>（注：于是一致连续函数将柯西序列映射到柯西序列）</span>
+   <span style="color:blue">（注：于是一致连续函数将柯西序列映射到柯西序列）</span>
 
    > 推论：
    >
-   > 1. <span style='color:red'>（9.9.14）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个一致连续的函数，并且设$x_0$是$X$的附着点，那么极限$\displaystyle\lim_{x\to x_0;x\in X}f(x)$存在<span style='color:blue'>（特别地，它还是一个实数）</span>。
+   > 1. <span style="color:red">（9.9.14）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个一致连续的函数，并且设$x_0$是$X$的附着点，那么极限$\displaystyle\lim_{x\to x_0;x\in X}f(x)$存在<span style="color:blue">（特别地，它还是一个实数）</span>。
 
-5. <span style='color:red'>（9.9.15 一致连续与有界集？）</span>设$X$是$\mathbb R$的一个子集，并设$f:X\to\mathbb R$是一个一致连续的函数。若$E$是$X$的一个有界子集，那么$f(E)$也是有界的。
+5. <span style="color:red">（9.9.15 一致连续与有界集？）</span>设$X$是$\mathbb R$的一个子集，并设$f:X\to\mathbb R$是一个一致连续的函数。若$E$是$X$的一个有界子集，那么$f(E)$也是有界的。
 
-   <span style='color:blue'>（注：于是一致连续函数将有界集映射到有界集）</span>
+   <span style="color:blue">（注：于是一致连续函数将有界集映射到有界集）</span>
 
-6. <span style='color:red'>（9.9.16 闭区间连续函数必然一致连续？）</span>设$a<b$都是实数，并且设$f:[a,b]\to\mathbb R$是$[a,b]$上的连续函数，那么$f$也是一致连续的。
+6. <span style="color:red">（9.9.16 闭区间连续函数必然一致连续？）</span>设$a<b$都是实数，并且设$f:[a,b]\to\mathbb R$是$[a,b]$上的连续函数，那么$f$也是一致连续的。
 
-   <span style='color:blue'>（注：我们应当将[引理9.6.3](../Chap9/Sec6.md)，命题9.9.15和定理9.9.16比较，这三者相互独立，获得任意两者都不能推出第三者，但是它们之间互相保持一致）</span>
+   <span style="color:blue">（注：我们应当将[引理9.6.3](../Chap9/Sec6.md)，命题9.9.15和定理9.9.16比较，这三者相互独立，获得任意两者都不能推出第三者，但是它们之间互相保持一致）</span>
 
 ---
 
@@ -81,7 +81,7 @@ coverHeight: 320px
 >
 > 综上，于是引理9.9.7得证。
 
-##### 9.9.2 证明命题9.9.8<span style='color:blue'>（提示：不应该使用引理9.9.7，而是应当回归到定义9.9.5中等价序列的定义）</span>
+##### 9.9.2 证明命题9.9.8<span style="color:blue">（提示：不应该使用引理9.9.7，而是应当回归到定义9.9.5中等价序列的定义）</span>
 
 > 分别证明其充分必要性。
 >
@@ -109,7 +109,7 @@ coverHeight: 320px
 >
 > 综上，于是命题9.9.8得证。
 
-##### 9.9.3 证明命题9.9.12<span style='color:blue'>（提示：直接使用定义9.9.2）</span>
+##### 9.9.3 证明命题9.9.12<span style="color:blue">（提示：直接使用定义9.9.2）</span>
 
 > 设$(x_n)_{n=0}^\infty$是完全由$X$中元素构成的柯西序列，考虑序列$(f(x_n))_{n=0}^\infty$的性质：
 >
@@ -141,7 +141,7 @@ coverHeight: 320px
 >
 > 考虑另一种思路，由于$0$是$(0,2)$的附着点，从而根据推论9.9.14，若$f$在$(0,2)$上一致连续则应当有$\displaystyle\lim_{x\to 0;x\in(0,2)}f(x)$存在且是一个实数，但是我们不难发现$f$在$0$处是发散的，从而导出了矛盾。
 
-##### 9.9.5 证明命题9.9.15<span style='color:blue'>（提示：模仿[引理9.6.3](../Chap9/Sec6.md)的证明。某些地方你需要用到命题9.9.12或推论9.9.14）</span>
+##### 9.9.5 证明命题9.9.15<span style="color:blue">（提示：模仿[引理9.6.3](../Chap9/Sec6.md)的证明。某些地方你需要用到命题9.9.12或推论9.9.14）</span>
 
 > 利用反证法，不妨假设$f(E)$是无界的，从而对任意的实数$M$，都存在$x\in E$满足$|f(x)|\geq M$。从而集合$\{x\in E:|f(x)|\geq M\}$对任意实数$M$都是非空的。
 >

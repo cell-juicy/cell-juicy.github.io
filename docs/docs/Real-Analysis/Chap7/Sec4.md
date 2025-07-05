@@ -14,12 +14,12 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（7.4.1 非负级数的重排列？）</span>设$\displaystyle \sum_{n=0}^{\infty}a_n$是一个**收敛的非负实数**级数，并且$f:\mathbb N\to\mathbb N$是一个**双射**，那么$\displaystyle \sum_{n=0}^{\infty}a_{f(n)}$也是收敛的，并且与原级数有相同的和，即：
+1. <span style="color:red">（7.4.1 非负级数的重排列？）</span>设$\displaystyle \sum_{n=0}^{\infty}a_n$是一个**收敛的非负实数**级数，并且$f:\mathbb N\to\mathbb N$是一个**双射**，那么$\displaystyle \sum_{n=0}^{\infty}a_{f(n)}$也是收敛的，并且与原级数有相同的和，即：
    $$
    \sum_{n=0}^{\infty}a_n=\sum_{n=0}^{\infty}a_{f(n)}
    $$
    
-2. <span style='color:red'>（7.4.3 级数的重排列）</span>设$\displaystyle \sum_{n=0}^{\infty}a_n$是一个**绝对收敛**的实数级数，并且$f:\mathbb N\to\mathbb N$是一个**双射**，那么$\displaystyle \sum_{n=0}^{\infty}a_{f(n)}$也是收敛的，并且与原级数有相同的和，即：
+2. <span style="color:red">（7.4.3 级数的重排列）</span>设$\displaystyle \sum_{n=0}^{\infty}a_n$是一个**绝对收敛**的实数级数，并且$f:\mathbb N\to\mathbb N$是一个**双射**，那么$\displaystyle \sum_{n=0}^{\infty}a_{f(n)}$也是收敛的，并且与原级数有相同的和，即：
    $$
    \sum_{n=0}^{\infty}a_n=\sum_{n=0}^{\infty}a_{f(n)}
    $$
@@ -29,7 +29,7 @@ coverHeight: 320px
 
 ## 课后习题
 
-##### 7.4.1 设$\displaystyle{\sum_{n=0}^{\infty}a_n}$是一个绝对收敛的实数级数，设$f:\mathbb N\to \mathbb N$是一个增函数<span style='color:blue'>（即对所有的 $n\in \mathbb N$ 都有 $f(n+1)>f(n)$）</span>。证明：$ \displaystyle{\sum_{n=0}^{\infty}a_{f(n)}}$ 也是绝对收敛的级数<span style='color:blue'>（提示：试着把$\displaystyle{\sum_{n=0}^{\infty}a_{f(n)}}$的每一个部分和与$\displaystyle{\sum_{n=0}^{\infty}a_n}$（略有不同）的部分和进行比较）</span>
+##### 7.4.1 设$\displaystyle{\sum_{n=0}^{\infty}a_n}$是一个绝对收敛的实数级数，设$f:\mathbb N\to \mathbb N$是一个增函数<span style="color:blue">（即对所有的 $n\in \mathbb N$ 都有 $f(n+1)>f(n)$）</span>。证明：$ \displaystyle{\sum_{n=0}^{\infty}a_{f(n)}}$ 也是绝对收敛的级数<span style="color:blue">（提示：试着把$\displaystyle{\sum_{n=0}^{\infty}a_{f(n)}}$的每一个部分和与$\displaystyle{\sum_{n=0}^{\infty}a_n}$（略有不同）的部分和进行比较）</span>
 
 > 在习题6.6.4中，我们已经证明了对$f$存在性质：$f(n)\geq n$对任意$n\in\mathbb N$成立。于是对任意$n\in\mathbb N$，我们指定集合$X_n$与$Y_n$分别有$X_n=\{i\in\mathbb N:0\leq i\leq n\}$与$Y_n=\{i\in\mathbb N:0\leq i\leq f(n)\}$，于是此时依据$f$是单射我们有$\#(X_n)=\#(f(X_n))\leq Y_n$与$f(X_n)\subseteq Y_n$成立。
 >

@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 摘录
 
-1. <span style='color:red'>（第二个事实？）</span>对任意的$f\in C(\mathbb R/\mathbb Z;\mathbb C)$与任意的整数$n$，有：
+1. <span style="color:red">（第二个事实？）</span>对任意的$f\in C(\mathbb R/\mathbb Z;\mathbb C)$与任意的整数$n$，有：
    $$
    f*e_n=\hat{f}(n)e_n
    $$
@@ -24,19 +24,19 @@ coverHeight: 320px
    $$
    于是$f*P$也是一个三角多项式。
 
-   <span style='color:blue'>（注：这个引理同第二个事实（也就是[引理14.8.13](../Chap14/Sec8.md)）很像，它断定了任意一个$C(\mathbb R/\mathbb Z;\mathbb C)$中的函数与三角多项式的周期卷积都还是一个三角多项式；证明过程原书也有给出，可以自行参考；第三个事实合并到定理16.4.1的证明中了（原书本节的末尾））</span>
+   <span style="color:blue">（注：这个引理同第二个事实（也就是[引理14.8.13](../Chap14/Sec8.md)）很像，它断定了任意一个$C(\mathbb R/\mathbb Z;\mathbb C)$中的函数与三角多项式的周期卷积都还是一个三角多项式；证明过程原书也有给出，可以自行参考；第三个事实合并到定理16.4.1的证明中了（原书本节的末尾））</span>
 
 ---
 
 ## 定义
 
-1. <span style='color:red'>（16.4.2 周期卷积）</span>设$f,g\in C(\mathbb R/\mathbb Z;\mathbb C)$，那么$f$和$g$的**周期卷积**$f*g:\mathbb R\to\mathbb C$被定义为：
+1. <span style="color:red">（16.4.2 周期卷积）</span>设$f,g\in C(\mathbb R/\mathbb Z;\mathbb C)$，那么$f$和$g$的**周期卷积**$f*g:\mathbb R\to\mathbb C$被定义为：
    $$
    f*g(x):=\int_{[0,1]}f(y)g(x-y)\text{d}y
    $$
-   <span style='color:blue'>（注：注意同[14.8节](../Chap14/Sec8.md)的关于紧支撑函数的卷积定义区分，两个定义的积分区间并不相同（事实上也不必要太注意，$f,g$不可能同时是紧支撑，周期，还非零的函数，因此只要明确了$f,g$是什么你就不会对卷积的内容有混淆））</span>
+   <span style="color:blue">（注：注意同[14.8节](../Chap14/Sec8.md)的关于紧支撑函数的卷积定义区分，两个定义的积分区间并不相同（事实上也不必要太注意，$f,g$不可能同时是紧支撑，周期，还非零的函数，因此只要明确了$f,g$是什么你就不会对卷积的内容有混淆））</span>
 
-2. <span style='color:red'>（16.4.5 周期恒等逼近）</span>设$\varepsilon>0$且$0<\delta<1/2$，如果函数$f\in C(\mathbb R/\mathbb Z;\mathbb C)$满足下列性质，那么$f$就被称为**周期$(\varepsilon,\delta)$恒等逼近**：
+2. <span style="color:red">（16.4.5 周期恒等逼近）</span>设$\varepsilon>0$且$0<\delta<1/2$，如果函数$f\in C(\mathbb R/\mathbb Z;\mathbb C)$满足下列性质，那么$f$就被称为**周期$(\varepsilon,\delta)$恒等逼近**：
 
    > 1. 对于所有的$x\in\mathbb R$，都有$f(x)\geq 0$；并且$\displaystyle\int_{[0,1]}f=1$。
    > 2. 对于所有的$\delta\leq |x|\leq 1-\delta$，都有$f(x)<\varepsilon$。
@@ -45,19 +45,19 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（16.4.1 斯通-魏尔斯特拉斯第二逼近定理？）</span>设$f\in C(\mathbb R/\mathbb Z;\mathbb C)$，并设$\varepsilon>0$。那么存在一个三角多项式$P$使得$\Vert f-P\Vert_{\infty}\leq\varepsilon$。
+1. <span style="color:red">（16.4.1 斯通-魏尔斯特拉斯第二逼近定理？）</span>设$f\in C(\mathbb R/\mathbb Z;\mathbb C)$，并设$\varepsilon>0$。那么存在一个三角多项式$P$使得$\Vert f-P\Vert_{\infty}\leq\varepsilon$。
 
-   <span style='color:blue'>（注：这个定理断定任何一个连续的周期函数都可以用三角多项式一致逼近。就如同[魏尔斯特拉斯逼近定理](../Chap14/Sec8.md)断定了连续函数空间$C([a,b]\to\mathbb R)$是多项式空间$P([a,b]\to\mathbb R)$的闭包，如果我们设$P(\mathbb R/\mathbb Z;\mathbb C)$表示全体三角多项式的空间，那么$P(\mathbb R/\mathbb Z;\mathbb C)$在$L^{\infty}$度量下的闭包就是$C(\mathbb R/\mathbb Z;\mathbb C)$；这个定理可以通过多项式的[魏尔斯特拉斯逼近定理](../Chap14/Sec8.md)来证明，事实上这两个定理都是**斯通-魏尔斯特拉斯定理**的特殊情形（详情请参考[维基百科—斯通-魏尔斯特拉斯逼近定理](https://zh.wikipedia.org/wiki/%E9%AD%8F%E5%B0%94%E6%96%BD%E7%89%B9%E6%8B%89%E6%96%AF%E9%80%BC%E8%BF%91%E5%AE%9A%E7%90%86)），原书中不会对这两个定理之间的互相证明说明（这部分可以看维基百科），而是从卷积出发证明）</span>
+   <span style="color:blue">（注：这个定理断定任何一个连续的周期函数都可以用三角多项式一致逼近。就如同[魏尔斯特拉斯逼近定理](../Chap14/Sec8.md)断定了连续函数空间$C([a,b]\to\mathbb R)$是多项式空间$P([a,b]\to\mathbb R)$的闭包，如果我们设$P(\mathbb R/\mathbb Z;\mathbb C)$表示全体三角多项式的空间，那么$P(\mathbb R/\mathbb Z;\mathbb C)$在$L^{\infty}$度量下的闭包就是$C(\mathbb R/\mathbb Z;\mathbb C)$；这个定理可以通过多项式的[魏尔斯特拉斯逼近定理](../Chap14/Sec8.md)来证明，事实上这两个定理都是**斯通-魏尔斯特拉斯定理**的特殊情形（详情请参考[维基百科—斯通-魏尔斯特拉斯逼近定理](https://zh.wikipedia.org/wiki/%E9%AD%8F%E5%B0%94%E6%96%BD%E7%89%B9%E6%8B%89%E6%96%AF%E9%80%BC%E8%BF%91%E5%AE%9A%E7%90%86)），原书中不会对这两个定理之间的互相证明说明（这部分可以看维基百科），而是从卷积出发证明）</span>
 
-2. <span style='color:red'>（16.4.4 周期卷积的基本性质）</span>设$f,g,h\in C(\mathbb R/\mathbb Z;\mathbb C)$，那么有：
+2. <span style="color:red">（16.4.4 周期卷积的基本性质）</span>设$f,g,h\in C(\mathbb R/\mathbb Z;\mathbb C)$，那么有：
 
-   > 1. <span style='color:red'>（封闭性）</span>卷积$f*g$是连续的，并且也是$\mathbb Z$周期的，换言之即$f*g\in C(\mathbb R/\mathbb Z;\mathbb C)$。
-   > 2. <span style='color:red'>（交换性）</span>$f*g=g*f$。
-   > 3. <span style='color:red'>（双线性性质）</span>$f*(g+h)=f*g+f*h$且$(f+g)*h=f*h+g*h$。对于任意的复数$c$，有$c(f*g)=(cf)*g=f*(cg)$。
+   > 1. <span style="color:red">（封闭性）</span>卷积$f*g$是连续的，并且也是$\mathbb Z$周期的，换言之即$f*g\in C(\mathbb R/\mathbb Z;\mathbb C)$。
+   > 2. <span style="color:red">（交换性）</span>$f*g=g*f$。
+   > 3. <span style="color:red">（双线性性质）</span>$f*(g+h)=f*g+f*h$且$(f+g)*h=f*h+g*h$。对于任意的复数$c$，有$c(f*g)=(cf)*g=f*(cg)$。
 
-3. <span style='color:red'>（16.4.6）</span>对于每一个$\varepsilon>0$和$0<\delta<1/2$，都存在一个三角多项式$P$是一个$(\varepsilon,\delta)$恒等逼近。
+3. <span style="color:red">（16.4.6）</span>对于每一个$\varepsilon>0$和$0<\delta<1/2$，都存在一个三角多项式$P$是一个$(\varepsilon,\delta)$恒等逼近。
 
-   <span style='color:blue'>（注：在[14.8节](../Chap14/Sec8.md)中为了证明魏尔斯特拉斯第一逼近定理的弱化形式，书中提到了三个事实，这个引理同第一个事实（也就是[引理14.8.8](../Chap14/Sec8.md)）很像；该引理在原书中有证明，还给出了[**费耶尔核**](https://en.wikipedia.org/wiki/Fej%C3%A9r_kernel)的定义，可以参考）</span>
+   <span style="color:blue">（注：在[14.8节](../Chap14/Sec8.md)中为了证明魏尔斯特拉斯第一逼近定理的弱化形式，书中提到了三个事实，这个引理同第一个事实（也就是[引理14.8.8](../Chap14/Sec8.md)）很像；该引理在原书中有证明，还给出了[**费耶尔核**](https://en.wikipedia.org/wiki/Fej%C3%A9r_kernel)的定义，可以参考）</span>
 
 ---
 
@@ -71,7 +71,7 @@ coverHeight: 320px
 > $$
 > 也即对任意的$x\in[0,1]$都有$f(x)=0$，再利用$f$是$\mathbb Z$周期的我们就可以推广得到对任意的$x\in\mathbb R$都有$f(x)=0$，即$f$是零函数。
 
-##### 16.4.2 证明引理16.4.4<span style='color:blue'>（提示：为了证明$f*g$连续，你或许需要用到$f$的有界性与$g$的一致连续性（反过来也行，看你喜欢哪个）；要想证明$f*g=g*f$，你或许需要利用周期性尝试“剪切和粘贴”$[0,1]$）</span>
+##### 16.4.2 证明引理16.4.4<span style="color:blue">（提示：为了证明$f*g$连续，你或许需要用到$f$的有界性与$g$的一致连续性（反过来也行，看你喜欢哪个）；要想证明$f*g=g*f$，你或许需要利用周期性尝试“剪切和粘贴”$[0,1]$）</span>
 
 > 为了证明结论(a)，需要提到一个事实：
 >
@@ -190,7 +190,7 @@ coverHeight: 320px
 >
 > 于是结论得证。
 
-##### 16.4.3 把引理16.4.6中标注了“为什么？”的地方补充完整<span style='color:blue'>（提示：对第一个恒等式，利用等式$|z|^2=z\overline{z}$，$\overline{e_n}=e_{-n}$和$e_ne_m=e_{n+m}$）</span>
+##### 16.4.3 把引理16.4.6中标注了“为什么？”的地方补充完整<span style="color:blue">（提示：对第一个恒等式，利用等式$|z|^2=z\overline{z}$，$\overline{e_n}=e_{-n}$和$e_ne_m=e_{n+m}$）</span>
 
 > 根据定义费耶尔核$\displaystyle F_N:=\sum_{n=-N}^{N}\left(1-\frac{|n|}{N}\right)e_n$，我们逐条证明这几个“为什么？”。
 >

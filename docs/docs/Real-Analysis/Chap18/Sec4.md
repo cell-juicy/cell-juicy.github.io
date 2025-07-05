@@ -14,57 +14,57 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（18.4.1 勒贝格可测性）</span>设$E$是$\mathbb R^n$的子集。我们称$E$是**勒贝格可测的**，或者简称为**可测的**，当且仅当对于$\mathbb R^n$的每一个子集$A$都有恒等式：
+1. <span style="color:red">（18.4.1 勒贝格可测性）</span>设$E$是$\mathbb R^n$的子集。我们称$E$是**勒贝格可测的**，或者简称为**可测的**，当且仅当对于$\mathbb R^n$的每一个子集$A$都有恒等式：
    $$
    m^*(A)=m^*(A\cap E)+m^*(A\verb|\|E)
    $$
    如果$E$是可测的，那么我们把$E$的**勒贝格测度**定义为$m(E)=m^*(E)$；如果$E$不可测，那么$m(E)$无定义。
 
-   <span style='color:blue'>（注：用自然语言解释即有$E$是可测的意味着当我们用任意的集合$A$将$E$划分为两个部分时，可加性保持不变。如果$m^*$是有限可加的那么所有集合都是可测的，但是由[命题18.3.3](../Chap18/Sec3.md)我们已经知道并非所有集合都是有限可加的，我们可以将可测集看作能够使有限可加性成立的集合；有时候会将$m(E)$写成带有下标的$m_n(E)$来强调使用的是$n$维勒贝格测度；这个定义使用起来相对困难，但是可以用这个定义来证明可测集的一些有用的性质，然后依据这些性质来判断可测性，这些内容我们再本节课后习题中会进行阐述）</span>
+   <span style="color:blue">（注：用自然语言解释即有$E$是可测的意味着当我们用任意的集合$A$将$E$划分为两个部分时，可加性保持不变。如果$m^*$是有限可加的那么所有集合都是可测的，但是由[命题18.3.3](../Chap18/Sec3.md)我们已经知道并非所有集合都是有限可加的，我们可以将可测集看作能够使有限可加性成立的集合；有时候会将$m(E)$写成带有下标的$m_n(E)$来强调使用的是$n$维勒贝格测度；这个定义使用起来相对困难，但是可以用这个定义来证明可测集的一些有用的性质，然后依据这些性质来判断可测性，这些内容我们再本节课后习题中会进行阐述）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（18.4.2 半空间是可测的）</span>半空间$\{(x_1,...,x_n)\in\mathbb R^n:x_n>0\}$是可测的。
+1. <span style="color:red">（18.4.2 半空间是可测的）</span>半空间$\{(x_1,...,x_n)\in\mathbb R^n:x_n>0\}$是可测的。
 
-   <span style='color:blue'>（注：还有显然可测的空集$\varnothing$与$\mathbb R^n$也是可测的；同理所有形如$\{(x_1,...,x_n)\in\mathbb R^n:x_j>0\}$或$\{(x_1,...,x_n)\in\mathbb R^n:x_j<0\}$（其中$1\leq j\leq n$）的半空间都是可测的）</span>
+   <span style="color:blue">（注：还有显然可测的空集$\varnothing$与$\mathbb R^n$也是可测的；同理所有形如$\{(x_1,...,x_n)\in\mathbb R^n:x_j>0\}$或$\{(x_1,...,x_n)\in\mathbb R^n:x_j<0\}$（其中$1\leq j\leq n$）的半空间都是可测的）</span>
 
-2. <span style='color:red'>（18.4.4 可测集的性质）</span>可测集满足下面几个性质：
+2. <span style="color:red">（18.4.4 可测集的性质）</span>可测集满足下面几个性质：
 
    > 1. 如果$E$是可测的，那么$\mathbb R^n\verb|\|E$也是可测的。
-   > 2. <span style='color:red'>（平移不变性）</span>如果$E$是可测的，并且$x\in\mathbb R^n$，那么$x+E$也是可测的，并且有$m(x+E)=m(E)$。
+   > 2. <span style="color:red">（平移不变性）</span>如果$E$是可测的，并且$x\in\mathbb R^n$，那么$x+E$也是可测的，并且有$m(x+E)=m(E)$。
    > 3. 如果$E_1$和$E_2$都是可测的，那么$E_1\cap E_2$和$E_1\cup E_2$也都可测。
-   > 4. <span style='color:red'>（布尔代数性质）</span>如果$E_1,E_2,...,E_N$是可测的，那么$\displaystyle\bigcup_{j=1}^{N}E_j$和$\displaystyle\bigcap_{j=1}^{N}E_j$也都是可测的。
+   > 4. <span style="color:red">（布尔代数性质）</span>如果$E_1,E_2,...,E_N$是可测的，那么$\displaystyle\bigcup_{j=1}^{N}E_j$和$\displaystyle\bigcap_{j=1}^{N}E_j$也都是可测的。
    > 5. 每一个开盒子都是可测的，每一个闭盒子也都是可测的。
    > 6. 任意一个外测度为零的集合$E$（即$m^*(E)=0$）都是可测的。
 
-3. <span style='color:red'>（18.4.5 有限可加性）</span>如果$(E_j)_{j\in J}$是有限个不相交的可测集，而$A$是任意一个集合（不一定可测），那么有：
+3. <span style="color:red">（18.4.5 有限可加性）</span>如果$(E_j)_{j\in J}$是有限个不相交的可测集，而$A$是任意一个集合（不一定可测），那么有：
    $$
    m^*\left(A\cap\bigcup_{j\in J}E_j\right)=\sum_{j\in J}m^*\left(A\cap E_j\right)
    $$
    另外，还有$\displaystyle m\left(\bigcup_{j\in J}E_j\right)=\sum_{j\in J}m\left(E_j\right)$。
 
-   <span style='color:blue'>（注：结合引理18.4.5与[命题18.3.3](../Chap18/Sec3.md)就可以推出“存在不可测集”，见习题18.4.5）</span>
+   <span style="color:blue">（注：结合引理18.4.5与[命题18.3.3](../Chap18/Sec3.md)就可以推出“存在不可测集”，见习题18.4.5）</span>
 
    > 推论：
    >
-   > 1. <span style='color:red'>（18.4.7）</span>如果$A\subseteq B$是两个可测集，那么$B\verb|\|A$也是可测的，并且
+   > 1. <span style="color:red">（18.4.7）</span>如果$A\subseteq B$是两个可测集，那么$B\verb|\|A$也是可测的，并且
    >    $$
    >    m(B\verb|\|A)=m(B)-m(A)
    >    $$
 
-4. <span style='color:red'>（18.4.8 可数可加性）</span>如果$(E_j)_{j\in J}$是可数个不相交的可测集，那么$\displaystyle\bigcup_{j\in J}E_j$是可测的，并且$\displaystyle m\left(\displaystyle\bigcup_{j\in J}E_j\right)=\sum_{j\in J}m(E_j)$。
+4. <span style="color:red">（18.4.8 可数可加性）</span>如果$(E_j)_{j\in J}$是可数个不相交的可测集，那么$\displaystyle\bigcup_{j\in J}E_j$是可测的，并且$\displaystyle m\left(\displaystyle\bigcup_{j\in J}E_j\right)=\sum_{j\in J}m(E_j)$。
 
-   <span style='color:blue'>（注：此引理在原书有证明，建议读一遍加深对外测度性质的运用能力）</span>
+   <span style="color:blue">（注：此引理在原书有证明，建议读一遍加深对外测度性质的运用能力）</span>
 
-5. <span style='color:red'>（18.4.9 $\sigma$代数性质）</span>如果$(\Omega_j)_{j\in J}$是任意可数个可测集（从而$J$是可数的），那么并集$\displaystyle\bigcup_{j\in J}\Omega_j$和$\displaystyle\bigcap_{j\in J}\Omega_j$也都是可测的。
+5. <span style="color:red">（18.4.9 $\sigma$代数性质）</span>如果$(\Omega_j)_{j\in J}$是任意可数个可测集（从而$J$是可数的），那么并集$\displaystyle\bigcup_{j\in J}\Omega_j$和$\displaystyle\bigcap_{j\in J}\Omega_j$也都是可测的。
 
-6. <span style='color:red'>（18.4.10）</span>每一个开集都能写成可数个或有限个开盒子的并集。
+6. <span style="color:red">（18.4.10）</span>每一个开集都能写成可数个或有限个开盒子的并集。
 
-   <span style='color:blue'>（注：此引理同样在原书有证明，并且这个证明还断定了这些盒子的坐标可以全都是有理数）</span>
+   <span style="color:blue">（注：此引理同样在原书有证明，并且这个证明还断定了这些盒子的坐标可以全都是有理数）</span>
 
-7. <span style='color:red'>（18.4.11 博雷尔性质）</span>每一个开集都是勒贝格可测的，每一个闭集也都是勒贝格可测的。
+7. <span style="color:red">（18.4.11 博雷尔性质）</span>每一个开集都是勒贝格可测的，每一个闭集也都是勒贝格可测的。
 
 ---
 
@@ -110,7 +110,7 @@ coverHeight: 320px
 >
 > 综上，于是结论成立。
 
-##### 18.4.2 设$A$是$\mathbb R^n$中的开盒子，并设$E$是半平面$E:=\{(x_1,...,x_n)\in\mathbb R^n:x_n>0\}$，证明：$m^*(A)=m^*(A\cap E)+m^*(A\verb|\|E)$<span style='color:blue'>（提示：利用习题18.4.1）</span>
+##### 18.4.2 设$A$是$\mathbb R^n$中的开盒子，并设$E$是半平面$E:=\{(x_1,...,x_n)\in\mathbb R^n:x_n>0\}$，证明：$m^*(A)=m^*(A\cap E)+m^*(A\verb|\|E)$<span style="color:blue">（提示：利用习题18.4.1）</span>
 
 > 我们设$\displaystyle A=\prod_{i=1}^{n}(a_i,b_i)$，然后令$\displaystyle A_{n-1}:=\prod_{i=1}^{n-1}(a_i,b_i)$与$A':=(a_n,b_n)$。显然我们可以注意到下面的事实：
 > $$
@@ -136,7 +136,7 @@ coverHeight: 320px
 >
 > 于是综合即只能有$m^*(A)=m^*(A\cap E)+m^*(A\verb|\|E)$成立。
 
-##### 18.4.3 证明引理18.4.2<span style='color:blue'>（提示：利用习题18.4.2）</span>
+##### 18.4.3 证明引理18.4.2<span style="color:blue">（提示：利用习题18.4.2）</span>
 
 > 记有半空间$E:=\{(x_1,...,x_n)\in\mathbb R^n:x_n>0\}$。考虑任意的$A\subseteq\mathbb R^n$，根据外测度的定义我们有：
 > $$
@@ -155,7 +155,7 @@ coverHeight: 320px
 > $$
 > 对任意的$A\subseteq\mathbb R^n$成立，从而根据可测集的定义我们有半空间$E$是可测的。
 
-##### 18.4.4 证明引理18.4.4<span style='color:blue'>（提示：对于(c)，首先证明$m^*(A)=m^*(A\cap E_1\cap E_2)+m^*(A\cap E_2\verb|\|E_1)+m^*(A\verb|\|(E_1\cup E_2))$，画一个Venn图可能会有所帮助。另外，你可能还会用到有限次可加性。利用(c)来证明(d)，并利用(b)，(d)与引理18.4.2的各种形式来证明(e)）</span>
+##### 18.4.4 证明引理18.4.4<span style="color:blue">（提示：对于(c)，首先证明$m^*(A)=m^*(A\cap E_1\cap E_2)+m^*(A\cap E_2\verb|\|E_1)+m^*(A\verb|\|(E_1\cup E_2))$，画一个Venn图可能会有所帮助。另外，你可能还会用到有限次可加性。利用(c)来证明(d)，并利用(b)，(d)与引理18.4.2的各种形式来证明(e)）</span>
 
 > 逐条证明：
 >
@@ -351,7 +351,7 @@ coverHeight: 320px
 > $$
 > 于是结论得证。
 
-##### 18.4.8 证明引理18.4.9<span style='color:blue'>（提示：对于可数并集的问题，记$J=\{j_1,j_2,...\}$，$\displaystyle F_N:=\bigcup_{k=1}^{N}\Omega_{j_k}$，并记$E_N:=F_N\verb|\|F_{N-1}$，其中$F_0$为空集，然后应用引理18.4.8，对于可数交集的问题，利用你做的证明以及引理18.4.4(a)）</span>
+##### 18.4.8 证明引理18.4.9<span style="color:blue">（提示：对于可数并集的问题，记$J=\{j_1,j_2,...\}$，$\displaystyle F_N:=\bigcup_{k=1}^{N}\Omega_{j_k}$，并记$E_N:=F_N\verb|\|F_{N-1}$，其中$F_0$为空集，然后应用引理18.4.8，对于可数交集的问题，利用你做的证明以及引理18.4.4(a)）</span>
 
 > 我们先证明并集$\displaystyle\bigcup_{j\in J}\Omega_j$是可测的。
 >
@@ -381,7 +381,7 @@ coverHeight: 320px
 >
 > 于是结论得证。
 
-##### 18.4.9 设$A\subseteq\mathbb R^2$是集合$A:=[0,1]^2\verb|\|\mathbb Q^2$。也就是说，$A$是由$[0,1]^2$中的坐标$x,y$不全为有理数的点$(x,y)$所构成的集合。证明：$A$是可测集并且$m(A)=1$。但是$A$没有内点<span style='color:blue'>（提示：与运用第一性原理的解题思路相比，利用外测度和测度的性质来解题将更加容易，其中包括前几题中的结果）</span>
+##### 18.4.9 设$A\subseteq\mathbb R^2$是集合$A:=[0,1]^2\verb|\|\mathbb Q^2$。也就是说，$A$是由$[0,1]^2$中的坐标$x,y$不全为有理数的点$(x,y)$所构成的集合。证明：$A$是可测集并且$m(A)=1$。但是$A$没有内点<span style="color:blue">（提示：与运用第一性原理的解题思路相比，利用外测度和测度的性质来解题将更加容易，其中包括前几题中的结果）</span>
 
 > 我们先证明$A$是可测集并且$m(A)=1$。
 >

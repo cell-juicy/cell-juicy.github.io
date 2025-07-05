@@ -10,22 +10,22 @@ coverCss:
 coverFade: 0.2
 coverHeight: 320px
 ---
-#   3.4 象和逆象
+# 3.4 象和逆象
 
 ## 公理
 
 ### 策梅洛•弗兰克尔集合论公理其二
 
-> 1. <span style='color:red'>（3.10 幂集公理）</span>设$X$与$Y$都是集合，且存在一个集合记为$Y^X$，该集合由所有从$X$到$Y$的函数构成，即：
+> 1. <span style="color:red">（3.10 幂集公理）</span>设$X$与$Y$都是集合，且存在一个集合记为$Y^X$，该集合由所有从$X$到$Y$的函数构成，即：
 >    $$
 >    f\in Y^X\to f定义域是X,值域为Y
 >    $$
 >
-> 2. <span style='color:red'>（3.11 并集公理）</span>设$A$为一个集合，且$A$中所有元素也都是集合，则存在一个集合$\cup A$，它的元素恰好是$A$元素的元素，于是对任意的对象$x$有：
+> 2. <span style="color:red">（3.11 并集公理）</span>设$A$为一个集合，且$A$中所有元素也都是集合，则存在一个集合$\cup A$，它的元素恰好是$A$元素的元素，于是对任意的对象$x$有：
 >    $$
 >    x\in\cup A\to存在S\in A,使得x\in S
 >    $$
->    <span style='color:blue'>注：公理3.1～3.11**（除去3.8的万有分类公理）**统称为策梅洛•弗兰克尔集合论公理。</span>
+>    <span style="color:blue">注：公理3.1～3.11**（除去3.8的万有分类公理）**统称为策梅洛•弗兰克尔集合论公理。</span>
 >
 >    >补充2：由并集公理引申出了一个重要结论：
 >    >
@@ -35,7 +35,7 @@ coverHeight: 320px
 >    >$$
 >    >来构造并集$\displaystyle\bigcup_{\alpha\in I}A_\alpha$，并且由替代公理与并集公理，它是一个集合。
 >    >
->    ><span style='color:blue'>（例：$I=\{1,2,3\}$ ，$A_1=\{2,3\}$，$A_2=\{3,4\}$，$A_3=\{4,5\}$，则有$\displaystyle\bigcup_{\alpha\in I}A_\alpha=\{2,3,4,5\}$）</span>
+>    ><span style="color:blue">（例：$I=\{1,2,3\}$ ，$A_1=\{2,3\}$，$A_2=\{3,4\}$，$A_3=\{4,5\}$，则有$\displaystyle\bigcup_{\alpha\in I}A_\alpha=\{2,3,4,5\}$）</span>
 >    >
 >    > 更进一步地，对任意的对象$y$：
 >    >$$
@@ -60,13 +60,13 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（3.4.1 集合的象）</span>如果$f:X\to Y$是从$X$到$Y$的函数，且$S$为$X$的一个子集，则定义$f(S)$为下述集合：
+1. <span style="color:red">（3.4.1 集合的象）</span>如果$f:X\to Y$是从$X$到$Y$的函数，且$S$为$X$的一个子集，则定义$f(S)$为下述集合：
    $$
    f(S):=\{f(x):x\in S\}
    $$
-   该集合为$Y$的一个子集，并称其为$S$在映射$f$下的**象**<span style='color:blue'>（也称**前象**）</span>。
+   该集合为$Y$的一个子集，并称其为$S$在映射$f$下的**象**<span style="color:blue">（也称**前象**）</span>。
 
-2. <span style='color:red'>（3.4.4 逆象）</span>若$U$为$Y$的一个子集，则定义$f^{-1}(U)$为下述集合：
+2. <span style="color:red">（3.4.4 逆象）</span>若$U$为$Y$的一个子集，则定义$f^{-1}(U)$为下述集合：
    $$
    f^{-1}(U):=\{x\in X:f(x)\in U\}
    $$
@@ -76,19 +76,19 @@ coverHeight: 320px
    $$
    称$f^{-1}(U)$为$U$的**逆象**。
 
-   <span style='color:blue'>（关于逆象，有一个并不明显的事实要注意，即$f(f^{-1}(U))=U$并不总是成立的，这一点在直观上或许看着非常难以接受。比如一个例子$f:N\to N$，$f(x)=2x$，取$U=\{1,2,3\}$，根据定义得到$f^{-1}(U)=\{1\}$，进而$f(f^{-1}(U))=\{2\}\ne U$。可以看到，想要成立相等的前置条件，在于$U$中元素是否全部被映射到）</span>
+   <span style="color:blue">（关于逆象，有一个并不明显的事实要注意，即$f(f^{-1}(U))=U$并不总是成立的，这一点在直观上或许看着非常难以接受。比如一个例子$f:N\to N$，$f(x)=2x$，取$U=\{1,2,3\}$，根据定义得到$f^{-1}(U)=\{1\}$，进而$f(f^{-1}(U))=\{2\}\ne U$。可以看到，想要成立相等的前置条件，在于$U$中元素是否全部被映射到）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（3.4.9 幂集）</span>设$X$是一个集合，那么$\{Y:Y是X的一个子集\}$是一个集合。
+1. <span style="color:red">（3.4.9 幂集）</span>设$X$是一个集合，那么$\{Y:Y是X的一个子集\}$是一个集合。
 
-   <span style='color:blue'>（注：集合$\{Y:Y是X的一个子集\}$被称为$X$的**幂集**并记作$2^X$，例如，假如$a$，$b$是两个不同的元素，那么有：</span>
+   <span style="color:blue">（注：集合$\{Y:Y是X的一个子集\}$被称为$X$的**幂集**并记作$2^X$，例如，假如$a$，$b$是两个不同的元素，那么有：</span>
    $$
    \color{blue}2^{\{a,b\}}=\{\varnothing,\{a\},\{b\},\{a,b\}\}
    $$
-   <span style='color:blue'>当$\{a,b\}$有$2$个元素时，$2^{\{a,b\}}$有$2^2=4$个元素，这启示我们为什么把$X$的幂集记为$2^X$，在第八章还将回到这个问题的讨论）</span>
+   <span style="color:blue">当$\{a,b\}$有$2$个元素时，$2^{\{a,b\}}$有$2^2=4$个元素，这启示我们为什么把$X$的幂集记为$2^X$，在第八章还将回到这个问题的讨论）</span>
 
 ---
 
@@ -161,7 +161,7 @@ coverHeight: 320px
 >
 >于是证毕。
 
-##### 3.4.6 证明引理3.4.9<span style='color:blue'>（提示：从集合$\{0,1\}^X$开始，利用替代公理把每一个$f$替换为$f^{-1}(\{1\})$，同时本题与[习题3.5.11](../Chap3/Sec5.md)有联动）</span>
+##### 3.4.6 证明引理3.4.9<span style="color:blue">（提示：从集合$\{0,1\}^X$开始，利用替代公理把每一个$f$替换为$f^{-1}(\{1\})$，同时本题与[习题3.5.11](../Chap3/Sec5.md)有联动）</span>
 
 >由幂集公理，对任意集合$X$可知$A=\{0,1\}^X$是一个集合，于是对任意$f\in A$与任意对象$y$定义性质$P(f,y)$:
 >$$
@@ -179,7 +179,7 @@ coverHeight: 320px
 >
 >综上，根据集合相等的定义，可以得到幂集$\{Y:Y是X的一个子集\}=\{y:y=f^{-1}(\{1\})\}$。
 
-##### 3.4.7 设$X$与$Y$是集合。对任意一个函数$f:X'\to Y'$，若它满足定义域$X'$是$X$的子集，且值域$Y'$是$Y$的子集，则称$f$是从集合$X$到集合$Y$的<span style='color:red'>偏函数</span>。证明：从$X$到$Y$的全体偏函数构成一个集合<span style='color:blue'>（提示：利用习题3.4.6，幂集公理，并集公理与[替换公理](../Chap3/Sec1.md)）</span>
+##### 3.4.7 设$X$与$Y$是集合。对任意一个函数$f:X'\to Y'$，若它满足定义域$X'$是$X$的子集，且值域$Y'$是$Y$的子集，则称$f$是从集合$X$到集合$Y$的<span style="color:red">偏函数</span>。证明：从$X$到$Y$的全体偏函数构成一个集合<span style="color:blue">（提示：利用习题3.4.6，幂集公理，并集公理与[替换公理](../Chap3/Sec1.md)）</span>
 
 >由引理3.4.9结论，$X$与$Y$分别对应存在一个集合$\iota_X$与$\iota_Y$包含了它们所有的子集。对任意$X'\in\iota_X$，定义这样一个指定关系有：
 >
@@ -204,7 +204,7 @@ coverHeight: 320px
 >
 >从$X$到$Y$的全体偏函数构成的一个集合即为上文所构造的集合$\displaystyle\bigcup_{X'\in\iota_X}\bigcup_{Y'\in\iota_Y}Y'^{X'}$
 >
-><span style='color:blue'>（为什么没用到替代公理，此题存疑）</span>
+><span style="color:blue">（为什么没用到替代公理，此题存疑）</span>
 
 ##### 3.4.8 证明[公理3.4（并集）](../Chap3/Sec1.md)可以由[公理3.1（集合是元素）](../Chap3/Sec1.md)，[公理3.3（单元素集与双元素集）](../Chap3/Sec1.md)与公理3.11（并集公理）推出
 
@@ -257,7 +257,7 @@ X\verb|\|\bigcap_{\alpha\in I}A_\alpha=\bigcup_{\alpha\in I}(X\verb|\|A_\alpha)
 \end{align}
 $$
 
-##### 将这个结论同[命题3.1.28](../Chap3/Sec1.md)中的德摩根定律相对比<span style='color:blue'>（尽管由于$I$可能是无限集合，使我们无法直接从德摩根定律中推出上式）</span>
+##### 将这个结论同[命题3.1.28](../Chap3/Sec1.md)中的德摩根定律相对比<span style="color:blue">（尽管由于$I$可能是无限集合，使我们无法直接从德摩根定律中推出上式）</span>
 
 >$\displaystyle X\verb|\|\bigcup_{\alpha\in I}A_\alpha$与$\displaystyle\bigcap_{\alpha\in I}(X\verb|\|A_\alpha)$：
 >

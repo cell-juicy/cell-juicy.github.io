@@ -14,24 +14,24 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（3.3.1 函数定义）</span>设$X$与$Y$为集合。令$P(x,y)$表示关于对象$x\in X$与对象$y\in Y$的一个性质，且$P(x,y)$满足对任意$x\in X$，恰好存在**一个**$y\in Y$使得$P(x,y)$为真<span style='color:blue'>（有时称其为**垂线测试**）</span>，则定义由$P$在**定义域**$X$与**值域**$Y$上确定的**函数**$f:X\to Y$为下述事物：对任意给定输入$x\in X$，$f$指定了一个输出$f(x)\in Y$与之对应，且$f(x)$是$P(x,f(x))$唯一为真的对象。因此，对任意$x\in X$与$y\in Y$：
+1. <span style="color:red">（3.3.1 函数定义）</span>设$X$与$Y$为集合。令$P(x,y)$表示关于对象$x\in X$与对象$y\in Y$的一个性质，且$P(x,y)$满足对任意$x\in X$，恰好存在**一个**$y\in Y$使得$P(x,y)$为真<span style="color:blue">（有时称其为**垂线测试**）</span>，则定义由$P$在**定义域**$X$与**值域**$Y$上确定的**函数**$f:X\to Y$为下述事物：对任意给定输入$x\in X$，$f$指定了一个输出$f(x)\in Y$与之对应，且$f(x)$是$P(x,f(x))$唯一为真的对象。因此，对任意$x\in X$与$y\in Y$：
    $$
    y=f(x)\to P(x,y)为真
    $$
 
-2. <span style='color:red'>（3.3.4-3.3.9 特殊的函数）</span>从空集到任意一个集合$X$的函数称为空函数，表示为$f:\varnothing\to X$。
+2. <span style="color:red">（3.3.4-3.3.9 特殊的函数）</span>从空集到任意一个集合$X$的函数称为空函数，表示为$f:\varnothing\to X$。
 
    另外地，令$P(x,y)$表示性质：$y=n$（$n$为常数）则对任意的输入$x$其输出$y$是恒定的，此时称该构造出这样的一个$f:X\to Y$为常数函数，$n$是一个确定的数。
 
-3. <span style='color:red'>（3.3.7 函数的相等）</span>两个具有相同定义域与值域的函数$f:X\to Y$与$g:X\to Y$被称为是相等的，当且仅当对任意的$x\in X$有$f(x)=g(x)$成立<span style='color:blue'>（若仅在部分$x\in X$有$f(x)=g(x)$，则认为$f$和$g$不相等）</span>
+3. <span style="color:red">（3.3.7 函数的相等）</span>两个具有相同定义域与值域的函数$f:X\to Y$与$g:X\to Y$被称为是相等的，当且仅当对任意的$x\in X$有$f(x)=g(x)$成立<span style="color:blue">（若仅在部分$x\in X$有$f(x)=g(x)$，则认为$f$和$g$不相等）</span>
 
-4. <span style='color:red'>（3.3.10 函数的复合）</span>令$f:X\to Y$与$g:Y\to Z$为两个函数，则定义两个函数$g$和$f$的复合：$g\circ f：X\to Z$为一个函数，并由下式进行显式定义：
+4. <span style="color:red">（3.3.10 函数的复合）</span>令$f:X\to Y$与$g:Y\to Z$为两个函数，则定义两个函数$g$和$f$的复合：$g\circ f：X\to Z$为一个函数，并由下式进行显式定义：
    $$
    (g\circ f)(x)=g(f(x))
    $$
    如果$f$的值域与$g$的定义域不一致，则不对作$g\circ f$出定义。
 
-5. <span style='color:red'>（3.3.14 单射）</span>如果函数$f$把不同的元素映射到不同的元素，即有：
+5. <span style="color:red">（3.3.14 单射）</span>如果函数$f$把不同的元素映射到不同的元素，即有：
      $$
    x\ne x'\Longrightarrow f(x)\ne f(x')
    $$
@@ -41,21 +41,21 @@ coverHeight: 320px
    $$
      也可称之为**一对一函数**。
    
-6. <span style='color:red'>（3.3.17 满射）</span>如果$Y$中每一个元素都能通过$f$对$X$中的某个元素起作用得到，也可以写做$f(X)=Y$<span style='color:blue'>（这个表述同下一节的像很像）</span>，那么称函数$f$是满射的或称其为**映上函数**。即：
+6. <span style="color:red">（3.3.17 满射）</span>如果$Y$中每一个元素都能通过$f$对$X$中的某个元素起作用得到，也可以写做$f(X)=Y$<span style="color:blue">（这个表述同下一节的像很像）</span>，那么称函数$f$是满射的或称其为**映上函数**。即：
      $$
    对每一个y\in Y，存在x\in X使得f(x)=y
    $$
-   <span style='color:blue'>（单射与满射之间的性质上存在很多对偶的关系，这点可以在习题里面看到）</span>
+   <span style="color:blue">（单射与满射之间的性质上存在很多对偶的关系，这点可以在习题里面看到）</span>
    
-7. <span style='color:red'>（3.3.20 双射）</span>同时是单射与满射的函数$f:X\to Y$也可被称为双射函数或**可逆函数**，对于一个双射，可以将$x$的值记为$f^{-1}(y)$，于是$f^{-1}$是一个从$Y$到$X$的函数，称$f^{-1}$为$f$的逆。
+7. <span style="color:red">（3.3.20 双射）</span>同时是单射与满射的函数$f:X\to Y$也可被称为双射函数或**可逆函数**，对于一个双射，可以将$x$的值记为$f^{-1}(y)$，于是$f^{-1}$是一个从$Y$到$X$的函数，称$f^{-1}$为$f$的逆。
 
-   <span style='color:blue'>（一个常见的错误就是将双射的概念认为是：对任意的$X$中的元素$x$，恰好存在一个$Y$中的$y$使得$y=f(x)$。事实上，这样的关系仅仅只能将$f$确定为是一个**函数**，这个命题在事实上就是垂线测试的另一种表述）</span>
+   <span style="color:blue">（一个常见的错误就是将双射的概念认为是：对任意的$X$中的元素$x$，恰好存在一个$Y$中的$y$使得$y=f(x)$。事实上，这样的关系仅仅只能将$f$确定为是一个**函数**，这个命题在事实上就是垂线测试的另一种表述）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（3.3.12 复合函数的可结合性）</span>设$f:Z\to W$，$g:Y\to Z$，$h:X\to Y$是三个函数，则有：
+1. <span style="color:red">（3.3.12 复合函数的可结合性）</span>设$f:Z\to W$，$g:Y\to Z$，$h:X\to Y$是三个函数，则有：
    $$
    f\circ(g\circ h)=(f\circ g)\circ h
    $$
@@ -171,7 +171,7 @@ coverHeight: 320px
 >
 >根据逆函数的定义，应该有对任意$z\in Z$，若有$z=g(f(x))(x\in X)$，则$(g\circ f)^{-1}(z)=x$，对函数$f^{-1}\circ g^{-1}$，应当存在关系$f^{-1}(z)=y(y\in Y)$并且$g^{-1}(y)=x(x\in X)$使得有$f^{-1}\circ g^{-1}(z)=x$，该关系等效于$g(f(x))=z$，考虑到$g\circ f$也是双射，于是有$(g\circ f)^{-1}(z)=f^{-1}\circ g^{-1}(z)$对任意$z\in Z$成立，加上两者具有相同的定义域与值域，于是可以得到$(g\circ f)^{-1}=f^{-1}\circ g^{-1}$。
 
-##### 3.3.8 如果$X$是$Y$的一个子集，令$\iota_{X\to Y}:X\to Y$表示$X$到$Y$上的<span style='color:red'>包含映射</span>，该映射定义为：对任意$x\in X$有$x\mapsto x$，也即对任意$x\in X$有$\iota_{X\to Y}(x):=x$。特别地，称$\iota_{X\to X}$为$X$上的恒等映射。
+##### 3.3.8 如果$X$是$Y$的一个子集，令$\iota_{X\to Y}:X\to Y$表示$X$到$Y$上的<span style="color:red">包含映射</span>，该映射定义为：对任意$x\in X$有$x\mapsto x$，也即对任意$x\in X$有$\iota_{X\to Y}(x):=x$。特别地，称$\iota_{X\to X}$为$X$上的恒等映射。
 
 ###### (a)证明：若有$X\subseteq Y\subseteq Z$，则有$\iota_{Y\to Z}\circ\iota_{X\to Y}=\iota_{X\to Z}$
 

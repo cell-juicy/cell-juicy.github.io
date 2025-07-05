@@ -14,16 +14,16 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（5.4.1 正远离与负远离）</span>设$(a_n)_{n=1}^\infty$是一个有理数序列，称该序列是**正远离$0$的**，当且仅当存在一个正有理数$c>0$，使得$a_n≥c$对任意$n≥1$均成立。（特别地，整个序列是**正**的）称该序列是**负远离$0$的**，当且仅当存在一个负有理数$-c<0$，使得$a_n≤-c$对任意的$n≥1$均成立。（特别地，整个序列是**负**的）
-2. <span style='color:red'>（5.4.3 正负实数）</span>称实数$x$是**正**的，当且仅当它可以被写为某个**正远离$0$**的柯西序列$(a_n)_{n=1}^\infty$的形式极限，即$x={\rm LIM}_{n\to\infty}a_n$。称$x$是**负**的，当且仅当它可以被写为某个**负远离$0$**的柯西序列$(a_n)_{n=1}^\infty$的形式极限，即$x={\rm LIM}_{n\to\infty}a_n$。
-3. <span style='color:red'>（5.4.5 绝对值）</span>设$x$是实数，如果$x$是**正**的，则定义$x$的绝对值$|x|$等于$x$；如果$x$是**负**的，则定义$x$绝对值$|x|$等于$-x$；如果为零，则定义$x$的绝对值$|x|$等于$0$。
-4. <span style='color:red'>（5.4.6 实数的排序）</span>设$x$与$y$是实数，若$x-y$是一个正实数，则称$x$大于$y$并记为$x>y$；若$x-y$是一个负实数，则称$x$小于$y$并记作$x<y$。定义$x≥y$，当且仅当$x>y$或$x=y$；定义$x≤y$，当且仅当$x<y$或$x=y$。
+1. <span style="color:red">（5.4.1 正远离与负远离）</span>设$(a_n)_{n=1}^\infty$是一个有理数序列，称该序列是**正远离$0$的**，当且仅当存在一个正有理数$c>0$，使得$a_n≥c$对任意$n≥1$均成立。（特别地，整个序列是**正**的）称该序列是**负远离$0$的**，当且仅当存在一个负有理数$-c<0$，使得$a_n≤-c$对任意的$n≥1$均成立。（特别地，整个序列是**负**的）
+2. <span style="color:red">（5.4.3 正负实数）</span>称实数$x$是**正**的，当且仅当它可以被写为某个**正远离$0$**的柯西序列$(a_n)_{n=1}^\infty$的形式极限，即$x={\rm LIM}_{n\to\infty}a_n$。称$x$是**负**的，当且仅当它可以被写为某个**负远离$0$**的柯西序列$(a_n)_{n=1}^\infty$的形式极限，即$x={\rm LIM}_{n\to\infty}a_n$。
+3. <span style="color:red">（5.4.5 绝对值）</span>设$x$是实数，如果$x$是**正**的，则定义$x$的绝对值$|x|$等于$x$；如果$x$是**负**的，则定义$x$绝对值$|x|$等于$-x$；如果为零，则定义$x$的绝对值$|x|$等于$0$。
+4. <span style="color:red">（5.4.6 实数的排序）</span>设$x$与$y$是实数，若$x-y$是一个正实数，则称$x$大于$y$并记为$x>y$；若$x-y$是一个负实数，则称$x$小于$y$并记作$x<y$。定义$x≥y$，当且仅当$x>y$或$x=y$；定义$x≤y$，当且仅当$x<y$或$x=y$。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（5.4.4 正实数的基本性质）</span>对任意的实数$x$，下述三个命题中**恰好**有一个为真：
+1. <span style="color:red">（5.4.4 正实数的基本性质）</span>对任意的实数$x$，下述三个命题中**恰好**有一个为真：
    
    > * $x$是$0$。
    > * $x$是正的。
@@ -31,38 +31,38 @@ coverHeight: 320px
    
    实数$x$是**负**的，当且仅当$-x$是**正**的。如果$x$和$y$都是**正**的，那么$x+y$与$xy$都是**正**的。
    
-2. <span style='color:red'>（5.4.7 实数数域上序的基本性质）</span>性质<span style='color:blue'>（[引理 4.2.9](../Chap4/Sec2.md)）</span>一切关于有理数成立的结论对实数仍然是成立的。（内容见下）
+2. <span style="color:red">（5.4.7 实数数域上序的基本性质）</span>性质<span style="color:blue">（[引理 4.2.9](../Chap4/Sec2.md)）</span>一切关于有理数成立的结论对实数仍然是成立的。（内容见下）
    
-   > * <span style='color:red'>（序的三歧性）</span>命题“$x=y$”，“$x>y$”，“$x<y$”中恰有一个为真。
-   > * <span style='color:red'>（序是反对称的）</span>$x<y$当且仅当$y>x$。
-   > * <span style='color:red'>（序是可传递的）</span>若$x<y$且$y<z$，则$x<z$。
-   > * <span style='color:red'>（加法保持序不变）</span>若$x<y$，则$x+z<y+z$。
-   > * <span style='color:red'>（正的乘法保持序不变）</span>若$x<y$且$z$是正的，则$xz<yz$。
+   > * <span style="color:red">（序的三歧性）</span>命题“$x=y$”，“$x>y$”，“$x<y$”中恰有一个为真。
+   > * <span style="color:red">（序是反对称的）</span>$x<y$当且仅当$y>x$。
+   > * <span style="color:red">（序是可传递的）</span>若$x<y$且$y<z$，则$x<z$。
+   > * <span style="color:red">（加法保持序不变）</span>若$x<y$，则$x+z<y+z$。
+   > * <span style="color:red">（正的乘法保持序不变）</span>若$x<y$且$z$是正的，则$xz<yz$。
    
-3. <span style='color:red'>（5.4.8 实数的倒数？）</span>设$x$是一个正实数，那么$x^{-1}$也是正的。同时，如果$y$是另外一个正数并且$x>y$，那么$x^{-1}<y^{-1}$。
+3. <span style="color:red">（5.4.8 实数的倒数？）</span>设$x$是一个正实数，那么$x^{-1}$也是正的。同时，如果$y$是另外一个正数并且$x>y$，那么$x^{-1}<y^{-1}$。
 
-4. <span style='color:red'>（5.4.9 非负实数集是闭的）</span>设$a_1$，$a_2$，$a_3$……是非负有理数的一个柯西序列，那么${\rm LIM}_{n\to\infty}a_n$是非负实数。
+4. <span style="color:red">（5.4.9 非负实数集是闭的）</span>设$a_1$，$a_2$，$a_3$……是非负有理数的一个柯西序列，那么${\rm LIM}_{n\to\infty}a_n$是非负实数。
 
-   <span style='color:blue'>（也可以说成非负实数集是闭的，而正实数集是开的）</span>
+   <span style="color:blue">（也可以说成非负实数集是闭的，而正实数集是开的）</span>
 
-5. <span style='color:red'>（5.4.10 序不变？）</span>设$(a_n)_{n=1}^\infty$与$(b_n)_{n=1}^\infty$是有理数的柯西序列，并且满足$a_n≥b_n$对所有$n≥1$均成立，那么有：
+5. <span style="color:red">（5.4.10 序不变？）</span>设$(a_n)_{n=1}^\infty$与$(b_n)_{n=1}^\infty$是有理数的柯西序列，并且满足$a_n≥b_n$对所有$n≥1$均成立，那么有：
      $$
      {\rm LIM}_{n\to\infty}a_n\geq{\rm LIM}_{n\to\infty}b_n
      $$
      
-6. <span style='color:red'>（5.4.12 有理数对实数的界定）</span>设$x$是一个正实数，那么存在一个正有理数$q$使得$q≤x$，并且存在一个正整数$N$使得$x≤N$。
+6. <span style="color:red">（5.4.12 有理数对实数的界定）</span>设$x$是一个正实数，那么存在一个正有理数$q$使得$q≤x$，并且存在一个正整数$N$使得$x≤N$。
 
-7. <span style='color:red'>（5.4.13 阿基米德性质）</span>设$x$和$\varepsilon$是任意的正实数，则存在一个正整数$M$使得$M\varepsilon>x$。
+7. <span style="color:red">（5.4.13 阿基米德性质）</span>设$x$和$\varepsilon$是任意的正实数，则存在一个正整数$M$使得$M\varepsilon>x$。
 
-6. <span style='color:red'>（5.4.14 实数的间隙？）</span>给定任意两个实数$x<y$，可以找到一个有理数$q$使得$x<q<y$。
+6. <span style="color:red">（5.4.14 实数的间隙？）</span>给定任意两个实数$x<y$，可以找到一个有理数$q$使得$x<q<y$。
    
-   <span style='color:blue'>（即使到了这里，实数系仍然没有展现出任何超越有理数系的优越性）</span>
+   <span style="color:blue">（即使到了这里，实数系仍然没有展现出任何超越有理数系的优越性）</span>
 
 ---
 
 ## 课后习题
 
-##### 5.4.1 证明命题5.4.4<span style='color:blue'>（提示：如果$x$不为零， 并且$x$是某个序列$(a_n)_{n=1}^\infty$的形式极限。那么这个序列不可能对于每一个$\varepsilon>0$都是最终$\varepsilon$-接近于零序列$(0)_{n=1}^\infty$的。 利用这一点去证明序列$(a_n)_{n=1}^\infty$最终要么是正远离$0$的，要么是负远离$0$的）</span>
+##### 5.4.1 证明命题5.4.4<span style="color:blue">（提示：如果$x$不为零， 并且$x$是某个序列$(a_n)_{n=1}^\infty$的形式极限。那么这个序列不可能对于每一个$\varepsilon>0$都是最终$\varepsilon$-接近于零序列$(0)_{n=1}^\infty$的。 利用这一点去证明序列$(a_n)_{n=1}^\infty$最终要么是正远离$0$的，要么是负远离$0$的）</span>
 
 > 实数三歧性：
 >
@@ -86,7 +86,7 @@ coverHeight: 320px
 >
 > $x$和$y$都是正的，于是它们可以被写为某个正远离$0$的柯西序列$(a_n)_{n=1}^\infty$与$(b_n)_{n=1}^\infty$的形式极限。于是存在正有理数$c$，$d$使得$\forall n\geq 1$，$a_n\geq c$与$b_n\geq d$，进而我们可以得到$a_nb_n\geq cd$与$a_n+b_n\geq c+d$，即$(a_nb_n)_{n=1}^\infty$与$(a_n+b_n)_{n=1}^\infty$也是正远离$0$的序列。于是根据定义，${\rm LIM}_{n\to\infty}(a_n+b_n)=x+y$与${\rm LIM}_{n\to\infty}(a_nb_n)=xy$都是正的。
 
-##### 5.4.2 证明命题5.4.7中其余的结论<span style='color:blue'>（即除去最后一条的其它全部结论）</span>
+##### 5.4.2 证明命题5.4.7中其余的结论<span style="color:blue">（即除去最后一条的其它全部结论）</span>
 
 > * 命题“$x=y$”，“$x>y$”，“$x<y$”中恰有一个为真
 >
@@ -116,7 +116,7 @@ coverHeight: 320px
 >
 > $x<y$，于是根据定义5.4.6当且仅当有$x-y$是负实数，也即$(x+z)-(y+z)$是负实数，于是$x+z<y+z$成立，结论得证。
 
-##### 5.4.3 证明：对于每一个实数$x$恰好存在一个整数$N$使得$N\leq x<N+1$<span style='color:blue'>（这个整数$N$被称为$x$的整数部分，并记作$N=\lfloor x\rfloor$）</span>
+##### 5.4.3 证明：对于每一个实数$x$恰好存在一个整数$N$使得$N\leq x<N+1$<span style="color:blue">（这个整数$N$被称为$x$的整数部分，并记作$N=\lfloor x\rfloor$）</span>
 
 > 首先我们对实数中任何整数$x$都自然成立这个结论（因为整数$x$取它本身作为$N$就可以满足题目结论）。现在我们对任何不是整数的实数$x$做讨论。不妨假设$x={\rm LIM}_{n\to\infty}a_n$（$(a_n)_{n=1}^\infty$是柯西序列），我们证明：
 > $$
@@ -189,7 +189,7 @@ coverHeight: 320px
 
 > 根据命题5.4.13，对正实数$1$与$x$，存在一个正整数$N$使得$\displaystyle Nx>1\iff x>\frac{1}{N}$；由于$\displaystyle\frac{1}{N}$是正的，于是根据有理数序的关系自然有$\displaystyle\frac{1}{N}>0$，于是$\displaystyle x>\frac{1}{N}>0$得证。
 
-##### 5.4.5 证明命题5.4.14<span style='color:blue'>（提示：利用习题5.4.4, 你可能还会用到反证法）</span>
+##### 5.4.5 证明命题5.4.14<span style="color:blue">（提示：利用习题5.4.4, 你可能还会用到反证法）</span>
 
 > 对任意实数$x<y$，我们取$c=y-x$（于是$c$是正的），根据命题5.4.13，对正实数$c$与$1$存在一个正整数$N$使得$Nc>1$成立，于是即存在某个正整数$N$使得$Nx+1<Ny$成立，我们取整数$M=\lfloor Nx\rfloor+1$，根据整数部分的性质有：
 > $$
@@ -273,7 +273,7 @@ coverHeight: 320px
 >
 > 根据前结论，我们有题设条件等价于$|x-y|\leq 0$。根据绝对值的定义，我们知道绝对值$|x-y|$只能为正或者$0$，于是$|x-y|\geq 0$，结合题设于是有$|x-y|=0$，当且仅当$x-y=0\iff x=y$，于是结论得证。
 
-##### 5.4.8 设$(a_n)_{n=1}^\infty$是有理数的一个柯西序列，$x$是一个实数，证明：如果$a_n\leq x$对任意$n\geq 1$成立，那么${\rm LIM}_{n\to\infty}a_n\leq x$。类似地，证明：如果$a_n\geq x$对任意$n\geq 1$成立，那么${\rm LIM}_{n\to\infty}a_n\geq x$<span style='color:blue'>（提示：利用反证法，使用命题5.4.14找到一个介于${\rm LIM}_{n\to\infty}a_n$与$x$之间的有理数，然后使用命题5.4.9或者推论5.4.10）</span>
+##### 5.4.8 设$(a_n)_{n=1}^\infty$是有理数的一个柯西序列，$x$是一个实数，证明：如果$a_n\leq x$对任意$n\geq 1$成立，那么${\rm LIM}_{n\to\infty}a_n\leq x$。类似地，证明：如果$a_n\geq x$对任意$n\geq 1$成立，那么${\rm LIM}_{n\to\infty}a_n\geq x$<span style="color:blue">（提示：利用反证法，使用命题5.4.14找到一个介于${\rm LIM}_{n\to\infty}a_n$与$x$之间的有理数，然后使用命题5.4.9或者推论5.4.10）</span>
 
 > 如果$a_n\leq x$对任意$n\geq 1$成立，那么${\rm LIM}_{n\to\infty}a_n\leq x$：
 >

@@ -14,11 +14,11 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（11.3.1 函数的控制）</span>设$f:I\to\mathbb R$与$g:I\to\mathbb R$是函数。如果对全部$x\in I$都有$g(x)\geq f(x)$，那么我们称$g$在$I$上从**上方控制**$f$；如果对全部$x\in I$都有$g(x)\leq f(x)$，那么我们称$g$在$I$上从**下方控制**$f$。
+1. <span style="color:red">（11.3.1 函数的控制）</span>设$f:I\to\mathbb R$与$g:I\to\mathbb R$是函数。如果对全部$x\in I$都有$g(x)\geq f(x)$，那么我们称$g$在$I$上从**上方控制**$f$；如果对全部$x\in I$都有$g(x)\leq f(x)$，那么我们称$g$在$I$上从**下方控制**$f$。
 
-   <span style='color:blue'>（注：其实就是函数值大小的关系创造了一个新定义。知道上方控制就是大于等于，下方控制就是小于等于就行，这个概念主要是后面叙述方便）</span>
+   <span style="color:blue">（注：其实就是函数值大小的关系创造了一个新定义。知道上方控制就是大于等于，下方控制就是小于等于就行，这个概念主要是后面叙述方便）</span>
 
-2. <span style='color:red'>（11.3.2 上黎曼积分和下黎曼积分）</span>设$f:I\to\mathbb R$是**定义在有界区间$I$上**的**有界函数**，我们定义**上黎曼积分**$\displaystyle\overline{\int}_If$为：
+2. <span style="color:red">（11.3.2 上黎曼积分和下黎曼积分）</span>设$f:I\to\mathbb R$是**定义在有界区间$I$上**的**有界函数**，我们定义**上黎曼积分**$\displaystyle\overline{\int}_If$为：
    $$
    \overline{\int}_If:=\inf\left\{p.c.\int_{I}g:g是在I上从上方控制f的分段常数函数\right\}
    $$
@@ -26,17 +26,17 @@ coverHeight: 320px
    $$
    \underline{\int}_If:=\sup\left\{p.c.\int_{I}g:g是在I上从下方控制f的分段常数函数\right\}
    $$
-   <span style='color:blue'>（注：需要注意这里定义了上下黎曼积分都是对有界区间上的有界函数生效的概念，下面的黎曼积分也是如此）</span>
+   <span style="color:blue">（注：需要注意这里定义了上下黎曼积分都是对有界区间上的有界函数生效的概念，下面的黎曼积分也是如此）</span>
    
-3. <span style='color:red'>（11.3.4 黎曼积分）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的有界函数，若有$\displaystyle\overline{\int}_If=\underline{\int}_If$成立，那么我们称$f$在$I$上是**黎曼可积**的，并且定义有：
+3. <span style="color:red">（11.3.4 黎曼积分）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的有界函数，若有$\displaystyle\overline{\int}_If=\underline{\int}_If$成立，那么我们称$f$在$I$上是**黎曼可积**的，并且定义有：
    $$
    \int_If:=\overline{\int}_If=\underline{\int}_If
    $$
    如果上黎曼积分和下黎曼积分不相等，则我们称$f$在$I$上**不是黎曼可积**的。
    
-   <span style='color:blue'>（注：关于黎曼积分的定义，你可以尝试将它与序列的上下极限概念联系到一起，在序列的章节中我们知道只有当序列上下极限（上界的下界与下界的上界）相等时序列才收敛，类似地我们只有在上下黎曼积分（上控制积分的下界与下控制积分的上界）相等时才能给出黎曼积分的值；我们认为无界函数都是非黎曼可积的，涉及无界函数的积分被称为**反常积分**，利用更高级的积分方法（例如勒贝格积分）去计算这些积分是有可能的，我们将在[第19章](../Chap19/Sec2.md)中讨论这些内容）</span>
+   <span style="color:blue">（注：关于黎曼积分的定义，你可以尝试将它与序列的上下极限概念联系到一起，在序列的章节中我们知道只有当序列上下极限（上界的下界与下界的上界）相等时序列才收敛，类似地我们只有在上下黎曼积分（上控制积分的下界与下控制积分的上界）相等时才能给出黎曼积分的值；我们认为无界函数都是非黎曼可积的，涉及无界函数的积分被称为**反常积分**，利用更高级的积分方法（例如勒贝格积分）去计算这些积分是有可能的，我们将在[第19章](../Chap19/Sec2.md)中讨论这些内容）</span>
    
-4. <span style='color:red'>（11.3.9 黎曼和）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的有界函数，并且设$P$是$I$的一个划分。我们定义**上黎曼和**$U(f,P)$为：
+4. <span style="color:red">（11.3.9 黎曼和）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的有界函数，并且设$P$是$I$的一个划分。我们定义**上黎曼和**$U(f,P)$为：
    $$
    U(f,P):=\sum_{J\in P;J\ne\varnothing}\left(\sup_{x\in J}f(x)\right)|J|
    $$
@@ -44,23 +44,23 @@ coverHeight: 320px
    $$
    L(f,P):=\sum_{J\in P;J\ne\varnothing}\left(\inf_{x\in J}f(x)\right)|J|
    $$
-   <span style='color:blue'>（注：你或许已经在其它的教材中见到过黎曼和的概念，需要注意的是这里对$J\ne\varnothing$的限定是非常重要的，不然$\displaystyle\sup_{x\in J}f(x)$与$\displaystyle\inf_{x\in J}f(x)$会出现$-\infty$和$+\infty$的情况，但是我们并未给出过关于无穷与实数的运算（尽管在这情景下$|J|$稳定等于$0$）；命题11.3.13将黎曼和与黎曼积分的概念联系起来）</span>
+   <span style="color:blue">（注：你或许已经在其它的教材中见到过黎曼和的概念，需要注意的是这里对$J\ne\varnothing$的限定是非常重要的，不然$\displaystyle\sup_{x\in J}f(x)$与$\displaystyle\inf_{x\in J}f(x)$会出现$-\infty$和$+\infty$的情况，但是我们并未给出过关于无穷与实数的运算（尽管在这情景下$|J|$稳定等于$0$）；命题11.3.13将黎曼和与黎曼积分的概念联系起来）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（11.3.3 上下黎曼积分的估计？）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的有界函数，它以实数$M$为界<span style='color:blue'>（即对全部的$x\in I$都有$-M\leq f(x)\leq M$成立）</span>，那么我们有：
+1. <span style="color:red">（11.3.3 上下黎曼积分的估计？）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的有界函数，它以实数$M$为界<span style="color:blue">（即对全部的$x\in I$都有$-M\leq f(x)\leq M$成立）</span>，那么我们有：
    $$
    -M|I|\leq\overline{\int}_If\leq\underline{\int}_If\leq M|I|
    $$
    特别地，上黎曼积分和下黎曼积分都是实数，即它们都不是无限的。
    
-2. <span style='color:red'>（11.3.7 黎曼积分与分段常值积分是一致的？）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的分段常数函数，那么$f$是在$I$上黎曼可积的，并且有$\displaystyle\int_If=p.c.\int_If$为真。
+2. <span style="color:red">（11.3.7 黎曼积分与分段常值积分是一致的？）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的分段常数函数，那么$f$是在$I$上黎曼可积的，并且有$\displaystyle\int_If=p.c.\int_If$为真。
 
-   <span style='color:blue'>（注：这个引理告诉我们分段常值积分与黎曼积分的概念是一致的，因此有了这个引理后我们便不再使用分段常值积分$\displaystyle p.c.\int_If$，而是始终使用黎曼积分$\displaystyle\int_If$；需要注意的是引理11.3.7有一个特殊形式，即$I$为单点集或空的场景，此时我们有黎曼积分$\displaystyle\int_If$自动为$0$，函数$f$也自动退化为常数函数）</span>
+   <span style="color:blue">（注：这个引理告诉我们分段常值积分与黎曼积分的概念是一致的，因此有了这个引理后我们便不再使用分段常值积分$\displaystyle p.c.\int_If$，而是始终使用黎曼积分$\displaystyle\int_If$；需要注意的是引理11.3.7有一个特殊形式，即$I$为单点集或空的场景，此时我们有黎曼积分$\displaystyle\int_If$自动为$0$，函数$f$也自动退化为常数函数）</span>
    
-3. <span style='color:red'>（11.3.11）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的分段常数函数，若有$g$是在$I$上从上方控制$f$的函数，并且$g$还是关于$I$的某个划分$P$的分段常数函数，那么我们有：
+3. <span style="color:red">（11.3.11）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的分段常数函数，若有$g$是在$I$上从上方控制$f$的函数，并且$g$还是关于$I$的某个划分$P$的分段常数函数，那么我们有：
    $$
    U(f,P)\leq p.c.\int_Ig
    $$
@@ -69,7 +69,7 @@ coverHeight: 320px
    L(f,P)\geq p.c.\int_Ih
    $$
 
-4. <span style='color:red'>（11.3.12）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的分段常数函数，那么有：
+4. <span style="color:red">（11.3.12）</span>设$f:I\to\mathbb R$是定义在有界区间$I$上的分段常数函数，那么有：
    $$
    \begin{gather}
    \overline{\int}_If=\inf\{U(f,P):P是I的一个划分\}\\
@@ -176,7 +176,7 @@ coverHeight: 320px
 > L(f,P)\geq p.c.\int_{I}h
 > $$
 
-##### 11.3.5 证明引理11.3.12<span style='color:blue'>（提示：或许引理11.3.11有助于你完成这个证明，尽管它应该最多只能完成一半的工作）</span>
+##### 11.3.5 证明引理11.3.12<span style="color:blue">（提示：或许引理11.3.11有助于你完成这个证明，尽管它应该最多只能完成一半的工作）</span>
 
 > 分别证明（事实上两个结论证明过程很相似，参考一个就行）：
 >

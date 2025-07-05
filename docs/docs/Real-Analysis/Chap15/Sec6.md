@@ -14,77 +14,77 @@ coverHeight: 320px
 
 ## 摘录
 
-1. <span style='color:red'>（实数系并入复数系？）</span>结合定义15.6.1到定义15.6.6的内容，然后像我们在定义实数，有理数时所做的那样，我们需要将实数系$\mathbb R$并入复数系$\mathbb C$。通过让每一个实数$x$都等于一个复数$(x,0)$，于是$x\equiv(x,0)$。注意到等同关系与复数的相等<span style='color:blue'>（$x=y$当且仅当$(x,0)=(y,0)$）</span>，加法<span style='color:blue'>（$x_1+x_2=x_3$当且仅当$(x_1,0)+(x_2,0)=(x_3,0)$）</span>，负运算<span style='color:blue'>（$x=-y$当且仅当$(x,0)=-(y,0)$）</span>，乘法<span style='color:blue'>（$x_1x_2=x_3$当且仅当$(x_1,0)(x_2,0)=(x_3,0)$）</span>都是一致的。因此，我们不必区分实数与复数的相等，负运算，加法以及乘法运算。同时我们可以注意到$0\equiv 0_{\mathbb C}$与$1\equiv 1_{\mathbb C}$，于是我们可以删掉下标只写$0$和$1$。
+1. <span style="color:red">（实数系并入复数系？）</span>结合定义15.6.1到定义15.6.6的内容，然后像我们在定义实数，有理数时所做的那样，我们需要将实数系$\mathbb R$并入复数系$\mathbb C$。通过让每一个实数$x$都等于一个复数$(x,0)$，于是$x\equiv(x,0)$。注意到等同关系与复数的相等<span style="color:blue">（$x=y$当且仅当$(x,0)=(y,0)$）</span>，加法<span style="color:blue">（$x_1+x_2=x_3$当且仅当$(x_1,0)+(x_2,0)=(x_3,0)$）</span>，负运算<span style="color:blue">（$x=-y$当且仅当$(x,0)=-(y,0)$）</span>，乘法<span style="color:blue">（$x_1x_2=x_3$当且仅当$(x_1,0)(x_2,0)=(x_3,0)$）</span>都是一致的。因此，我们不必区分实数与复数的相等，负运算，加法以及乘法运算。同时我们可以注意到$0\equiv 0_{\mathbb C}$与$1\equiv 1_{\mathbb C}$，于是我们可以删掉下标只写$0$和$1$。
 
-   ​    特别地，我们定义$\text{i}$为复数$\text{i}=(0,1)$，于是我们可以将复数的非正式定义通过一个引理<span style='color:blue'>（也就是引理15.6.7）</span>合理化。
+   ​    特别地，我们定义$\text{i}$为复数$\text{i}=(0,1)$，于是我们可以将复数的非正式定义通过一个引理<span style="color:blue">（也就是引理15.6.7）</span>合理化。
 
 ---
 
 ## 定义
 
-1. <span style='color:red'>（15.6.1 复数的非正式定义）</span>**复数系**$\mathbb C$是全体形如$a+b\text{i}$的数所构成的集合，其中$a$，$b$都死实数，$\text{i}$是$-1$的平方根，即$\text{i}^2=-1$。
+1. <span style="color:red">（15.6.1 复数的非正式定义）</span>**复数系**$\mathbb C$是全体形如$a+b\text{i}$的数所构成的集合，其中$a$，$b$都死实数，$\text{i}$是$-1$的平方根，即$\text{i}^2=-1$。
 
-   <span style='color:blue'>（注：显然这不是一个让人满意的定义，这个定义一没有给出复数之间我们在实数系上熟知的加法乘法运算方式，二没有拓展我们在实数上熟知的序关系。为了严格地构造出复数系，我们需要类似第4第5章所做的那样，先引入一个形式化概念，然后给出复数的真正定义）</span>
+   <span style="color:blue">（注：显然这不是一个让人满意的定义，这个定义一没有给出复数之间我们在实数系上熟知的加法乘法运算方式，二没有拓展我们在实数上熟知的序关系。为了严格地构造出复数系，我们需要类似第4第5章所做的那样，先引入一个形式化概念，然后给出复数的真正定义）</span>
    
-2. <span style='color:red'>（15.6.2 复数的正式定义）</span>**复数**是形如$(a,b)$的有序对，其中$a$，$b$都是实数。我们称复数$(a,b)$和$(c,d)$是相等的，当且仅当$a=c$且$b=d$。我们记全体复数的集合为$\mathbb C$。
+2. <span style="color:red">（15.6.2 复数的正式定义）</span>**复数**是形如$(a,b)$的有序对，其中$a$，$b$都是实数。我们称复数$(a,b)$和$(c,d)$是相等的，当且仅当$a=c$且$b=d$。我们记全体复数的集合为$\mathbb C$。
 
-   <span style='color:blue'>（注：做完这个定义后你或许会注意到，这个定义下$\mathbb C$和笛卡尔平面$\mathbb R^2$没有任何区别，事实上也确实如此。在后面的定义中我们会为复数系定义各类的运算，因此你可以将复数系视为添加了大量附加数学结构的$\mathbb R^2$；然后在后面的定义中，需要满足我们在复数非正式定义里的直观想法定义复数的运算）</span>
+   <span style="color:blue">（注：做完这个定义后你或许会注意到，这个定义下$\mathbb C$和笛卡尔平面$\mathbb R^2$没有任何区别，事实上也确实如此。在后面的定义中我们会为复数系定义各类的运算，因此你可以将复数系视为添加了大量附加数学结构的$\mathbb R^2$；然后在后面的定义中，需要满足我们在复数非正式定义里的直观想法定义复数的运算）</span>
 
-3. <span style='color:red'>（15.6.3 复数的加法运算）</span>若$z=(a,b)$和$w=(c,d)$是两个复数，那么它们的**和**$z+w$就被定义为复数$z+w:=(a+c,b+d)$；此外，$z$的**负数**$-z$被定义为复数$-z:=(-a,-b)$；我们还定义**复数零**$0_{\mathbb C}$为复数$0_{\mathbb C}:=(0,0)$。
+3. <span style="color:red">（15.6.3 复数的加法运算）</span>若$z=(a,b)$和$w=(c,d)$是两个复数，那么它们的**和**$z+w$就被定义为复数$z+w:=(a+c,b+d)$；此外，$z$的**负数**$-z$被定义为复数$-z:=(-a,-b)$；我们还定义**复数零**$0_{\mathbb C}$为复数$0_{\mathbb C}:=(0,0)$。
 
-   <span style='color:blue'>（注：显然复数的加法和负运算都是定义明确的且满足我们所熟知的几个运算定律；我们通常将$z+(-w)$简写为$z-w$）</span>
+   <span style="color:blue">（注：显然复数的加法和负运算都是定义明确的且满足我们所熟知的几个运算定律；我们通常将$z+(-w)$简写为$z-w$）</span>
    
-4. <span style='color:red'>（15.6.5 复数的乘法运算）</span>若$z=(a,b)$和$w=(c,d)$是两个复数，那么它们的**乘积**$zw$就被定义为复数$z+w:=(ac-bd,ad+bc)$。此外，我们还引入**复数的单位元**$1_{\mathbb C}:=(1,0)$。
+4. <span style="color:red">（15.6.5 复数的乘法运算）</span>若$z=(a,b)$和$w=(c,d)$是两个复数，那么它们的**乘积**$zw$就被定义为复数$z+w:=(ac-bd,ad+bc)$。此外，我们还引入**复数的单位元**$1_{\mathbb C}:=(1,0)$。
 
-   <span style='color:blue'>（注：这个乘法定义来自于我们最开始的非正式定义，容易验证这个运算定义也是定义明确的且满足我们熟知的几个运算定律；单位元的定义更多是来自于群论的观点（当然也和实数上乘法本身有关））</span>
+   <span style="color:blue">（注：这个乘法定义来自于我们最开始的非正式定义，容易验证这个运算定义也是定义明确的且满足我们熟知的几个运算定律；单位元的定义更多是来自于群论的观点（当然也和实数上乘法本身有关））</span>
    
-5. <span style='color:red'>（15.6.8 实部和虚部）</span>设$z=a+b\text{i}$是一个复数，其中$a$，$b$都是实数。则我们称$a$是$z$的**实部**，并记作$\mathfrak{R}(z):=a$；称$b$是$z$的**虚部**，并记作$\mathfrak{I}(z):=a$。因此一般地，我们有$z=\mathfrak{R}(z)+\mathfrak{I}(z)\text{i}$。显然可以注意到$z$是实数当且仅当$\mathfrak{I}(z)=0$，于是我们称$z$是**虚数**当且仅当$\mathfrak{R}(z)=0$。最后，我们定义$z$的**复共轭**$\overline{z}$为$\overline{z}:=\mathfrak{R}(z)-\mathfrak{I}(z)\text{i}$。
+5. <span style="color:red">（15.6.8 实部和虚部）</span>设$z=a+b\text{i}$是一个复数，其中$a$，$b$都是实数。则我们称$a$是$z$的**实部**，并记作$\mathfrak{R}(z):=a$；称$b$是$z$的**虚部**，并记作$\mathfrak{I}(z):=a$。因此一般地，我们有$z=\mathfrak{R}(z)+\mathfrak{I}(z)\text{i}$。显然可以注意到$z$是实数当且仅当$\mathfrak{I}(z)=0$，于是我们称$z$是**虚数**当且仅当$\mathfrak{R}(z)=0$。最后，我们定义$z$的**复共轭**$\overline{z}$为$\overline{z}:=\mathfrak{R}(z)-\mathfrak{I}(z)\text{i}$。
 
-   <span style='color:blue'>（注：这个记号有点怪的，我见过的记号基本都是$\text{Re}$和$\text{Im}$分别代表实部和虚部）</span>
+   <span style="color:blue">（注：这个记号有点怪的，我见过的记号基本都是$\text{Re}$和$\text{Im}$分别代表实部和虚部）</span>
 
-6. <span style='color:red'>（15.6.10 复数的绝对值）</span>设$z=a+b\text{i}$是一个复数，其中$a$，$b$都是实数，那么$z$的**绝对值**$|z|$为实数$|z|:=\sqrt{a^2+b^2}=(a^2+b^2)^{1/2}$。
+6. <span style="color:red">（15.6.10 复数的绝对值）</span>设$z=a+b\text{i}$是一个复数，其中$a$，$b$都是实数，那么$z$的**绝对值**$|z|$为实数$|z|:=\sqrt{a^2+b^2}=(a^2+b^2)^{1/2}$。
 
-   <span style='color:blue'>（注：在[习题5.6.3](../Chap5/Sec6.md)中我们提到了绝对值的另一个表达式$|x|=\sqrt{x^2}$，定义15.6.10正是这个式子的推广）</span>
+   <span style="color:blue">（注：在[习题5.6.3](../Chap5/Sec6.md)中我们提到了绝对值的另一个表达式$|x|=\sqrt{x^2}$，定义15.6.10正是这个式子的推广）</span>
 
-7. <span style='color:red'>（15.6.12 复数的倒数）</span>设$z$是一个非零的复数，那么$z$的倒数$z^{-1}$就被定义为复数$z^{-1}:=|z|^{-2}\overline{z}$。当$z=0$时，我们不给出$0^{-1}$的定义。于是我们可以得到：
+7. <span style="color:red">（15.6.12 复数的倒数）</span>设$z$是一个非零的复数，那么$z$的倒数$z^{-1}$就被定义为复数$z^{-1}:=|z|^{-2}\overline{z}$。当$z=0$时，我们不给出$0^{-1}$的定义。于是我们可以得到：
    $$
    zz^{-1}=z^{-1}z=|z|^{-2}\overline{z}z=|z|^{-2}|z|^2=1
    $$
    这也是我们所期望的倒数，于是对任意的两个复数$z$，$w$（其中$w\ne 0$），我们可以按照通常的方式，定义它们的**商**$z/w:=zw^{-1}$。
    
-8. <span style='color:red'>（15.6.15 复指数函数）</span>设$z$是一个复数，那么我们定义函数$\exp(z)$为：
+8. <span style="color:red">（15.6.15 复指数函数）</span>设$z$是一个复数，那么我们定义函数$\exp(z)$为：
    $$
    \exp(z):=\sum_{n=0}^{\infty}\frac{z^n}{n!}
    $$
-   <span style='color:blue'>（注：可以通过将比较判别法推广到复数级数来证明对任意的$z$，$\exp(z)$都是收敛的。事实上，定理15.5.2中许多性质也都是成立的，例如$\exp(z+w)=\exp(z)\exp(w)$，另一个有用的结果是$\overline{\exp(z)}=\exp(\overline{z})$；对复对数函数，情形会更加微妙，其一是$\exp$在复数下已经不是可逆函数，其二是关于对数函数的各种幂级数都只有一个有限的收敛半径）</span>
+   <span style="color:blue">（注：可以通过将比较判别法推广到复数级数来证明对任意的$z$，$\exp(z)$都是收敛的。事实上，定理15.5.2中许多性质也都是成立的，例如$\exp(z+w)=\exp(z)\exp(w)$，另一个有用的结果是$\overline{\exp(z)}=\exp(\overline{z})$；对复对数函数，情形会更加微妙，其一是$\exp$在复数下已经不是可逆函数，其二是关于对数函数的各种幂级数都只有一个有限的收敛半径）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（15.6.4 复数系是一个加法群）</span>若$z_1$，$z_2$，$z_3$都是复数，那么它们具有可交换性：$z_1+z_2=z_2+z_1$，结合性：$(z_1+z_2)+z_3=z_1+(z_2+z_3)$，恒等性：$z_1+0_{\mathbb C}=0_{\mathbb C}+z_1=z_1$以及逆元性：$z_1+(-z_1)=(-z_1)+z_1=0_{\mathbb C}$。
+1. <span style="color:red">（15.6.4 复数系是一个加法群）</span>若$z_1$，$z_2$，$z_3$都是复数，那么它们具有可交换性：$z_1+z_2=z_2+z_1$，结合性：$(z_1+z_2)+z_3=z_1+(z_2+z_3)$，恒等性：$z_1+0_{\mathbb C}=0_{\mathbb C}+z_1=z_1$以及逆元性：$z_1+(-z_1)=(-z_1)+z_1=0_{\mathbb C}$。
 
-2. <span style='color:red'>（15.6.6 复数乘法的运算定律？）</span>若$z_1$，$z_2$，$z_3$都是复数，那么它们具有可交换性：$z_1z_2=z_2z_1$，结合性：$(z_1z_2)z_3=z_1(z_2z_3)$，恒等性：$z_11_{\mathbb C}=1_{\mathbb C}z_1=z_1$以及分配性：$z_1(z_2+z_3)=z_1z_2+z_1z_3$和$(z_2+z_3)z_1=z_2z_1+z_3z_1$。
+2. <span style="color:red">（15.6.6 复数乘法的运算定律？）</span>若$z_1$，$z_2$，$z_3$都是复数，那么它们具有可交换性：$z_1z_2=z_2z_1$，结合性：$(z_1z_2)z_3=z_1(z_2z_3)$，恒等性：$z_11_{\mathbb C}=1_{\mathbb C}z_1=z_1$以及分配性：$z_1(z_2+z_3)=z_1z_2+z_1z_3$和$(z_2+z_3)z_1=z_2z_1+z_3z_1$。
 
-   <span style='color:blue'>（注：也可以直接说$\mathbb C$是一个交换环）</span>
+   <span style="color:blue">（注：也可以直接说$\mathbb C$是一个交换环）</span>
 
-3. <span style='color:red'>（15.6.7）</span>每一个复数$z\in\mathbb C$都可以写为$z=a+b\text{i}$，其中$a$，$b$是唯一确定的一对实数。另外我们$\text{i}^2=-1$与$-z=(-1)z$。
+3. <span style="color:red">（15.6.7）</span>每一个复数$z\in\mathbb C$都可以写为$z=a+b\text{i}$，其中$a$，$b$是唯一确定的一对实数。另外我们$\text{i}^2=-1$与$-z=(-1)z$。
 
-4. <span style='color:red'>（15.6.9 复共轭是一种对合）</span>设$z$，$w$都是复数，那么有$\overline{z+w}=\overline{z}+\overline{w}$，$\overline{-z}=-\overline{z}$和$\overline{zw}=\overline{z}\:\overline{w}$。此外，$\overline{\overline{z}}=z$。最后，我们有$\overline{z}=\overline{w}$当且仅当$z=w$；$\overline{z}=z$当且仅当$z$是一个实数。
+4. <span style="color:red">（15.6.9 复共轭是一种对合）</span>设$z$，$w$都是复数，那么有$\overline{z+w}=\overline{z}+\overline{w}$，$\overline{-z}=-\overline{z}$和$\overline{zw}=\overline{z}\:\overline{w}$。此外，$\overline{\overline{z}}=z$。最后，我们有$\overline{z}=\overline{w}$当且仅当$z=w$；$\overline{z}=z$当且仅当$z$是一个实数。
 
-   <span style='color:blue'>（注：对合有很多个领域内的不同意义，这里应该是说复共轭映射$z\mapsto\overline{z}$是一个对合函数，也即满足对任意定义域内$x$都有$f(f(x))=x$的函数，又或者说逆映射为自身的函数；对合还有群论，线性代数领域上的意义，这里就不多赘述了，有兴趣可以自行查阅资料）</span>
+   <span style="color:blue">（注：对合有很多个领域内的不同意义，这里应该是说复共轭映射$z\mapsto\overline{z}$是一个对合函数，也即满足对任意定义域内$x$都有$f(f(x))=x$的函数，又或者说逆映射为自身的函数；对合还有群论，线性代数领域上的意义，这里就不多赘述了，有兴趣可以自行查阅资料）</span>
 
-5. <span style='color:red'>（15.6.11 复数绝对值的性质）</span>设$z$，$w$都是复数。那么$|z|$是一个非负实数，并且$|z|=0$当且仅当$z=0$。另外还有恒等式$z\overline{z}=|z|^2$，从而有$|z|=\sqrt{z\overline{z}}$。于是$|zw|=|z||w|$且$|\overline{z}|=|z|$，最后，我们有不等式：
+5. <span style="color:red">（15.6.11 复数绝对值的性质）</span>设$z$，$w$都是复数。那么$|z|$是一个非负实数，并且$|z|=0$当且仅当$z=0$。另外还有恒等式$z\overline{z}=|z|^2$，从而有$|z|=\sqrt{z\overline{z}}$。于是$|zw|=|z||w|$且$|\overline{z}|=|z|$，最后，我们有不等式：
    $$
    -|z|\leq\mathfrak{R}(z)\leq|z|\qquad-|z|\leq\mathfrak{I}(z)\leq|z|\qquad|z|\leq|\mathfrak{R}(z)|+|\mathfrak{I}(z)|
    $$
    与三角不等式$|z+w|\leq|z|+|w|$。
 
-6. <span style='color:red'>（15.6.13）</span>定义两个复数$z$和$w$之间的距离为$d(z,w):=|z-w|$，那么具有度量$d$的复数系$\mathbb C$构成一个度量空间。若$(z_n)_{n=1}^{\infty}$是一个复数序列，并且$z$是一个复数，那么在这个度量空间中，$\displaystyle\lim_{n\to\infty}z_n=z$当且仅当$\displaystyle\lim_{n\to\infty}\mathfrak{R}(z_n)=\mathfrak{R}(z)$且$\displaystyle\lim_{n\to\infty}\mathfrak{I}(z_n)=\mathfrak{I}(z)$。
+6. <span style="color:red">（15.6.13）</span>定义两个复数$z$和$w$之间的距离为$d(z,w):=|z-w|$，那么具有度量$d$的复数系$\mathbb C$构成一个度量空间。若$(z_n)_{n=1}^{\infty}$是一个复数序列，并且$z$是一个复数，那么在这个度量空间中，$\displaystyle\lim_{n\to\infty}z_n=z$当且仅当$\displaystyle\lim_{n\to\infty}\mathfrak{R}(z_n)=\mathfrak{R}(z)$且$\displaystyle\lim_{n\to\infty}\mathfrak{I}(z_n)=\mathfrak{I}(z)$。
 
-   <span style='color:blue'>（注：这个度量空间既是完备的又是连通的，但是它不是紧致的，这部分我们会在课后习题中展示这一点，另外，它也满足一般的极限定律）</span>
+   <span style="color:blue">（注：这个度量空间既是完备的又是连通的，但是它不是紧致的，这部分我们会在课后习题中展示这一点，另外，它也满足一般的极限定律）</span>
 
-7. <span style='color:red'>（15.6.14 复数的极限定律）</span>设$(z_n)_{n=1}^{\infty}$和$(w_n)_{n=1}^{\infty}$都是收敛的复数序列，并设$c$是一个复数。那么序列$(z_n+w_n)_{n=1}^{\infty}$、$(z_n-w_n)_{n=1}^{\infty}$、$(cz_n)_{n=1}^{\infty}$、$(z_nw_n)_{n=1}^{\infty}$和$(\overline{z_n})_{n=1}^{\infty}$也都是收敛的，并且有：
+7. <span style="color:red">（15.6.14 复数的极限定律）</span>设$(z_n)_{n=1}^{\infty}$和$(w_n)_{n=1}^{\infty}$都是收敛的复数序列，并设$c$是一个复数。那么序列$(z_n+w_n)_{n=1}^{\infty}$、$(z_n-w_n)_{n=1}^{\infty}$、$(cz_n)_{n=1}^{\infty}$、$(z_nw_n)_{n=1}^{\infty}$和$(\overline{z_n})_{n=1}^{\infty}$也都是收敛的，并且有：
    $$
    \begin{gather}
    \lim_{n\to\infty}z_n+w_n=\lim_{n\to\infty}z_n+\lim_{n\to\infty}w_n\\
@@ -98,7 +98,7 @@ coverHeight: 320px
    $$
    \lim_{n\to\infty}z_n/w_n=\left(\lim_{n\to\infty}z_n\right)/\left(\lim_{n\to\infty}w_n\right)
    $$
-   <span style='color:blue'>（注：事实上，我们在本书中证明过有关实值函数的很多结论也都适用于复值函数。我们只需要将证明中的“实数”替换成“复数”就行了，例如逐点收敛和一致收敛的理论）</span>
+   <span style="color:blue">（注：事实上，我们在本书中证明过有关实值函数的很多结论也都适用于复值函数。我们只需要将证明中的“实数”替换成“复数”就行了，例如逐点收敛和一致收敛的理论）</span>
 
 ---
 
@@ -339,7 +339,7 @@ coverHeight: 320px
 >
 > （题外话，这题放在这是不是有点不对啊，下面的题才到引理15.6.11，除法还没定义呢）
 
-##### 15.6.6 证明引理15.6.11<span style='color:blue'>（提示：为了证明三角不等式，首先证明$\mathfrak{R}(z\overline{w})\leq|z||w|$，从而有（利用习题15.6.5）$z\overline{w}+\overline{z}w\leq 2|z||w|$，然后把$|z|^2+|w|^2$加到这个不等式的两端）</span>
+##### 15.6.6 证明引理15.6.11<span style="color:blue">（提示：为了证明三角不等式，首先证明$\mathfrak{R}(z\overline{w})\leq|z||w|$，从而有（利用习题15.6.5）$z\overline{w}+\overline{z}w\leq 2|z||w|$，然后把$|z|^2+|w|^2$加到这个不等式的两端）</span>
 
 > 逐条证明：
 >
@@ -540,7 +540,7 @@ coverHeight: 320px
 >
 > （题外话，所以早点把复数的距离和欧几里得度量关联更好，好几道题都不用写了）
 
-##### 15.6.12 证明：具有通常度量$d$的复数系$\mathbb{C}$构成一个连通的度量空间<span style='color:blue'>（提示：首先证明$\mathbb C$是道路连通的，就像在[习题13.4.7](../Chap13/Sec4.md)里做的那样）</span>
+##### 15.6.12 证明：具有通常度量$d$的复数系$\mathbb{C}$构成一个连通的度量空间<span style="color:blue">（提示：首先证明$\mathbb C$是道路连通的，就像在[习题13.4.7](../Chap13/Sec4.md)里做的那样）</span>
 
 > 对任意的复数$z_1$与$z_2$，我们考虑函数$\gamma:[0,1]\to\mathbb C$有：
 > $$
@@ -557,7 +557,7 @@ coverHeight: 320px
 > $$
 > 于是我们得到了$\gamma$是一个连续函数。由于$z_1$，$z_2$都是任意的，因此上面的结论可以引申得到$\mathbb C$是道路连通的度量空间，结合习题13.4.7的结论即有$\mathbb C$是连通的度量空间。
 
-##### 15.6.13 设$E$是$\mathbb C$的子集，证明：$E$是紧致的，当且仅当$E$既是闭的又是有界的<span style='color:blue'>（提示：把习题15.6.11和海涅-博雷尔定理（[定理12.5.7](../Chap12/Sec5.md)）结合使用）</span>。然后证明：$\mathbb C$不是紧致的
+##### 15.6.13 设$E$是$\mathbb C$的子集，证明：$E$是紧致的，当且仅当$E$既是闭的又是有界的<span style="color:blue">（提示：把习题15.6.11和海涅-博雷尔定理（[定理12.5.7](../Chap12/Sec5.md)）结合使用）</span>。然后证明：$\mathbb C$不是紧致的
 
 > 由于紧致集都是有界闭集（命题15.2.6），因此我们只需要证明：若$E$是一个有界闭集则有$E$是紧致的。为了证明这个结论，我们需要使用习题15.6.11中的函数$f$。
 >
@@ -573,7 +573,7 @@ coverHeight: 320px
 >
 > 综上，于是我们证明了$\mathbb C$的子集$E$是紧致的，当且仅当$E$既是闭的又是有界的。而对于复数集$\mathbb C$本身，显然$\mathbb C$不是有界的，因此$\mathbb C$不可能是紧致的（话说随便水一个收敛于无穷的实数序列就可以证明这个结论了吧）。
 
-##### 15.6.14 证明引理15.6.14<span style='color:blue'>（提示：分别把$z_n$和$w_n$划分成实部和虚部，然后使用通常的极限定律（[引理6.1.19](../Chap6/Sec1.md)）和引理15.6.13）</span>
+##### 15.6.14 证明引理15.6.14<span style="color:blue">（提示：分别把$z_n$和$w_n$划分成实部和虚部，然后使用通常的极限定律（[引理6.1.19](../Chap6/Sec1.md)）和引理15.6.13）</span>
 
 > 为了方便编辑，我们设对任意的$n\geq 1$都有$z_n=a_n+b_n\text{i}$与$w_n=c_n+d_n\text{i}$，并设$(z_n)_{n=1}^{\infty}$和$(w_n)_{n=1}^{\infty}$分别收敛于复数$z=a+b\text{i}$与$w=c+d\text{i}$（其中$a_n$，$b_n$，$c_n$，$d_n$，$a$，$b$，$c$，$d$都是实数）；然后为了不和题设冲突，我们会用大写的$C$替换原前设中的$c$；最后，在这个证明中需要大量使用到引理15.6.13，所以不会特意强调出来（比如说题设表明序列$(a_n)_{n=1}^{\infty}$，$(b_n)_{n=1}^{\infty}$，$(c_n)_{n=1}^{\infty}$，$(d_n)_{n=1}^{\infty}$分别收敛于$a$，$b$，$c$，$d$）。于是我们逐条证明引理15.6.14：
 >
@@ -673,12 +673,12 @@ coverHeight: 320px
 
 ##### 15.6.15 本题会向你解释为什么不将复数如同实数那样划分为正的和负的。假设存在一个合理的“正复数”和“负复数”的概念，并且它们遵守下列合理的公理：
 
-* **<span style='color:red'>（三歧性）</span>对每一个复数$z$，下列命题中恰好有一个成立：$z$是正的，$z$是负的，$z$等于$0$。**
-* **<span style='color:red'>（负运算）</span>如果$z$是一个正复数，那么$-z$就是负的；如果$z$是一个负复数，那么$-z$就是正的。**
-* **<span style='color:red'>（可加性）</span>如果$z$和$w$都是正复数，那么$z+w$也是正的。**
-* **<span style='color:red'>（可乘性）</span>如果$z$和$w$都是正复数，那么$zw$也是正的。**
+* **<span style="color:red">（三歧性）</span>对每一个复数$z$，下列命题中恰好有一个成立：$z$是正的，$z$是负的，$z$等于$0$。**
+* **<span style="color:red">（负运算）</span>如果$z$是一个正复数，那么$-z$就是负的；如果$z$是一个负复数，那么$-z$就是正的。**
+* **<span style="color:red">（可加性）</span>如果$z$和$w$都是正复数，那么$z+w$也是正的。**
+* **<span style="color:red">（可乘性）</span>如果$z$和$w$都是正复数，那么$zw$也是正的。**
 
-##### 证明：这四个公理是不一致的，换句话说，我们可以从这些公理中推出矛盾<span style='color:blue'>（提示：首先，利用公理推出$1$是正的，从而$-1$是负的。然后，对$z=\text{i}$应用三歧性公理，并且推出这三种情形无论哪一种都会导出矛盾）</span>
+##### 证明：这四个公理是不一致的，换句话说，我们可以从这些公理中推出矛盾<span style="color:blue">（提示：首先，利用公理推出$1$是正的，从而$-1$是负的。然后，对$z=\text{i}$应用三歧性公理，并且推出这三种情形无论哪一种都会导出矛盾）</span>
 
 > 我们先推导出$-1$是负的。
 >

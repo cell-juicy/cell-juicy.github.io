@@ -14,23 +14,23 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（无编号）</span>常数序列$c$，$c$，$...$的极限$\displaystyle\lim_{n\to\infty}c=c$。
+1. <span style="color:red">（无编号）</span>常数序列$c$，$c$，$...$的极限$\displaystyle\lim_{n\to\infty}c=c$。
 
-2. <span style='color:red'>（6.5.1）</span>对任意整数$k\geq 1$，$\displaystyle\lim_{n\to\infty}\frac{1}{n^{\frac{1}{k}}}=0$均成立。
+2. <span style="color:red">（6.5.1）</span>对任意整数$k\geq 1$，$\displaystyle\lim_{n\to\infty}\frac{1}{n^{\frac{1}{k}}}=0$均成立。
 
-3. <span style='color:red'>（6.5.2）</span>设$x$是一个实数，当$|x|<1$时，极限$\displaystyle\lim_{n\to\infty}x^n$存在，并且等于$0$。
+3. <span style="color:red">（6.5.2）</span>设$x$是一个实数，当$|x|<1$时，极限$\displaystyle\lim_{n\to\infty}x^n$存在，并且等于$0$。
 
    当$x=1$时，极限$\displaystyle\lim_{n\to\infty}x^n$存在，并且等于$1$。
 
    当$x=-1$或$|x|>1$时，极限$\displaystyle\lim_{n\to\infty}x^n$是发散的。
 
-4. <span style='color:red'>（6.5.3）</span>对于任意$x>0$，$\displaystyle\lim_{n\to\infty}x^{\frac{1}{n}}=1$均成立。
+4. <span style="color:red">（6.5.3）</span>对于任意$x>0$，$\displaystyle\lim_{n\to\infty}x^{\frac{1}{n}}=1$均成立。
 
 ---
 
 ## 课后习题
 
-##### 6.5.1 证明：对任意有理数$q>0$，均有$\displaystyle\lim_{n\to \infty}\frac{1}{n^q}=0$。<span style='color:blue'>（提示：利用推论6.5.1、[极限定律](../Chap6/Sec1.md)以及[定理6.1.19](../Chap6/Sec1.md)）</span>推导出极限$\displaystyle\lim_{n\to \infty}n^q$不存在<span style='color:blue'>（提示：采用反证法并利用[定理6.1.19(e)](../Chap6/Sec1.md)）</span>
+##### 6.5.1 证明：对任意有理数$q>0$，均有$\displaystyle\lim_{n\to \infty}\frac{1}{n^q}=0$。<span style="color:blue">（提示：利用推论6.5.1、[极限定律](../Chap6/Sec1.md)以及[定理6.1.19](../Chap6/Sec1.md)）</span>推导出极限$\displaystyle\lim_{n\to \infty}n^q$不存在<span style="color:blue">（提示：采用反证法并利用[定理6.1.19(e)](../Chap6/Sec1.md)）</span>
 
 > 证明：对任意有理数$q>0$，均有$\displaystyle\lim_{n\to \infty}\frac{1}{n^q}=0$。
 >
@@ -68,7 +68,7 @@ coverHeight: 320px
 > $$
 > 此时有矛盾，于是只能有极限$\displaystyle\lim_{n\to \infty}n^q$不存在。
 
-##### 6.5.2 证明引理6.5.2<span style='color:blue'>（提示：利用[命题6.3.10](../Chap6/Sec3.md)，[习题6.3.4](../Chap6/Sec3.md)以及[夹逼定理](../Chap6/Sec4.md)）</span>
+##### 6.5.2 证明引理6.5.2<span style="color:blue">（提示：利用[命题6.3.10](../Chap6/Sec3.md)，[习题6.3.4](../Chap6/Sec3.md)以及[夹逼定理](../Chap6/Sec4.md)）</span>
 
 > 当$|x|<1\iff-1<x<1$时：
 >
@@ -92,7 +92,7 @@ coverHeight: 320px
 > $$
 > 然而对任意实数$L$，都应该有$0\cdot L=0$，于是假设导出矛盾，此时只能有$\displaystyle\lim_{n\to\infty}x^n$发散。
 
-##### 6.5.3 证明引理6.5.3<span style='color:blue'>（提示：你可能要分为$x\geq 1$和$x<1$两种情形来考虑。你或许愿意先利用引理6.5.2这样一个预备结论：对任意的$\varepsilon>0$和任意的实数$M>0$，存在一个 $n$使得$M^{{\frac{1}{n}}}\leq 1+\varepsilon$)</span>
+##### 6.5.3 证明引理6.5.3<span style="color:blue">（提示：你可能要分为$x\geq 1$和$x<1$两种情形来考虑。你或许愿意先利用引理6.5.2这样一个预备结论：对任意的$\varepsilon>0$和任意的实数$M>0$，存在一个 $n$使得$M^{{\frac{1}{n}}}\leq 1+\varepsilon$)</span>
 
 > 我们证明一个辅助结论：
 >

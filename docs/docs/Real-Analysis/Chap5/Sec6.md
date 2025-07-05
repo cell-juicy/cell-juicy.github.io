@@ -14,19 +14,19 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（5.6.1 实数的自然数次幂）</span>设$x$是一个实数，为了把$x$升到$0$次幂，我们定义$x^0:=1$。现归纳假设对于某个自然数$n$已经定义了$x^n$，则定义$x^{n+1}:=x^n\cdot x$。
+1. <span style="color:red">（5.6.1 实数的自然数次幂）</span>设$x$是一个实数，为了把$x$升到$0$次幂，我们定义$x^0:=1$。现归纳假设对于某个自然数$n$已经定义了$x^n$，则定义$x^{n+1}:=x^n\cdot x$。
 
-2. <span style='color:red'>（5.6.2 实数的整数次幂）</span>设$x$是一个非零实数，那么对任意的负整数$-n$，定义$x^{-n}:={\frac{1}{x}}^n$。
+2. <span style="color:red">（5.6.2 实数的整数次幂）</span>设$x$是一个非零实数，那么对任意的负整数$-n$，定义$x^{-n}:={\frac{1}{x}}^n$。
 
-3. <span style='color:red'>（5.6.4 $n$次根？）</span>设$x≥0$是一个非负实数，且$n≥1$是一个正整数，则定义$x^{\frac{1}{n}}$<span style='color:blue'>（也称作$x$的$n$次根）</span>为：
+3. <span style="color:red">（5.6.4 $n$次根？）</span>设$x≥0$是一个非负实数，且$n≥1$是一个正整数，则定义$x^{\frac{1}{n}}$<span style="color:blue">（也称作$x$的$n$次根）</span>为：
    $$
    x^{\frac{1}{n}}:=\sup\{y∈\mathbb R:y≥0且y^n≤x\}
    $$
    
    另外一般将$x^{\frac{1}{2}}$写作$\sqrt x$。
-   <span style='color:blue'>（注：本书不定义负数的$n$次方根，因为只有定义了复数才可以定义负数的$n$次方根，然而本书并不讲复数这方面内容）</span>
+   <span style="color:blue">（注：本书不定义负数的$n$次方根，因为只有定义了复数才可以定义负数的$n$次方根，然而本书并不讲复数这方面内容）</span>
    
-4. <span style='color:red'>（5.6.7 向有理数的拓展？）</span>设$x>0$是一个正实数，$q$是一个有理数。由有理数定义令$q=\frac{a}{b}$，其中$a$是整数，$b$是正整数。此时定义：
+4. <span style="color:red">（5.6.7 向有理数的拓展？）</span>设$x>0$是一个正实数，$q$是一个有理数。由有理数定义令$q=\frac{a}{b}$，其中$a$是整数，$b$是正整数。此时定义：
    $$
    x^q:=(x^{\frac 1 b})^a
    $$
@@ -35,27 +35,27 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（5.6.3 实数幂的运算性质）</span>对命题<span style='color:blue'>（[4.3.10，4.3.12](../Chap4/Sec3.md)）</span>中有理数$x$，$y$替换成实数$x$，$y$后这两个命题中的所有性质依旧是成立的。
+1. <span style="color:red">（5.6.3 实数幂的运算性质）</span>对命题<span style="color:blue">（[4.3.10，4.3.12](../Chap4/Sec3.md)）</span>中有理数$x$，$y$替换成实数$x$，$y$后这两个命题中的所有性质依旧是成立的。
 
-   <span style='color:blue'>（内容见下）</span>
+   <span style="color:blue">（内容见下）</span>
 
-    > 1. <span style='color:red'>（4.3.10 指数的运算性质I）</span>设$x$与$y$为非零实数，并设$n$和$m$为自然数，则有：
+    > 1. <span style="color:red">（4.3.10 指数的运算性质I）</span>设$x$与$y$为非零实数，并设$n$和$m$为自然数，则有：
     >
     >    > * $x^n\times x^m=x^{(n+m)}$，$(x^n)^m=x^{(nm)}$，$(xy)^n=x^ny^n$。
     >    > * 若$x\geq y\geq0$，则有$x^n\geq y^n\geq0$，若$x>y\geq0$且$n>0$时，则有$x^n>y^n≥0$。
     >    > * 若$n>0$，则$x^n=0$当且仅当$x=0$。
     >    > * 有$|x^n|=|x|^n$。
     >
-    > 2. <span style='color:red'>（4.3.12 指数的运算性质II）</span>设$x$与$y$为非零实数，并设$n$和$m$为**整数**，则有：
+    > 2. <span style="color:red">（4.3.12 指数的运算性质II）</span>设$x$与$y$为非零实数，并设$n$和$m$为**整数**，则有：
     >
     >    > * $x^n\times x^m=x^{(n+m)}$，$(x^n)^m=x^{(nm)}$，$(xy)^n=x^ny^n$。
     >    > * 若$x\geq y\geq0$，则当$n$正数时有$x^n\geq y^n>0$，当$n$负数时有$0<x^n\leq y^n$。
     >    > * 若$x$，$y>0$，$n\ne0$并且$x^n=y^n$，那么$x=y$。
     >    > * 有$|x^n|=|x|^n$。
 
-2. <span style='color:red'>（5.6.5 $n$次根的存在性）</span>设$x≥0$是一个非负实数且$n≥1$是一个正整数，那么集合$\{y∈R:y≥0且y^n≤x\}$是非空的并且有上界的，特别地，$x^\frac 1 n$是一个实数。
+2. <span style="color:red">（5.6.5 $n$次根的存在性）</span>设$x≥0$是一个非负实数且$n≥1$是一个正整数，那么集合$\{y∈R:y≥0且y^n≤x\}$是非空的并且有上界的，特别地，$x^\frac 1 n$是一个实数。
 
-3. <span style='color:red'>（5.6.6 整数次根的运算性质？）</span>设$x$，$y≥0$是非负实数，且$n$，$m≥1$是正整数。
+3. <span style="color:red">（5.6.6 整数次根的运算性质？）</span>设$x$，$y≥0$是非负实数，且$n$，$m≥1$是正整数。
    
    > * 如果$y=x^\frac 1 n$，那么$y^n=x$。
    > * 如果$y^n=x$，则$y=x^\frac 1 n$。
@@ -65,12 +65,12 @@ coverHeight: 320px
    > * $(xy)^\frac 1 n=x^\frac1n\cdot y^\frac1n$。
    > * $({x^\frac1n})^\frac1m=x^\frac1{nm}$。
    
-4. <span style='color:red'>（5.6.8 有理数次幂的形式不变性？）</span>设$a$，$a'$均为整数，$b$，$b'$均为正整数，并且有$a/b=a'/b'$。设$x$是一个正实数，则有：
+4. <span style="color:red">（5.6.8 有理数次幂的形式不变性？）</span>设$a$，$a'$均为整数，$b$，$b'$均为正整数，并且有$a/b=a'/b'$。设$x$是一个正实数，则有：
    $$
    x^\frac a b=x^\frac{a'}{b'}
    $$
    
-5. <span style='color:red'>（5.6.9 有理数次幂的运算性质？）</span>设$x$，$y>0$是正实数，且$q$与$r$是有理数，则：
+5. <span style="color:red">（5.6.9 有理数次幂的运算性质？）</span>设$x$，$y>0$是正实数，且$q$与$r$是有理数，则：
    
    > * $x^q$是一个正实数。
    > * $x^{q+r}=x^q\cdot x^r$且有$x^{qr}=(x^q)^r$。
@@ -78,17 +78,17 @@ coverHeight: 320px
    > * 如有$q>0$，则$x>y$当且仅当$x^q>y^q$。
    > * 如有$x>1$，则$x^q>x^r$当且仅当有$q>r$；如有$x<1$，则$x^q>x^r$当且仅当有$q<r$。
 
-<span style='color:blue'>（值得一提本节的元证明确实很有意思，可以多看看学习学习（可惜网上没百科））</span>
+<span style="color:blue">（值得一提本节的元证明确实很有意思，可以多看看学习学习（可惜网上没百科））</span>
 
 ---
 
 ## 课后习题
 
-##### 5.6.1 证明引理5.6.6<span style='color:blue'>（提示：回顾[命题5.5.12](../Chap5/Sec5.md)的证明过程；同时你可能会发现反证法是一个相当有用的证明工具，特别是将它同[命题5.4.7序的三歧性](../Chap5/Sec4.md)与[命题5.4.12](../Chap5/Sec4.md)结合使用的时候；可以使用前面的结论来证明后面的结论；对于第5条结论，首先证明$x>1$时$x^{\frac{1}{n}}>1$，以及$x<1$时$x^{\frac{1}{n}}<1$）</span>
+##### 5.6.1 证明引理5.6.6<span style="color:blue">（提示：回顾[命题5.5.12](../Chap5/Sec5.md)的证明过程；同时你可能会发现反证法是一个相当有用的证明工具，特别是将它同[命题5.4.7序的三歧性](../Chap5/Sec4.md)与[命题5.4.12](../Chap5/Sec4.md)结合使用的时候；可以使用前面的结论来证明后面的结论；对于第5条结论，首先证明$x>1$时$x^{\frac{1}{n}}>1$，以及$x<1$时$x^{\frac{1}{n}}<1$）</span>
 
 > * 如果$y=x^\frac 1 n$，那么$y^n=x$。
 >
-> <span style='color:blue'>（证明要用到习题7.1.4的二项式定理，有限级数的概念并不需要用到第五章后的内容，所以至少在这里使用算是合乎规矩的）</span>
+> <span style="color:blue">（证明要用到习题7.1.4的二项式定理，有限级数的概念并不需要用到第五章后的内容，所以至少在这里使用算是合乎规矩的）</span>
 >
 > 使用反证法，我们假设此时有$y^n\ne x$，那么根据实数序的三歧性，必然有$y^n>x$或者$y^n<x$成立。
 >
@@ -193,7 +193,7 @@ coverHeight: 320px
 > $$
 > 于是$a=b\iff(x^\frac1n)^\frac1m=x^\frac1{nm}$。
 
-##### 5.6.2 证明引理5.6.9<span style='color:blue'>（提示：主要利用了引理5.6.6与代数法则）</span>
+##### 5.6.2 证明引理5.6.9<span style="color:blue">（提示：主要利用了引理5.6.6与代数法则）</span>
 
 > * $x^q$是一个正实数。
 >

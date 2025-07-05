@@ -14,25 +14,25 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（10.5.1 洛必达法则 I）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$和$g:X\to\mathbb R$都是函数，并且设$x_0\in X$是$X$的极限点。如果有$f(x_0)=g(x_0)=0$，$f$和$g$都在$x_0$处可微，并且$g'(x_0)\ne 0$，那么存在$\delta>0$使得对所有的$x\in[(X\cap(x_0-\delta,x_0+\delta))-\{x_0\}]$都有$g(x)\ne 0$，并且有：
+1. <span style="color:red">（10.5.1 洛必达法则 I）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$和$g:X\to\mathbb R$都是函数，并且设$x_0\in X$是$X$的极限点。如果有$f(x_0)=g(x_0)=0$，$f$和$g$都在$x_0$处可微，并且$g'(x_0)\ne 0$，那么存在$\delta>0$使得对所有的$x\in[(X\cap(x_0-\delta,x_0+\delta))-\{x_0\}]$都有$g(x)\ne 0$，并且有：
    $$
    \lim_{x\to x_0;x\in[(X\cap(x_0-\delta,x_0+\delta))-\{x_0\}]}\frac{f(x)}{g(x)}=\frac{f'(x_0)}{g'(x_0)}
    $$
-   <span style='color:blue'>（注：你可能会疑惑为什么在这里会突然出现一个$\delta$，事实上这是为了保证商$\displaystyle\frac{f(x)}{g(x)}$在集合上始终有定义，因为$g(x)$可能在除$x_0$以外的某点处为零，不能保证商$\displaystyle\frac{f(x)}{g(x)}$在$X-\{x_0\}$中所有点都有意义）</span>
+   <span style="color:blue">（注：你可能会疑惑为什么在这里会突然出现一个$\delta$，事实上这是为了保证商$\displaystyle\frac{f(x)}{g(x)}$在集合上始终有定义，因为$g(x)$可能在除$x_0$以外的某点处为零，不能保证商$\displaystyle\frac{f(x)}{g(x)}$在$X-\{x_0\}$中所有点都有意义）</span>
 
-2. <span style='color:red'>（10.5.2 洛必达法则 II）</span>设$a<b$都是实数，并且设$f:[a,b]\to\mathbb R$和$g:[a,b]\to\mathbb R$都是$[a,b]$上的可微函数。如果有$f(a)=g(a)=0$，并且$g'$在$[a,b]$上不为零<span style='color:blue'>（即对所有的$x\in[a,b]$都有$g'(x)\ne 0$）</span>，且极限$\displaystyle\lim_{x\to a;x\in(a,b]}\frac{f'(x)}{g'(x)}$存在并且等于$L$，那么对所有的$x\in(a,b]$都有$g(x)\ne 0$，且极限$\displaystyle\lim_{x\to a;x\in(a,b]}\frac{f(x)}{g(x)}$存在并等于$L$。
+2. <span style="color:red">（10.5.2 洛必达法则 II）</span>设$a<b$都是实数，并且设$f:[a,b]\to\mathbb R$和$g:[a,b]\to\mathbb R$都是$[a,b]$上的可微函数。如果有$f(a)=g(a)=0$，并且$g'$在$[a,b]$上不为零<span style="color:blue">（即对所有的$x\in[a,b]$都有$g'(x)\ne 0$）</span>，且极限$\displaystyle\lim_{x\to a;x\in(a,b]}\frac{f'(x)}{g'(x)}$存在并且等于$L$，那么对所有的$x\in(a,b]$都有$g(x)\ne 0$，且极限$\displaystyle\lim_{x\to a;x\in(a,b]}\frac{f(x)}{g(x)}$存在并等于$L$。
 
-   <span style='color:blue'>（注：这个命题值考虑了$a$右侧的极限，对$a$左侧和$a$两侧的极限，也存在类似的命题。我们很容易叙述并证明这些命题，通俗来说，这个命题给出了</span>
+   <span style="color:blue">（注：这个命题值考虑了$a$右侧的极限，对$a$左侧和$a$两侧的极限，也存在类似的命题。我们很容易叙述并证明这些命题，通俗来说，这个命题给出了</span>
    $$
    \color{blue}{\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}}
    $$
-   <span style='color:blue'>当然，你必须得保证这个命题的所有条件均成立。命题10.5.2也可以看做是命题10.5.1的高级形式）</span>
+   <span style="color:blue">当然，你必须得保证这个命题的所有条件均成立。命题10.5.2也可以看做是命题10.5.1的高级形式）</span>
 
 ---
 
 ## 课后习题
 
-##### 10.5.1 证明命题10.5.1<span style='color:blue'>（提示：为了证明在$x_0$附近$g(x)\ne 0$，你或许需要用到[牛顿逼近法（命题10.1.7）](../Chap10/Sec1.md)，对命题中剩下的部分，利用[极限定律（命题9.3.14）](../Chap9/Sec3.md)）</span>
+##### 10.5.1 证明命题10.5.1<span style="color:blue">（提示：为了证明在$x_0$附近$g(x)\ne 0$，你或许需要用到[牛顿逼近法（命题10.1.7）](../Chap10/Sec1.md)，对命题中剩下的部分，利用[极限定律（命题9.3.14）](../Chap9/Sec3.md)）</span>
 
 > 我们分别证明两个结论：
 >
@@ -76,7 +76,7 @@ coverHeight: 320px
 > $$
 > 其中第二步里我们用到了极限定律（命题9.3.14(g)），于是结论得证。
 
-##### 10.5.2 解释为什么[例1.2.12](../Chap1/Sec2.md)与本节中的每一个命题都不矛盾<span style='color:blue'>（其实就是两个洛必达法则）</span>
+##### 10.5.2 解释为什么[例1.2.12](../Chap1/Sec2.md)与本节中的每一个命题都不矛盾<span style="color:blue">（其实就是两个洛必达法则）</span>
 
 > 对例1.2.12中给出的例子，我们可以注意到其中有：
 >

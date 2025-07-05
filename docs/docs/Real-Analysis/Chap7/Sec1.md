@@ -14,114 +14,114 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（7.1.1 有限级数）</span>设$m$，$n$是整数，并且$(a_i)_{i=m}^n$是一个有限实数列。其中，对每一个$m$，$n$间的整数$i(m\leq i\leq n)$都指定了一个实数$a_i$，那么根据下述递推公式来定义**有限和<span style='color:blue'>（有限级数）</span>**$\displaystyle\sum_{i=m}^n a_i$：
+1. <span style="color:red">（7.1.1 有限级数）</span>设$m$，$n$是整数，并且$(a_i)_{i=m}^n$是一个有限实数列。其中，对每一个$m$，$n$间的整数$i(m\leq i\leq n)$都指定了一个实数$a_i$，那么根据下述递推公式来定义**有限和<span style="color:blue">（有限级数）</span>**$\displaystyle\sum_{i=m}^n a_i$：
 
    > 1. $\displaystyle\sum_{i=m}^na_i:=0\quad(n<m)
    >    $。
    > 2. $\displaystyle\sum_{i=m}^{n+1}a_i:=\left(\sum_{i=m}^na_i\right)+a_{n+1}\quad(n\geq m-1)$。
 
-2. <span style='color:red'>（7.1.6 有限集上的求和运算）</span>设$X$是含有$n$个元素的有限集<span style='color:blue'>（其中$n\in \mathbb N$）</span>，并且设$f:X\to \mathbb R$是一个从$X$到实数集$\mathbb R$的函数<span style='color:blue'>（即$f$对$X$中每一个元素$x$都指定了一个实数$f(x)$）</span>。于是首先任意选取一个$\{i\in \mathbb N：1\leq i\leq n\}$到$X$的双射$g$<span style='color:blue'>（根据假定的$X$中有$n$个元素可以得知这样的双射是存在的）</span>。则定义**有限和**$\displaystyle\sum_{x\in X}f(x)$为：
+2. <span style="color:red">（7.1.6 有限集上的求和运算）</span>设$X$是含有$n$个元素的有限集<span style="color:blue">（其中$n\in \mathbb N$）</span>，并且设$f:X\to \mathbb R$是一个从$X$到实数集$\mathbb R$的函数<span style="color:blue">（即$f$对$X$中每一个元素$x$都指定了一个实数$f(x)$）</span>。于是首先任意选取一个$\{i\in \mathbb N：1\leq i\leq n\}$到$X$的双射$g$<span style="color:blue">（根据假定的$X$中有$n$个元素可以得知这样的双射是存在的）</span>。则定义**有限和**$\displaystyle\sum_{x\in X}f(x)$为：
    $$
    \sum_{x\in X}f(x)=\sum_{i=1}^{n}f(g(i))
    $$
-   <span style='color:blue'>（注：变量$i$（也称为**求和指标**）是一个**约束变量**（也作**虚拟变量**），表达式实际上并不依赖于任何被称为$i$的量。特别地，可以用任何其它符号代替求和指标$i$并得到同样的结果）</span>
+   <span style="color:blue">（注：变量$i$（也称为**求和指标**）是一个**约束变量**（也作**虚拟变量**），表达式实际上并不依赖于任何被称为$i$的量。特别地，可以用任何其它符号代替求和指标$i$并得到同样的结果）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（7.1.4 一些有限级数相关？）</span>下述命题成立：
+1. <span style="color:red">（7.1.4 一些有限级数相关？）</span>下述命题成立：
 
    > 1. 设$m\leq n\leq p$都是整数，并且对任意的整数$i(m\leq i\leq p)$都指定了一个实数$a_i$，则有：
    >    $$
    >    \sum_{i=m}^{n}a_i+\sum_{i=n+1}^{p}a_i=\sum_{i=m}^{p}a_i
    >    $$
    >
-   > 2. <span style='color:red'>（指标不影响有限和？）</span>设$m\leq n$都是整数，$k$是另一个整数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
+   > 2. <span style="color:red">（指标不影响有限和？）</span>设$m\leq n$都是整数，$k$是另一个整数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
    >    $$
    >    \sum_{i=m}^na_i=\sum_{j=m+k}^{n+k}a_{j-k}
    >    $$
    >
-   > 3. <span style='color:red'>（有限级数的加和？）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了实数$a_i$和$b_i$，则：
+   > 3. <span style="color:red">（有限级数的加和？）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了实数$a_i$和$b_i$，则：
    >    $$
    >    \sum_{i=m}^{n}(a_i+b_i)=\sum_{i=m}^{n}a_i+\sum_{i=m}^{n}b_i
    >    $$
    >
-   > 4. <span style='color:red'>（有限和的数乘？）</span>设$m\leq n$都是整数，$c$是另一个实数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
+   > 4. <span style="color:red">（有限和的数乘？）</span>设$m\leq n$都是整数，$c$是另一个实数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
    >    $$
    >    \sum_{i=m}^{n}c\cdot a_i=c\cdot\left(\sum_{i=m}^{n}a_i\right)
    >    $$
    >
-   > 5. <span style='color:red'>（有限级数的三角不等式）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
+   > 5. <span style="color:red">（有限级数的三角不等式）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
    >    $$
    >    \sum_{i=m}^{n}|a_i|\geq\left|\sum_{i=m}^{n}a_i\right|
    >    $$
    >
-   > 6. <span style='color:red'>（有限级数的比较判别法）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了实数$a_i$和$b_i$。若对全部$m\leq i\leq n$有$a_i\leq b_i$，则：
+   > 6. <span style="color:red">（有限级数的比较判别法）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了实数$a_i$和$b_i$。若对全部$m\leq i\leq n$有$a_i\leq b_i$，则：
    >    $$
    >    \sum_{i=m}^{n}a_i\leq \sum_{i=m}^{n}b_i
    >    $$
 
-2. <span style='color:red'>（7.1.8 有限求和是定义明确的）</span>设$X$是含有$n$个元素的有限集（其中$n\in N$），并且设$f:X\to \mathbb R$是一个函数，并且假设有$g:\{i\in \mathbb N:1\leq i\leq n\}\to X$与$h:\{i\in \mathbb N：1\leq i\leq n\}\to X$都是双射，则：
+2. <span style="color:red">（7.1.8 有限求和是定义明确的）</span>设$X$是含有$n$个元素的有限集（其中$n\in N$），并且设$f:X\to \mathbb R$是一个函数，并且假设有$g:\{i\in \mathbb N:1\leq i\leq n\}\to X$与$h:\{i\in \mathbb N：1\leq i\leq n\}\to X$都是双射，则：
    $$
    \sum_{i=1}^{n}f(g(i))=\sum_{i=1}^{n}f(h(i))
    $$
 
-   <span style='color:blue'>（注：在无限集上的求和的时候，情况要更加复杂些，可以看[8.2节](../Chap8/Sec2.md)）</span>
+   <span style="color:blue">（注：在无限集上的求和的时候，情况要更加复杂些，可以看[8.2节](../Chap8/Sec2.md)）</span>
 
-3. <span style='color:red'>（7.1.11 有限集上求和运算的基本性质）</span>下述命题是正确的：
+3. <span style="color:red">（7.1.11 有限集上求和运算的基本性质）</span>下述命题是正确的：
 
-   > 1. <span style='color:red'>（空函数）</span>如果$X$是空集，且$f:X\to \mathbb R$是一个函数<span style='color:blue'>（即$f$是空函数）</span>，则有：
+   > 1. <span style="color:red">（空函数）</span>如果$X$是空集，且$f:X\to \mathbb R$是一个函数<span style="color:blue">（即$f$是空函数）</span>，则有：
    >    $$
    >    \sum_{x\in X}f(x)=0
    >    $$
    >
-   > 2. <span style='color:red'>（单元素集）</span>如果$X$是由单独的一个元素构成的集合（即$X=\{x_0\}$），则有：
+   > 2. <span style="color:red">（单元素集）</span>如果$X$是由单独的一个元素构成的集合（即$X=\{x_0\}$），则有：
    >    $$
    >    \sum_{x\in X}f(x)=f(x_0)
    >    $$
    >
-   > 3. <span style='color:red'>（替换法I）</span>若$X$是一个有限集，$f:X\to\mathbb R$是一个函数，并且$g:Y\to X$是一个双射，则：
+   > 3. <span style="color:red">（替换法I）</span>若$X$是一个有限集，$f:X\to\mathbb R$是一个函数，并且$g:Y\to X$是一个双射，则：
    >    $$
    >    \sum_{x\in X}f(x)=\sum_{y\in Y}f(g(y))
    >    $$
    >
-   > 4. <span style='color:red'>（替换法II）</span>设$n\leq m$都是整数，且$X$为集合$X=\{i\in\mathbb Z:n\leq i\leq m\}$，若是对每一个整数$i\in X$都指定了一个实数$a_i$，则：
+   > 4. <span style="color:red">（替换法II）</span>设$n\leq m$都是整数，且$X$为集合$X=\{i\in\mathbb Z:n\leq i\leq m\}$，若是对每一个整数$i\in X$都指定了一个实数$a_i$，则：
    >    $$
    >    \sum_{i=m}^{n}a_i=\sum_{i\in X}a_i
    >    $$
    >
-   > 5. <span style='color:red'>（有限集求和加和？）</span>设$X$与$Y$是两个不相交的有限集（$X\cap Y=\varnothing$），且$f:X\cup Y\to \mathbb R$是一个函数，则：
+   > 5. <span style="color:red">（有限集求和加和？）</span>设$X$与$Y$是两个不相交的有限集（$X\cap Y=\varnothing$），且$f:X\cup Y\to \mathbb R$是一个函数，则：
    >    $$
    >    \sum_{x\in X\cup Y}f(x)=\left(\sum_{x\in X}f(x)\right)+\left(\sum_{y\in Y}f(y)\right)
    >    $$
    >
-   > 6. <span style='color:red'>（线性性质I）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$和$g:X\to\mathbb R$都是函数，则：
+   > 6. <span style="color:red">（线性性质I）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$和$g:X\to\mathbb R$都是函数，则：
    >    $$
    >    \sum_{x\in X}(f(x)+g(x))=\sum_{x\in X}f(x)+\sum_{x\in X}g(x)
    >    $$
    >
-   > 7. <span style='color:red'>（线性性质II）</span>设$X$是一个有限集，设$f:X\to\mathbb R$是一个函数，并且设$c$是一个实数，则：
+   > 7. <span style="color:red">（线性性质II）</span>设$X$是一个有限集，设$f:X\to\mathbb R$是一个函数，并且设$c$是一个实数，则：
    >    $$
    >    \sum_{x\in X}c\cdot f(x)=c\cdot\left(\sum_{x\in X}f(x)\right)
    >    $$
    >
-   > 8. <span style='color:red'>（单调性）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$和$g:X\to\mathbb R$是使得$f(x)\leq g(x)$对全部$x\in X$成立的两个函数，则：
+   > 8. <span style="color:red">（单调性）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$和$g:X\to\mathbb R$是使得$f(x)\leq g(x)$对全部$x\in X$成立的两个函数，则：
    >    $$
    >    \sum_{x\in X}f(x)\leq \sum_{x\in X}g(x)
    >    $$
    >
-   > 9. <span style='color:red'>（三角不等式）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$是函数，则：
+   > 9. <span style="color:red">（三角不等式）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$是函数，则：
    >    $$
    >    \sum_{x\in X}|f(x)|\geq\left|\sum_{x\in X}f(x)\right|
    >    $$
 
-4. <span style='color:red'>（7.1.13 笛卡尔积？）</span>设$X$与$Y$是有限集，且设$f:X\times Y\to \mathbb R$是一个函数，则：
+4. <span style="color:red">（7.1.13 笛卡尔积？）</span>设$X$与$Y$是有限集，且设$f:X\times Y\to \mathbb R$是一个函数，则：
    $$
    \sum_{x\in X}\left(\sum_{y\in Y}f(x,y)\right)=\sum_{(x,y)\in X\times Y}f(x,y)
    $$
 
-5. <span style='color:red'>（7.1.14 有限级数的富比尼定理）</span>设$X$与$Y$是有限集，且设$f:X×Y\to\mathbb R$是一个函数，则：
+5. <span style="color:red">（7.1.14 有限级数的富比尼定理）</span>设$X$与$Y$是有限集，且设$f:X×Y\to\mathbb R$是一个函数，则：
    $$
    \begin{align}
    &\sum_{x\in X}\left(\sum_{y\in Y}f(x,y)\right)\\
@@ -135,7 +135,7 @@ coverHeight: 320px
 
 ## 课后习题
 
-##### 7.1.1 证明引理7.1.4<span style='color:blue'>（提示：利用归纳法，而且最基本的情形并不一定在$0$处）</span>
+##### 7.1.1 证明引理7.1.4<span style="color:blue">（提示：利用归纳法，而且最基本的情形并不一定在$0$处）</span>
 
 > 逐条证明：
 >
@@ -314,7 +314,7 @@ coverHeight: 320px
 >
 > 于是归纳得证，可以得到题式成立。
 
-##### 7.1.2 证明命题7.1.11<span style='color:blue'>（提示：这个证明并不像看上去那么冗长，关键在于恰当的双射把这些集合上的和转换为有限级数，然后利用引理 7.1.4）</span>
+##### 7.1.2 证明命题7.1.11<span style="color:blue">（提示：这个证明并不像看上去那么冗长，关键在于恰当的双射把这些集合上的和转换为有限级数，然后利用引理 7.1.4）</span>
 
 > 逐条证明：
 >
@@ -449,7 +449,7 @@ coverHeight: 320px
 > $$
 > 根据引理7.1.4，于是有题式成立。
 
-##### 7.1.3 构造有限乘积  $\displaystyle{\prod_{i=1}^{n}a_i}$ 和 $\displaystyle{\prod_{x\in X}f(x)}$ 的定义。在上述关于有限级数的结论中，哪些对于有限乘积也有类似的结论？<span style='color:blue'>（注意，使用对数是有风险的，因为某些$a_i$或$f(x)$可能是$0$或者是负数。另外，我们还没有定义对数）</span>
+##### 7.1.3 构造有限乘积  $\displaystyle{\prod_{i=1}^{n}a_i}$ 和 $\displaystyle{\prod_{x\in X}f(x)}$ 的定义。在上述关于有限级数的结论中，哪些对于有限乘积也有类似的结论？<span style="color:blue">（注意，使用对数是有风险的，因为某些$a_i$或$f(x)$可能是$0$或者是负数。另外，我们还没有定义对数）</span>
 
 > 有限乘积的定义：
 >
@@ -474,27 +474,27 @@ coverHeight: 320px
 >    \prod_{i=m}^{n}a_i\cdot\prod_{i=n+1}^{p}a_i=\prod_{i=m}^{p}a_i
 >    $$
 >
-> 2. <span style='color:red'>（指标不影响有限乘积？）</span>设$m\leq n$都是整数，$k$是另一个整数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
+> 2. <span style="color:red">（指标不影响有限乘积？）</span>设$m\leq n$都是整数，$k$是另一个整数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
 >    $$
 >    \prod_{i=m}^na_i=\prod_{j=m+k}^{n+k}a_{j-k}
 >    $$
 >
-> 3. <span style='color:red'>（有限乘积的乘积？）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了实数$a_i$和$b_i$，则：
+> 3. <span style="color:red">（有限乘积的乘积？）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了实数$a_i$和$b_i$，则：
 >    $$
 >    \prod_{i=m}^{n}(a_i\cdot b_i)=\prod_{i=m}^{n}a_i\cdot\prod_{i=m}^{n}b_i
 >    $$
 >
-> 4. <span style='color:red'>（有限乘积的指数运算？）</span>设$m\leq n$都是整数，$c$是另一个实数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
+> 4. <span style="color:red">（有限乘积的指数运算？）</span>设$m\leq n$都是整数，$c$是另一个实数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
 >    $$
 >    \prod_{i=m}^{n}\left({a_i}^c\right)=\left(\prod_{i=m}^{n}a_i\right)^c
 >    $$
 >
-> 5. <span style='color:red'>（有限乘积的绝对值？）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
+> 5. <span style="color:red">（有限乘积的绝对值？）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了一个实数$a_i$，则：
 >    $$
 >    \prod_{i=m}^{n}|a_i|=\left|\prod_{i=m}^{n}a_i\right|
 >    $$
 >
-> 6. <span style='color:red'>（有限乘积的比较判别法？）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了实数$a_i$和$b_i$。若对全部$m\leq i\leq n$有$0\leq a_i\leq b_i$，则：
+> 6. <span style="color:red">（有限乘积的比较判别法？）</span>设$m\leq n$都是整数，并且对任意的整数$m\leq i\leq n$都指定了实数$a_i$和$b_i$。若对全部$m\leq i\leq n$有$0\leq a_i\leq b_i$，则：
 >    $$
 >    \prod_{i=m}^{n}a_i\leq \prod_{i=m}^{n}b_i
 >    $$
@@ -503,65 +503,65 @@ coverHeight: 320px
 >
 > 下面是有限集上的乘积所成立的结论：
 >
-> 1. <span style='color:red'>（有限求和是定义明确的）</span>设$X$是含有$n$个元素的有限集（其中$n\in N$），并且设$f:X\to \mathbb R$是一个函数，并且假设有$g:\{i\in \mathbb N:1\leq i\leq n\}\to X$与$h:\{i\in \mathbb N：1\leq i\leq n\}\to X$都是双射，则：
+> 1. <span style="color:red">（有限求和是定义明确的）</span>设$X$是含有$n$个元素的有限集（其中$n\in N$），并且设$f:X\to \mathbb R$是一个函数，并且假设有$g:\{i\in \mathbb N:1\leq i\leq n\}\to X$与$h:\{i\in \mathbb N：1\leq i\leq n\}\to X$都是双射，则：
 >    $$
 >    \prod_{i=1}^{n}f(g(i))=\prod_{i=1}^{n}f(h(i))
 >    $$
 >
-> 2. <span style='color:red'>（空函数？）</span>如果$X$是空集，且$f:X\to \mathbb R$是一个函数（即$f$是空函数），则有：
+> 2. <span style="color:red">（空函数？）</span>如果$X$是空集，且$f:X\to \mathbb R$是一个函数（即$f$是空函数），则有：
 >    $$
 >    \prod_{x\in X}f(x)=1
 >    $$
 >
-> 3. <span style='color:red'>（单元素集？）</span>如果$X$是由单独的一个元素构成的集合（即$X=\{x_0\}$），则有：
+> 3. <span style="color:red">（单元素集？）</span>如果$X$是由单独的一个元素构成的集合（即$X=\{x_0\}$），则有：
 >    $$
 >    \prod_{x\in X}f(x)=f(x_0)
 >    $$
 >
-> 4. <span style='color:red'>（替换法I？）</span>若$X$是一个有限集，$f:X\to\mathbb R$是一个函数，并且$g:Y\to X$是一个双射，则：
+> 4. <span style="color:red">（替换法I？）</span>若$X$是一个有限集，$f:X\to\mathbb R$是一个函数，并且$g:Y\to X$是一个双射，则：
 >    $$
 >    \prod_{x\in X}f(x)=\prod_{y\in Y}f(g(y))
 >    $$
 >
-> 5. <span style='color:red'>（替换法II？）</span>设$n\leq m$都是整数，且$X$为集合$X=\{i\in\mathbb Z:n\leq i\leq m\}$，若是对每一个整数$i\in X$都指定了一个实数$a_i$，则：
+> 5. <span style="color:red">（替换法II？）</span>设$n\leq m$都是整数，且$X$为集合$X=\{i\in\mathbb Z:n\leq i\leq m\}$，若是对每一个整数$i\in X$都指定了一个实数$a_i$，则：
 >    $$
 >    \prod_{i=m}^{n}a_i=\prod_{i\in X}a_i
 >    $$
 >
-> 6. <span style='color:red'>（有限集求和加和？）</span>设$X$与$Y$是两个不相交的有限集（$X\cap Y=\varnothing$），且$f:X\cup Y\to \mathbb R$是一个函数，则：
+> 6. <span style="color:red">（有限集求和加和？）</span>设$X$与$Y$是两个不相交的有限集（$X\cap Y=\varnothing$），且$f:X\cup Y\to \mathbb R$是一个函数，则：
 >    $$
 >    \prod_{x\in X\cup Y}f(x)=\left(\prod_{x\in X}f(x)\right)\cdot\left(\prod_{y\in Y}f(y)\right)
 >    $$
 >
-> 7. <span style='color:red'>（非线性性质I？）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$和$g:X\to\mathbb R$都是函数，则：
+> 7. <span style="color:red">（非线性性质I？）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$和$g:X\to\mathbb R$都是函数，则：
 >    $$
 >    \prod_{x\in X}(f(x)g(x))=\prod_{x\in X}f(x)\cdot\prod_{x\in X}g(x)
 >    $$
 >
-> 8. <span style='color:red'>（非线性性质II？）</span>设$X$是一个有限集，设$f:X\to\mathbb R$是一个函数，并且设$c$是一个实数，则：
+> 8. <span style="color:red">（非线性性质II？）</span>设$X$是一个有限集，设$f:X\to\mathbb R$是一个函数，并且设$c$是一个实数，则：
 >    $$
 >    \prod_{x\in X}f(x)^c=\left(\prod_{x\in X}f(x)\right)^c
 >    $$
 >
-> 9. <span style='color:red'>（单调性？）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$和$g:X\to\mathbb R$是使得$0\leq f(x)\leq g(x)$对全部$x\in X$成立的两个函数，则：
+> 9. <span style="color:red">（单调性？）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$和$g:X\to\mathbb R$是使得$0\leq f(x)\leq g(x)$对全部$x\in X$成立的两个函数，则：
 >    $$
 >    \prod_{x\in X}f(x)\leq \prod_{x\in X}g(x)
 >    $$
 >
-> 10. <span style='color:red'>（绝对值？）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$是函数，则：
+> 10. <span style="color:red">（绝对值？）</span>设$X$是一个有限集，并且设$f:X\to\mathbb R$是函数，则：
 >     $$
 >     \prod_{x\in X}|f(x)|=\left|\prod_{x\in X}f(x)\right|
 >     $$
 >
 > 同样的，以上内容基于命题7.1.8，命题7.1.11，乘法运算律与序性质的变形，证明基本类似于习题7.1.2和课本，考虑篇幅原因在此就不列出了（全是复制粘贴的构造函数与引用引理7.1.4，要是有兴趣可以复制习题7.1.2的解答稍作修改）
 
-##### 7.1.4 利用递归定义来定义关于自然数$n$的<span style='color:red'>阶乘函数</span>$n!:\ 0!\ :=1$且$(n+1)!\ :=n!\times(n+1)$。如果$x$和$y$是实数，证明：<span style='color:red'>二项式公式</span>
+##### 7.1.4 利用递归定义来定义关于自然数$n$的<span style="color:red">阶乘函数</span>$n!:\ 0!\ :=1$且$(n+1)!\ :=n!\times(n+1)$。如果$x$和$y$是实数，证明：<span style="color:red">二项式公式</span>
 
 $$
 (x+y)^n={\sum_{j=0}^{n}}\frac{n!}{j!(n-j)!}x^jy^{n-j}
 $$
 
-##### 对所有自然数 $n$ 均成立<span style='color:blue'>（提示：对$n$使用归纳法）</span>
+##### 对所有自然数 $n$ 均成立<span style="color:blue">（提示：对$n$使用归纳法）</span>
 
 > 我们对$n$进行归纳：
 >
@@ -609,7 +609,7 @@ $$
 \lim_{n\to \infty}\sum_{x\in X}a_n(x)=\sum_{x\in X}\lim_{n\to \infty}a_n(x)
 $$
 
-##### <span style='color:blue'>（提示：对$X$的基数使用归纳法，并利用[定理6.1.19(a)](../Chap6/Sec1.md)）</span>于是我们总是可以交换有限和与收敛极限的次序。但对于无限和，情况将更加复制。参见[习题19.2.11](../Chap19/Sec2.md)
+##### <span style="color:blue">（提示：对$X$的基数使用归纳法，并利用[定理6.1.19(a)](../Chap6/Sec1.md)）</span>于是我们总是可以交换有限和与收敛极限的次序。但对于无限和，情况将更加复制。参见[习题19.2.11](../Chap19/Sec2.md)
 
 > 我们对$X$的基数做归纳，以证明这个结论对任意有限集合$X$都是成立的：
 >

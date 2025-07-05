@@ -14,28 +14,28 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（4.4.1 有理数确定的整数散布）</span>设$x$是一个有理数，则唯一存在一个整数$n$使得下式成立：
+1. <span style="color:red">（4.4.1 有理数确定的整数散布）</span>设$x$是一个有理数，则唯一存在一个整数$n$使得下式成立：
    $$
    n\leq x<n+1
    $$
 
    特别地，存在自然数$N$使$N>x$。同时，有时称$n$为$x$的**整数部分**，并记作$n=\lfloor x\rfloor$。
 
-2. <span style='color:red'>（4.4.3 由有理数确定的有理数散布）</span>如果$x$与$y$是两个有理数，并且满足$x<y$，则存在第三个有理数$z$使得$x<z<y$。<span style='color:blue'>（即任意两个有理数间总是存在一个有理数）</span>
+2. <span style="color:red">（4.4.3 由有理数确定的有理数散布）</span>如果$x$与$y$是两个有理数，并且满足$x<y$，则存在第三个有理数$z$使得$x<z<y$。<span style="color:blue">（即任意两个有理数间总是存在一个有理数）</span>
 
    > 注：尽管有理数存在这样的稠密性，但是有理数依然是不完备的，在有理数之间依旧存在无数的“空隙”或者说空洞，例如下面两个例子。
 
-3. <span style='color:red'>（4.4.4 $\sqrt{2}$不是有理数）</span>不存在有理数$x$，使得$x^2=2$。
+3. <span style="color:red">（4.4.4 $\sqrt{2}$不是有理数）</span>不存在有理数$x$，使得$x^2=2$。
 
-4. <span style='color:red'>（4.4.5）</span>对任意**有理数**$\varepsilon>0$，存在一个非负有理数$x$使得$x^2<2<(x+\varepsilon)^2$。
+4. <span style="color:red">（4.4.5）</span>对任意**有理数**$\varepsilon>0$，存在一个非负有理数$x$使得$x^2<2<(x+\varepsilon)^2$。
 
-   <span style='color:blue'>（注：3、4在某种意义上指明稠密有理数中空隙的存在，也为实数的存在留下空间，隐隐指出了实数定义的方向。（尽管这样是有缺漏且不完备的））</span>
+   <span style="color:blue">（注：3、4在某种意义上指明稠密有理数中空隙的存在，也为实数的存在留下空间，隐隐指出了实数定义的方向。（尽管这样是有缺漏且不完备的））</span>
 
 ---
 
 ## 课后习题
 
-##### 4.4.1 证明命题4.4.1<span style='color:blue'>（提示：利用[命题2.3.9](../Chap2/Sec3.md)）</span>
+##### 4.4.1 证明命题4.4.1<span style="color:blue">（提示：利用[命题2.3.9](../Chap2/Sec3.md)）</span>
 
 > 对任意正有理数或零$x=\displaystyle\frac{a}{b}(a,b\in\mathbb N,b\ne 0)$，于是根据命题2.3.9欧几里得算法，可以得到唯一的一组$(m,r)$使得$a=mb+r(0\leq r<b)$，于是可以得到$\displaystyle x=\frac{a}{b}=m+\frac{r}{b}(0\leq\frac{r}{b}<1)$，此时整数$m$满足结论$m\leq x<m+1$。
 >
@@ -51,8 +51,8 @@ coverHeight: 320px
 >
 > 这样综上可以得到对任意有理数$x$，唯一存在一个整数$n$使得$n\leq x<n+1$成立。
 
-##### 4.4.2 定义：数列$a_0$，$a_1$，$a_2$，$...$<span style='color:blue'>（可以是自然数列、整数列、有理数列或实数列）</span>被称为是<span style='color:red'>无穷递降</span>的，当且仅当对任意的自然数$n$都有如$a_n>a_{n+1}$<span style='color:blue'>（即$a_0>a_1>a_2>...$)</span>
-###### (a) 证明无穷递降原理： 不存在无穷递降的自然数列。<span style='color:blue'>（ 提示：为了推出矛盾，假设能够找到一个自然数列是无穷递降的。 因为所有的$a_n$都是自然数， 所以$a_n\geq0$对一切$n$都成立。 那么利用归纳法来证明对任意的$k\in\mathbb N$和任意的$n\in \mathbb N$都有$a_n> k$成立从而得到矛盾。）</span>
+##### 4.4.2 定义：数列$a_0$，$a_1$，$a_2$，$...$<span style="color:blue">（可以是自然数列、整数列、有理数列或实数列）</span>被称为是<span style="color:red">无穷递降</span>的，当且仅当对任意的自然数$n$都有如$a_n>a_{n+1}$<span style="color:blue">（即$a_0>a_1>a_2>...$)</span>
+###### (a) 证明无穷递降原理： 不存在无穷递降的自然数列。<span style="color:blue">（ 提示：为了推出矛盾，假设能够找到一个自然数列是无穷递降的。 因为所有的$a_n$都是自然数， 所以$a_n\geq0$对一切$n$都成立。 那么利用归纳法来证明对任意的$k\in\mathbb N$和任意的$n\in \mathbb N$都有$a_n> k$成立从而得到矛盾。）</span>
 
 > 假设存在一个自然数列$a_0$，$a_1$，$a_2$，$...$是无穷递降的，我们来证明对任意的$k\in\mathbb N$和任意的$n\in \mathbb N$都有$a_n> k$成立。
 >

@@ -14,17 +14,17 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（9.7.1 介值定理）</span>设$a<b$都是实数，$f:[a,b]\to\mathbb R$是$[a,b]$上的连续函数，并且设$y$是介于$f(a)$与$f(b)$之间的一个实数<span style='color:blue'>（即要么有$f(a)\leq y\leq f(b)$要么$f(b)\leq y\leq f(a)$）</span>，那么存在实数$c\in[a,b]$使得$f(c)=y$。
+1. <span style="color:red">（9.7.1 介值定理）</span>设$a<b$都是实数，$f:[a,b]\to\mathbb R$是$[a,b]$上的连续函数，并且设$y$是介于$f(a)$与$f(b)$之间的一个实数<span style="color:blue">（即要么有$f(a)\leq y\leq f(b)$要么$f(b)\leq y\leq f(a)$）</span>，那么存在实数$c\in[a,b]$使得$f(c)=y$。
 
-   <span style='color:blue'>（证明已收录至[额外注释：介值定理证明](..\..\额外注释\md\额外注释.md)；翻译版本中本节的名字是中值定理，但是考虑到这与三大微分中值定理的名字重合，且原书中用词：The intermediate value theorem，个人认为这翻译成介值定理会更好，因此在此笔记中，中值定理将只指代三大微分中值定理）</span>
+   <span style="color:blue">（证明已收录至[额外注释：介值定理证明](../Extra.md)；翻译版本中本节的名字是中值定理，但是考虑到这与三大微分中值定理的名字重合，且原书中用词：The intermediate value theorem，个人认为这翻译成介值定理会更好，因此在此笔记中，中值定理将只指代三大微分中值定理）</span>
 
-1. <span style='color:red'>（9.7.4 推论 连续函数的象）</span>设$a<b$都是实数，$f:[a,b]\to\mathbb R$是$[a,b]$上的连续函数。设$\displaystyle M:=\sup_{x\in[a,b]}f(x)$与$\displaystyle m:=\inf_{x\in[a,b]}f(x)$分别是$f$的最大值与最小值，并且设$y$是介于$m$与$M$之间的一个实数<span style='color:blue'>（即$m\leq y\leq M$）</span>。那么存在一个$c\in[a,b]$使得$f(c)=y$，更进一步地，我们有$f([a,b])=[m,M]$。
+1. <span style="color:red">（9.7.4 推论 连续函数的象）</span>设$a<b$都是实数，$f:[a,b]\to\mathbb R$是$[a,b]$上的连续函数。设$\displaystyle M:=\sup_{x\in[a,b]}f(x)$与$\displaystyle m:=\inf_{x\in[a,b]}f(x)$分别是$f$的最大值与最小值，并且设$y$是介于$m$与$M$之间的一个实数<span style="color:blue">（即$m\leq y\leq M$）</span>。那么存在一个$c\in[a,b]$使得$f(c)=y$，更进一步地，我们有$f([a,b])=[m,M]$。
 
 ---
 
 ## 课后习题
 
-##### 9.7.1 证明推论9.7.4<span style='color:blue'>（提示：除了介值定理之外，你可能还要用到[习题9.4.6](../Chap9/Sec4.md)）</span>
+##### 9.7.1 证明推论9.7.4<span style="color:blue">（提示：除了介值定理之外，你可能还要用到[习题9.4.6](../Chap9/Sec4.md)）</span>
 
 > 根据最大值原理（命题9.6.7），我们知道存在$c,d\in[a,b]$有$f(c)=M$与$f(d)=m$成立，于是我们作限制函数有$f|_{[c,d]}$，根据习题9.4.6的结论有$f|_{[c,d]}$也是连续的，于是运用介值定理，我们有：
 >
@@ -40,7 +40,7 @@ coverHeight: 320px
 > $$
 > 于是根据集合相等的定义即有$f([a,b])=[m,M]$。
 
-##### 9.7.2 设$f:[0,1]\to[0,1]$是一个连续函数。证明：在$[0,1]$中存在一个实数$x$使得$f(x)=x$<span style='color:blue'>（提示：对函数$f(x)-x$使用介值定理）</span>，这个点$x$被称为$f$的<span style='color:red'>不动点</span>，这个结果是[不动点定理](https://zh.wikipedia.org/wiki/%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86)的一个基本例子，它在一定类型的分析理论里有重要的作用
+##### 9.7.2 设$f:[0,1]\to[0,1]$是一个连续函数。证明：在$[0,1]$中存在一个实数$x$使得$f(x)=x$<span style="color:blue">（提示：对函数$f(x)-x$使用介值定理）</span>，这个点$x$被称为$f$的<span style="color:red">不动点</span>，这个结果是[不动点定理](https://zh.wikipedia.org/wiki/%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86)的一个基本例子，它在一定类型的分析理论里有重要的作用
 
 > 考虑令函数$g:[0,1]\to\mathbb R$有$g(x):=f(x)-x$。由于$g(0)=f(0)-0=f(0)$，从而根据$f$的定义应当有$g(0)\in[0,1]$；又由于$g(1)=f(1)-1$，从而根据$f$的定义应当有$g(1)\in[-1,0]$。综合可得：
 > $$

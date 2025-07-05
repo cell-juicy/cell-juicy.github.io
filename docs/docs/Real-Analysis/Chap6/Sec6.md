@@ -14,31 +14,31 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（6.6.1 子序列）</span>设有实数序列$(a_n)_{n=0}^\infty$和$(b_n)_{n=0}^\infty$，称有$(b_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的一个子序列，当且仅当存在一个严格递增<span style='color:blue'>（即对$\forall n\in \mathbb N$，均有$f(n+1)>f(n)$）</span>的函数$f:\mathbb N\to\mathbb N$使得有：
+1. <span style="color:red">（6.6.1 子序列）</span>设有实数序列$(a_n)_{n=0}^\infty$和$(b_n)_{n=0}^\infty$，称有$(b_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的一个子序列，当且仅当存在一个严格递增<span style="color:blue">（即对$\forall n\in \mathbb N$，均有$f(n+1)>f(n)$）</span>的函数$f:\mathbb N\to\mathbb N$使得有：
    $$
    \forall n\in\mathbb N,b_n=a_{f(n)}
    $$
-   <span style='color:blue'>（注：定义这里不对$f$做过多的假设，尽管它必然是一个单射）</span>
+   <span style="color:blue">（注：定义这里不对$f$做过多的假设，尽管它必然是一个单射）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（6.6.4 自反与传递？）</span>设$(a_n)_{n=0}^\infty$与$(b_n)_{n=0}^\infty$，$(c_n)_{n=0}^\infty$是实数序列，那么$(a_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的子序列。另外若有$(b_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的子序列，$(c_n)_{n=0}^\infty$是$(b_n)_{n=0}^\infty$的子序列，那么$(c_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的子序列。
+1. <span style="color:red">（6.6.4 自反与传递？）</span>设$(a_n)_{n=0}^\infty$与$(b_n)_{n=0}^\infty$，$(c_n)_{n=0}^\infty$是实数序列，那么$(a_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的子序列。另外若有$(b_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的子序列，$(c_n)_{n=0}^\infty$是$(b_n)_{n=0}^\infty$的子序列，那么$(c_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的子序列。
 
-2. <span style='color:red'>（6.6.5 与极限相关联的子序列）</span>假设有$(a_n)_{n=0}^\infty$是一个实数序列，并设$L$是一个实数，则下述两个命题在逻辑上是等价的：
+2. <span style="color:red">（6.6.5 与极限相关联的子序列）</span>假设有$(a_n)_{n=0}^\infty$是一个实数序列，并设$L$是一个实数，则下述两个命题在逻辑上是等价的：
 
    > * 序列$(a_n)_{n=0}^\infty$收敛于$L$。
    > * $(a_n)_{n=0}^\infty$的每一个子序列都收敛于$L$。
 
-3. <span style='color:red'>（6.6.6 与极限点相关的子序列）</span>假设有$(a_n)_{n=0}^\infty$是一个实数序列，并设$L$是一个实数，则下述两个命题在逻辑上是等价的：
+3. <span style="color:red">（6.6.6 与极限点相关的子序列）</span>假设有$(a_n)_{n=0}^\infty$是一个实数序列，并设$L$是一个实数，则下述两个命题在逻辑上是等价的：
 
    > * $L$是$(a_n)_{n=0}^\infty$的极限点。
    > * 存在$(a_n)_{n=0}^\infty$的一个子序列收敛于$L$。
 
-4. <span style='color:red'>（6.6.8 波尔查诺-魏尔斯特拉斯定理）</span>设$(a_n)_{n=0}^\infty$是一个有界序列<span style='color:blue'>（即存在一个实数$M>0$使得$|a_n|\leq M$对全体$n\in\mathbb N$成立）</span>，那么$(a_n)_{n=0}^\infty$至少有一个收敛的子序列。
+4. <span style="color:red">（6.6.8 波尔查诺-魏尔斯特拉斯定理）</span>设$(a_n)_{n=0}^\infty$是一个有界序列<span style="color:blue">（即存在一个实数$M>0$使得$|a_n|\leq M$对全体$n\in\mathbb N$成立）</span>，那么$(a_n)_{n=0}^\infty$至少有一个收敛的子序列。
 
-   <span style='color:blue'>（注：波尔查诺-魏尔斯特拉斯定理说明了如果一个序列是有界的，那么它**最终将收敛于某些地方**，**无法散布到广阔的空间中**，也**无法阻止自己捕获极限点**）</span>
+   <span style="color:blue">（注：波尔查诺-魏尔斯特拉斯定理说明了如果一个序列是有界的，那么它**最终将收敛于某些地方**，**无法散布到广阔的空间中**，也**无法阻止自己捕获极限点**）</span>
 
 ---
 
@@ -68,7 +68,7 @@ coverHeight: 320px
 
 > 定义序列$(a_n)_{n=0}^\infty$与$(b_n)_{n=0}^\infty$分别有$a_n=n$与$b_n=2n$，取函数$f:\mathbb N\to\mathbb N$定义为$f(x)=2x$。显然$f$是严格递增的，并且对任意$n\in\mathbb N$，都有$b_n=a_{f(n)}$成立。于是根据定义6.6.1此时$(b_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的子序列。
 
-##### 6.6.3 设$(a_n)_{n=0}^\infty$是一个无界序列，证明：$(a_n)_{n=0}^\infty$有一个子序列$(b_n)_{n=0}^\infty$使得$\displaystyle\lim_{n\to\infty}\frac{1}{b_n}$存在且等于$0$<span style='color:blue'>（提示：对任意自然数$j$，递归地引入量$n_j:=\min\{n\in\mathbb N:\left|a_n\right|\geq j;n>n_{j-1}\}$（当$j=0$时，忽略条件$n>n_{j-1}$），先解释为什么集合$\{n\in\mathbb N:\left|a_n\right|\geq j;n>n_{j-1}\}$是非空的，然后令$b_j:=a_{n_{j}}$）</span>
+##### 6.6.3 设$(a_n)_{n=0}^\infty$是一个无界序列，证明：$(a_n)_{n=0}^\infty$有一个子序列$(b_n)_{n=0}^\infty$使得$\displaystyle\lim_{n\to\infty}\frac{1}{b_n}$存在且等于$0$<span style="color:blue">（提示：对任意自然数$j$，递归地引入量$n_j:=\min\{n\in\mathbb N:\left|a_n\right|\geq j;n>n_{j-1}\}$（当$j=0$时，忽略条件$n>n_{j-1}$），先解释为什么集合$\{n\in\mathbb N:\left|a_n\right|\geq j;n>n_{j-1}\}$是非空的，然后令$b_j:=a_{n_{j}}$）</span>
 
 > 首先我们需要证明一个辅助结论：
 >
@@ -98,7 +98,7 @@ coverHeight: 320px
 > $$
 > 也即存在整数$N-1$使得对任意$n\geq N-1$，都有$\displaystyle\left|\frac{1}{b_{n}}-0\right|\leq\varepsilon$，于是根据序列极限定义，此时有$\displaystyle\lim_{n\to\infty}\frac{1}{b_n}=0$，于是结论得证。
 
-##### 6.6.4 证明命题6.6.5<span style='color:blue'>（注意，两个蕴涵关系中有一个的证明非常简短）</span>
+##### 6.6.4 证明命题6.6.5<span style="color:blue">（注意，两个蕴涵关系中有一个的证明非常简短）</span>
 
 > * 若序列$(a_n)_{n=0}^\infty$收敛于$L$，则$(a_n)_{n=0}^\infty$的每一个子序列都收敛于$L$。
 >
@@ -130,7 +130,7 @@ coverHeight: 320px
 >
 > $(a_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$自己的子序列，从而根据$(a_n)_{n=0}^\infty$任意一个子序列收敛于$L$，可得$(a_n)_{n=0}^\infty$收敛于$L$。
 
-##### 6.6.5 证明命题6.6.6<span style='color:blue'>（提示：为了证明(a)蕴涵着(b)，对任意自然数$j$定义数$n_j:=\min\{n>n_{j-1}:\left|a_n-L\right|\leq \frac{1}{j}\}$，其中令$n_0:=0$；解释为什么集合$\{n>n_{j-1}:\left|a_n-L\right|\leq \frac{1}{j}\}$是非空的，然后考虑序列$\left(a_{n_j}\right)^{\infty}_{j=0}$）</span>
+##### 6.6.5 证明命题6.6.6<span style="color:blue">（提示：为了证明(a)蕴涵着(b)，对任意自然数$j$定义数$n_j:=\min\{n>n_{j-1}:\left|a_n-L\right|\leq \frac{1}{j}\}$，其中令$n_0:=0$；解释为什么集合$\{n>n_{j-1}:\left|a_n-L\right|\leq \frac{1}{j}\}$是非空的，然后考虑序列$\left(a_{n_j}\right)^{\infty}_{j=0}$）</span>
 
 > * 若$L$是$(a_n)_{n=0}^\infty$的极限点，则存在$(a_n)_{n=0}^\infty$的一个子序列收敛于$L$。
 >

@@ -15,24 +15,24 @@ coverHeight: 320px
 
 ### 绝对值
 
-1. <span style='color:red'>（4.3.1 绝对值）</span>如果$x$是一个有理数，则其**绝对值**$|x|$有如下定义：
+1. <span style="color:red">（4.3.1 绝对值）</span>如果$x$是一个有理数，则其**绝对值**$|x|$有如下定义：
    
    > * 若$x$是正的，则$|x|:=x$。
    > * 若$x$是负的，则$|x|:=-x$。
    > * 若$x$是$0$，则$|x|:=0$。
    
-2. <span style='color:red'>（4.3.2 距离）</span>设$x$与$y$为有理数，则称量$|x-y|$为$x$与$y$之间的距离，有时候记作$d(x,y)$，于是有$d(x,y):=|x-y|$。如$d(3,5)=2$。
+2. <span style="color:red">（4.3.2 距离）</span>设$x$与$y$为有理数，则称量$|x-y|$为$x$与$y$之间的距离，有时候记作$d(x,y)$，于是有$d(x,y):=|x-y|$。如$d(3,5)=2$。
 
-3. <span style='color:red'>（4.3.4 $\varepsilon$-接近性）</span>设$\varepsilon＞0$是一个有理数，并且设$x$，$y$为有理数，并且称$x$，$y$有$x$是$\varepsilon$-接近于$y$的，当且仅当$d(x,y)\leq\varepsilon$。
+3. <span style="color:red">（4.3.4 $\varepsilon$-接近性）</span>设$\varepsilon＞0$是一个有理数，并且设$x$，$y$为有理数，并且称$x$，$y$有$x$是$\varepsilon$-接近于$y$的，当且仅当$d(x,y)\leq\varepsilon$。
 
 ---
 
 ### 指数运算
 
-1. <span style='color:red'>（4.3.9 自然数次幂的指数运算）</span>设$x$是一个有理数，为把$x$升到$0$次幂，定义$x^0:=1$，特别地，定义$0^0=1$，现归纳性地假设对某自然数$n$已有$x^n$的定义，于是定义$x^{(n+1)}:=x^n\times x$。
-   <span style='color:blue'>（比较此处定义与[2.3.11处指数定义](../Chap2/Sec3.md)的不同）</span>
+1. <span style="color:red">（4.3.9 自然数次幂的指数运算）</span>设$x$是一个有理数，为把$x$升到$0$次幂，定义$x^0:=1$，特别地，定义$0^0=1$，现归纳性地假设对某自然数$n$已有$x^n$的定义，于是定义$x^{(n+1)}:=x^n\times x$。
+   <span style="color:blue">（比较此处定义与[2.3.11处指数定义](../Chap2/Sec3.md)的不同）</span>
 
-2. <span style='color:red'>（4.3.11 负整数次幂的指数运算）</span>设$x$是一个不为$0$的有理数，则对任意负整数$-n$，定义$x^{-n}:=1/(x^n)$。
+2. <span style="color:red">（4.3.11 负整数次幂的指数运算）</span>设$x$是一个不为$0$的有理数，则对任意负整数$-n$，定义$x^{-n}:=1/(x^n)$。
 
 ---
 
@@ -40,17 +40,17 @@ coverHeight: 320px
 
 ### 绝对值
 
-1. <span style='color:red'>（4.3.3 绝对值与距离的基本性质）</span>设$x$，$y$，$z$为有理数：
+1. <span style="color:red">（4.3.3 绝对值与距离的基本性质）</span>设$x$，$y$，$z$为有理数：
 
-   > * <span style='color:red'>（绝对值的非退化性）</span>$|x|\geq0$，另外$|x|=0$当且仅当$x$为$0$。
-   > * <span style='color:red'>（绝对值的三角不等式）</span>$|x+y|\leq|x|+|y|$。
-   > * <span style='color:red'>（不知道是啥）</span>$-y\leq x\leq y$，当且仅当$y\geq|x|$，特别地$-x\leq|x|\leq x$。
-   > * <span style='color:red'>（绝对值的可乘性）</span>$|xy|=|x|\times|y|$，特别地$|-x|=|x|$。
-   > * <span style='color:red'>（距离的非退化性）</span>$d(x,y)\geq0$，$d(x,y)=0$当且仅当$x=y$。
-   > * <span style='color:red'>（距离的对称性）</span>$d(x,y)=d(y,x)$。
-   > * <span style='color:red'>（距离的三角不等式）</span>$d(x,z)\leq d(x,y)+d(y,z)$。
+   > * <span style="color:red">（绝对值的非退化性）</span>$|x|\geq0$，另外$|x|=0$当且仅当$x$为$0$。
+   > * <span style="color:red">（绝对值的三角不等式）</span>$|x+y|\leq|x|+|y|$。
+   > * <span style="color:red">（不知道是啥）</span>$-y\leq x\leq y$，当且仅当$y\geq|x|$，特别地$-x\leq|x|\leq x$。
+   > * <span style="color:red">（绝对值的可乘性）</span>$|xy|=|x|\times|y|$，特别地$|-x|=|x|$。
+   > * <span style="color:red">（距离的非退化性）</span>$d(x,y)\geq0$，$d(x,y)=0$当且仅当$x=y$。
+   > * <span style="color:red">（距离的对称性）</span>$d(x,y)=d(y,x)$。
+   > * <span style="color:red">（距离的三角不等式）</span>$d(x,z)\leq d(x,y)+d(y,z)$。
 
-2. <span style='color:red'>（4.3.7 $\varepsilon$-接近性的基本性质?）</span>设$x$，$y$，$z$，$w$为有理数：
+2. <span style="color:red">（4.3.7 $\varepsilon$-接近性的基本性质?）</span>设$x$，$y$，$z$，$w$为有理数：
 
    > * 如果$x=y$，则对任意$\varepsilon>0$，$x$都是$\varepsilon$-接近于$y$的，两者互为充要条件。
    > * 设$\varepsilon>0$，若$x$是$\varepsilon$-接近于$y$的，则$y$也是$\varepsilon$-接近于$x$的。
@@ -64,14 +64,14 @@ coverHeight: 320px
 ---
 
 ### 指数运算
-1. <span style='color:red'>（4.3.10 指数的运算性质I）</span>设$x$与$y$为非零有理数，并设$n$和$m$为**自然数**，则有：
+1. <span style="color:red">（4.3.10 指数的运算性质I）</span>设$x$与$y$为非零有理数，并设$n$和$m$为**自然数**，则有：
 
    > * $x^n\times x^m=x^{(n+m)}$，$(x^n)^m=x^{(nm)}$，$(xy)^n=x^ny^n$。
    > * 若$x\geq y\geq0$，则有$x^n\geq y^n\geq0$，若$x>y\geq0$且$n>0$时，则有$x^n>y^n≥0$。
    > * 若$n>0$，则$x^n=0$当且仅当$x=0$。
    > * 有$|x^n|=|x|^n$。
 
-2. <span style='color:red'>（4.3.12 指数的运算性质II）</span>设$x$与$y$为非零有理数，并设$n$和$m$为**整数**，则有：
+2. <span style="color:red">（4.3.12 指数的运算性质II）</span>设$x$与$y$为非零有理数，并设$n$和$m$为**整数**，则有：
 
    > * $x^n\times x^m=x^{(n+m)}$，$(x^n)^m=x^{(nm)}$，$(xy)^n=x^ny^n$。
    > * 若$x\geq y\geq0$，则当$n$正数时有$x^n\geq y^n>0$，当$n$负数时有$0<x^n\leq y^n$。
@@ -83,7 +83,7 @@ coverHeight: 320px
 
 ## 课后习题
 
-##### 4.3.1 证明命题4.3.3<span style='color:blue'>（提示：尽管所有的陈述都可以通过分成若干种情形的方法来证明，比如可以分成：$x$是正的、 负的或者零这些情形。但是命题中许多陈述可以不必这样冗烦地分情况来证明。 例如， 我们可以利用命题中前面的陈述来证明后面的陈述。）</span>
+##### 4.3.1 证明命题4.3.3<span style="color:blue">（提示：尽管所有的陈述都可以通过分成若干种情形的方法来证明，比如可以分成：$x$是正的、 负的或者零这些情形。但是命题中许多陈述可以不必这样冗烦地分情况来证明。 例如， 我们可以利用命题中前面的陈述来证明后面的陈述。）</span>
 
 > * $|x|\geq0$，另外$|x|=0$当且仅当$x$为$0$。
 >
@@ -175,7 +175,7 @@ coverHeight: 320px
 >
 > 不妨令有$x-y=c$，$y-z=d$，于是根据前第二条结论可直接得出。
 
-##### 4.3.2 证明命题4.3.7中剩下的陈述<span style='color:blue'>（即除去教材已有证明的最后一条）</span>
+##### 4.3.2 证明命题4.3.7中剩下的陈述<span style="color:blue">（即除去教材已有证明的最后一条）</span>
 
 > * 如果$x=y$，则对任意$\varepsilon>0$，$x$都是$\varepsilon$-接近于$y$的，两者互为充要条件。
 >
@@ -227,7 +227,7 @@ coverHeight: 320px
 >
 > 根据定义，若$x$，$y$是$\varepsilon$-接近的，于是$d(x,y)\leq\varepsilon$，$d(xz,yz)=|xz-yz|=|z||x-y|\leq|z|\varepsilon$，于是$xz$，$yz$是$\varepsilon|z|$-接近的。
 
-##### 4.3.3 证明命题4.3.10<span style='color:blue'>（提示：利用归纳法）</span>
+##### 4.3.3 证明命题4.3.10<span style="color:blue">（提示：利用归纳法）</span>
 
 > * $x^n\times x^m=x^{(n+m)}$，$(x^n)^m=x^{(nm)}$，$(xy)^n=x^ny^n$。
 >
@@ -299,7 +299,7 @@ coverHeight: 320px
 >
 > 于是综上结论得证。
 
-##### 4.3.4 证明命题4.3.12<span style='color:blue'>（提示：本题不适合使用归纳法，而是利用命题4.3.10）</span>
+##### 4.3.4 证明命题4.3.12<span style="color:blue">（提示：本题不适合使用归纳法，而是利用命题4.3.10）</span>
 
 > 先证明一个引理，方便接下来的论证：
 >
@@ -361,7 +361,7 @@ coverHeight: 320px
 >
 > $n$是正数的结论命题4.3.10已经有证明，当$n$是负数时则令$\displaystyle x'=\frac{1}{x}$，于是原命题等价于$|{x'}^{(-n)}|=|{x'}|^{(-n)}$，回到了正数时的结论。
 
-##### 4.3.5 证明：$2^N\geq N$对一切正整数$N$均成立<span style='color:blue'>（提示：使用归纳法）</span>
+##### 4.3.5 证明：$2^N\geq N$对一切正整数$N$均成立<span style="color:blue">（提示：使用归纳法）</span>
 
 > 对$N$进行归纳：
 >

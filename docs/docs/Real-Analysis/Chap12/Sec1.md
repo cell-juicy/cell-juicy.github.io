@@ -14,36 +14,36 @@ coverHeight: 320px
 
 ## 摘录
 
-1. <span style='color:red'>（距离函数）</span>在[定义6.1.5](../Chap6/Sec1.md)中我们定义了实数序列收敛于某个实数的概念，从直观上看序列$(x_n)_{n=m}^{\infty}$收敛于$x$，那么序列中的元素$x_n$最终会以某种方式无限趋近于$x$。若定义两个实数$x$，$y$的**距离函数**$d(x,y):=|x-y|$，则我们可以将序列的收敛表述为$d(x,x_n)$收敛于$0$<span style='color:blue'>（也就是引理12.1.1的内容）</span>。
+1. <span style="color:red">（距离函数）</span>在[定义6.1.5](../Chap6/Sec1.md)中我们定义了实数序列收敛于某个实数的概念，从直观上看序列$(x_n)_{n=m}^{\infty}$收敛于$x$，那么序列中的元素$x_n$最终会以某种方式无限趋近于$x$。若定义两个实数$x$，$y$的**距离函数**$d(x,y):=|x-y|$，则我们可以将序列的收敛表述为$d(x,x_n)$收敛于$0$<span style="color:blue">（也就是引理12.1.1的内容）</span>。
 
-2. <span style='color:red'>（空间）</span>**空间**是指由某种特定类型的对象所构成的集合，例如全体实数的空间，全体$3\times 3$矩阵的空间。从数学角度来说，空间和集合之间没特别大的区别，但是一般来说空间会包含更多的结构，例如实数空间包含了加法，乘法这样的运算，但普通的集合并没有这类的性质。<span style='color:blue'>（也就是说，空间是具有一定特殊性质或者额外结构的集合）</span>
+2. <span style="color:red">（空间）</span>**空间**是指由某种特定类型的对象所构成的集合，例如全体实数的空间，全体$3\times 3$矩阵的空间。从数学角度来说，空间和集合之间没特别大的区别，但是一般来说空间会包含更多的结构，例如实数空间包含了加法，乘法这样的运算，但普通的集合并没有这类的性质。<span style="color:blue">（也就是说，空间是具有一定特殊性质或者额外结构的集合）</span>
 
-3. <span style='color:red'>（序列收敛的拓展）</span>考虑拓展“序列的收敛”这一定义，我们希望不止能对实数序列取极限，还能对复数，向量，矩阵，函数甚至序列的序列取极限。当然，我们可以在每次研究新的对象的时候重新定义一次收敛的概念，但是这种方法显然不仅重复性高而且十分枯燥。另一种更为高效的方法是抽象地定义更一般化的空间——它包含了实数，复数，向量空间等标准空间，然后统一为这些空间定义收敛的概念。
+3. <span style="color:red">（序列收敛的拓展）</span>考虑拓展“序列的收敛”这一定义，我们希望不止能对实数序列取极限，还能对复数，向量，矩阵，函数甚至序列的序列取极限。当然，我们可以在每次研究新的对象的时候重新定义一次收敛的概念，但是这种方法显然不仅重复性高而且十分枯燥。另一种更为高效的方法是抽象地定义更一般化的空间——它包含了实数，复数，向量空间等标准空间，然后统一为这些空间定义收敛的概念。
 
    ​    实际上，存在两种非常有用的空间，第一种是我们将要研究的**度量空间**，另一种是更为一般的**拓扑空间**。虽然拓扑空间非常重要，但是本书只在[13.5节](../Chap13/Sec5.md)中简单介绍。
 
-   <span style='color:blue'>（所以为什么这类作为简单介绍的章节习题都这么多？）</span>
+   <span style="color:blue">（所以为什么这类作为简单介绍的章节习题都这么多？）</span>
 
-4. <span style='color:red'>（关于例子）</span>这一节中有大量的内容作为例子给出，根据我个人的笔记习惯不会将例子中的内容正式开一个栏目<span style='color:blue'>（如同我在[额外注释](..\..\额外注释\md\额外注释.md)中所说）</span>而是放在蓝字注释中，但是这一部分的例子内容显然不适合全部放在注释中（毫无疑问这样也会影响观感和阅读），因此对于我认为有用的例子在本节中我会自行总结放到定义栏内，对应的，我会在其编号中添加“例”以区分它们与书中的正式定义。
+4. <span style="color:red">（关于例子）</span>这一节中有大量的内容作为例子给出，根据我个人的笔记习惯不会将例子中的内容正式开一个栏目<span style="color:blue">（如同我在[额外注释](../Extra.md)中所说）</span>而是放在蓝字注释中，但是这一部分的例子内容显然不适合全部放在注释中（毫无疑问这样也会影响观感和阅读），因此对于我认为有用的例子在本节中我会自行总结放到定义栏内，对应的，我会在其编号中添加“例”以区分它们与书中的正式定义。
 
 ---
 
 ## 定义
 
-1. <span style='color:red'>（12.1.2 度量空间）</span>**度量空间**$(X,d)$是一个空间$X$，我们称$X$中的元素为**点**，并且$X$包含一个**距离函数**（也称为**度量**）$d:X\times X\to[0,+\infty)$，它对$X\times X$中的每一对点$(x,y)$都给出了一个对应非负实数$d(x,y)\geq 0$。此外，度量函数需要满足下面的四个公理：
+1. <span style="color:red">（12.1.2 度量空间）</span>**度量空间**$(X,d)$是一个空间$X$，我们称$X$中的元素为**点**，并且$X$包含一个**距离函数**（也称为**度量**）$d:X\times X\to[0,+\infty)$，它对$X\times X$中的每一对点$(x,y)$都给出了一个对应非负实数$d(x,y)\geq 0$。此外，度量函数需要满足下面的四个公理：
 
    > 1. 对任意$x\in X$，$d(x,x)=0$。
-   > 2. <span style='color:red'>（正性）</span>对任意两个**不同的**$x$，$y\in X$，我们都有$d(x,y)>0$。
-   > 3. <span style='color:red'>（对称性）</span>对任意的$x$，$y\in X$，我们有$d(x,y)=d(y,x)$。
-   > 4. <span style='color:red'>（三角不等式）</span>对任意的$x$，$y$，$z\in X$，我们有$d(x,z)\leq d(x,y)+d(y,z)$。
+   > 2. <span style="color:red">（正性）</span>对任意两个**不同的**$x$，$y\in X$，我们都有$d(x,y)>0$。
+   > 3. <span style="color:red">（对称性）</span>对任意的$x$，$y\in X$，我们有$d(x,y)=d(y,x)$。
+   > 4. <span style="color:red">（三角不等式）</span>对任意的$x$，$y$，$z\in X$，我们有$d(x,z)\leq d(x,y)+d(y,z)$。
 
-   在一些情况下，我们能清楚的知道度量$d$是什么，因此此时可以将$(X,d)$缩写为$X$<span style='color:blue'>（就像对偏序集做的那样）</span>。
+   在一些情况下，我们能清楚的知道度量$d$是什么，因此此时可以将$(X,d)$缩写为$X$<span style="color:blue">（就像对偏序集做的那样）</span>。
 
-   <span style='color:blue'>（注：上面的条件(a)与(b)也可以合并为同一条：对任意的$x$，$y\in X$有$d(x,y)=0$当且仅当$x=y$；关于度量空间一个很简单的例子就是实数集$\mathbb R$与定义为$d(x,y):=|x-y|$的度量函数$d:\mathbb R\times\mathbb R\to[0,+\infty)$所组成的序对$(\mathbb R,d)$是一个度量空间，我们一般称这个$d$为$\mathbb R$上的**标准度量**，如果没有特殊说明，那么只要提到度量空间$\mathbb R$都是指标准度量$d$）</span>
+   <span style="color:blue">（注：上面的条件(a)与(b)也可以合并为同一条：对任意的$x$，$y\in X$有$d(x,y)=0$当且仅当$x=y$；关于度量空间一个很简单的例子就是实数集$\mathbb R$与定义为$d(x,y):=|x-y|$的度量函数$d:\mathbb R\times\mathbb R\to[0,+\infty)$所组成的序对$(\mathbb R,d)$是一个度量空间，我们一般称这个$d$为$\mathbb R$上的**标准度量**，如果没有特殊说明，那么只要提到度量空间$\mathbb R$都是指标准度量$d$）</span>
 
-2. <span style='color:red'>（12.1.5 例·导出的度量空间）</span>设$(X,d)$是一个度量空间，$Y$是$X$的一个子集。我们称限制函数$d|_{Y\times Y}:Y\times Y\to[0,+\infty)$是由$X$上的度量**导出**的$Y$上的**度量**。序对$(Y,d|_{Y\times Y})$被称为由$Y$**导出**的$(X,d)$的**子空间**，并且可以证明$(Y,d|_{Y\times Y})$也是一个度量空间。
+2. <span style="color:red">（12.1.5 例·导出的度量空间）</span>设$(X,d)$是一个度量空间，$Y$是$X$的一个子集。我们称限制函数$d|_{Y\times Y}:Y\times Y\to[0,+\infty)$是由$X$上的度量**导出**的$Y$上的**度量**。序对$(Y,d|_{Y\times Y})$被称为由$Y$**导出**的$(X,d)$的**子空间**，并且可以证明$(Y,d|_{Y\times Y})$也是一个度量空间。
 
-3. <span style='color:red'>（12.1.6 例·欧几里得空间）</span>设$n\geq 1$是一个自然数，并且设$\mathbb R^n$是$n$元有序实数组空间：
+3. <span style="color:red">（12.1.6 例·欧几里得空间）</span>设$n\geq 1$是一个自然数，并且设$\mathbb R^n$是$n$元有序实数组空间：
    $$
    \mathbb R^n=\{(x_1,x_2,...,x_n):x_1,...,x_n\in\mathbb R\}
    $$
@@ -56,7 +56,7 @@ coverHeight: 320px
    $$
    这个度量等于毕达哥拉斯定理所给出的两点$(x_1,x_2,...,x_n)$和$(y_1,y_2,...,y_n)$之间的几何距离。我们称$(\mathbb R^n,d_{l^2})$是一个$n$**维欧几里得空间**。如同实数空间那样，在没有特殊说明的情况下只要提到了$\mathbb R^n$是一个度量空间都是指欧几里得度量。
 
-4. <span style='color:red'>（12.1.7 例·出租车度量）</span>仍然沿用例12.1.6对$n$与$\mathbb R^n$的假设，我们定义另一个不同的度量**出租车度量**（也称$l^1$**度量**）$d_{l^1}:\mathbb R^n\times\mathbb R^n\to[0,+\infty)$，其定义为：
+4. <span style="color:red">（12.1.7 例·出租车度量）</span>仍然沿用例12.1.6对$n$与$\mathbb R^n$的假设，我们定义另一个不同的度量**出租车度量**（也称$l^1$**度量**）$d_{l^1}:\mathbb R^n\times\mathbb R^n\to[0,+\infty)$，其定义为：
    $$
    \begin{align}
    d_{l^1}((x_1,x_2,...,x_n),(y_1,y_2,...,y_n))&:=|x_1-y_1|+...+|x_n-y_n|\\
@@ -67,9 +67,9 @@ coverHeight: 320px
    $$
    d_{l^2}(x,y)\leq d_{l^1}(x,y)\leq\sqrt{n}d_{l^2}(x,y)
    $$
-   <span style='color:blue'>（注：出租车度量可以在很多不同的领域发挥作用，例如纠错码理论中，将$n$个二进制数组成的二进制数串可以看做一个有序$n$元组，于是出租车距离就表示了两个二进制数串中不同的比特个数）</span>
+   <span style="color:blue">（注：出租车度量可以在很多不同的领域发挥作用，例如纠错码理论中，将$n$个二进制数组成的二进制数串可以看做一个有序$n$元组，于是出租车距离就表示了两个二进制数串中不同的比特个数）</span>
 
-5. <span style='color:red'>（12.1.9 例·上确界范数度量）</span>仍然沿用例12.1.6对$n$与$\mathbb R^n$的假设，我们定义另一个不同的度量**上确界范数度量**（也称$l^{\infty}$**度量**）$d_{l^{\infty}}:\mathbb R^n\times\mathbb R^n\to[0,+\infty)$，其定义为：
+5. <span style="color:red">（12.1.9 例·上确界范数度量）</span>仍然沿用例12.1.6对$n$与$\mathbb R^n$的假设，我们定义另一个不同的度量**上确界范数度量**（也称$l^{\infty}$**度量**）$d_{l^{\infty}}:\mathbb R^n\times\mathbb R^n\to[0,+\infty)$，其定义为：
    $$
    d_{l^\infty}((x_1,x_2,...,x_n),(y_1,y_2,...,y_n)):=\sup\{|x_i-y_i|:1\leq i\leq n\}
    $$
@@ -77,9 +77,9 @@ coverHeight: 320px
    $$
    \frac{1}{\sqrt{n}}d_{l^2}(x,y)\leq d_{l^\infty}(x,y)\leq d_{l^2}(x,y)
    $$
-   <span style='color:blue'>（注：$l^1$度量，$l^2$度量与$l^{\infty}$度量都是更一般的$l^p$度量（其中$p\in[1,+\infty]$）的特殊情形，但是在本书中不讨论这些内容）</span>
+   <span style="color:blue">（注：$l^1$度量，$l^2$度量与$l^{\infty}$度量都是更一般的$l^p$度量（其中$p\in[1,+\infty]$）的特殊情形，但是在本书中不讨论这些内容）</span>
 
-6. <span style='color:red'>（12.1.11 例·离散度量）</span>设$X$施任意的一个集合，**离散度量**$d_{\text{disc}}:X\times X\to\mathbb R$定义为：
+6. <span style="color:red">（12.1.11 例·离散度量）</span>设$X$施任意的一个集合，**离散度量**$d_{\text{disc}}:X\times X\to\mathbb R$定义为：
    $$
    d_{\text{disc}}(x,y)=\begin{cases}
    0&\text{if}\;x=y\\
@@ -88,34 +88,34 @@ coverHeight: 320px
    $$
    在这个度量下所有的点之间距离相等，并且空间$(X,d_{\text{disc}})$是一个度量空间。因此每个集合$X$上都至少有一个度量。
 
-7. <span style='color:red'>（12.1.12 例·测地距离（非正式））</span>设$X$是球面$\{(x,y,z)\in\mathbb R^3:x^2+y^2+z^2=1\}$，并且设对任意的两点$(x,y,z)$与$(x',y',z')$属于$X$，定义度量$d((x,y,z),(x',y',z'))$是从点$(x,y,z)$沿球面$X$到点$(x',y',z')$的最短曲线长度。这个度量$d$使得$X$成为一个度量空间。
+7. <span style="color:red">（12.1.12 例·测地距离（非正式））</span>设$X$是球面$\{(x,y,z)\in\mathbb R^3:x^2+y^2+z^2=1\}$，并且设对任意的两点$(x,y,z)$与$(x',y',z')$属于$X$，定义度量$d((x,y,z),(x',y',z'))$是从点$(x,y,z)$沿球面$X$到点$(x',y',z')$的最短曲线长度。这个度量$d$使得$X$成为一个度量空间。
 
-   <span style='color:blue'>（注：这条曲线事实上是一个大圆的一段弧，证明需要用到多元微积分的内容；并且应当注意到在证明$(X,d)$是度量空间的过程中三角不等式几乎是可以直接从定义中导出的（不适用关于球面的任何几何性质））</span>
+   <span style="color:blue">（注：这条曲线事实上是一个大圆的一段弧，证明需要用到多元微积分的内容；并且应当注意到在证明$(X,d)$是度量空间的过程中三角不等式几乎是可以直接从定义中导出的（不适用关于球面的任何几何性质））</span>
 
-8. <span style='color:red'>（12.1.14 度量空间中序列的收敛）</span>设$m$是一个整数，$(X,d)$是一个度量空间，并且设$(x^{(n)})_{n=m}^\infty$是$X$中的点列，即对任意的整数$n\geq m$，我们都假设$x^{(n)}$是$X$中的元素。设$x$是$X$中的一个点，我们称$(x^{(n)})_{n=m}^\infty$**依度量**$d$**收敛于**$x$，当且仅当极限$\displaystyle\lim_{n\to\infty}d(x^{(n)},x)$存在且等于$0$。换言之，$(x^{(n)})_{n=m}^\infty$依度量$d$收敛于$x$当且仅当对于任意的$\varepsilon>0$，存在一个$N\geq m$使得$d(x^{(n)},x)\leq\varepsilon$对所有的$n\geq N$均成立。
+8. <span style="color:red">（12.1.14 度量空间中序列的收敛）</span>设$m$是一个整数，$(X,d)$是一个度量空间，并且设$(x^{(n)})_{n=m}^\infty$是$X$中的点列，即对任意的整数$n\geq m$，我们都假设$x^{(n)}$是$X$中的元素。设$x$是$X$中的一个点，我们称$(x^{(n)})_{n=m}^\infty$**依度量**$d$**收敛于**$x$，当且仅当极限$\displaystyle\lim_{n\to\infty}d(x^{(n)},x)$存在且等于$0$。换言之，$(x^{(n)})_{n=m}^\infty$依度量$d$收敛于$x$当且仅当对于任意的$\varepsilon>0$，存在一个$N\geq m$使得$d(x^{(n)},x)\leq\varepsilon$对所有的$n\geq N$均成立。
 
-   <span style='color:blue'>（注：根据引理12.1.1我们可以知道实数序列的收敛事实上就是依标准度量的收敛，在很多情况下我们能够明确知道度量$d$是什么，因此在不会混淆的情况下我们也会使用简单的使用“$(x^{(n)})_{n=m}^\infty$收敛于$x$”来代替“$(x^{(n)})_{n=m}^\infty$依度量$d$收敛于$x$”。有时候我们也会记这个过程为“当$n\to\infty$时，$x^{(n)}\to x$”）</span>
+   <span style="color:blue">（注：根据引理12.1.1我们可以知道实数序列的收敛事实上就是依标准度量的收敛，在很多情况下我们能够明确知道度量$d$是什么，因此在不会混淆的情况下我们也会使用简单的使用“$(x^{(n)})_{n=m}^\infty$收敛于$x$”来代替“$(x^{(n)})_{n=m}^\infty$依度量$d$收敛于$x$”。有时候我们也会记这个过程为“当$n\to\infty$时，$x^{(n)}\to x$”）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（12.1.1）</span>设$(x_n)_{n=m}^{\infty}$是一个实数序列，并且设$x$是一个实数，那么$(x_n)_{n=m}^{\infty}$收敛于$x$当且仅当$\displaystyle\lim_{n\to\infty}d(x_n,x)=0$。
+1. <span style="color:red">（12.1.1）</span>设$(x_n)_{n=m}^{\infty}$是一个实数序列，并且设$x$是一个实数，那么$(x_n)_{n=m}^{\infty}$收敛于$x$当且仅当$\displaystyle\lim_{n\to\infty}d(x_n,x)=0$。
 
-2. <span style='color:red'>（12.1.18 $l^1$、$l^2$、$l^{\infty}$的等价性）</span>设$\mathbb R^n$是一个欧几里得空间，$(x^{(k)})_{k=m}^\infty$是$\mathbb R^n$中的一个点列，我们记$x^{(k)}=(x^{(k)}_1,x^{(k)}_2,...,x^{(k)}_n)$，也即对$j=1,2,...,n$，我们令有$x^{(k)}_j$是$x^{(k)}$的第$j$个坐标分量。设$x=(x_1,x_2,...,x_n)$是$\mathbb R^n$中的一个点，那么下面的四个命题是等价的：
+2. <span style="color:red">（12.1.18 $l^1$、$l^2$、$l^{\infty}$的等价性）</span>设$\mathbb R^n$是一个欧几里得空间，$(x^{(k)})_{k=m}^\infty$是$\mathbb R^n$中的一个点列，我们记$x^{(k)}=(x^{(k)}_1,x^{(k)}_2,...,x^{(k)}_n)$，也即对$j=1,2,...,n$，我们令有$x^{(k)}_j$是$x^{(k)}$的第$j$个坐标分量。设$x=(x_1,x_2,...,x_n)$是$\mathbb R^n$中的一个点，那么下面的四个命题是等价的：
 
    > 1. $(x^{(k)})_{k=m}^\infty$依欧几里得度量$d_{l^2}$收敛于$x$。
    > 2. $(x^{(k)})_{k=m}^\infty$依出租车度量$d_{l^1}$收敛于$x$。
    > 3. $(x^{(k)})_{k=m}^\infty$依上确界范数度量$d_{l^2}$收敛于$x$。
    > 4. 对任意的$1\leq j\leq n$，序列$(x^{(k)}_j)_{k=m}^\infty$收敛于$x_j$。
 
-   <span style='color:blue'>（注：也就是说欧几里得度量，出租车度量与上确界范数度量都是等价的。但是需要注意的是，当推广到无限维的情况三者并不是等价的，一个例子是习题12.1.15所构建出的空间）</span>
+   <span style="color:blue">（注：也就是说欧几里得度量，出租车度量与上确界范数度量都是等价的。但是需要注意的是，当推广到无限维的情况三者并不是等价的，一个例子是习题12.1.15所构建出的空间）</span>
 
-3. <span style='color:red'>（12.1.19 依离散度量收敛）</span>设$X$是任意一个集合，$d_{\text{disc}}$是$X$上的离散度量，并且设$(x^{(n)})_{n=m}^\infty$是$X$中的一个点列，$x$是$X$中的一个点。那么$(x^{(n)})_{n=m}^\infty$依离散度量收敛于$x$当且仅当存在一个$N\geq m$使得对所有的$n\geq N$均有$x^{(n)}=x$。
+3. <span style="color:red">（12.1.19 依离散度量收敛）</span>设$X$是任意一个集合，$d_{\text{disc}}$是$X$上的离散度量，并且设$(x^{(n)})_{n=m}^\infty$是$X$中的一个点列，$x$是$X$中的一个点。那么$(x^{(n)})_{n=m}^\infty$依离散度量收敛于$x$当且仅当存在一个$N\geq m$使得对所有的$n\geq N$均有$x^{(n)}=x$。
 
-4. <span style='color:red'>（12.1.20 极限的唯一性）</span>设$(X,d)$是一个度量空间，并且设$(x^{(n)})_{n=m}^\infty$是$X$中的一个点列。如果存在两个点$x$，$x'\in S$使得$(x^{(n)})_{n=m}^\infty$依度量$d$同时收敛于$x$与$x'$，那么有$x=x'$。
+4. <span style="color:red">（12.1.20 极限的唯一性）</span>设$(X,d)$是一个度量空间，并且设$(x^{(n)})_{n=m}^\infty$是$X$中的一个点列。如果存在两个点$x$，$x'\in S$使得$(x^{(n)})_{n=m}^\infty$依度量$d$同时收敛于$x$与$x'$，那么有$x=x'$。
 
-   <span style='color:blue'>（注：由于极限是唯一的，因此我们可以引入下面的符号：如果$(x^{(n)})_{n=m}^\infty$依度量$d$收敛于$x$，那么记作$\displaystyle d-\lim_{n\to\infty}x^{(n)}=x$，如果能不引起混淆地确定度量$d$，那么进一步简写为$\displaystyle\lim_{n\to\infty}x^{(n)}=x$）</span>
+   <span style="color:blue">（注：由于极限是唯一的，因此我们可以引入下面的符号：如果$(x^{(n)})_{n=m}^\infty$依度量$d$收敛于$x$，那么记作$\displaystyle d-\lim_{n\to\infty}x^{(n)}=x$，如果能不引起混淆地确定度量$d$，那么进一步简写为$\displaystyle\lim_{n\to\infty}x^{(n)}=x$）</span>
 
 ---
 
@@ -139,7 +139,7 @@ coverHeight: 320px
 >
 > 综上，于是引理12.1.1证明完毕。
 
-##### 12.1.2 证明具有度量$d(x,y):=|x-y|$的实直线的确是一个度量空间<span style='color:blue'>（提示：可以回顾对[命题4.3.3](../Chap4/Sec3.md)的证明）</span>
+##### 12.1.2 证明具有度量$d(x,y):=|x-y|$的实直线的确是一个度量空间<span style="color:blue">（提示：可以回顾对[命题4.3.3](../Chap4/Sec3.md)的证明）</span>
 
 > 根据定义12.1.2，我们需要证明$d$满足下面四个条件：
 >
@@ -171,7 +171,7 @@ coverHeight: 320px
 
 ##### 12.1.3 设$X$是一个集合，$d:X\times X\to[0,+\infty)$是一个函数
 
-###### (a) 给出一个$(X,d)$的例子，使其满足定义12.1.2中的公理(b)，(c)，(d)，但不满足公理(a)<span style='color:blue'>（提示：修改离散度量）</span>
+###### (a) 给出一个$(X,d)$的例子，使其满足定义12.1.2中的公理(b)，(c)，(d)，但不满足公理(a)<span style="color:blue">（提示：修改离散度量）</span>
 
 > 考虑对任意的$x$，$y\in X$令有$d(x,y):=1$，于是显然可以看到$(X,d)$是满足公理(b)，(c)，(d)但不满足公理(a)的。
 
@@ -240,7 +240,7 @@ $$
 \left(\sum_{i=1}^{n}a_ib_i\right)^2+\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}(a_ib_j-a_jb_i)^2=\left(\sum_{i=1}^{n}a_i^2\right)\left(\sum_{i=1}^{n}b_i^2\right)
 $$
 
-##### 并推导出<span style='color:red'>柯西-施瓦茨不等式</span>：
+##### 并推导出<span style="color:red">柯西-施瓦茨不等式</span>：
 
 $$
 \left|\sum_{i=1}^{n}a_ib_i\right|\leq\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}
@@ -327,7 +327,7 @@ $$
 > $$
 > 由柯西-施瓦茨不等式有$\displaystyle\left|\sum_{i=1}^{n}a_ib_i\right|\leq\left(\sum_{i=1}^{n}a_i^2\right)^{1/2}\left(\sum_{i=1}^{n}b_i^2\right)^{1/2}$；然后由于绝对值的性质我们又有$\displaystyle\sum_{i=1}^{n}a_ib_i\leq\left|\sum_{i=1}^{n}a_ib_i\right|$。于是上面的等价不等式始终成立，从而题目三角不等式也是成立的，结论得证。
 
-##### 12.1.6 证明例12.1.6中的$(\mathbb R^n,d_{l^2})$确实是一个度量空间<span style='color:blue'>（提示：利用习题12.1.5的结论）</span>
+##### 12.1.6 证明例12.1.6中的$(\mathbb R^n,d_{l^2})$确实是一个度量空间<span style="color:blue">（提示：利用习题12.1.5的结论）</span>
 
 > 对任意$a\in\mathbb R^n$，我们记$a_i(1\leq i\leq n)$表示$a$的第$i$个坐标分量。根据定义12.1.2，即要证明：
 >
@@ -411,7 +411,7 @@ $$
 >
 > 综上，于是$(\mathbb R^n,d_{l^1})$确实是一个度量空间。
 
-##### 12.1.8 证明例12.1.7下所附的不等式：对所有的$x$，$y\in\mathbb R^n$都有$d_{l^2}(x,y)\leq d_{l^1}(x,y)\leq\sqrt{n}d_{l^2}(x,y)$成立<span style='color:blue'>（提示：对第一个不等式，将其两端同时取平方；对第二个不等式，利用习题12.1.5）</span>
+##### 12.1.8 证明例12.1.7下所附的不等式：对所有的$x$，$y\in\mathbb R^n$都有$d_{l^2}(x,y)\leq d_{l^1}(x,y)\leq\sqrt{n}d_{l^2}(x,y)$成立<span style="color:blue">（提示：对第一个不等式，将其两端同时取平方；对第二个不等式，利用习题12.1.5）</span>
 
 > 对任意$a\in\mathbb R^n$，我们记$a_i(1\leq i\leq n)$表示$a$的第$i$个坐标分量。先证明$d_{l^2}(x,y)\leq d_{l^1}(x,y)$：
 >
@@ -633,7 +633,7 @@ $$
 >
 > 综上，于是充分必要性得证。
 
-##### 12.2.14 证明命题12.1.20<span style='color:blue'>（提示：修改[命题6.1.7](../Chap6/Sec1.md)的证明）</span>
+##### 12.2.14 证明命题12.1.20<span style="color:blue">（提示：修改[命题6.1.7](../Chap6/Sec1.md)的证明）</span>
 
 > 根据定义12.2.14，于是题设等价于对任意的$\varepsilon>0$，都存在$N$，$N'\geq m$使得对任意的$n\geq N$都有$d(x^{(n)},x)\leq\varepsilon/2$与对任意$n\geq N'$都有$d(x^{(n)},x')\leq\varepsilon/2$。于是对任意的$n\geq\max(N,N')$，根据度量空间的三角不等式我们有：
 > $$
@@ -800,7 +800,7 @@ $$
 > $$
 > 然后根据辅助结论也即有$d_{l^\infty}(x^{(n)},x)\leq\varepsilon$，于是根据定义12.1.14有序列$(x^{(n)})_{n=0}^\infty$依度量$d_{l^\infty}$收敛于$x$。
 
-##### 12.2.16 设$(x_n)_{n=1}^\infty$和$(y_n)_{n=1}^\infty$是度量空间$(X,d)$中的两个序列，并设$(x_n)_{n=1}^\infty$收敛于点$x\in X$且$(y_n)_{n=1}^\infty$收敛于点$y\in X$。证明：$\displaystyle\lim_{n\to\infty}d(x_n,y_n)=d(x,y)$<span style='color:blue'>（提示：多次使用三角不等式）</span>
+##### 12.2.16 设$(x_n)_{n=1}^\infty$和$(y_n)_{n=1}^\infty$是度量空间$(X,d)$中的两个序列，并设$(x_n)_{n=1}^\infty$收敛于点$x\in X$且$(y_n)_{n=1}^\infty$收敛于点$y\in X$。证明：$\displaystyle\lim_{n\to\infty}d(x_n,y_n)=d(x,y)$<span style="color:blue">（提示：多次使用三角不等式）</span>
 
 > 根据定义12.1.14，于是题设即有：对任意的$\varepsilon>0$，都存在$N_x$，$N_y\geq 1$使得对任意的$n\geq N_x$都有$d(x_n,x)\leq\varepsilon/2$与对任意$n\geq N_y$都有$d(y_n,y)\leq\varepsilon/2$。于是对任意的$n\geq\max(N_x,N_y)$都有：
 > $$

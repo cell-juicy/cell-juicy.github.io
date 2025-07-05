@@ -14,23 +14,23 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（7.5.1 根值判别法）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个实数级数，并且假设$\displaystyle\alpha =\limsup_{n\to \infty}|a_n|^{\frac{1}{n}}$：
+1. <span style="color:red">（7.5.1 根值判别法）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个实数级数，并且假设$\displaystyle\alpha =\limsup_{n\to \infty}|a_n|^{\frac{1}{n}}$：
 
-   > * 如果$\alpha <1$，那么级数$\displaystyle\sum_{n=m}^{\infty}a_n$是绝对收敛的<span style='color:blue'>（相应的也是条件收敛的）</span>。
-   > * 如果$\alpha >1$，那么级数$\displaystyle\sum_{n=m}^{\infty}a_n$不是条件收敛的<span style='color:blue'>（相应的也不是绝对收敛的）</span>。
+   > * 如果$\alpha <1$，那么级数$\displaystyle\sum_{n=m}^{\infty}a_n$是绝对收敛的<span style="color:blue">（相应的也是条件收敛的）</span>。
+   > * 如果$\alpha >1$，那么级数$\displaystyle\sum_{n=m}^{\infty}a_n$不是条件收敛的<span style="color:blue">（相应的也不是绝对收敛的）</span>。
    > * 如果$\alpha =1$，那么给不出任何结论。
 
-2. <span style='color:red'>（7.5.2 级数的相关结论）</span>设$(a_n)_{n=m}^\infty$是一个**正数**序列，则有：
+2. <span style="color:red">（7.5.2 级数的相关结论）</span>设$(a_n)_{n=m}^\infty$是一个**正数**序列，则有：
    $$
    \liminf_{n\to \infty}\frac{a_{n+1}}{a_n}\leq\liminf_{n\to \infty}a_n^{1/n}\leq\limsup_{n\to \infty}a_n^{1/n}\leq\limsup_{n\to \infty}\frac{a_{n+1}}{a_n}
    $$
-   推论：<span style='color:red'>（7.5.3 比值判别法）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个所有项不为$0$的实数级数，并且假设有$\displaystyle\alpha =\left|\frac{a_{n+1}}{a_n}\right|$，则：
+   推论：<span style="color:red">（7.5.3 比值判别法）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个所有项不为$0$的实数级数，并且假设有$\displaystyle\alpha =\left|\frac{a_{n+1}}{a_n}\right|$，则：
    
-   > * 如果$\displaystyle\limsup_{n\to \infty}\alpha<1$，那么级数$\displaystyle\sum_{n=m}^{\infty}a_n$是绝对收敛的<span style='color:blue'>（相应的也是条件收敛的）</span>。
-   > * 如果$\displaystyle\liminf_{n\to \infty}\alpha>1$，那么级数$\displaystyle\sum_{n=m}^{\infty}a_n$不是条件收敛的<span style='color:blue'>（相应的也不是绝对收敛的）</span>。
+   > * 如果$\displaystyle\limsup_{n\to \infty}\alpha<1$，那么级数$\displaystyle\sum_{n=m}^{\infty}a_n$是绝对收敛的<span style="color:blue">（相应的也是条件收敛的）</span>。
+   > * 如果$\displaystyle\liminf_{n\to \infty}\alpha>1$，那么级数$\displaystyle\sum_{n=m}^{\infty}a_n$不是条件收敛的<span style="color:blue">（相应的也不是绝对收敛的）</span>。
    > * 其他情况，不给出任何结论。
    
-3. <span style='color:red'>（7.5.4 另一个推论？）</span>$\displaystyle\lim_{n\to\infty}n^{\frac{1}{n}}=1$。
+3. <span style="color:red">（7.5.4 另一个推论？）</span>$\displaystyle\lim_{n\to\infty}n^{\frac{1}{n}}=1$。
 
 ---
 
@@ -62,7 +62,7 @@ coverHeight: 320px
 >$$
 >而根据题设有$|x|<1$，于是根据比值判别法，我们有级数$\displaystyle\sum_{n=1}^{\infty}n^qx^n$绝对收敛。 此时根据命题7.2.9与命题7.2.6零判别法，我们可以由$\displaystyle\sum_{n=1}^{\infty}n^qx^n$条件收敛得到$\displaystyle\lim_{n\to \infty}n^qx^n=0$成立，于是结论得证。
 
-##### 7.5.3 给出一个发散级数$\displaystyle\sum_{n=m}^{\infty}a_n$的例子，其中每一项$a_n$都是正数并且使得$\displaystyle{\lim_{n\to \infty}\frac{a_{n+1}}{a_n}=\lim_{n\to \infty}a_n^{1/n}}=1$。另外给出一个收敛级数$\displaystyle\sum_{n=m}^{\infty}b_n$ 的例子，其中每一项都是正数并且使得$\displaystyle{\lim_{n\to \infty}\frac{b_{n+1}}{b_n}=\lim_{n\to \infty}b_n^{1/n}}=1$。<span style='color:blue'>（提示：利用[推论7.3.7](../Chap7/Sec3.md)）</span>这表明即使级数的所有项都是正的且所有的极限也都收敛，比值判别法和根值判别法也可能无法判定级数是否收敛
+##### 7.5.3 给出一个发散级数$\displaystyle\sum_{n=m}^{\infty}a_n$的例子，其中每一项$a_n$都是正数并且使得$\displaystyle{\lim_{n\to \infty}\frac{a_{n+1}}{a_n}=\lim_{n\to \infty}a_n^{1/n}}=1$。另外给出一个收敛级数$\displaystyle\sum_{n=m}^{\infty}b_n$ 的例子，其中每一项都是正数并且使得$\displaystyle{\lim_{n\to \infty}\frac{b_{n+1}}{b_n}=\lim_{n\to \infty}b_n^{1/n}}=1$。<span style="color:blue">（提示：利用[推论7.3.7](../Chap7/Sec3.md)）</span>这表明即使级数的所有项都是正的且所有的极限也都收敛，比值判别法和根值判别法也可能无法判定级数是否收敛
 
 > 发散级数的例子：
 >

@@ -14,15 +14,15 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（2.2.1 加法定义）</span>令$m$为一个自然数，定义$0+m:=m$，归纳假设：已定义$n$加上$m$，则$(n++)+m:=(n+m)++$。
-2. <span style='color:red'>（2.2.7 正数）</span>称一个自然数是**正**的，当且仅当它不等于$0$。
-3. <span style='color:red'>（2.2.11 自然数的序）</span>令$n$，$m$表示任意两个自然数，称$n$大于等于$m$，记作$n\geq m$或$m\leq n$，当且仅当存在自然数$a$，使得$n=m+a$。特别的，称$n$严格大于$m$，记作$n>m$或$m<n$，当且仅当$n\geq m$且$n\ne m$。
+1. <span style="color:red">（2.2.1 加法定义）</span>令$m$为一个自然数，定义$0+m:=m$，归纳假设：已定义$n$加上$m$，则$(n++)+m:=(n+m)++$。
+2. <span style="color:red">（2.2.7 正数）</span>称一个自然数是**正**的，当且仅当它不等于$0$。
+3. <span style="color:red">（2.2.11 自然数的序）</span>令$n$，$m$表示任意两个自然数，称$n$大于等于$m$，记作$n\geq m$或$m\leq n$，当且仅当存在自然数$a$，使得$n=m+a$。特别的，称$n$严格大于$m$，记作$n>m$或$m<n$，当且仅当$n\geq m$且$n\ne m$。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（无编号 封闭性）</span>设$a$，$b$均为自然数，则$a+b$也是自然数。
+1. <span style="color:red">（无编号 封闭性）</span>设$a$，$b$均为自然数，则$a+b$也是自然数。
 
    > 证明：
    >
@@ -40,52 +40,52 @@ coverHeight: 320px
    >
    > 于是得证结论。
 
-1. <span style='color:red'>（2.2.2）</span>对任意自然数，$n+0=n$恒成立。
+1. <span style="color:red">（2.2.2）</span>对任意自然数，$n+0=n$恒成立。
 
-2. <span style='color:red'>（2.2.3）</span>对任意自然数$n$与$m$，$n+(m++)=(n+m)++$。
+2. <span style="color:red">（2.2.3）</span>对任意自然数$n$与$m$，$n+(m++)=(n+m)++$。
 
-3. <span style='color:red'>（2.2.4 交换律）</span>对任意自然数$n$与$m$，$n+m=m+n$。
+3. <span style="color:red">（2.2.4 交换律）</span>对任意自然数$n$与$m$，$n+m=m+n$。
 
-4. <span style='color:red'>（2.2.5 结合律）</span>对任意自然数$a$，$b$，$c$，$(a+b)+c=a+(b+c)$。
+4. <span style="color:red">（2.2.5 结合律）</span>对任意自然数$a$，$b$，$c$，$(a+b)+c=a+(b+c)$。
 
-6. <span style='color:red'>（2.2.6 消去律）</span>对任意自然数$a$，$b$，$c$，且有$a+b=a+c$成立，则$b=c$。
+6. <span style="color:red">（2.2.6 消去律）</span>对任意自然数$a$，$b$，$c$，且有$a+b=a+c$成立，则$b=c$。
 
-   <span style='color:blue'>（消去律的存在体现了一种“虚拟减法”的思想，这对后面减法的定义至关重要）</span>
+   <span style="color:blue">（消去律的存在体现了一种“虚拟减法”的思想，这对后面减法的定义至关重要）</span>
 
-5. <span style='color:red'>（2.2.8）</span>如果$a$是正的并且$b$是一个自然数，那么$a+b$是正的。
+5. <span style="color:red">（2.2.8）</span>如果$a$是正的并且$b$是一个自然数，那么$a+b$是正的。
 
-5. <span style='color:red'>（2.2.9）</span>如果$a$，$b$都是自然数且$a+b=0$，那么$a=0$且$b=0$。
+5. <span style="color:red">（2.2.9）</span>如果$a$，$b$都是自然数且$a+b=0$，那么$a=0$且$b=0$。
 
-5. <span style='color:red'>（2.2.10）</span>令$a$表示一个正自然数，则恰好存在一个自然数$b$使得有$b++=a$
+5. <span style="color:red">（2.2.10）</span>令$a$表示一个正自然数，则恰好存在一个自然数$b$使得有$b++=a$
 
-10. <span style='color:red'>（2.2.12 自然数序的性质）</span>令$a$，$b$，$c$为任意自然数
+10. <span style="color:red">（2.2.12 自然数序的性质）</span>令$a$，$b$，$c$为任意自然数
 
-    >* <span style='color:red'>（序的自反性）</span>$a\geq a$。
-    >* <span style='color:red'>（序的可传递性）</span>如果$a\geq b$且$b\geq c$，则$a\geq c$。
-    >* <span style='color:red'>（序的反对称性）</span>如果$a\geq b$且$b\geq a$，则$a=b$。
-    >* <span style='color:red'>（加法保持序不变）</span>$a\geq b$，当且仅当$a+c\geq b+c$。
+    >* <span style="color:red">（序的自反性）</span>$a\geq a$。
+    >* <span style="color:red">（序的可传递性）</span>如果$a\geq b$且$b\geq c$，则$a\geq c$。
+    >* <span style="color:red">（序的反对称性）</span>如果$a\geq b$且$b\geq a$，则$a=b$。
+    >* <span style="color:red">（加法保持序不变）</span>$a\geq b$，当且仅当$a+c\geq b+c$。
     >* $b>a$，当且仅当$a++\leq b$。
     >* $b>a$，当且仅当存在正自然数$d$使得$b=a+d$。
 
-11. <span style='color:red'>（2.2.13 三歧性）</span>下列三种表述同时只能且一定存在一个为真：
+11. <span style="color:red">（2.2.13 三歧性）</span>下列三种表述同时只能且一定存在一个为真：
 
     >* $a>b$
     >* $a=b$
     >* $a<b$
 
-12. <span style='color:red'>（2.2.14 强归纳法原理）</span>令$m_0$为一个自然数，$P(m)$表示与任意自然数$m$有关的性质。假定对任意$m\geq m_0$的自然数，均有下述内容成立。
+12. <span style="color:red">（2.2.14 强归纳法原理）</span>令$m_0$为一个自然数，$P(m)$表示与任意自然数$m$有关的性质。假定对任意$m\geq m_0$的自然数，均有下述内容成立。
 
     >若$P(m')$对任意$m_0\leq m'<m$的自然数$m'$为真，则$P(m)$为真
 
-    特别地，这表明$P(m_0)$也为真<span style='color:blue'>（选取$m=m_0$）</span>。由此有，对任意$m\geq m_0$的自然数$m$，$P(m)$也为真。
+    特别地，这表明$P(m_0)$也为真<span style="color:blue">（选取$m=m_0$）</span>。由此有，对任意$m\geq m_0$的自然数$m$，$P(m)$也为真。
 
-    <span style='color:blue'>（使用时，一般选择$m_0=0$或$m_0=1$）</span>
+    <span style="color:blue">（使用时，一般选择$m_0=0$或$m_0=1$）</span>
 
 ---
 
 ## 课后习题
 
-##### 2.2.1 证明加法的结合律<span style='color:blue'>（提示：固定两个变量，对第三个变量做归纳）</span>
+##### 2.2.1 证明加法的结合律<span style="color:blue">（提示：固定两个变量，对第三个变量做归纳）</span>
 
 >假定$a$，$b$为某两个自然数，对$c$做归纳：
 >
@@ -116,7 +116,7 @@ coverHeight: 320px
 >
 > 于是得证结论。
 
-##### 2.2.3 证明命题2.2.12 自然数序的性质<span style='color:blue'>（提示：将会用到很多前面的结论）</span>
+##### 2.2.3 证明命题2.2.12 自然数序的性质<span style="color:blue">（提示：将会用到很多前面的结论）</span>
 
 >1. 自反性：取自然数$0$，显然有$a=a+0$满足定义，于是$a\geq a$。
 >
@@ -172,7 +172,7 @@ coverHeight: 320px
 >
 > > $a=b$，于是$a++=b+(0++)$，$0++\ne0$于是$0++$为正数，可知有$a++> b$。
 
-##### 2.2.5 证明强归纳法原理<span style='color:blue'>（提示：定义性质$Q(n)$：$P(m)$对任意满足$m_0\leq m\leq n$的$m$均为真）</span>
+##### 2.2.5 证明强归纳法原理<span style="color:blue">（提示：定义性质$Q(n)$：$P(m)$对任意满足$m_0\leq m\leq n$的$m$均为真）</span>
 
 > 定义性质$Q(n)$：$P(m)$对任意满足$m_0\leq m\leq n$的$m$均为真。
 >
@@ -190,7 +190,7 @@ coverHeight: 320px
 >
 > 于是得证
 
-##### 2.2.6 令$n$为一个自然数，令$P(m)$为关于自然数的一个性质并且满足：只要$P(m++)$为真，则$P(m)$为真。假定$P(n)$为真，证明：$P(m)$对任意满足$m\leq n$的自然数$m$均为真。<span style='color:blue'>（这也被称为<span style='color:red'>逆向归纳法原理</span>）（提示：对$n$使用归纳法）</span>
+##### 2.2.6 令$n$为一个自然数，令$P(m)$为关于自然数的一个性质并且满足：只要$P(m++)$为真，则$P(m)$为真。假定$P(n)$为真，证明：$P(m)$对任意满足$m\leq n$的自然数$m$均为真。<span style="color:blue">（这也被称为<span style="color:red">逆向归纳法原理</span>）（提示：对$n$使用归纳法）</span>
 
 > 对$n$做归纳法：
 >

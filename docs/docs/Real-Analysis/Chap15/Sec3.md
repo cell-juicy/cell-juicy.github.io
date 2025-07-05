@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（15.3.1 阿贝尔定理）</span>设$\displaystyle f(x)=\sum_{n=0}^{\infty}c_n(x-a)^n$是以$a$为中心，收敛半径为$0<R<\infty$的幂级数。如果$f$是在$a+R$处收敛，那么$f$在$a+R$处连续，也即有：
+1. <span style="color:red">（15.3.1 阿贝尔定理）</span>设$\displaystyle f(x)=\sum_{n=0}^{\infty}c_n(x-a)^n$是以$a$为中心，收敛半径为$0<R<\infty$的幂级数。如果$f$是在$a+R$处收敛，那么$f$在$a+R$处连续，也即有：
    $$
    \lim_{x\to a+R;x\in(a-R,a+R)}\sum_{n=0}^{\infty}c_n(x-a)^n=\sum_{n=0}^{\infty}c_n R^n
    $$
@@ -22,23 +22,23 @@ coverHeight: 320px
    $$
    \lim_{x\to a-R;x\in(a-R,a+R)}\sum_{n=0}^{\infty}c_n(x-a)^n=\sum_{n=0}^{\infty}c_n(-R)^n
    $$
-   <span style='color:blue'>（注：阿贝尔定理揭示了幂级数在边界点收敛时会表现出良好的性状）</span>
+   <span style="color:blue">（注：阿贝尔定理揭示了幂级数在边界点收敛时会表现出良好的性状）</span>
 
-2. <span style='color:red'>（15.3.2 分部求和公式）</span>设$(a_n)_{n=0}^{\infty}$和$(b_n)_{n=0}^{\infty}$分别是收敛于极限$A$和$B$的实数序列，如果级数$\displaystyle\sum_{n=0}^{\infty}(a_{n+1}-a_n)b_n$是收敛的，那么级数$\displaystyle\sum_{n=0}^{\infty}a_{n+1}(b_{n+1}-b_n)$也是收敛的，并且有：
+2. <span style="color:red">（15.3.2 分部求和公式）</span>设$(a_n)_{n=0}^{\infty}$和$(b_n)_{n=0}^{\infty}$分别是收敛于极限$A$和$B$的实数序列，如果级数$\displaystyle\sum_{n=0}^{\infty}(a_{n+1}-a_n)b_n$是收敛的，那么级数$\displaystyle\sum_{n=0}^{\infty}a_{n+1}(b_{n+1}-b_n)$也是收敛的，并且有：
    $$
    \sum_{n=0}^{\infty}(a_{n+1}-a_n)b_n=AB-a_0b_0-\sum_{n=0}^{\infty}a_{n+1}(b_{n+1}-b_n)
    $$
-   <span style='color:blue'>（注：应当将这个公式同分部积分公式比较，参考[命题11.10.1](..\..\第11章\pdf\实分析 11.10 基本定理的推论.pdf)，它应该是类似</span>
+   <span style="color:blue">（注：应当将这个公式同分部积分公式比较，参考[命题11.10.1](..\..\第11章\pdf\实分析 11.10 基本定理的推论.pdf)，它应该是类似</span>
    $$
    \color{blue}{\int_{0}^{\infty}f'(x)g(x)\text{d}x=f(x)g(x)|^{\infty}_0-\int_{0}^{\infty}f(x)g'(x)\text{d}x}
    $$
-   <span style='color:blue'>的变种；使用这个引理有助于证明阿贝尔定理，这部分内容参考原书）</span>
+   <span style="color:blue">的变种；使用这个引理有助于证明阿贝尔定理，这部分内容参考原书）</span>
 
 ---
 
 ## 课后习题
 
-##### 15.3.1 证明引理15.3.2<span style='color:blue'>（提示：首先要找到级数$\displaystyle\sum_{n=0}^{\infty}(a_{n+1}-a_n)b_n$与级数$\displaystyle\sum_{n=0}^{\infty}a_{n+1}(b_{n+1}-b_n)$之间的关系）</span>
+##### 15.3.1 证明引理15.3.2<span style="color:blue">（提示：首先要找到级数$\displaystyle\sum_{n=0}^{\infty}(a_{n+1}-a_n)b_n$与级数$\displaystyle\sum_{n=0}^{\infty}a_{n+1}(b_{n+1}-b_n)$之间的关系）</span>
 
 > 根据极限定律我们知道有$\displaystyle\lim_{n\to\infty}a_nb_n=AB$，于是根据习题7.2.6我们有级数$\displaystyle\sum_{n=0}^{\infty}a_{n+1}b_{n+1}-a_nb_n$收敛于$AB-a_0b_0$，结合前设中级数$\displaystyle\sum_{n=0}^{\infty}(a_{n+1}-a_n)b_n$也收敛，根据级数的运算定律我们有级数：
 > $$

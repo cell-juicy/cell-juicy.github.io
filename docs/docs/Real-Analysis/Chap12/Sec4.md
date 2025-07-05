@@ -14,52 +14,52 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（12.4.1 子序列）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的一个点列，设$n_1$，$n_2$，$n_3$，$...$是一个严格单调递增的整数序列，并且每一项都不小于$m$，即：
+1. <span style="color:red">（12.4.1 子序列）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的一个点列，设$n_1$，$n_2$，$n_3$，$...$是一个严格单调递增的整数序列，并且每一项都不小于$m$，即：
    $$
    m\leq n_1<n_2<n_3<...
    $$
    那么我们称序列$(x^{(n_j)})_{j=1}^\infty$是原序列$(x^{(n)})_{n=m}^\infty$的**子序列**。
 
-   <span style='color:blue'>（注：这个定义是[定义6.6.1](../Chap6/Sec6.md)的推广；原书中这里写的是单调递增的整数序列，个人认为强调一下是个严格单调递增的序列会更好，符合它自己的描述）</span>
+   <span style="color:blue">（注：这个定义是[定义6.6.1](../Chap6/Sec6.md)的推广；原书中这里写的是单调递增的整数序列，个人认为强调一下是个严格单调递增的序列会更好，符合它自己的描述）</span>
    
-2. <span style='color:red'>（12.4.4 极限点）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的一个点列，并设$L\in X$。我们称$L$是$(x^{(n)})_{n=m}^\infty$的一个**极限点**，当且仅当对于任意的$N\geq m$和$\varepsilon>0$，存在一个$n\geq N$使得$d(x^{(n)},L)\leq\varepsilon$。
+2. <span style="color:red">（12.4.4 极限点）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的一个点列，并设$L\in X$。我们称$L$是$(x^{(n)})_{n=m}^\infty$的一个**极限点**，当且仅当对于任意的$N\geq m$和$\varepsilon>0$，存在一个$n\geq N$使得$d(x^{(n)},L)\leq\varepsilon$。
 
-   <span style='color:blue'>（注：这个定义是[定义6.4.1](../Chap6/Sec4.md)的推广）</span>
+   <span style="color:blue">（注：这个定义是[定义6.4.1](../Chap6/Sec4.md)的推广）</span>
 
-3. <span style='color:red'>（12.4.6 柯西序列）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的一个点列。我们称$(x^{(n)})_{n=m}^\infty$是一个**柯西序列**，当且仅当对于任意的$\varepsilon>0$，存在一个$N\geq m$使得$d(x^{(j)},x^{(k)})<\varepsilon$对所有的$j$，$k\geq N$均成立。
+3. <span style="color:red">（12.4.6 柯西序列）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的一个点列。我们称$(x^{(n)})_{n=m}^\infty$是一个**柯西序列**，当且仅当对于任意的$\varepsilon>0$，存在一个$N\geq m$使得$d(x^{(j)},x^{(k)})<\varepsilon$对所有的$j$，$k\geq N$均成立。
 
-   <span style='color:blue'>（注：这个定义是[定义6.1.3](../Chap6/Sec1.md)的推广；在[命题6.4.18](../Chap6/Sec4.md)中我们说明了实数空间中收敛序列与柯西序列的等价性，但是这个结论并不能推广到任意的度量空间中，这和度量空间的完备性有关）</span>
+   <span style="color:blue">（注：这个定义是[定义6.1.3](../Chap6/Sec1.md)的推广；在[命题6.4.18](../Chap6/Sec4.md)中我们说明了实数空间中收敛序列与柯西序列的等价性，但是这个结论并不能推广到任意的度量空间中，这和度量空间的完备性有关）</span>
 
-4. <span style='color:red'>（12.4.10 完备度量空间）</span>度量空间$(X,d)$是**完备的**，当且仅当$(X,d)$中的每一个柯西序列在$(X,d)$中都是收敛的。
+4. <span style="color:red">（12.4.10 完备度量空间）</span>度量空间$(X,d)$是**完备的**，当且仅当$(X,d)$中的每一个柯西序列在$(X,d)$中都是收敛的。
 
-   <span style='color:blue'>（注：根据完备度量空间的定义，我们不难发现实数空间$(\mathbb R,d)$是完备的，但是有理数空间$(\mathbb Q,d)$不是完备的；完备的度量空间有一些很好的性质，例如命题12.4.12的内容）</span>
+   <span style="color:blue">（注：根据完备度量空间的定义，我们不难发现实数空间$(\mathbb R,d)$是完备的，但是有理数空间$(\mathbb Q,d)$不是完备的；完备的度量空间有一些很好的性质，例如命题12.4.12的内容）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（12.4.3）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中收敛于极限$x_0$的一个点列，那么它的每一个子序列$(x^{(n_j)})_{j=1}^\infty$也收敛于$x_0$。
-2. <span style='color:red'>（12.4.5 极限点与子序列？）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的一个点列，并设$L\in X$。那么下面的命题是等价的：
+1. <span style="color:red">（12.4.3）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中收敛于极限$x_0$的一个点列，那么它的每一个子序列$(x^{(n_j)})_{j=1}^\infty$也收敛于$x_0$。
+2. <span style="color:red">（12.4.5 极限点与子序列？）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的一个点列，并设$L\in X$。那么下面的命题是等价的：
 
    > * $L$是$(x^{(n)})_{n=m}^\infty$的一个极限点。
    > * $(x^{(n)})_{n=m}^\infty$存在一个收敛于$L$的子序列$(x^{(n_j)})_{j=1}^\infty$。
 
-2. <span style='color:red'>（12.4.7 收敛序列是柯西序列）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中收敛于极限$x_0$的序列，那么$(x^{(n)})_{n=m}^\infty$是柯西序列。
+2. <span style="color:red">（12.4.7 收敛序列是柯西序列）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中收敛于极限$x_0$的序列，那么$(x^{(n)})_{n=m}^\infty$是柯西序列。
 
-3. <span style='color:red'>（12.4.9 柯西序列与子序列？）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的柯西序列。如果该序列在$X$中存在一个收敛于极限$x_0$的子序列$(x^{(n_j)})_{j=1}^\infty$，那么原序列$(x^{(n)})_{n=m}^\infty$也收敛于$x_0$。
+3. <span style="color:red">（12.4.9 柯西序列与子序列？）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的柯西序列。如果该序列在$X$中存在一个收敛于极限$x_0$的子序列$(x^{(n_j)})_{j=1}^\infty$，那么原序列$(x^{(n)})_{n=m}^\infty$也收敛于$x_0$。
 
-4. <span style='color:red'>（12.4.12 完备度量空间的性质？）</span>下面的两个命题始终为真：
+4. <span style="color:red">（12.4.12 完备度量空间的性质？）</span>下面的两个命题始终为真：
 
    > 1. 设$(X,d)$是一个度量空间，并设$(Y,d_{Y\times Y})$是$(X,d)$的一个子空间，如果$(Y,d_{Y\times Y})$是完备的，那么$Y$一定是$X$中的闭集。
    > 2. 反过来，如果$(X,d)$是一个完备度量空间，并且$Y$是$X$的一个闭子集，那么子空间$(Y,d_{Y\times Y})$也是完备的。
 
-   <span style='color:blue'>（注：这个命题的通俗解释就是完备度量空间总是闭的，无论放在哪个空间中，它总是一个闭集；对任意一个不完备的度量空间$(X,d)$，都可以通过**完备化**的操作将其变为一个更大的完备度量空间$(\overline{X},\overline{d})$包含$(X,d)$，关于这部分的内容，可以参考习题12.4.8）</span>
+   <span style="color:blue">（注：这个命题的通俗解释就是完备度量空间总是闭的，无论放在哪个空间中，它总是一个闭集；对任意一个不完备的度量空间$(X,d)$，都可以通过**完备化**的操作将其变为一个更大的完备度量空间$(\overline{X},\overline{d})$包含$(X,d)$，关于这部分的内容，可以参考习题12.4.8）</span>
 
 ---
 
 ## 课后习题
 
-##### 12.4.1 证明引理12.4.3<span style='color:blue'>（提示：回顾对[命题6.6.5](../Chap6/Sec6.md)的证明）</span>
+##### 12.4.1 证明引理12.4.3<span style="color:blue">（提示：回顾对[命题6.6.5](../Chap6/Sec6.md)的证明）</span>
 
 > 根据题设$(x^{(n)})_{n=m}^\infty$收敛于极限$x_0$，于是对任意的$\varepsilon>0$，存在$N\geq m$使得对任意的$n\geq N$都有$d(x^{(n)},x_0)\leq\varepsilon$。
 >
@@ -69,7 +69,7 @@ coverHeight: 320px
 > $$
 > 综上，于是根据定义12.1.14有$(x^{(n_j)})_{j=1}^\infty$也收敛于$x_0$，于是命题12.4.3得证。
 
-##### 12.4.2 证明命题12.4.5<span style='color:blue'>（提示：回顾对[命题6.6.6](../Chap6/Sec6.md)的证明）</span>
+##### 12.4.2 证明命题12.4.5<span style="color:blue">（提示：回顾对[命题6.6.6](../Chap6/Sec6.md)的证明）</span>
 
 > 分别证明充分必要性：
 >
@@ -102,7 +102,7 @@ coverHeight: 320px
 >
 > 于是根据定义12.4.4，$L$是$(x^{(n)})_{n=m}^\infty$的一个极限点。
 
-##### 12.4.3 证明引理12.4.7<span style='color:blue'>（提示：回顾对[命题6.1.12](../Chap6/Sec1.md)的证明）</span>
+##### 12.4.3 证明引理12.4.7<span style="color:blue">（提示：回顾对[命题6.1.12](../Chap6/Sec1.md)的证明）</span>
 
 > 对于任意的$\varepsilon>0$，令有$\displaystyle\varepsilon':=\frac{\varepsilon}{3}$。根据题设$(x^{(n)})_{n=m}^\infty$收敛于$x_0$，于是存在$N\geq m$使得对任意$n\geq N$都有$d(x^{(n)},x_0)\leq\varepsilon'$。
 >
@@ -204,7 +204,7 @@ $$
 \color{gray}{d_{\overline{X}}(\text{LIM}_{n\to\infty}x_n,\text{LIM}_{n\to\infty}y_n):=\lim_{n\to\infty}d(x_n,y_n)}
 $$
 
-###### 证明：这个函数是定义明确的<span style='color:blue'>（这不仅意味着极限$\displaystyle\lim_{n\to\infty}d(x_n,y_n)$存在，还意味着该函数需要满足替换公理，参见[引理5.3.7](../Chap5/Sec3.md)）</span>，并给出$\overline{X}$的度量空间结构<span style='color:blue'>（这里应该是要证明$(\overline{X},d_{\overline{X}})$是一个度量空间吧（大概），没看到原书中有提到“the structure of a metric space”的具体定义）</span>
+###### 证明：这个函数是定义明确的<span style="color:blue">（这不仅意味着极限$\displaystyle\lim_{n\to\infty}d(x_n,y_n)$存在，还意味着该函数需要满足替换公理，参见[引理5.3.7](../Chap5/Sec3.md)）</span>，并给出$\overline{X}$的度量空间结构<span style="color:blue">（这里应该是要证明$(\overline{X},d_{\overline{X}})$是一个度量空间吧（大概），没看到原书中有提到“the structure of a metric space”的具体定义）</span>
 
 > 证明：这个函数是定义明确的。
 >
@@ -372,7 +372,7 @@ $$
 
 > 注意到对任意$x$，$y\in X$有$x=y$当且仅当$d(x,y)=0$，又因为常数序列的极限$\displaystyle\lim_{n\to\infty}d(x,y)=d(x,y)$。从而根据(a)中相等的定义，$x=y$当且仅当$\text{LIM}_{n\to\infty}x=\text{LIM}_{n\to\infty}y$。
 
-###### (e) 证明：$X$在$\overline{X}$中的闭包就是$\overline{X}$<span style='color:blue'>（这解释了为什么用记号$\overline{X}$）</span>
+###### (e) 证明：$X$在$\overline{X}$中的闭包就是$\overline{X}$<span style="color:blue">（这解释了为什么用记号$\overline{X}$）</span>
 
 > $X$在$\overline{X}$中的闭包必然是包含于$\overline{X}$的，于是我们只需要证明$\overline{X}$包含于$X$的闭包就可以推出$\overline{X}$就是$X$的闭包。
 >

@@ -14,9 +14,9 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（6.2.1 广义实数系）</span>附加上两个额外元素$+\infty$与$-\infty$的实直线$\mathbb R$就是**广义实数系**$\mathbb R^*$，其中$+\infty$与$-\infty$互不相同，并且它们与每一个实数都不相同。一个**广义实数**$x$是**有限的**，当且仅当它是一个实数；一个广义实数是**无限的**，当且仅当它等于$+\infty$或$-\infty$。
+1. <span style="color:red">（6.2.1 广义实数系）</span>附加上两个额外元素$+\infty$与$-\infty$的实直线$\mathbb R$就是**广义实数系**$\mathbb R^*$，其中$+\infty$与$-\infty$互不相同，并且它们与每一个实数都不相同。一个**广义实数**$x$是**有限的**，当且仅当它是一个实数；一个广义实数是**无限的**，当且仅当它等于$+\infty$或$-\infty$。
 
-2. <span style='color:red'>（6.2.2 广义实数的负运算）</span>通过额外定义：
+2. <span style="color:red">（6.2.2 广义实数的负运算）</span>通过额外定义：
    $$
    -(+\infty):=-\infty\\
    -(-\infty):=+\infty
@@ -24,7 +24,7 @@ coverHeight: 320px
 
    由此将$\mathbb R$上的负运算$x\to(-x)$**推广**到广义实数系$\mathbb R^*$上。于是每个广义实数都有一个负数，且$-(-x)=x$总是成立。
 
-3. <span style='color:red'>（6.2.3 广义实数的排序）</span>称$x≤y$，当且仅当下列三个命题有一个为真：
+3. <span style="color:red">（6.2.3 广义实数的排序）</span>称$x≤y$，当且仅当下列三个命题有一个为真：
 
    > * $x$和$y$都是实数，并且满足$x≤y$。
    > * $y=+\infty$。
@@ -32,7 +32,7 @@ coverHeight: 320px
 
    如果$x≤y$且$x≠y$，那么称$x<y$。有时可以将$x<y$与$x≤y$写作$y>x$与$y≥x$。
 
-4. <span style='color:red'>（6.2.6 广义实数的上确界与下确界）</span>设$E$是$\mathbb R^*$的一个子集，则根据下述法则确定$E$的上确界或最小上界$\sup (E)$：
+4. <span style="color:red">（6.2.6 广义实数的上确界与下确界）</span>设$E$是$\mathbb R^*$的一个子集，则根据下述法则确定$E$的上确界或最小上界$\sup (E)$：
 
    > * 如果$E$包含在$\mathbb R$中，则根据定义5.5.10确定$\sup (E)$。
    > * 如果$E$包含$+\infty$，则令$\sup (E):=+\infty$。
@@ -42,36 +42,36 @@ coverHeight: 320px
    $$
    \inf (E):=-\sup (-E)
    $$
-   <span style='color:blue'>（其中$-E$为集合$\{-x:x\in E\}$）</span>
+   <span style="color:blue">（其中$-E$为集合$\{-x:x\in E\}$）</span>
 
-<span style='color:blue'>（顺便贴下[定义5.5.10](../Chap5/Sec5.md)防查看麻烦）：</span>
+<span style="color:blue">（顺便贴下[定义5.5.10](../Chap5/Sec5.md)防查看麻烦）：</span>
 
-> 设$E$是实数集的一个子集，如果$E$是非空的并且存在一个上界，则定义$\sup(E)$为$E$的最小上界<span style='color:blue'>（由[定理5.5.9](../Chap5/Sec5.md)可知，该定义是明确的）</span>。额外引入两个符号$+\infty$与$-\infty$。如果$E$是非空的并且没有上界，则令$\sup(E):=+\infty$；如果$E$是空集，则定义$\sup(E):=-\infty$，称$\sup(E)$是$E$的**上确界**，也可以记作$\sup E$。
+> 设$E$是实数集的一个子集，如果$E$是非空的并且存在一个上界，则定义$\sup(E)$为$E$的最小上界<span style="color:blue">（由[定理5.5.9](../Chap5/Sec5.md)可知，该定义是明确的）</span>。额外引入两个符号$+\infty$与$-\infty$。如果$E$是非空的并且没有上界，则令$\sup(E):=+\infty$；如果$E$是空集，则定义$\sup(E):=-\infty$，称$\sup(E)$是$E$的**上确界**，也可以记作$\sup E$。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（6.2.5 广义实数的性质？）</span>设$x$，$y$，$z$为广义实数，则下述命题为真：
+1. <span style="color:red">（6.2.5 广义实数的性质？）</span>设$x$，$y$，$z$为广义实数，则下述命题为真：
 
-   > * <span style='color:red'>（自反性）</span>$x≤x$。
-   > * <span style='color:red'>（三歧性）</span>$x<y$，$x=y$，$x>y$三者恰有一个为真。
-   > * <span style='color:red'>（传递性）</span>若有$x<y$与$y<z$成立，则$x<z$为真。
-   > * <span style='color:red'>（负运算改变序）</span>若有$x≤y$成立，则有$-y≤-x$成立。
+   > * <span style="color:red">（自反性）</span>$x≤x$。
+   > * <span style="color:red">（三歧性）</span>$x<y$，$x=y$，$x>y$三者恰有一个为真。
+   > * <span style="color:red">（传递性）</span>若有$x<y$与$y<z$成立，则$x<z$为真。
+   > * <span style="color:red">（负运算改变序）</span>若有$x≤y$成立，则有$-y≤-x$成立。
 
-2. <span style='color:red'>（6.2.11 上确界与下确界性质）</span>设$E$是$\mathbb R^*$的一个子集，则有下述命题为真：
+2. <span style="color:red">（6.2.11 上确界与下确界性质）</span>设$E$是$\mathbb R^*$的一个子集，则有下述命题为真：
    
    > * 对任意$x\in E$，有$x≥\inf (E)$与$x≤\sup (E)$恒成立。
    > * 对任意$M$为$E$的上界，有$M≥\sup (E)$。
    > * 对任意$M$为$E$的下界，有$M≤\inf (E)$。
    
-   <span style='color:blue'>（$M$是$E$的上界，即对任意$x\in E$，有$M≥x$，下界类似）</span>
+   <span style="color:blue">（$M$是$E$的上界，即对任意$x\in E$，有$M≥x$，下界类似）</span>
 
 ---
 
 ## 课后习题
 
-##### 6.2.1 证明命题6.2.5<span style='color:blue'>（提示：你可能会用到[命题5.4.7](../Chap5/Sec4.md)）</span>
+##### 6.2.1 证明命题6.2.5<span style="color:blue">（提示：你可能会用到[命题5.4.7](../Chap5/Sec4.md)）</span>
 
 > 即在$x$，$y$，$z$为广义实数的前提下证明：
 >
@@ -135,7 +135,7 @@ coverHeight: 320px
 >
 > 综上，于是结论：若有$x\leq y$成立，则有$-y\leq -x$成立得证。
 
-##### 6.2.2 证明定理6.2.11<span style='color:blue'>（提示：你可能要用到根据$+\infty$和$-\infty$是否属于$E$来分情况考虑。如果$E$中只包含实数，那么你当然可以利用[定义5.5.10](../Chap5/Sec5.md)）</span>
+##### 6.2.2 证明定理6.2.11<span style="color:blue">（提示：你可能要用到根据$+\infty$和$-\infty$是否属于$E$来分情况考虑。如果$E$中只包含实数，那么你当然可以利用[定义5.5.10](../Chap5/Sec5.md)）</span>
 
 > 即证明对$E$是$\mathbb R^*$的子集，有：
 >

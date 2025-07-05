@@ -14,21 +14,21 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（8.3.1 康托尔定理）</span>设$X$是任意一个集合<span style='color:blue'>（可以是有限集，也可以是无限集）</span>，那么集合$X$与集合$2^X$不可能拥有同样的基数。
+1. <span style="color:red">（8.3.1 康托尔定理）</span>设$X$是任意一个集合<span style="color:blue">（可以是有限集，也可以是无限集）</span>，那么集合$X$与集合$2^X$不可能拥有同样的基数。
 
-   <span style='color:blue'>（注：$2^X$是$X$的幂集，也即$X$所有子集的集合，具体可以参考[引理3.4.9](../Chap3/Sec4.md)）</span>
+   <span style="color:blue">（注：$2^X$是$X$的幂集，也即$X$所有子集的集合，具体可以参考[引理3.4.9](../Chap3/Sec4.md)）</span>
 
-2. <span style='color:red'>（8.3.3 康托尔定理推论其一？）</span>$2^\mathbb N$是不可数集。
+2. <span style="color:red">（8.3.3 康托尔定理推论其一？）</span>$2^\mathbb N$是不可数集。
 
-3. <span style='color:red'>（8.3.4 康托尔定理推论其二？）</span>$\mathbb R$是不可数集。
+3. <span style="color:red">（8.3.4 康托尔定理推论其二？）</span>$\mathbb R$是不可数集。
 
-<span style='color:blue'>（注：关于推论8.3.4有一些不在学习要求但是很有意思的事情，由推论8.3.4我们可以得到实数集$\mathbb R$的基数是严格大于自然数集$\mathbb N$的，由此可以延伸出一个有趣的问题，即：是否存在一类无限集，它们的基数介于自然数集与实数集之间，**[连续统假设](https://en.m.wikipedia.org/wiki/Continuum_hypothesis)**断言不存在这样的集合。这个假设独立于集合论的其它公理，也即既不能被那些公理证明，也不能被那些公理否定。有兴趣可以自行了解。）</span>
+<span style="color:blue">（注：关于推论8.3.4有一些不在学习要求但是很有意思的事情，由推论8.3.4我们可以得到实数集$\mathbb R$的基数是严格大于自然数集$\mathbb N$的，由此可以延伸出一个有趣的问题，即：是否存在一类无限集，它们的基数介于自然数集与实数集之间，**[连续统假设](https://en.m.wikipedia.org/wiki/Continuum_hypothesis)**断言不存在这样的集合。这个假设独立于集合论的其它公理，也即既不能被那些公理证明，也不能被那些公理否定。有兴趣可以自行了解。）</span>
 
 ---
 
 ## 课后习题
 
-##### 8.3.1 设$X$是一个基数为$n$的有限集，证明：$2^X$是一个基数为$2^n$的有限集<span style='color:blue'>（提示：对$n$使用归纳法）</span>
+##### 8.3.1 设$X$是一个基数为$n$的有限集，证明：$2^X$是一个基数为$2^n$的有限集<span style="color:blue">（提示：对$n$使用归纳法）</span>
 
 >对$n$做归纳：
 >
@@ -47,7 +47,7 @@ coverHeight: 320px
 >$$
 >而根据归纳假设，$X_1$是一个基数为$b$的集合，于是应该有$\#(2^{X_1})=2^b$，于是$\#(2^X)=2\cdot 2^b=2^{b+1}$。
 
-##### 8.3.2 设$A$，$B$，$C$ 是满足$A\subseteq B\subseteq C$的集合，并且假设存在一个单射$f:C\to A$ 。如下递归地定义集合$D_0$，$D_1$，$...$；令 $D_0:=B\backslash  A$ ，且对所有的自然数$n$令$D_{n+1}:=f\left(D_n\right)$。证明：集合$D_0$，$D_1$，$...$是互不相交的集合<span style='color:blue'>（即只要$n\ne m$，就有$D_n\cap D_m=\varnothing$）</span>。 同时证明：如果 $g:A\to B$ 被定义为如下函数：当$x\in \displaystyle{\bigcup_{n=0}^{\infty}}D_n$时，令$g(x):=f^{-1}(x)$；当$x\notin \displaystyle{\bigcup_{n=0}^{\infty}}D_n$时，令$g(x):=x$，那么$g$的确是把$A$映射到$B$的一个双射。特别的，$A$和$B$有相同的基数
+##### 8.3.2 设$A$，$B$，$C$ 是满足$A\subseteq B\subseteq C$的集合，并且假设存在一个单射$f:C\to A$ 。如下递归地定义集合$D_0$，$D_1$，$...$；令 $D_0:=B\backslash  A$ ，且对所有的自然数$n$令$D_{n+1}:=f\left(D_n\right)$。证明：集合$D_0$，$D_1$，$...$是互不相交的集合<span style="color:blue">（即只要$n\ne m$，就有$D_n\cap D_m=\varnothing$）</span>。 同时证明：如果 $g:A\to B$ 被定义为如下函数：当$x\in \displaystyle{\bigcup_{n=0}^{\infty}}D_n$时，令$g(x):=f^{-1}(x)$；当$x\notin \displaystyle{\bigcup_{n=0}^{\infty}}D_n$时，令$g(x):=x$，那么$g$的确是把$A$映射到$B$的一个双射。特别的，$A$和$B$有相同的基数
 
 >证明：集合$D_0$，$D_1$，$...$是互不相交的集合。
 >
@@ -86,7 +86,7 @@ coverHeight: 320px
 >
 >综上，$g$是一个双射。
 
-##### 8.3.3 回顾[习题3.6.7](../Chap3/Sec6.md)，称集合$A$的基数小于或等于集合$B$的基数，当且仅当存在一个从$A$到$B$的单射$f:A\to B$。利用习题8.3.2证明：如果集合$A$的基数小于或等于集合$B$的基数，并且集合$B$的基数也小于或等于集合$A$的基数，那么$A$和$B$有相同的基数<span style='color:blue'>（这被称作<span style='color:red'>施罗德―伯恩斯坦定理</span>，该定理以恩斯特·施罗德（1841—1902）和费利克斯·伯恩斯坦（1878—1956）的名字来命名）</span>
+##### 8.3.3 回顾[习题3.6.7](../Chap3/Sec6.md)，称集合$A$的基数小于或等于集合$B$的基数，当且仅当存在一个从$A$到$B$的单射$f:A\to B$。利用习题8.3.2证明：如果集合$A$的基数小于或等于集合$B$的基数，并且集合$B$的基数也小于或等于集合$A$的基数，那么$A$和$B$有相同的基数<span style="color:blue">（这被称作<span style="color:red">施罗德―伯恩斯坦定理</span>，该定理以恩斯特·施罗德（1841—1902）和费利克斯·伯恩斯坦（1878—1956）的名字来命名）</span>
 
 >利用习题8.3.2的证明：
 >
@@ -94,7 +94,7 @@ coverHeight: 320px
 >
 >$f'(g(B))$，$f'(A)$，$B$ 是满足$f'(g(B))\subseteq f'(A)\subseteq B$的集合，并且存在一个单射$f:B\to f'(g(B))$。于是根据习题8.3.2的结论，有存在双射$h:f'(A)\to f'(g(B))$，从而$f'(A)$与$f'(g(B))$有相同的基数。又由于$f'$与$g'$都是双射，于是$A$与$f'(A)$有相同的基数，$B$，$g(B)$与$f'(g(B))$有相同的基数，综合即$A$与$B$有相同的基数。
 
-##### 8.3.4  如果集合$A$的基数小于或等于集合$B$的基数<span style='color:blue'>（根据[习题3.6.7](../Chap3/Sec6.md)）</span>，但$A$的基数与$B$的基数不相同，那么我们称<span style='color:red'>集合$A$的基数严格小于集合$B$的基数</span>。证明：对任意的集合$X$，$X$的基数都严格小于$2^X$的基数。同时证明：如果集合$A$的基数严格小于集合$B$的基数，且集合$B$的基数严格小于集合$C$的基数，那么集合$A$的基数严格小于集合$C$的基数
+##### 8.3.4  如果集合$A$的基数小于或等于集合$B$的基数<span style="color:blue">（根据[习题3.6.7](../Chap3/Sec6.md)）</span>，但$A$的基数与$B$的基数不相同，那么我们称<span style="color:red">集合$A$的基数严格小于集合$B$的基数</span>。证明：对任意的集合$X$，$X$的基数都严格小于$2^X$的基数。同时证明：如果集合$A$的基数严格小于集合$B$的基数，且集合$B$的基数严格小于集合$C$的基数，那么集合$A$的基数严格小于集合$C$的基数
 
 >证明：对任意的集合$X$，$X$的基数都严格小于$2^X$的基数
 >
@@ -114,7 +114,7 @@ coverHeight: 320px
 >
 >综上，于是有$A$的基数小于等于$C$且$A$，$C$基数不相等，即$A$的基数严格小于$C$的基数。
 
-##### 8.3.5 证明：不存在可数无限的[幂集](../Chap3/Sec4.md)<span style='color:blue'>（集合$X$的幂集就是形如$2^{X}$的集合）</span>
+##### 8.3.5 证明：不存在可数无限的[幂集](../Chap3/Sec4.md)<span style="color:blue">（集合$X$的幂集就是形如$2^{X}$的集合）</span>
 
 >对任意一个集合$X$的情况讨论：
 >

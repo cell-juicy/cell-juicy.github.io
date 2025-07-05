@@ -14,17 +14,17 @@ coverHeight: 320px
 
 ## 摘录
 
-1. <span style='color:red'>（分段常值黎曼-斯蒂尔杰斯积分独立于划分？）</span>设$I$是一个有界区间，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的函数，并且设$f:I\to\mathbb R$是一个函数。如果$P$和$P'$都是$I$的划分，并且$f$关于$P$和$P'$都是分段常值函数，那么有$\displaystyle p.c.\int_{[P]}f\text{d}\alpha=p.c.\int_{[P']}f\text{d}\alpha$。
+1. <span style="color:red">（分段常值黎曼-斯蒂尔杰斯积分独立于划分？）</span>设$I$是一个有界区间，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的函数，并且设$f:I\to\mathbb R$是一个函数。如果$P$和$P'$都是$I$的划分，并且$f$关于$P$和$P'$都是分段常值函数，那么有$\displaystyle p.c.\int_{[P]}f\text{d}\alpha=p.c.\int_{[P']}f\text{d}\alpha$。
 
-2. <span style='color:red'>（区间上的分段常值黎曼-斯蒂尔杰斯积分？）</span>设$I$是一个有界区间，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的函数，并且设$f:I\to\mathbb R$是$I$上的分段常数函数。那么定义有：
+2. <span style="color:red">（区间上的分段常值黎曼-斯蒂尔杰斯积分？）</span>设$I$是一个有界区间，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的函数，并且设$f:I\to\mathbb R$是$I$上的分段常数函数。那么定义有：
    $$
    p.c.\int_{I}f\text{d}\alpha:=p.c.\int_{[P]}f\text{d}\alpha
    $$
    其中$P$是$I$的任意一个使得$f$是关于$P$的分段常数函数的划分。
 
-3. <span style='color:red'>（黎曼-斯蒂尔杰斯积分满足积分定律？）</span>若令有$\alpha$是一个**单调递增**的函数，那么将积分$\displaystyle p.c.\int_{I}f$全部替换为$\displaystyle p.c.\int_{I}f\text{d}\alpha$，长度$|I|$替换为$\alpha$-长度$\alpha[I]$时，[定理11.2.16](..\..\第11章\pdf\实分析 11.2 分段常数函数.pdf)中的全部结论仍然成立。
+3. <span style="color:red">（黎曼-斯蒂尔杰斯积分满足积分定律？）</span>若令有$\alpha$是一个**单调递增**的函数，那么将积分$\displaystyle p.c.\int_{I}f$全部替换为$\displaystyle p.c.\int_{I}f\text{d}\alpha$，长度$|I|$替换为$\alpha$-长度$\alpha[I]$时，[定理11.2.16](..\..\第11章\pdf\实分析 11.2 分段常数函数.pdf)中的全部结论仍然成立。
 
-4. <span style='color:red'>（上黎曼-斯蒂尔杰斯积分与下黎曼-斯蒂尔杰斯积分？）</span>设$I$是一个有界区间，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的单调递增函数，并且设$f:I\to\mathbb R$是一个函数。那么定义**上黎曼-斯蒂尔杰斯积分**$\displaystyle\overline\int_If\text{d}\alpha$与**下黎曼-斯蒂尔杰斯积分**$\displaystyle\underline\int_If\text{d}\alpha$为：
+4. <span style="color:red">（上黎曼-斯蒂尔杰斯积分与下黎曼-斯蒂尔杰斯积分？）</span>设$I$是一个有界区间，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的单调递增函数，并且设$f:I\to\mathbb R$是一个函数。那么定义**上黎曼-斯蒂尔杰斯积分**$\displaystyle\overline\int_If\text{d}\alpha$与**下黎曼-斯蒂尔杰斯积分**$\displaystyle\underline\int_If\text{d}\alpha$为：
    $$
    \begin{gather}
    \overline{\int}_If\text{d}\alpha:=\inf\left\{p.c.\int_{I}g\text{d}\alpha:g是在I上从上方控制f的分段常数函数\right\}\\
@@ -32,21 +32,21 @@ coverHeight: 320px
    \end{gather}
    $$
 
-5. <span style='color:red'>（黎曼-斯蒂尔杰斯可积？）</span>设$I$是一个有界区间，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的单调递增函数，并且设$f:I\to\mathbb R$是一个函数。如果$f$的上黎曼-斯蒂尔杰斯积分与下黎曼-斯蒂尔杰斯相等，则称$f$在$I$上关于$\alpha$是**黎曼-斯蒂尔杰斯可积**的，此时令：
+5. <span style="color:red">（黎曼-斯蒂尔杰斯可积？）</span>设$I$是一个有界区间，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的单调递增函数，并且设$f:I\to\mathbb R$是一个函数。如果$f$的上黎曼-斯蒂尔杰斯积分与下黎曼-斯蒂尔杰斯相等，则称$f$在$I$上关于$\alpha$是**黎曼-斯蒂尔杰斯可积**的，此时令：
    $$
    \int_If\text{d}:=\alpha\overline{\int}_If\text{d}\alpha=\underline{\int}_If\text{d}\alpha
    $$
-   <span style='color:blue'>（注：若取$\alpha:\mathbb R\to\mathbb R$是恒等函数$\alpha(x):=x$，则黎曼-斯蒂尔杰斯积分就等于黎曼积分，因此黎曼-斯蒂尔杰斯积分是黎曼积分的一个推广（在[推论11.10.3](..\..\第11章\pdf\实分析 11.10 基本定理的推论.pdf)中还会对这两种积分做另外的比较），因此有时候也写有黎曼积分$\displaystyle\int_If$为$\displaystyle\int_If\text{d}x$或$\displaystyle\int_If(x)\text{d}x$；大部分黎曼积分的理论都可以直接推广到黎曼-斯蒂尔杰斯积分中，只需要将黎曼积分替换成黎曼-斯蒂尔杰斯积分，并把长度替换成$\alpha$-长度即可，但但是也有些例外。例如，当$\alpha$在某些关键的地方间断时，定理[11.4.1(g)](..\..\第11章\pdf\实分析 11.4 黎曼积分的基本性质.pdf)，[命题11.5.3](..\..\第11章\pdf\实分析 11.5 连续函数的黎曼可积性.pdf)以及[命题11.5.6](..\..\第11章\pdf\实分析 11.5 连续函数的黎曼可积性.pdf)不一定成立（例如，如果$f$，$\alpha$在同一点处间断，那么$\displaystyle\int_If\text{d}\alpha$可能没有定义），但是[定理11.5.1](..\..\第11章\pdf\实分析 11.5 连续函数的黎曼可积性.pdf)依旧成立）</span>
+   <span style="color:blue">（注：若取$\alpha:\mathbb R\to\mathbb R$是恒等函数$\alpha(x):=x$，则黎曼-斯蒂尔杰斯积分就等于黎曼积分，因此黎曼-斯蒂尔杰斯积分是黎曼积分的一个推广（在[推论11.10.3](..\..\第11章\pdf\实分析 11.10 基本定理的推论.pdf)中还会对这两种积分做另外的比较），因此有时候也写有黎曼积分$\displaystyle\int_If$为$\displaystyle\int_If\text{d}x$或$\displaystyle\int_If(x)\text{d}x$；大部分黎曼积分的理论都可以直接推广到黎曼-斯蒂尔杰斯积分中，只需要将黎曼积分替换成黎曼-斯蒂尔杰斯积分，并把长度替换成$\alpha$-长度即可，但但是也有些例外。例如，当$\alpha$在某些关键的地方间断时，定理[11.4.1(g)](..\..\第11章\pdf\实分析 11.4 黎曼积分的基本性质.pdf)，[命题11.5.3](..\..\第11章\pdf\实分析 11.5 连续函数的黎曼可积性.pdf)以及[命题11.5.6](..\..\第11章\pdf\实分析 11.5 连续函数的黎曼可积性.pdf)不一定成立（例如，如果$f$，$\alpha$在同一点处间断，那么$\displaystyle\int_If\text{d}\alpha$可能没有定义），但是[定理11.5.1](..\..\第11章\pdf\实分析 11.5 连续函数的黎曼可积性.pdf)依旧成立）</span>
 
 ---
 
 ## 定义
 
-1. <span style='color:red'>（11.8.1 $\alpha$-长度）</span>设$I$是一个有界区间，并且设$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的函数。则定义区间$I$的**$\alpha$-长度**$\alpha[I]$如下：若$I$是一个单点集或者空集，则令$\alpha[I]:=0$；若$I$是一个形如$[a,b]$，$[a,b)$，$(a,b]$或$(a,b)$的区间<span style='color:blue'>（其中$b>a$）</span>，那么令$\alpha[I]=\alpha(b)-\alpha(a)$。
+1. <span style="color:red">（11.8.1 $\alpha$-长度）</span>设$I$是一个有界区间，并且设$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的函数。则定义区间$I$的**$\alpha$-长度**$\alpha[I]$如下：若$I$是一个单点集或者空集，则令$\alpha[I]:=0$；若$I$是一个形如$[a,b]$，$[a,b)$，$(a,b]$或$(a,b)$的区间<span style="color:blue">（其中$b>a$）</span>，那么令$\alpha[I]=\alpha(b)-\alpha(a)$。
 
-   <span style='color:blue'>（注：若取$\alpha:\mathbb R\to\mathbb R$是恒等函数$\alpha(x):=x$，则对于任意有界区间$I$都有$\alpha[I]=|I|$，从而区间长度的概念是$\alpha$-长度的一个特殊情形；有时候也会用$\alpha|^b_a$或者$\alpha(x)|_{x=a}^{x=b}$的写法来替代$\alpha[[a,b]]$）</span>
+   <span style="color:blue">（注：若取$\alpha:\mathbb R\to\mathbb R$是恒等函数$\alpha(x):=x$，则对于任意有界区间$I$都有$\alpha[I]=|I|$，从而区间长度的概念是$\alpha$-长度的一个特殊情形；有时候也会用$\alpha|^b_a$或者$\alpha(x)|_{x=a}^{x=b}$的写法来替代$\alpha[[a,b]]$）</span>
 
-2. <span style='color:red'>（11.8.5 分段常值黎曼-斯蒂尔杰斯积分）</span>设$I$是一个有界区间，$P$是$I$的一个划分，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的函数，并且设$f:I\to\mathbb R$是关于$P$的分段常数函数，那么定义有：
+2. <span style="color:red">（11.8.5 分段常值黎曼-斯蒂尔杰斯积分）</span>设$I$是一个有界区间，$P$是$I$的一个划分，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的函数，并且设$f:I\to\mathbb R$是关于$P$的分段常数函数，那么定义有：
    $$
    p.c.\int_{[P]}f\text{d}\alpha:=\sum_{J\in P}c_J\alpha[J]
    $$
@@ -56,7 +56,7 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（11.8.4）</span>设$I$是一个有界区间，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的函数，并且设$P$是$I$的一个划分，那么我们有：
+1. <span style="color:red">（11.8.4）</span>设$I$是一个有界区间，$\alpha:X\to\mathbb R$是定义在某个包含$I$的区域$X$上的函数，并且设$P$是$I$的一个划分，那么我们有：
    $$
    \alpha[I]=\sum_{J\in P}\alpha[J]
    $$
@@ -65,7 +65,7 @@ coverHeight: 320px
 
 ## 课后习题
 
-##### 11.8.1 证明引理11.8.4<span style='color:blue'>（提示：修改[定理11.1.13](..\..\第11章\pdf\实分析 11.1 划分.pdf)的证明）</span>
+##### 11.8.1 证明引理11.8.4<span style="color:blue">（提示：修改[定理11.1.13](..\..\第11章\pdf\实分析 11.1 划分.pdf)的证明）</span>
 
 > 由于划分总是有限的，于是我们可以对划分$P$的基数$n$做归纳证明：
 >
@@ -314,7 +314,7 @@ coverHeight: 320px
 > $$
 > 并且我们有$\{S\in P':S\ne\varnothing\}=P_J\cup P_K$与$P_J\cap P_K=\varnothing$，于是根据有限和运算性质（命题7.1.11(e)），我们可以直接得证结论。
 
-##### 11.8.4 叙述并证明关于黎曼-斯蒂尔杰斯积分的[定理11.5.1](..\..\第11章\pdf\实分析 11.5 连续函数的黎曼可积性.pdf)<span style='color:blue'>（提示：证明过程中需要小心，在某些涉及长度$|J_k|$的地方，$|J_k|$应当保持不变，而在另外一些涉及长度$|J_k|$的地方，则应该把$|J_k|$替换成$\alpha$-长度$\alpha[J_k]$。基本上，所有出现在求和符号内的$|J_k|$都应该替换成$\alpha[J_k]$，而其它的$|J_k|$都保持不变）</span>
+##### 11.8.4 叙述并证明关于黎曼-斯蒂尔杰斯积分的[定理11.5.1](..\..\第11章\pdf\实分析 11.5 连续函数的黎曼可积性.pdf)<span style="color:blue">（提示：证明过程中需要小心，在某些涉及长度$|J_k|$的地方，$|J_k|$应当保持不变，而在另外一些涉及长度$|J_k|$的地方，则应该把$|J_k|$替换成$\alpha$-长度$\alpha[J_k]$。基本上，所有出现在求和符号内的$|J_k|$都应该替换成$\alpha[J_k]$，而其它的$|J_k|$都保持不变）</span>
 
 > 关于黎曼-斯蒂尔杰斯积分的定理11.5.1：
 >
@@ -411,7 +411,7 @@ $$
 \int_{[-1,1]}f\text{dsgn}=2f(0)
 $$
 
-##### <span style='color:blue'>（提示：对每一个$\varepsilon>0$，找到从上方控制$f$和从下方控制$f$的分段常数函数，使得它们的黎曼-斯蒂尔杰斯积分是$\varepsilon$-接近于$2f(0)$的）</span>
+##### <span style="color:blue">（提示：对每一个$\varepsilon>0$，找到从上方控制$f$和从下方控制$f$的分段常数函数，使得它们的黎曼-斯蒂尔杰斯积分是$\varepsilon$-接近于$2f(0)$的）</span>
 
 > 由于$f$是有界闭区间上的连续函数，从而根据定理9.9.16有$f$是一致连续的，进而根据命题9.9.15，$f$是有界的。于是不妨设实数$M$为$f$的界，从而对任意$x\in[-1,1]$都有$-M\leq f(x)\leq M$成立。
 >

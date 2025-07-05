@@ -14,22 +14,22 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（9.6.1 实值函数的界？）</span>设$X$是$\mathbb R$的一个子集，并设$f:X\to\mathbb R$是一个函数。若存在一个实数$M$使得对所有$x\in X$均有$f(x)\leq M$成立，那么我们称$f$是**有上界的**；若存在一个实数$M$使得对所有$x\in X$均有$f(x)\geq -M$成立，那么我们称$f$是**有下界的**；若存在一个实数$M$使得对所有$x\in X$均有$|f(x)|\leq M$成立，那么我们称$f$是**有界的**。
+1. <span style="color:red">（9.6.1 实值函数的界？）</span>设$X$是$\mathbb R$的一个子集，并设$f:X\to\mathbb R$是一个函数。若存在一个实数$M$使得对所有$x\in X$均有$f(x)\leq M$成立，那么我们称$f$是**有上界的**；若存在一个实数$M$使得对所有$x\in X$均有$f(x)\geq -M$成立，那么我们称$f$是**有下界的**；若存在一个实数$M$使得对所有$x\in X$均有$|f(x)|\leq M$成立，那么我们称$f$是**有界的**。
 
-   <span style='color:blue'>（注：一个函数如果是有界的，当且仅当它同时是有上界的与有下界的；另外，若$f:X\to\mathbb R$是有界的，当且仅当它的象$f(x)$是[定义9.1.22](..\..\第9章\pdf\实分析 9.1 实直线的子集.pdf)下的有界集合；对于连续函数，若其定义域是一个有界的闭区间，那么它必然是有界的，见命题9.6.3）</span>
+   <span style="color:blue">（注：一个函数如果是有界的，当且仅当它同时是有上界的与有下界的；另外，若$f:X\to\mathbb R$是有界的，当且仅当它的象$f(x)$是[定义9.1.22](..\..\第9章\pdf\实分析 9.1 实直线的子集.pdf)下的有界集合；对于连续函数，若其定义域是一个有界的闭区间，那么它必然是有界的，见命题9.6.3）</span>
 
-2. <span style='color:red'>（9.6.5 最大值与最小值）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，并且设有$x_0\in X$。若对所有$x\in X$都有$f(x_0)\geq f(x)$，那么我们称$f$在$x_0$处到达它的**最大值**；若对所有$x\in X$都有$f(x_0)\leq f(x)$，那么我们称$f$在$x_0$处到达它的**最小值**。
+2. <span style="color:red">（9.6.5 最大值与最小值）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，并且设有$x_0\in X$。若对所有$x\in X$都有$f(x_0)\geq f(x)$，那么我们称$f$在$x_0$处到达它的**最大值**；若对所有$x\in X$都有$f(x_0)\leq f(x)$，那么我们称$f$在$x_0$处到达它的**最小值**。
 
-   <span style='color:blue'>（注：如果一个函数在某点处达到它的最大值，那么它一定有上界，相应的，如果它在某点处达到它的最小值，那么它一定有下界。最大值与最小值的概念目前仍然是**全局性**的，在[定义10.2.1](..\..\第10章\pdf\实分析 10.2 局部最大值、局部最小值以及导数.pdf)中我们将给出其局部性的形式）</span>
+   <span style="color:blue">（注：如果一个函数在某点处达到它的最大值，那么它一定有上界，相应的，如果它在某点处达到它的最小值，那么它一定有下界。最大值与最小值的概念目前仍然是**全局性**的，在[定义10.2.1](..\..\第10章\pdf\实分析 10.2 局部最大值、局部最小值以及导数.pdf)中我们将给出其局部性的形式）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（9.6.3 有界闭区间上的连续函数？）</span>设$a<b$都是实数，并且设$f:[a,b]\to\mathbb R$是$[a,b]$上的连续函数，那么$f$是一个有界函数。
-1. <span style='color:red'>（9.6.7 最大值原理）</span>设$a<b$都是实数，并且设$f:[a,b]\to\mathbb R$是$[a,b]$上的连续函数。那么$f$在某一点$x_{\text{max}}\in[a,b]$处达到最大值；在某一点$x_{\text{min}}\in[a,b]$处达到最小值。
+1. <span style="color:red">（9.6.3 有界闭区间上的连续函数？）</span>设$a<b$都是实数，并且设$f:[a,b]\to\mathbb R$是$[a,b]$上的连续函数，那么$f$是一个有界函数。
+1. <span style="color:red">（9.6.7 最大值原理）</span>设$a<b$都是实数，并且设$f:[a,b]\to\mathbb R$是$[a,b]$上的连续函数。那么$f$在某一点$x_{\text{max}}\in[a,b]$处达到最大值；在某一点$x_{\text{min}}\in[a,b]$处达到最小值。
 
-   <span style='color:blue'>（注：我们简写$\sup\{f(x):x\in[a,b]\}$记为$\displaystyle\sup_{x\in[a,b]}f(x)$，并类似地定义$\displaystyle\inf_{x\in[a,b]}f(x)$。于是最大值原理断定了$\displaystyle m:=\sup_{x\in[a,b]}f(x)$是一个实数，并且它是$f$在$[a,b]$上的**最大值**，即至少存在一个点$x_{\text{max}}\in[a,b]$使得$f(x_{\text{max}})=m$并且对任意$x\in X$都有$f(x_{\text{max}})\geq f(x)$，类似地，也有$\displaystyle\inf_{x\in[a,b]}f(x)$是$f$的**最小值**）</span>
+   <span style="color:blue">（注：我们简写$\sup\{f(x):x\in[a,b]\}$记为$\displaystyle\sup_{x\in[a,b]}f(x)$，并类似地定义$\displaystyle\inf_{x\in[a,b]}f(x)$。于是最大值原理断定了$\displaystyle m:=\sup_{x\in[a,b]}f(x)$是一个实数，并且它是$f$在$[a,b]$上的**最大值**，即至少存在一个点$x_{\text{max}}\in[a,b]$使得$f(x_{\text{max}})=m$并且对任意$x\in X$都有$f(x_{\text{max}})\geq f(x)$，类似地，也有$\displaystyle\inf_{x\in[a,b]}f(x)$是$f$的**最小值**）</span>
 
 ---
 
@@ -47,7 +47,7 @@ coverHeight: 320px
 >
 > 函数的图像如下：
 >
-> ![9.6-example1](../img/9.6-example1.png)
+> ![9.6-example1](/dependencies/docs/Real-Analysis/Chap9/Sec6/9.6-example1.png)
 
 ###### (b) 函数$f:[0,+\infty)\to\mathbb R$是连续且有界的，并且在某一点处达到最大值，但是没有最小值
 
@@ -59,7 +59,7 @@ coverHeight: 320px
 >
 > 函数图像如下：
 >
-> ![9.6-example2](../img/9.6-example2.png)
+> ![9.6-example2](/dependencies/docs/Real-Analysis/Chap9/Sec6/9.6-example2.png)
 
 ###### (c) 函数$f:[-1,1]\to\mathbb R$是有界的，既没有最大值也没有最小值
 
@@ -83,7 +83,7 @@ coverHeight: 320px
 >
 > 函数图像如下：
 >
-> ![9.6-example3](../img/9.6-example3.png)
+> ![9.6-example3](/dependencies/docs/Real-Analysis/Chap9/Sec6/9.6-example3.png)
 
 ###### (d) 函数$f:[-1,1]\to\mathbb R$既没有上界也没有下界
 
@@ -99,9 +99,9 @@ coverHeight: 320px
 >
 > 函数图像如下：
 >
-> ![9.6-example4](../img/9.6-example4.png)
+> ![9.6-example4](/dependencies/docs/Real-Analysis/Chap9/Sec6/9.6-example4.png)
 
-##### 解释为什么你构造的例子都不违背最大值原理<span style='color:blue'>（注：仔细阅读假设条件）</span>
+##### 解释为什么你构造的例子都不违背最大值原理<span style="color:blue">（注：仔细阅读假设条件）</span>
 
 > 上面四种情况都是不满足最大值原理的条件的，可以看到：
 >

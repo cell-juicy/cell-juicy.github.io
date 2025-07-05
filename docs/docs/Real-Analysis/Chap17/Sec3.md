@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 摘录
 
-1. <span style='color:red'>（梯度与导数矩阵）</span>根据定理17.3.8和引理17.3.5，我们可以知道若有函数$f:E\to\mathbb R^m$在某个集合$F$上的偏导数存在且连续，那么在$F$中的任意一个内点$x_0$处，全体方向导数都存在且有公式：
+1. <span style="color:red">（梯度与导数矩阵）</span>根据定理17.3.8和引理17.3.5，我们可以知道若有函数$f:E\to\mathbb R^m$在某个集合$F$上的偏导数存在且连续，那么在$F$中的任意一个内点$x_0$处，全体方向导数都存在且有公式：
    $$
    D_{(v_1,...,v_n)}f(x_0)=\sum_{j=1}^{n}v_j\frac{\part f}{\part x_j}(x_0)
    $$
@@ -68,7 +68,7 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（17.3.1 方向导数）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的内点，并设$v$是$\mathbb R^n$中的向量。如果极限
+1. <span style="color:red">（17.3.1 方向导数）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的内点，并设$v$是$\mathbb R^n$中的向量。如果极限
    $$
    \lim_{t\to 0;t>0,x_0+tv\in E}\frac{f(x_0+tv)-f(x_0)}{t}
    $$
@@ -76,9 +76,9 @@ coverHeight: 320px
    $$
    D_vf(x_0):=\lim_{t\to 0;t>0}\frac{f(x_0+tv)-f(x_0)}{t}
    $$
-   <span style='color:blue'>（注：应当将这个概念与[可微的定义](../Chap17/Sec2.md)做比较，由于方向导数的除数是标量因此我们可以直接通过极限去定义它；我们不在边界给出定义，但是如果只是为了定义“朝里”方向上的方向导数，那么也可以在边界上给出方向导数的定义）</span>
+   <span style="color:blue">（注：应当将这个概念与[可微的定义](../Chap17/Sec2.md)做比较，由于方向导数的除数是标量因此我们可以直接通过极限去定义它；我们不在边界给出定义，但是如果只是为了定义“朝里”方向上的方向导数，那么也可以在边界上给出方向导数的定义）</span>
 
-2. <span style='color:red'>（17.3.7 偏导数）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的内点，并设$1\leq j\leq n$。如果极限
+2. <span style="color:red">（17.3.7 偏导数）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的内点，并设$1\leq j\leq n$。如果极限
    $$
    \lim_{t\to 0;t\ne 0,x_0+te_j\in E}\frac{f(x_0+te_j)-f(x_0)}{t}
    $$
@@ -86,29 +86,29 @@ coverHeight: 320px
    $$
    \frac{\part f}{\part x_j}(x_0):=\lim_{t\to 0;t\ne 0,x_0+te_j\in E}\frac{f(x_0+te_j)-f(x_0)}{t}=\frac{\text{d}}{\text{d}t}f(x_0+te_j)|_{t=0}
    $$
-   <span style='color:blue'>（注：偏导数即将函数视为$x_j$的单变量函数然后求导；如果我们将$f$写为$f=(f_1,...,f_m)$，那么显然有$\displaystyle\frac{\part f}{\part x_j}(x_0)=\left(\frac{\part f_1}{\part x_j}(x_0),...,\frac{\part f_m}{\part x_j}(x_0)\right)$；注意区分偏导数与方向导数，这点我们会在习题17.3.2中讨论）</span>
+   <span style="color:blue">（注：偏导数即将函数视为$x_j$的单变量函数然后求导；如果我们将$f$写为$f=(f_1,...,f_m)$，那么显然有$\displaystyle\frac{\part f}{\part x_j}(x_0)=\left(\frac{\part f_1}{\part x_j}(x_0),...,\frac{\part f_m}{\part x_j}(x_0)\right)$；注意区分偏导数与方向导数，这点我们会在习题17.3.2中讨论）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（17.3.5 全导数与方向导数？）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的内点，并设$v$是$\mathbb R^n$中的向量。如果$f$在$x_0$处可微，那么$f$在$x_0$处沿方向$v$也可微，并且
+1. <span style="color:red">（17.3.5 全导数与方向导数？）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的内点，并设$v$是$\mathbb R^n$中的向量。如果$f$在$x_0$处可微，那么$f$在$x_0$处沿方向$v$也可微，并且
    $$
    D_vf(x_0)=f'(x_0)v
    $$
-   <span style='color:blue'>（注：这个命题说明了全可微性蕴含了方向可微性，但是反过来这个命题并不成立）</span>
+   <span style="color:blue">（注：这个命题说明了全可微性蕴含了方向可微性，但是反过来这个命题并不成立）</span>
 
-2. <span style='color:red'>（17.3.8 偏导数与全导数？）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$F$是$E$的子集，并设$x_0$是$F$的内点。如果$f$在$F$上的全体偏导数$\displaystyle\frac{\part f}{\part x_j}$都存在，并且它们在$x_0$处也都是连续的，那么$f$在$x_0$处是可微的，并且线性变换$f'(x_0):\mathbb R^n\to\mathbb R^m$定义有
+2. <span style="color:red">（17.3.8 偏导数与全导数？）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$F$是$E$的子集，并设$x_0$是$F$的内点。如果$f$在$F$上的全体偏导数$\displaystyle\frac{\part f}{\part x_j}$都存在，并且它们在$x_0$处也都是连续的，那么$f$在$x_0$处是可微的，并且线性变换$f'(x_0):\mathbb R^n\to\mathbb R^m$定义有
    $$
    f'(x_0)(v_j)_{1\leq j\leq n}=\sum_{j=1}^nv_j\frac{\part f}{\part x_j}(x_0)
    $$
-   <span style='color:blue'>（注：这给出了另一种确定全导数的方法）</span>
+   <span style="color:blue">（注：这给出了另一种确定全导数的方法）</span>
 
 ---
 
 ## 课后习题
 
-##### 17.3.1 证明引理17.3.5<span style='color:blue'>（这与[习题17.2.2](../Chap17/Sec2.md)类似）</span>
+##### 17.3.1 证明引理17.3.5<span style="color:blue">（这与[习题17.2.2](../Chap17/Sec2.md)类似）</span>
 
 > 若$f$在$x_0$处可微，那么存在线性映射$L$使得极限
 > $$
@@ -133,7 +133,7 @@ coverHeight: 320px
 > $$
 > 从而根据收敛的定义，即有$\displaystyle D_vf(x_0)=\lim_{t\to 0;t>0,x_0+tv\in E}\frac{f(x_0+tv)-f(x_0)}{t}=Lv$，考虑到$L$就是$f'(x_0)$，于是引理17.3.5得证。
 
-##### 17.3.2 设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的内点，并设$1\leq j\leq n$。证明：$\displaystyle\frac{\part f}{\part x_j}(x_0)$存在当且仅当$D_{e_j}f(x_0)$与$D_{-e_j}f(x_0)$都存在且互为相反数<span style='color:blue'>（也即$D_{e_j}f(x_0)=-D_{-e_j}f(x_0)$）</span>，据此进一步得到$\displaystyle\frac{\part f}{\part x_j}(x_0)=D_{e_j}f(x_0)$
+##### 17.3.2 设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的内点，并设$1\leq j\leq n$。证明：$\displaystyle\frac{\part f}{\part x_j}(x_0)$存在当且仅当$D_{e_j}f(x_0)$与$D_{-e_j}f(x_0)$都存在且互为相反数<span style="color:blue">（也即$D_{e_j}f(x_0)=-D_{-e_j}f(x_0)$）</span>，据此进一步得到$\displaystyle\frac{\part f}{\part x_j}(x_0)=D_{e_j}f(x_0)$
 
 > 分别证明充分必要性。
 >
@@ -232,7 +232,7 @@ coverHeight: 320px
 > $$
 > 因此$f$不是符合定理17.3.8要求的函数，自然也不能应用定理17.3.8。
 
-##### 17.3.4 设$f:\mathbb R^n\to\mathbb R^m$是一个可微函数，并且对于所有的$x\in\mathbb R^n$都有$f'(x)=0$。证明：$f$是一个常值函数<span style='color:blue'>（提示：你可能会用到一元函数的[平均值定理（推论10.2.9）](../Chap10/Sec2.md)或者[微积分基本定理](../Chap11/Sec9.md)。但是需要注意这些定理并不能对多元函数进行直接类比，不建议使用第一性原理来解题）</span>；另一个更难的挑战是，尝试将定义域$\mathbb R^n$换成$\mathbb R^n$的一个连通开子集$\Omega$后再证明这个命题
+##### 17.3.4 设$f:\mathbb R^n\to\mathbb R^m$是一个可微函数，并且对于所有的$x\in\mathbb R^n$都有$f'(x)=0$。证明：$f$是一个常值函数<span style="color:blue">（提示：你可能会用到一元函数的[平均值定理（推论10.2.9）](../Chap10/Sec2.md)或者[微积分基本定理](../Chap11/Sec9.md)。但是需要注意这些定理并不能对多元函数进行直接类比，不建议使用第一性原理来解题）</span>；另一个更难的挑战是，尝试将定义域$\mathbb R^n$换成$\mathbb R^n$的一个连通开子集$\Omega$后再证明这个命题
 
 > （思路不是本人想的， 转述别人的证明）
 >

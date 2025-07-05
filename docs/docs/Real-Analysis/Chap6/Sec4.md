@@ -14,17 +14,17 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（6.4.1 极限点）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，$x$是一个实数，并且$\varepsilon>0$是一个实数。称$x$是**$\varepsilon$-附着**于$(a_n)_{n=m}^\infty$的，当且仅当存在一个$n\geq m$使得$a_n$是$\varepsilon$-接近于$x$的。
+1. <span style="color:red">（6.4.1 极限点）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，$x$是一个实数，并且$\varepsilon>0$是一个实数。称$x$是**$\varepsilon$-附着**于$(a_n)_{n=m}^\infty$的，当且仅当存在一个$n\geq m$使得$a_n$是$\varepsilon$-接近于$x$的。
 
    ​    称$x$是**持续$\varepsilon$-附着**于$(a_n)_{n=m}^\infty$的，当且仅当对每一个整数$N\geq m$，$x$都是$\varepsilon$-附着于$(a_n)_{n=N}^\infty$的。
 
    ​    称$x$是$(a_n)_{n=m}^\infty$的**极限点**或**附着点**，当且仅当对任意$\varepsilon>0$，$x$都是持续$\varepsilon$-附着于$(a_n)_{n=m}^\infty$的。
 
-   <span style='color:blue'>（展开的表述：称$x$是$(a_n)_{n=m}^\infty$的极限点，当且仅当对任意$\varepsilon>0$与$N\geq m$，都存在一个$n\geq N$使得$|a_n-x|\leq\varepsilon$）</span>
+   <span style="color:blue">（展开的表述：称$x$是$(a_n)_{n=m}^\infty$的极限点，当且仅当对任意$\varepsilon>0$与$N\geq m$，都存在一个$n\geq N$使得$|a_n-x|\leq\varepsilon$）</span>
 
-   > <span style='color:blue'>注：极限是极限点的一个**特殊情形**。</span>
+   > <span style="color:blue">注：极限是极限点的一个**特殊情形**。</span>
 
-2. <span style='color:red'>（6.4.6 上极限与下极限）</span>设$(a_n)_{n=m}^\infty$是一个序列，定义一新序列$(A_N^+)_{N=m}^\infty$，其中有：
+2. <span style="color:red">（6.4.6 上极限与下极限）</span>设$(a_n)_{n=m}^\infty$是一个序列，定义一新序列$(A_N^+)_{N=m}^\infty$，其中有：
    $$
    A_N^+:=\sup (a_n)_{n=N}^\infty
    $$
@@ -40,24 +40,24 @@ coverHeight: 320px
    $$
    \liminf_{n\to \infty}a_n:=\sup (A_N^-)_{n=m}^\infty
    $$
-   <span style='color:blue'>（注：上极限与下极限是极限点的一种）</span>
+   <span style="color:blue">（注：上极限与下极限是极限点的一种）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（6.4.5 极限是极限点）</span>设$(a_n)_{n=m}^\infty$是一个收敛于$c$的序列，那么$c$是$(a_n)_{n=m}^\infty$的一个极限点。进一步的，它是$(a_n)_{n=m}^\infty$唯一一个极限点。
+1. <span style="color:red">（6.4.5 极限是极限点）</span>设$(a_n)_{n=m}^\infty$是一个收敛于$c$的序列，那么$c$是$(a_n)_{n=m}^\infty$的一个极限点。进一步的，它是$(a_n)_{n=m}^\infty$唯一一个极限点。
 
-2. <span style='color:red'>（6.4.12 上下极限的一些基本性质）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，$L^+$是该序列上极限，$L^-$是该序列下极限<span style='color:blue'>（于是有$L^+$，$L^-$均为广义实数）</span>
+2. <span style="color:red">（6.4.12 上下极限的一些基本性质）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，$L^+$是该序列上极限，$L^-$是该序列下极限<span style="color:blue">（于是有$L^+$，$L^-$均为广义实数）</span>
 
-   > 1. 对任意的$x>L^+$，存在一个$N\geq m$使得$a_n<x$对所有的$n\geq N$成立。对任意的$y<L^-$，存在一个$N\geq m$使得$a_n>y$对所有的$n\geq N$成立。<span style='color:blue'>（通俗点说，就是总是可以找到一个$N$，从$N$往后所有自然数均满足所有项小于上极限或所有项大于下极限）</span>
-   > 2. 对任意的$x<L^+$和任意的$N\geq m$，存在一个$n\geq N$使得$a_n>x$。对任意的$y>L^-$与任意的$N\geq m$，存在一个$n\geq N$使得$a_n<y$。<span style='color:blue'>（通俗点说，就是$x$总是会被$a_n$无限次超越，$y$总是会无限次超越$a_n$）</span>
+   > 1. 对任意的$x>L^+$，存在一个$N\geq m$使得$a_n<x$对所有的$n\geq N$成立。对任意的$y<L^-$，存在一个$N\geq m$使得$a_n>y$对所有的$n\geq N$成立。<span style="color:blue">（通俗点说，就是总是可以找到一个$N$，从$N$往后所有自然数均满足所有项小于上极限或所有项大于下极限）</span>
+   > 2. 对任意的$x<L^+$和任意的$N\geq m$，存在一个$n\geq N$使得$a_n>x$。对任意的$y>L^-$与任意的$N\geq m$，存在一个$n\geq N$使得$a_n<y$。<span style="color:blue">（通俗点说，就是$x$总是会被$a_n$无限次超越，$y$总是会无限次超越$a_n$）</span>
    > 3. $\inf (a_n)_{n=m}^\infty\leq L^-\leq L^+\leq\sup (a_n)_{n=m}^\infty$。
    > 4. 如果$c$是$(a_n)_{n=m}^\infty$的一个极限点，那么有$L^-\leq c\leq L^+$。
    > 5. 如果$L^+$或$L^-$是有限的，则它们同时也会是$(a_n)_{n=m}^\infty$的极限点。
    > 6. 设$c$是一个实数，$(a_n)_{n=m}^\infty$收敛于$c$，当且仅当$L^+=L^-=c$。
 
-3. <span style='color:red'>（6.4.13 比较原理）</span>假设$(a_n)_{n=m}^\infty$和$(b_n)_{n=m}^\infty$是两个实数序列，且有$a_n\leq b_n$对全部$n\geq m$成立则有不等式：
+3. <span style="color:red">（6.4.13 比较原理）</span>假设$(a_n)_{n=m}^\infty$和$(b_n)_{n=m}^\infty$是两个实数序列，且有$a_n\leq b_n$对全部$n\geq m$成立则有不等式：
    $$
    \begin{gather}
    \sup (a_n)_{n=m}^\infty\leq\sup (b_n)_{n=m}^\infty\\
@@ -67,18 +67,18 @@ coverHeight: 320px
    \end{gather}
    $$
    
-4. <span style='color:red'>（6.4.14 夹逼定理）</span>假设$(a_n)_{n=m}^\infty$，$(b_n)_{n=m}^\infty$与$(c_n)_{n=m}^\infty$均为实数序列，且对所有$n\geq m$均有：
+4. <span style="color:red">（6.4.14 夹逼定理）</span>假设$(a_n)_{n=m}^\infty$，$(b_n)_{n=m}^\infty$与$(c_n)_{n=m}^\infty$均为实数序列，且对所有$n\geq m$均有：
    $$
    a_n\leq b_n\leq c_n
    $$
 
    如果又有$(a_n)_{n=m}^\infty$与$(c_n)_{n=m}^\infty$收敛于同一个极限$L$，那么$(b_n)_{n=m}^\infty$也收敛于$L$。
 
-5. <span style='color:red'>（6.4.17 序列的$0$判别法）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，那么极限$a_n$存在且等于$0$，当且仅当$\displaystyle\lim_{n\to\infty}|a_n|$存在且等于$0$。
+5. <span style="color:red">（6.4.17 序列的$0$判别法）</span>设$(a_n)_{n=m}^\infty$是一个实数序列，那么极限$a_n$存在且等于$0$，当且仅当$\displaystyle\lim_{n\to\infty}|a_n|$存在且等于$0$。
 
-6. <span style='color:red'>（6.4.18 实数的完备性）</span>实数序列$(a_n)_{n=1}^\infty$是柯西序列，当且仅当它是收敛的。
+6. <span style="color:red">（6.4.18 实数的完备性）</span>实数序列$(a_n)_{n=1}^\infty$是柯西序列，当且仅当它是收敛的。
 
-   <span style='color:blue'>（注：用度量空间语言来说，上定理断定了实数集是一个完备的度量空间，即实数集不像有理数集那样包含“洞”）</span>
+   <span style="color:blue">（注：用度量空间语言来说，上定理断定了实数集是一个完备的度量空间，即实数集不像有理数集那样包含“洞”）</span>
 
 ---
 
@@ -174,7 +174,7 @@ coverHeight: 320px
 >
 >综上，于是结论得证。
 
-##### 6.4.3 证明命题6.4.12的(c)、(d)、(e)和(f)四个部分<span style='color:blue'>（就是3,4,5,6）（提示：可以利用该命题前面的结论去证明后面的结论）</span>
+##### 6.4.3 证明命题6.4.12的(c)、(d)、(e)和(f)四个部分<span style="color:blue">（就是3,4,5,6）（提示：可以利用该命题前面的结论去证明后面的结论）</span>
 
 > * $\inf (a_n)_{n=m}^\infty\leq L^-\leq L^+\leq\sup (a_n)_{n=m}^\infty$。
 >
@@ -297,7 +297,7 @@ coverHeight: 320px
 
 > 我们令有序列$\displaystyle a_n=-\frac{2}{n}$，$\displaystyle b_n=-\frac{1}{n}$，显然我们有对任意$n\geq 1$都有$a_n<b_n$成立，但是显然有$\sup(a_n)_{n=1}^\infty=\sup(b_n)_{n=1}^\infty=0$，于是即$\sup(a_n)_{n=1}^\infty\nless\sup(b_n)_{n=1}^\infty$。对于比较原理，比较原理结论有$\sup(a_n)_{n=1}^\infty\leq\sup(b_n)_{n=1}^\infty$，与两者相等的事实并不冲突。
 
-##### 6.4.8 我们称一个实数序列$(a_n)_{n=m}^\infty$以$+\infty$为极限点，当且仅当该序列不存在有限的上界；称该实数序列$(a_n)_{n=m}^\infty$以$-\infty$为极限点，当且仅当它不存在有限的下界。利用这个定义证明：$\lim \sup\limits_{n\to\infty}a_n$ 是$(a_n)_{n=m}^\infty$的一个极限点，并且它比$(a_n)_{n=m}^\infty$的其他任何极限点都大。换言之，上极限是序列的最大极限点。类似地证明下极限是序列的最小极限点<span style='color:blue'>（在证明过程中，可以利用命题6.4.12）</span>
+##### 6.4.8 我们称一个实数序列$(a_n)_{n=m}^\infty$以$+\infty$为极限点，当且仅当该序列不存在有限的上界；称该实数序列$(a_n)_{n=m}^\infty$以$-\infty$为极限点，当且仅当它不存在有限的下界。利用这个定义证明：$\lim \sup\limits_{n\to\infty}a_n$ 是$(a_n)_{n=m}^\infty$的一个极限点，并且它比$(a_n)_{n=m}^\infty$的其他任何极限点都大。换言之，上极限是序列的最大极限点。类似地证明下极限是序列的最小极限点<span style="color:blue">（在证明过程中，可以利用命题6.4.12）</span>
 
 > 令有$L^+=\lim \sup\limits_{n\to\infty}a_n$，$L^-=\lim \inf\limits_{n\to\infty}a_n$，先给出上极限的相关证明，下极限在上极限的证明基础上稍作修改即可。
 >
@@ -356,7 +356,7 @@ coverHeight: 320px
 > 
 > 并且定义$a_1=1$，$a_2=0$，于是$(a_n)_{n=1}^\infty$是形如$1$，$0$，$-2$，$0$，$...$的序列，这个序列显然不存在有限的上界与下界，并且对任意$\varepsilon>0$与整数$N\geq 1$，我们都有$a_{2N}=0\Longrightarrow|a_{2N}-0|\leq\varepsilon$，从而$0$是序列的极限点。
 
-##### 6.4.10 设$(a_n)_{n=N}^\infty$是一个是实数序列，$(b_m)_{m=M}^\infty$是另一个实数序列，其中每个$b_m$均是$(a_n)_{n=N}^\infty$的极限点，设$c$是$(b_m)_{m=M}^\infty$的一个极限点。证明：$c$也是$(a_n)_{n=N}^\infty$的极限点<span style='color:blue'>（换言之，极限点的极限点还是原序列的极限点）</span>
+##### 6.4.10 设$(a_n)_{n=N}^\infty$是一个是实数序列，$(b_m)_{m=M}^\infty$是另一个实数序列，其中每个$b_m$均是$(a_n)_{n=N}^\infty$的极限点，设$c$是$(b_m)_{m=M}^\infty$的一个极限点。证明：$c$也是$(a_n)_{n=N}^\infty$的极限点<span style="color:blue">（换言之，极限点的极限点还是原序列的极限点）</span>
 
 > 对任意实数$\varepsilon>0$与整数$L\geq N$，我们取$\displaystyle\varepsilon'=\frac{\varepsilon}{2}$，由于$c$是$(b_m)_{m=M}^\infty$的一个极限点，于是对$\varepsilon'$与整数$M\geq M$，存在某个整数$m\geq M$使得$|b_m-c|\leq\varepsilon'$。
 >

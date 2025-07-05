@@ -14,35 +14,35 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（无编号 直和）</span>设$(X,d_X)$，$(Y,d_Y)$与$(Z,d_Z)$是度量空间，并设两个函数$f:X\to Y$与$g:X\to Z$，我们可以定义它们的**直和**$f\oplus g:X\to Y\times Z$为：
+1. <span style="color:red">（无编号 直和）</span>设$(X,d_X)$，$(Y,d_Y)$与$(Z,d_Z)$是度量空间，并设两个函数$f:X\to Y$与$g:X\to Z$，我们可以定义它们的**直和**$f\oplus g:X\to Y\times Z$为：
    $$
    f\oplus g(x):=(f(x),g(x))
    $$
-   <span style='color:blue'>（注：这个定义其实已经在[习题3.5.7](../Chap3/Sec5.md)中提到过了）</span>
+   <span style="color:blue">（注：这个定义其实已经在[习题3.5.7](../Chap3/Sec5.md)中提到过了）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（13.2.1 直和保持连续性？）</span>设$(X,d)$是度量空间，并设$f:X\to\mathbb R$与$g:X\to\mathbb R$是两个函数，并且$f\oplus g:X\to\mathbb R^2$是它们的直和，并设$\mathbb R^2$具有欧几里得度量。那么下面的命题为真：
+1. <span style="color:red">（13.2.1 直和保持连续性？）</span>设$(X,d)$是度量空间，并设$f:X\to\mathbb R$与$g:X\to\mathbb R$是两个函数，并且$f\oplus g:X\to\mathbb R^2$是它们的直和，并设$\mathbb R^2$具有欧几里得度量。那么下面的命题为真：
 
    > 1. 设$x_0\in X$，那么$f$与$g$在$x_0$处是连续的，当且仅当$f\oplus g$是在$x_0$处是连续的。
    > 2. $f$与$g$是连续的，当且仅当$f\oplus g$是连续的。
 
-2. <span style='color:red'>（13.2.2）</span>加法函数$(x,y)\mapsto x+y$、减法函数$(x,y)\mapsto x-y$、乘法函数$(x,y)\mapsto xy$、最大值函数$(x,y)\mapsto\max(x,y)$与最小值函数$(x,y)\mapsto\min(x,y)$都是从$\mathbb R^2$到$\mathbb R$的连续函数；除法函数$(x,y)\mapsto x/y$是从$\mathbb R\times(\mathbb R\verb|\|\{0\})$到$\mathbb R$的连续函数；对任意的实数$c$，函数$x\mapsto cx$是从$\mathbb R$到$\mathbb R$的连续函数。
+2. <span style="color:red">（13.2.2）</span>加法函数$(x,y)\mapsto x+y$、减法函数$(x,y)\mapsto x-y$、乘法函数$(x,y)\mapsto xy$、最大值函数$(x,y)\mapsto\max(x,y)$与最小值函数$(x,y)\mapsto\min(x,y)$都是从$\mathbb R^2$到$\mathbb R$的连续函数；除法函数$(x,y)\mapsto x/y$是从$\mathbb R\times(\mathbb R\verb|\|\{0\})$到$\mathbb R$的连续函数；对任意的实数$c$，函数$x\mapsto cx$是从$\mathbb R$到$\mathbb R$的连续函数。
 
-3. <span style='color:red'>（13.2.3）</span>设$(X,d)$是度量空间，$f:X\to\mathbb R$与$g:X\to\mathbb R$是两个函数，并设$c$是一个实数。
+3. <span style="color:red">（13.2.3）</span>设$(X,d)$是度量空间，$f:X\to\mathbb R$与$g:X\to\mathbb R$是两个函数，并设$c$是一个实数。
 
    > 1. 如果$x_0\in X$，且$f$和$g$都在$x_0$处连续，那么函数$f+g:X\to\mathbb R$、$f-g:X\to\mathbb R$、$fg:X\to\mathbb R$、$\max(f,g):X\to\mathbb R$、$\min(f,g):X\to\mathbb R$以及$cf:X\to\mathbb R$也都是在$x_0$处连续的。如果对所有的$x\in X$都有$g(x)\ne 0$，那么$f/g:X\to\mathbb R$也在$x_0$处连续。
    > 2. 如果$f$和$g$都是连续的，那么函数$f+g:X\to\mathbb R$、$f-g:X\to\mathbb R$、$fg:X\to\mathbb R$、$\max(f,g):X\to\mathbb R$、$\min(f,g):X\to\mathbb R$以及$cf:X\to\mathbb R$也都是连续的。如果对所有的$x\in X$都有$g(x)\ne 0$，那么$f/g:X\to\mathbb R$也是连续的。
 
-   <span style='color:blue'>（注：关于这些函数的定义，可以参考[定义9.2.1](../Chap9/Sec2.md)自己推广）</span>
+   <span style="color:blue">（注：关于这些函数的定义，可以参考[定义9.2.1](../Chap9/Sec2.md)自己推广）</span>
 
 ---
 
 ## 课后习题
 
-##### 13.2.1 证明引理13.2.1<span style='color:blue'>（提示：利用[命题12.1.18](../Chap12/Sec1.md)和[定理13.1.4](../Chap13/Sec1.md)）</span>
+##### 13.2.1 证明引理13.2.1<span style="color:blue">（提示：利用[命题12.1.18](../Chap12/Sec1.md)和[定理13.1.4](../Chap13/Sec1.md)）</span>
 
 > 先证明结论(a)：
 >
@@ -56,7 +56,7 @@ coverHeight: 320px
 >
 > 综上，于是结论得证。
 
-##### 13.2.2 证明引理13.2.2<span style='color:blue'>（提示：利用[定理13.1.5](../Chap13/Sec1.md)和[极限定律（定理6.1.19）](../Chap6/Sec1.md)）</span>
+##### 13.2.2 证明引理13.2.2<span style="color:blue">（提示：利用[定理13.1.5](../Chap13/Sec1.md)和[极限定律（定理6.1.19）](../Chap6/Sec1.md)）</span>
 
 > 我们以$f+g$为例子，其它的函数都是类似的（不如说是一模一样，改下函数名找对应的极限定律就行）。
 >
@@ -74,7 +74,7 @@ coverHeight: 320px
 > $$
 > 即有$|f|=\max(f,\textbf{0})-\min(f,\textbf{0})$，于是根据推论13.2.3可以直接得到$|f|$是连续的。
 
-##### 13.2.4 设函数$\pi_1:\mathbb R^2\to\mathbb R$和$\pi_2:\mathbb R^2\to\mathbb R$分别是函数$\pi_1(x,y):=x$和$\pi_2(x,y):=y$<span style='color:blue'>（这两个函数有时被称为$\mathbb R^2$上的<span style='color:red'>坐标函数</span>）</span>。证明$\pi_1$和$\pi_2$都是连续的。由此进一步导出，如果$f:\mathbb R\to X$是映射到度量空间$(X,d)$的任意一个连续函数，那么定义为$g_1(x,y):=f(x)$和$g_2(x,y):=f(y)$的函数$g_1:\mathbb R^2\to X$与$g_2:\mathbb R^2\to X$也都是连续的
+##### 13.2.4 设函数$\pi_1:\mathbb R^2\to\mathbb R$和$\pi_2:\mathbb R^2\to\mathbb R$分别是函数$\pi_1(x,y):=x$和$\pi_2(x,y):=y$<span style="color:blue">（这两个函数有时被称为$\mathbb R^2$上的<span style="color:red">坐标函数</span>）</span>。证明$\pi_1$和$\pi_2$都是连续的。由此进一步导出，如果$f:\mathbb R\to X$是映射到度量空间$(X,d)$的任意一个连续函数，那么定义为$g_1(x,y):=f(x)$和$g_2(x,y):=f(y)$的函数$g_1:\mathbb R^2\to X$与$g_2:\mathbb R^2\to X$也都是连续的
 
 > 对任意$\mathbb R^2$中收敛于$(x_0,y_0)\in\mathbb R^2$的序列$((x^{(n)},y^{(n)}))_{n=0}^\infty$。根据命题12.1.18可以得到实数序列$(x^{(n)})_{n=1}^\infty$收敛于$x_0$与实数序列$(y^{(n)})_{n=1}^\infty$收敛于$y_0$，注意到：
 > $$
@@ -97,7 +97,7 @@ $$
 P(x,y):=\sum_{i=0}^{n}\sum_{j=0}^{n}c_{ij}x^iy^i
 $$
 
-##### <span style='color:blue'>（这样的函数被称为<span style='color:red'>二元多项式</span>）</span>证明：$P$是连续的<span style='color:blue'>（提示：利用习题13.2.4和推论13.2.3）</span>。进一步推出：如果$f:X\to\mathbb R$和$g:X\to\mathbb R$都是连续函数，那么定义为$P(f,g)(x):=P(f(x),g(x))$的函数$P(f,g):X\to\mathbb R$也是连续的
+##### <span style="color:blue">（这样的函数被称为<span style="color:red">二元多项式</span>）</span>证明：$P$是连续的<span style="color:blue">（提示：利用习题13.2.4和推论13.2.3）</span>。进一步推出：如果$f:X\to\mathbb R$和$g:X\to\mathbb R$都是连续函数，那么定义为$P(f,g)(x):=P(f(x),g(x))$的函数$P(f,g):X\to\mathbb R$也是连续的
 
 > 注意到在这个求和中，每一个项$I(x,y):=c_{ij}x^{i}y^{j}$都是可以视为这样的复合：
 > $$
@@ -115,7 +115,7 @@ $$
 > $$
 > 于是由于$P$和$f\oplus g$是连续函数（$f\oplus g$的连续性需要用到$f$，$g$的连续性与命题13.2.1），根据推论13.1.7于是$P(f,g)$作为两者的复合也是连续的。
 
-##### 13.2.6 设$\mathbb R^m$与$\mathbb R^n$是欧几里得空间。如果$f:X\to\mathbb R^m$和$g:X\to\mathbb R^n$都是连续函数，证明：$f\oplus g:X\to\mathbb R^{m+n}$也是连续的<span style='color:blue'>（或许这里会看着很奇怪，因为这个函数和直和的定义显然不同，但是可以注意到$\mathbb R^m\times\mathbb R^n$显然是与$\mathbb R^{m+n}$是等价的（你可以在这两个空间中建立一个“缩并”的双射），因此这里这个没有说明的“缩并”行为实际上是合理的）</span>，并解释逆命题是否成立
+##### 13.2.6 设$\mathbb R^m$与$\mathbb R^n$是欧几里得空间。如果$f:X\to\mathbb R^m$和$g:X\to\mathbb R^n$都是连续函数，证明：$f\oplus g:X\to\mathbb R^{m+n}$也是连续的<span style="color:blue">（或许这里会看着很奇怪，因为这个函数和直和的定义显然不同，但是可以注意到$\mathbb R^m\times\mathbb R^n$显然是与$\mathbb R^{m+n}$是等价的（你可以在这两个空间中建立一个“缩并”的双射），因此这里这个没有说明的“缩并”行为实际上是合理的）</span>，并解释逆命题是否成立
 
 > 考虑任意一个$X$中收敛于$X$中某点$x$的序列$(x^{(n)})_{n=0}^\infty$，根据命题13.1.5我们可以得到序列$(f(x^{(n)}))_{n=0}^\infty$收敛于$f(x)$与序列$(g(x^{(n)}))_{n=0}^\infty$收敛于$g(x)$。由于这两个序列都是依欧几里得度量收敛的，于是根据命题12.1.18我们知道对任意的$1\leq i\leq m$都有序列$(f(x^{(n)})_i)_{n=0}^\infty$收敛于$f(x)_i$与对任意$1\leq i\leq n$都有序列$(g(x^{(n)})_i)_{n=0}^\infty$收敛于$g(x)_i$（这里我们用下标$i$表示第$i$个坐标分量）。
 >
@@ -139,7 +139,7 @@ $$
 P(x_1,...,x_k):=\sum_{(i_1,...,i_k)\in I}c(i_1,...,i_k)x_1^{i_1}...x_k^{i_k}
 $$
 
-##### <span style='color:blue'>（这样的函数被称为<span style='color:red'>$k$元多项式</span>）</span>证明：$P$是连续的<span style='color:blue'>（提示：对$k$使用归纳法，利用习题13.2.6，习题13.2.5或引理13.2.2）</span>
+##### <span style="color:blue">（这样的函数被称为<span style="color:red">$k$元多项式</span>）</span>证明：$P$是连续的<span style="color:blue">（提示：对$k$使用归纳法，利用习题13.2.6，习题13.2.5或引理13.2.2）</span>
 
 >对一个$k$元组$i$，我们令有$i_n$表示其第$n$个坐标分量（无论是$\mathbb N^k$中元素还是$\mathbb R^k$中元素）。于是对任意的给定的$I$，$c$与$P$，我们考虑下面的“补全”操作：
 >
@@ -186,7 +186,7 @@ $$
 >
 >综上，于是结论成立。
 
-##### 13.2.8 设$(X,d_X)$与$(Y,d_Y)$都是度量空间，定义度量$d_{X\times Y}:(X\times Y)\times(X\times Y)\to\mathbb R^+$<span style='color:blue'>（也就是说这是空间$X\times Y$上的度量）</span>为：
+##### 13.2.8 设$(X,d_X)$与$(Y,d_Y)$都是度量空间，定义度量$d_{X\times Y}:(X\times Y)\times(X\times Y)\to\mathbb R^+$<span style="color:blue">（也就是说这是空间$X\times Y$上的度量）</span>为：
 
 $$
 d_{X\times Y}((x,y),(x',y')):=d_X(x,x')+d_Y(y,y')
@@ -310,13 +310,13 @@ $$
 \end{gather}
 $$
 
-##### <span style='color:blue'>（回顾$\displaystyle\limsup_{x\to x_0}f(x):=\inf_{r>0}\sup_{|x-x_0|<r}f(x)$和$\displaystyle\liminf_{x\to x_0}f(x):=\sup_{r>0}\inf_{|x-x_0|<r}f(x)$，这个定义在[习题9.3.4](../Chap9/Sec3.md)中要求自己diy过）</span>特别地，我们有
+##### <span style="color:blue">（回顾$\displaystyle\limsup_{x\to x_0}f(x):=\inf_{r>0}\sup_{|x-x_0|<r}f(x)$和$\displaystyle\liminf_{x\to x_0}f(x):=\sup_{r>0}\inf_{|x-x_0|<r}f(x)$，这个定义在[习题9.3.4](../Chap9/Sec3.md)中要求自己diy过）</span>特别地，我们有
 
 $$
 \lim_{x\to x_0}\lim_{y\to y_0}f(x,y)=\lim_{y\to y_0}\lim_{x\to x_0}f(x,y)=f(x_0,y_0)
 $$
 
-##### 上式成立的前提是等号两端的极限都存在<span style='color:blue'>（注意，在一般情况下，极限不一定存在。例如考察函数$f:\mathbb R^2\to\mathbb R$，当$xy=0$时定义$\displaystyle f(x,y)=y\sin\frac{1}{x}$，$xy=0$时$f(x,y)=0$）</span>，将此结果与[例12.2.7](../Chap12/Sec2.md)进行比较<span style='color:blue'>（这和内点有什么关系吗？没看懂）</span>
+##### 上式成立的前提是等号两端的极限都存在<span style="color:blue">（注意，在一般情况下，极限不一定存在。例如考察函数$f:\mathbb R^2\to\mathbb R$，当$xy=0$时定义$\displaystyle f(x,y)=y\sin\frac{1}{x}$，$xy=0$时$f(x,y)=0$）</span>，将此结果与[例12.2.7](../Chap12/Sec2.md)进行比较<span style="color:blue">（这和内点有什么关系吗？没看懂）</span>
 
 > 本题证明的全部讨论篇幅太长，因此只给出一部分作为例子，其余等式可以通过类似的方法讨论得证。
 >

@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（15.7.1 三角函数）</span>如果$z$是一个复数，那么定义函数：
+1. <span style="color:red">（15.7.1 三角函数）</span>如果$z$是一个复数，那么定义函数：
    $$
    \begin{gather}
    \cos(z):=\frac{\text{e}^{\text{i}z}+\text{e}^{-\text{i}z}}{2}\\
@@ -35,19 +35,19 @@ coverHeight: 320px
    \sin(z):=z-\frac{z^3}{3!}+\frac{z^5}{5!}-...=\sum_{n=0}^{\infty}\frac{(-1)^n}{(2n+1)!}z^{2n+1}
    \end{gather}
    $$
-   <span style='color:blue'>（注：我们所熟悉的三角函数通常是通过几何概念来给出的定义，而这里给出了从解析的概念角度来定义的方式。这个公式是由莱昂哈德·欧拉在1748年发现的，他给出了指数函数与三角函数之间的关联）</span>
+   <span style="color:blue">（注：我们所熟悉的三角函数通常是通过几何概念来给出的定义，而这里给出了从解析的概念角度来定义的方式。这个公式是由莱昂哈德·欧拉在1748年发现的，他给出了指数函数与三角函数之间的关联）</span>
    
-2. <span style='color:red'>（15.7.4 圆周率）</span>我们定义$\pi$为数
+2. <span style="color:red">（15.7.4 圆周率）</span>我们定义$\pi$为数
    $$
    \pi:=\inf\{x\in(0,+\infty):\sin(x)=0\}
    $$
-   <span style='color:blue'>（注：设$E:=\{x\in(0,+\infty):\sin(x)=0\}$是$\sin$在$(0,+\infty)$上全体根的集合。一个或许很容易被忽略的事实是，我们仍然要对上面的定义讨论$\sin(\pi)=0$是否为真，不过这个结论并不困难，利用[定理13.1.5(d)](../Chap13/Sec1.md)的结论与$\sin$的连续性我们很容易得到$E$是闭集，从而$E$包含了自身所有的附着点，也就是说包含了$\inf(E)$；然后，通过导数的推断我们不难判断得到$\cos(\pi)=-1$）</span>
+   <span style="color:blue">（注：设$E:=\{x\in(0,+\infty):\sin(x)=0\}$是$\sin$在$(0,+\infty)$上全体根的集合。一个或许很容易被忽略的事实是，我们仍然要对上面的定义讨论$\sin(\pi)=0$是否为真，不过这个结论并不困难，利用[定理13.1.5(d)](../Chap13/Sec1.md)的结论与$\sin$的连续性我们很容易得到$E$是闭集，从而$E$包含了自身所有的附着点，也就是说包含了$\inf(E)$；然后，通过导数的推断我们不难判断得到$\cos(\pi)=-1$）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（15.7.2 三角恒等式）</span>设$x$，$y$都是实数，那么有：
+1. <span style="color:red">（15.7.2 三角恒等式）</span>设$x$，$y$都是实数，那么有：
 
    > 1. $\sin(x)^2+\cos(x)^2=1$。于是，对于所有的$x\in\mathbb R$都有$\sin(x)\in[-1,1]$与$\cos(x)\in[-1,1]$。
    > 2. $\sin'(x)=\cos(x)$且$\cos'(x)=-\sin(x)$。
@@ -56,23 +56,23 @@ coverHeight: 320px
    > 5. $\sin(0)=0$且$\cos(0)=1$。
    > 6. $\text{e}^{\text{i}x}=\cos(x)+\sin(x)\text{i}$且$\text{e}^{-\text{i}x}=\cos(x)-\sin(x)\text{i}$。于是，$\cos(x)=\mathfrak{R}(\text{e}^{\text{i}x})$且$\sin(x)=\mathfrak{I}(\text{e}^{\text{i}x})$。
 
-   <span style='color:blue'>（注：耳熟能详了）</span>
+   <span style="color:blue">（注：耳熟能详了）</span>
 
-2. <span style='color:red'>（15.7.3 $\pi$的存在性？）</span>存在一个正数$x$使得$\sin(x)$等于$0$。
+2. <span style="color:red">（15.7.3 $\pi$的存在性？）</span>存在一个正数$x$使得$\sin(x)$等于$0$。
 
-3. <span style='color:red'>（15.7.5 三角函数的周期性）</span>设$x$是一个实数，那么有：
+3. <span style="color:red">（15.7.5 三角函数的周期性）</span>设$x$是一个实数，那么有：
 
    > 1. $\cos(x+\pi)=-\cos(x)$且$\sin(x+\pi)=-\sin(x)$。特别地，有$\cos(x+2\pi)=\cos(x)$和$\sin(x+2\pi)=\sin(x)$，也就是说正弦函数$\sin$和余弦函数$\cos$都是以$2\pi$为周期的周期函数。
    > 2. $\sin(x)=0$，当且仅当$x/\pi$是一个整数。
    > 3. $\cos(x)=0$，当且仅当$x/\pi$是一个整数加上$1/2$。
 
-   <span style='color:blue'>（注：我们还可以定义其它所有的三角函数：正切，余切，正割，余割函数，并建立我们所熟知的全部三角恒等式，不过暂时没有这个必要，在习题中我们会讨论部分相关内容）</span>
+   <span style="color:blue">（注：我们还可以定义其它所有的三角函数：正切，余切，正割，余割函数，并建立我们所熟知的全部三角恒等式，不过暂时没有这个必要，在习题中我们会讨论部分相关内容）</span>
 
 ---
 
 ## 课后习题
 
-##### 15.7.1 证明定理15.7.2<span style='color:blue'>（提示：尽可能用指数函数的语言写出所有的内容）</span>
+##### 15.7.1 证明定理15.7.2<span style="color:blue">（提示：尽可能用指数函数的语言写出所有的内容）</span>
 
 > 逐条证明：
 >
@@ -195,7 +195,7 @@ coverHeight: 320px
 >
 > 特别地，根据定理15.7.2我们知道$\sin'(0)=\cos(0)=1\ne 0$且$\sin(0)=0$，于是应用上面的结论即可断定存在一个$c>0$使得对于所有的$0<x<c$都有$\sin(x)\ne 0$。
 
-##### 15.7.3 证明定理15.7.5<span style='color:blue'>（提示：对于(c)，首先计算$\sin(\pi/2)$和$\cos(\pi/2)$，然后再把$\sin(x+\pi/2)$和$\cos(x)$联系起来）</span>
+##### 15.7.3 证明定理15.7.5<span style="color:blue">（提示：对于(c)，首先计算$\sin(\pi/2)$和$\cos(\pi/2)$，然后再把$\sin(x+\pi/2)$和$\cos(x)$联系起来）</span>
 
 > 逐条证明：
 >
@@ -239,7 +239,7 @@ coverHeight: 320px
 > $$
 > 于是$\cos(x)=0$等价于$\sin(x+\pi/2)=0$，根据结论(b)我们有这当且仅当$(x+\pi/2)/\pi=x/\pi+1/2$是一个整数$z$，于是也即当且仅当$x/\pi=(z-1)+1/2$是一个整数加上$1/2$。
 
-##### 15.7.4 设$x$，$y$都是实数，并且满足$x^2+y^2=1$。证明：恰好存在一个实数$\theta\in(-\pi,\pi]$，使得$x=\sin(\theta)$且$y=\cos(\theta)$<span style='color:blue'>（提示：你或许需要对$x$，$y$是正，负或$0$的情况进行讨论）</span>
+##### 15.7.4 设$x$，$y$都是实数，并且满足$x^2+y^2=1$。证明：恰好存在一个实数$\theta\in(-\pi,\pi]$，使得$x=\sin(\theta)$且$y=\cos(\theta)$<span style="color:blue">（提示：你或许需要对$x$，$y$是正，负或$0$的情况进行讨论）</span>
 
 > 注意到$x^2+y^2=1$的条件已经限制了$x\in[-1,1]$与$y\in[-1,1]$，我们不难发现当$x$，$y$中有一个为$0$的时候结论是显然的，事实上可以列出下面的列表：
 >
@@ -288,7 +288,7 @@ coverHeight: 320px
 > $$
 > 如果我们记$k:=n-m$，则上面的结论即存在整数$k$使得$\theta=\alpha+2\pi k$，于是结论得证。
 
-##### 15.7.6 设$z$是一个非零复数。利用习题15.7.4证明：恰好存在一对实数$r$，$\theta$使得$r>0$，$\theta\in(-\pi,\pi]$且$z=r\text{e}^{\text{i}\theta}$<span style='color:blue'>（这个式子有时被称为$z$的<span style='color:red'>标准极坐标表达式</span>）</span>
+##### 15.7.6 设$z$是一个非零复数。利用习题15.7.4证明：恰好存在一对实数$r$，$\theta$使得$r>0$，$\theta\in(-\pi,\pi]$且$z=r\text{e}^{\text{i}\theta}$<span style="color:blue">（这个式子有时被称为$z$的<span style="color:red">标准极坐标表达式</span>）</span>
 
 > 我们设$z=a+b\text{i}$，其中$a$，$b$都是实数。于是我们令$r:=\sqrt{a^2+b^2}$，显然有$r>0$。然后注意到有：
 > $$
@@ -300,7 +300,7 @@ coverHeight: 320px
 > $$
 > 然后根据习题15.7.5的结论，我们显然可以得到这样的$r$，$\theta$是唯一的，于是结论得证。
 
-##### 15.7.7 对于任意的实数$\theta$和整数$n$，证明<span style='color:red'>棣莫弗恒等式</span>：
+##### 15.7.7 对于任意的实数$\theta$和整数$n$，证明<span style="color:red">棣莫弗恒等式</span>：
 
 $$
 \cos(n\theta)=\mathfrak{R}((\cos\theta+\text{i}\sin\theta)^n)\quad\sin(n\theta)=\mathfrak{I}((\cos\theta+\text{i}\sin\theta)^n)
@@ -322,7 +322,7 @@ $$
 >
 > 于是依然可以根据命题15.7.2(f)可以直接得到题目结论得证。综上即棣莫弗恒等式对任意的整数$n$与实数$\theta$成立。
 
-##### 15.7.8 设$\tan:(-\pi/2,\pi/2)\to\mathbb R$是<span style='color:red'>正切函数</span>$\displaystyle\tan(x):=\frac{\sin(x)}{\cos(x)}$。证明：$\tan$可微且单调递增，并且有$\displaystyle\frac{\text{d}}{\text{d}x}\tan(x)=1+\tan(x)^2$，$\displaystyle\lim_{x\to\pi/2}\tan(x)=+\infty$和$\displaystyle\lim_{x\to-\pi/2}\tan(x)=-\infty$。然后利用这些结论推导出$\tan$实际上是$(-\pi/2,\pi/2)$到$\mathbb R$的双射，于是我们令有反函数$\tan^{-1}:\mathbb R\to(-\pi/2,\pi/2)$<span style='color:blue'>（该函数被称为<span style='color:red'>反正切函数</span>）</span>。最后证明：$\tan^{-1}$是可微的，并且$\displaystyle\frac{\text{d}}{\text{d}x}\tan^{-1}(x)=\frac{1}{1+x^2}$
+##### 15.7.8 设$\tan:(-\pi/2,\pi/2)\to\mathbb R$是<span style="color:red">正切函数</span>$\displaystyle\tan(x):=\frac{\sin(x)}{\cos(x)}$。证明：$\tan$可微且单调递增，并且有$\displaystyle\frac{\text{d}}{\text{d}x}\tan(x)=1+\tan(x)^2$，$\displaystyle\lim_{x\to\pi/2}\tan(x)=+\infty$和$\displaystyle\lim_{x\to-\pi/2}\tan(x)=-\infty$。然后利用这些结论推导出$\tan$实际上是$(-\pi/2,\pi/2)$到$\mathbb R$的双射，于是我们令有反函数$\tan^{-1}:\mathbb R\to(-\pi/2,\pi/2)$<span style="color:blue">（该函数被称为<span style="color:red">反正切函数</span>）</span>。最后证明：$\tan^{-1}$是可微的，并且$\displaystyle\frac{\text{d}}{\text{d}x}\tan^{-1}(x)=\frac{1}{1+x^2}$
 
 > 我们先证明$\tan$是可微且单调的且$\displaystyle\frac{\text{d}}{\text{d}x}\tan(x)=1+\tan(x)^2$。
 >
@@ -381,7 +381,7 @@ $$
 \pi=4-\frac{4}{3}+\frac{4}{5}-\frac{4}{7}+...=4\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}
 $$
 
-##### <span style='color:blue'>（注意，由于[交错级数判别法（命题7.2.12）](../Chap7/Sec2.md)可知，上面这个级数时收敛的）</span>由此推导出$\displaystyle 4-\frac{4}{3}<\pi<4$<span style='color:blue'>（当然可以用这个式子计算$\pi=3.1415926...$的更高精确度值，但如果可以，仍然建议使用其它的公式去计算$\pi$，因为这个级数收敛的太慢了）</span>
+##### <span style="color:blue">（注意，由于[交错级数判别法（命题7.2.12）](../Chap7/Sec2.md)可知，上面这个级数时收敛的）</span>由此推导出$\displaystyle 4-\frac{4}{3}<\pi<4$<span style="color:blue">（当然可以用这个式子计算$\pi=3.1415926...$的更高精确度值，但如果可以，仍然建议使用其它的公式去计算$\pi$，因为这个级数收敛的太慢了）</span>
 
 > 对任意的$x\in(-1,1)$，由于$-x^2\in(-1,0]$，于是根据几何级数（命题7.3.3）我们有：
 > $$
@@ -449,13 +449,13 @@ $$
 \color{gray}{\left|f\left(\frac{j+1}{32^m}\right)-f\left(\frac{j}{32^m}\right)\right|\geq 4^{-m}}
 $$
 
-###### <span style='color:blue'>（提示：对于特定的序列$a_n$，使用恒等式</span>
+###### <span style="color:blue">（提示：对于特定的序列$a_n$，使用恒等式</span>
 
 $$
 \color{blue}{\sum_{n=1}^{\infty}a_n=\sum_{n=1}^{m-1}a_n+a_m+\sum_{n=m+1}^{\infty}a_n}
 $$
 
-###### <span style='color:blue'>另外，利用余弦函数以$2\pi$为周期的事实，以及对于任意的$|r|<1$都有几何级数公式$\displaystyle\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}$，最后还要用到：对任意的实数$x$和$y$都有不等式$|\cos(x)-\cos(y)|\leq|x-y|$。这个不等式可以用[平均值定理（推论10.2.9）](../Chap10/Sec2.md)或[微积分基本定理（定理11.9.4）](../Chap11/Sec9.md)来证明）</span>
+###### <span style="color:blue">另外，利用余弦函数以$2\pi$为周期的事实，以及对于任意的$|r|<1$都有几何级数公式$\displaystyle\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}$，最后还要用到：对任意的实数$x$和$y$都有不等式$|\cos(x)-\cos(y)|\leq|x-y|$。这个不等式可以用[平均值定理（推论10.2.9）](../Chap10/Sec2.md)或[微积分基本定理（定理11.9.4）](../Chap11/Sec9.md)来证明）</span>
 
 > 可以计算有：
 > $$
@@ -518,7 +518,7 @@ $$
 > > $$
 > > 也即题目不等式得证。
 
-###### (c) 利用(b)证明：对于任意的实数$x_0$，函数$f$在$x_0$处不可微<span style='color:blue'>（提示：根据[习题5.4.3](../Chap5/Sec4.md)，对于任意的$x_0$和任意的$m\geq 1$，存在一个整数$j$使得$j\leq 32^mx_0\leq j+1$）</span>
+###### (c) 利用(b)证明：对于任意的实数$x_0$，函数$f$在$x_0$处不可微<span style="color:blue">（提示：根据[习题5.4.3](../Chap5/Sec4.md)，对于任意的$x_0$和任意的$m\geq 1$，存在一个整数$j$使得$j\leq 32^mx_0\leq j+1$）</span>
 
 > 不妨假设存在实数$x_0\in\mathbb R$使得$f$在$x_0$处可微，于是我们记有$L:=f'(x_0)$。根据牛顿逼近法（命题10.1.7），对任意的$\varepsilon>0$都存在对应的$\delta>0$使得对任意的$|x-x_0|\leq\delta$都有：
 > $$

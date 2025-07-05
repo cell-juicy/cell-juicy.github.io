@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（7.2.1 形式无限级数）</span>一个**（形式）无限级数**是形如
+1. <span style="color:red">（7.2.1 形式无限级数）</span>一个**（形式）无限级数**是形如
    $$
    \sum_{n=m}^{\infty}a_n
    $$
@@ -22,54 +22,54 @@ coverHeight: 320px
    $$
    a_m+a_{m+1}+a_{m+2}+……
    $$
-   <span style='color:blue'>（这只是个形式的定义）</span>
+   <span style="color:blue">（这只是个形式的定义）</span>
 
-2. <span style='color:red'>（7.2.2 级数的收敛）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个形式无穷级数，对任意的整数$N\geq m$，定义$N$部分和为$\displaystyle S_N:=\sum_{n=m}^{N}a_n$，于是显然$S_N$是一个实数。
+2. <span style="color:red">（7.2.2 级数的收敛）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个形式无穷级数，对任意的整数$N\geq m$，定义$N$部分和为$\displaystyle S_N:=\sum_{n=m}^{N}a_n$，于是显然$S_N$是一个实数。
            如果当$N\to \infty$时，序列$(S_N)_{N=m}^\infty$**收敛**于某个实数$L$，则称无限级数$\displaystyle\sum_{n=m}^{\infty}a_n$是**收敛**的，并且称它收敛于$L$，也记有$\displaystyle L=\sum_{n=m}^{\infty}a_n$，称$L$是无限级数$\displaystyle\sum_{n=m}^{\infty}a_n$的和。
            对应的，如果部分和序列是$(S_N)_{N=m}^\infty$**发散**的，则称无限级数$\displaystyle\sum_{n=m}^{\infty}a_n$是**发散**的，并且不对这个级数指定任何实数值。
-   <span style='color:blue'>（注：极限的唯一性保证了无限级数和的唯一性，因此可以放心讨论收敛级数的和）</span>
+   <span style="color:blue">（注：极限的唯一性保证了无限级数和的唯一性，因此可以放心讨论收敛级数的和）</span>
 
-3. <span style='color:red'>（7.2.8 绝对收敛）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个实数的形式无限级数，则称其是**绝对收敛**的，当且仅当级数$\displaystyle\sum_{n=m}^{\infty}|a_n|$是收敛的。
+3. <span style="color:red">（7.2.8 绝对收敛）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个实数的形式无限级数，则称其是**绝对收敛**的，当且仅当级数$\displaystyle\sum_{n=m}^{\infty}|a_n|$是收敛的。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（7.2.5 部分和的收敛性）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个实数的形式无限级数。有$\displaystyle\sum_{n=m}^{\infty}a_n$收敛，当且仅当对任意实数$\varepsilon>0$都存在一个整数$N\geq m$使得：
+1. <span style="color:red">（7.2.5 部分和的收敛性）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个实数的形式无限级数。有$\displaystyle\sum_{n=m}^{\infty}a_n$收敛，当且仅当对任意实数$\varepsilon>0$都存在一个整数$N\geq m$使得：
    $$
    \left|\sum_{n=p}^{q}a_n\right|\leq \varepsilon
    $$
    对全部$p,q\geq N$均成立。
 
-2. <span style='color:red'>（7.2.6 零判别法）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个收敛的形式无限级数，那么一定有$\displaystyle\lim_{n\to\infty}a_n=0$。换言之，若有$\displaystyle\lim_{n\to\infty}a_n\ne0$或发散，那么级数$\displaystyle\sum_{n=m}^{\infty}a_n$是发散的。
+2. <span style="color:red">（7.2.6 零判别法）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个收敛的形式无限级数，那么一定有$\displaystyle\lim_{n\to\infty}a_n=0$。换言之，若有$\displaystyle\lim_{n\to\infty}a_n\ne0$或发散，那么级数$\displaystyle\sum_{n=m}^{\infty}a_n$是发散的。
 
-3. <span style='color:red'>（7.2.9 绝对收敛判别法）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个实数的形式无限级数。若这个级数是绝对收敛的，那么它也是条件收敛的<span style='color:blue'>（注意这里定义中条件收敛并不与绝对收敛互斥，但是别的教材有时会定义两者互斥来方便分类）</span>，并且此时有三角不等式：
+3. <span style="color:red">（7.2.9 绝对收敛判别法）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个实数的形式无限级数。若这个级数是绝对收敛的，那么它也是条件收敛的<span style="color:blue">（注意这里定义中条件收敛并不与绝对收敛互斥，但是别的教材有时会定义两者互斥来方便分类）</span>，并且此时有三角不等式：
    $$
    \left|\sum_{n=m}^{\infty}a_n\right|\leq\sum_{n=m}^{\infty}|a_n|
    $$
 
-4. <span style='color:red'>（7.2.12 交错级数判别法）</span>设$(a_n)_{n=m}^{\infty}$是一个非负并且递减的实数序列。于是对任意$n\geq m$均有$a_n\geq 0$与$a_n\geq a_{n+1}$。则形式级数$\displaystyle\sum_{n=m}^{\infty}(-1)^na_n$是收敛的，当且仅当$n\to \infty$时序列$(a_n)_{n=m}^\infty$收敛于$0$。
+4. <span style="color:red">（7.2.12 交错级数判别法）</span>设$(a_n)_{n=m}^{\infty}$是一个非负并且递减的实数序列。于是对任意$n\geq m$均有$a_n\geq 0$与$a_n\geq a_{n+1}$。则形式级数$\displaystyle\sum_{n=m}^{\infty}(-1)^na_n$是收敛的，当且仅当$n\to \infty$时序列$(a_n)_{n=m}^\infty$收敛于$0$。
 
-5. <span style='color:red'>（7.2.14 级数定律）</span>有下述命题为真：
+5. <span style="color:red">（7.2.14 级数定律）</span>有下述命题为真：
 
-   > 1. <span style='color:red'>（无限级数的加和？）</span>如果$\displaystyle\sum_{n=m}^{\infty}a_n$是一个收敛于$x$的实数级数，$\displaystyle\sum_{n=m}^{\infty}b_n$是一个收敛于$y$的实数级数，则$\displaystyle\sum_{n=m}^{\infty}(a_n+b_n)$也是一个收敛的级数，并且它收敛于$x+y$。特别的，有：
+   > 1. <span style="color:red">（无限级数的加和？）</span>如果$\displaystyle\sum_{n=m}^{\infty}a_n$是一个收敛于$x$的实数级数，$\displaystyle\sum_{n=m}^{\infty}b_n$是一个收敛于$y$的实数级数，则$\displaystyle\sum_{n=m}^{\infty}(a_n+b_n)$也是一个收敛的级数，并且它收敛于$x+y$。特别的，有：
    >    $$
    >    \sum_{n=m}^{\infty}(a_n+b_n)=\sum_{n=m}^{\infty}a_n+\sum_{n=m}^{\infty}b_n
    >    $$
    >
-   > 2. <span style='color:red'>（无限级数的数乘？）</span>如果$\displaystyle\sum_{n=m}^{\infty}a_n$是一个收敛于$x$的实数级数，$c$是一个实数，则$\displaystyle\sum_{n=m}^{\infty}c\cdot a_n$也是一个收敛的级数，并且它收敛于$c\cdot x$。特别的，有：
+   > 2. <span style="color:red">（无限级数的数乘？）</span>如果$\displaystyle\sum_{n=m}^{\infty}a_n$是一个收敛于$x$的实数级数，$c$是一个实数，则$\displaystyle\sum_{n=m}^{\infty}c\cdot a_n$也是一个收敛的级数，并且它收敛于$c\cdot x$。特别的，有：
    >    $$
    >    \sum_{n=m}^{\infty}c\cdot a_n=c\sum_{n=m}^{\infty}a_n
    >    $$
    >
-   > 3. <span style='color:red'>（无限级数的拆分？）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个实数级数，$k$是一个自然数。若级数$\displaystyle\sum_{n=m}^{\infty}a_n$与$\displaystyle\sum_{n=m+k}^{\infty}a_n$中有一个是收敛的，那么另一个也是收敛的，并且有恒等式：
+   > 3. <span style="color:red">（无限级数的拆分？）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个实数级数，$k$是一个自然数。若级数$\displaystyle\sum_{n=m}^{\infty}a_n$与$\displaystyle\sum_{n=m+k}^{\infty}a_n$中有一个是收敛的，那么另一个也是收敛的，并且有恒等式：
    >    $$
    >    \sum_{n=m}^{\infty}a_n=\sum_{n=m}^{m+k-1}a_n+\sum_{n=m+k}^{\infty}a_n
    >    $$
    >
-   > 4. <span style='color:red'>（约束变量不影响无限和）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个收敛于$x$的实数级数，且设$k$是一个整数，则$\displaystyle\sum_{n=m+k}^{\infty}a_{n-k}$也收敛于$x$。
+   > 4. <span style="color:red">（约束变量不影响无限和）</span>设$\displaystyle\sum_{n=m}^{\infty}a_n$是一个收敛于$x$的实数级数，且设$k$是一个整数，则$\displaystyle\sum_{n=m+k}^{\infty}a_{n-k}$也收敛于$x$。
 
-6. <span style='color:red'>（7.2.15 嵌套级数）</span>设$(a_n)_{n=0}^{\infty}$是一个收敛于$0$的实数序列，即$\displaystyle\lim_{n\to\infty}a_n=0$，那么级数$\displaystyle\sum_{n=0}^{\infty}a_n-a_{n+1}$收敛于$a_0$。
+6. <span style="color:red">（7.2.15 嵌套级数）</span>设$(a_n)_{n=0}^{\infty}$是一个收敛于$0$的实数序列，即$\displaystyle\lim_{n\to\infty}a_n=0$，那么级数$\displaystyle\sum_{n=0}^{\infty}a_n-a_{n+1}$收敛于$a_0$。
 
 ---
 
@@ -87,11 +87,11 @@ coverHeight: 320px
 >
 > $\left|S_{2N}-L\right|=\left|S_{2N}-S_{2N+1}\right|<\varepsilon$
 >
-> 但是$S_{2N}=0$，$S_{2N+1}=1$。<span style='color:blue'>（这可以通过数学归纳法得到）</span>
+> 但是$S_{2N}=0$，$S_{2N+1}=1$。<span style="color:blue">（这可以通过数学归纳法得到）</span>
 >
 > 从而导出矛盾，该级数不收敛。
 >
-> 至于例 1.2.2 中的前面一个问题，显然级数$\displaystyle{\sum_{n=0}^{\infty}}\frac{1}{2^n}$是收敛的 <span style='color:blue'>（可以用比值审敛法验证这个结果）</span>，因此它符合命题7.2.14，可以加和。同理级数 $\displaystyle{\sum_{n=0}^{\infty}}2^n$ 不收敛，无法使用加和，想必证明一个发散到无穷的无穷级数不能加和并不困难，一个很直观的观点是$\infty$这个元素并不像常规实数那样遵守运算律。不存在极限的发散级数同理。
+> 至于例 1.2.2 中的前面一个问题，显然级数$\displaystyle{\sum_{n=0}^{\infty}}\frac{1}{2^n}$是收敛的 <span style="color:blue">（可以用比值审敛法验证这个结果）</span>，因此它符合命题7.2.14，可以加和。同理级数 $\displaystyle{\sum_{n=0}^{\infty}}2^n$ 不收敛，无法使用加和，想必证明一个发散到无穷的无穷级数不能加和并不困难，一个很直观的观点是$\infty$这个元素并不像常规实数那样遵守运算律。不存在极限的发散级数同理。
 >
 > ---
 >
@@ -107,7 +107,7 @@ coverHeight: 320px
 >
 > 现在回到例1.2.2，我们不难得到，级数$\displaystyle{\sum_{n=0}^{\infty}}\frac{1}{2^n}$是收敛的，于是它可以像命题7.2.14那样的进行运算，相应的，级数$\displaystyle{\sum_{n=0}^{\infty}}2^n$与$\displaystyle{\sum_{n=1}^{\infty}}(-1)^n$是发散的，因此在前面讨论它们的所谓和与重排计算都是没有意义的，因为根据定义，没有任何一个实数与它们对应，讨论这样的加减法是荒谬而没有逻辑的。
 
-##### 7.2.2 证明命题7.2.5<span style='color:blue'>（提示：利用[命题6.1.12](../Chap6/Sec1.md)和[定理6.4.18](../Chap6/Sec4.md)）</span>
+##### 7.2.2 证明命题7.2.5<span style="color:blue">（提示：利用[命题6.1.12](../Chap6/Sec1.md)和[定理6.4.18](../Chap6/Sec4.md)）</span>
 
 > 当$q<p$时，根据有限级数的定义，不难得知此时有$\displaystyle\left|\sum_{n=p}^{q}a_n\right|=0\leq \varepsilon$对任意$\varepsilon>0$恒成立，于是我们只需要讨论$q\geq p$的情况。
 >
@@ -139,7 +139,7 @@ coverHeight: 320px
 >
 >根据序列收敛的定义，于是可以得到此时即$\displaystyle\lim_{n\to\infty}a_n=0$，于是结论得证。
 
-##### 7.2.4 证明命题7.2.9<span style='color:blue'>（提示：利用命题7.2.5和[命题7.1.4(e)](../Chap7/Sec1.md)）</span>
+##### 7.2.4 证明命题7.2.9<span style="color:blue">（提示：利用命题7.2.5和[命题7.1.4(e)](../Chap7/Sec1.md)）</span>
 
 >既然$\displaystyle{\sum_{n=m}^{\infty}\left|a_n\right|}$收敛 ，则按照命题 7.2.5
 >
@@ -170,7 +170,7 @@ coverHeight: 320px
 >
 >因此$\displaystyle{\sum_{n=m}^{\infty}|a_n|}\geq\left|\displaystyle{\sum_{n=m}^{\infty}a_n}\right|$ 成立。
 
-##### 7.2.5 证明命题7.2.14<span style='color:blue'>（提示：利用[定理6.1.19](../Chap6/Sec1.md)）</span>
+##### 7.2.5 证明命题7.2.14<span style="color:blue">（提示：利用[定理6.1.19](../Chap6/Sec1.md)）</span>
 
 > 1. 如果$\displaystyle\sum_{n=m}^{\infty}a_n$是一个收敛于$x$的实数级数，$\displaystyle\sum_{n=m}^{\infty}b_n$是一个收敛于$y$的实数级数，则$\displaystyle\sum_{n=m}^{\infty}(a_n+b_n)$也是一个收敛的级数，并且它收敛于$x+y$。特别的，有：
 >    $$
@@ -227,7 +227,7 @@ coverHeight: 320px
 > $$
 > 于是结论成立。
 
-##### 7.2.6 证明引理7.2.15<span style='color:blue'>（提示：首先算出部分和$\displaystyle{\sum_{n=0}^{N}(a_n-a_{n+1})}$应该是什么，并利用归纳法证明你的判断）</span>如果我们假设$(a_n)^{\infty}_{n=0}$不收敛于$0$而收敛于另外的某个实数$L$，那么该如何修改这个命题？
+##### 7.2.6 证明引理7.2.15<span style="color:blue">（提示：首先算出部分和$\displaystyle{\sum_{n=0}^{N}(a_n-a_{n+1})}$应该是什么，并利用归纳法证明你的判断）</span>如果我们假设$(a_n)^{\infty}_{n=0}$不收敛于$0$而收敛于另外的某个实数$L$，那么该如何修改这个命题？
 
 >首先证明$\displaystyle S_N={\sum_{n=0}^{N}(a_n-a_{n+1})}=a_0-a_{N+1}$：
 >

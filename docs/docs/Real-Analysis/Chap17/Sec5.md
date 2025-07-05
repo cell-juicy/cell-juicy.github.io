@@ -14,19 +14,19 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（17.5.1 二次连续可微性）</span>设$E$是$\mathbb R^n$的开子集，并设$f:E\to\mathbb R^m$是一个函数。如果偏导数$\displaystyle\frac{\part f}{\part x_1},...,\frac{\part f}{\part x_n}$都存在并且都在$E$上连续，那么我们称$f$是**连续可微**的；如果$f$是连续可微的，并且偏导数$\displaystyle\frac{\part f}{\part x_1},...,\frac{\part f}{\part x_n}$也都是连续可微的，那么我们称$f$是**二次连续可微**的。
+1. <span style="color:red">（17.5.1 二次连续可微性）</span>设$E$是$\mathbb R^n$的开子集，并设$f:E\to\mathbb R^m$是一个函数。如果偏导数$\displaystyle\frac{\part f}{\part x_1},...,\frac{\part f}{\part x_n}$都存在并且都在$E$上连续，那么我们称$f$是**连续可微**的；如果$f$是连续可微的，并且偏导数$\displaystyle\frac{\part f}{\part x_1},...,\frac{\part f}{\part x_n}$也都是连续可微的，那么我们称$f$是**二次连续可微**的。
 
-   <span style='color:blue'>（注：有时候，连续可微的函数被称为$C^1$函数，二次连续可微的函数被称为$C^2$函数）</span>
+   <span style="color:blue">（注：有时候，连续可微的函数被称为$C^1$函数，二次连续可微的函数被称为$C^2$函数）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（17.5.4 克莱罗定理）</span>设$E$是$\mathbb R^n$的开子集，并设$f:E\to\mathbb R^m$是$E$上的二次连续可微函数。那么对于所有的$1\leq i,j\leq n$和所有的$x_0\in E$，都有：
+1. <span style="color:red">（17.5.4 克莱罗定理）</span>设$E$是$\mathbb R^n$的开子集，并设$f:E\to\mathbb R^m$是$E$上的二次连续可微函数。那么对于所有的$1\leq i,j\leq n$和所有的$x_0\in E$，都有：
    $$
    \frac{\part}{\part x_j}\frac{\part f}{\part x_i}(x_0)=\frac{\part}{\part x_i}\frac{\part f}{\part x_j}(x_0)
    $$
-   <span style='color:blue'>（注：必须要有“二阶导数连续”的前提才能成立克莱罗定理，详见习题17.5.1与原书证明）</span>
+   <span style="color:blue">（注：必须要有“二阶导数连续”的前提才能成立克莱罗定理，详见习题17.5.1与原书证明）</span>
 
 ---
 

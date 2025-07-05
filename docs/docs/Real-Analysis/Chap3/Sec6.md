@@ -14,29 +14,29 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（无序号 集合的基数）</span>对于任意一个一个元素个数有限的集合$X$，称其中元素的数目$n$为集合$X$的**基数**，并记为$\#(X)=n$。
-2. <span style='color:red'>（3.6.1 基数的相等）</span>称两个集合$X$与$Y$有相同的基数，当且仅当存在一个$X\to Y$的双射$f:X\to Y$。
+1. <span style="color:red">（无序号 集合的基数）</span>对于任意一个一个元素个数有限的集合$X$，称其中元素的数目$n$为集合$X$的**基数**，并记为$\#(X)=n$。
+2. <span style="color:red">（3.6.1 基数的相等）</span>称两个集合$X$与$Y$有相同的基数，当且仅当存在一个$X\to Y$的双射$f:X\to Y$。
 
-   <span style='color:blue'>（注：事实上这个定义无论$X$与$Y$是有限的还是无限的都是有效的，尽管这个时候我们尚且没有无限的定义，至于无限集相关的内容，有兴趣可以移步到[第8章](../Chap8/Sec1.md)学习）</span>
-3. <span style='color:red'>（3.6.5 基数定义）</span>设$n$是一个自然数，称集合$X$的**基数**为$n$，当且仅当$X$与集合$\{i\in\mathbb N:1\leq i\leq n\}$​拥有相同的基数。另一种说法是称$X$中有$n$个元素，当且仅当$X$的基数为$n$。
-3. <span style='color:red'>（3.6.10 有限集）</span>一个集合是**有限**的，当且仅当它的基数是某个自然数$n$，否则称这个集合为**无限集**。
+   <span style="color:blue">（注：事实上这个定义无论$X$与$Y$是有限的还是无限的都是有效的，尽管这个时候我们尚且没有无限的定义，至于无限集相关的内容，有兴趣可以移步到[第8章](../Chap8/Sec1.md)学习）</span>
+3. <span style="color:red">（3.6.5 基数定义）</span>设$n$是一个自然数，称集合$X$的**基数**为$n$，当且仅当$X$与集合$\{i\in\mathbb N:1\leq i\leq n\}$​拥有相同的基数。另一种说法是称$X$中有$n$个元素，当且仅当$X$的基数为$n$。
+3. <span style="color:red">（3.6.10 有限集）</span>一个集合是**有限**的，当且仅当它的基数是某个自然数$n$，否则称这个集合为**无限集**。
 
 ---
 
 ## 命题
-<span style='color:blue'>（设$X$，$Y$，$Z$为集合）</span>
+<span style="color:blue">（设$X$，$Y$，$Z$为集合）</span>
 
-1. <span style='color:red'>（3.6.4 自反性？）</span>$X$与$X$有相同的基数。
+1. <span style="color:red">（3.6.4 自反性？）</span>$X$与$X$有相同的基数。
 
-2. <span style='color:red'>（3.6.4 对称性？）</span>如果$X$与$Y$有相同的基数，则$Y$与$X$有相同的基数
+2. <span style="color:red">（3.6.4 对称性？）</span>如果$X$与$Y$有相同的基数，则$Y$与$X$有相同的基数
 
-3. <span style='color:red'>（3.6.4 可传递性？）</span>如果$X$与$Y$有相同的基数，且$Y$与$Z$有也有相同的基数，则认为$X$与$Z$也有相同的基数。
+3. <span style="color:red">（3.6.4 可传递性？）</span>如果$X$与$Y$有相同的基数，且$Y$与$Z$有也有相同的基数，则认为$X$与$Z$也有相同的基数。
 
-4. <span style='color:red'>（3.6.8 基数的唯一性）</span>设集合$X$的基数为$n$，则$X$不可能还有其它的基数。换言之，对任意$m\ne n$，$m$不可能为$X$的基数。
+4. <span style="color:red">（3.6.8 基数的唯一性）</span>设集合$X$的基数为$n$，则$X$不可能还有其它的基数。换言之，对任意$m\ne n$，$m$不可能为$X$的基数。
 
-5. <span style='color:red'>（3.6.9）</span>假设$n\geq 1$，且$X$的基数为$n$，那么$X$是非空的，而且若有$x$是$X$中任意一个元素，则有$X\verb|\|\{x\}$的基数为$n-1$。
+5. <span style="color:red">（3.6.9）</span>假设$n\geq 1$，且$X$的基数为$n$，那么$X$是非空的，而且若有$x$是$X$中任意一个元素，则有$X\verb|\|\{x\}$的基数为$n-1$。
 
-6. <span style='color:red'>（3.6.14 基数运算）</span>集合的基数满足下述命题<span style='color:blue'>（设$X$，$Y$是有限集）</span>：
+6. <span style="color:red">（3.6.14 基数运算）</span>集合的基数满足下述命题<span style="color:blue">（设$X$，$Y$是有限集）</span>：
 
     > * 设$x$是一个对象且$x$不是$X$中的元素，则$X\cup\{x\}$是有限的，且$\#(X\cup\{x\})=\#(X)+1$。
     > * $X\cup Y$是有限的，且$\#(X\cup Y)\leq\#(X)+\#(Y)$，特别地，当$X\cap Y=\varnothing$时，有$\#(X\cup Y)=\#(X)+\#(Y)$。
@@ -45,7 +45,7 @@ coverHeight: 320px
     > * 笛卡尔积$X\times Y$是有限的，且$\#(X\times Y)=\#(X)\times\#(Y)$。
     > * 集合$Y^X$是有限的，且$\#(Y^X)=\#(Y)^{\#(X)}$。
 
-7. <span style='color:red'>（习题3.6.10 抽屉原理）</span>设$A_1$，$...$，$A_n$都是有限集，且有$\displaystyle\#\left(\bigcup_{1\leq i\leq n}A_i\right)>n$，则存在$i\in\{1,\cdots,n\}$使得$\#(A_i)\geq 2$。
+7. <span style="color:red">（习题3.6.10 抽屉原理）</span>设$A_1$，$...$，$A_n$都是有限集，且有$\displaystyle\#\left(\bigcup_{1\leq i\leq n}A_i\right)>n$，则存在$i\in\{1,\cdots,n\}$使得$\#(A_i)\geq 2$。
 
 ---
 
@@ -71,7 +71,7 @@ coverHeight: 320px
 
 > 假定该集合为$X$，基数为0，于是存在双射$f:\{i\in\mathbb N:1\leq i\leq 0\}\to X$。又有$\{i\in\mathbb N:1\leq i\leq 0\}=\varnothing$，于是即空函数$f:\varnothing\to X$为双射，根据习题3.3.3的讨论，可以得到空函数$f:\varnothing\to X$为双射，当且仅当$X=\varnothing$，于是结论得证。
 
-##### 3.6.3 设$n$是一个自然数，且$f:\{i\in\mathbb N:1\leq i\leq n\}\to\mathbb N$是一个函数，证明：存在一个自然数$M$使得对任意$1\leq i\leq n$，$f(i)\leq M$始终成立<span style='color:blue'>（提示：对$n$进行归纳，你可能还需要用到一个[引理5.1.14](../Chap5/Sec1.md)）</span>。由此我们有对任意自然数集$\mathbb N$的有限子集都是有界的。
+##### 3.6.3 设$n$是一个自然数，且$f:\{i\in\mathbb N:1\leq i\leq n\}\to\mathbb N$是一个函数，证明：存在一个自然数$M$使得对任意$1\leq i\leq n$，$f(i)\leq M$始终成立<span style="color:blue">（提示：对$n$进行归纳，你可能还需要用到一个[引理5.1.14](../Chap5/Sec1.md)）</span>。由此我们有对任意自然数集$\mathbb N$的有限子集都是有界的。
 
 > 对自然数$n$做归纳：
 >
@@ -231,7 +231,7 @@ coverHeight: 320px
 >$$
 >由于$B-f(A)$的基数大于等于$0$，于是必然有$\#(A)=n\leq n+m=\#(B)$，进而题目结论成立。
 
-##### 3.6.8 设$A$与$B$是集合，且存在一个从$A$到$B$的单射$f:A\to B$（也即集合$A$的基数小于或等于集合$B$的基数），证明：存在一个从$B$到$A$的满射$g:B\to A$<span style='color:blue'>（该命题的逆命题证明需要用到选择公理，详情参考[习题8.4.3](../Chap8/Sec4.md)）</span>
+##### 3.6.8 设$A$与$B$是集合，且存在一个从$A$到$B$的单射$f:A\to B$（也即集合$A$的基数小于或等于集合$B$的基数），证明：存在一个从$B$到$A$的满射$g:B\to A$<span style="color:blue">（该命题的逆命题证明需要用到选择公理，详情参考[习题8.4.3](../Chap8/Sec4.md)）</span>
 
 > 根据单个选择引理，我们可以从$A$中获得一个元素$x$。
 >
@@ -258,7 +258,7 @@ coverHeight: 320px
 > $$
 > 于是结论得证。
 
-##### 3.6.10 设$A_1$，...，$A_n$是有限集，并且有$\displaystyle\#(\bigcup_{i\in\{1,2,...,n\}}A_i)>n$，证明：存在$i\in\{1,...,n\}$使得$\#(A_i)\geq2$<span style='color:blue'>（这也被称为<span style='color:red'>抽屉原理</span>）</span>
+##### 3.6.10 设$A_1$，...，$A_n$是有限集，并且有$\displaystyle\#(\bigcup_{i\in\{1,2,...,n\}}A_i)>n$，证明：存在$i\in\{1,...,n\}$使得$\#(A_i)\geq2$<span style="color:blue">（这也被称为<span style="color:red">抽屉原理</span>）</span>
 
 > 假设对任意$i\in\{1,...,n\}$都有$\#(A_i)\leq 1$，于是我们有：
 > $$

@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 摘录
 
-1. <span style='color:red'>（傅里叶反演公式）</span>由推论16.3.6可知，只要$\displaystyle f=\sum_{n=-N}^{N}c_ne_n$是一个三角多项式，那么就有：
+1. <span style="color:red">（傅里叶反演公式）</span>由推论16.3.6可知，只要$\displaystyle f=\sum_{n=-N}^{N}c_ne_n$是一个三角多项式，那么就有：
    $$
    \displaystyle f=\sum_{n=-N}^{N}\langle f,e_n\rangle e_n=\sum_{n=-\infty}^{\infty}\langle f,e_n\rangle e_n
    $$
@@ -28,22 +28,22 @@ coverHeight: 320px
    $$
    需要注意上面的结论都只是在$f$是一个三角多项式的情况下得到的。事实上，这里的绝大多数傅里叶系数$\hat{f}(n)$都是零，这里的无限和实际上也是一个有限和，因此不存在收敛的讨论（有限级数总是一致收敛的，也即逐点收敛和依$L^2$度量收敛的）。
 
-   <span style='color:blue'>（注：在后面的章节中，如同在幂级数章节所做的那样，我们希望用三角多项式去一致逼近连续的周期函数，并将傅里叶反演公式和Plancherel公式推广到$C(\mathbb R/\mathbb Z;\mathbb C)$中的一般函数上）</span>
+   <span style="color:blue">（注：在后面的章节中，如同在幂级数章节所做的那样，我们希望用三角多项式去一致逼近连续的周期函数，并将傅里叶反演公式和Plancherel公式推广到$C(\mathbb R/\mathbb Z;\mathbb C)$中的一般函数上）</span>
 
 ---
 
 ## 定义
 
-1. <span style='color:red'>（16.3.1 特征）</span>对于每一个整数$n$，令$e_n\in C(\mathbb R/\mathbb Z;\mathbb C)$表示函数：
+1. <span style="color:red">（16.3.1 特征）</span>对于每一个整数$n$，令$e_n\in C(\mathbb R/\mathbb Z;\mathbb C)$表示函数：
    $$
    e_n(x):=\text{e}^{2\pi\text{i}nx}
    $$
    该函数有时也被称为**频率为$n$的特征**。
 
-2. <span style='color:red'>（16.3.2 三角多项式）</span>设$f$是$C(\mathbb R/\mathbb Z;\mathbb C)$中的函数。如果存在一个整数$N\geq 0$和一个复数序列$(c_n)_{n=-N}^{N}$使得$\displaystyle f=\sum_{n=-N}^{N}c_ne_n$，则我们称函数$f$是一个**三角多项式**。
-   <span style='color:blue'>（注：一些常见的例子：对任意的整数$n$，函数$\displaystyle\cos(2\pi nx)=\frac{1}{2}e_{-n}+\frac{1}{2}e_n$和$\displaystyle\sin(2\pi nx)=\frac{-1}{2\text{i}}e_{-n}+\frac{1}{2\text{i}}e_n$都是三角多项式。事实上，正弦余弦函数的任意线性组合都是三角多项式；傅里叶级数与三角多项式的关系同幂级数与多项式的关系类似，可以进行类比）</span>
+2. <span style="color:red">（16.3.2 三角多项式）</span>设$f$是$C(\mathbb R/\mathbb Z;\mathbb C)$中的函数。如果存在一个整数$N\geq 0$和一个复数序列$(c_n)_{n=-N}^{N}$使得$\displaystyle f=\sum_{n=-N}^{N}c_ne_n$，则我们称函数$f$是一个**三角多项式**。
+   <span style="color:blue">（注：一些常见的例子：对任意的整数$n$，函数$\displaystyle\cos(2\pi nx)=\frac{1}{2}e_{-n}+\frac{1}{2}e_n$和$\displaystyle\sin(2\pi nx)=\frac{-1}{2\text{i}}e_{-n}+\frac{1}{2\text{i}}e_n$都是三角多项式。事实上，正弦余弦函数的任意线性组合都是三角多项式；傅里叶级数与三角多项式的关系同幂级数与多项式的关系类似，可以进行类比）</span>
 
-3. <span style='color:red'>（16.3.7 傅里叶变换）</span>对于任意的函数$f\in C(\mathbb R/\mathbb Z;\mathbb C)$和任意的整数$n\in\mathbb Z$，我们定义$f$的**第$n$个傅里叶系数**$\hat{f}(n)$为：
+3. <span style="color:red">（16.3.7 傅里叶变换）</span>对于任意的函数$f\in C(\mathbb R/\mathbb Z;\mathbb C)$和任意的整数$n\in\mathbb Z$，我们定义$f$的**第$n$个傅里叶系数**$\hat{f}(n)$为：
    $$
    \hat{f}(n):=\langle f,e_n\rangle=\int_{[0,1]}f(x)\text{e}^{-2\pi\text{i}nx}\text{d}x
    $$
@@ -53,11 +53,11 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（16.3.5 全体特征构成一个标准正交系）</span>对于任意的整数$n$和$m$，当$n=m$时，$\langle e_n,e_m\rangle=1$；当$n\ne m$时，$\langle e_n,e_m\rangle=0$。同时还有$\Vert e_n\Vert_{2}=1$。
+1. <span style="color:red">（16.3.5 全体特征构成一个标准正交系）</span>对于任意的整数$n$和$m$，当$n=m$时，$\langle e_n,e_m\rangle=1$；当$n\ne m$时，$\langle e_n,e_m\rangle=0$。同时还有$\Vert e_n\Vert_{2}=1$。
 
    > 推论：
    >
-   > 1. <span style='color:red'>（16.3.6 三角多项式的系数？）</span>设$\displaystyle f=\sum_{n=-N}^{N}c_ne_n$是一个三角多项式，那么对于所有的整数$-N\leq n\leq N$，有如下公式：
+   > 1. <span style="color:red">（16.3.6 三角多项式的系数？）</span>设$\displaystyle f=\sum_{n=-N}^{N}c_ne_n$是一个三角多项式，那么对于所有的整数$-N\leq n\leq N$，有如下公式：
    >    $$
    >    c_n=\langle f,e_n\rangle
    >    $$
@@ -144,7 +144,7 @@ coverHeight: 320px
 > $$
 > 特别地，我们有$\Vert e_n\Vert_{2}=\langle e_n,e_m\rangle=1$。综上，于是结论得证。
 
-##### 16.3.3 证明推论16.3.6<span style='color:blue'>（提示：利用引理16.3.5。对于第二个恒等式，既可以利用[毕达哥拉斯定理（引理16.2.7(d)）](../Chap16/Sec2.md)和归纳法，也可以代入$\displaystyle f=\sum_{n=-N}^{N}c_ne_n$并展开所有的表达式）</span>
+##### 16.3.3 证明推论16.3.6<span style="color:blue">（提示：利用引理16.3.5。对于第二个恒等式，既可以利用[毕达哥拉斯定理（引理16.2.7(d)）](../Chap16/Sec2.md)和归纳法，也可以代入$\displaystyle f=\sum_{n=-N}^{N}c_ne_n$并展开所有的表达式）</span>
 
 > 我们对$N$做归纳来证明这个推论。
 >

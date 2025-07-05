@@ -16,38 +16,38 @@ coverHeight: 320px
 
 ### 策梅洛-弗兰克尔-选择系统（终章）
 
->1. <span style='color:red'>（8.1 选择公理）</span>设$I$是一个集合，并且对任意$\alpha\in I$，假设$X_\alpha$是一个非空集合，那么集合$\displaystyle\prod_{\alpha\in I}X_\alpha$也是非空的。换言之，存在一个函数$(x_\alpha)_{\alpha\in I}$对每个$\alpha\in I$指定了一个元素$x_\alpha\in X_\alpha$。 
+>1. <span style="color:red">（8.1 选择公理）</span>设$I$是一个集合，并且对任意$\alpha\in I$，假设$X_\alpha$是一个非空集合，那么集合$\displaystyle\prod_{\alpha\in I}X_\alpha$也是非空的。换言之，存在一个函数$(x_\alpha)_{\alpha\in I}$对每个$\alpha\in I$指定了一个元素$x_\alpha\in X_\alpha$。 
 >
->   <span style='color:blue'>（注：直观来看，这个公理允许我们在给出一组集合$X_\alpha$（可以是无限个）中，从每个集合中提取出一个元素$x_\alpha$，最终组成一个（无限）多元组$(x_\alpha)_{\alpha\in I}$，不过这样的选择并没有指定选择的方法，仅仅只是指出这样元素存在。因此，选择公理可以完成一些非构造性的证明，仅仅阐述对象的存在性，而不指明它的构造方法。认识到非构造的存在性命题与构造的存在性命题之间的区别能帮助我们更好的认识选择公理。使用的时候，选择公理有许多等价的表述，这可以在本节习题中找到一些。我们往往也不需要用到选择公理的全部内容，通常可以选择使用**可数选择公理**，即限制$I$至多可数。）</span>
+>   <span style="color:blue">（注：直观来看，这个公理允许我们在给出一组集合$X_\alpha$（可以是无限个）中，从每个集合中提取出一个元素$x_\alpha$，最终组成一个（无限）多元组$(x_\alpha)_{\alpha\in I}$，不过这样的选择并没有指定选择的方法，仅仅只是指出这样元素存在。因此，选择公理可以完成一些非构造性的证明，仅仅阐述对象的存在性，而不指明它的构造方法。认识到非构造的存在性命题与构造的存在性命题之间的区别能帮助我们更好的认识选择公理。使用的时候，选择公理有许多等价的表述，这可以在本节习题中找到一些。我们往往也不需要用到选择公理的全部内容，通常可以选择使用**可数选择公理**，即限制$I$至多可数。）</span>
 
-<span style='color:blue'>（注：这个公理因为在前期基础内容的构建上的需求不大，但是在深层次的理论研究之中，这条公理是极其方便甚至是不可或缺的，选择公理本身也可以推出许多并不直观的结论，比如[巴拿赫-塔斯基悖论](https://en.m.wikipedia.org/wiki/Banach%E2%80%93Tarski_paradox)（这个在18章会讨论它的简化形式）。哥德尔给出的一个定理证明了使用选择公理证明的结论永远不会同不使用选择公理证明的结论相矛盾（除非集合论的其它公理之间不一致），也即选择公理是不可判定的。关于选择公理，在数学的其它领域中，特别是集合论，许多问题都不是可判定的，是否接受选择公理也是一个饱受各方争议的话题，不过本书内容不对这方面做讨论。我们仅需要知道选择公理，并将其视为我们分析理论中一个方便，安全，节省劳动的工具即可）</span>
+<span style="color:blue">（注：这个公理因为在前期基础内容的构建上的需求不大，但是在深层次的理论研究之中，这条公理是极其方便甚至是不可或缺的，选择公理本身也可以推出许多并不直观的结论，比如[巴拿赫-塔斯基悖论](https://en.m.wikipedia.org/wiki/Banach%E2%80%93Tarski_paradox)（这个在18章会讨论它的简化形式）。哥德尔给出的一个定理证明了使用选择公理证明的结论永远不会同不使用选择公理证明的结论相矛盾（除非集合论的其它公理之间不一致），也即选择公理是不可判定的。关于选择公理，在数学的其它领域中，特别是集合论，许多问题都不是可判定的，是否接受选择公理也是一个饱受各方争议的话题，不过本书内容不对这方面做讨论。我们仅需要知道选择公理，并将其视为我们分析理论中一个方便，安全，节省劳动的工具即可）</span>
 
 ---
 
 ## 定义
 
-1. <span style='color:red'>（8.4.1 无限笛卡尔积）</span>设$I$是一个集合<span style='color:blue'>（可以是无限集）</span>，且对任意$\alpha\in I$，设$X_\alpha$是一个集合。那么我们定义笛卡尔积$\displaystyle\prod_{\alpha\in I}X_\alpha$是集合：
+1. <span style="color:red">（8.4.1 无限笛卡尔积）</span>设$I$是一个集合<span style="color:blue">（可以是无限集）</span>，且对任意$\alpha\in I$，设$X_\alpha$是一个集合。那么我们定义笛卡尔积$\displaystyle\prod_{\alpha\in I}X_\alpha$是集合：
    $$
    \prod_{\alpha\in I}X_\alpha=\left\{(x_\alpha)_{\alpha\in I}\in\left(\bigcup_{\beta\in I}X_\beta\right)^I:x_\alpha\in X_\alpha 对任意\alpha\in I成立\right\}
    $$
 
-<span style='color:blue'>（注：$\displaystyle\left(\bigcup_{\beta\in I}X_\beta\right)^I$是由幂集公理获得，全体以$I$为定义域，$\displaystyle\bigcup_{\beta\in I}X_\beta$为值域的函数$f$所构成的集合，这里的$(x_\alpha)_{\alpha\in I}$实质上是一个定义域为$I$值域为$\displaystyle\bigcup_{\beta\in I}X_\beta$的函数，对每一个$\alpha\in I$指定了一个$x_\alpha\in X_\alpha$作为输出，由于是[第3章](../Chap3/Sec4.md)的内容了，略微久远，在这里写明防止忘记。）</span>
+<span style="color:blue">（注：$\displaystyle\left(\bigcup_{\beta\in I}X_\beta\right)^I$是由幂集公理获得，全体以$I$为定义域，$\displaystyle\bigcup_{\beta\in I}X_\beta$为值域的函数$f$所构成的集合，这里的$(x_\alpha)_{\alpha\in I}$实质上是一个定义域为$I$值域为$\displaystyle\bigcup_{\beta\in I}X_\beta$的函数，对每一个$\alpha\in I$指定了一个$x_\alpha\in X_\alpha$作为输出，由于是[第3章](../Chap3/Sec4.md)的内容了，略微久远，在这里写明防止忘记。）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（8.4.5 选择公理实践？）</span>设$E$是实直线的一个子集，并且$\sup E\leq \infty$（即$E$是有上界的），那么存在一个所有项$a_n$都存在于$E$中的序列$(a_n)_{n=1}^\infty$使得$\displaystyle\lim_{n\to\infty}a_n=\sup E$。
+1. <span style="color:red">（8.4.5 选择公理实践？）</span>设$E$是实直线的一个子集，并且$\sup E\leq \infty$（即$E$是有上界的），那么存在一个所有项$a_n$都存在于$E$中的序列$(a_n)_{n=1}^\infty$使得$\displaystyle\lim_{n\to\infty}a_n=\sup E$。
 
-   <span style='color:blue'>（可以看下课本怎么使用选择公理的）</span>
+   <span style="color:blue">（可以看下课本怎么使用选择公理的）</span>
 
-2. <span style='color:red'>（8.4.7 选择公理的另一种表述？）</span>设$X$和$Y$是集合，并且设关于$x\in X$与$y\in Y$的性质$P(x,y)$满足：对任意$x\in X$至少存在一个$y\in Y$使得$P(x,y)$为真。那么存在一个函数$f:X\to Y$使得$P(x,f(x))$对所有$x\in X$都为真。
+2. <span style="color:red">（8.4.7 选择公理的另一种表述？）</span>设$X$和$Y$是集合，并且设关于$x\in X$与$y\in Y$的性质$P(x,y)$满足：对任意$x\in X$至少存在一个$y\in Y$使得$P(x,y)$为真。那么存在一个函数$f:X\to Y$使得$P(x,f(x))$对所有$x\in X$都为真。
 
 ---
 
 ## 课后习题
 
-##### 8.4.1 证明：选择公理蕴含着命题8.4.7<span style='color:blue'>（提示：对每一个$x\in X$，考虑集合$Y_x:=\{y\in Y:P(x,y)为真\}$）</span>反过来，证明：如果命题8.4.7成立，那么选择公理也成立
+##### 8.4.1 证明：选择公理蕴含着命题8.4.7<span style="color:blue">（提示：对每一个$x\in X$，考虑集合$Y_x:=\{y\in Y:P(x,y)为真\}$）</span>反过来，证明：如果命题8.4.7成立，那么选择公理也成立
 
 >证明：选择公理蕴含着命题8.4.7。
 >
@@ -71,7 +71,7 @@ coverHeight: 320px
 >$$
 >于是根据命题8.4.7，存在一个函数$(x_\alpha)_{\alpha\in I}$满足对任意$\alpha\in I$，指定一个$\displaystyle x_\alpha\in\bigcup_{\alpha\in I}X_\alpha$满足性质$P(\alpha,x_\alpha)$，即$x_\alpha\in X_\alpha$。这就是选择公理的内容，从而若有命题8.4.7成立，那么选择公理也成立。
 
-##### 8.4.2 设$I$是一个集合，并且对每一个$\alpha \in I$，设$X_\alpha$是一个非空集合。假设所有的集合$X_\alpha$互不相交，即对任意不同的$\alpha$，$\beta\in I$都有$X_\alpha\cap X_\beta=\varnothing$成立。利用选择公理证明存在一个集合$Y$使得$\#(Y\cap X_\alpha)=1$对所有的$\alpha\in I$均成立<span style='color:blue'>（即$Y$与每一个$X_\alpha$恰有一个共同元素）</span>；反过来，证明：如果上述命题对于任意选取的集合$I$以及非空且彼此不相交的集合簇$X_\alpha$都成立，那么选择公理成立<span style='color:blue'>（提示：问题是在公理8.1中没有假设集合$X_\alpha$是互不相交的，但这可以通过某些办法来解决，如考虑用集合$\{\alpha\}\times X_\alpha=\{(\alpha,x):x\in X_\alpha\}$来代替$X_\alpha$）</span>
+##### 8.4.2 设$I$是一个集合，并且对每一个$\alpha \in I$，设$X_\alpha$是一个非空集合。假设所有的集合$X_\alpha$互不相交，即对任意不同的$\alpha$，$\beta\in I$都有$X_\alpha\cap X_\beta=\varnothing$成立。利用选择公理证明存在一个集合$Y$使得$\#(Y\cap X_\alpha)=1$对所有的$\alpha\in I$均成立<span style="color:blue">（即$Y$与每一个$X_\alpha$恰有一个共同元素）</span>；反过来，证明：如果上述命题对于任意选取的集合$I$以及非空且彼此不相交的集合簇$X_\alpha$都成立，那么选择公理成立<span style="color:blue">（提示：问题是在公理8.1中没有假设集合$X_\alpha$是互不相交的，但这可以通过某些办法来解决，如考虑用集合$\{\alpha\}\times X_\alpha=\{(\alpha,x):x\in X_\alpha\}$来代替$X_\alpha$）</span>
 
 >证明：设$I$是一个集合，并且对每一个$\alpha \in I$，设$X_\alpha$是一个非空集合。假设所有的集合$X_\alpha$互不相交，即对任意不同的$\alpha$，$\beta\in I$都有$X_\alpha\cap X_\beta=\varnothing$成立。证明存在一个集合$Y$使得$\#(Y\cap X_\alpha)=1$对所有的$\alpha\in I$均成立。
 >
@@ -106,7 +106,7 @@ coverHeight: 320px
 >
 >于是由性质$P(\alpha,x_\alpha)$可以确定一个函数$\displaystyle(x_\alpha)_{\alpha\in I}:I\to\bigcup_{\alpha\in I}X_\alpha$满足对任意$\alpha\in I$都指定一个元素$x_\alpha\in X_\alpha$，这正是选择公理所需要的函数，于是选择公理得证。
 
-##### 8.4.3 设$A$和$B$是集合并且存在一个满射$g:B\to A$，利用选择公理证明：存在一个单射$f:A\to B$。换言之，根据[习题3.6.7](../Chap3/Sec6.md)，$A$的基数小于或等于$B$的基数。<span style='color:blue'>（提示：对于每一个$\alpha\in A$，考虑逆像$g^{-1}(\{\alpha\})$）</span>把这个结论与[习题3.6.8](../Chap3/Sec6.md)进行对比。反过来，证明：如果上述命题对于任意的集合$A$，$B$以及满射$g:B\to A$都成立，那么选择公理成立<span style='color:blue'>（提示：利用习题8.4.2）</span>
+##### 8.4.3 设$A$和$B$是集合并且存在一个满射$g:B\to A$，利用选择公理证明：存在一个单射$f:A\to B$。换言之，根据[习题3.6.7](../Chap3/Sec6.md)，$A$的基数小于或等于$B$的基数。<span style="color:blue">（提示：对于每一个$\alpha\in A$，考虑逆像$g^{-1}(\{\alpha\})$）</span>把这个结论与[习题3.6.8](../Chap3/Sec6.md)进行对比。反过来，证明：如果上述命题对于任意的集合$A$，$B$以及满射$g:B\to A$都成立，那么选择公理成立<span style="color:blue">（提示：利用习题8.4.2）</span>
 
 >证明：若$A$和$B$是集合并且存在一个满射$g:B\to A$，则存在一个单射$f:A\to B$。
 >

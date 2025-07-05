@@ -14,27 +14,27 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（11.6.1 闭区间上的单调函数是黎曼可积的？）</span>设$[a,b]$是一个有界闭区间，并且设$f:[a,b]\to\mathbb R$是单调函数，那么$f$在$[a,b]$上是黎曼可积的。
+1. <span style="color:red">（11.6.1 闭区间上的单调函数是黎曼可积的？）</span>设$[a,b]$是一个有界闭区间，并且设$f:[a,b]\to\mathbb R$是单调函数，那么$f$在$[a,b]$上是黎曼可积的。
 
-   <span style='color:blue'>（注：在[习题9.8.5](../Chap9/Sec8.md)中我们给出了一个非分段连续的单调函数例子，因此证明这个命题不能通过[命题11.5.6](../Chap11/Sec5.md)直接得到，只能从原始定义出发）</span>
-
-   > 推论：
-   >
-   > 1. <span style='color:red'>（11.6.3 有界的单调函数是黎曼可积的）</span>设$I$是一个有界区间，并且设$f:I\to\mathbb R$是既单调又有界的，那么$f$在$I$上是黎曼可积的。
-
-2. <span style='color:red'>（11.6.4 积分判别法）</span>设$f:[0,+\infty)\to\mathbb R$是一个**单调递减**的函数，并且它是**非负的**<span style='color:blue'>（即对所有的$x\geq 0$都有$f(x)\geq 0$）</span>，那么级数$\displaystyle\sum_{n=0}^{\infty}f(n)$是收敛的，当且仅当$\displaystyle\sup_{N>0}\int_{[0,N]}f$是有限的。
+   <span style="color:blue">（注：在[习题9.8.5](../Chap9/Sec8.md)中我们给出了一个非分段连续的单调函数例子，因此证明这个命题不能通过[命题11.5.6](../Chap11/Sec5.md)直接得到，只能从原始定义出发）</span>
 
    > 推论：
    >
-   > 1. <span style='color:red'>（11.6.5）</span>设$p$是一个实数，那么当$p>1$时，级数$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^p}$是绝对收敛的，而当$p\leq 1$时，它是发散的。
+   > 1. <span style="color:red">（11.6.3 有界的单调函数是黎曼可积的）</span>设$I$是一个有界区间，并且设$f:I\to\mathbb R$是既单调又有界的，那么$f$在$I$上是黎曼可积的。
+
+2. <span style="color:red">（11.6.4 积分判别法）</span>设$f:[0,+\infty)\to\mathbb R$是一个**单调递减**的函数，并且它是**非负的**<span style="color:blue">（即对所有的$x\geq 0$都有$f(x)\geq 0$）</span>，那么级数$\displaystyle\sum_{n=0}^{\infty}f(n)$是收敛的，当且仅当$\displaystyle\sup_{N>0}\int_{[0,N]}f$是有限的。
+
+   > 推论：
    >
-   >    <span style='color:blue'>（注：在[推论7.3.7](../Chap7/Sec3.md)中我们已经阐述了这个命题的有理数形式，现在我们通过积分判别法将这个命题推广到实数）</span>
+   > 1. <span style="color:red">（11.6.5）</span>设$p$是一个实数，那么当$p>1$时，级数$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^p}$是绝对收敛的，而当$p\leq 1$时，它是发散的。
+   >
+   >    <span style="color:blue">（注：在[推论7.3.7](../Chap7/Sec3.md)中我们已经阐述了这个命题的有理数形式，现在我们通过积分判别法将这个命题推广到实数）</span>
 
 ---
 
 ## 课后习题
 
-##### 11.6.1 利用命题11.6.1证明推论11.6.3<span style='color:blue'>（提示：修改[命题11.5.3](../Chap11/Sec5.md)的证明）</span>
+##### 11.6.1 利用命题11.6.1证明推论11.6.3<span style="color:blue">（提示：修改[命题11.5.3](../Chap11/Sec5.md)的证明）</span>
 
 > 首先注意到如果$I$是一个单点集或者空集，那么结论是平凡的；如果$I$是一个形如$[a,b]$的闭区间，那么可以直接根据命题11.6.1得出结论。于是我们不妨假设$I$是形如$(a,b]$，$[a,b)$或$(a,b)$的区间，其中$a<b$。
 >
@@ -93,7 +93,7 @@ coverHeight: 320px
 > 因此我们有$f=F_{J_1}+...+F_{J_n}(P=\{J_1,...,J_n\})$，从而根据定理11.4.1(a)我们有$f$是黎曼可积的，题目结论得证。
 >
 
-##### 11.6.3 证明命题11.6.4<span style='color:blue'>（提示：不妨思考$\displaystyle\sum_{n=1}^{N}f(n)$，$\displaystyle\sum_{n=0}^{N-1}f(n)$与积分$\displaystyle\int_{[0,N]}f$之间有什么联系？）</span>
+##### 11.6.3 证明命题11.6.4<span style="color:blue">（提示：不妨思考$\displaystyle\sum_{n=1}^{N}f(n)$，$\displaystyle\sum_{n=0}^{N-1}f(n)$与积分$\displaystyle\int_{[0,N]}f$之间有什么联系？）</span>
 
 > 我们令记号$\displaystyle S_b^a:=\sum_{n=b}^{a}f(n)$。
 >

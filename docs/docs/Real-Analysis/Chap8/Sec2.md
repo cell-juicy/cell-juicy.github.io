@@ -14,13 +14,13 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（8.2.1 可数集上的级数）</span>设$X$是一个**可数集**，并且设$f:X\to\mathbb R$是一个函数。称级数$\displaystyle\sum_{x\in X}f(x)$是**绝对收敛**的，当且仅当存在某个双射$g:\mathbb N\to X$使得级数$\displaystyle\sum_{n=0}^{\infty}f(g(n))$是**绝对收敛**的。此时我们定义：
+1. <span style="color:red">（8.2.1 可数集上的级数）</span>设$X$是一个**可数集**，并且设$f:X\to\mathbb R$是一个函数。称级数$\displaystyle\sum_{x\in X}f(x)$是**绝对收敛**的，当且仅当存在某个双射$g:\mathbb N\to X$使得级数$\displaystyle\sum_{n=0}^{\infty}f(g(n))$是**绝对收敛**的。此时我们定义：
    $$
    \sum_{x\in X}f(x)=\sum_{n=0}^{\infty}f(g(n))
    $$
-   <span style='color:blue'>（根据[命题7.4.3](../Chap7/Sec4.md)与[命题3.6.4](../Chap3/Sec6.md)，可以证明这样的定义同$g$的选取无关，从而它是定义明确的）</span>
+   <span style="color:blue">（根据[命题7.4.3](../Chap7/Sec4.md)与[命题3.6.4](../Chap3/Sec6.md)，可以证明这样的定义同$g$的选取无关，从而它是定义明确的）</span>
 
-2. <span style='color:red'>（8.2.4 任意集合上求和的绝对收敛？）</span>设$X$是一个集合<span style='color:blue'>（可以是**不可数**的）</span>，并且设$f:X\to \mathbb R$是一个函数，那么级数$\displaystyle\sum_{x\in X}f(x)$是**绝对收敛**的，当且仅当：
+2. <span style="color:red">（8.2.4 任意集合上求和的绝对收敛？）</span>设$X$是一个集合<span style="color:blue">（可以是**不可数**的）</span>，并且设$f:X\to \mathbb R$是一个函数，那么级数$\displaystyle\sum_{x\in X}f(x)$是**绝对收敛**的，当且仅当：
    $$
    \sup\left\{\sum_{x\in A}|f(x)|:A\subseteq X且A是有限集\right\}<\infty
    $$
@@ -29,7 +29,7 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（8.2.2 无限和的富比尼定理）</span>设$f:\mathbb N\times\mathbb N\to\mathbb R$是一个使得$\displaystyle\sum_{(n,m)\in \mathbb N\times\mathbb N}f(n,m)$**绝对收敛**的的一个函数，那么我们有：
+1. <span style="color:red">（8.2.2 无限和的富比尼定理）</span>设$f:\mathbb N\times\mathbb N\to\mathbb R$是一个使得$\displaystyle\sum_{(n,m)\in \mathbb N\times\mathbb N}f(n,m)$**绝对收敛**的的一个函数，那么我们有：
    $$
    \begin{align}
    \sum_{n\in\mathbb N}\left(\sum_{m\in\mathbb N}f(n,m)\right)&=\sum_{(n,m)\in \mathbb N\times\mathbb N}f(n,m)\\
@@ -38,18 +38,18 @@ coverHeight: 320px
    \end{align}
    $$
 
-   <span style='color:blue'>（换言之，只要级数是**绝对收敛**的，我们就可以任意交换无限和的求和顺序）</span>
+   <span style="color:blue">（换言之，只要级数是**绝对收敛**的，我们就可以任意交换无限和的求和顺序）</span>
 
-2. <span style='color:red'>（8.2.3 绝对收敛级数的特征？）</span>设$X$是一个**至多可数的**<span style='color:blue'>（注意同8.2.4区分）</span>集合，并且设$f:X\to \mathbb R$是一个函数，那么级数$\displaystyle\sum_{x\in X}f(x)$是**绝对收敛**的，当且仅当：
+2. <span style="color:red">（8.2.3 绝对收敛级数的特征？）</span>设$X$是一个**至多可数的**<span style="color:blue">（注意同8.2.4区分）</span>集合，并且设$f:X\to \mathbb R$是一个函数，那么级数$\displaystyle\sum_{x\in X}f(x)$是**绝对收敛**的，当且仅当：
    $$
    \sup\left\{\sum_{x\in A}|f(x)|:A\subseteq X且A是有限集\right\}<\infty
    $$
 
-3. <span style='color:red'>（8.2.5 绝对收敛级数衍生？）</span>设$X$是一个集合<span style='color:blue'>（可以是**不可数**的）</span>，并且设$f:X\to \mathbb R$是一个使级数$\displaystyle\sum_{x\in X}f(x)$是绝对收敛的函数，那么集合$\left\{x\in X:f(x)\ne 0\right\}$是至多可数的。
+3. <span style="color:red">（8.2.5 绝对收敛级数衍生？）</span>设$X$是一个集合<span style="color:blue">（可以是**不可数**的）</span>，并且设$f:X\to \mathbb R$是一个使级数$\displaystyle\sum_{x\in X}f(x)$是绝对收敛的函数，那么集合$\left\{x\in X:f(x)\ne 0\right\}$是至多可数的。
 
-   <span style='color:blue'>（由此，对于不可数集上的任意一个绝对收敛的级数$\displaystyle\sum_{x\in X}f(x)$，我们可以定义它的值为$\displaystyle\sum_{x\in X}f(x):=\sum_{x\in X:f(x)\ne 0}f(x)$，于是我们成功将不可数集上的级数用可数集上的级数替换）</span>
+   <span style="color:blue">（由此，对于不可数集上的任意一个绝对收敛的级数$\displaystyle\sum_{x\in X}f(x)$，我们可以定义它的值为$\displaystyle\sum_{x\in X}f(x):=\sum_{x\in X:f(x)\ne 0}f(x)$，于是我们成功将不可数集上的级数用可数集上的级数替换）</span>
 
-4. <span style='color:red'>（8.2.6 绝对收敛级数的定律）</span>设$X$是一个集合<span style='color:blue'>（可以是**不可数**的）</span>，并且设$f:X\to \mathbb R$，$g:X\to \mathbb R$是使级数$\displaystyle\sum_{x\in X}f(x)$与$\displaystyle\sum_{x\in X}g(x)$都绝对收敛的函数，则下述命题为真：
+4. <span style="color:red">（8.2.6 绝对收敛级数的定律）</span>设$X$是一个集合<span style="color:blue">（可以是**不可数**的）</span>，并且设$f:X\to \mathbb R$，$g:X\to \mathbb R$是使级数$\displaystyle\sum_{x\in X}f(x)$与$\displaystyle\sum_{x\in X}g(x)$都绝对收敛的函数，则下述命题为真：
 
    > 1. 级数$\displaystyle\sum_{x\in X}(f(x)+g(x))$是绝对收敛的，并且：
    >    $$
@@ -75,19 +75,19 @@ coverHeight: 320px
    >    \sum_{y\in Y}f(\phi(y))=\sum_{x\in X}f(x)
    >    $$
 
-   <span style='color:blue'>（当$X$是不可数集时，该结论的证明要用到选择公理）</span>
+   <span style="color:blue">（当$X$是不可数集时，该结论的证明要用到选择公理）</span>
 
-5. <span style='color:red'>（8.2.7 条件收敛的子级数？）</span>设$\displaystyle\sum_{n=0}^{\infty}a_n$是一个条件收敛但是不绝对收敛的级数，定义集合$A_+=\{n\in\mathbb N:a_n\geq0\}$，$A_-=\{n\in\mathbb N:a_n<0\}$，于是有$A_+\cup A_-=\mathbb N$与$A_+\cap A_-=\varnothing$。那么级数$\displaystyle\sum_{n\in A_+}a_n$与$\displaystyle\sum_{n\in A_-}a_n$都不是条件收敛的。
+5. <span style="color:red">（8.2.7 条件收敛的子级数？）</span>设$\displaystyle\sum_{n=0}^{\infty}a_n$是一个条件收敛但是不绝对收敛的级数，定义集合$A_+=\{n\in\mathbb N:a_n\geq0\}$，$A_-=\{n\in\mathbb N:a_n<0\}$，于是有$A_+\cup A_-=\mathbb N$与$A_+\cap A_-=\varnothing$。那么级数$\displaystyle\sum_{n\in A_+}a_n$与$\displaystyle\sum_{n\in A_-}a_n$都不是条件收敛的。
 
-   <span style='color:blue'>（从而也不是绝对收敛的）</span>
+   <span style="color:blue">（从而也不是绝对收敛的）</span>
 
-6. <span style='color:red'>（8.2.8 格奥尔格·黎曼级数定理？）</span>设$\displaystyle\sum_{n=0}^{\infty}a_n$是一个条件收敛但是不绝对收敛的级数，$L$是任意一个实数。于是存在一个双射$f:\mathbb N\to \mathbb N$使得$\displaystyle\sum_{n=0}^{\infty}a_{f(n)}$条件收敛于$L$。
+6. <span style="color:red">（8.2.8 格奥尔格·黎曼级数定理？）</span>设$\displaystyle\sum_{n=0}^{\infty}a_n$是一个条件收敛但是不绝对收敛的级数，$L$是任意一个实数。于是存在一个双射$f:\mathbb N\to \mathbb N$使得$\displaystyle\sum_{n=0}^{\infty}a_{f(n)}$条件收敛于$L$。
 
 ---
 
 ## 课后习题
 
-##### 8.2.1 证明引理8.2.3<span style='color:blue'>（提示：[习题3.6.3](../Chap3/Sec6.md)或许有用)</span>
+##### 8.2.1 证明引理8.2.3<span style="color:blue">（提示：[习题3.6.3](../Chap3/Sec6.md)或许有用)</span>
 
 >根据有限级数的知识，若$X$是有限的，那么无论条件是否成立$\displaystyle\sum_{x\in X}|f(x)|$总是有限的，特别地，$\displaystyle\sum_{x\in X}|f(x)|$也是绝对收敛的。因此只需要讨论$X$是可数集的情况，此时根据定义8.1.1存在一个双射$g:\mathbb N\to X$。
 >
@@ -138,13 +138,13 @@ coverHeight: 320px
 >
 >综上，于是结论成立。
 
-##### 8.2.2 证明引理8.2.5<span style='color:blue'>（提示：首先证明如果$M$是</span>
+##### 8.2.2 证明引理8.2.5<span style="color:blue">（提示：首先证明如果$M$是</span>
 
 $$
 \color{blue}{M:=\sup\left\{\sum_{x\in A}\left|f(x)\right|:A\subseteq X,A 是有限集\right\}}
 $$
 
-##### <span style='color:blue'>那么对于任意的正整数$n$，集合$\left\{x\in X:\left|f(x)\right| >\frac{1}{n}\right\}$都是有限集并且基数至多为$Mn$。然后利用[习题8.1.9](../Chap8/Sec1.md)（其中会用到[选择公理](../Chap8/Sec4.md)，参见[8.4节](../Chap8/Sec4.md)））</span>
+##### <span style="color:blue">那么对于任意的正整数$n$，集合$\left\{x\in X:\left|f(x)\right| >\frac{1}{n}\right\}$都是有限集并且基数至多为$Mn$。然后利用[习题8.1.9](../Chap8/Sec1.md)（其中会用到[选择公理](../Chap8/Sec4.md)，参见[8.4节](../Chap8/Sec4.md)））</span>
 
 >令$\displaystyle M:=\sup\left\{\sum_{x\in A}\left|f(x)\right|:A\subseteq X,A 是有限集\right\}$，我们先证明下面的结论：
 >
@@ -187,7 +187,7 @@ $$
 >$$
 >从而$M$是一个正实数；进而根据前辅助结论有对任意$n\in\mathbb N$，$A_n$都是一个有限集；此时习题8.1.9的结论有$\displaystyle\bigcup_{n\in\mathbb N}A_n$是一个至多可数集，从而$\displaystyle\{x\in X:|f(x)|>0\}=\bigcup_{n\in\mathbb N}A_n$也是至多可数的，于是引理8.2.5得证。
 
-##### 8.2.3 证明命题8.2.6<span style='color:blue'>（提示：你当然可以使用第7章中的所有结论）</span>
+##### 8.2.3 证明命题8.2.6<span style="color:blue">（提示：你当然可以使用第7章中的所有结论）</span>
 
 >对于一个绝对收敛的级数$\displaystyle\sum_{x\in X:f(x)\ne 0}f(x)$，我们不需要考虑$\{x\in X:f(x)\ne 0\}$是一个有限集的情况，对有限集上的和讨论绝对收敛这个概念显然是没有意义，因为有限和总是计算出来的一个确定实数，因此在下面的证明中，我们总是默认$\{x\in X:f(x)\ne 0\}$是一个无限集然后加以证明
 >
@@ -406,7 +406,7 @@ $$
 >$$
 >于是值的结论得证。
 
-##### 8.2.4 证明引理8.2.7<span style='color:blue'>（提示：利用反证法和[极限定律](../Chap6/Sec1.md)）</span>
+##### 8.2.4 证明引理8.2.7<span style="color:blue">（提示：利用反证法和[极限定律](../Chap6/Sec1.md)）</span>
 
 >使用反证法，我们讨论$\displaystyle\sum_{n\in A_+}a_n$与$\displaystyle\sum_{n\in A_-}a_n$的可能情况。
 >
@@ -653,7 +653,7 @@ $$
 \lim \inf\limits_{N\to \infty}\sum_{m=0}^{N}a_{f(m)}=\lim \sup\limits_{N\to \infty}\sum_{m=0}^{N}a_{f(m)}=+\infty
 $$
 
-##### <span style='color:blue'>（当然，把$+\infty$替换成$-\infty$所得到的类似结论依然成立）</span>
+##### <span style="color:blue">（当然，把$+\infty$替换成$-\infty$所得到的类似结论依然成立）</span>
 
 >仿照定理8.2.8中的证明，我们给出下面一个递归序列$n_m$，然后证明$\displaystyle\lim \inf\limits_{N\to \infty}\sum_{m=0}^{N}a_{n_m}=\lim \sup\limits_{N\to \infty}\sum_{m=0}^{N}a_{n_m}=+\infty$。
 >

@@ -14,23 +14,23 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（5.2.1 $\varepsilon$-接近的序列）</span>设$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是两个序列且$\varepsilon>0$，称$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是$\varepsilon$-接近的，当且仅当对任意$n\in\mathbb N$均有$a_n$是$\varepsilon$-接近于$b_n$的，即$d(a_n,b_n)≤\varepsilon$。
+1. <span style="color:red">（5.2.1 $\varepsilon$-接近的序列）</span>设$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是两个序列且$\varepsilon>0$，称$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是$\varepsilon$-接近的，当且仅当对任意$n\in\mathbb N$均有$a_n$是$\varepsilon$-接近于$b_n$的，即$d(a_n,b_n)≤\varepsilon$。
 
-2. <span style='color:red'>（5.2.3 最终$\varepsilon$-接近的序列）</span>设$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是两个序列且$\varepsilon>0$，称$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是最终$\varepsilon$-接近的，当且仅当存在一个$N≥0$，使序列$(a_n)^\infty_{n=N}$与$(b_n)^\infty_{n=N}$是$\varepsilon$-接近的。
+2. <span style="color:red">（5.2.3 最终$\varepsilon$-接近的序列）</span>设$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是两个序列且$\varepsilon>0$，称$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是最终$\varepsilon$-接近的，当且仅当存在一个$N≥0$，使序列$(a_n)^\infty_{n=N}$与$(b_n)^\infty_{n=N}$是$\varepsilon$-接近的。
 
-   <span style='color:blue'>（注：再次申明，上述两个概念都不是标准定义，在本节之外不会再使用上述定义）</span>
+   <span style="color:blue">（注：再次申明，上述两个概念都不是标准定义，在本节之外不会再使用上述定义）</span>
 
-3. <span style='color:red'>（5.2.6 等价序列）</span>称两个序列$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是**等价的**，当且仅当对任意有理数$\varepsilon>0$，序列$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$都是最终$\varepsilon$-接近的。
+3. <span style="color:red">（5.2.6 等价序列）</span>称两个序列$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是**等价的**，当且仅当对任意有理数$\varepsilon>0$，序列$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$都是最终$\varepsilon$-接近的。
 
-   <span style='color:blue'>（注：如同定义5.1.8一样，$\varepsilon$被限制在了有理数范围，但是到最后我们会发现，上述命题中这个限制可以扩展到实数范围）</span>
+   <span style="color:blue">（注：如同定义5.1.8一样，$\varepsilon$被限制在了有理数范围，但是到最后我们会发现，上述命题中这个限制可以扩展到实数范围）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（5.2.8）</span>设$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是两个序列，其中$a_n=1+10^{-n}$，$b_n=1-10^{-n}$，那么序列$(a_n)^\infty_{n=0}$与是等价的。
+1. <span style="color:red">（5.2.8）</span>设$(a_n)^\infty_{n=0}$与$(b_n)^\infty_{n=0}$是两个序列，其中$a_n=1+10^{-n}$，$b_n=1-10^{-n}$，那么序列$(a_n)^\infty_{n=0}$与是等价的。
 
-   <span style='color:blue'>（这个命题直接断定了$1.000...=0.999...$）</span>
+   <span style="color:blue">（这个命题直接断定了$1.000...=0.999...$）</span>
 
 ---
 

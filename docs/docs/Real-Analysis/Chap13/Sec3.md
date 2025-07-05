@@ -14,19 +14,19 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（13.3.4 一致连续性）</span>设$f:X\to Y$是从度量空间$(X,d_X)$到另一个度量空间$(Y,d_Y)$的映射。如果对任意的$\varepsilon>0$，都存在一个$\delta>0$使得$x$，$x'\in X$满足$d_X(x,x')<\delta$就有$d_Y(f(x),f(x'))<\varepsilon$，那么我们称$f$是**一致连续的**。
+1. <span style="color:red">（13.3.4 一致连续性）</span>设$f:X\to Y$是从度量空间$(X,d_X)$到另一个度量空间$(Y,d_Y)$的映射。如果对任意的$\varepsilon>0$，都存在一个$\delta>0$使得$x$，$x'\in X$满足$d_X(x,x')<\delta$就有$d_Y(f(x),f(x'))<\varepsilon$，那么我们称$f$是**一致连续的**。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（13.3.1 连续映射保持紧致性）</span>设$f:X\to Y$是从度量空间$(X,d_X)$到另一个度量空间$(Y,d_Y)$的连续映射，并设$K\subseteq X$是$X$的任意一个紧致子集。那么$K$的象$f(K)$也是紧致的。
+1. <span style="color:red">（13.3.1 连续映射保持紧致性）</span>设$f:X\to Y$是从度量空间$(X,d_X)$到另一个度量空间$(Y,d_Y)$的连续映射，并设$K\subseteq X$是$X$的任意一个紧致子集。那么$K$的象$f(K)$也是紧致的。
 
-2. <span style='color:red'>（13.3.2 最大值原理）</span>设$(X,d)$是一个紧致度量空间，并设$f:X\to\mathbb R$是一个连续函数，那么$f$是有界的。更进一步的，$f$在某个点$x_{\max}\in X$处达到最大值，并且在某个点$x_{\min}\in X$处达到最小值。
+2. <span style="color:red">（13.3.2 最大值原理）</span>设$(X,d)$是一个紧致度量空间，并设$f:X\to\mathbb R$是一个连续函数，那么$f$是有界的。更进一步的，$f$在某个点$x_{\max}\in X$处达到最大值，并且在某个点$x_{\min}\in X$处达到最小值。
 
-   <span style='color:blue'>（注：这是对[命题9.6.7](../Chap9/Sec6.md)的推广；然后如同我们在[习题9.6.1](../Chap9/Sec6.md)中看到的那样，如果$X$不是紧致的则最大值原理就不成立，我们应当把命题13.3.2与[引理9.6.3](../Chap9/Sec6.md)，[命题9.6.7](../Chap9/Sec6.md)进行比较）</span>
+   <span style="color:blue">（注：这是对[命题9.6.7](../Chap9/Sec6.md)的推广；然后如同我们在[习题9.6.1](../Chap9/Sec6.md)中看到的那样，如果$X$不是紧致的则最大值原理就不成立，我们应当把命题13.3.2与[引理9.6.3](../Chap9/Sec6.md)，[命题9.6.7](../Chap9/Sec6.md)进行比较）</span>
 
-3. <span style='color:red'>（13.3.5）</span>设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，并设$(X,d_X)$是紧致的。如果$f:X\to Y$是一个函数，那么$f$是连续的当且仅当$f$是一致连续的。
+3. <span style="color:red">（13.3.5）</span>设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，并设$(X,d_X)$是紧致的。如果$f:X\to Y$是一个函数，那么$f$是连续的当且仅当$f$是一致连续的。
 
 ---
 
@@ -44,7 +44,7 @@ coverHeight: 320px
 >
 > 根据紧致集的定义（定义12.5.1），于是$f(K)$也是紧致的。
 
-##### 13.3.2 证明命题13.3.2<span style='color:blue'>（提示：修改[命题9.6.7](../Chap9/Sec6.md)的证明过程）</span>
+##### 13.3.2 证明命题13.3.2<span style="color:blue">（提示：修改[命题9.6.7](../Chap9/Sec6.md)的证明过程）</span>
 
 > 先证明：$f$是有界的。
 >

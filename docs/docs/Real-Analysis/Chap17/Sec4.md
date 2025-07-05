@@ -14,7 +14,7 @@ coverHeight: 320px
 
 ## 摘要
 
-1. <span style='color:red'>（链式法则的应用其一）</span>设$f:\mathbb R^n\to\mathbb R$和$g:\mathbb R^n\to\mathbb R$都是可微函数，我们把函数$h:\mathbb R^n\to\mathbb R^2$定义为$h(x):=(f(x),g(x))$，然后令$k:\mathbb R^2\to\mathbb R$表示乘法函数$k(a,b):=ab$，然后可以注意到：
+1. <span style="color:red">（链式法则的应用其一）</span>设$f:\mathbb R^n\to\mathbb R$和$g:\mathbb R^n\to\mathbb R$都是可微函数，我们把函数$h:\mathbb R^n\to\mathbb R^2$定义为$h(x):=(f(x),g(x))$，然后令$k:\mathbb R^2\to\mathbb R$表示乘法函数$k(a,b):=ab$，然后可以注意到：
    $$
    Dh(x_0)=\begin{pmatrix}
    \nabla f(x_0)\\
@@ -42,30 +42,30 @@ coverHeight: 320px
    $$
    类似地，我们可以给出**和法则**$\nabla(f+g)=\nabla f+\nabla g$与**差法则**$\nabla(f-g)=\nabla f-\nabla g$。
 
-2. <span style='color:red'>（链式法则的应用其二）</span>设$T:\mathbb R^n\to\mathbb R^m$是一个线性变换，由于$T$在每一点$x$处都连续可微且$T'(x)=T$（见习题17.4.1）。因此，对于任意的可微函数$f:E\to\mathbb R^n$，$Tf:E\to\mathbb R^m$也是可微的，并且可以通过链式法则给出$(Tf)'(x)=T(f'(x_0))$。这事实上相当于一元微积分里面法则$(cf)'=c(f')$（其中$c$是常数）。
+2. <span style="color:red">（链式法则的应用其二）</span>设$T:\mathbb R^n\to\mathbb R^m$是一个线性变换，由于$T$在每一点$x$处都连续可微且$T'(x)=T$（见习题17.4.1）。因此，对于任意的可微函数$f:E\to\mathbb R^n$，$Tf:E\to\mathbb R^m$也是可微的，并且可以通过链式法则给出$(Tf)'(x)=T(f'(x_0))$。这事实上相当于一元微积分里面法则$(cf)'=c(f')$（其中$c$是常数）。
 
    ​    此外还有一个链式法则的特殊情形，设$f:\mathbb R^n\to\mathbb R^m$是一个可微函数，并且对于每一个$j=1,...,n$，$x_j:\mathbb R\to\mathbb R$都是可微函数。那么有：
    $$
    \frac{\text{d}}{\text{d}t}f(x_1(t),...,x_n(t))=\sum_{j=1}^{n}x_j'(t)\frac{\part}{\part t}f(x_1(t),...,x_n(t))
    $$
-   <span style='color:blue'>（注：尝试使用链式法则对函数$f\circ\pi$求导，其中$\pi(t):=(x_1(t),...,x_n(t))$，从而我们有$D\pi=(x_i')_{1\leq i\leq n}^T$与$Df(x_0)=\begin{pmatrix}\displaystyle\frac{\part f}{\part x_1}(x_0)^T,\displaystyle\frac{\part f}{\part x_2}(x_0)^T,\cdots,\displaystyle\frac{\part f}{\part x_n}(x_0)^T
+   <span style="color:blue">（注：尝试使用链式法则对函数$f\circ\pi$求导，其中$\pi(t):=(x_1(t),...,x_n(t))$，从而我们有$D\pi=(x_i')_{1\leq i\leq n}^T$与$Df(x_0)=\begin{pmatrix}\displaystyle\frac{\part f}{\part x_1}(x_0)^T,\displaystyle\frac{\part f}{\part x_2}(x_0)^T,\cdots,\displaystyle\frac{\part f}{\part x_n}(x_0)^T
    \end{pmatrix}$，做矩阵乘法即可得到上面的结论）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（17.4.1 多元微积分链式法则）</span>设$E$是$\mathbb R^n$的子集，$F$是$\mathbb R^m$的子集。设$f:E\to F$是一个函数，$g:F\to\mathbb R^p$是另一个函数，并设$x_0$是$E$的内点。如果$f$在$x_0$处可微，并且$f(x_0)$是$F$的内点，同时$g$在$f(x_0)$处也是可微的，那么$g\circ f:E\to\mathbb R^p$在$x_0$处可微，而且还有等式：
+1. <span style="color:red">（17.4.1 多元微积分链式法则）</span>设$E$是$\mathbb R^n$的子集，$F$是$\mathbb R^m$的子集。设$f:E\to F$是一个函数，$g:F\to\mathbb R^p$是另一个函数，并设$x_0$是$E$的内点。如果$f$在$x_0$处可微，并且$f(x_0)$是$F$的内点，同时$g$在$f(x_0)$处也是可微的，那么$g\circ f:E\to\mathbb R^p$在$x_0$处可微，而且还有等式：
    $$
    (g\circ f)'(x_0)=g'(f(x_0))f'(x_0)
    $$
-   <span style='color:blue'>（注：应当将这个同一元微积分中的链式法则（[定理10.1.15](../Chap10/Sec1.md)）做对比；作为链式法则和[引理17.1.16](../Chap17/Sec1.md)的一个推论，我们有$D(g\circ f)(x_0)=Dg(f(x_0))Df(x_0)$，也就是说，我们可以用矩阵和矩阵乘法来描述链式法则）</span>
+   <span style="color:blue">（注：应当将这个同一元微积分中的链式法则（[定理10.1.15](../Chap10/Sec1.md)）做对比；作为链式法则和[引理17.1.16](../Chap17/Sec1.md)的一个推论，我们有$D(g\circ f)(x_0)=Dg(f(x_0))Df(x_0)$，也就是说，我们可以用矩阵和矩阵乘法来描述链式法则）</span>
 
 ---
 
 ## 课后习题
 
-##### 17.4.1 设$T:\mathbb R^n\to\mathbb R^m$是一个线性变换，证明：$T$在任意点$x$处都是连续可微的，并且有$T'(x)=T$。思考：$DT$是什么<span style='color:blue'>（连续可微的定义见[定义17.5.1](../Chap17/Sec5.md)）</span>
+##### 17.4.1 设$T:\mathbb R^n\to\mathbb R^m$是一个线性变换，证明：$T$在任意点$x$处都是连续可微的，并且有$T'(x)=T$。思考：$DT$是什么<span style="color:blue">（连续可微的定义见[定义17.5.1](../Chap17/Sec5.md)）</span>
 
 >显然根据可微的定义与线性变换的性质我们有：
 >$$
@@ -78,7 +78,7 @@ coverHeight: 320px
 >$$
 >
 
-##### 17.4.2 设$E$是$\mathbb R^n$的子集。证明：如果函数$f:E\to\mathbb R^m$在$E$的一个内点$x_0$处可微，那么$f$也在$x_0$处连续<span style='color:blue'>（提示：利用[习题17.1.4](../Chap17/Sec1.md)）</span>
+##### 17.4.2 设$E$是$\mathbb R^n$的子集。证明：如果函数$f:E\to\mathbb R^m$在$E$的一个内点$x_0$处可微，那么$f$也在$x_0$处连续<span style="color:blue">（提示：利用[习题17.1.4](../Chap17/Sec1.md)）</span>
 
 >设$f$在$x_0$处的全导数为$L$。
 >
@@ -105,7 +105,7 @@ coverHeight: 320px
 >
 >综上，结论得证。
 
-##### 17.4.3 证明定理17.4.1<span style='color:blue'>（提示：回顾一元微积分中链式法则（[定理10.1.15](../Chap10/Sec1.md)）证明的全过程。一个可能有效的方式是利用由序列描述的极限定义（参见[命题14.1.5(b)](../Chap14/Sec1.md)），同时利用[习题17.1.4](../Chap17/Sec1.md)）</span>
+##### 17.4.3 证明定理17.4.1<span style="color:blue">（提示：回顾一元微积分中链式法则（[定理10.1.15](../Chap10/Sec1.md)）证明的全过程。一个可能有效的方式是利用由序列描述的极限定义（参见[命题14.1.5(b)](../Chap14/Sec1.md)），同时利用[习题17.1.4](../Chap17/Sec1.md)）</span>
 
 >由于$f$在$x_0$处可微，因此有：
 >$$
@@ -173,7 +173,7 @@ coverHeight: 320px
 >
 >也即有$\displaystyle\lim_{x\to x_0;x\in E\verb|\|\{x_0\}}\frac{\Vert g\circ f(x)-(g\circ f(x_0)+g'(f(x_0))f'(x_0)(x-x_0))\Vert}{\Vert x-x_0\Vert}=0$，再考虑到由习题17.1.2$g'(f(x_0))$与$f'(x_0)$的复合$g'(f(x_0))f'(x_0)$也是一个线性变换，于是根据全可微的定义我们有$g\circ f$是在$x_0$处可微的，并且导数为$g'(f(x_0))f'(x_0)$。
 
-##### 17.4.4 叙述并证明多元函数<span style='color:blue'>（即形如$f:E\to\mathbb R$的函数，其中$E$是$\mathbb R^n$的子集）</span>的商法则<span style='color:blue'>（即叙述一个法则，使得该法则能够给出一个有关商函数$f/g$的公式）</span>。将你给出的答案同[定理10.1.13(h)](../Chap10/Sec1.md)对比，注意务必要明晰你的假设前提都是什么
+##### 17.4.4 叙述并证明多元函数<span style="color:blue">（即形如$f:E\to\mathbb R$的函数，其中$E$是$\mathbb R^n$的子集）</span>的商法则<span style="color:blue">（即叙述一个法则，使得该法则能够给出一个有关商函数$f/g$的公式）</span>。将你给出的答案同[定理10.1.13(h)](../Chap10/Sec1.md)对比，注意务必要明晰你的假设前提都是什么
 
 >我们可以给出下面的商法则：设$E$是$\mathbb R^n$的子集，$x_0$是$E$的内点，并设$f:E\to\mathbb R$与$g:E\to\mathbb R$是函数。若有$f,g$均在$x_0$处可微且$g(x_0)\ne 0$，则$f/g$也是在$x_0$处可微的，并且有：
 >$$
@@ -214,7 +214,7 @@ $$
 r'(t_0):=\frac{\vec{x}'(t_0)\vec{x}(t_0)}{r(t_0)}
 $$
 
-##### <span style='color:blue'>（提示：利用定理17.4.1）</span>
+##### <span style="color:blue">（提示：利用定理17.4.1）</span>
 
 >我们设$g:\mathbb R^3\to\mathbb R$为$g(x_i)_{1\leq i\leq 3}:=\Vert (x_i)_{1\leq i\leq 3}\Vert=\sqrt{x_1^2+x_2^2+x_3^2}$，于是显然可以求得：
 >$$

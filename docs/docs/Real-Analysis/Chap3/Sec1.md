@@ -16,50 +16,50 @@ coverHeight: 320px
 
 ### 策梅洛-弗兰克尔集合论公理（其七）
 
-> 1. <span style='color:red'>（3.1 集合是对象）</span>如果$A$是一个集合集合，则$A$是一个对象。
+> 1. <span style="color:red">（3.1 集合是对象）</span>如果$A$是一个集合集合，则$A$是一个对象。
 >
-> 2. <span style='color:red'>（3.2 空集）</span>存在一个集合$\varnothing$被称为空集，它不包含任意元素，即任意对象$x$，$x\notin\varnothing$。
+> 2. <span style="color:red">（3.2 空集）</span>存在一个集合$\varnothing$被称为空集，它不包含任意元素，即任意对象$x$，$x\notin\varnothing$。
 >
-> 3. <span style='color:red'>（3.3 单元素集与双元素集）</span>如果$a$是一个对象，则存在一个集合${a}$只含单一元素$a$，同理若$a$，$b$均为对象，则存在集合$\{a,b\}$只含有元素$a$与$b$。称前者为单元素集，后者为双元素集。
+> 3. <span style="color:red">（3.3 单元素集与双元素集）</span>如果$a$是一个对象，则存在一个集合${a}$只含单一元素$a$，同理若$a$，$b$均为对象，则存在集合$\{a,b\}$只含有元素$a$与$b$。称前者为单元素集，后者为双元素集。
 >
-> 4. <span style='color:red'>（3.4 并集）</span>给定任意两个集合$A$与$B$，存在一个集合$A\cup B$，称为$A$与$B$的并集，它包含了$A$与$B$它有下述性质：
+> 4. <span style="color:red">（3.4 并集）</span>给定任意两个集合$A$与$B$，存在一个集合$A\cup B$，称为$A$与$B$的并集，它包含了$A$与$B$它有下述性质：
 >        对任意对象$x$，$x\in A\cup B$则有$x\in A$或$x\in B$，换言之：
 >    $$
 >    x\in A\cup B\iff x\in A或x\in B
 >    $$
 >    
-> 5. <span style='color:red'>（3.5 分类公理）</span>设$A$为一个集合，对任意的$x\in A$，令$P(x)$表示关于$x$的一个性质，对任意给定的$x$，$P(x)$的真伪均可确定，则可以证明存在一个集合$\{x\in A:P(x)\}$满足下述性质：
+> 5. <span style="color:red">（3.5 分类公理）</span>设$A$为一个集合，对任意的$x\in A$，令$P(x)$表示关于$x$的一个性质，对任意给定的$x$，$P(x)$的真伪均可确定，则可以证明存在一个集合$\{x\in A:P(x)\}$满足下述性质：
 >    $$
 >    对任意对象y,y\in\{x\in A:P(x)\},则有y\in A且P(y)为真。
 >    $$
 >
-> 6. <span style='color:red'>（3.6 替代公理）</span>$A$是一个集合，对任意$x\in A$与任意对象$y$，设存在一个关于$x$，$y$的性质$P(x,y)$，使得对任意$x\in A$，最多可以找到一个对象$y$使得$P(x,y)$为真，则存在一个集合$\{y:P(x,y)对某x\in A为真\}$，使对任意的对象$z$有下述性质：
+> 6. <span style="color:red">（3.6 替代公理）</span>$A$是一个集合，对任意$x\in A$与任意对象$y$，设存在一个关于$x$，$y$的性质$P(x,y)$，使得对任意$x\in A$，最多可以找到一个对象$y$使得$P(x,y)$为真，则存在一个集合$\{y:P(x,y)对某x\in A为真\}$，使对任意的对象$z$有下述性质：
 >    $$
 >    z\in\{y:P(x,y)对某x\in A为真\},则有对某x\in A,有P(x,z)为真。
 >    $$
 >
-> 7. <span style='color:red'>（3.7 无穷大公理与自然数集）</span>存在一个集合$\mathbb N$（自然数集），对象$0$在$\mathbb N$中，且由每一个自然数$n\in \mathbb N$所指定满足皮亚诺公理的对象$n++$也在$\mathbb N$中。<span style='color:blue'>（结合第二章内容观看）</span>
+> 7. <span style="color:red">（3.7 无穷大公理与自然数集）</span>存在一个集合$\mathbb N$（自然数集），对象$0$在$\mathbb N$中，且由每一个自然数$n\in \mathbb N$所指定满足皮亚诺公理的对象$n++$也在$\mathbb N$中。<span style="color:blue">（结合第二章内容观看）</span>
 
 ---
 
 ## 定义
 
-1. <span style='color:red'>（3.1.1 非正式的）</span>集合$A$被定义为任意一堆没有次序的对象<span style='color:blue'>（例如$\{3,8,5,2\}$是一个集合）</span>,如果$x$是这堆对象中的一个，则称$x$是$A$中元素，记有$x\in A$；否则，记有$x\notin A$<span style='color:blue'>（例如，$1$是$\{1,2,3\}$中的元素，有$1\in\{1,2,3\}$，而$7\notin \{1,2,3\}$）</span>。
+1. <span style="color:red">（3.1.1 非正式的）</span>集合$A$被定义为任意一堆没有次序的对象<span style="color:blue">（例如$\{3,8,5,2\}$是一个集合）</span>,如果$x$是这堆对象中的一个，则称$x$是$A$中元素，记有$x\in A$；否则，记有$x\notin A$<span style="color:blue">（例如，$1$是$\{1,2,3\}$中的元素，有$1\in\{1,2,3\}$，而$7\notin \{1,2,3\}$）</span>。
 
-2. <span style='color:red'>（3.1.4 集合的相等）</span>称两个集合$A$与$B$是相等的，即$A=B$，当且仅当$A$中的每一个元素都是$B$中的元素，$B$中的每一个元素都是$A$中的元素。<span style='color:blue'>（换句话说互为子集，证明时严格按这样写）</span>
+2. <span style="color:red">（3.1.4 集合的相等）</span>称两个集合$A$与$B$是相等的，即$A=B$，当且仅当$A$中的每一个元素都是$B$中的元素，$B$中的每一个元素都是$A$中的元素。<span style="color:blue">（换句话说互为子集，证明时严格按这样写）</span>
 
-3. <span style='color:red'>（3.1.15 子集）</span>设$A$和$B$都是集合，称$A$是$B$的子集，记为$A\subseteq B$，当且仅当$A$中每一元素都是$B$中元素，等价于下述命题为真：
+3. <span style="color:red">（3.1.15 子集）</span>设$A$和$B$都是集合，称$A$是$B$的子集，记为$A\subseteq B$，当且仅当$A$中每一元素都是$B$中元素，等价于下述命题为真：
    $$
    对任意的对象x，x\in A \to x\in B
    $$
    特别地，若有$A\subseteq B$且$A\neq B$则称$A$是$B$的真子集，记为$A\subsetneq B$。
 
-4. <span style='color:red'>（3.1.23 交集）</span>两个集合的交集$A\cap B$，被定义为这样一个集合：$\{x\in A:x\in B\}$，即$A\cap B$是由同时属于$A$与$B$的元素构成，于是对任意的对象$x$有：
+4. <span style="color:red">（3.1.23 交集）</span>两个集合的交集$A\cap B$，被定义为这样一个集合：$\{x\in A:x\in B\}$，即$A\cap B$是由同时属于$A$与$B$的元素构成，于是对任意的对象$x$有：
    $$
    x\in A\cap B\iff x\in A且x\in B
    $$
 
-5. <span style='color:red'>（3.1.27 差集）</span>给定两个集合$A$与$B$，定义$A-B$或$A/B$是由$A$中所有不属于$B$的元素构成的集合，即有：
+5. <span style="color:red">（3.1.27 差集）</span>给定两个集合$A$与$B$，定义$A-B$或$A/B$是由$A$中所有不属于$B$的元素构成的集合，即有：
    $$
    A\verb|\|B:=\{x\in A:x\notin B\}
    $$
@@ -68,22 +68,22 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（3.1.6 单个选择）</span>设$A$是一个非空集合，则存在一个对象$x$，使得$x\in A$。
+1. <span style="color:red">（3.1.6 单个选择）</span>设$A$是一个非空集合，则存在一个对象$x$，使得$x\in A$。
 
-2. <span style='color:red'>（3.1.13 并集的运算）</span>若$a$，$b$均为对象，则$\{a,b\}=\{a\}\cup\{b\}$，如果$A$，$B$，$C$均为集合，则求并运算是可交换的，即$A\cup B=B\cup A$，同时并集运算也是可结合的，即有$(A\cup B)\cup C=A\cup(B\cup C)$，特别地，应该有$A\cup A=A\cup\varnothing=\varnothing\cup A=A$。
+2. <span style="color:red">（3.1.13 并集的运算）</span>若$a$，$b$均为对象，则$\{a,b\}=\{a\}\cup\{b\}$，如果$A$，$B$，$C$均为集合，则求并运算是可交换的，即$A\cup B=B\cup A$，同时并集运算也是可结合的，即有$(A\cup B)\cup C=A\cup(B\cup C)$，特别地，应该有$A\cup A=A\cup\varnothing=\varnothing\cup A=A$。
 
-3. <span style='color:red'>（3.1.18 集合的包含关系与集合是偏序的）</span>设$A$，$B$，$C$为集合，如果$A\subseteq B$且$A\subseteq C$，则$A\subseteq C$，若$A\subseteq B$且$B\subseteq A$，则$A=B$，若$A\subsetneq B$且$A\subsetneq C$，则$A\subsetneq C$。
+3. <span style="color:red">（3.1.18 集合的包含关系与集合是偏序的）</span>设$A$，$B$，$C$为集合，如果$A\subseteq B$且$A\subseteq C$，则$A\subseteq C$，若$A\subseteq B$且$B\subseteq A$，则$A=B$，若$A\subsetneq B$且$A\subsetneq C$，则$A\subsetneq C$。
 
-4. <span style='color:red'>（3.1.28 布尔代数）</span>假定$A$，$B$，$C$为集合，$X$有$A$，$B$，$C$均为其子集。
+4. <span style="color:red">（3.1.28 布尔代数）</span>假定$A$，$B$，$C$为集合，$X$有$A$，$B$，$C$均为其子集。
 
-   > * <span style='color:red'>（最小元）</span>$A\cup\varnothing=A$，$A\cap\varnothing=\varnothing$。
-   > * <span style='color:red'>（最大元）</span>$A\cup X=X$，$A\cap X=A$。
-   > * <span style='color:red'>（恒等）</span>$A\cup A=A$，$A\cap A=A$。
-   > * <span style='color:red'>（交换律）</span>$A\cup B=B\cup A$，$A\cap B=B\cap A$。
-   > * <span style='color:red'>（结合律）</span>$(A\cup B)\cup C=A\cup(B\cup C)$与$(A\cap B)\cap C=A\cap(B\cap C)$恒成立。
-   > * <span style='color:red'>（分配律）</span>$A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$，$A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$。
-   > * <span style='color:red'>（分拆法）</span>$A\cup(X\verb|\|A)=X$，$A\cap(X\verb|\|A)=\varnothing$。
-   > * <span style='color:red'>（德•摩根定律）</span>$X\verb|\|(A\cup B)=(X\verb|\|A)\cap(X\verb|\|B)$，$X\verb|\|(A\cap B)=(X\verb|\|A)\cup(X\verb|\|B)$。
+   > * <span style="color:red">（最小元）</span>$A\cup\varnothing=A$，$A\cap\varnothing=\varnothing$。
+   > * <span style="color:red">（最大元）</span>$A\cup X=X$，$A\cap X=A$。
+   > * <span style="color:red">（恒等）</span>$A\cup A=A$，$A\cap A=A$。
+   > * <span style="color:red">（交换律）</span>$A\cup B=B\cup A$，$A\cap B=B\cap A$。
+   > * <span style="color:red">（结合律）</span>$(A\cup B)\cup C=A\cup(B\cup C)$与$(A\cap B)\cap C=A\cap(B\cap C)$恒成立。
+   > * <span style="color:red">（分配律）</span>$A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$，$A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$。
+   > * <span style="color:red">（分拆法）</span>$A\cup(X\verb|\|A)=X$，$A\cap(X\verb|\|A)=\varnothing$。
+   > * <span style="color:red">（德•摩根定律）</span>$X\verb|\|(A\cup B)=(X\verb|\|A)\cap(X\verb|\|B)$，$X\verb|\|(A\cap B)=(X\verb|\|A)\cup(X\verb|\|B)$。
 
 ---
 
@@ -185,7 +185,7 @@ coverHeight: 320px
 >
 > 综上，三者是等价命题。
 
-##### 3.1.6 证明布尔代数中的全部结论<span style='color:blue'>（提示：可以应用其中的一些论述去证明其他的论述，有些论述曾在3.1.13出现过）</span>
+##### 3.1.6 证明布尔代数中的全部结论<span style="color:blue">（提示：可以应用其中的一些论述去证明其他的论述，有些论述曾在3.1.13出现过）</span>
 
 >1. $A\cup\varnothing=A$，$A\cap\varnothing=\varnothing$
 >
@@ -306,7 +306,7 @@ coverHeight: 320px
 >
 >于是得证两者等价。
 
-##### 3.1.8 设$A$，$B$是集合，证明<span style='color:red'>吸收律</span>：$A\cup(A\cap B)=A$与$A\cap(A\cup B)=A$
+##### 3.1.8 设$A$，$B$是集合，证明<span style="color:red">吸收律</span>：$A\cup(A\cap B)=A$与$A\cap(A\cup B)=A$
 
 >$\forall x\in A\cup(A\cap B)$，$x\in A$或者$x\in A\cap B\iff x\in A$或者同时有$x\in A$且$x\in B$。
 >
@@ -335,7 +335,7 @@ coverHeight: 320px
 >
 >于是对任意$x\in X\verb|\|A$，$x\in X$且$x\notin A$，又根据①，于是只能有$x\in B$
 >
->对任意$x\in B$，$x\in X$<span style='color:blue'>（习题3.1.7）</span>，又根据②，此时有$x\notin A$，于是综合可得$x\in X\verb|\|A$
+>对任意$x\in B$，$x\in X$<span style="color:blue">（习题3.1.7）</span>，又根据②，此时有$x\notin A$，于是综合可得$x\in X\verb|\|A$
 >
 >随即根据集合相等的定义，可以得到$B=X\verb|\|A$。
 >
@@ -390,11 +390,11 @@ coverHeight: 320px
 
 >替代公理与分类公理：
 >
->><span style='color:red'>（3.5 分类公理）</span>设$A$为一个集合，对任意的$x\in A$，令$P(x)$表示关于$x$的一个性质，对任意给定的$x$，$P(x)$的真伪均可确定，则可以证明存在一个集合$\{x\in A:P(x)\}$满足下述性质：
+>><span style="color:red">（3.5 分类公理）</span>设$A$为一个集合，对任意的$x\in A$，令$P(x)$表示关于$x$的一个性质，对任意给定的$x$，$P(x)$的真伪均可确定，则可以证明存在一个集合$\{x\in A:P(x)\}$满足下述性质：
 >>$$
 >>对任意对象y,y\in\{x\in A:P(x)\},则有y\in A且P(y)为真。
 >>$$
->><span style='color:red'>（3.6 替代公理）</span>$A$是一个集合，对任意$x\in A$与任意对象$y$，设存在一个关于$x$，$y$的性质$Q(x,y)$，使得对任意$x\in A$，最多可以找到一个对象$y$使得$Q(x,y)$为真，则存在一个集合$\{y:P(x,y)对某x\in A为真\}$，使对任意的对象$z$有下述性质：
+>><span style="color:red">（3.6 替代公理）</span>$A$是一个集合，对任意$x\in A$与任意对象$y$，设存在一个关于$x$，$y$的性质$Q(x,y)$，使得对任意$x\in A$，最多可以找到一个对象$y$使得$Q(x,y)$为真，则存在一个集合$\{y:P(x,y)对某x\in A为真\}$，使对任意的对象$z$有下述性质：
 >>$$
 >>z\in\{y:Q(x,y)对某x\in A为真\},则有对某x\in A,有Q(x,z)为真。
 >>$$

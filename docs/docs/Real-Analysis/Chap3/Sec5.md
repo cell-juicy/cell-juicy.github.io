@@ -14,12 +14,12 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（3.5.1 有序对）</span>若$x$，$y$为任意两个对象，则把有序对$(x,y)$定义为一个把$x$作为第一个分量，$y$作为第二个分量的新对象。两个有序对$(x,y)$与$(x',y')$被认为是相等的，当且仅当其两个分量都相等，即：
+1. <span style="color:red">（3.5.1 有序对）</span>若$x$，$y$为任意两个对象，则把有序对$(x,y)$定义为一个把$x$作为第一个分量，$y$作为第二个分量的新对象。两个有序对$(x,y)$与$(x',y')$被认为是相等的，当且仅当其两个分量都相等，即：
    $$
    (x,y)=(x',y')\iff x=x'且y=y'
    $$
 
-2. <span style='color:red'>（3.5.4 笛卡尔积）</span>如果$X$与$Y$是集合，则定义笛卡尔积$X\times Y$为第一个分量在$X$中且第二个分量在$Y$中的全体有序对的集合，因此有：
+2. <span style="color:red">（3.5.4 笛卡尔积）</span>如果$X$与$Y$是集合，则定义笛卡尔积$X\times Y$为第一个分量在$X$中且第二个分量在$Y$中的全体有序对的集合，因此有：
    $$
    X\times Y=\{(x,y):x\in X,y\in Y\}
    $$
@@ -27,29 +27,29 @@ coverHeight: 320px
    $$
    a\in(X\times Y)\iff存在x\in X和y\in Y使得有a=(x,y)
    $$
-   <span style='color:blue'>（注：严格地说，$X\times Y$与$Y\times X$是不同的两个集合，尽管它们有很多相似之处，比如它们总是有共同的元素个数）</span>
+   <span style="color:blue">（注：严格地说，$X\times Y$与$Y\times X$是不同的两个集合，尽管它们有很多相似之处，比如它们总是有共同的元素个数）</span>
 
-3. <span style='color:red'>（3.5.7 有序$n$元组与$n$重笛卡尔积）</span>设$n$为某一自然数，**有序$n$元组**$(x_i)_{1\leq i\leq n}$<span style='color:blue'>（有时也记作$(x_1,x_2,\dots,x_n)$）</span>是由对象$x_1$，$x_2$，……，$x_n$按一定次序构成的一个组，称$x_i$为有序$n$元组的第$i$个分量，称两个有序$n$元组$(x_i)_{1\leq i\leq n}$与$(y_i)_{1\leq i\leq n}$是相等的，当且仅当对所有的$1\leq i\leq n$，均有$x_i=y_i$。若$(X_i)_{1\leq i\leq n}$是**集合**的有序$n$元组，则定义它们的$n$重笛卡尔积$\displaystyle\prod_{1\leq i\leq n}X_i$<span style='color:blue'>（也可记为$X_1\times X_2\times\dots\times X_n$）</span>为：
+3. <span style="color:red">（3.5.7 有序$n$元组与$n$重笛卡尔积）</span>设$n$为某一自然数，**有序$n$元组**$(x_i)_{1\leq i\leq n}$<span style="color:blue">（有时也记作$(x_1,x_2,\dots,x_n)$）</span>是由对象$x_1$，$x_2$，……，$x_n$按一定次序构成的一个组，称$x_i$为有序$n$元组的第$i$个分量，称两个有序$n$元组$(x_i)_{1\leq i\leq n}$与$(y_i)_{1\leq i\leq n}$是相等的，当且仅当对所有的$1\leq i\leq n$，均有$x_i=y_i$。若$(X_i)_{1\leq i\leq n}$是**集合**的有序$n$元组，则定义它们的$n$重笛卡尔积$\displaystyle\prod_{1\leq i\leq n}X_i$<span style="color:blue">（也可记为$X_1\times X_2\times\dots\times X_n$）</span>为：
    $$
    \prod_{1\leq i\leq n}X_i:=\{(x_i)_{1\leq i\leq n}:对任意的1≤i≤n,有x_i\in X_i\}
    $$
-   <span style='color:blue'>（注1：另外的，有序$n$元组的对象组$x_1$，$x_2$，……，$x_n$被称为n个元素的**有序序列**，简称**有限序列**，在第五章时还会介绍**无限序列**的概念）</span>
+   <span style="color:blue">（注1：另外的，有序$n$元组的对象组$x_1$，$x_2$，……，$x_n$被称为n个元素的**有序序列**，简称**有限序列**，在第五章时还会介绍**无限序列**的概念）</span>
 
-   <span style='color:blue'>（注2：如果$x$是一个元素，那么$(x)$是一元组且认为它等同于$x$本身（虽然严格来说，$(x)$与$x$并不相同）。由此，$\displaystyle\prod_{1\leq i\leq 1}X_i$就是$X_1$，且存在**空笛卡尔积**$\displaystyle\prod_{1\leq i\leq 0}X_i$给出的单元素集$\{()\}$（不是空集），其唯一元素$()$称为0元组。）</span>
+   <span style="color:blue">（注2：如果$x$是一个元素，那么$(x)$是一元组且认为它等同于$x$本身（虽然严格来说，$(x)$与$x$并不相同）。由此，$\displaystyle\prod_{1\leq i\leq 1}X_i$就是$X_1$，且存在**空笛卡尔积**$\displaystyle\prod_{1\leq i\leq 0}X_i$给出的单元素集$\{()\}$（不是空集），其唯一元素$()$称为0元组。）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（3.5.12有限选取）</span>设$n\geq 1$是一个自然数，且对任意自然数$1\leq i\leq n$，令$X_i$均为非空集合，则存在一个有序$n$元组$(x_i)_{1\leq i\leq n}$使得对所有$1\leq i\leq n$均有$x_i\in X_i$。换而言之，若每个$X_i$都是非空的，则$\displaystyle\prod_{1\leq i\leq n}X_i$也是非空的。
+1. <span style="color:red">（3.5.12有限选取）</span>设$n\geq 1$是一个自然数，且对任意自然数$1\leq i\leq n$，令$X_i$均为非空集合，则存在一个有序$n$元组$(x_i)_{1\leq i\leq n}$使得对所有$1\leq i\leq n$均有$x_i\in X_i$。换而言之，若每个$X_i$都是非空的，则$\displaystyle\prod_{1\leq i\leq n}X_i$也是非空的。
 
-   <span style='color:blue'>（直观上看，这个引理可以推广到无限选取的情形，事实上，这需要另一个公理来保证，即[第8章8.4节的**选择公理**](../Chap8/Sec4.md)）</span>
+   <span style="color:blue">（直观上看，这个引理可以推广到无限选取的情形，事实上，这需要另一个公理来保证，即[第8章8.4节的**选择公理**](../Chap8/Sec4.md)）</span>
 
 ---
 
 ## 课后习题
 
-##### 3.5.1 假设对任意的对象$x$，$y$，给出对有序对$(x,y)$的一个定义：$(x,y):=\{\{x\},\{x,y\}\}$<span style='color:blue'>（于是多次使用[单元素集与双元素集公理](../Chap3/Sec1.md)）</span>。在此定义下有$(1,2)$就是集合$\{\{1\},\{1,2\}\}$，$(2,1)$就是集合$\{\{2\},\{1,2\}\}$，$(1,1)$就是集合$\{\{1\}\}$，证明：这个定义确实符合有序对定义中相等的定义，并且只要$X$，$Y$是一个集合，笛卡尔积$X\times Y$就是一个集合，于是这个定义可以有效的作为有序对的定义，另一个挑战是证明替代定义$(x,y):=\{x,\{x,y\}\}$同样具有上述性质，从而该定义也可以有效的作为有序对的定义。<span style='color:blue'>（对于这个挑战，需要用到[正则公理](../Chap3/Sec2.md)与[习题3.2.2](../Chap3/Sec2.md)的内容）</span>
+##### 3.5.1 假设对任意的对象$x$，$y$，给出对有序对$(x,y)$的一个定义：$(x,y):=\{\{x\},\{x,y\}\}$<span style="color:blue">（于是多次使用[单元素集与双元素集公理](../Chap3/Sec1.md)）</span>。在此定义下有$(1,2)$就是集合$\{\{1\},\{1,2\}\}$，$(2,1)$就是集合$\{\{2\},\{1,2\}\}$，$(1,1)$就是集合$\{\{1\}\}$，证明：这个定义确实符合有序对定义中相等的定义，并且只要$X$，$Y$是一个集合，笛卡尔积$X\times Y$就是一个集合，于是这个定义可以有效的作为有序对的定义，另一个挑战是证明替代定义$(x,y):=\{x,\{x,y\}\}$同样具有上述性质，从而该定义也可以有效的作为有序对的定义。<span style="color:blue">（对于这个挑战，需要用到[正则公理](../Chap3/Sec2.md)与[习题3.2.2](../Chap3/Sec2.md)的内容）</span>
 
 >$(x,y):=\{\{x\},\{x,y\}\}$：
 >
@@ -65,7 +65,7 @@ coverHeight: 320px
 >
 >2. 证明笛卡尔积。
 >
->    >考虑选取任意的$x_0\in X$，然后对于任意的$y\in Y$，以$Y$为指标集，根据$y$指定这样一个集合$\{\{\{x_0\},\{x_0,y\}\}\}$<span style='color:blue'>（严格来说应该是$\{(x_0,y)\}$，要考虑$x_0=y$的可能性）</span>，于是我们得到了一个集族。使用并集公理，于是可以得到一个集合$A_{x_0}$：
+>    >考虑选取任意的$x_0\in X$，然后对于任意的$y\in Y$，以$Y$为指标集，根据$y$指定这样一个集合$\{\{\{x_0\},\{x_0,y\}\}\}$<span style="color:blue">（严格来说应该是$\{(x_0,y)\}$，要考虑$x_0=y$的可能性）</span>，于是我们得到了一个集族。使用并集公理，于是可以得到一个集合$A_{x_0}$：
 >    >$$
 >    >A_{x_0}=\bigcup_{y\in Y}\{\{\{x_0\},\{x_0,y\}\}\}
 >    >$$
@@ -88,7 +88,7 @@ coverHeight: 320px
 >    >
 >    >对任意有序对$(a,b)(a\ne b)$：
 >    >
->    >根据定义有$(a,b):=\{a,\{a,b\}\}$，于是$(a',b')=(a,b)\iff\{a',\{a',b'\}\}=\{a,\{a,b\}\}$。于是存在两种可能“$a'=a$且$\{a',b'\}=\{a,b\}$”与“$a'=\{a,b\}$且$a=\{a',b'\}$”。前者不存在问题，可以参考上面的证明直接得出该命题等价于$a=a'$且$b=b'$<span style='color:blue'>（注意$a\ne b$）</span>，对于后者，同样根据习题3.2.2的结论，这种情况是不可以成立的<span style='color:blue'>（$a\in a'$与$a'\in a$同时成立）</span>。于是得到$(a',b')=(a,b)\iff a=a'$且$b=b'$。
+>    >根据定义有$(a,b):=\{a,\{a,b\}\}$，于是$(a',b')=(a,b)\iff\{a',\{a',b'\}\}=\{a,\{a,b\}\}$。于是存在两种可能“$a'=a$且$\{a',b'\}=\{a,b\}$”与“$a'=\{a,b\}$且$a=\{a',b'\}$”。前者不存在问题，可以参考上面的证明直接得出该命题等价于$a=a'$且$b=b'$<span style="color:blue">（注意$a\ne b$）</span>，对于后者，同样根据习题3.2.2的结论，这种情况是不可以成立的<span style="color:blue">（$a\in a'$与$a'\in a$同时成立）</span>。于是得到$(a',b')=(a,b)\iff a=a'$且$b=b'$。
 >
 >2. 证明笛卡尔积存在
 >
@@ -105,7 +105,7 @@ coverHeight: 320px
 >    >$$
 >    >对任意的$x\in X$与$y\in Y$，都会有$(x,y)\in B$成立。于是$B$就是$X$与$Y$的笛卡尔积$X\times Y$。
 
-##### 3.5.2 假设我们定义有序$n$元组为一个满射函数$x:\{i\in\mathbb N:1\leq i\leq n\}\to X$，其值域为某个任意的集合$X$（于是不同的有序$n$元组）。于是我们使用$x_i$表示$x(i)$，并且把$x$记作$(x_i)_{1\leq i\leq n}$。利用这个定义证明：$(x_i)_{1\leq i\leq n}=(y_i)_{1\leq i\leq n}$，当且仅当对任意$1\leq i\leq n$均有$x_i=y_i$。同时证明，如果$(X_i)_{1\leq i\leq n}$是集合的有序$n$元组，那么按照定义3.5.7定义的笛卡尔积的确是一个集合<span style='color:blue'>（提示：利用[习题3.4.7](../Chap3/Sec4.md)与[分类公理](../Chap3/Sec1.md)）</span>
+##### 3.5.2 假设我们定义有序$n$元组为一个满射函数$x:\{i\in\mathbb N:1\leq i\leq n\}\to X$，其值域为某个任意的集合$X$（于是不同的有序$n$元组）。于是我们使用$x_i$表示$x(i)$，并且把$x$记作$(x_i)_{1\leq i\leq n}$。利用这个定义证明：$(x_i)_{1\leq i\leq n}=(y_i)_{1\leq i\leq n}$，当且仅当对任意$1\leq i\leq n$均有$x_i=y_i$。同时证明，如果$(X_i)_{1\leq i\leq n}$是集合的有序$n$元组，那么按照定义3.5.7定义的笛卡尔积的确是一个集合<span style="color:blue">（提示：利用[习题3.4.7](../Chap3/Sec4.md)与[分类公理](../Chap3/Sec1.md)）</span>
 
 >$(x_i)_{1\leq i\leq n}=(y_i)_{1\leq i\leq n}$，当且仅当对任意$1\leq i\leq n$均有$x_i=y_i$：
 >
@@ -143,7 +143,7 @@ coverHeight: 320px
 >
 >>$(x_i)_{1\leq i\leq n}=(y_i)_{1\leq i\leq n}$且$(y_i)_{1\leq i\leq n}=(z_i)_{1\leq i\leq n}$，于是对任意$1\leq i\leq n$，$x_i=y_i$且$y_i=z_i\iff x_i=z_i$，进而得到$(x_i)_{1\leq i\leq n}=(z_i)_{1\leq i\leq n}$。
 
-##### 3.5.4 设$A$，$B$，$C$都是集合，证明等式：$A\times(B\cup C)=(A\times B)\cup(A\times C)$，$A\times(B\cap C)=(A\times B)\cap(A\times C)$，$A\times(B\verb|\|C)=(A\times B)\verb|\|(A\times C)$<span style='color:blue'>（当然我们也可以证明类似的等式，即把上述笛卡儿积的左右因子互换后所得到的等式。）</span>
+##### 3.5.4 设$A$，$B$，$C$都是集合，证明等式：$A\times(B\cup C)=(A\times B)\cup(A\times C)$，$A\times(B\cap C)=(A\times B)\cap(A\times C)$，$A\times(B\verb|\|C)=(A\times B)\verb|\|(A\times C)$<span style="color:blue">（当然我们也可以证明类似的等式，即把上述笛卡儿积的左右因子互换后所得到的等式。）</span>
 
 >$A\times(B\cup C)=(A\times B)\cup(A\times C)$：
 >
@@ -211,7 +211,7 @@ coverHeight: 320px
 >
 > 假定此时有$A=D=\varnothing$，$B$，$C$非空且$B\ne C$，于是此时有$A\times B\subseteq C\times D$（两者都是空集），但是此时$B\subseteq D$显然是不成立的（非空集合不能成为空集子集），这个情况同样可以否定相等那个结论，于是在有空集条件下两者都不成立。
 
-##### 3.5.7 设$X$和$Y$是集合，令$\pi_{X\times Y\to X}:=X\times Y\to X$和$\pi_{X\times Y\to Y}:=X\times Y\to Y$分别表示映射$\pi_{X \times Y\to X}(x,y):=x$和$\pi_{X \times Y\to Y}(x,y):=y$。这两个函数被称为$X\times Y$上的<span style='color:red'>坐标函数</span>。证明：对于任意的函数$f:Z\to X$和$g:Z\to Y$，存在唯一的函数$h:Z\to X\times Y$使得$\pi_{X\times Y\to X}\circ h=f$且$\pi_{X\times Y\to Y}\circ h=g$。<span style='color:blue'>（把该结论与[习题3.3.8](../Chap3/Sec3.md)的最后一部分以及[习题3.1.7](../Chap3/Sec1.md)进行比较。）</span>这个函数$h$被称为$f$和$g$的<span style='color:red'>直和</span>，记作$h=f\oplus g$。
+##### 3.5.7 设$X$和$Y$是集合，令$\pi_{X\times Y\to X}:=X\times Y\to X$和$\pi_{X\times Y\to Y}:=X\times Y\to Y$分别表示映射$\pi_{X \times Y\to X}(x,y):=x$和$\pi_{X \times Y\to Y}(x,y):=y$。这两个函数被称为$X\times Y$上的<span style="color:red">坐标函数</span>。证明：对于任意的函数$f:Z\to X$和$g:Z\to Y$，存在唯一的函数$h:Z\to X\times Y$使得$\pi_{X\times Y\to X}\circ h=f$且$\pi_{X\times Y\to Y}\circ h=g$。<span style="color:blue">（把该结论与[习题3.3.8](../Chap3/Sec3.md)的最后一部分以及[习题3.1.7](../Chap3/Sec1.md)进行比较。）</span>这个函数$h$被称为$f$和$g$的<span style="color:red">直和</span>，记作$h=f\oplus g$。
 
 >首先证明它存在：
 >
@@ -245,7 +245,7 @@ $$
 >
 > 综上，根据集合相等的定义，有$({\bigcup_{\alpha\in I}}A_\alpha)\cap(\bigcup_{\beta\in J}B_\beta)=\bigcup_{(\alpha,\beta)\in I\times J}A_\alpha\cap B_\beta$。
 
-##### 3.5.10 如果$f:X\to Y$是一个函数，定义$f$的<span style='color:red'>图</span>为$X\times Y$的一个子集$\{(x,f(x)):x\in X\}$。证明：两个函数$f :X\to Y$和$\tilde f:X\to Y$相等，当且仅当它们有相同的图。反过来，如果$X\times Y$的任意一个子集$G$具有下述性质：对每一个$x\in X$，集合$\{y\in Y:(x,y)\in G\}$中恰好有一个元素<span style='color:blue'>（或者换言之，$G$满足垂线测试）</span>。证明：恰好存在一个函数$f:X\to Y $，它的图与$G$相等。
+##### 3.5.10 如果$f:X\to Y$是一个函数，定义$f$的<span style="color:red">图</span>为$X\times Y$的一个子集$\{(x,f(x)):x\in X\}$。证明：两个函数$f :X\to Y$和$\tilde f:X\to Y$相等，当且仅当它们有相同的图。反过来，如果$X\times Y$的任意一个子集$G$具有下述性质：对每一个$x\in X$，集合$\{y\in Y:(x,y)\in G\}$中恰好有一个元素<span style="color:blue">（或者换言之，$G$满足垂线测试）</span>。证明：恰好存在一个函数$f:X\to Y $，它的图与$G$相等。
 
 >两个函数$f :X\to Y$和$\tilde f:X\to Y$相等，当且仅当它们有相同的图：
 >
@@ -276,7 +276,7 @@ $$
 >
 >证毕。
 
-##### 3.5.11 证明：[公理3.10幂集公理](../Chap3/Sec4.md)实际上能够由[引理3.4.9](../Chap3/Sec4.md)和其他的集合论公理推导出来，从而引理3.4.9可以看作是幂集公理的替代形式。<span style='color:blue'>（提示:对任意两个集合$X$和$Y$，利用引理3.4.9和分类公理构造出由$X\times Y$的一切子集组成的集合，它满足垂线测试。然后再利用习题3.5.10和替代公理。）</span>
+##### 3.5.11 证明：[公理3.10幂集公理](../Chap3/Sec4.md)实际上能够由[引理3.4.9](../Chap3/Sec4.md)和其他的集合论公理推导出来，从而引理3.4.9可以看作是幂集公理的替代形式。<span style="color:blue">（提示:对任意两个集合$X$和$Y$，利用引理3.4.9和分类公理构造出由$X\times Y$的一切子集组成的集合，它满足垂线测试。然后再利用习题3.5.10和替代公理。）</span>
 
 >对任意两个集合$X$，$Y$，对笛卡尔积$X\times$使用引理3.4.9，可以得到集合$Z_0$：
 >$$
@@ -292,7 +292,7 @@ $$
 >$$
 >于是得到集合$Y\wedge X$即为幂集公理所给出的$Y^X$，它包含了所有以$X$为定义域，$Y$为值域的函数$f$。
 
-##### 3.5.12 本题将建立严格形式的[命题2.1.16](../Chap2/Sec1.md)，设$f:\mathbb N ×\mathbb N\to\mathbb N$是一个函数，$c$是一个自然数。证明：存在一个函数$a:\mathbb N \to\mathbb N$使 $a(0)=c$且对任意的$n\in\mathbb N$均有$a(n++)=f(n,a(n))$，而且这个函数是唯一的。<span style='color:blue'>（提示:首先通过修改引理3.5.12的证明过程去归纳地证明：对于任意自然数$N\in\mathbb N$，存在唯一的函数 $a_{N}:\{n\in\mathbb N : n\leq N\}\to\mathbb N$使得$a_{ N}(0)=c$且$a_{ N}(n++)= f(n,a(n))$对所有满足$n <  N$ 的$n\in\mathbb N$均成立。）</span>另一个挑战是,不利用除了皮亚诺公理之外任何有关自然数的性质，直接证明上述结论（特别地，不利用自然数的次序关系，也不借助于命题2.1.16）。<span style='color:blue'>（提示：首先只利用皮亚诺公理和集合论的基本知识归纳地证明：对每一个自然数$N\in\mathbb N$，存在唯一一对$\mathbb N$的子集$A_N$，$B_N$满足下列性质：$(a)A_N\cap B_N=\varnothing$；$(b)A_N\cup B_N = \mathbb N$；$(c)0\in A_N$；$(d)N++\in B_N$；$(e)$只要$n\in B_N$，就有$n++\in B_N$；$(f)$只要$n\in A_N$且$n\ne N$，就有$n++\in A_N$。一旦我们得到这些集合，就用$A_N$来代替前面论述中的$\{n \in\mathbb N:n≤N\}$。）</span>
+##### 3.5.12 本题将建立严格形式的[命题2.1.16](../Chap2/Sec1.md)，设$f:\mathbb N ×\mathbb N\to\mathbb N$是一个函数，$c$是一个自然数。证明：存在一个函数$a:\mathbb N \to\mathbb N$使 $a(0)=c$且对任意的$n\in\mathbb N$均有$a(n++)=f(n,a(n))$，而且这个函数是唯一的。<span style="color:blue">（提示:首先通过修改引理3.5.12的证明过程去归纳地证明：对于任意自然数$N\in\mathbb N$，存在唯一的函数 $a_{N}:\{n\in\mathbb N : n\leq N\}\to\mathbb N$使得$a_{ N}(0)=c$且$a_{ N}(n++)= f(n,a(n))$对所有满足$n <  N$ 的$n\in\mathbb N$均成立。）</span>另一个挑战是,不利用除了皮亚诺公理之外任何有关自然数的性质，直接证明上述结论（特别地，不利用自然数的次序关系，也不借助于命题2.1.16）。<span style="color:blue">（提示：首先只利用皮亚诺公理和集合论的基本知识归纳地证明：对每一个自然数$N\in\mathbb N$，存在唯一一对$\mathbb N$的子集$A_N$，$B_N$满足下列性质：$(a)A_N\cap B_N=\varnothing$；$(b)A_N\cup B_N = \mathbb N$；$(c)0\in A_N$；$(d)N++\in B_N$；$(e)$只要$n\in B_N$，就有$n++\in B_N$；$(f)$只要$n\in A_N$且$n\ne N$，就有$n++\in A_N$。一旦我们得到这些集合，就用$A_N$来代替前面论述中的$\{n \in\mathbb N:n≤N\}$。）</span>
 
 >考虑使用归纳法，对自然数$n$做归纳，证明命题"对于任意自然数$N\in\mathbb N$，存在唯一的函数 $a_{N}:\{n\in\mathbb N : n\leq N\}\to\mathbb N$使得$a_{ N}(0)=c$且$a_{ N}(n++)= f(n,a(n))$对所有满足$n <  N$ 的$n\in\mathbb N$均成立。"成立。
 >
@@ -316,7 +316,7 @@ $$
 >
 >再证明其唯一性：
 >
->假设有两个函数$a^1_{N+1}$与$a^2_{N+1}$满足命题，于是首先有$a^1_{N+1}(0)=a^2_{N+1}(0)=c$，由于命题在$n=N$时成立，于是对任意的$n\leq N$，都会有$a^1_{N+1}(n)=a^2_{N+1}(n)$<span style='color:blue'>（由同样的过程产生）</span>，特别地，有$a^1_{N+1}(N)=a^2_{N+1}(N)$，于是根据命题有$f(N,a^1_{N+1}(N))=f(N,a^2_{N+1}(N))$，即$a^1_{N+1}(N+1)=a^2_{N+1}(N+1)$。于是综上对任意$n\leq N+1$都有$a^1_{N+1}(n)=a^2_{N+1}(n)$。再考虑两者有相同的值域与定义域，于是两者为同一个函数，即$a_{N+1}$唯一。
+>假设有两个函数$a^1_{N+1}$与$a^2_{N+1}$满足命题，于是首先有$a^1_{N+1}(0)=a^2_{N+1}(0)=c$，由于命题在$n=N$时成立，于是对任意的$n\leq N$，都会有$a^1_{N+1}(n)=a^2_{N+1}(n)$<span style="color:blue">（由同样的过程产生）</span>，特别地，有$a^1_{N+1}(N)=a^2_{N+1}(N)$，于是根据命题有$f(N,a^1_{N+1}(N))=f(N,a^2_{N+1}(N))$，即$a^1_{N+1}(N+1)=a^2_{N+1}(N+1)$。于是综上对任意$n\leq N+1$都有$a^1_{N+1}(n)=a^2_{N+1}(n)$。再考虑两者有相同的值域与定义域，于是两者为同一个函数，即$a_{N+1}$唯一。
 >
 >综上，该命题归纳得证。于是结论可推广至自然数集$\mathbb N$的情况，即“存在一个函数$a:\mathbb N \to\mathbb N$使 $a(0)=c$且对任意的$n\in\mathbb N$均有$a(n++)=f(n,a(n))$，而且这个函数是唯一的。”为真。
 >
@@ -328,7 +328,7 @@ $$
 >
 >于是证明提示中的命题，考虑对给定的自然数$N$，使用归纳法（公理2.5）进行归纳：
 >
-><span style='color:blue'>（为了满足性质$(a)$，$(b)$，于是下文默认选取$A_N$时，取$B_N=\mathbb N\verb|\|A_N$，这在下文证明中不再重复）</span>
+><span style="color:blue">（为了满足性质$(a)$，$(b)$，于是下文默认选取$A_N$时，取$B_N=\mathbb N\verb|\|A_N$，这在下文证明中不再重复）</span>
 >
 >$N=0$时：
 >
@@ -344,7 +344,7 @@ $$
 >
 >假设存在两个集合$A^1_{n++}$与$A^2_{n++}$都满足这个条件，于是首先$0$是两个集合共有的元素，$(n++)++$都不属于这两个集合。根据题述条件，由于$A_n$是唯一的，于是可以推知得到对任意$m\in A_n$都有$m\in A^1_{n++}$与$m\in A^2_{n++}$，于是$n++$也是他们所共有的元素，对$n++$后的元素由归纳可证明均不属于他们，于是得到两个集合本质是一个集合。
 
-##### 3.5.13 本题的目的是证明在集合论中，本质上只存在唯一的自然数系<span style='color:blue'>（参见注2.1.12中的讨论）</span>。假设我们有一个由“另类的自然数”组成的集合$\mathbb N'$、一个“另类的零”$0$以及一个“另类的增量运算”，并且该运算对任意一个另类的自然数$n'\in\mathbb N'$作用后，会返回另一个另类的自然数$n'++'\in\mathbb N'$，这使得当自然数、零以及增长运算被它们的另类物替代时，皮亚诺公理（[公理2.1~公理2.5](../Chap2/Sec1.md)）仍然成立。证明：存在一个从自然数集到另类的自然数集的双射$f:\mathbb N\to\mathbb N'$使得 $f(0)=0'$，且对任意的$n\in\mathbb N$和$n'\in\mathbb N'$，有$f(n) =n'$，当且仅当$f(n++)= n'++'$。<span style='color:blue'>（提示:利用习题3.5.12。)</span>
+##### 3.5.13 本题的目的是证明在集合论中，本质上只存在唯一的自然数系<span style="color:blue">（参见注2.1.12中的讨论）</span>。假设我们有一个由“另类的自然数”组成的集合$\mathbb N'$、一个“另类的零”$0$以及一个“另类的增量运算”，并且该运算对任意一个另类的自然数$n'\in\mathbb N'$作用后，会返回另一个另类的自然数$n'++'\in\mathbb N'$，这使得当自然数、零以及增长运算被它们的另类物替代时，皮亚诺公理（[公理2.1~公理2.5](../Chap2/Sec1.md)）仍然成立。证明：存在一个从自然数集到另类的自然数集的双射$f:\mathbb N\to\mathbb N'$使得 $f(0)=0'$，且对任意的$n\in\mathbb N$和$n'\in\mathbb N'$，有$f(n) =n'$，当且仅当$f(n++)= n'++'$。<span style="color:blue">（提示:利用习题3.5.12。)</span>
 
 > 如题目所述，对这种另类的自然数系，我们用已有自然数系中的符号加上一个符号“'”来表示它们。
 >

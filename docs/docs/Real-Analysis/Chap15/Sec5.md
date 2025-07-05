@@ -14,26 +14,26 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（15.5.1 指数函数）</span>对任意的实数$x$，我们将**指数函数**$\exp(x)$定义为下面的实数：
+1. <span style="color:red">（15.5.1 指数函数）</span>对任意的实数$x$，我们将**指数函数**$\exp(x)$定义为下面的实数：
    $$
    \exp(x):=\sum_{n=0}^{\infty}\frac{x^n}{n!}
    $$
 
-2. <span style='color:red'>（15.5.3 欧拉数）</span>**欧拉数**$\text{e}$被定义为
+2. <span style="color:red">（15.5.3 欧拉数）</span>**欧拉数**$\text{e}$被定义为
    $$
    \text{e}:=\exp(1)=\sum_{n=0}^{\infty}\frac{1}{n!}=\frac{1}{0!}+\frac{1}{1!}+\frac{1}{2!}+...
    $$
    我们有估计值$\text{e}=2.71828183...$。
 
-3. <span style='color:red'>（15.5.5 对数函数）</span>我们把**自然对数函数**$\log:(0,+\infty)\to\mathbb R$<span style='color:blue'>（也叫$\ln$）</span>定义为指数函数的反函数。因此有$\exp(\log(x))=x$并且$\log(\exp(x))=x$。
+3. <span style="color:red">（15.5.5 对数函数）</span>我们把**自然对数函数**$\log:(0,+\infty)\to\mathbb R$<span style="color:blue">（也叫$\ln$）</span>定义为指数函数的反函数。因此有$\exp(\log(x))=x$并且$\log(\exp(x))=x$。
 
-   <span style='color:blue'>（注：通过命题15.5.2和命题15.5.4我们可以得到$\exp$是从$\mathbb R$到$(0,+\infty)$的双射，这保证了我们对于对数函数的定义是合理的；习惯上，我们通常将自然对数函数记为$\ln$，$\log$则用于常用对数函数）</span>
+   <span style="color:blue">（注：通过命题15.5.2和命题15.5.4我们可以得到$\exp$是从$\mathbb R$到$(0,+\infty)$的双射，这保证了我们对于对数函数的定义是合理的；习惯上，我们通常将自然对数函数记为$\ln$，$\log$则用于常用对数函数）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（15.5.2 指数函数的基本性质）</span>可以验证指数函数满足下面的性质：
+1. <span style="color:red">（15.5.2 指数函数的基本性质）</span>可以验证指数函数满足下面的性质：
 
    > 1. 对于任意的实数$x$，级数$\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$是绝对收敛的。于是对于任意的$x\in\mathbb R$，$\exp(x)$都存在并且是一个实数，幂级数$\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$的收敛半径是$\infty$，而且$\exp$是$(-\infty,+\infty)$上的实解析函数。
    > 2. $\exp$在$\mathbb R$上是可微的，并且对于任意的$x\in\mathbb R$，$\exp'(x)=\exp(x)$。
@@ -42,11 +42,11 @@ coverHeight: 320px
    > 5. 我们有$\exp(0)=1$。另外，对于任意的$x\in\mathbb R$，$\exp(x)$都是正的，并且$\displaystyle\exp(-x)=\frac{1}{\exp(x)}$。
    > 6. $\exp$是严格单调递增的。换言之，如果$x$和$y$都是实数，那么$\exp(y)>\exp(x)$当且仅当$y>x$。
 
-   <span style='color:blue'>（注：这些都是在数学分析里面耳熟能详的内容了）</span>
+   <span style="color:blue">（注：这些都是在数学分析里面耳熟能详的内容了）</span>
 
-2. <span style='color:red'>（15.5.4 指数函数的另一种形式？）</span>对于任意的实数$x$，我们有$\exp(x)=\text{e}^x$。
+2. <span style="color:red">（15.5.4 指数函数的另一种形式？）</span>对于任意的实数$x$，我们有$\exp(x)=\text{e}^x$。
 
-3. <span style='color:red'>（15.5.6 对数函数的基本性质）</span>可以验证对数函数满足下面的性质：
+3. <span style="color:red">（15.5.6 对数函数的基本性质）</span>可以验证对数函数满足下面的性质：
 
    > 1. 对于任意的$x\in(0,+\infty)$都有$\displaystyle\ln'(x)=\frac{1}{x}$。于是根据微积分基本定理可知，对于$(0,+\infty)$内任意一个区间$[a,b]$，都有$\displaystyle\int_{[a,b]}\frac{1}{x}\text{d}x=\ln(b)-\ln(a)$。
    >
@@ -66,13 +66,13 @@ coverHeight: 320px
    >    $$
    >    该级数收敛半径为$1$。
 
-   <span style='color:blue'>（注：终于能用指数和对数了，意外的有点感动（？）；关于对数函数，原书还有一个结合了阿贝尔定理给出的结论，即我们曾证明过收敛的级数$\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^{n+1}}{n}$，通过对数函数的幂级数展开式可以为这个级数给出一个具体的收敛值，即$\ln(2)$）</span>
+   <span style="color:blue">（注：终于能用指数和对数了，意外的有点感动（？）；关于对数函数，原书还有一个结合了阿贝尔定理给出的结论，即我们曾证明过收敛的级数$\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^{n+1}}{n}$，通过对数函数的幂级数展开式可以为这个级数给出一个具体的收敛值，即$\ln(2)$）</span>
 
 ---
 
 ## 课后习题
 
-##### 15.5.1 证明定理15.5.2<span style='color:blue'>（提示：对于(a)，利用[比值判别法](../Chap7/Sec5.md)；对于(b)和(c)，利用[定理15.1.6](../Chap15/Sec1.md)；对于(d)，利用[定理15.4.1](../Chap15/Sec4.md)；对于(e)，利用(d)；对于(f)，利用(d)并证明当$x$是正数的时候$\exp(x)>1$。你或许会发现[习题7.1.4](../Chap7/Sec1.md)中的二项式公式可能会很有用）</span>
+##### 15.5.1 证明定理15.5.2<span style="color:blue">（提示：对于(a)，利用[比值判别法](../Chap7/Sec5.md)；对于(b)和(c)，利用[定理15.1.6](../Chap15/Sec1.md)；对于(d)，利用[定理15.4.1](../Chap15/Sec4.md)；对于(e)，利用(d)；对于(f)，利用(d)并证明当$x$是正数的时候$\exp(x)>1$。你或许会发现[习题7.1.4](../Chap7/Sec1.md)中的二项式公式可能会很有用）</span>
 
 > 逐条证明：
 >
@@ -180,7 +180,7 @@ $$
 0<\frac{1}{(n+1)!}+\frac{1}{(n+2)!}+...<\frac{1}{n!}
 $$
 
-##### <span style='color:blue'>（提示：首先证明对于所有的$k=1$，$2$，$3$，$...$都有$(n+k)!>2^kn!$）</span>并推导出对于任意的$n\geq 3$，$n!\text{e}$都不是整数，由此进一步推导出$\text{e}$是无理数<span style='color:blue'>（提示：利用反证法）</span>
+##### <span style="color:blue">（提示：首先证明对于所有的$k=1$，$2$，$3$，$...$都有$(n+k)!>2^kn!$）</span>并推导出对于任意的$n\geq 3$，$n!\text{e}$都不是整数，由此进一步推导出$\text{e}$是无理数<span style="color:blue">（提示：利用反证法）</span>
 
 > 我们先使用归纳法证明提示中的结论（稍微改了一下）：
 >
@@ -243,7 +243,7 @@ $$
 >
 > 综上，于是$\text{e}$不可能是一个有理数。
 
-##### 15.5.3 证明命题15.5.4<span style='color:blue'>（提示：首先证明当$x$是自然数时的结论，其次证明$x$是整数时的结论，然后证明$x$是有理数时的结论。接着利用“实数是有理数的极限”这一事实取证明关于实数的结论，你或许会发现指数定律（[命题6.7.3](../Chap6/Sec7.md)）可能会很有用）</span>
+##### 15.5.3 证明命题15.5.4<span style="color:blue">（提示：首先证明当$x$是自然数时的结论，其次证明$x$是整数时的结论，然后证明$x$是有理数时的结论。接着利用“实数是有理数的极限”这一事实取证明关于实数的结论，你或许会发现指数定律（[命题6.7.3](../Chap6/Sec7.md)）可能会很有用）</span>
 
 > 我们首先使用归纳法证明命题15.5.4是对任意的自然数$x$都是成立的。
 >
@@ -368,7 +368,7 @@ $$
 > $$
 > 在某个开区间$(-r,r)$（$r>0$）上收敛于$f$，但是注意到对任意的$x>0$都有$f(x)>0$，因此不可能存在$r>0$使得这个幂级数在$(0,r)$上收敛于$f$。于是导出了矛盾，反证假设不成立，$f$不可能在$0$处实解析。
 
-##### 15.5.5 证明定理15.5.6<span style='color:blue'>（提示：对于(a)，利用反函数定理（[定理10.4.2](../Chap10/Sec4.md)）或者链式法则（[定理10.1.15](../Chap10/Sec1.md)）；对于(b)，(c)，(d)，利用定理15.5.2和指数定律（[命题6.7.3](../Chap6/Sec7.md)）；对于(e)，从几何级数公式（[引理7.3.3](../Chap7/Sec3.md)）入手，并利用[定理15.1.6](../Chap15/Sec1.md)来计算积分）</span>
+##### 15.5.5 证明定理15.5.6<span style="color:blue">（提示：对于(a)，利用反函数定理（[定理10.4.2](../Chap10/Sec4.md)）或者链式法则（[定理10.1.15](../Chap10/Sec1.md)）；对于(b)，(c)，(d)，利用定理15.5.2和指数定律（[命题6.7.3](../Chap6/Sec7.md)）；对于(e)，从几何级数公式（[引理7.3.3](../Chap7/Sec3.md)）入手，并利用[定理15.1.6](../Chap15/Sec1.md)来计算积分）</span>
 
 > 逐条证明定理15.5.6：
 >
@@ -474,7 +474,7 @@ $$
 > $$
 > 也即有幂级数$P$是在$(0,2a)$上收敛于$\ln$的，即$\ln$是在$a$处实解析的。然后由于我们假设$a\in(0,+\infty)$是任意的，因此这表明自然对数函数$\ln$在$(0,+\infty)$上是实解析的，证明完毕。
 
-##### 15.5.7 设$f:\mathbb R\to(0,+\infty)$是正的实解析函数，它使得对于所有的$x\in\mathbb R$都有$f'(x)=f(x)$。证明：存在一个正数$C$使得$f(x)=C\text{e}^x$，并说明理由<span style='color:blue'>（提示：主要有三种不同的证明思路，其一是利用对数函数，其二是利用函数$\text{e}^{-x}$，第三种方法是利用幂级数。当然，写题的时候只需要给出一种证明方法即可）</span>
+##### 15.5.7 设$f:\mathbb R\to(0,+\infty)$是正的实解析函数，它使得对于所有的$x\in\mathbb R$都有$f'(x)=f(x)$。证明：存在一个正数$C$使得$f(x)=C\text{e}^x$，并说明理由<span style="color:blue">（提示：主要有三种不同的证明思路，其一是利用对数函数，其二是利用函数$\text{e}^{-x}$，第三种方法是利用幂级数。当然，写题的时候只需要给出一种证明方法即可）</span>
 
 > 我们三种方法都给出一个参考的解答：
 >
@@ -538,7 +538,7 @@ $$
 \lim_{x\to+\infty}\frac{\text{e}^{x}}{x^m}=+\infty
 $$
 
-##### <span style='color:blue'>（提示：当$x\to+\infty$时，$\displaystyle\frac{\text{e}^{x+1}}{(x+1)^m}$和$\displaystyle\frac{\text{e}^{x}}{x^m}$的比值会如何变化？）</span>
+##### <span style="color:blue">（提示：当$x\to+\infty$时，$\displaystyle\frac{\text{e}^{x+1}}{(x+1)^m}$和$\displaystyle\frac{\text{e}^{x}}{x^m}$的比值会如何变化？）</span>
 
 > 我们记有$\displaystyle a_n:=\frac{\text{e}^{n}}{n^m}$，然后考察序列$(a_n)_{n=1}^\infty$中前后两项的比值：
 > $$
@@ -554,7 +554,7 @@ $$
 > $$
 > 于是得证有$\displaystyle\lim_{n\to+\infty}a_n=+\infty$，也即有$\displaystyle\lim_{x\to+\infty}\frac{\text{e}^{x}}{x^m}=+\infty$，题目结论得证。
 
-##### 15.5.9 设$P(x)$是一个多项式，并设$c>0$。证明：存在一个实数$N>0$，使得对所有的$x>N$都有$\text{e}^{cx}>|P(x)|$。因此，一个指数型增长的函数，无论其增长速度$c$有多小，最终都将超过任何一个给定的多项式$P(x)$，无论这个$P(x)$有多大<span style='color:blue'>（提示：利用习题15.5.8）</span>
+##### 15.5.9 设$P(x)$是一个多项式，并设$c>0$。证明：存在一个实数$N>0$，使得对所有的$x>N$都有$\text{e}^{cx}>|P(x)|$。因此，一个指数型增长的函数，无论其增长速度$c$有多小，最终都将超过任何一个给定的多项式$P(x)$，无论这个$P(x)$有多大<span style="color:blue">（提示：利用习题15.5.8）</span>
 
 > 我们设$P(x)$具有形式：
 > $$
@@ -574,7 +574,7 @@ $$
 > $$
 > 综上我们证明了有极限$\displaystyle\lim_{x\to+\infty;x\in(0,+\infty)}\frac{|P(x)|}{\text{e}^{cx}}=0$。特别地，令$\varepsilon=0.5$则上面的结论表明存在实数$N>0$使得对任意的$x>N$都有$\displaystyle\frac{|P(x)|}{\text{e}^{cx}}\leq 0.5\Longrightarrow|P(x)|<\text{e}^{cx}$，也即题目结论得证。
 
-##### 15.5.10 设$f:(0,+\infty)\times\mathbb R\to\mathbb R$是指数函数$f(x,y):=x^y$，证明：$f$是连续的<span style='color:blue'>（提示：注意[命题9.4.10](../Chap9/Sec4.md)和[命题9.4.11](../Chap9/Sec4.md)只表明了$f$关于每个变量都是连续的，但是这并不能证明你的结论，就像我们在[习题13.2.11](../Chap13/Sec2.md)里面展示的那样；最容易的解决方案是将$f$写成$f(x,y)=\exp(y\ln x)$，利用$\exp$和$\ln$的连续性。你还可以尝试挑战一下自己，在不使用对数函数的前提下完成本题的证明）</span>
+##### 15.5.10 设$f:(0,+\infty)\times\mathbb R\to\mathbb R$是指数函数$f(x,y):=x^y$，证明：$f$是连续的<span style="color:blue">（提示：注意[命题9.4.10](../Chap9/Sec4.md)和[命题9.4.11](../Chap9/Sec4.md)只表明了$f$关于每个变量都是连续的，但是这并不能证明你的结论，就像我们在[习题13.2.11](../Chap13/Sec2.md)里面展示的那样；最容易的解决方案是将$f$写成$f(x,y)=\exp(y\ln x)$，利用$\exp$和$\ln$的连续性。你还可以尝试挑战一下自己，在不使用对数函数的前提下完成本题的证明）</span>
 
 > 为了证明$f$是连续的，使用$\exp$和$\ln$的方法，可以考虑将$f$写为下面的形式：
 > $$

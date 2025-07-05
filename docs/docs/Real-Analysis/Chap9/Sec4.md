@@ -14,38 +14,38 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（9.4.1 连续）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，并且设$x_0$是$X$中的一个元素。我们称$f$在$x_0$处是**连续**的，当且仅当：
+1. <span style="color:red">（9.4.1 连续）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，并且设$x_0$是$X$中的一个元素。我们称$f$在$x_0$处是**连续**的，当且仅当：
    $$
    \lim_{x\to x_0;x\in X}f(x)=f(x_0)
    $$
-   换言之，即$x$沿$X$收敛于$x_0$时，$f(x)$的极限存在并且等于$f(x_0)$。我们称$f$**在$X$上是连续的**<span style='color:blue'>（或者简称是**连续的**）</span>，当且仅当对任意$x_0\in X$，$f(x_0)$都是连续的。我们称$f$在$x_0$处是**间断的**，当且仅当$f$在$x_0$处不是连续的。
+   换言之，即$x$沿$X$收敛于$x_0$时，$f(x)$的极限存在并且等于$f(x_0)$。我们称$f$**在$X$上是连续的**<span style="color:blue">（或者简称是**连续的**）</span>，当且仅当对任意$x_0\in X$，$f(x_0)$都是连续的。我们称$f$在$x_0$处是**间断的**，当且仅当$f$在$x_0$处不是连续的。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（9.4.7 连续性的等价表述）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，并且设$x_0$是$X$中的一个元素。那么下面几个命题在逻辑上是等价的：
+1. <span style="color:red">（9.4.7 连续性的等价表述）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$是一个函数，并且设$x_0$是$X$中的一个元素。那么下面几个命题在逻辑上是等价的：
 
    > * $f$在$x_0$处是连续的。
    > * 对任意一个由$X$中元素组成的序列$(a_n)_{n=m}^\infty$，若有$\displaystyle\lim_{n\to\infty}a_n=x_0$，则有$\displaystyle\lim_{n\to\infty}f(a_n)=f(x_0)$。
    > * 对任意一个实数$\varepsilon>0$，都存在一个实数$\delta>0$，使得$|f(x)-f(x_0)|<\varepsilon$对所有满足$|x-x_0|<\delta$的$x\in X$都成立。
    > * 对任意一个实数$\varepsilon>0$，都存在一个实数$\delta>0$，使得$|f(x)-f(x_0)|\leq\varepsilon$对所有满足$|x-x_0|\leq\delta$的$x\in X$都成立。
 
-2. <span style='color:red'>（9.4.9 算术运算保持连续性）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$与$g:X\to\mathbb R$都是函数，并且设$x_0$是$X$中的一个元素。如果$f$和$g$在$x_0$处都是连续的，那么$f+g$，$f-g$，$\max(f,g)$，$\min(f,g)$和$fg$都在$x_0$处连续，特别地，如果$g$在$X$上不为零，那么$f/g$也是在$x_0$处连续的。
+2. <span style="color:red">（9.4.9 算术运算保持连续性）</span>设$X$是$\mathbb R$的一个子集，$f:X\to\mathbb R$与$g:X\to\mathbb R$都是函数，并且设$x_0$是$X$中的一个元素。如果$f$和$g$在$x_0$处都是连续的，那么$f+g$，$f-g$，$\max(f,g)$，$\min(f,g)$和$fg$都在$x_0$处连续，特别地，如果$g$在$X$上不为零，那么$f/g$也是在$x_0$处连续的。
 
-3. <span style='color:red'>（9.4.10 指数运算是连续的 I）</span>设$a>0$是正实数，那么定义为$f(x):=a^x$的函数$f:\mathbb R\to\mathbb R$是连续的。
+3. <span style="color:red">（9.4.10 指数运算是连续的 I）</span>设$a>0$是正实数，那么定义为$f(x):=a^x$的函数$f:\mathbb R\to\mathbb R$是连续的。
 
-4. <span style='color:red'>（9.4.11 指数运算是连续的 II）</span>设$p$是一个实数，那么定义为$f(x):=x^p$的函数$f:(0,+\infty)\to\mathbb R$是连续的。
+4. <span style="color:red">（9.4.11 指数运算是连续的 II）</span>设$p$是一个实数，那么定义为$f(x):=x^p$的函数$f:(0,+\infty)\to\mathbb R$是连续的。
 
-5. <span style='color:red'>（9.4.12 绝对值是连续的）</span>定义为$f(x):=|x|$的函数$f:\mathbb R\to\mathbb R$是连续的。
+5. <span style="color:red">（9.4.12 绝对值是连续的）</span>定义为$f(x):=|x|$的函数$f:\mathbb R\to\mathbb R$是连续的。
 
-6. <span style='color:red'>（9.4.13 复合运算保持连续性）</span>设$X$与$Y$都是$\mathbb R$的子集，$f:X\to Y$与$g:Y\to\mathbb R$都是函数，并且设$x_0$是$X$中的点。如果$f$在$x_0$处是连续的，并且$g$在$f(x_0)$处是连续的，那么复合函数$g\circ f:X\to\mathbb R$在$x_0$处是连续的。
+6. <span style="color:red">（9.4.13 复合运算保持连续性）</span>设$X$与$Y$都是$\mathbb R$的子集，$f:X\to Y$与$g:Y\to\mathbb R$都是函数，并且设$x_0$是$X$中的点。如果$f$在$x_0$处是连续的，并且$g$在$f(x_0)$处是连续的，那么复合函数$g\circ f:X\to\mathbb R$在$x_0$处是连续的。
 
 ---
 
 ## 课后习题
 
-##### 9.4.1 证明命题9.4.7<span style='color:blue'>（提示：主要利用前面的命题和引理证明。注意，为了证明(a)，(b)，(c)是等价的，没必要证明全部六个等价关系，但是至少要证明三个，例如证明(a)蕴含(b)，然后证明(b)蕴含(c)，(c)蕴含(a)就够了，尽管这可能不是处理这个问题最简短或者最快的方法）</span>
+##### 9.4.1 证明命题9.4.7<span style="color:blue">（提示：主要利用前面的命题和引理证明。注意，为了证明(a)，(b)，(c)是等价的，没必要证明全部六个等价关系，但是至少要证明三个，例如证明(a)蕴含(b)，然后证明(b)蕴含(c)，(c)蕴含(a)就够了，尽管这可能不是处理这个问题最简短或者最快的方法）</span>
 
 > 证明它们之间是互相等价的：
 >
@@ -111,7 +111,7 @@ coverHeight: 320px
 >
 >对任意$x_0\in X$，任意由$X$中元素组成的序列$(a_n)_{n=0}^\infty$，若有$\displaystyle\lim_{n\to\infty}a_n=x_0$则有$\displaystyle\lim_{n\to\infty}g(a_n)=g(x_0)$，于是根据命题9.4.7(b)有题目结论成立。
 
-##### 9.4.3 证明命题9.4.10<span style='color:blue'>（提示：你可以把[引理6.5.3](../Chap6/Sec5.md)，[夹逼定理（推论6.4.14）](../Chap6/Sec4.md)以及[命题6.7.3](../Chap6/Sec7.md)结合起来使用）</span>
+##### 9.4.3 证明命题9.4.10<span style="color:blue">（提示：你可以把[引理6.5.3](../Chap6/Sec5.md)，[夹逼定理（推论6.4.14）](../Chap6/Sec4.md)以及[命题6.7.3](../Chap6/Sec7.md)结合起来使用）</span>
 
 >对任意$x_0\in\mathbb R$，考虑任意由$X$中元素组成的序列$(a_n)_{n=0}^\infty$，设有$\displaystyle\lim_{n\to\infty}a_n=x_0$。于是研究$\displaystyle\lim_{n\to\infty}f(a_n)$：
 >$$
@@ -148,7 +148,7 @@ coverHeight: 320px
 >
 >对任意$\varepsilon>0$，总存在$N\in\mathbb N$使得对任意$n\geq N$都有$|a^{a_n}-a^{x_0}|\leq\varepsilon$。于是$\displaystyle\lim_{n\to\infty}a^{a_n}=a^{x_0}=f(x_0)$，根据定义9.4.1，于是题目结论得证，对任意$a>0$都有$f(x):=a^x$是连续的。
 
-##### 9.4.4 证明命题9.4.11<span style='color:blue'>（提示：利用极限定律（[命题9.3.14](../Chap9/Sec3.md)）可以证明$\displaystyle\lim_{x\to 1}x^n=1$对所有的整数$n$都成立。利用这个命题和[夹逼定理](../Chap6/Sec4.md)推导出$\displaystyle\lim_{x\to 1}x^p=1$对所有的实数$p$都成立。最后，使用[命题6.7.3](../Chap6/Sec7.md)）</span>
+##### 9.4.4 证明命题9.4.11<span style="color:blue">（提示：利用极限定律（[命题9.3.14](../Chap9/Sec3.md)）可以证明$\displaystyle\lim_{x\to 1}x^n=1$对所有的整数$n$都成立。利用这个命题和[夹逼定理](../Chap6/Sec4.md)推导出$\displaystyle\lim_{x\to 1}x^p=1$对所有的实数$p$都成立。最后，使用[命题6.7.3](../Chap6/Sec7.md)）</span>
 
 >先证明$\displaystyle\lim_{x\to 1}x^n=1$对所有的整数$n$都成立。
 >
@@ -226,7 +226,7 @@ coverHeight: 320px
 >
 >对任意$\varepsilon>0$，存在$\delta>0$有对任意满足$|x-x_0|\leq\delta$且$x\in X$的$x$都有$|g\circ f(x)-g\circ f(x_0)|\leq\varepsilon$成立。从而根据定义9.3.6，即有$\displaystyle\lim_{x\to x_0;x\in X}g\circ f(x)=g\circ f(x_0)$成立，从而函数$g\circ f:X\to\mathbb R$在$x_0$处是连续的得证。
 
-##### 9.4.6 设$X$是$\mathbb R$的一个子集，并且设$f:X\to\mathbb R$是一个连续函数。如果$Y$是$X$的一个子集，证明：$f$在$X$上的限制函数$f|_Y:Y\to\mathbb R$也是连续的<span style='color:blue'>（提示：这是一个很简单的证明，但是要求你仔细遵循定义）</span>
+##### 9.4.6 设$X$是$\mathbb R$的一个子集，并且设$f:X\to\mathbb R$是一个连续函数。如果$Y$是$X$的一个子集，证明：$f$在$X$上的限制函数$f|_Y:Y\to\mathbb R$也是连续的<span style="color:blue">（提示：这是一个很简单的证明，但是要求你仔细遵循定义）</span>
 
 >要证明限制函数$f|_Y:Y\to\mathbb R$也是连续的，则要证明对任意的$x\in Y$，都有$\displaystyle\lim_{y\to x;y\in Y}f|_Y(y)=f|_Y(x)$成立。
 >
@@ -242,7 +242,7 @@ $$
 P(x):=\sum_{i=0}^nc_ix^i
 $$
 
-##### 这个函数被称为<span style='color:red'>单变量多项式</span>，比如一个例子$P(x)=6x^3-4x^2+3$，证明：单变量多项式$P$都是连续的
+##### 这个函数被称为<span style="color:red">单变量多项式</span>，比如一个例子$P(x)=6x^3-4x^2+3$，证明：单变量多项式$P$都是连续的
 
 >使用数学归纳法，对$n$归纳证明：
 >

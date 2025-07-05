@@ -14,53 +14,53 @@ coverHeight: 320px
 
 ## 定义
 
-1. <span style='color:red'>（18.5.1 可测函数）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R^m$是一个函数。那么我们称函数$f$是**可测的**，当且仅当对于每一个开集$V\subseteq\mathbb R^m$，$f^{-1}(V)$都是可测的。
+1. <span style="color:red">（18.5.1 可测函数）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R^m$是一个函数。那么我们称函数$f$是**可测的**，当且仅当对于每一个开集$V\subseteq\mathbb R^m$，$f^{-1}(V)$都是可测的。
 
-2. <span style='color:red'>（18.5.9 广义实数系上的可测函数）</span>设$\Omega$是$\mathbb R^n$的可测子集。那么我们称函数$f:\Omega\to\mathbb R^*$是**可测的**，当且仅当对于每一个实数$a$，$f^{-1}((a,+\infty])$都是可测的。
+2. <span style="color:red">（18.5.9 广义实数系上的可测函数）</span>设$\Omega$是$\mathbb R^n$的可测子集。那么我们称函数$f:\Omega\to\mathbb R^*$是**可测的**，当且仅当对于每一个实数$a$，$f^{-1}((a,+\infty])$都是可测的。
 
-   <span style='color:blue'>（注：引理18.5.8保证了在广义实数系$\mathbb R^*$上取值的函数的可测性概念是一致的）</span>
+   <span style="color:blue">（注：引理18.5.8保证了在广义实数系$\mathbb R^*$上取值的函数的可测性概念是一致的）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（18.5.2 连续函数是可测的）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R^m$是一个连续函数。那么$f$也是可测的。
+1. <span style="color:red">（18.5.2 连续函数是可测的）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R^m$是一个连续函数。那么$f$也是可测的。
 
-   <span style='color:blue'>（注：回顾[第12章](../Chap12/Sec3.md)和[第13章](../Chap13/Sec1.md)的内容，回想一下连续函数对开集逆象的影响与相对拓扑的知识会对证明这个命题有所帮助）</span>
+   <span style="color:blue">（注：回顾[第12章](../Chap12/Sec3.md)和[第13章](../Chap13/Sec1.md)的内容，回想一下连续函数对开集逆象的影响与相对拓扑的知识会对证明这个命题有所帮助）</span>
 
-2. <span style='color:red'>（18.5.3 可测函数的等效定义？）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R^m$是一个函数。那么$f$是可测的，当且仅当对于每一个开盒子$B$，$f^{-1}(B)$都是可测的。
+2. <span style="color:red">（18.5.3 可测函数的等效定义？）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R^m$是一个函数。那么$f$是可测的，当且仅当对于每一个开盒子$B$，$f^{-1}(B)$都是可测的。
 
-   <span style='color:blue'>（注：联系[引理18.4.10](../Chap18/Sec4.md)）</span>
-
-   > 推论：
-   >
-   > 1. <span style='color:red'>（18.5.4）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R^m$是一个函数。如果$f=(f_1,...,f_m)$，其中$f_j:\Omega\to\mathbb R$是$f$的第$j$个分量，那么$f$是可测的，当且仅当每一个独立的$f_i$都是可测的。
-   >
-   >    <span style='color:blue'>（注：比较可惜的是，两个可测函数的复合不一定是可测的，但是我们有一个关于复合函数弱一点的结论，参见引理18.5.5）</span>
-
-3. <span style='color:red'>（18.5.5 连续函数与可测函数的复合？）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$W$是$\mathbb R^m$的开子集。如果$f:\Omega\to W$是可测的，并且$g:W\to\mathbb R^p$是一个连续函数。那么$g\circ f:\Omega\to\mathbb R^p$是可测的。
+   <span style="color:blue">（注：联系[引理18.4.10](../Chap18/Sec4.md)）</span>
 
    > 推论：
    >
-   > 1. <span style='color:red'>（18.5.6）</span>设$\Omega$是$\mathbb R^n$的可测子集，如果$f:\Omega\to\mathbb R$是一个可测函数，那么$|f|$，$\max(f,0)$和$\min(f,0)$也都是可测的。
+   > 1. <span style="color:red">（18.5.4）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R^m$是一个函数。如果$f=(f_1,...,f_m)$，其中$f_j:\Omega\to\mathbb R$是$f$的第$j$个分量，那么$f$是可测的，当且仅当每一个独立的$f_i$都是可测的。
    >
-   >    <span style='color:blue'>（注：引理18.5.5作用于$g(x):=|x|$，$g(x):=\max(x,0)$和$g(x):=\min(x,0)$的特殊结论）</span>
+   >    <span style="color:blue">（注：比较可惜的是，两个可测函数的复合不一定是可测的，但是我们有一个关于复合函数弱一点的结论，参见引理18.5.5）</span>
+
+3. <span style="color:red">（18.5.5 连续函数与可测函数的复合？）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$W$是$\mathbb R^m$的开子集。如果$f:\Omega\to W$是可测的，并且$g:W\to\mathbb R^p$是一个连续函数。那么$g\circ f:\Omega\to\mathbb R^p$是可测的。
+
+   > 推论：
    >
-   > 2. <span style='color:red'>（18.5.7）</span>设$\Omega$是$\mathbb R^n$的可测子集，如果$f:\Omega\to\mathbb R$和$g:\Omega\to\mathbb R$都是可测函数，那么$f+g$、$f-g$、$fg$、$\max(f,g)$和$\min(f,g)$也都是可测函数。特别地，如果对于所有的$x\in\Omega$都有$g(x)\ne 0$，那么$f/g$也是可测的。
+   > 1. <span style="color:red">（18.5.6）</span>设$\Omega$是$\mathbb R^n$的可测子集，如果$f:\Omega\to\mathbb R$是一个可测函数，那么$|f|$，$\max(f,0)$和$\min(f,0)$也都是可测的。
    >
-   >    <span style='color:blue'>（注：使用引理18.5.5作用于$k(a,b):=a+b$、$k(a,b):=a-b$、$k(a,b):=ab$、$k(a,b):=\max(a,b)$、$k(a,b):=\min(a,b)$和$k(a,b):=a/b$的，同时考虑结合推论18.5.4，尝试与形如$h:=(f,g)$的函数做复合）</span>
+   >    <span style="color:blue">（注：引理18.5.5作用于$g(x):=|x|$，$g(x):=\max(x,0)$和$g(x):=\min(x,0)$的特殊结论）</span>
+   >
+   > 2. <span style="color:red">（18.5.7）</span>设$\Omega$是$\mathbb R^n$的可测子集，如果$f:\Omega\to\mathbb R$和$g:\Omega\to\mathbb R$都是可测函数，那么$f+g$、$f-g$、$fg$、$\max(f,g)$和$\min(f,g)$也都是可测函数。特别地，如果对于所有的$x\in\Omega$都有$g(x)\ne 0$，那么$f/g$也是可测的。
+   >
+   >    <span style="color:blue">（注：使用引理18.5.5作用于$k(a,b):=a+b$、$k(a,b):=a-b$、$k(a,b):=ab$、$k(a,b):=\max(a,b)$、$k(a,b):=\min(a,b)$和$k(a,b):=a/b$的，同时考虑结合推论18.5.4，尝试与形如$h:=(f,g)$的函数做复合）</span>
 
-4. <span style='color:red'>（18.5.8）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R$是一个函数。那么$f$是可测的，当且仅当对于每一个实数$a$，$f^{-1}((a,\infty))$都是可测的。
+4. <span style="color:red">（18.5.8）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R$是一个函数。那么$f$是可测的，当且仅当对于每一个实数$a$，$f^{-1}((a,\infty))$都是可测的。
 
-5. <span style='color:red'>（18.5.10 可测函数序列的极限是可测的）</span>设$\Omega$是$\mathbb R^n$的可测子集，对于每一个正整数$n$，设$f_n:\Omega\to\mathbb R^*$是一个可测函数，那么$\displaystyle\sup_{n\geq 1}f_n$、$\displaystyle\inf_{n\geq 1}f_n$、$\displaystyle\limsup_{n\to\infty}f_n$和$\displaystyle\liminf_{n\to\infty}f_n$也都是可测的。特别地，如果$f_n$逐点收敛于函数$f:\Omega\to\mathbb R^*$，那么$f$也是可测的。
+5. <span style="color:red">（18.5.10 可测函数序列的极限是可测的）</span>设$\Omega$是$\mathbb R^n$的可测子集，对于每一个正整数$n$，设$f_n:\Omega\to\mathbb R^*$是一个可测函数，那么$\displaystyle\sup_{n\geq 1}f_n$、$\displaystyle\inf_{n\geq 1}f_n$、$\displaystyle\limsup_{n\to\infty}f_n$和$\displaystyle\liminf_{n\to\infty}f_n$也都是可测的。特别地，如果$f_n$逐点收敛于函数$f:\Omega\to\mathbb R^*$，那么$f$也是可测的。
 
-   <span style='color:blue'>（注：如同本节内容所述，我们对可测函数做任何事情几乎都能构造出另一个可测函数。这基本上解释了为什么我们在数学中处理的每一个函数差不多都是可测的；实际上，构造不可测函数的唯一方法就是认为的去构造，比如使用选择公理）</span>
+   <span style="color:blue">（注：如同本节内容所述，我们对可测函数做任何事情几乎都能构造出另一个可测函数。这基本上解释了为什么我们在数学中处理的每一个函数差不多都是可测的；实际上，构造不可测函数的唯一方法就是认为的去构造，比如使用选择公理）</span>
 
 ---
 
 ## 课后习题
 
-##### 18.5.1 证明引理18.5.3<span style='color:blue'>（提示：利用引理18.4.10和$\sigma$代数性质）</span>
+##### 18.5.1 证明引理18.5.3<span style="color:blue">（提示：利用引理18.4.10和$\sigma$代数性质）</span>
 
 > 显然“对于每一个开集$V\subseteq\mathbb R^m$，$f^{-1}(V)$都是可测的”覆盖了“对于每一个开盒子$B$，$f^{-1}(B)$都是可测的”，因此我们只需要证明当有“对于每一个开盒子$B$，$f^{-1}(B)$都是可测的”时就有$f$可测即得证了充分必要性。
 >
@@ -106,7 +106,7 @@ coverHeight: 320px
 >
 > 于是即$(g\circ f)^{-1}(V)=f^{-1}(g^{-1}(V))$。这说明上面的证明证明了对任意的开集$V\subseteq\mathbb R^p$都有$(g\circ f)^{-1}(V)$可测，也即有函数$g\circ f$可测。
 
-##### 18.5.4 证明引理18.5.8<span style='color:blue'>（提示：使用引理18.5.3。作为一个预备步骤，你可能需要证明如果对于所有的$a$，$f^{-1}((a,\infty))$都是可测的，那么对于所有的$a$，$f^{-1}([a,\infty))$也是可测的）</span>
+##### 18.5.4 证明引理18.5.8<span style="color:blue">（提示：使用引理18.5.3。作为一个预备步骤，你可能需要证明如果对于所有的$a$，$f^{-1}((a,\infty))$都是可测的，那么对于所有的$a$，$f^{-1}([a,\infty))$也是可测的）</span>
 
 > 显然“对于每一个开集$V\subseteq\mathbb R$，$f^{-1}(V)$都是可测的”覆盖了“对于每一个实数$a$，$f^{-1}((a,\infty))$都是可测的”，因此我们只需要证明当有“对于每一个实数$a$，$f^{-1}((a,\infty))$都是可测的”时就有$f$可测即得证了充分必要性。
 >
@@ -142,7 +142,7 @@ coverHeight: 320px
 > $$
 > 然后根据推论18.4.7与我们已经证明的子结论，我们有$f^{-1}((a,b))$也是可测的。从而综上我们证明了对任意一个开盒子$(a,b)\subseteq\mathbb R$都有$f^{-1}((a,b))$可测，然后根据引理18.5.3我们有$f$是可测的，结论得证。
 
-##### 18.5.5 设$f:\mathbb R^n\to\mathbb R$是一个勒贝格可测函数，并设$g:\mathbb R^n\to\mathbb R$是一个函数，它在测度为零的集合之外与$f$相同，即存在一个测度为零的集合$A\subseteq\mathbb R^n$使得对于所有的$x\in\mathbb R^n\verb|\|A$均有$f(x)=g(x)$。证明：$g$也是勒贝格可测的<span style='color:blue'>（提示：利用[习题18.4.10](../Chap18/Sec4.md)）</span>
+##### 18.5.5 设$f:\mathbb R^n\to\mathbb R$是一个勒贝格可测函数，并设$g:\mathbb R^n\to\mathbb R$是一个函数，它在测度为零的集合之外与$f$相同，即存在一个测度为零的集合$A\subseteq\mathbb R^n$使得对于所有的$x\in\mathbb R^n\verb|\|A$均有$f(x)=g(x)$。证明：$g$也是勒贝格可测的<span style="color:blue">（提示：利用[习题18.4.10](../Chap18/Sec4.md)）</span>
 
 > 考虑任意的$V\subseteq\mathbb R$是一个开集。注意到：
 > $$
