@@ -1,7 +1,7 @@
 {
   "type": "module",
   "devDependencies": {
-    "@types/lodash": "^4.17.18",
+    "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.10.2",
     "@vitest/coverage-v8": "^3.2.0",
     "@vue/test-utils": "^2.4.6",
@@ -20,9 +20,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "example:dev": "vitepress dev example",
-    "example:build": "vitepress build example",
-    "example:preview": "vitepress preview example",
+    "docs:build:large": "node --max-old-space-size=8192 node_modules/vitepress/bin/vitepress.js build docs",
     "test": "vitest --config docs/.vitepress/theme/test/vitest.config.ts",
     "test:coverage": "vitest --config docs/.vitepress/theme/test/vitest.config.ts --coverage",
     "test:ui": "vitest --ui --config docs/.vitepress/theme/test/vitest.config.ts"
@@ -34,7 +32,7 @@
     "@vitest/ui": "^3.2.0",
     "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",
-    "lodash": "^4.17.21",
+    "lodash-es": "4.17",
     "path": "^0.12.7",
     "pinia": "^2.3.0",
     "tinyglobby": "^0.2.10"

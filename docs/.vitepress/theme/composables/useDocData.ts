@@ -1,6 +1,6 @@
 import { ref, computed, inject, watch, Ref } from "vue";
 import { Route } from "vitepress";
-import { cloneDeep, result } from "lodash"
+import { cloneDeep } from "lodash-es";
 
 // @ts-ignore
 import { data } from "../data/doc.data";
