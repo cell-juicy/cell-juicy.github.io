@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 13
   - 5
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 13.5 拓扑空间<span style="color:blue">（选学）</span>
 
@@ -522,7 +525,7 @@ coverHeight: 320px
 >
 > 综上，于是反证假设不成立，余可数拓扑不可能由$X$上定义一个度量$d$导出。
 
-##### 13.5.8 证明：存在一个不可数的良序集$\omega_1+1$，它的最大元素为$\infty$。并且对任意的$y\in\omega_1+1\verb|\|\{\infty\}$，前段$\{x\in\omega_1+1:x<y\}$都是可数的<span style="color:blue">（提示：利用[习题8.5.19](../Chap8/Sec5.md)给实数排序，取全体可数前段的并集，然后添加上最大元素$\infty$）</span>。如果给$\omega_1+1$附加上习题13.5.5中的序拓扑，证明：$\omega_1+1$是紧致的，但是并非所有的序列都存在一个收敛的子序列<span style="color:blue">（于是我们在度量空间中知道的两个紧致性等价描述在拓扑空间内不是等价的）</span>
+##### 13.5.8 证明：存在一个不可数的良序集$\omega_1+1$，它的最大元素为$\infty$。并且对任意的$y\in\omega_1+1\verb|\|\{\infty\}$，前段$\{x\in\omega_1+1:x<y\}$都是可数的<span style="color:blue">（提示：利用[习题8.5.19](./Sec5.md)给实数排序，取全体可数前段的并集，然后添加上最大元素$\infty$）</span>。如果给$\omega_1+1$附加上习题13.5.5中的序拓扑，证明：$\omega_1+1$是紧致的，但是并非所有的序列都存在一个收敛的子序列<span style="color:blue">（于是我们在度量空间中知道的两个紧致性等价描述在拓扑空间内不是等价的）</span>
 
 > 注：本题已经在第三版勘误表中被标记为错误删除，$\omega_1+1$事实上同时是列紧且紧的，详情见：[Analysis II:Errata](https://terrytao.wordpress.com/books/analysis-ii/)。（但是由于这个不可数良序集的存在很有趣，关系到最小不可数基数$\aleph_1$的一些相关内容，所以还是写了一点）
 >
@@ -903,7 +906,7 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 8.5 有序集](../Chap8/Sec5.md)
+[实分析 8.5 有序集](./Sec5.md)
 
 [实分析 12.1 定义和例子](../Chap12/Sec1.md)
 

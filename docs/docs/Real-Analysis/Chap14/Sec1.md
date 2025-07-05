@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 14
   - 1
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 14.1 函数的极限值
 
@@ -16,7 +19,7 @@ coverHeight: 320px
 
 1. <span style="color:red">（14.1.1 函数的极限值）</span>设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$E$是$X$的子集，并设$f:X\to Y$是一个函数。设$x_0\in X$是$E$的一个附着点且$L\in Y$。若对于任意的$\varepsilon>0$，都存在一个$\delta>0$使得只要$x\in E$满足$d_X(x,x_0)<\delta$，就有$d_Y(f(x),L)<\varepsilon$，那么我们称**当**$x$**沿着**$E$**收敛于**$x_0$**时**$f(x)$**沿着**$Y$**收敛于**$L$，并记作$\displaystyle\lim_{x\to x_0;x\in E}f(x)=L$。
 
-   <span style="color:blue">（注：在部分教材中这个定义会排除$x=x_0$的情形，于是这时要将上面的定义改为$0<d_X(x,x_0)<\delta$，然后对应的记号改为$\displaystyle\lim_{x\to x_0;x\in E\verb|\|\{x_0\}}f(x)=L$；此外，在[定义13.1.1](../Chap13/Sec1.md)我们定义了连续性的概念，结合此处函数极限值的定义我们不难发现函数$f:X\to Y$在$x_0\in X$处连续当且仅当$\displaystyle\lim_{x\to x_0;x\in X}f(x)=f(x_0)$，这和我们在[第9章](../Chap9/Sec4.md)中的连续函数定义统一（[第9章]((..\..\第9章\md\实分析 9.4 连续函数.md))中先定义的函数极限值再据此给出连续性定义）；当清楚地知道$x$在空间$X$中变动时，我们可以忽略$x\in X$，并将$\displaystyle\lim_{x\to x_0;x\in X}f(x)=L$简写为$\displaystyle\lim_{x\to x_0}f(x)=L$）</span>
+   <span style="color:blue">（注：在部分教材中这个定义会排除$x=x_0$的情形，于是这时要将上面的定义改为$0<d_X(x,x_0)<\delta$，然后对应的记号改为$\displaystyle\lim_{x\to x_0;x\in E\verb|\|\{x_0\}}f(x)=L$；此外，在[定义13.1.1](../Chap13/Sec1.md)我们定义了连续性的概念，结合此处函数极限值的定义我们不难发现函数$f:X\to Y$在$x_0\in X$处连续当且仅当$\displaystyle\lim_{x\to x_0;x\in X}f(x)=f(x_0)$，这和我们在[第9章](./Sec1.md)中的连续函数定义统一（[第9章]((..\..\第9章\md\实分析 9.4 连续函数.md))中先定义的函数极限值再据此给出连续性定义）；当清楚地知道$x$在空间$X$中变动时，我们可以忽略$x\in X$，并将$\displaystyle\lim_{x\to x_0;x\in X}f(x)=L$简写为$\displaystyle\lim_{x\to x_0}f(x)=L$）</span>
 
 ## 命题
 
@@ -231,7 +234,7 @@ coverHeight: 320px
 >
 > 然后根据命题14.1.5，这表明$\displaystyle\lim_{x\to x_0;x\in E}g\circ f(x)=z_0$。
 
-##### 14.1.6 当$X$是一个度量空间，而不是$\mathbb R$的子集时，叙述并证明[命题9.3.14](../Chap9/Sec3.md)中极限定律的类比<span style="color:blue">（提示：利用[推论13.2.3](../Chap13/Sec2.md)）</span>
+##### 14.1.6 当$X$是一个度量空间，而不是$\mathbb R$的子集时，叙述并证明[命题9.3.14](./Sec1.md)中极限定律的类比<span style="color:blue">（提示：利用[推论13.2.3](../Chap13/Sec2.md)）</span>
 
 > 我们变叙述边证明我们给出的结论。
 >
@@ -295,9 +298,9 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 9.3 函数的极限值](../Chap9/Sec3.md)
+[实分析 9.3 函数的极限值](./Sec1.md)
 
-[实分析 9.4 连续函数](../Chap9/Sec4.md)
+[实分析 9.4 连续函数](./Sec1.md)
 
 [实分析 12.1 定义和例子](../Chap12/Sec1.md)
 

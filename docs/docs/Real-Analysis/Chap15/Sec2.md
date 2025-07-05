@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 15
   - 2
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 15.2 实解析函数
 
@@ -177,7 +180,7 @@ $$
 (x-a)^n=\sum_{m=0}^{n}\frac{n!}{m!(n-m)!}(b-a)^{n-m}(x-b)^m
 $$
 
-##### 对任意的实数$x$均成立<span style="color:blue">（提示：使用二项式公式，即[习题7.1.4](../Chap7/Sec1.md)）</span>。解释这个恒等式为什么与泰勒公式与习题15.2.1是一致的<span style="color:blue">（但是需要注意，在验证习题15.2.6的结论之前，对泰勒公式的使用都是不严格的）</span>
+##### 对任意的实数$x$均成立<span style="color:blue">（提示：使用二项式公式，即[习题7.1.4](./Sec2.md)）</span>。解释这个恒等式为什么与泰勒公式与习题15.2.1是一致的<span style="color:blue">（但是需要注意，在验证习题15.2.6的结论之前，对泰勒公式的使用都是不严格的）</span>
 
 > 根据二项式公式，对任意的实数$y$，$z$都有
 > $$
@@ -229,7 +232,7 @@ $$
 > $$
 > 对任意的$x\in\mathbb R$都成立。综上即有我们证明了对任意的$a\in\mathbb R$都存在以$a$为中心的幂级数$\displaystyle\sum_{m=0}^{\infty}d_m(x-a)^m$在$\mathbb R$上收敛于$P$，从而根据定义15.2.1我们知道任意的多项式$P$都是在$\mathbb R$上实解析的。
 
-##### 15.2.7 设$m\geq 0$是一个正整数，并设$0<x<r$是一个实数。利用[引理7.3.3](../Chap7/Sec3.md)建立恒等式
+##### 15.2.7 设$m\geq 0$是一个正整数，并设$0<x<r$是一个实数。利用[引理7.3.3](./Sec2.md)建立恒等式
 
 $$
 \frac{r}{r-x}=\sum_{n=0}^{\infty}x^nr^{-n}
@@ -334,7 +337,7 @@ $$
 \color{gray}{d_m:=\sum_{n=m}^{\infty}\frac{n!}{m!(n-m)!}(b-a)^{n-m}c_n\quad m\geq 0}
 $$
 
-###### 给出定义的数字$d_0$，$d_1$，$...$是良定义的，也就是说上面定义式里的级数是绝对收敛的<span style="color:blue">（提示：使用结论(b)、比较判别法（即[推论7.3.2](../Chap7/Sec3.md)）以及习题15.2.7）</span>
+###### 给出定义的数字$d_0$，$d_1$，$...$是良定义的，也就是说上面定义式里的级数是绝对收敛的<span style="color:blue">（提示：使用结论(b)、比较判别法（即[推论7.3.2](./Sec2.md)）以及习题15.2.7）</span>
 
 > 由结论(a)我们知道有$|b-a|\leq r-s$；又由结论(b)我们知道存在$C>0$使得对任意$n\geq 0$都有$|c_n|\leq C(r-0.5s)^{-n}$，于是有：
 > $$
@@ -368,7 +371,7 @@ $$
 > $$
 > 于是结论得证。
 
-###### (e) 证明：对于所有的$x\in (b-s,b+s)$，幂级数$\displaystyle\sum_{m=0}^{\infty}d_m(x-b)^m$都是绝对收敛的，并且它收敛于$f(x)$<span style="color:blue">（提示：你可能需要使用关于无限级数的富比尼定理（[定理8.2.2](../Chap8/Sec2.md)）以及习题15.2.5）</span>
+###### (e) 证明：对于所有的$x\in (b-s,b+s)$，幂级数$\displaystyle\sum_{m=0}^{\infty}d_m(x-b)^m$都是绝对收敛的，并且它收敛于$f(x)$<span style="color:blue">（提示：你可能需要使用关于无限级数的富比尼定理（[定理8.2.2](./Sec2.md)）以及习题15.2.5）</span>
 
 > 考虑任意的$x\in (b-s,b+s)$，此时有$|x-b|<s$，于是我们不妨记有$|x-b|=s-2\varepsilon$，其中$0<\varepsilon<s/2$。然后根据结论(d)我们知道存在$C>0$使得$|d_m|\leq C(s-\varepsilon)^{-m}$，此时即有：
 > $$
@@ -408,11 +411,11 @@ $$
 
 ## 本节相关跳转
 
-[实分析 7.1 有限级数](../Chap7/Sec1.md)
+[实分析 7.1 有限级数](./Sec2.md)
 
-[实分析 7.3 非负数的和](../Chap7/Sec3.md)
+[实分析 7.3 非负数的和](./Sec2.md)
 
-[实分析 8.2 在无限集上求和](../Chap8/Sec2.md)
+[实分析 8.2 在无限集上求和](./Sec2.md)
 
 [实分析 15.1 形式幂级数](../Chap15/Sec1.md)
 

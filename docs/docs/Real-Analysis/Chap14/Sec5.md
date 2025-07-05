@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 14
   - 5
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 14.5 函数级数与魏尔斯特拉斯M判别法
 
@@ -22,7 +25,7 @@ coverHeight: 320px
    $$
    \left(\sum_{i=1}^{N}f^{(i)}\right)(x):=\sum_{i=1}^{N}f^{(i)}(x)
    $$
-   <span style="color:blue">（注：和[有限级数](../Chap7/Sec1.md)的内容很相似，并且我们很容易证明，有界函数的有限和是有界的，连续函数的有限和是连续的）</span>
+   <span style="color:blue">（注：和[有限级数](./Sec5.md)的内容很相似，并且我们很容易证明，有界函数的有限和是有界的，连续函数的有限和是连续的）</span>
 
 ---
 
@@ -122,6 +125,6 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 7.1 有限级数](../Chap7/Sec1.md)
+[实分析 7.1 有限级数](./Sec5.md)
 
 [实分析 14.4 一致收敛的度量](../Chap14/Sec4.md)

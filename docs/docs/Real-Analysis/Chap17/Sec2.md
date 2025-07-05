@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 17
   - 2
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 17.2 多元微积分中的导数
 
@@ -38,7 +41,7 @@ coverHeight: 320px
    $$
    则我们称**$f$在$x_0$处是可微的**，并且**导数为$L$**。
 
-   <span style="color:blue">（注：使用原始定义去计算导数太过麻烦（原书有个例子），之后会用更好的方式去计算；如同一元微积分一样，我们也可以将$f$在$x_0$处的导数记为$f'(x_0)$（这需要引理17.2.4去保证唯一性），于是$f'(x_0)$是满足$f(x)-f(x_0)\approx f'(x_0)(x-x_0)$的线性变换（这也被称为**牛顿近似**，与[命题10.1.7](../Chap10/Sec1.md)比较）；有时候我们称$f'$为$f$的**全导数**（为了和后面的偏导数与方向导数区分），并且全导数$f'$同**导数矩阵**$Df$有密切的联系，这个是[下一节](../Chap17/Sec3.md)的内容了）</span>
+   <span style="color:blue">（注：使用原始定义去计算导数太过麻烦（原书有个例子），之后会用更好的方式去计算；如同一元微积分一样，我们也可以将$f$在$x_0$处的导数记为$f'(x_0)$（这需要引理17.2.4去保证唯一性），于是$f'(x_0)$是满足$f(x)-f(x_0)\approx f'(x_0)(x-x_0)$的线性变换（这也被称为**牛顿近似**，与[命题10.1.7](./Sec2.md)比较）；有时候我们称$f'$为$f$的**全导数**（为了和后面的偏导数与方向导数区分），并且全导数$f'$同**导数矩阵**$Df$有密切的联系，这个是[下一节](../Chap17/Sec3.md)的内容了）</span>
 
 ---
 
@@ -158,6 +161,6 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 10.1 基本定义](../Chap10/Sec1.md)
+[实分析 10.1 基本定义](./Sec2.md)
 
 [实分析 17.3 偏导数和方向导数](../Chap17/Sec3.md)

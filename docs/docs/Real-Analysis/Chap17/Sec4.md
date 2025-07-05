@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 17
   - 4
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 17.4 多元微积分链式法则
 
@@ -59,7 +62,7 @@ coverHeight: 320px
    $$
    (g\circ f)'(x_0)=g'(f(x_0))f'(x_0)
    $$
-   <span style="color:blue">（注：应当将这个同一元微积分中的链式法则（[定理10.1.15](../Chap10/Sec1.md)）做对比；作为链式法则和[引理17.1.16](../Chap17/Sec1.md)的一个推论，我们有$D(g\circ f)(x_0)=Dg(f(x_0))Df(x_0)$，也就是说，我们可以用矩阵和矩阵乘法来描述链式法则）</span>
+   <span style="color:blue">（注：应当将这个同一元微积分中的链式法则（[定理10.1.15](./Sec4.md)）做对比；作为链式法则和[引理17.1.16](../Chap17/Sec1.md)的一个推论，我们有$D(g\circ f)(x_0)=Dg(f(x_0))Df(x_0)$，也就是说，我们可以用矩阵和矩阵乘法来描述链式法则）</span>
 
 ---
 
@@ -105,7 +108,7 @@ coverHeight: 320px
 >
 >综上，结论得证。
 
-##### 17.4.3 证明定理17.4.1<span style="color:blue">（提示：回顾一元微积分中链式法则（[定理10.1.15](../Chap10/Sec1.md)）证明的全过程。一个可能有效的方式是利用由序列描述的极限定义（参见[命题14.1.5(b)](../Chap14/Sec1.md)），同时利用[习题17.1.4](../Chap17/Sec1.md)）</span>
+##### 17.4.3 证明定理17.4.1<span style="color:blue">（提示：回顾一元微积分中链式法则（[定理10.1.15](./Sec4.md)）证明的全过程。一个可能有效的方式是利用由序列描述的极限定义（参见[命题14.1.5(b)](../Chap14/Sec1.md)），同时利用[习题17.1.4](../Chap17/Sec1.md)）</span>
 
 >由于$f$在$x_0$处可微，因此有：
 >$$
@@ -173,7 +176,7 @@ coverHeight: 320px
 >
 >也即有$\displaystyle\lim_{x\to x_0;x\in E\verb|\|\{x_0\}}\frac{\Vert g\circ f(x)-(g\circ f(x_0)+g'(f(x_0))f'(x_0)(x-x_0))\Vert}{\Vert x-x_0\Vert}=0$，再考虑到由习题17.1.2$g'(f(x_0))$与$f'(x_0)$的复合$g'(f(x_0))f'(x_0)$也是一个线性变换，于是根据全可微的定义我们有$g\circ f$是在$x_0$处可微的，并且导数为$g'(f(x_0))f'(x_0)$。
 
-##### 17.4.4 叙述并证明多元函数<span style="color:blue">（即形如$f:E\to\mathbb R$的函数，其中$E$是$\mathbb R^n$的子集）</span>的商法则<span style="color:blue">（即叙述一个法则，使得该法则能够给出一个有关商函数$f/g$的公式）</span>。将你给出的答案同[定理10.1.13(h)](../Chap10/Sec1.md)对比，注意务必要明晰你的假设前提都是什么
+##### 17.4.4 叙述并证明多元函数<span style="color:blue">（即形如$f:E\to\mathbb R$的函数，其中$E$是$\mathbb R^n$的子集）</span>的商法则<span style="color:blue">（即叙述一个法则，使得该法则能够给出一个有关商函数$f/g$的公式）</span>。将你给出的答案同[定理10.1.13(h)](./Sec4.md)对比，注意务必要明晰你的假设前提都是什么
 
 >我们可以给出下面的商法则：设$E$是$\mathbb R^n$的子集，$x_0$是$E$的内点，并设$f:E\to\mathbb R$与$g:E\to\mathbb R$是函数。若有$f,g$均在$x_0$处可微且$g(x_0)\ne 0$，则$f/g$也是在$x_0$处可微的，并且有：
 >$$
@@ -234,7 +237,7 @@ $$
 
 ## 本节相关跳转
 
-[实分析 10.1 基本定义](../Chap10/Sec1.md)
+[实分析 10.1 基本定义](./Sec4.md)
 
 [实分析 14.1 函数的极限值](../Chap14/Sec1.md)
 

@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 13
   - 2
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 13.2 连续性和乘积空间
 
@@ -18,7 +21,7 @@ coverHeight: 320px
    $$
    f\oplus g(x):=(f(x),g(x))
    $$
-   <span style="color:blue">（注：这个定义其实已经在[习题3.5.7](../Chap3/Sec5.md)中提到过了）</span>
+   <span style="color:blue">（注：这个定义其实已经在[习题3.5.7](./Sec2.md)中提到过了）</span>
 
 ---
 
@@ -36,7 +39,7 @@ coverHeight: 320px
    > 1. 如果$x_0\in X$，且$f$和$g$都在$x_0$处连续，那么函数$f+g:X\to\mathbb R$、$f-g:X\to\mathbb R$、$fg:X\to\mathbb R$、$\max(f,g):X\to\mathbb R$、$\min(f,g):X\to\mathbb R$以及$cf:X\to\mathbb R$也都是在$x_0$处连续的。如果对所有的$x\in X$都有$g(x)\ne 0$，那么$f/g:X\to\mathbb R$也在$x_0$处连续。
    > 2. 如果$f$和$g$都是连续的，那么函数$f+g:X\to\mathbb R$、$f-g:X\to\mathbb R$、$fg:X\to\mathbb R$、$\max(f,g):X\to\mathbb R$、$\min(f,g):X\to\mathbb R$以及$cf:X\to\mathbb R$也都是连续的。如果对所有的$x\in X$都有$g(x)\ne 0$，那么$f/g:X\to\mathbb R$也是连续的。
 
-   <span style="color:blue">（注：关于这些函数的定义，可以参考[定义9.2.1](../Chap9/Sec2.md)自己推广）</span>
+   <span style="color:blue">（注：关于这些函数的定义，可以参考[定义9.2.1](./Sec2.md)自己推广）</span>
 
 ---
 
@@ -56,7 +59,7 @@ coverHeight: 320px
 >
 > 综上，于是结论得证。
 
-##### 13.2.2 证明引理13.2.2<span style="color:blue">（提示：利用[定理13.1.5](../Chap13/Sec1.md)和[极限定律（定理6.1.19）](../Chap6/Sec1.md)）</span>
+##### 13.2.2 证明引理13.2.2<span style="color:blue">（提示：利用[定理13.1.5](../Chap13/Sec1.md)和[极限定律（定理6.1.19）](./Sec2.md)）</span>
 
 > 我们以$f+g$为例子，其它的函数都是类似的（不如说是一模一样，改下函数名找对应的极限定律就行）。
 >
@@ -310,7 +313,7 @@ $$
 \end{gather}
 $$
 
-##### <span style="color:blue">（回顾$\displaystyle\limsup_{x\to x_0}f(x):=\inf_{r>0}\sup_{|x-x_0|<r}f(x)$和$\displaystyle\liminf_{x\to x_0}f(x):=\sup_{r>0}\inf_{|x-x_0|<r}f(x)$，这个定义在[习题9.3.4](../Chap9/Sec3.md)中要求自己diy过）</span>特别地，我们有
+##### <span style="color:blue">（回顾$\displaystyle\limsup_{x\to x_0}f(x):=\inf_{r>0}\sup_{|x-x_0|<r}f(x)$和$\displaystyle\liminf_{x\to x_0}f(x):=\sup_{r>0}\inf_{|x-x_0|<r}f(x)$，这个定义在[习题9.3.4](./Sec2.md)中要求自己diy过）</span>特别地，我们有
 
 $$
 \lim_{x\to x_0}\lim_{y\to y_0}f(x,y)=\lim_{y\to y_0}\lim_{x\to x_0}f(x,y)=f(x_0,y_0)
@@ -416,11 +419,11 @@ $$
 
 ## 本节相关跳转
 
-[实分析 3.5 笛卡尔积](../Chap3/Sec5.md)
+[实分析 3.5 笛卡尔积](./Sec2.md)
 
-[实分析 6.1 收敛与极限定律](../Chap6/Sec1.md)
+[实分析 6.1 收敛与极限定律](./Sec2.md)
 
-[实分析 9.2 实值函数的代数](../Chap9/Sec2.md)
+[实分析 9.2 实值函数的代数](./Sec2.md)
 
 [实分析 12.1 定义和例子](../Chap12/Sec1.md)
 

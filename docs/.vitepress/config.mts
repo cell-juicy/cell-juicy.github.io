@@ -39,7 +39,7 @@ export default defineConfigWithTheme<ThemeConfig>({
                             ? `${repository}/额外注释/md/额外注释.md`
                             : `${repository}/第${order?.[0]}章/md/实分析 ${order?.join(".") || ""} ${title}.md`
                         return {
-                            url: `${repository}/第${order?.[0]}章/md/实分析 ${order?.join(".") || ""} ${title}.md`,
+                            url,
                             tooltip: "查看原始markdown文件"
                         }
                     },

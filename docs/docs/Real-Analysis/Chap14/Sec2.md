@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 14
   - 2
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 14.2 逐点收敛和一致收敛
 
@@ -100,7 +103,7 @@ coverHeight: 320px
 > $$
 > 由于垂线测试因此函数值应该是唯一的，不可能出现同时有$f(c)<0.225$与$f(c)>0.4$的实数。于是导出了矛盾，反证假设不成立，$f^{(n)}$不可能一致收敛于某个函数$f$。
 
-###### (c) 设$g:(-1,1)\to\mathbb R$是函数$\displaystyle g(x):=\frac{x}{1-x}$。保持(b)中的记号，证明：当$N\to\infty$时，部分和序列$\displaystyle\sum_{n=1}^{N}f^{(n)}$在开区间$(-1,1)$上逐点收敛于$g$，但不一致收敛于$g$<span style="color:blue">（提示：利用[引理7.3.3](../Chap7/Sec3.md)）</span>。如果把开区间$(-1,1)$换成闭区间$[-1,1]$，情况又如何
+###### (c) 设$g:(-1,1)\to\mathbb R$是函数$\displaystyle g(x):=\frac{x}{1-x}$。保持(b)中的记号，证明：当$N\to\infty$时，部分和序列$\displaystyle\sum_{n=1}^{N}f^{(n)}$在开区间$(-1,1)$上逐点收敛于$g$，但不一致收敛于$g$<span style="color:blue">（提示：利用[引理7.3.3](./Sec2.md)）</span>。如果把开区间$(-1,1)$换成闭区间$[-1,1]$，情况又如何
 
 > 考虑到无限级数的定义因此引理7.3.3表明对任意的$x\in (-1,1)$都有极限：
 > $$
@@ -166,7 +169,7 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 7.3 非负数的和](../Chap7/Sec3.md)
+[实分析 7.3 非负数的和](./Sec2.md)
 
 [实分析 12.1 定义和例子](../Chap12/Sec1.md)
 

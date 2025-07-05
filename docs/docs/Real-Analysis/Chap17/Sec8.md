@@ -4,17 +4,20 @@ space: 实分析
 order:
   - 17
   - 8
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 17.8 隐函数定理
 
 ## 摘录
 
-1. <span style="color:red">（关于函数的图）</span>在[习题3.5.10](../Chap3/Sec5.md)中我们曾经定义了函数$f:\mathbb R\to\mathbb R$的**图**的概念：
+1. <span style="color:red">（关于函数的图）</span>在[习题3.5.10](./Sec8.md)中我们曾经定义了函数$f:\mathbb R\to\mathbb R$的**图**的概念：
    $$
    \{(x,f(x)):x\in\mathbb R\}
    $$
@@ -53,6 +56,6 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 3.5 笛卡尔积](../Chap3/Sec5.md)
+[实分析 3.5 笛卡尔积](./Sec8.md)
 
 [实分析 17.7 多元微积分的反函数定理](../Chap17/Sec7.md)

@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 15
   - 7
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 15.7 三角函数
 
@@ -381,7 +384,7 @@ $$
 \pi=4-\frac{4}{3}+\frac{4}{5}-\frac{4}{7}+...=4\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}
 $$
 
-##### <span style="color:blue">（注意，由于[交错级数判别法（命题7.2.12）](../Chap7/Sec2.md)可知，上面这个级数时收敛的）</span>由此推导出$\displaystyle 4-\frac{4}{3}<\pi<4$<span style="color:blue">（当然可以用这个式子计算$\pi=3.1415926...$的更高精确度值，但如果可以，仍然建议使用其它的公式去计算$\pi$，因为这个级数收敛的太慢了）</span>
+##### <span style="color:blue">（注意，由于[交错级数判别法（命题7.2.12）](./Sec7.md)可知，上面这个级数时收敛的）</span>由此推导出$\displaystyle 4-\frac{4}{3}<\pi<4$<span style="color:blue">（当然可以用这个式子计算$\pi=3.1415926...$的更高精确度值，但如果可以，仍然建议使用其它的公式去计算$\pi$，因为这个级数收敛的太慢了）</span>
 
 > 对任意的$x\in(-1,1)$，由于$-x^2\in(-1,0]$，于是根据几何级数（命题7.3.3）我们有：
 > $$
@@ -455,7 +458,7 @@ $$
 \color{blue}{\sum_{n=1}^{\infty}a_n=\sum_{n=1}^{m-1}a_n+a_m+\sum_{n=m+1}^{\infty}a_n}
 $$
 
-###### <span style="color:blue">另外，利用余弦函数以$2\pi$为周期的事实，以及对于任意的$|r|<1$都有几何级数公式$\displaystyle\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}$，最后还要用到：对任意的实数$x$和$y$都有不等式$|\cos(x)-\cos(y)|\leq|x-y|$。这个不等式可以用[平均值定理（推论10.2.9）](../Chap10/Sec2.md)或[微积分基本定理（定理11.9.4）](../Chap11/Sec9.md)来证明）</span>
+###### <span style="color:blue">另外，利用余弦函数以$2\pi$为周期的事实，以及对于任意的$|r|<1$都有几何级数公式$\displaystyle\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}$，最后还要用到：对任意的实数$x$和$y$都有不等式$|\cos(x)-\cos(y)|\leq|x-y|$。这个不等式可以用[平均值定理（推论10.2.9）](./Sec7.md)或[微积分基本定理（定理11.9.4）](./Sec7.md)来证明）</span>
 
 > 可以计算有：
 > $$
@@ -518,7 +521,7 @@ $$
 > > $$
 > > 也即题目不等式得证。
 
-###### (c) 利用(b)证明：对于任意的实数$x_0$，函数$f$在$x_0$处不可微<span style="color:blue">（提示：根据[习题5.4.3](../Chap5/Sec4.md)，对于任意的$x_0$和任意的$m\geq 1$，存在一个整数$j$使得$j\leq 32^mx_0\leq j+1$）</span>
+###### (c) 利用(b)证明：对于任意的实数$x_0$，函数$f$在$x_0$处不可微<span style="color:blue">（提示：根据[习题5.4.3](./Sec7.md)，对于任意的$x_0$和任意的$m\geq 1$，存在一个整数$j$使得$j\leq 32^mx_0\leq j+1$）</span>
 
 > 不妨假设存在实数$x_0\in\mathbb R$使得$f$在$x_0$处可微，于是我们记有$L:=f'(x_0)$。根据牛顿逼近法（命题10.1.7），对任意的$\varepsilon>0$都存在对应的$\delta>0$使得对任意的$|x-x_0|\leq\delta$都有：
 > $$
@@ -589,13 +592,13 @@ $$
 
 ## 本节相关跳转
 
-[实分析 5.4 对实数排序](../Chap5/Sec4.md)
+[实分析 5.4 对实数排序](./Sec7.md)
 
-[实分析 7.2 无限级数](../Chap7/Sec2.md)
+[实分析 7.2 无限级数](./Sec7.md)
 
-[实分析 10.2 局部最大值、局部最小值以及导数](../Chap10/Sec2.md)
+[实分析 10.2 局部最大值、局部最小值以及导数](./Sec7.md)
 
-[实分析 11.9 微积分的两个基本定理](../Chap11/Sec9.md)
+[实分析 11.9 微积分的两个基本定理](./Sec7.md)
 
 [实分析 13.1 连续函数](../Chap13/Sec1.md)
 

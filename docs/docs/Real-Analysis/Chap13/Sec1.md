@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 13
   - 1
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 13.1 连续函数
 
@@ -28,7 +31,7 @@ coverHeight: 320px
    > 2. 如果$(x^{(n)})_{n=1}^\infty$是$X$中依度量$d_X$收敛于$x_0$的序列，那么序列$(f(x^{(n)}))_{n=1}^\infty$就依度量$d_Y$收敛于$f(x_0)$。
    > 3. 对于任意一个包含$f(x_0)$的开集$V\subseteq Y$，都存在一个包含$x_0$的开集$U\subseteq X$使得$f(U)\subseteq V$。
 
-   <span style="color:blue">（注：这部分内容是对[第9章](../Chap9/Sec4.md)的推广）</span>
+   <span style="color:blue">（注：这部分内容是对[第9章](./Sec1.md)的推广）</span>
 
 2. <span style="color:red">（13.1.5）</span>设$(X,d_X)$是一个度量空间，$(Y,d_Y)$是另一个度量空间，并设$f:X\to Y$是一个函数。那么下面四个命题在逻辑上是等价的：
 
@@ -50,7 +53,7 @@ coverHeight: 320px
 
 ## 课后习题
 
-##### 13.1.1 证明定理13.1.4<span style="color:blue">（提示：回顾[命题9.4.7](../Chap9/Sec4.md)的证明）</span>
+##### 13.1.1 证明定理13.1.4<span style="color:blue">（提示：回顾[命题9.4.7](./Sec1.md)的证明）</span>
 
 > 证明它们之间可以互相推论即可。
 >
@@ -264,6 +267,6 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 9.4 连续函数](../Chap9/Sec4.md)
+[实分析 9.4 连续函数](./Sec1.md)
 
 [实分析 12.5 紧致度量空间](../Chap12/Sec5.md)

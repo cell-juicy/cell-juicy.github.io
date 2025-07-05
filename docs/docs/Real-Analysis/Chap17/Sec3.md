@@ -4,11 +4,14 @@ space: 实分析
 order:
   - 17
   - 3
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 17.3 偏导数和方向导数
 
@@ -232,7 +235,7 @@ coverHeight: 320px
 > $$
 > 因此$f$不是符合定理17.3.8要求的函数，自然也不能应用定理17.3.8。
 
-##### 17.3.4 设$f:\mathbb R^n\to\mathbb R^m$是一个可微函数，并且对于所有的$x\in\mathbb R^n$都有$f'(x)=0$。证明：$f$是一个常值函数<span style="color:blue">（提示：你可能会用到一元函数的[平均值定理（推论10.2.9）](../Chap10/Sec2.md)或者[微积分基本定理](../Chap11/Sec9.md)。但是需要注意这些定理并不能对多元函数进行直接类比，不建议使用第一性原理来解题）</span>；另一个更难的挑战是，尝试将定义域$\mathbb R^n$换成$\mathbb R^n$的一个连通开子集$\Omega$后再证明这个命题
+##### 17.3.4 设$f:\mathbb R^n\to\mathbb R^m$是一个可微函数，并且对于所有的$x\in\mathbb R^n$都有$f'(x)=0$。证明：$f$是一个常值函数<span style="color:blue">（提示：你可能会用到一元函数的[平均值定理（推论10.2.9）](./Sec3.md)或者[微积分基本定理](./Sec3.md)。但是需要注意这些定理并不能对多元函数进行直接类比，不建议使用第一性原理来解题）</span>；另一个更难的挑战是，尝试将定义域$\mathbb R^n$换成$\mathbb R^n$的一个连通开子集$\Omega$后再证明这个命题
 
 > （思路不是本人想的， 转述别人的证明）
 >
@@ -292,8 +295,8 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 10.2 局部最大值、局部最小值以及导数](../Chap10/Sec2.md)
+[实分析 10.2 局部最大值、局部最小值以及导数](./Sec3.md)
 
-[实分析 11.9 微积分的两个基本定理](../Chap11/Sec9.md)
+[实分析 11.9 微积分的两个基本定理](./Sec3.md)
 
 [实分析 17.2 多元微积分中的导数](../Chap17/Sec2.md)
