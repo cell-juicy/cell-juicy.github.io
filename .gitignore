@@ -1,6 +1,7 @@
 /node_modules/
 /template/
 /docs/.vitepress/cache/
+/docs/.vitepress/dist/
 _draft
 instantsearch-app
 coverage
