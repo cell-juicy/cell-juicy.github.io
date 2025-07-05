@@ -4,29 +4,32 @@ space: 实分析
 order:
   - 14
   - 6
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 14.6 一致收敛和积分
 
 ## 命题
 
-1. <span style='color:red'>（14.6.1 一致极限与积分可交换运算？）</span>设$[a,b]$是一个区间。对于每一个整数$n\geq 1$，设$f^{(n)}:[a,b]\to\mathbb R$是一个黎曼可积的函数。设$f^{(n)}$在$[a,b]$上一致收敛于函数$f:[a,b]\to\mathbb R$。那么$f$是黎曼可积的，并且
+1. <span style="color:red">（14.6.1 一致极限与积分可交换运算？）</span>设$[a,b]$是一个区间。对于每一个整数$n\geq 1$，设$f^{(n)}:[a,b]\to\mathbb R$是一个黎曼可积的函数。设$f^{(n)}$在$[a,b]$上一致收敛于函数$f:[a,b]\to\mathbb R$。那么$f$是黎曼可积的，并且
    $$
    \lim_{n\to\infty}\int_{[a,b]}f^{(n)}=\int_{[a,b]}f
    $$
-   <span style='color:blue'>（注：这个定理告诉我们可以交换一致极限与积分的运算顺序，即$\displaystyle\lim_{n\to\infty}\int_{[a,b]}f^{(n)}=\int_{[a,b]}\lim_{n\to\infty}f^{(n)}$）</span>
+   <span style="color:blue">（注：这个定理告诉我们可以交换一致极限与积分的运算顺序，即$\displaystyle\lim_{n\to\infty}\int_{[a,b]}f^{(n)}=\int_{[a,b]}\lim_{n\to\infty}f^{(n)}$）</span>
 
    > 推论：
    >
-   > 1. <span style='color:red'>（14.6.2）</span>设$[a,b]$是一个区间，并设$(f^{(n)})_{n=1}^\infty$是$[a,b]$上黎曼可积函数的序列。如果级数$\displaystyle\sum_{n=1}^{\infty}f^{(n)}$一致收敛，那么
+   > 1. <span style="color:red">（14.6.2）</span>设$[a,b]$是一个区间，并设$(f^{(n)})_{n=1}^\infty$是$[a,b]$上黎曼可积函数的序列。如果级数$\displaystyle\sum_{n=1}^{\infty}f^{(n)}$一致收敛，那么
    >    $$
    >    \sum_{n=1}^{\infty}\int_{[a,b]}f^{(n)}=\int_{[a,b]}\sum_{n=1}^{\infty}f^{(n)}
    >    $$
-   >    <span style='color:blue'>（注：这个推论结合[魏尔斯特拉斯M判别法（定理14.5.7）](../Chap14/Sec5.md)一起使用会有更好的效果）</span>
+   >    <span style="color:blue">（注：这个推论结合[魏尔斯特拉斯M判别法（定理14.5.7）](../Chap14/Sec5.md)一起使用会有更好的效果）</span>
 
 ---
 

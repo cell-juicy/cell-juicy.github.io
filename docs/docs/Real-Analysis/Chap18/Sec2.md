@@ -4,17 +4,20 @@ space: 实分析
 order:
   - 18
   - 2
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 18.2 第一步：外测度
 
 ## 定义
 
-1. <span style='color:red'>（18.2.1 开盒子）</span>$\mathbb R^n$中的一个**开盒子**（或者简称为**盒子**）$B$就是一个形如
+1. <span style="color:red">（18.2.1 开盒子）</span>$\mathbb R^n$中的一个**开盒子**（或者简称为**盒子**）$B$就是一个形如
    $$
    B=\prod_{i=1}^{n}(a_i,b_i):=\{(x_1,...,x_n)\in\mathbb R^n:x_i\in(a_i,b_i);1\leq i\leq n\}
    $$
@@ -22,42 +25,42 @@ coverHeight: 320px
    $$
    \text{vol}(B):=\prod_{i=1}^{n}(b_i-a_i)=(b_1-a_1)(b_2-a_2)...(b_n-a_n)
    $$
-   <span style='color:blue'>（注：开盒子的例子可以参考单位立方体$(0,1)^n$，它的体积就是$1$；容易验证所有的开盒子都是开集；如果存在某个$i$使得$b_i=a_i$，那么这个盒子就是体积为$0$的空集$\varnothing$，尽管这看起来非常地不合理，但是我们仍然将它成为一个盒子；有时候为了强调处理的是$n$维体积，我们也可以将$\text{vol}(B)$写成$\text{vol}_n(B)$；体积的概念是符合我们一般直觉的，所以如同我们对测度的期望，我们肯定希望盒子的测度$m(B)$与盒子的体积$\text{vol}(B)$是一样的）</span>
+   <span style="color:blue">（注：开盒子的例子可以参考单位立方体$(0,1)^n$，它的体积就是$1$；容易验证所有的开盒子都是开集；如果存在某个$i$使得$b_i=a_i$，那么这个盒子就是体积为$0$的空集$\varnothing$，尽管这看起来非常地不合理，但是我们仍然将它成为一个盒子；有时候为了强调处理的是$n$维体积，我们也可以将$\text{vol}(B)$写成$\text{vol}_n(B)$；体积的概念是符合我们一般直觉的，所以如同我们对测度的期望，我们肯定希望盒子的测度$m(B)$与盒子的体积$\text{vol}(B)$是一样的）</span>
    
-2. <span style='color:red'>（18.2.3 开盒覆盖）</span>设$\Omega\subseteq\mathbb R^n$是$\mathbb R^n$的子集，我们称一簇盒子$(B_j)_{j\in J}$**覆盖**了$\Omega$，当且仅当$\displaystyle\Omega\subseteq\bigcup_{j\in J}B_j$。
+2. <span style="color:red">（18.2.3 开盒覆盖）</span>设$\Omega\subseteq\mathbb R^n$是$\mathbb R^n$的子集，我们称一簇盒子$(B_j)_{j\in J}$**覆盖**了$\Omega$，当且仅当$\displaystyle\Omega\subseteq\bigcup_{j\in J}B_j$。
 
-   <span style='color:blue'>（注：暂时以盒子的测度与体积一致为前提，如果我们希望$\Omega$是一个被有限个或可数个盒子$(B_j)_{j\in J}$覆盖的可测集，它的测度满足单调性与次可加性，那么就要求有：</span>
+   <span style="color:blue">（注：暂时以盒子的测度与体积一致为前提，如果我们希望$\Omega$是一个被有限个或可数个盒子$(B_j)_{j\in J}$覆盖的可测集，它的测度满足单调性与次可加性，那么就要求有：</span>
    $$
    \color{blue}{m(\Omega)\leq m\left(\bigcup_{j\in J}B_j\right)\leq\sum_{j\in J}m(B_j)=\sum_{j\in J}\text{vol}(B_j)}
    $$
-   <span style='color:blue'>于是自然可以引申出：</span>
+   <span style="color:blue">于是自然可以引申出：</span>
    $$
    \color{blue}{m(\Omega)\leq\inf\left\{\sum_{j\in J}\text{vol}(B_j):(B_j)_{j\in J}覆盖\Omega;J是至多可数的\right\}}
    $$
-   <span style='color:blue'>这对外测度的定义有一定的启发）</span>
+   <span style="color:blue">这对外测度的定义有一定的启发）</span>
 
-3. <span style='color:red'>（18.2.4 外测度）</span>设$\Omega$是一个集合，我们定义$\Omega$的外测度$m^*(\Omega)$为：
+3. <span style="color:red">（18.2.4 外测度）</span>设$\Omega$是一个集合，我们定义$\Omega$的外测度$m^*(\Omega)$为：
    $$
    m^*(\Omega):=\inf\left\{\sum_{j\in J}\text{vol}(B_j):(B_j)_{j\in J}覆盖\Omega;J是至多可数的\right\}
    $$
-   <span style='color:blue'>（注：有时候，我们将$m^*(\Omega)$写成$m^*_n(\Omega)$以强调它是使用的$n$维外测度；注意，对每一个集合（不仅是可测集）都可以定义外测度的概念）</span>
+   <span style="color:blue">（注：有时候，我们将$m^*(\Omega)$写成$m^*_n(\Omega)$以强调它是使用的$n$维外测度；注意，对每一个集合（不仅是可测集）都可以定义外测度的概念）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（18.2.5 外侧度的性质）</span>外测度满足如下六条性质：
+1. <span style="color:red">（18.2.5 外侧度的性质）</span>外测度满足如下六条性质：
 
-   > * <span style='color:red'>（空集）</span>空集$\varnothing$的外测度是$m^*(\varnothing)=0$。
-   > * <span style='color:red'>（正性）</span>对于每一个集合$\Omega$，都有$0\leq m^*(\Omega)\leq+\infty$。
-   > * <span style='color:red'>（单调性）</span>若有$A\subseteq B\subseteq\mathbb R^n$，那么$m^*(A)\leq m^*(B)$。
-   > * <span style='color:red'>（有限次可加性）</span>如果$(A_j)_{j\in J}$是$\mathbb R^n$的有限个子集，那么$\displaystyle m^*\left(\bigcup_{j\in J}A_j\right)\leq\sum_{j\in J}m^*(A_j)$。
-   > * <span style='color:red'>（可数次可加性）</span>如果$(A_j)_{j\in J}$是$\mathbb R^n$的可数个子集，那么$\displaystyle m^*\left(\bigcup_{j\in J}A_j\right)\leq\sum_{j\in J}m^*(A_j)$。
-   > * <span style='color:red'>（平移不变性）</span>如果$\Omega$是$\mathbb R^n$的一个子集，并且$x\in\mathbb R^n$，那么$x+\Omega:=\{x+y:y\in\Omega\}$的外测度满足$m^*(x+\Omega)=m^*(\Omega)$。
+   > * <span style="color:red">（空集）</span>空集$\varnothing$的外测度是$m^*(\varnothing)=0$。
+   > * <span style="color:red">（正性）</span>对于每一个集合$\Omega$，都有$0\leq m^*(\Omega)\leq+\infty$。
+   > * <span style="color:red">（单调性）</span>若有$A\subseteq B\subseteq\mathbb R^n$，那么$m^*(A)\leq m^*(B)$。
+   > * <span style="color:red">（有限次可加性）</span>如果$(A_j)_{j\in J}$是$\mathbb R^n$的有限个子集，那么$\displaystyle m^*\left(\bigcup_{j\in J}A_j\right)\leq\sum_{j\in J}m^*(A_j)$。
+   > * <span style="color:red">（可数次可加性）</span>如果$(A_j)_{j\in J}$是$\mathbb R^n$的可数个子集，那么$\displaystyle m^*\left(\bigcup_{j\in J}A_j\right)\leq\sum_{j\in J}m^*(A_j)$。
+   > * <span style="color:red">（平移不变性）</span>如果$\Omega$是$\mathbb R^n$的一个子集，并且$x\in\mathbb R^n$，那么$x+\Omega:=\{x+y:y\in\Omega\}$的外测度满足$m^*(x+\Omega)=m^*(\Omega)$。
 
-   <span style='color:blue'>（注：分别对应了[18.1节](../Chap18/Sec1.md)中的性质5、6、7、8、10、13）</span>
+   <span style="color:blue">（注：分别对应了[18.1节](../Chap18/Sec1.md)中的性质5、6、7、8、10、13）</span>
 
-2. <span style='color:red'>（18.2.6 闭盒子的外测度）</span>对于任意的闭盒子
+2. <span style="color:red">（18.2.6 闭盒子的外测度）</span>对于任意的闭盒子
    $$
    B=\prod_{i=1}^{n}[a_i,b_i]:=\{(x_1,...,x_n)\in\mathbb R^n:x_i\in[a_i,b_i];1\leq i\leq n\}
    $$
@@ -66,11 +69,11 @@ coverHeight: 320px
    m^*(B)=\prod_{i=1}^{n}(b_i-a_i)
    $$
 
-   <span style='color:blue'>（注：于是外测度符合了我们对盒子“测度=体积”的期望，原书中给出了一些集合的外测度计算例子，例如$m^*(\mathbb R)=m^*(\mathbb R\verb|\|\mathbb Q)=+\infty$，$m^*(\mathbb Q)=0$与$m^*([0,1]\verb|\|\mathbb Q)=1$等）</span>
+   <span style="color:blue">（注：于是外测度符合了我们对盒子“测度=体积”的期望，原书中给出了一些集合的外测度计算例子，例如$m^*(\mathbb R)=m^*(\mathbb R\verb|\|\mathbb Q)=+\infty$，$m^*(\mathbb Q)=0$与$m^*([0,1]\verb|\|\mathbb Q)=1$等）</span>
    
    > 推论：
    >
-   > 1. <span style='color:red'>（18.2.7 开盒子的外测度）</span>对于任意的开盒子
+   > 1. <span style="color:red">（18.2.7 开盒子的外测度）</span>对于任意的开盒子
    >    $$
    >    B=\prod_{i=1}^{n}(a_i,b_i):=\{(x_1,...,x_n)\in\mathbb R^n:x_i\in(a_i,b_i);1\leq i\leq n\}
    >    $$
@@ -84,7 +87,7 @@ coverHeight: 320px
 
 ## 课后习题
 
-##### 18.2.1 证明引理18.2.5<span style='color:blue'>（提示：你必须使用下确界的定义，而且还可能需要引入参数$\varepsilon$。你需要把某些外测度等于$+\infty$的情况分开来处理。(f)可以从(e)和(a)中推到出来。对于(e)，把指标集$J$记作$J=\{j_1,j_2,j_3,...\}$。另外，对于每一个$A_j$，用一簇总体积之和不超过$m^*(A_j)+\varepsilon/2^j$的盒子来覆盖$A_j$）</span>
+##### 18.2.1 证明引理18.2.5<span style="color:blue">（提示：你必须使用下确界的定义，而且还可能需要引入参数$\varepsilon$。你需要把某些外测度等于$+\infty$的情况分开来处理。(f)可以从(e)和(a)中推到出来。对于(e)，把指标集$J$记作$J=\{j_1,j_2,j_3,...\}$。另外，对于每一个$A_j$，用一簇总体积之和不超过$m^*(A_j)+\varepsilon/2^j$的盒子来覆盖$A_j$）</span>
 
 > 1. 空集$\varnothing$的外测度是$m^*(\varnothing)=0$。
 >
@@ -168,7 +171,7 @@ coverHeight: 320px
 > $$
 > 由于这两个集合是相同的，因此它们也应该有相同的下确界，即有$m^*(x+\Omega)=m^*(\Omega)$成立，结论得证。
 
-##### 18.2.2 设$A$是$\mathbb R^n$的子集，并设$B$是$\mathbb R^m$的子集，那么注意到，笛卡尔积$A\times B:=\{(a,b):a\in A,b\in B\}$就是$\mathbb R^{n+m}$的子集。证明：$m^*_{n+m}(A\times B)\leq m^*_{n}(A)m^*_{m}(B)$<span style='color:blue'>（实际上，有$m^*_{n+m}(A\times B)=m^*_{n}(A)m^*_{m}(B)$，但是证明这一点相当困难）</span>
+##### 18.2.2 设$A$是$\mathbb R^n$的子集，并设$B$是$\mathbb R^m$的子集，那么注意到，笛卡尔积$A\times B:=\{(a,b):a\in A,b\in B\}$就是$\mathbb R^{n+m}$的子集。证明：$m^*_{n+m}(A\times B)\leq m^*_{n}(A)m^*_{m}(B)$<span style="color:blue">（实际上，有$m^*_{n+m}(A\times B)=m^*_{n}(A)m^*_{m}(B)$，但是证明这一点相当困难）</span>
 
 > 需要分情形讨论证明：
 >
@@ -233,7 +236,7 @@ coverHeight: 320px
 >
 > 综上，于是结论得证。
 
-###### 在习题18.2.3~18.2.5中，我们假设$\mathbb R^n$是一个欧几里得空间，并假设在$\mathbb R^n$中有可测集的概念<span style='color:blue'>（它可能与勒贝格可测集的概念重合，也可能不重合）</span>和测度的概念<span style='color:blue'>（它可能与勒贝格测度的概念重合，也可能不重合）</span>，并且这个测度满足[公理(i)~(xiii)](../Chap18/Sec1.md)，基于此前提完成下面的习题。
+###### 在习题18.2.3~18.2.5中，我们假设$\mathbb R^n$是一个欧几里得空间，并假设在$\mathbb R^n$中有可测集的概念<span style="color:blue">（它可能与勒贝格可测集的概念重合，也可能不重合）</span>和测度的概念<span style="color:blue">（它可能与勒贝格测度的概念重合，也可能不重合）</span>，并且这个测度满足[公理(i)~(xiii)](../Chap18/Sec1.md)，基于此前提完成下面的习题。
 
 ##### 18.2.3 完成下面的证明
 
@@ -284,7 +287,7 @@ $$
 [0,1/q]^n:=\{(x_1,...,x_n)\in\mathbb R^n:0<x_j<1/q;1\leq j\leq n\}
 $$
 
-##### 的测度都是$q^{-n}$<span style='color:blue'>（提示：首先证明，对于每一个$q\geq 1$都有$m((0,1/q)^n)\leq q^{-n}$，采用的方法是用$(0,1/q)^n$的某些平移来覆盖$(0,1)^n$。按照类似的论述证明$m([0,1/q]^n)\geq q^{-n}$。然后证明，对于任意的$\varepsilon>0$都有$m([0,1/q]^n\verb|\|(0,1/q)^n)\leq\varepsilon$，采用的方法是用一些非常小的盒子来覆盖$[0,1/q]^n$的边界）</span>
+##### 的测度都是$q^{-n}$<span style="color:blue">（提示：首先证明，对于每一个$q\geq 1$都有$m((0,1/q)^n)\leq q^{-n}$，采用的方法是用$(0,1/q)^n$的某些平移来覆盖$(0,1)^n$。按照类似的论述证明$m([0,1/q]^n)\geq q^{-n}$。然后证明，对于任意的$\varepsilon>0$都有$m([0,1/q]^n\verb|\|(0,1/q)^n)\leq\varepsilon$，采用的方法是用一些非常小的盒子来覆盖$[0,1/q]^n$的边界）</span>
 
 > 对任意的有理数序对$(p_1,p_2,...,p_n)$与给定的正整数$q>1$，我们记有
 > $$
@@ -392,7 +395,7 @@ $$
 > $$
 > 于是结论得证。
 
-##### 18.2.5 证明：对于任意的盒子$B$，有$m(B)=\text{vol}(B)$<span style='color:blue'>（提示：首先，利用习题18.2.4去证明当坐标$a_j,b_j$都是有理数时的结论。然后设法取极限，进而得到当坐标都是实数时的一般结论）</span>
+##### 18.2.5 证明：对于任意的盒子$B$，有$m(B)=\text{vol}(B)$<span style="color:blue">（提示：首先，利用习题18.2.4去证明当坐标$a_j,b_j$都是有理数时的结论。然后设法取极限，进而得到当坐标都是实数时的一般结论）</span>
 
 > 我们只需要证明闭盒子的结论，其它的盒子都是类似的。
 >
@@ -439,7 +442,7 @@ $$
 > $$
 > 于是$m(B)=\text{vol}(B)$得证。
 
-##### 18.2.6 利用引理18.2.5和命题18.2.6，给出“实数集是不可数集”的另一种证明<span style='color:blue'>（即重新证明[推论8.3.4](../Chap8/Sec3.md)）</span>
+##### 18.2.6 利用引理18.2.5和命题18.2.6，给出“实数集是不可数集”的另一种证明<span style="color:blue">（即重新证明[推论8.3.4](./Sec2.md)）</span>
 
 > 使用反证法，我们假设$\mathbb R$是一个可数集，那么它的元素可以排列成一个序列$(r_i)_{i=0}^{\infty}$的形式，于是根据正性，可数次可加性与命题18.2.6我们有：
 > $$
@@ -451,6 +454,6 @@ $$
 
 ## 本节相关跳转
 
-[实分析 8.3 不可数集](../Chap8/Sec3.md)
+[实分析 8.3 不可数集](./Sec2.md)
 
 [实分析 18.1 目标：勒贝格测度](../Chap18/Sec1.md)

@@ -4,31 +4,34 @@ space: 实分析
 order:
   - 19
   - 3
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 19.3 绝对可积函数的积分
 
 ## 定义
 
-1. <span style='color:red'>（19.3.1 绝对可积函数）</span>设$\Omega$是$\mathbb R^n$是可测子集。对于可测函数$f:\Omega\to\mathbb R^*$，如果积分$\displaystyle\int_{\Omega}|f|$是有限的，那么我们称$f$是**绝对可积**的。
+1. <span style="color:red">（19.3.1 绝对可积函数）</span>设$\Omega$是$\mathbb R^n$是可测子集。对于可测函数$f:\Omega\to\mathbb R^*$，如果积分$\displaystyle\int_{\Omega}|f|$是有限的，那么我们称$f$是**绝对可积**的。
 
-   <span style='color:blue'>（注：绝对可积函数也被称为$L^{-1}(\Omega)$函数；如果$f:\Omega\to\mathbb R^*$，那么我们把它的**正部**$f^+:\Omega\to[0,\infty]$与**负部**$f^-:\Omega\to[0,\infty]$分别定义为：</span>
+   <span style="color:blue">（注：绝对可积函数也被称为$L^{-1}(\Omega)$函数；如果$f:\Omega\to\mathbb R^*$，那么我们把它的**正部**$f^+:\Omega\to[0,\infty]$与**负部**$f^-:\Omega\to[0,\infty]$分别定义为：</span>
    $$
    \color{blue}{f^+:=\max(f,0)\qquad f^-:=-\min(f,0)}
    $$
-   <span style='color:blue'>根据[推论18.5.6](../Chap18/Sec5.md)可知$f^+$与$f^-$都是可测的，并且显然$f^+$和$f^-$都是非负函数，同时有$f=f^+-f^-$与$|f|=f^++f^-$成立）</span>
+   <span style="color:blue">根据[推论18.5.6](../Chap18/Sec5.md)可知$f^+$与$f^-$都是可测的，并且显然$f^+$和$f^-$都是非负函数，同时有$f=f^+-f^-$与$|f|=f^++f^-$成立）</span>
 
-2. <span style='color:red'>（19.3.2 勒贝格积分）</span>设$f:\Omega\to\mathbb R^*$是一个绝对可积函数，我们把$f$的勒贝格积分$\displaystyle\int_{\Omega}f$定义为
+2. <span style="color:red">（19.3.2 勒贝格积分）</span>设$f:\Omega\to\mathbb R^*$是一个绝对可积函数，我们把$f$的勒贝格积分$\displaystyle\int_{\Omega}f$定义为
    $$
    \int_{\Omega}f=\int_{\Omega}f^+-\int_{\Omega}f^-
    $$
-   <span style='color:blue'>（注：由于$f$是绝对可积的，因此由于$\displaystyle\int_{\Omega}f^+$与$\displaystyle\int_{\Omega}f^-$都小于等于$\displaystyle\int_{\Omega}|f|$，因此它们都是有限的，从而$\displaystyle\int_{\Omega}f$也总是有限的，不会遇见$+\infty-(+\infty)$这种不确定形式；关于勒贝格积分，我们还有一个常用的**三角不等式**，参见习题19.3.1）</span>
+   <span style="color:blue">（注：由于$f$是绝对可积的，因此由于$\displaystyle\int_{\Omega}f^+$与$\displaystyle\int_{\Omega}f^-$都小于等于$\displaystyle\int_{\Omega}|f|$，因此它们都是有限的，从而$\displaystyle\int_{\Omega}f$也总是有限的，不会遇见$+\infty-(+\infty)$这种不确定形式；关于勒贝格积分，我们还有一个常用的**三角不等式**，参见习题19.3.1）</span>
 
-3. <span style='color:red'>（19.3.5 上勒贝格积分和下勒贝格积分）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R$是一个函数（不一定是可测的）。我们把**上勒贝格积分$\displaystyle\overline{\int}_{\Omega}f$**定义为：
+3. <span style="color:red">（19.3.5 上勒贝格积分和下勒贝格积分）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R$是一个函数（不一定是可测的）。我们把**上勒贝格积分$\displaystyle\overline{\int}_{\Omega}f$**定义为：
    $$
    \overline{\int}_{\Omega}f:=\inf\left\{\int_{\Omega}g:g:\Omega\to\mathbb R是从上方控制f的绝对可积函数\right\}
    $$
@@ -36,36 +39,36 @@ coverHeight: 320px
    $$
    \underline{\int}_{\Omega}f:=\sup\left\{\int_{\Omega}g:g:\Omega\to\mathbb R是从下方控制f的绝对可积函数\right\}
    $$
-   <span style='color:blue'>（注：容易看出$\displaystyle\underline{\int}_{\Omega}f\leq\overline{\int}_{\Omega}f$。当$f$绝对可积时，等式成立，并且其逆命题也成立）</span>
+   <span style="color:blue">（注：容易看出$\displaystyle\underline{\int}_{\Omega}f\leq\overline{\int}_{\Omega}f$。当$f$绝对可积时，等式成立，并且其逆命题也成立）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（19.3.3 勒贝格积分的性质？）</span>设$\Omega$是一个可测集，并设$f:\Omega\to\mathbb R$和$g:\Omega\to\mathbb R$都是绝对可积函数，那么有：
+1. <span style="color:red">（19.3.3 勒贝格积分的性质？）</span>设$\Omega$是一个可测集，并设$f:\Omega\to\mathbb R$和$g:\Omega\to\mathbb R$都是绝对可积函数，那么有：
 
    > 1. 对于任意的实数$c$（正数、零或负数），$cf$是绝对可积的，并且$\displaystyle\int_{\Omega}cf=c\int_{\Omega}f$。
    > 2. 函数$f+g$是绝对可积的，并且$\displaystyle\int_{\Omega}(f+g)=\int_{\Omega}f+\int_{\Omega}g$。
    > 3. 如果对于所有的$x\in\Omega$都有$f(x)\leq g(x)$，那么$\displaystyle\int_{\Omega}f\leq\int_{\Omega}g$。
    > 4. 如果$f(x)=g(x)$几乎对于每一个$x\in\Omega$都成立，那么$\displaystyle\int_{\Omega}f=\int_{\Omega}g$。
 
-2. <span style='color:red'>（19.3.4 勒贝格控制收敛定理）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f_1,f_2,...$是一列从$\Omega$到$\mathbb R^*$的可测函数，而且这个函数序列是逐点收敛的。如果存在一个绝对可积函数$F:\Omega\to[0,\infty]$使得对于所有的$x\in\Omega$和所有的$n=1,2,3,...$都有$|f_n(x)|\leq F(x)$，那么：
+2. <span style="color:red">（19.3.4 勒贝格控制收敛定理）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f_1,f_2,...$是一列从$\Omega$到$\mathbb R^*$的可测函数，而且这个函数序列是逐点收敛的。如果存在一个绝对可积函数$F:\Omega\to[0,\infty]$使得对于所有的$x\in\Omega$和所有的$n=1,2,3,...$都有$|f_n(x)|\leq F(x)$，那么：
    $$
    \int_{\Omega}\lim_{n\to\infty}f=\lim_{n\to\infty}\int_{\Omega}f
    $$
-   <span style='color:blue'>（注：在[19.2节](../Chap19/Sec2.md)中提到过极限运算和积分运算的顺序不能随意交换，而勒贝格控制收敛定理给出了一个允许交换的条件，即只要存在一个从上方控制每一个函数$f_n$的绝对可积函数$F$，那么积分与极限运算的顺序交换就是合理的）</span>
+   <span style="color:blue">（注：在[19.2节](../Chap19/Sec2.md)中提到过极限运算和积分运算的顺序不能随意交换，而勒贝格控制收敛定理给出了一个允许交换的条件，即只要存在一个从上方控制每一个函数$f_n$的绝对可积函数$F$，那么积分与极限运算的顺序交换就是合理的）</span>
    
-3. <span style='color:red'>（19.3.6）</span>设$\Omega$是$\mathbb R^n$的可测子集，$f:\Omega\to\mathbb R$是一个函数（不一定是可测的），并设$A$是一个实数。如果$\displaystyle\overline{\int}_{\Omega}f=\underline{\int}_{\Omega}f=A$，那么$f$是绝对可积的，并且：
+3. <span style="color:red">（19.3.6）</span>设$\Omega$是$\mathbb R^n$的可测子集，$f:\Omega\to\mathbb R$是一个函数（不一定是可测的），并设$A$是一个实数。如果$\displaystyle\overline{\int}_{\Omega}f=\underline{\int}_{\Omega}f=A$，那么$f$是绝对可积的，并且：
    $$
    \int_{\Omega}f=\overline{\int}_{\Omega}f=\underline{\int}_{\Omega}f=A
    $$
-   <span style='color:blue'>（注：原书提到这个引理能给出一些有用的结果，但是压根没给出能证明哪些结果，emmm）</span>
+   <span style="color:blue">（注：原书提到这个引理能给出一些有用的结果，但是压根没给出能证明哪些结果，emmm）</span>
 
 ---
 
 ## 课后习题
 
-##### 19.3.1 证明：只要$\Omega$是$\mathbb R^n$的可测子集，并且$f$是绝对可积的函数，那么就有<span style='color:red'>三角不等式</span>：
+##### 19.3.1 证明：只要$\Omega$是$\mathbb R^n$的可测子集，并且$f$是绝对可积的函数，那么就有<span style="color:red">三角不等式</span>：
 
 $$
 \left|\int_{\Omega}f\right|\leq\int_{\Omega}f^++\int_{\Omega}f^-=\int_{\Omega}|f|
@@ -81,7 +84,7 @@ $$
 > $$
 > 于是三角不等式得证。
 
-##### 19.3.2 证明命题19.3.3<span style='color:blue'>（提示：对于(b)，把$f$、$g$和$f+g$都分成正部与负部，利用引理19.2.10，试着只用非负函数的积分表示所有的量）</span>
+##### 19.3.2 证明命题19.3.3<span style="color:blue">（提示：对于(b)，把$f$、$g$和$f+g$都分成正部与负部，利用引理19.2.10，试着只用非负函数的积分表示所有的量）</span>
 
 > 逐条证明：
 >
@@ -166,7 +169,7 @@ $$
 > $$
 > 从而结合习题19.3.1的三角不等式，我们有$\displaystyle\left|\int_{\Omega}(f-g)\right|\leq\int_{\Omega}|f-g|=0\Longrightarrow\int_{\Omega}(f-g)=0$，从而也即$\displaystyle\int_{\Omega}f=\int_{\Omega}g$得证。
 
-##### 19.3.3 设$f:\mathbb R\to\mathbb R$和$g:\mathbb R\to\mathbb R$都是绝对可积函数，且对于所有的$x\in\mathbb R$都有$f(x)\leq g(x)$，而且$\displaystyle\int_{\mathbb R}f=\int_{\mathbb R}g$。证明：$f(x)=g(x)$几乎对于每一个$x\in\mathbb R$都成立<span style='color:blue'>（即对于$\mathbb R$中除去一个测度为零的集合之外的每一点$x$，都有$f(x)=g(x)$）</span>
+##### 19.3.3 设$f:\mathbb R\to\mathbb R$和$g:\mathbb R\to\mathbb R$都是绝对可积函数，且对于所有的$x\in\mathbb R$都有$f(x)\leq g(x)$，而且$\displaystyle\int_{\mathbb R}f=\int_{\mathbb R}g$。证明：$f(x)=g(x)$几乎对于每一个$x\in\mathbb R$都成立<span style="color:blue">（即对于$\mathbb R$中除去一个测度为零的集合之外的每一点$x$，都有$f(x)=g(x)$）</span>
 
 > 于是我们有$g-f$显然是一个非负的可测函数，并且有：
 > $$

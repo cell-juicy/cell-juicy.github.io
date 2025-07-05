@@ -4,17 +4,20 @@ space: 实分析
 order:
   - 15
   - 4
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 15.4 幂级数的乘法
 
 ## 命题
 
-1. <span style='color:red'>（15.4.1 乘法保持函数的实解析性质？）</span>设$f:(a-r,a+r)\to\mathbb R$和$g:(a-r,a+r)\to\mathbb R$都是$(a-r,a+r)$上的解析函数，它们在$a$处分别有幂级数展开式：
+1. <span style="color:red">（15.4.1 乘法保持函数的实解析性质？）</span>设$f:(a-r,a+r)\to\mathbb R$和$g:(a-r,a+r)\to\mathbb R$都是$(a-r,a+r)$上的解析函数，它们在$a$处分别有幂级数展开式：
    $$
    \begin{gather}
    f(x)=\sum_{n=0}^{\infty}c_n(x-a)^n\\
@@ -27,7 +30,7 @@ coverHeight: 320px
    $$
    其中$\displaystyle e_n:=\sum_{m=0}^{n}c_md_{n-m}$。
 
-   <span style='color:blue'>（注：序列$(e_n)_{n=0}^{\infty}$有时被称为序列$(c_n)_{n=0}^{\infty}$和$(d_n)_{n=0}^{\infty}$的**卷积**，它与[定义14.8.9](..\..\第14章\pdf\实分析 14.8 用多项式一致逼近.pdf)中引入的卷积概念有密切的联系）</span>
+   <span style="color:blue">（注：序列$(e_n)_{n=0}^{\infty}$有时被称为序列$(c_n)_{n=0}^{\infty}$和$(d_n)_{n=0}^{\infty}$的**卷积**，它与[定义14.8.9](..\..\第14章\pdf\实分析 14.8 用多项式一致逼近.pdf)中引入的卷积概念有密切的联系）</span>
 
 ---
 

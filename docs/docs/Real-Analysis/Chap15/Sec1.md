@@ -4,25 +4,28 @@ space: 实分析
 order:
   - 15
   - 1
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 15.1 形式幂级数
 
 ## 定义
 
-1. <span style='color:red'>（15.1.1 形式幂级数）</span>设$a$是一个实数，任何形如
+1. <span style="color:red">（15.1.1 形式幂级数）</span>设$a$是一个实数，任何形如
    $$
    \sum_{n=0}^{\infty}c_n(x-a)^n
    $$
    的级数都可以称为**以**$a$**为中心的形式幂级数**。其中$c_0$，$c_1$，$...$是与$x$无关的实数序列，我们称$c_n$是级数的**第**$n$**个系数**，级数中每一项$c_n(x-a)^n$都是关于实变量$x$的函数。
 
-   <span style='color:blue'>（注：说这些幂级数是形式的是因为还没有具体给出级数收敛在哪些$x$（这是在说什么？））</span>
+   <span style="color:blue">（注：说这些幂级数是形式的是因为还没有具体给出级数收敛在哪些$x$（这是在说什么？））</span>
 
-2. <span style='color:red'>（15.1.3 收敛半径）</span>设$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是一个形式幂级数，则该级数的**收敛半径**$R$定义为：
+2. <span style="color:red">（15.1.3 收敛半径）</span>设$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是一个形式幂级数，则该级数的**收敛半径**$R$定义为：
    $$
    R:=\frac{1}{\displaystyle\limsup_{n\to\infty}|c_n|^{1/n}}
    $$
@@ -32,29 +35,29 @@ coverHeight: 320px
 
 ## 命题
 
-1. <span style='color:red'>（15.1.6）</span>设$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是一个形式幂级数，并且设$R$是该级数的收敛半径，那么有：
+1. <span style="color:red">（15.1.6）</span>设$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是一个形式幂级数，并且设$R$是该级数的收敛半径，那么有：
 
-   > 1. <span style='color:red'>（在收敛半径外发散）</span>如果$x\in\mathbb R$满足$|x-a|>R$，那么对于这个$x$值，级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是发散的。
-   > 2. <span style='color:red'>（在收敛半径内收敛）</span>如果$x\in\mathbb R$满足$|x-a|<R$，那么对于这个$x$值，级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是绝对收敛的。
+   > 1. <span style="color:red">（在收敛半径外发散）</span>如果$x\in\mathbb R$满足$|x-a|>R$，那么对于这个$x$值，级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是发散的。
+   > 2. <span style="color:red">（在收敛半径内收敛）</span>如果$x\in\mathbb R$满足$|x-a|<R$，那么对于这个$x$值，级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是绝对收敛的。
    >
    > 如果我们假定$R>0$（也就是说幂级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$至少在除$a$以外的一点处收敛），然后我们设$f:(a-R,a+R)\to\mathbb R$定义为$\displaystyle f(x):=\sum_{n=0}^{\infty}c_n(x-a)^n$，那么有下面的三条结论成立：
    >
-   > 3. <span style='color:red'>（在收敛半径内收敛）</span>对于任意的$0<r<R$，级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$在紧致区间$[a-r,a+r]$上一致收敛于$f$，
+   > 3. <span style="color:red">（在收敛半径内收敛）</span>对于任意的$0<r<R$，级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$在紧致区间$[a-r,a+r]$上一致收敛于$f$，
    >
-   > 4. <span style='color:red'>（幂级数的微分）</span>函数$f$是在$(a-R,a+R)$上可微的。对任意的$0<r<R$，级数$\displaystyle\sum_{n=1}^{\infty} nc_n(x-a)^{n-1}$在区间$[a-r,a+r]$上一致收敛于$f'$。
+   > 4. <span style="color:red">（幂级数的微分）</span>函数$f$是在$(a-R,a+R)$上可微的。对任意的$0<r<R$，级数$\displaystyle\sum_{n=1}^{\infty} nc_n(x-a)^{n-1}$在区间$[a-r,a+r]$上一致收敛于$f'$。
    >
-   > 5. <span style='color:red'>（幂级数的积分）</span>对任意一个包含在$(a-R,a+R)$内的闭区间$[y,z]$，有
+   > 5. <span style="color:red">（幂级数的积分）</span>对任意一个包含在$(a-R,a+R)$内的闭区间$[y,z]$，有
    >    $$
    >    \int_{[y,z]}f=\sum_{n=0}^{\infty}c_n\frac{(z-a)^{n+1}-(y-a)^{n+1}}{n+1}
    >    $$
    
-   <span style='color:blue'>（注：定理15.1.6的(a)和(b)也给出了一个求收敛半径的方法，即通过审敛法先判断收敛范围，再根据得到的收敛范围获取收敛半径；对$|x-a|=R$的情况，幂级数的收敛性是不确定的，收敛或发散都是有可能的；最后，定理15.1.6并没有说明幂级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是在区间$(a-R,a+R)$上一致收敛的，事实上，这个定理只保证了幂级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是在区间$(a-R,a+R)$上逐点收敛）</span>
+   <span style="color:blue">（注：定理15.1.6的(a)和(b)也给出了一个求收敛半径的方法，即通过审敛法先判断收敛范围，再根据得到的收敛范围获取收敛半径；对$|x-a|=R$的情况，幂级数的收敛性是不确定的，收敛或发散都是有可能的；最后，定理15.1.6并没有说明幂级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是在区间$(a-R,a+R)$上一致收敛的，事实上，这个定理只保证了幂级数$\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$是在区间$(a-R,a+R)$上逐点收敛）</span>
 
 ---
 
 ## 课后习题
 
-##### 15.1.1 证明定理15.1.6<span style='color:blue'>（提示：对(a)和(b)使用根值判别法（[定理7.5.1](../Chap7/Sec5.md)）；对(c)使用魏尔斯特拉斯M判别法（[定理14.5.7](../Chap14/Sec5.md)）；对(d)使用[定理14.7.1](../Chap14/Sec7.md)；对(e)使用[推论14.6.2](../Chap14/Sec6.md)）</span>
+##### 15.1.1 证明定理15.1.6<span style="color:blue">（提示：对(a)和(b)使用根值判别法（[定理7.5.1](./Sec1.md)）；对(c)使用魏尔斯特拉斯M判别法（[定理14.5.7](../Chap14/Sec5.md)）；对(d)使用[定理14.7.1](../Chap14/Sec7.md)；对(e)使用[推论14.6.2](../Chap14/Sec6.md)）</span>
 
 > 在证明前我们需要证明一些辅助结论：
 >
@@ -198,7 +201,7 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 7.5 根值判别法与比值判别法](../Chap7/Sec5.md)
+[实分析 7.5 根值判别法与比值判别法](./Sec1.md)
 
 [实分析 14.5 函数级数与魏尔斯特拉斯M判别法](../Chap14/Sec5.md)
 

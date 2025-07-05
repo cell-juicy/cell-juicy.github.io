@@ -4,17 +4,20 @@ space: 实分析
 order:
   - 14
   - 7
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 14.7 一致收敛和导数
 
 ## 摘录
 
-1. <span style='color:red'>（一致连续保持导数，吗？）</span>在前面几节中我们已经了解到一致收敛能够很好地保持连续性，极限以及积分，因此很自然地我们会设想一致连续是否也能保持导数，具体来说即：如果$f_n$一致收敛于$f$，并且$f_n$都是可微的，那么这是否意味着：
+1. <span style="color:red">（一致连续保持导数，吗？）</span>在前面几节中我们已经了解到一致收敛能够很好地保持连续性，极限以及积分，因此很自然地我们会设想一致连续是否也能保持导数，具体来说即：如果$f_n$一致收敛于$f$，并且$f_n$都是可微的，那么这是否意味着：
 
    1. $f$也是可微的。
    2. $f_n'$也收敛于$f'$。
@@ -27,23 +30,23 @@ coverHeight: 320px
    
    ​    虽然上面的两个想法都非常遗憾的不能成立，但是我们仍然能够找到在某些条件下一致收敛与导数之间的关系。例如，在导函数序列$f_n'$一致收敛的前提下，如果给出原函数序列$f_n$在某点的逐点收敛性，那么我们就可以给出$f_n$的一致收敛性，并且此情景下成立第二个想法。
    
-2. <span style='color:red'>（魏尔斯特拉斯级数）</span>在这里我们给出一个**连续但不可微**的函数例子来破灭对可微与连续等价的幻想，这个特别的例子是由魏尔斯特拉斯发现的。在这个例子中，我们预先假设已经具备了三角函数的相关知识。考虑函数$f:\mathbb R\to\mathbb R$为
+2. <span style="color:red">（魏尔斯特拉斯级数）</span>在这里我们给出一个**连续但不可微**的函数例子来破灭对可微与连续等价的幻想，这个特别的例子是由魏尔斯特拉斯发现的。在这个例子中，我们预先假设已经具备了三角函数的相关知识。考虑函数$f:\mathbb R\to\mathbb R$为
    $$
    f(x):=\sum_{n=1}^{\infty}4^{-n}\cos(32^{n}\pi x)
    $$
-   根据魏尔斯特拉斯M判别法，我们知道该级数是一致收敛的；因为每一个函数$4^{-n}\cos(32^{n}\pi x)$都是连续的，因此$f$也是连续的；但是$f$是不可微的<span style='color:blue'>（参见[习题15.7.10](../Chap15/Sec7.md)）</span>，事实上$f$是在定义域上**处处不可微**的。
+   根据魏尔斯特拉斯M判别法，我们知道该级数是一致收敛的；因为每一个函数$4^{-n}\cos(32^{n}\pi x)$都是连续的，因此$f$也是连续的；但是$f$是不可微的<span style="color:blue">（参见[习题15.7.10](../Chap15/Sec7.md)）</span>，事实上$f$是在定义域上**处处不可微**的。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（14.7.1）</span>设$[a,b]$是一个区间。对于任意的整数$n\geq 1$，设$f_n:[a,b]\to\mathbb R$是一个可微函数，并且其导函数$f_n':[a,b]\to\mathbb R$是连续的。如果导函数序列$f_n'$一致收敛于函数$g:[a,b]\to\mathbb R$，并且存在一点$x_0$使得极限$\displaystyle\lim_{n\to\infty}f_n(x_0)$存在，那么函数序列$f_n$就**一致收敛**于某个可微函数$f$，并且$f$的导函数是$g$。
+1. <span style="color:red">（14.7.1）</span>设$[a,b]$是一个区间。对于任意的整数$n\geq 1$，设$f_n:[a,b]\to\mathbb R$是一个可微函数，并且其导函数$f_n':[a,b]\to\mathbb R$是连续的。如果导函数序列$f_n'$一致收敛于函数$g:[a,b]\to\mathbb R$，并且存在一点$x_0$使得极限$\displaystyle\lim_{n\to\infty}f_n(x_0)$存在，那么函数序列$f_n$就**一致收敛**于某个可微函数$f$，并且$f$的导函数是$g$。
 
-   <span style='color:blue'>（注：这个定理表明：如果$f_n'$是一致收敛的，并且在某个$x_0$处$f_n(x_0)$收敛（也就是说$f_n$在$x_0$处逐点收敛），那么$f_n$也是一致收敛的，并且有$\displaystyle\frac{\text{d}}{\text{d}x}\lim_{n\to\infty}f_n(x)=\lim_{n\to\infty}\frac{\text{d}}{\text{d}x}f_n(x)$；并且事实上，其实不假定$f_n’$是连续函数时这个结论依然成立，这点参考习题14.7.2）</span>
+   <span style="color:blue">（注：这个定理表明：如果$f_n'$是一致收敛的，并且在某个$x_0$处$f_n(x_0)$收敛（也就是说$f_n$在$x_0$处逐点收敛），那么$f_n$也是一致收敛的，并且有$\displaystyle\frac{\text{d}}{\text{d}x}\lim_{n\to\infty}f_n(x)=\lim_{n\to\infty}\frac{\text{d}}{\text{d}x}f_n(x)$；并且事实上，其实不假定$f_n’$是连续函数时这个结论依然成立，这点参考习题14.7.2）</span>
 
    > 推论：
    >
-   > 1. <span style='color:red'>（14.7.3）</span>设$[a,b]$是一个区间。对于任意的整数$n\geq 1$，设$f_n:[a,b]\to\mathbb R$是一个可微函数，并且其导函数$f_n':[a,b]\to\mathbb R$是连续的。如果级数$\displaystyle\sum_{n=1}^{\infty}\Vert f_n'\Vert_\infty$是绝对收敛的，并且存在一点$x_0$使得极限$\displaystyle\sum_{n=1}^{\infty}f_n(x_0)$收敛，那么级数$\displaystyle\sum_{n=1}^{\infty}f_n$在$[a,b]$上一致收敛于某个可微函数，并且对于所有的$x\in[a,b]$，实际上都有：
+   > 1. <span style="color:red">（14.7.3）</span>设$[a,b]$是一个区间。对于任意的整数$n\geq 1$，设$f_n:[a,b]\to\mathbb R$是一个可微函数，并且其导函数$f_n':[a,b]\to\mathbb R$是连续的。如果级数$\displaystyle\sum_{n=1}^{\infty}\Vert f_n'\Vert_\infty$是绝对收敛的，并且存在一点$x_0$使得极限$\displaystyle\sum_{n=1}^{\infty}f_n(x_0)$收敛，那么级数$\displaystyle\sum_{n=1}^{\infty}f_n$在$[a,b]$上一致收敛于某个可微函数，并且对于所有的$x\in[a,b]$，实际上都有：
    >    $$
    >    \frac{\text{d}}{\text{d}x}\sum_{n=1}^{\infty}f_n(x)=\sum_{n=1}^{\infty}\frac{\text{d}}{\text{d}x}f_n(x)
    >    $$
@@ -86,7 +89,7 @@ coverHeight: 320px
 >
 > 综上，于是证明完毕。
 
-##### 14.7.2 不假设$f_n'$是连续函数，证明定理14.7.1<span style='color:blue'>（提示：于是我们无法使用[微积分基本定理](../Chap11/Sec9.md)，但是仍可以使用[平均值定理（推论10.2.9）](../Chap10/Sec2.md)。利用该定理证明若$\displaystyle\sup_{x\in X}|f'_n(x)-f'_m(x)|\leq\varepsilon$，则对所有的$x\in[a,b]$都有$|(f_n(x)-f_m(x))-(f_n(x_0)-f_m(x_0))|\leq\varepsilon|x-x_0|$。然后利用这个结论完成定理14.7.1的证明）</span>
+##### 14.7.2 不假设$f_n'$是连续函数，证明定理14.7.1<span style="color:blue">（提示：于是我们无法使用[微积分基本定理](./Sec7.md)，但是仍可以使用[平均值定理（推论10.2.9）](./Sec7.md)。利用该定理证明若$\displaystyle\sup_{x\in X}|f'_n(x)-f'_m(x)|\leq\varepsilon$，则对所有的$x\in[a,b]$都有$|(f_n(x)-f_m(x))-(f_n(x_0)-f_m(x_0))|\leq\varepsilon|x-x_0|$。然后利用这个结论完成定理14.7.1的证明）</span>
 
 > 勘误：因为没有办法确认导函数的有界性，因此$d_\infty(f_n',f_m')\leq\varepsilon$应该改为$\displaystyle\sup_{x\in X}|f'_n(x)-f'_m(x)|\leq\varepsilon$（尽管这实际上是个没那么容易发觉的错误，笔者还是看了陶本人的博客才知道的）
 >
@@ -220,6 +223,6 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 10.2 局部最大值、局部最小值以及导数](../Chap10/Sec2.md)
+[实分析 10.2 局部最大值、局部最小值以及导数](./Sec7.md)
 
-[实分析 11.9 微积分的两个基本定理](../Chap11/Sec9.md)
+[实分析 11.9 微积分的两个基本定理](./Sec7.md)

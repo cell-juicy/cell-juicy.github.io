@@ -4,54 +4,57 @@ space: 实分析
 order:
   - 14
   - 8
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 14.8 用多项式一致逼近
 
 ## 定义
 
-1. <span style='color:red'>（14.8.1 多项式？）</span>设$[a,b]$是一个区间。$[a,b]$上的**多项式**是形如$\displaystyle f(x):=\sum_{j=0}^{n}c_jx^j$的函数$f:[a,b]\to\mathbb R$，其中$n\geq 0$是整数，$c_0$，$...$，$c_n$都是实数。如果$c_n\ne 0$，那么$n$就称为多项式$f$的**次数**。
-1. <span style='color:red'>（14.8.4 紧支撑函数）</span>设$[a,b]$是一个区间，我们称$f:\mathbb R\to\mathbb R$是**支撑**在$[a,b]$上的，当且仅当对于所有的$x\notin[a,b]$都有$f(x)=0$；我们称$f$是**紧支撑**的，当且仅当它支撑在某个区间$[a,b]$上。如果函数$f$是连续的并且$f$支撑在$[a,b]$上，那么我们定义**反常积分**$\displaystyle\int_{-\infty}^{\infty}f$为$\displaystyle\int_{-\infty}^{\infty}f:=\int_{[a,b]}f$。
+1. <span style="color:red">（14.8.1 多项式？）</span>设$[a,b]$是一个区间。$[a,b]$上的**多项式**是形如$\displaystyle f(x):=\sum_{j=0}^{n}c_jx^j$的函数$f:[a,b]\to\mathbb R$，其中$n\geq 0$是整数，$c_0$，$...$，$c_n$都是实数。如果$c_n\ne 0$，那么$n$就称为多项式$f$的**次数**。
+1. <span style="color:red">（14.8.4 紧支撑函数）</span>设$[a,b]$是一个区间，我们称$f:\mathbb R\to\mathbb R$是**支撑**在$[a,b]$上的，当且仅当对于所有的$x\notin[a,b]$都有$f(x)=0$；我们称$f$是**紧支撑**的，当且仅当它支撑在某个区间$[a,b]$上。如果函数$f$是连续的并且$f$支撑在$[a,b]$上，那么我们定义**反常积分**$\displaystyle\int_{-\infty}^{\infty}f$为$\displaystyle\int_{-\infty}^{\infty}f:=\int_{[a,b]}f$。
 
-   <span style='color:blue'>（注：一个函数完全可以支撑在多个区间上，例如支撑在$[3,4]$上的函数必然也是支撑在$[2,5]$上，这或许会让我们怀疑我们对反常积分的定义是不确定的，但是不难推论出这样的疑虑是没有必要的（参见引理14.8.5））</span>
+   <span style="color:blue">（注：一个函数完全可以支撑在多个区间上，例如支撑在$[3,4]$上的函数必然也是支撑在$[2,5]$上，这或许会让我们怀疑我们对反常积分的定义是不确定的，但是不难推论出这样的疑虑是没有必要的（参见引理14.8.5））</span>
 
-1. <span style='color:red'>（14.8.6 恒等逼近）</span>设$\varepsilon>0$，并设$0<\delta<1$。我们称$f:\mathbb R\to\mathbb R$是$(\varepsilon,\delta)$**恒等逼近**的，当且仅当它满足下面三个性质：
+1. <span style="color:red">（14.8.6 恒等逼近）</span>设$\varepsilon>0$，并设$0<\delta<1$。我们称$f:\mathbb R\to\mathbb R$是$(\varepsilon,\delta)$**恒等逼近**的，当且仅当它满足下面三个性质：
 
    > 1. $f$支撑在$[-1,1]$上，并且对所有的$-1\leq x\leq 1$都有$f(x)\geq 0$。
    > 2. $f$是连续的，并且$\displaystyle\int_{-\infty}^{\infty}f=1$。
    > 3. 对所有的$\delta\leq|x|\leq 1$均有$|f(x)|\leq\varepsilon$。
 
-   <span style='color:blue'>（注：恒等逼近事实上就是用（比较好分析的）连续函数来逼近（间断性很强的）狄拉克$\delta$函数的一种方法）</span>
+   <span style="color:blue">（注：恒等逼近事实上就是用（比较好分析的）连续函数来逼近（间断性很强的）狄拉克$\delta$函数的一种方法）</span>
 
-1. <span style='color:red'>（14.8.9 卷积）</span>设$f:\mathbb R\to\mathbb R$与$g:\mathbb R\to\mathbb R$都是连续的紧支撑函数，我们定义$f$与$g$的**卷积**$f*g:\mathbb R\to\mathbb R$为函数
+1. <span style="color:red">（14.8.9 卷积）</span>设$f:\mathbb R\to\mathbb R$与$g:\mathbb R\to\mathbb R$都是连续的紧支撑函数，我们定义$f$与$g$的**卷积**$f*g:\mathbb R\to\mathbb R$为函数
    $$
    (f*g)(x):=\int_{-\infty}^{\infty}f(y)g(x-y)\text{d}y
    $$
-   <span style='color:blue'>（注：由于$f$和$g$都是连续的紧支撑函数，因此对每一个$x$函数$f(y)g(x-y)$都是连续且紧支撑的，从而上面的定义总是有意义的）</span>
+   <span style="color:blue">（注：由于$f$和$g$都是连续的紧支撑函数，因此对每一个$x$函数$f(y)g(x-y)$都是连续且紧支撑的，从而上面的定义总是有意义的）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（14.8.3 魏尔斯特拉斯逼近定理）</span>设$[a,b]$是一个区间，$f:[a,b]\to\mathbb R$是一个连续函数，并设$\varepsilon>0$是一个实数。那么存在$[a,b]$上的多项式$P$使得$d_{\infty}(P,f)\leq\varepsilon$（即对所有的$x\in[a,b]$都有$|P(x)-f(x)|\leq\varepsilon$）。
+1. <span style="color:red">（14.8.3 魏尔斯特拉斯逼近定理）</span>设$[a,b]$是一个区间，$f:[a,b]\to\mathbb R$是一个连续函数，并设$\varepsilon>0$是一个实数。那么存在$[a,b]$上的多项式$P$使得$d_{\infty}(P,f)\leq\varepsilon$（即对所有的$x\in[a,b]$都有$|P(x)-f(x)|\leq\varepsilon$）。
 
-   <span style='color:blue'>（注：如果我们考虑$P([a,b]\to\mathbb R)$是全体$[a,b]$上多项式组成的空间（带有一致度量$d_{\infty}$），那么魏尔斯特拉斯逼近定理断言了任意一个连续函数$f$都是$P([a,b]\to\mathbb R)$的附着点，从而有$\overline{P([a,b]\to\mathbb R)}=C([a,b]\to\mathbb R)$，也就是说多项式空间在连续函数空间中**依一致拓扑稠密**（关于稠密集的定义，可以参考[维基百科—稠密集](https://zh.m.wikipedia.org/wiki/%E7%A8%A0%E5%AF%86%E9%9B%86)，简单来说就是一个集合是稠密的当且仅当它的闭包是整个空间）；魏尔斯特拉斯逼近定理还有个更广泛的形式叫**斯通-魏尔斯特拉斯逼近定理**，详细内容可以参考[维基百科—斯通-魏尔斯特拉斯逼近定理](https://zh.wikipedia.org/wiki/%E9%AD%8F%E5%B0%94%E6%96%BD%E7%89%B9%E6%8B%89%E6%96%AF%E9%80%BC%E8%BF%91%E5%AE%9A%E7%90%86)，这里的魏尔斯特拉斯逼近定理事实上是第一逼近定理，还有一个有关周期函数与三角函数的第二逼近定理）</span>
+   <span style="color:blue">（注：如果我们考虑$P([a,b]\to\mathbb R)$是全体$[a,b]$上多项式组成的空间（带有一致度量$d_{\infty}$），那么魏尔斯特拉斯逼近定理断言了任意一个连续函数$f$都是$P([a,b]\to\mathbb R)$的附着点，从而有$\overline{P([a,b]\to\mathbb R)}=C([a,b]\to\mathbb R)$，也就是说多项式空间在连续函数空间中**依一致拓扑稠密**（关于稠密集的定义，可以参考[维基百科—稠密集](https://zh.m.wikipedia.org/wiki/%E7%A8%A0%E5%AF%86%E9%9B%86)，简单来说就是一个集合是稠密的当且仅当它的闭包是整个空间）；魏尔斯特拉斯逼近定理还有个更广泛的形式叫**斯通-魏尔斯特拉斯逼近定理**，详细内容可以参考[维基百科—斯通-魏尔斯特拉斯逼近定理](https://zh.wikipedia.org/wiki/%E9%AD%8F%E5%B0%94%E6%96%BD%E7%89%B9%E6%8B%89%E6%96%AF%E9%80%BC%E8%BF%91%E5%AE%9A%E7%90%86)，这里的魏尔斯特拉斯逼近定理事实上是第一逼近定理，还有一个有关周期函数与三角函数的第二逼近定理）</span>
 
-2. <span style='color:red'>（14.8.5 反常积分的唯一性？）</span>设$f:\mathbb R\to\mathbb R$是一个连续函数。如果$f$不仅支撑在区间$[a,b]$上，还支撑在另一个区间$[c,d]$上，那么$\displaystyle\int_{[a,b]}f=\int_{[c,d]}f$。
+2. <span style="color:red">（14.8.5 反常积分的唯一性？）</span>设$f:\mathbb R\to\mathbb R$是一个连续函数。如果$f$不仅支撑在区间$[a,b]$上，还支撑在另一个区间$[c,d]$上，那么$\displaystyle\int_{[a,b]}f=\int_{[c,d]}f$。
 
-3. <span style='color:red'>（14.8.8 多项式可以作为恒等逼近）</span>对每一个$\varepsilon>0$和$0<\delta<1$，都存在一个$[-1,1]$上的多项式$P$是$(\varepsilon,\delta)$恒等逼近的。
+3. <span style="color:red">（14.8.8 多项式可以作为恒等逼近）</span>对每一个$\varepsilon>0$和$0<\delta<1$，都存在一个$[-1,1]$上的多项式$P$是$(\varepsilon,\delta)$恒等逼近的。
 
-   <span style='color:blue'>（注：这是原书为了证明魏尔斯特拉斯逼近定理的第一个关键事实）</span>
+   <span style="color:blue">（注：这是原书为了证明魏尔斯特拉斯逼近定理的第一个关键事实）</span>
 
-4. <span style='color:red'>（14.8.11 卷积的基本性质）</span>设$f:\mathbb R\to\mathbb R$，$g:\mathbb R\to\mathbb R$和$h:\mathbb R\to\mathbb R$都是连续的紧支撑函数，那么下面的命题成立：
+4. <span style="color:red">（14.8.11 卷积的基本性质）</span>设$f:\mathbb R\to\mathbb R$，$g:\mathbb R\to\mathbb R$和$h:\mathbb R\to\mathbb R$都是连续的紧支撑函数，那么下面的命题成立：
 
    > 1. 卷积$f*g$也是连续的紧支撑函数。
    >
-   > 2. <span style='color:red'>（卷积是可交换的）</span>我们有$f*g=g*f$，换言之即：
+   > 2. <span style="color:red">（卷积是可交换的）</span>我们有$f*g=g*f$，换言之即：
    >    $$
    >    \begin{align}
    >    f*g(x)&=\int_{-\infty}^{\infty}f(y)g(x-y)\text{d}y\\
@@ -60,39 +63,39 @@ coverHeight: 320px
    >    \end{align}
    >    $$
    >
-   > 3. <span style='color:red'>（卷积是线性的）</span>我们有$f*(g+h)=f*g+f*h$；另外，对于任意的实数$c$，都有$f*(cg)=(cf)*g=c(f*g)$。
+   > 3. <span style="color:red">（卷积是线性的）</span>我们有$f*(g+h)=f*g+f*h$；另外，对于任意的实数$c$，都有$f*(cg)=(cf)*g=c(f*g)$。
 
-   <span style='color:blue'>（注：卷积其实还有些重要性质。例如，卷积是可结合的，即$(f*g)*h=f*(g*h)$；卷积与导数可交换，当$f$和$g$都可微时，$(f*g)'=f'*g=f*g'$；狄拉克$\delta$函数还满足$f*\delta=\delta*f=f$，但是在接下来的内容中我们用不到这些内容，所以就不在此列出了）</span>
+   <span style="color:blue">（注：卷积其实还有些重要性质。例如，卷积是可结合的，即$(f*g)*h=f*(g*h)$；卷积与导数可交换，当$f$和$g$都可微时，$(f*g)'=f'*g=f*g'$；狄拉克$\delta$函数还满足$f*\delta=\delta*f=f$，但是在接下来的内容中我们用不到这些内容，所以就不在此列出了）</span>
 
-5. <span style='color:red'>（14.8.13 多项式的卷积仍然是多项式）</span>设$f:\mathbb R\to\mathbb R$是支撑在$[0,1]$上的连续函数，$g:\mathbb R\to\mathbb R$是支撑在$[-1,1]$上的连续函数，并设$g$是$[-1,1]$上的多项式。那么$f*g$是$[0,1]$上的多项式。
+5. <span style="color:red">（14.8.13 多项式的卷积仍然是多项式）</span>设$f:\mathbb R\to\mathbb R$是支撑在$[0,1]$上的连续函数，$g:\mathbb R\to\mathbb R$是支撑在$[-1,1]$上的连续函数，并设$g$是$[-1,1]$上的多项式。那么$f*g$是$[0,1]$上的多项式。
 
-   <span style='color:blue'>（注：$f*g$在$[0,1]$之外可能就不是多项式了，这正是原书中为了证明魏尔斯特拉斯逼近定理的第二个关键事实）</span>
+   <span style="color:blue">（注：$f*g$在$[0,1]$之外可能就不是多项式了，这正是原书中为了证明魏尔斯特拉斯逼近定理的第二个关键事实）</span>
 
-6. <span style='color:red'>（14.8.14）</span>设$f:\mathbb R\to\mathbb R$是支撑在$[0,1]$上的连续函数，它以某个实数$M>0$为界。设$\varepsilon>0$，且$0<\delta<1$，它使得只要$x$，$y\in\mathbb R$且$|x-y|<\delta$就有$|f(x)-f(y)|<\varepsilon$，并设$g$是任意一个$(\varepsilon,\delta)$恒等逼近。那么，对所有的$x\in[0,1]$都有
+6. <span style="color:red">（14.8.14）</span>设$f:\mathbb R\to\mathbb R$是支撑在$[0,1]$上的连续函数，它以某个实数$M>0$为界。设$\varepsilon>0$，且$0<\delta<1$，它使得只要$x$，$y\in\mathbb R$且$|x-y|<\delta$就有$|f(x)-f(y)|<\varepsilon$，并设$g$是任意一个$(\varepsilon,\delta)$恒等逼近。那么，对所有的$x\in[0,1]$都有
    $$
    |f*g(x)-f(x)|\leq(1+4M)\varepsilon
    $$
-   <span style='color:blue'>（注：这是原书中为了证明魏尔斯特拉斯逼近定理的第三个关键事实）</span>
+   <span style="color:blue">（注：这是原书中为了证明魏尔斯特拉斯逼近定理的第三个关键事实）</span>
 
    > 推论：
    >
-   > 1. <span style='color:red'>（14.8.15 魏尔斯特拉斯逼近定理 I）</span>设$f:\mathbb R\to\mathbb R$是支撑在$[0,1]$上的连续函数。那么对任意的$\varepsilon>0$，存在一个函数$P:\mathbb R\to\mathbb R$，它是$[0,1]$上的多项式，并且使得$|P(x)-f(x)|\leq\varepsilon$对所有的$x\in[0,1]$都成立。
+   > 1. <span style="color:red">（14.8.15 魏尔斯特拉斯逼近定理 I）</span>设$f:\mathbb R\to\mathbb R$是支撑在$[0,1]$上的连续函数。那么对任意的$\varepsilon>0$，存在一个函数$P:\mathbb R\to\mathbb R$，它是$[0,1]$上的多项式，并且使得$|P(x)-f(x)|\leq\varepsilon$对所有的$x\in[0,1]$都成立。
    >
-   >    <span style='color:blue'>（注：结合上面的三个事实我们就可以得到这个魏尔斯特拉斯逼近定理的预备形式）</span>
+   >    <span style="color:blue">（注：结合上面的三个事实我们就可以得到这个魏尔斯特拉斯逼近定理的预备形式）</span>
 
-7. <span style='color:red'>（14.8.16）</span>设$f:\mathbb R\to\mathbb R$是一个连续函数，它在$[0,1]$的边界上取值为$0$，即$f(0)=f(1)=0$。设$F:\mathbb R\to\mathbb R$是具有如下定义的函数：当$x\in[0,1]$时，$F(x):=f(x)$；当$x\notin[0,1]$时，$F(x):=0$。那么$F$也是连续的。
+7. <span style="color:red">（14.8.16）</span>设$f:\mathbb R\to\mathbb R$是一个连续函数，它在$[0,1]$的边界上取值为$0$，即$f(0)=f(1)=0$。设$F:\mathbb R\to\mathbb R$是具有如下定义的函数：当$x\in[0,1]$时，$F(x):=f(x)$；当$x\notin[0,1]$时，$F(x):=0$。那么$F$也是连续的。
 
-   <span style='color:blue'>（注：这个函数$F$有时被称为$f$的**零延拓**）</span>
+   <span style="color:blue">（注：这个函数$F$有时被称为$f$的**零延拓**）</span>
 
    > 推论：
    >
-   > 1. <span style='color:red'>（14.8.18 魏尔斯特拉斯逼近定理 II）</span>设$f:[0,1]\to\mathbb R$是支撑在$[0,1]$上的连续函数，并且满足$f(0)=f(1)=0$。那么对任意的$\varepsilon>0$，存在一个多项式$P:\mathbb R\to\mathbb R$使得$|P(x)-f(x)|\leq\varepsilon$对所有的$x\in[0,1]$都成立。
+   > 1. <span style="color:red">（14.8.18 魏尔斯特拉斯逼近定理 II）</span>设$f:[0,1]\to\mathbb R$是支撑在$[0,1]$上的连续函数，并且满足$f(0)=f(1)=0$。那么对任意的$\varepsilon>0$，存在一个多项式$P:\mathbb R\to\mathbb R$使得$|P(x)-f(x)|\leq\varepsilon$对所有的$x\in[0,1]$都成立。
    >
-   >    <span style='color:blue'>（注：结合推论14.8.5和引理14.8.16我们就可以得到这个形式的魏尔斯特拉斯逼近定理）</span>
+   >    <span style="color:blue">（注：结合推论14.8.5和引理14.8.16我们就可以得到这个形式的魏尔斯特拉斯逼近定理）</span>
    >
-   > 2. <span style='color:red'>（14.8.19 魏尔斯特拉斯逼近定理 III）</span>设$f:[0,1]\to\mathbb R$是支撑在$[0,1]$上的连续函数。那么对任意的$\varepsilon>0$，存在一个多项式$P:\mathbb R\to\mathbb R$使得$|P(x)-f(x)|\leq\varepsilon$对所有的$x\in[0,1]$都成立。
+   > 2. <span style="color:red">（14.8.19 魏尔斯特拉斯逼近定理 III）</span>设$f:[0,1]\to\mathbb R$是支撑在$[0,1]$上的连续函数。那么对任意的$\varepsilon>0$，存在一个多项式$P:\mathbb R\to\mathbb R$使得$|P(x)-f(x)|\leq\varepsilon$对所有的$x\in[0,1]$都成立。
    >
-   >    <span style='color:blue'>（注：考虑形如$F(x):=f(x)-f(0)-x(f(1)-f(0))$的函数与推论14.8.18就可以得到这个去掉$f(0)=f(1)=0$假设的形式；然后使用这个形式，考虑任意闭区间$[a,b]$上的连续函数$f(x)$，我们考虑定义为$g(x):=f(a+(b-a)x)$的函数$g:[0,1]\to\mathbb R$，根据上面的预备形式我们可以得到一个多项式$Q:[0,1]\to\mathbb R$，然后令$P(y):=Q((y-a)/(b-a))$就可以得到魏尔斯特拉斯逼近定理，这样就完成了魏尔斯特拉斯逼近定理的证明）</span>
+   >    <span style="color:blue">（注：考虑形如$F(x):=f(x)-f(0)-x(f(1)-f(0))$的函数与推论14.8.18就可以得到这个去掉$f(0)=f(1)=0$假设的形式；然后使用这个形式，考虑任意闭区间$[a,b]$上的连续函数$f(x)$，我们考虑定义为$g(x):=f(a+(b-a)x)$的函数$g:[0,1]\to\mathbb R$，根据上面的预备形式我们可以得到一个多项式$Q:[0,1]\to\mathbb R$，然后令$P(y):=Q((y-a)/(b-a))$就可以得到魏尔斯特拉斯逼近定理，这样就完成了魏尔斯特拉斯逼近定理的证明）</span>
 
 ---
 
@@ -124,7 +127,7 @@ coverHeight: 320px
 
 ##### 14.8.2 尝试完成下面的内容
 
-###### (a) 证明：对于任意的实数$0\leq y\leq 1$和任意的自然数$n\geq 0$，$(1-y)^n\geq 1-ny$均成立<span style='color:blue'>（提示：对$n$使用归纳法，或者对$y$求导）</span>
+###### (a) 证明：对于任意的实数$0\leq y\leq 1$和任意的自然数$n\geq 0$，$(1-y)^n\geq 1-ny$均成立<span style="color:blue">（提示：对$n$使用归纳法，或者对$y$求导）</span>
 
 > $n=0$时的结论时显然的，然后根据我们在微分相关章节学到的知识，我们知道对给定的$n>0$，关于$y$的函数$(1-y)^n$与$1-ny$都是在$[0,1]$上可微的，并且对应的它们的导函数$-n(1-y)^{n-1}$与$-n$都是在$[0,1]$上黎曼可积的，于是根据微积分第二基本定理，我们有对任意的$y\in[0,1]$都有：
 > $$
@@ -139,7 +142,7 @@ coverHeight: 320px
 > $$
 > 于是结论得证。
 
-###### (b) 证明：$\displaystyle\int_{-1}^{1}(1-x^2)^n\text{d}x\geq\frac{1}{\sqrt{n}}$<span style='color:blue'>（提示：当$|x|\leq 1/\sqrt{n}$时，利用部分(a)的内容；当$|x|\leq 1/\sqrt{n}$时，只要利用$(1-x^2)^n$是正的就好；本题还可以使用三角替换求解，但是需要你能够明确你正在进行的证明的意义）</span>
+###### (b) 证明：$\displaystyle\int_{-1}^{1}(1-x^2)^n\text{d}x\geq\frac{1}{\sqrt{n}}$<span style="color:blue">（提示：当$|x|\leq 1/\sqrt{n}$时，利用部分(a)的内容；当$|x|\leq 1/\sqrt{n}$时，只要利用$(1-x^2)^n$是正的就好；本题还可以使用三角替换求解，但是需要你能够明确你正在进行的证明的意义）</span>
 
 >  根据(a)的结论与积分的运算定律，我们应该有：
 >  $$
@@ -165,7 +168,7 @@ coverHeight: 320px
 >  $$
 >  于是即证明了题目的结论。
 
-###### (c) 证明引理14.8.8<span style='color:blue'>（提示：当$x\in[-1,1]$时，令$f(x)$等于$c(1-x^2)^N$；当$x\notin[-1,1]$时，令$f(x)=0$，其中$N$时一个足够大的数，而$c$使得$f$的积分为$1$，并使用(b)的结论）</span>
+###### (c) 证明引理14.8.8<span style="color:blue">（提示：当$x\in[-1,1]$时，令$f(x)$等于$c(1-x^2)^N$；当$x\notin[-1,1]$时，令$f(x)=0$，其中$N$时一个足够大的数，而$c$使得$f$的积分为$1$，并使用(b)的结论）</span>
 
 > 要证明这个结论，我们需要证明一个辅助结论：
 >
@@ -209,7 +212,7 @@ coverHeight: 320px
 >
 > 于是根据定义14.8.6即有$P$是$(\varepsilon,\delta)$恒等逼近的，引理14.8.8得证。
 
-##### 14.8.3 设$f:\mathbb R\to\mathbb R$是一个连续的紧支撑函数。证明：$f$是有界的，并且是一致连续的<span style='color:blue'>（提示：利用[命题13.3.2](../Chap13/Sec3.md)和[定理13.3.5](../Chap13/Sec3.md)，但是必须先处理$f$的定义域$\mathbb R$不是紧致的这一问题）</span>
+##### 14.8.3 设$f:\mathbb R\to\mathbb R$是一个连续的紧支撑函数。证明：$f$是有界的，并且是一致连续的<span style="color:blue">（提示：利用[命题13.3.2](../Chap13/Sec3.md)和[定理13.3.5](../Chap13/Sec3.md)，但是必须先处理$f$的定义域$\mathbb R$不是紧致的这一问题）</span>
 
 > 先证明$f$是有界的。由于$f$是紧支撑函数，因此存在某个区间$[a,b]$使得对任意$x\notin[a,b]$都有$f(x)=0$；而对$x\in[a,b]$，由于$f$是连续的并且$[a,b]$是紧致的（海涅-博雷尔定理），因此$f([a,b])$也应该是有界的，换言之即存在$M>0$使得$f(x)\in[-M,M]$。考虑到$0$（也就是$f$在$[a,b]$以外的函数值）同样属于$[-M,M]$，于是即对任意$x\in\mathbb R$都有$f(x)\in[-M,M]$，也即$f$是有界的。
 >
@@ -229,7 +232,7 @@ coverHeight: 320px
 >
 > 于是综上我们证明了：对任意的$\varepsilon>0$都存在$\delta>0$使得任意的$x$，$x'\in\mathbb R$满足$|x-x'|\leq\delta$都有$|f(x)-f(x')|\leq\varepsilon$，这表明$f$是在$\mathbb R$上一致连续的，于是结论得证。
 
-##### 14.8.4 证明命题14.8.11<span style='color:blue'>（提示：利用习题14.8.3证明$f*g$是连续的）</span>
+##### 14.8.4 证明命题14.8.11<span style="color:blue">（提示：利用习题14.8.3证明$f*g$是连续的）</span>
 
 > 由于函数支撑在区间上这个概念本身的性质，我们知道即使$f$，$g$，$h$支撑在三个完全不同的区间$[a,b]$，$[c,d]$，$[e,f]$上我们也可以选择一个足够大的区间（例如$[\min\{a,b,c,d,e,f\},\max\{a,b,c,d,e,f\}]$）使得$f$，$g$，$h$同时支撑在这个区间上，因此不失一般性地我们可以假设$f$，$g$，$h$支撑在同一个区间$[a,b]$上。然后逐条证明。
 >
@@ -355,7 +358,7 @@ coverHeight: 320px
 > $$
 > 综上即有$\displaystyle 1-2\varepsilon\leq\int_{[-\delta,\delta]}g\leq 1$，于是结论证明完毕。
 
-###### (b) 证明引理14.8.14<span style='color:blue'>（提示：从下面的恒等式入手</span>
+###### (b) 证明引理14.8.14<span style="color:blue">（提示：从下面的恒等式入手</span>
 
 $$
 \color{blue}\begin{align}
@@ -365,7 +368,7 @@ f*g(x)&=\int_{-\infty}^{\infty}f(x-y)g(y)\text{d}y\\
 \end{align}
 $$
 
-###### <span style='color:blue'>解题的思路是证明第二个积分接近于$f(x)$，而第一和第三个积分都非常小。为了完成第一个任务，利用(a)以及$f(x)$和$f(x-y)$之间的距离不超过$\varepsilon$这一事实。为了完成后面的任务，利用恒等逼近的性质(c)以及$f$有界的这一事实）</span>
+###### <span style="color:blue">解题的思路是证明第二个积分接近于$f(x)$，而第一和第三个积分都非常小。为了完成第一个任务，利用(a)以及$f(x)$和$f(x-y)$之间的距离不超过$\varepsilon$这一事实。为了完成后面的任务，利用恒等逼近的性质(c)以及$f$有界的这一事实）</span>
 
 > 根据卷积的定义，即证明对所有的$x\in[0,1]$都有：
 > $$
@@ -409,7 +412,7 @@ $$
 > $$
 > 也就是$\displaystyle\left|\int_{-\infty}^{\infty}f(x-y)g(y)\text{d}y-f(x)\right|\leq(1+4M)\varepsilon$对任意的$x\in[0,1]$都成立。
 
-##### 14.8.7 证明推论14.8.15<span style='color:blue'>（提示：结合使用习题14.8.3、引理14.8.8、引理14.8.13以及引理14.8.14）</span>
+##### 14.8.7 证明推论14.8.15<span style="color:blue">（提示：结合使用习题14.8.3、引理14.8.8、引理14.8.13以及引理14.8.14）</span>
 
 > 由于$f$是连续的紧支撑函数，因此根据习题14.8.3有$f$是有界的和一致连续的，不妨设$f$以$M$为界，然后根据一致连续的定义对给定的$\varepsilon>0$存在某个$\delta>0$使得对任意$x$，$y\in\mathbb R$满足$|x-y|\leq\delta$都有$\displaystyle|f(x)-f(y)|\leq\frac{\varepsilon}{1+4M}$。特别地，不失一般性的我们可以认为$\delta$是满足小于$1$的实数
 >
@@ -423,7 +426,7 @@ $$
 > 
 > 于是推论14.8.15得证。
 
-##### 14.8.8 设$f:[0,1]\to\mathbb R$是一个连续函数，并设对于所有的非负整数$n=0$，$1$，$2$，$...$都有$\displaystyle\int_{[0,1]}f(x)x^n\text{d}x=0$。证明：$f$一定是零函数$f\equiv 0$<span style='color:blue'>（提示：首先证明对所有多项式$P$都有$\displaystyle\int_{[0,1]}f(x)P(x)\text{d}x=0$。然后利用魏尔斯特拉斯逼近定理证明$\displaystyle\int_{[0,1]}f(x)f(x)\text{d}x=0$）</span>
+##### 14.8.8 设$f:[0,1]\to\mathbb R$是一个连续函数，并设对于所有的非负整数$n=0$，$1$，$2$，$...$都有$\displaystyle\int_{[0,1]}f(x)x^n\text{d}x=0$。证明：$f$一定是零函数$f\equiv 0$<span style="color:blue">（提示：首先证明对所有多项式$P$都有$\displaystyle\int_{[0,1]}f(x)P(x)\text{d}x=0$。然后利用魏尔斯特拉斯逼近定理证明$\displaystyle\int_{[0,1]}f(x)f(x)\text{d}x=0$）</span>
 
 > 先证明对所有$[0,1]$上的多项式$P:[0,1]\to\mathbb R$都有$\displaystyle\int_{[0,1]}f(x)P(x)\text{d}x=0$。
 >

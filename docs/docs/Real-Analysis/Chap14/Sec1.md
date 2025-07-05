@@ -4,30 +4,33 @@ space: 实分析
 order:
   - 14
   - 1
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 14.1 函数的极限值
 
 ## 定义
 
-1. <span style='color:red'>（14.1.1 函数的极限值）</span>设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$E$是$X$的子集，并设$f:X\to Y$是一个函数。设$x_0\in X$是$E$的一个附着点且$L\in Y$。若对于任意的$\varepsilon>0$，都存在一个$\delta>0$使得只要$x\in E$满足$d_X(x,x_0)<\delta$，就有$d_Y(f(x),L)<\varepsilon$，那么我们称**当**$x$**沿着**$E$**收敛于**$x_0$**时**$f(x)$**沿着**$Y$**收敛于**$L$，并记作$\displaystyle\lim_{x\to x_0;x\in E}f(x)=L$。
+1. <span style="color:red">（14.1.1 函数的极限值）</span>设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$E$是$X$的子集，并设$f:X\to Y$是一个函数。设$x_0\in X$是$E$的一个附着点且$L\in Y$。若对于任意的$\varepsilon>0$，都存在一个$\delta>0$使得只要$x\in E$满足$d_X(x,x_0)<\delta$，就有$d_Y(f(x),L)<\varepsilon$，那么我们称**当**$x$**沿着**$E$**收敛于**$x_0$**时**$f(x)$**沿着**$Y$**收敛于**$L$，并记作$\displaystyle\lim_{x\to x_0;x\in E}f(x)=L$。
 
-   <span style='color:blue'>（注：在部分教材中这个定义会排除$x=x_0$的情形，于是这时要将上面的定义改为$0<d_X(x,x_0)<\delta$，然后对应的记号改为$\displaystyle\lim_{x\to x_0;x\in E\verb|\|\{x_0\}}f(x)=L$；此外，在[定义13.1.1](../Chap13/Sec1.md)我们定义了连续性的概念，结合此处函数极限值的定义我们不难发现函数$f:X\to Y$在$x_0\in X$处连续当且仅当$\displaystyle\lim_{x\to x_0;x\in X}f(x)=f(x_0)$，这和我们在[第9章](../Chap9/Sec4.md)中的连续函数定义统一（[第9章]((..\..\第9章\md\实分析 9.4 连续函数.md))中先定义的函数极限值再据此给出连续性定义）；当清楚地知道$x$在空间$X$中变动时，我们可以忽略$x\in X$，并将$\displaystyle\lim_{x\to x_0;x\in X}f(x)=L$简写为$\displaystyle\lim_{x\to x_0}f(x)=L$）</span>
+   <span style="color:blue">（注：在部分教材中这个定义会排除$x=x_0$的情形，于是这时要将上面的定义改为$0<d_X(x,x_0)<\delta$，然后对应的记号改为$\displaystyle\lim_{x\to x_0;x\in E\verb|\|\{x_0\}}f(x)=L$；此外，在[定义13.1.1](../Chap13/Sec1.md)我们定义了连续性的概念，结合此处函数极限值的定义我们不难发现函数$f:X\to Y$在$x_0\in X$处连续当且仅当$\displaystyle\lim_{x\to x_0;x\in X}f(x)=f(x_0)$，这和我们在[第9章](./Sec1.md)中的连续函数定义统一（[第9章]((..\..\第9章\md\实分析 9.4 连续函数.md))中先定义的函数极限值再据此给出连续性定义）；当清楚地知道$x$在空间$X$中变动时，我们可以忽略$x\in X$，并将$\displaystyle\lim_{x\to x_0;x\in X}f(x)=L$简写为$\displaystyle\lim_{x\to x_0}f(x)=L$）</span>
 
 ## 命题
 
-1. <span style='color:red'>（14.1.5）</span>设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$E$是$X$的子集，并设$f:X\to Y$是一个函数。设$x_0\in X$是$X$的一个附着点且$L\in Y$。那么下面四个命题在逻辑上是等价的：
+1. <span style="color:red">（14.1.5）</span>设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$E$是$X$的子集，并设$f:X\to Y$是一个函数。设$x_0\in X$是$X$的一个附着点且$L\in Y$。那么下面四个命题在逻辑上是等价的：
 
    > * $\displaystyle\lim_{x\to x_0;x\in E}f(x)=L$。
    > * 对于$E$中任意一个依度量$d_X$收敛于$x_0$的序列$(x^{(n)})_{n=1}^\infty$，序列$(f(x^{(n)}))_{n=1}^\infty$都依度量$d_Y$收敛于$L$。
    > * 对于任意一个包含$L$的开集$V\subset Y$，都存在一个包含$x_0$的开集$U\subset X$使得$f(U\cap E)\subseteq V$。
    > * 如果把函数$g:E\cup\{x_0\}\to Y$定义为$g(x_0):=L$，且当$x\in E\verb|\|\{x_0\}$时$g(x):=f(x)$，那么$g$在$x_0$处是连续的；此外，如果$x_0\in E$，那么$f(x_0)=L$。
 
-   <span style='color:blue'>（注：观察命题14.1.5(b)与[命题12.1.20](../Chap12/Sec1.md)可以很容易得到：当$x$收敛于$x_0$时，函数$f(x)$最多只能收敛于一个极限$L$，这样就保证了函数极限值的唯一性；另一方面，为了保证函数极限值这个概念是有用的，$x_0$时$E$的附着点是必要的。如果$x_0$不是$E$的附着点，那么$x_0$作为$E$的外点当$x$沿着$E$收敛于$x_0$时$f(x)$收敛于$L$的概念本身是虚空的（存在$\varepsilon>0$使得不存在$x\in E$满足$d_X(x,x_0)<\varepsilon$）；如同之前在[12.1节](../Chap12/Sec1.md)中提到的那样，严谨来说函数极限值的定义记号应该写成$\displaystyle d_Y-\lim_{x\to x_0;x\in E}f(x)=L$以表明它是关于具体的度量$d_Y$的，但是一般问题中通常都可以明确$d_Y$从而省略）</span>
+   <span style="color:blue">（注：观察命题14.1.5(b)与[命题12.1.20](../Chap12/Sec1.md)可以很容易得到：当$x$收敛于$x_0$时，函数$f(x)$最多只能收敛于一个极限$L$，这样就保证了函数极限值的唯一性；另一方面，为了保证函数极限值这个概念是有用的，$x_0$时$E$的附着点是必要的。如果$x_0$不是$E$的附着点，那么$x_0$作为$E$的外点当$x$沿着$E$收敛于$x_0$时$f(x)$收敛于$L$的概念本身是虚空的（存在$\varepsilon>0$使得不存在$x\in E$满足$d_X(x,x_0)<\varepsilon$）；如同之前在[12.1节](../Chap12/Sec1.md)中提到的那样，严谨来说函数极限值的定义记号应该写成$\displaystyle d_Y-\lim_{x\to x_0;x\in E}f(x)=L$以表明它是关于具体的度量$d_Y$的，但是一般问题中通常都可以明确$d_Y$从而省略）</span>
 
 ---
 
@@ -68,7 +71,7 @@ coverHeight: 320px
 >
 >综上，于是结论得证。
 
-##### 14.1.2 证明命题14.1.5<span style='color:blue'>（提示：回顾[定理13.1.4](../Chap13/Sec1.md)的证明）</span>
+##### 14.1.2 证明命题14.1.5<span style="color:blue">（提示：回顾[定理13.1.4](../Chap13/Sec1.md)的证明）</span>
 
 > 我们只需要证明这四个命题可以推导彼此即可，于是即证明：
 >
@@ -120,7 +123,7 @@ coverHeight: 320px
 >
 > 综上，于是结论得证。
 
-##### 14.1.3 根据命题14.1.5(c)，定义从一个拓扑空间$(X,\mathcal{F}_X)$到另一个拓扑空间$(Y,\mathcal{F}_Y)$的函数$f:X\to Y$的极限值的概念。然后证明：命题14.1.5(c)和命题14.1.5(d)是等价的。如果$Y$是一个豪斯道夫拓扑空间<span style='color:blue'>（参考[习题13.5.4](../Chap13/Sec5.md)的定义）</span>，证明：注14.1.6的类比成立。如果$Y$不是豪斯道夫空间，那么上述结论还成立吗
+##### 14.1.3 根据命题14.1.5(c)，定义从一个拓扑空间$(X,\mathcal{F}_X)$到另一个拓扑空间$(Y,\mathcal{F}_Y)$的函数$f:X\to Y$的极限值的概念。然后证明：命题14.1.5(c)和命题14.1.5(d)是等价的。如果$Y$是一个豪斯道夫拓扑空间<span style="color:blue">（参考[习题13.5.4](../Chap13/Sec5.md)的定义）</span>，证明：注14.1.6的类比成立。如果$Y$不是豪斯道夫空间，那么上述结论还成立吗
 
 > 注14.1.6的内容：
 >
@@ -186,7 +189,7 @@ coverHeight: 320px
 >
 > 于是可以看到，根据我们在上面叙述的定义即有$\displaystyle\lim_{x\to 0;x\in\mathbb R}f(x)=x$，这显然是不满足注14.1.6的类比的要求的。
 
-##### 14.1.4 回顾[习题13.5.5](../Chap13/Sec5.md)可知，广义实直线$\mathbb R^*$具有一个标准拓扑（序拓扑）。我们把自然数$\mathbb N$看作这个拓扑空间的子空间，并把$+\infty$看作$\mathbb N$在$\mathbb R^*$中的附着点。设$(a_n)_{n=0}^\infty$是在拓扑空间$(Y,\mathcal{F}_Y)$中取值的序列，并设$L\in Y$。证明：$\displaystyle\lim_{n\to+\infty;n\in\mathbb N}a_n=L$<span style='color:blue'>（在习题14.1.3的意义下）</span>当且仅当$\displaystyle\lim_{n\to\infty}a_n=L$<span style='color:blue'>（在[定义13.5.4](../Chap13/Sec5.md)的意义下）</span>。这表明序列的极限值的概念和函数的极限值的概念是一致的<span style='color:blue'>（byd选学章节一直引用是吧）</span>
+##### 14.1.4 回顾[习题13.5.5](../Chap13/Sec5.md)可知，广义实直线$\mathbb R^*$具有一个标准拓扑（序拓扑）。我们把自然数$\mathbb N$看作这个拓扑空间的子空间，并把$+\infty$看作$\mathbb N$在$\mathbb R^*$中的附着点。设$(a_n)_{n=0}^\infty$是在拓扑空间$(Y,\mathcal{F}_Y)$中取值的序列，并设$L\in Y$。证明：$\displaystyle\lim_{n\to+\infty;n\in\mathbb N}a_n=L$<span style="color:blue">（在习题14.1.3的意义下）</span>当且仅当$\displaystyle\lim_{n\to\infty}a_n=L$<span style="color:blue">（在[定义13.5.4](../Chap13/Sec5.md)的意义下）</span>。这表明序列的极限值的概念和函数的极限值的概念是一致的<span style="color:blue">（byd选学章节一直引用是吧）</span>
 
 > 我们需要证明一个辅助结论：
 >
@@ -231,7 +234,7 @@ coverHeight: 320px
 >
 > 然后根据命题14.1.5，这表明$\displaystyle\lim_{x\to x_0;x\in E}g\circ f(x)=z_0$。
 
-##### 14.1.6 当$X$是一个度量空间，而不是$\mathbb R$的子集时，叙述并证明[命题9.3.14](../Chap9/Sec3.md)中极限定律的类比<span style='color:blue'>（提示：利用[推论13.2.3](../Chap13/Sec2.md)）</span>
+##### 14.1.6 当$X$是一个度量空间，而不是$\mathbb R$的子集时，叙述并证明[命题9.3.14](./Sec1.md)中极限定律的类比<span style="color:blue">（提示：利用[推论13.2.3](../Chap13/Sec2.md)）</span>
 
 > 我们变叙述边证明我们给出的结论。
 >
@@ -295,9 +298,9 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 9.3 函数的极限值](../Chap9/Sec3.md)
+[实分析 9.3 函数的极限值](./Sec1.md)
 
-[实分析 9.4 连续函数](../Chap9/Sec4.md)
+[实分析 9.4 连续函数](./Sec1.md)
 
 [实分析 12.1 定义和例子](../Chap12/Sec1.md)
 

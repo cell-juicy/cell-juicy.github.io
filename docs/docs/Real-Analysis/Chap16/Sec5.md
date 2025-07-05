@@ -4,33 +4,36 @@ space: 实分析
 order:
   - 16
   - 5
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 16.5 傅里叶定理和Plancherel定理
 
 ## 命题
 
-1. <span style='color:red'>（16.5.1 傅里叶定理）</span>对于任意的$f\in C(\mathbb R/\mathbb Z;\mathbb C)$，级数$\displaystyle\sum_{n=-\infty}^{\infty}\hat{f}(n)e_n$都依$L^2$度量收敛于$f$。换言之有：
+1. <span style="color:red">（16.5.1 傅里叶定理）</span>对于任意的$f\in C(\mathbb R/\mathbb Z;\mathbb C)$，级数$\displaystyle\sum_{n=-\infty}^{\infty}\hat{f}(n)e_n$都依$L^2$度量收敛于$f$。换言之有：
    $$
    \lim_{N\to\infty}\left\Vert f-\sum_{n=-N}^{N}\hat{f}(n)e_n\right\Vert_2=0
    $$
-   <span style='color:blue'>（注：证明见原书，主要是内积运算与[魏尔斯特拉斯第二逼近定理](../Chap16/Sec4.md)的运用；需要注意的是，这个结论并不能直接简单地推广给逐点收敛和一致收敛，原书中给出了一个简单的结论：额外假定$f$可微可以将结论推广到逐点收敛；额外假定$f$二次连续可微可以将结论推广到一致收敛（证明自然是没有的，可能可以找本三角分析的书看看啥的））</span>
+   <span style="color:blue">（注：证明见原书，主要是内积运算与[魏尔斯特拉斯第二逼近定理](../Chap16/Sec4.md)的运用；需要注意的是，这个结论并不能直接简单地推广给逐点收敛和一致收敛，原书中给出了一个简单的结论：额外假定$f$可微可以将结论推广到逐点收敛；额外假定$f$二次连续可微可以将结论推广到一致收敛（证明自然是没有的，可能可以找本三角分析的书看看啥的））</span>
 
-2. <span style='color:red'>（16.5.3 一致收敛的加强？）</span>设$f\in C(\mathbb R/\mathbb Z;\mathbb C)$，如果级数$\displaystyle\sum_{n=-\infty}^{\infty}|\hat{f}(n)|$是绝对收敛的，那么级数$\displaystyle\sum_{n=-\infty}^{\infty}\hat{f}(n)e_n$就一致收敛于$f$。换言之，我们有：
+2. <span style="color:red">（16.5.3 一致收敛的加强？）</span>设$f\in C(\mathbb R/\mathbb Z;\mathbb C)$，如果级数$\displaystyle\sum_{n=-\infty}^{\infty}|\hat{f}(n)|$是绝对收敛的，那么级数$\displaystyle\sum_{n=-\infty}^{\infty}\hat{f}(n)e_n$就一致收敛于$f$。换言之，我们有：
    $$
    \lim_{N\to\infty}\left\Vert f-\sum_{n=-N}^{N}\hat{f}(n)e_n\right\Vert_\infty=0
    $$
-   <span style='color:blue'>（注：给出了一个增强傅里叶定理的条件，毕竟一般一致收敛总是比依$L^2$度量收敛更好的）</span>
+   <span style="color:blue">（注：给出了一个增强傅里叶定理的条件，毕竟一般一致收敛总是比依$L^2$度量收敛更好的）</span>
 
-3. <span style='color:red'>（16.5.4 Plancherel定理）</span>对$f\in C(\mathbb R/\mathbb Z;\mathbb C)$，级数$\displaystyle\sum_{n=-\infty}^{\infty}|\hat{f}(n)|^2$是绝对收敛的，并且：
+3. <span style="color:red">（16.5.4 Plancherel定理）</span>对$f\in C(\mathbb R/\mathbb Z;\mathbb C)$，级数$\displaystyle\sum_{n=-\infty}^{\infty}|\hat{f}(n)|^2$是绝对收敛的，并且：
    $$
    {\Vert f\Vert_2}^2=\sum_{n=-\infty}^{\infty}|\hat{f}(n)|^2
    $$
-   <span style='color:blue'>（注：也称为**帕塞瓦尔定理**，感觉比起Plancherel定理也没好记到哪去）</span>
+   <span style="color:blue">（注：也称为**帕塞瓦尔定理**，感觉比起Plancherel定理也没好记到哪去）</span>
 
 ---
 
@@ -48,7 +51,7 @@ $$
 \color{gray}{\frac{1}{2}a_0+\sum_{n=1}^{\infty}(a_n\cos(2\pi nx)+b_n\sin(2\pi n x))}
 $$
 
-###### 依$L^2$度量收敛于$f$<span style='color:blue'>（提示：利用傅里叶定理，并把指数函数分解为正弦和余弦函数，把正的$n$项和负的$n$项合起来）</span>
+###### 依$L^2$度量收敛于$f$<span style="color:blue">（提示：利用傅里叶定理，并把指数函数分解为正弦和余弦函数，把正的$n$项和负的$n$项合起来）</span>
 
 >根据傅里叶定理，我们知道对任意的$\varepsilon>0$存在$N_0\geq 0$使得对任意的$N\geq N_0$有：
 >$$
@@ -74,7 +77,7 @@ $$
 >$$
 >从而傅里叶定理事实上等价于题目结论，因此结论成立。
 
-###### (b) 证明：如果$\displaystyle\sum_{n=1}^{\infty}a_n$和$\displaystyle\sum_{n=1}^{\infty}b_n$都是绝对收敛的，那么上述级数不仅依$L^2$度量收敛于$f$，还一致收敛于$f$<span style='color:blue'>（提示：利用定理16.5.3）</span>
+###### (b) 证明：如果$\displaystyle\sum_{n=1}^{\infty}a_n$和$\displaystyle\sum_{n=1}^{\infty}b_n$都是绝对收敛的，那么上述级数不仅依$L^2$度量收敛于$f$，还一致收敛于$f$<span style="color:blue">（提示：利用定理16.5.3）</span>
 
 > 由于$\displaystyle\sum_{n=1}^{\infty}a_n$和$\displaystyle\sum_{n=1}^{\infty}b_n$都是绝对收敛的，因此级数$\displaystyle\sum_{n=1}^{\infty}|a_n|+|b_n|$也是绝对收敛的。然后注意到在(a)的证明中事实上我们已经得到了$\hat{f}(n)=a_n-\text{i}b_n$与$\hat{f}(-n)=a_n+\text{i}b_n$（$n\geq 1$），因此对任意的$N\geq 1$，我们有：
 > $$
@@ -116,7 +119,7 @@ $$
 > $$
 > 依$L^2$度量收敛于$f$，再注意到$\displaystyle\sum_{n=1}^{\infty}a_n=\frac{4}{\pi^2}\sum_{n=1}^{\infty}\frac{1}{n^2}$与$\displaystyle\sum_{n=1}^{\infty}b_n=0$都是绝对收敛的，因此根据习题16.5.1的结论我们知道这个级数也是一致收敛于$f$的，因此结论得证。
 
-###### (b) 推导出$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}$<span style='color:blue'>（提示：计算(a)中级数在$x=0$处的取值）</span>
+###### (b) 推导出$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}$<span style="color:blue">（提示：计算(a)中级数在$x=0$处的取值）</span>
 
 > 根据(a)的结论，我们知道：
 > $$
@@ -124,7 +127,7 @@ $$
 > $$
 > 于是结论得证。
 
-###### (c) 推导出$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^4}=\frac{\pi^4}{90}$<span style='color:blue'>（提示：用指数函数来表述余弦函数，并利用Plancherel定理）</span>
+###### (c) 推导出$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^4}=\frac{\pi^4}{90}$<span style="color:blue">（提示：用指数函数来表述余弦函数，并利用Plancherel定理）</span>
 
 > 在习题16.5.1中我们已经阐述了傅里叶级数与三角函数级数之间的等价关系，因此我们不妨将$f$改写为傅里叶级数的形式：
 > $$
@@ -154,7 +157,7 @@ $$
 \widehat{f*g}(n)=\hat{f}(n)\hat{g}(n)
 $$
 
-##### <span style='color:blue'>（表述此事的一种奇特方式是，傅里叶变换把卷积和乘积<span style='color:red'>缠绕</span>在一起（见过将这个称为傅里叶变换的卷积定理的））</span>
+##### <span style="color:blue">（表述此事的一种奇特方式是，傅里叶变换把卷积和乘积<span style="color:red">缠绕</span>在一起（见过将这个称为傅里叶变换的卷积定理的））</span>
 
 > 设$\displaystyle P=\sum_{m=-M}^{M}c_me_m$（其中$N\geq 0$）。先证明第一个结论，我们有：
 > $$
@@ -198,7 +201,7 @@ $$
 > $$
 > 由于$\varepsilon$是任意的，因此只能有$\left|\widehat{f*g}(n)-\hat{f}(n)\hat{g}(n)\right|=0$，换言之即$\widehat{f*g}(n)=\hat{f}(n)\hat{g}(n)$。
 
-##### 16.5.4 设$f\in C(\mathbb R/\mathbb Z;\mathbb C)$是一个可微函数，并且它的导函数$f'$是连续的。证明：$f'$也属于$C(\mathbb R/\mathbb Z;\mathbb C)$，并且对所有的整数$n$有$\widehat{f'}(n)=2\pi n\text{i}\hat{f}(n)$<span style='color:blue'>（见过称这个为微分定理的，不过有一点不一样）</span>
+##### 16.5.4 设$f\in C(\mathbb R/\mathbb Z;\mathbb C)$是一个可微函数，并且它的导函数$f'$是连续的。证明：$f'$也属于$C(\mathbb R/\mathbb Z;\mathbb C)$，并且对所有的整数$n$有$\widehat{f'}(n)=2\pi n\text{i}\hat{f}(n)$<span style="color:blue">（见过称这个为微分定理的，不过有一点不一样）</span>
 
 > $f'$连续已经在题设中给出，因此只要证明$f'$是$\mathbb Z$周期的那么$f$就属于$C(\mathbb R/\mathbb Z;\mathbb C)$。
 >
@@ -219,19 +222,19 @@ $$
 >
 > 于是结论得证。
 
-##### 16.5.5 设$f,g\in C(\mathbb R/\mathbb Z;\mathbb C)$。证明：<span style='color:red'>帕塞瓦尔恒等式</span>
+##### 16.5.5 设$f,g\in C(\mathbb R/\mathbb Z;\mathbb C)$。证明：<span style="color:red">帕塞瓦尔恒等式</span>
 
 $$
 \mathfrak{R}\int_{0}^{1}f(x)\overline{g(x)}\text{d}x=\mathfrak{R}\sum_{n\in\mathbb Z}\hat{f}(n)\overline{\hat{g}(n)}
 $$
 
-##### <span style='color:blue'>（提示：对$f+g$和$f-g$使用Plancherel定理，然后把两者相减）</span>进而推导出上面的实数部分可以去掉，于是有
+##### <span style="color:blue">（提示：对$f+g$和$f-g$使用Plancherel定理，然后把两者相减）</span>进而推导出上面的实数部分可以去掉，于是有
 
 $$
 \int_{0}^{1}f(x)\overline{g(x)}\text{d}x=\sum_{n\in\mathbb Z}\hat{f}(n)\overline{\hat{g}(n)}
 $$
 
-##### <span style='color:blue'>（提示：利用第一个恒等式，其中的$f$替换成$\text{i}f$）</span>
+##### <span style="color:blue">（提示：利用第一个恒等式，其中的$f$替换成$\text{i}f$）</span>
 
 > 由于$f+g$，$f-g$也属于$C(\mathbb R/\mathbb Z;\mathbb C)$，因此我们分别对它们应用Plancherel定理，有：
 > $$
@@ -296,7 +299,7 @@ $$
 \color{gray}{\lim_{N\to\infty}\int_{[0,L]}\left|f(x)-\sum_{n=-N}^{N}c_n\text{e}^{2\pi\text{i}mx/L}\right|^2\text{d}x=0}
 $$
 
-###### <span style='color:blue'>（提示：对函数$f(Lx)$使用傅里叶定理）</span>
+###### <span style="color:blue">（提示：对函数$f(Lx)$使用傅里叶定理）</span>
 
 > 根据傅里叶定理，因此有级数：
 > $$
@@ -343,7 +346,7 @@ $$
 \color{gray}{\frac{1}{L}\int_{[0,L]}|f(x)|^2\text{d}x=\sum_{n=-\infty}^{\infty}|c_n|^2}
 $$
 
-###### <span style='color:blue'>（提示：对函数$f(Lx)$使用Plancherel定理；上面三个小题刚好是本节三个命题扩展到$L$周期函数的形式）</span>
+###### <span style="color:blue">（提示：对函数$f(Lx)$使用Plancherel定理；上面三个小题刚好是本节三个命题扩展到$L$周期函数的形式）</span>
 
 > 对$g$使用Plancherel定理，我们有：
 > $$

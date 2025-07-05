@@ -4,17 +4,20 @@ space: 实分析
 order:
   - 14
   - 4
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 14.4 一致收敛的度量
 
 ## 定义
 
-1. <span style='color:red'>（14.4.2 有界函数的度量空间）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，我们用$B(X\to Y)$表示从$X$到$Y$的**有界函数空间**<span style='color:blue'>（使用[幂集公理](../Chap3/Sec4.md)与[分类公理](../Chap3/Sec1.md)可以知道这是一个集合）</span>
+1. <span style="color:red">（14.4.2 有界函数的度量空间）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，我们用$B(X\to Y)$表示从$X$到$Y$的**有界函数空间**<span style="color:blue">（使用[幂集公理](./Sec4.md)与[分类公理](./Sec4.md)可以知道这是一个集合）</span>
    $$
    B(X\to Y):=\{f:f:X\to Y是有界函数\}
    $$
@@ -24,16 +27,16 @@ coverHeight: 320px
    $$
    这个度量有时被称为**上确界范数度量**或者$L^{\infty}$**度量**。我们也用$d_{B(X\to Y)}$来表示$d_{\infty}$。
 
-   <span style='color:blue'>（注：由于$f$和$g$都是有界的，因此$d_\infty(f,g)$也总是有限的；我们也可以证明$d_\infty$是一个度量空间，该度量下的收敛性就是函数的一致收敛性（这部分内容可以参考本节习题））</span>
+   <span style="color:blue">（注：由于$f$和$g$都是有界的，因此$d_\infty(f,g)$也总是有限的；我们也可以证明$d_\infty$是一个度量空间，该度量下的收敛性就是函数的一致收敛性（这部分内容可以参考本节习题））</span>
 
-2. <span style='color:red'>（无编号 有界连续函数空间）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，我们令有$C(X\to Y)$表示从$X$到$Y$的**有界连续函数空间**，显然它是$B(X\to Y)$的一个子集。
+2. <span style="color:red">（无编号 有界连续函数空间）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，我们令有$C(X\to Y)$表示从$X$到$Y$的**有界连续函数空间**，显然它是$B(X\to Y)$的一个子集。
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（14.4.4 一致收敛性与$L^{\infty}$度量下的收敛性？）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，$(f^{(n)})_{n=1}^\infty$是$B(X\to Y)$中的函数序列，并设$f$是$B(X\to Y)$中的函数。那么$(f^{(n)})_{n=1}^\infty$依度量$d_{B(X\to Y)}$收敛于$f$，当且仅当$(f^{(n)})_{n=1}^\infty$一致收敛于$f$。
-2. <span style='color:red'>（14.4.5 连续函数空间是完备的）</span>设$(X,d_X)$是一个度量空间，并设$(Y,d_Y)$是一个完备的度量空间，那么空间$(C(X\to Y),d_{B(X\to Y)}|_{C(X\to Y)\times C(X\to Y)})$是$(B(X\to Y),d_{B(X\to Y)})$的一个完备子空间。换言之，$C(X\to Y)$中的每一个柯西函数序列都收敛于$C(X\to Y)$中的一个函数。
+1. <span style="color:red">（14.4.4 一致收敛性与$L^{\infty}$度量下的收敛性？）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，$(f^{(n)})_{n=1}^\infty$是$B(X\to Y)$中的函数序列，并设$f$是$B(X\to Y)$中的函数。那么$(f^{(n)})_{n=1}^\infty$依度量$d_{B(X\to Y)}$收敛于$f$，当且仅当$(f^{(n)})_{n=1}^\infty$一致收敛于$f$。
+2. <span style="color:red">（14.4.5 连续函数空间是完备的）</span>设$(X,d_X)$是一个度量空间，并设$(Y,d_Y)$是一个完备的度量空间，那么空间$(C(X\to Y),d_{B(X\to Y)}|_{C(X\to Y)\times C(X\to Y)})$是$(B(X\to Y),d_{B(X\to Y)})$的一个完备子空间。换言之，$C(X\to Y)$中的每一个柯西函数序列都收敛于$C(X\to Y)$中的一个函数。
 
 ---
 
@@ -101,7 +104,7 @@ coverHeight: 320px
 > $$
 > 于是总结即有：对任意的$\varepsilon>0$，存在一个$N>0$使得对任意$n\geq N$都有$d_\infty(f^{(n)},f)<\varepsilon$。于是根据定义12.1.14即有$(f^{(n)})_{n=1}^\infty$依度量$d_{B(X\to Y)}$收敛于$f$。
 
-##### 14.4.3 证明定理14.4.5<span style='color:blue'>（提示：这个命题的证明与[定理14.3.1](../Chap14/Sec3.md)的证明类似，但不完全相同）</span>
+##### 14.4.3 证明定理14.4.5<span style="color:blue">（提示：这个命题的证明与[定理14.3.1](../Chap14/Sec3.md)的证明类似，但不完全相同）</span>
 
 > 考虑$(f^{(n)})_{n=1}^\infty$是空间$(C(X\to Y),d_{B(X\to Y)}|_{C(X\to Y)\times C(X\to Y)})$中的一个柯西序列。首先我们注意到，对任意的$\varepsilon>0$，由于$(f^{(n)})_{n=1}^\infty$是柯西序列于是存在$N>0$使得对任意的$i$，$j\geq N$都有$d_{B(X\to Y)}(f^{(i)},f^{(j)})<\varepsilon$，于是任意的$x\in X$有：
 > $$
@@ -137,7 +140,7 @@ coverHeight: 320px
 >
 > 综上，我们证明了任意$(f^{(n)})_{n=1}^\infty$是空间$(C(X\to Y),d_{B(X\to Y)}|_{C(X\to Y)\times C(X\to Y)})$中的柯西序列都收敛于某个$f\in C(X\to Y)$，于是根据完备度量空间的定义即有$(C(X\to Y),d_{B(X\to Y)}|_{C(X\to Y)\times C(X\to Y)})$是完备的，题目结论得证。
 
-##### 14.4.4 设$(X,d_X)$和$(Y,d_Y)$都是度量空间，并设$Y^X:=\{f:f:X\to Y\}$是从$X$到$Y$的全体函数的空间<span style='color:blue'>（参见[公理3.10幂集公理](../Chap3/Sec4.md)）</span>。设$x_0\in X$，$V$是$Y$中的开集，并设$V^{(x_0)}\subseteq Y^X$是集合
+##### 14.4.4 设$(X,d_X)$和$(Y,d_Y)$都是度量空间，并设$Y^X:=\{f:f:X\to Y\}$是从$X$到$Y$的全体函数的空间<span style="color:blue">（参见[公理3.10幂集公理](./Sec4.md)）</span>。设$x_0\in X$，$V$是$Y$中的开集，并设$V^{(x_0)}\subseteq Y^X$是集合
 
 $$
 V^{(x_0)}:=\{f\in Y^X:f(x_0)\in V\}
@@ -195,7 +198,7 @@ $$
 >
 > 综上，于是$(Y^X,\mathcal{F})$是一个拓扑空间。
 
-###### (b) 对于每一个自然数$n$，设$f^{(n)}:X\to Y$是从$X$到$Y$的函数，并设$f:X\to Y$是从$X$到$Y$的函数。证明：函数序列$(f^{(n)})_{n=1}^\infty$依拓扑$\mathcal{F}$收敛于$f$<span style='color:blue'>（在[定义13.5.4](../Chap13/Sec5.md)的意义下）</span>，当且仅当$f^{(n)}$逐点收敛于$f$<span style='color:blue'>（在[定义14.2.1](../Chap14/Sec2.md)的意义下）</span>
+###### (b) 对于每一个自然数$n$，设$f^{(n)}:X\to Y$是从$X$到$Y$的函数，并设$f:X\to Y$是从$X$到$Y$的函数。证明：函数序列$(f^{(n)})_{n=1}^\infty$依拓扑$\mathcal{F}$收敛于$f$<span style="color:blue">（在[定义13.5.4](../Chap13/Sec5.md)的意义下）</span>，当且仅当$f^{(n)}$逐点收敛于$f$<span style="color:blue">（在[定义14.2.1](../Chap14/Sec2.md)的意义下）</span>
 
 > 首先我们需要叙述乘积拓扑的一个很显然的辅助结论，这有利于我们的证明：
 >
@@ -236,15 +239,15 @@ $$
 > $$
 > 于是即：对任意$V$是$f$一个邻域，存在一个$N>0$使得对任意$n\geq N$都有$f^{(n)}\in V$。从而根据定义13.5.4，于是函数序列$(f^{(n)})_{n=1}^\infty$是依拓扑$\mathcal{F}$收敛于$f$的。
 
-##### 这里的拓扑$\mathcal{F}$被称为<span style='color:red'>逐点收敛拓扑</span>，原因就不用多说了。它也被称作<span style='color:red'>乘积拓扑</span>。这个习题的结论表明逐点收敛可以看作拓扑空间中更为一般的收敛概念的特殊情形
+##### 这里的拓扑$\mathcal{F}$被称为<span style="color:red">逐点收敛拓扑</span>，原因就不用多说了。它也被称作<span style="color:red">乘积拓扑</span>。这个习题的结论表明逐点收敛可以看作拓扑空间中更为一般的收敛概念的特殊情形
 
 ---
 
 ## 本节相关跳转
 
-[实分析 3.1 基础知识](../Chap3/Sec1.md)
+[实分析 3.1 基础知识](./Sec4.md)
 
-[实分析 3.4 象和逆象](../Chap3/Sec4.md)
+[实分析 3.4 象和逆象](./Sec4.md)
 
 [实分析 13.5 拓扑空间](../Chap13/Sec5.md)
 

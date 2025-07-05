@@ -4,64 +4,67 @@ space: 实分析
 order:
   - 16
   - 2
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 16.2 周期函数的内积
 
 ## 定义
 
-1. <span style='color:red'>（16.2.1 内积）</span>如果$f,g\in C(\mathbb R/\mathbb Z;\mathbb C)$，则我们定义**内积$\langle f,g\rangle$**为：
+1. <span style="color:red">（16.2.1 内积）</span>如果$f,g\in C(\mathbb R/\mathbb Z;\mathbb C)$，则我们定义**内积$\langle f,g\rangle$**为：
    $$
    \langle f,g\rangle:=\int_{[0,1]}f(x)\overline{g(x)}\text{d}x
    $$
-   <span style='color:blue'>（注：为了计算一个复值函数$f(x)=g(x)+\text{i}h(x)$的积分，我们定义$\displaystyle\int_{[a,b]}f:=\int_{[a,b]}g+\text{i}\int_{[a,b]}h$，也就是说分别对实部和虚部作积分。容易验证实值函数的全体微积分基本法则（分部积分法，微积分基本定理和变量替换法等）对复值函数同样成立；然后对于内积，我们需要说明的是上面的定义总是有效的，因为$f,g$都是连续且有界的函数。最后内积一般都是一个复数）</span>
+   <span style="color:blue">（注：为了计算一个复值函数$f(x)=g(x)+\text{i}h(x)$的积分，我们定义$\displaystyle\int_{[a,b]}f:=\int_{[a,b]}g+\text{i}\int_{[a,b]}h$，也就是说分别对实部和虚部作积分。容易验证实值函数的全体微积分基本法则（分部积分法，微积分基本定理和变量替换法等）对复值函数同样成立；然后对于内积，我们需要说明的是上面的定义总是有效的，因为$f,g$都是连续且有界的函数。最后内积一般都是一个复数）</span>
    
-2. <span style='color:red'>（无编号 $L^2$范数）</span>从内积的正性出发，自然地我们可以对任意的函数$f\in C(\mathbb R/\mathbb Z;\mathbb C)$定义它的**$L^2$范数**$\Vert f\Vert_2$为：
+2. <span style="color:red">（无编号 $L^2$范数）</span>从内积的正性出发，自然地我们可以对任意的函数$f\in C(\mathbb R/\mathbb Z;\mathbb C)$定义它的**$L^2$范数**$\Vert f\Vert_2$为：
    $$
    \Vert f\Vert_2:=\sqrt{\langle f,f\rangle}=\left(\int_{[0,1]}f(x)\overline{f(x)}\text{d}x\right)^{1/2}=\left(\int_{[0,1]}|f(x)|^2\text{d}x\right)^{1/2}
    $$
    因此对任意的$f$都有$\Vert f\Vert_2\geq 0$。范数$\Vert f\Vert_2$有时被称为$f$的**均方根**。
 
-   <span style='color:blue'>（注：$L^2$范数与$L^{\infty}$范数之间存在某些联系，我们会在课后习题中揭示这一点）</span>
+   <span style="color:blue">（注：$L^2$范数与$L^{\infty}$范数之间存在某些联系，我们会在课后习题中揭示这一点）</span>
    
-3. <span style='color:red'>（无编号 $L^2$度量）</span>对任意的$f,g\in C(\mathbb R/\mathbb Z;\mathbb C)$，我们定义**$L^2$度量**$d_{L^2}:C(\mathbb R/\mathbb Z;\mathbb C)\times C(\mathbb R/\mathbb Z;\mathbb C)\to\mathbb R^+$有：
+3. <span style="color:red">（无编号 $L^2$度量）</span>对任意的$f,g\in C(\mathbb R/\mathbb Z;\mathbb C)$，我们定义**$L^2$度量**$d_{L^2}:C(\mathbb R/\mathbb Z;\mathbb C)\times C(\mathbb R/\mathbb Z;\mathbb C)\to\mathbb R^+$有：
    $$
    d_{L^2}(f,g):=\Vert f-g\Vert_{2}=\left(\int_{[0,1]}|f(x)-g(x)|^2\text{d}x\right)^{1/2}
    $$
    我们可以验证$d_{L^2}$确实是一个度量，这一部分讨论将放在习题16.2.2中进行。
    
-   <span style='color:blue'>（注：事实上，$L^2$度量与欧几里得空间上的$l^2$度量非常相似，应当将它们放在一起作比较；依$L^2$度量收敛不同于一致收敛与逐点收敛，这一点我们会在习题中说明；最后，$L^2$度量的性质并不如$L^{\infty}$度量好，比如具有$L^2$度量的度量空间$C(\mathbb R/\mathbb Z;\mathbb C)$并不是完备的，但是使用$L^{\infty}$度量时是完备的）</span>
+   <span style="color:blue">（注：事实上，$L^2$度量与欧几里得空间上的$l^2$度量非常相似，应当将它们放在一起作比较；依$L^2$度量收敛不同于一致收敛与逐点收敛，这一点我们会在习题中说明；最后，$L^2$度量的性质并不如$L^{\infty}$度量好，比如具有$L^2$度量的度量空间$C(\mathbb R/\mathbb Z;\mathbb C)$并不是完备的，但是使用$L^{\infty}$度量时是完备的）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（16.2.5 内积的性质？）</span>设$f,g,h\in C(\mathbb R/\mathbb Z;\mathbb C)$，那么有：
+1. <span style="color:red">（16.2.5 内积的性质？）</span>设$f,g,h\in C(\mathbb R/\mathbb Z;\mathbb C)$，那么有：
 
-   > 1. <span style='color:red'>（厄米特性质）</span>$\langle g,f\rangle=\overline{\langle f,g\rangle}$。
-   > 1. <span style='color:red'>（正性）</span>$\langle f,f\rangle\geq 0$，更进一步地$\langle f,f\rangle=0$当且仅当$f=0$（即对所有的$x\in\mathbb R$有$f(x)=0$）。
-   > 1. <span style='color:red'>（关于第一个变量的线性性质）</span>$\langle f+g,h\rangle=\langle f,h\rangle+\langle g,h\rangle$，对任意的复数$c$有$\langle cf,g\rangle=c\langle f,g\rangle$。
-   > 1. <span style='color:red'>（关于第二个变量的反线性性质）</span>$\langle f,g+h\rangle=\langle f,g\rangle+\langle f,h\rangle$，对任意的复数$c$有$\langle f,cg\rangle=\overline{c}\langle f,g\rangle$。
+   > 1. <span style="color:red">（厄米特性质）</span>$\langle g,f\rangle=\overline{\langle f,g\rangle}$。
+   > 1. <span style="color:red">（正性）</span>$\langle f,f\rangle\geq 0$，更进一步地$\langle f,f\rangle=0$当且仅当$f=0$（即对所有的$x\in\mathbb R$有$f(x)=0$）。
+   > 1. <span style="color:red">（关于第一个变量的线性性质）</span>$\langle f+g,h\rangle=\langle f,h\rangle+\langle g,h\rangle$，对任意的复数$c$有$\langle cf,g\rangle=c\langle f,g\rangle$。
+   > 1. <span style="color:red">（关于第二个变量的反线性性质）</span>$\langle f,g+h\rangle=\langle f,g\rangle+\langle f,h\rangle$，对任意的复数$c$有$\langle f,cg\rangle=\overline{c}\langle f,g\rangle$。
 
-2. <span style='color:red'>（16.2.7 $L^2$范数的性质？）</span>设$f,g\in C(\mathbb R/\mathbb Z;\mathbb C)$，那么有：
+2. <span style="color:red">（16.2.7 $L^2$范数的性质？）</span>设$f,g\in C(\mathbb R/\mathbb Z;\mathbb C)$，那么有：
 
-   > 1. <span style='color:red'>（非退化性）</span>$\Vert f\Vert_2=0$，当且仅当$f=0$。
-   > 2. <span style='color:red'>（柯西-施瓦茨不等式）</span>$|\langle f,g\rangle|\leq\Vert f\Vert_2\Vert g\Vert_2$。
-   > 3. <span style='color:red'>（三角不等式）</span>$\Vert f+g\Vert_2\leq\Vert f\Vert_2+\Vert g\Vert_2$。
-   > 4. <span style='color:red'>（毕达哥拉斯定理）</span>如果$\langle f,g\rangle=0$，那么${\Vert f+g\Vert_2}^2={\Vert f\Vert_2}^2+{\Vert g\Vert_2}^2$。
-   > 5. <span style='color:red'>（齐次性）</span>对任意的复数$c$有$\Vert cf\Vert_2=|c|\Vert f\Vert_2$。
+   > 1. <span style="color:red">（非退化性）</span>$\Vert f\Vert_2=0$，当且仅当$f=0$。
+   > 2. <span style="color:red">（柯西-施瓦茨不等式）</span>$|\langle f,g\rangle|\leq\Vert f\Vert_2\Vert g\Vert_2$。
+   > 3. <span style="color:red">（三角不等式）</span>$\Vert f+g\Vert_2\leq\Vert f\Vert_2+\Vert g\Vert_2$。
+   > 4. <span style="color:red">（毕达哥拉斯定理）</span>如果$\langle f,g\rangle=0$，那么${\Vert f+g\Vert_2}^2={\Vert f\Vert_2}^2+{\Vert g\Vert_2}^2$。
+   > 5. <span style="color:red">（齐次性）</span>对任意的复数$c$有$\Vert cf\Vert_2=|c|\Vert f\Vert_2$。
 
-   <span style='color:blue'>（注：根据毕达哥拉斯定理，我们有时称$f$与$g$**相互正交**当且仅当$\langle f,g\rangle=0$）</span>
+   <span style="color:blue">（注：根据毕达哥拉斯定理，我们有时称$f$与$g$**相互正交**当且仅当$\langle f,g\rangle=0$）</span>
 
 ---
 
 ## 课后习题
 
-##### 16.2.1 证明引理16.2.5<span style='color:blue'>（提示：(b)的最后一个部分可能会比较棘手，一个可能的方法是使用反证法，假设$f$不是零函数，然后证明$\displaystyle\int_{[0,1]}|f(x)|^2\text{d}x$是严格正的。如果使用这个方法，你或许需要利用到“$f$是连续的，从而$|f|$也是连续的”这一事实）</span>
+##### 16.2.1 证明引理16.2.5<span style="color:blue">（提示：(b)的最后一个部分可能会比较棘手，一个可能的方法是使用反证法，假设$f$不是零函数，然后证明$\displaystyle\int_{[0,1]}|f(x)|^2\text{d}x$是严格正的。如果使用这个方法，你或许需要利用到“$f$是连续的，从而$|f|$也是连续的”这一事实）</span>
 
 > 我们设$f=f_1+f_2\text{i}$，$g=g_1+g_2\text{i}$和$h=h_1+h_2\text{i}$，其中$f_1,f_2,g_1,g_2,h_1,h_2$都是实值函数。然后逐条证明：
 >
@@ -177,7 +180,7 @@ coverHeight: 320px
 >
 > 于是结论得证。
 
-##### 16.2.2 证明：$C(\mathbb R/\mathbb Z;\mathbb C)$上的$L^2$度量$d_{L^2}$的确使$C(\mathbb R/\mathbb Z;\mathbb C)$成为一个度量空间<span style='color:blue'>（参见[习题12.1.6](../Chap12/Sec1.md)）</span>
+##### 16.2.2 证明：$C(\mathbb R/\mathbb Z;\mathbb C)$上的$L^2$度量$d_{L^2}$的确使$C(\mathbb R/\mathbb Z;\mathbb C)$成为一个度量空间<span style="color:blue">（参见[习题12.1.6](../Chap12/Sec1.md)）</span>
 
 > 于是需要证明：
 >
@@ -296,7 +299,7 @@ coverHeight: 320px
 >
 > 题外话：写题的时候没看到$L^2$度量的定义在引理16.2.7后面，三角不等式的证明可以直接用引理16.2.7解决方便快捷，上面的内容仅作参考。
 
-##### 16.2.3 设$f\in C(\mathbb R/\mathbb Z;\mathbb C)$是一个非零函数。证明：$0<\Vert f\Vert_{2}\leq\Vert f\Vert_{\infty}$。反过来，设$0<A\leq B$都是实数，证明：存在一个非零函数$f\in C(\mathbb R/\mathbb Z;\mathbb C)$使得$\Vert f\Vert_{2}=A$且$\Vert f\Vert_{\infty}=B$<span style='color:blue'>（提示：设$g$是$C(\mathbb R/\mathbb Z;\mathbb C)$中一个非负实值函数，并且$g$不是常数函数，然后考察形如$f=(c+dg)^{1/2}$的函数$f$，其中$c,d>0$是实值常数）</span>
+##### 16.2.3 设$f\in C(\mathbb R/\mathbb Z;\mathbb C)$是一个非零函数。证明：$0<\Vert f\Vert_{2}\leq\Vert f\Vert_{\infty}$。反过来，设$0<A\leq B$都是实数，证明：存在一个非零函数$f\in C(\mathbb R/\mathbb Z;\mathbb C)$使得$\Vert f\Vert_{2}=A$且$\Vert f\Vert_{\infty}=B$<span style="color:blue">（提示：设$g$是$C(\mathbb R/\mathbb Z;\mathbb C)$中一个非负实值函数，并且$g$不是常数函数，然后考察形如$f=(c+dg)^{1/2}$的函数$f$，其中$c,d>0$是实值常数）</span>
 
 > 如果我们考虑定义常数函数$g:\mathbb R\to\mathbb R$有$\displaystyle g(x):=\sup_{y\in[0,1]}f(y)=\Vert f\Vert_{\infty}$，于是对任意的$x\in[0,1]$我们总是有$|f(x)|^2\leq|g(x)|^2$，从而根据积分的运算定律我们有：
 > $$
@@ -347,7 +350,7 @@ coverHeight: 320px
 > $$
 > 可以验证这个$f$是满足题目要求的函数。
 
-##### 16.2.4 证明引理16.2.7<span style='color:blue'>（提示：反复利用引理16.2.5。对于柯西-施瓦茨不等式，从正性$\langle f,f\rangle\geq 0$入手，你或许需要考虑函数$f{\Vert g\Vert_{2}}^2-\langle f,g\rangle g$，然后利用引理16.2.5进行化简。对$\Vert g\Vert_{2}=0$的情况你或许需要单独考察，利用柯西-施瓦茨不等式去证明三角不等式）</span>
+##### 16.2.4 证明引理16.2.7<span style="color:blue">（提示：反复利用引理16.2.5。对于柯西-施瓦茨不等式，从正性$\langle f,f\rangle\geq 0$入手，你或许需要考虑函数$f{\Vert g\Vert_{2}}^2-\langle f,g\rangle g$，然后利用引理16.2.5进行化简。对$\Vert g\Vert_{2}=0$的情况你或许需要单独考察，利用柯西-施瓦茨不等式去证明三角不等式）</span>
 
 > 逐条证明：
 >
@@ -428,7 +431,7 @@ coverHeight: 320px
 > $$
 > 综上，于是结论得证。
 
-##### 16.2.5 找出一个连续周期函数的序列，使得该序列依$L^2$度量收敛于一个不连续的周期函数<span style='color:blue'>（提示：试试收敛于方波函数）</span>
+##### 16.2.5 找出一个连续周期函数的序列，使得该序列依$L^2$度量收敛于一个不连续的周期函数<span style="color:blue">（提示：试试收敛于方波函数）</span>
 
 > 对任意的$n\geq 1$，定义$f_n\in C(\mathbb R/\mathbb Z;\mathbb C)$在$[0,1)$上有：
 > $$
@@ -473,7 +476,7 @@ coverHeight: 320px
 > $$
 > 从而上面的结论即：对任意的$\varepsilon>0$，存在$N\geq 1$使得对任意的$n\geq N$与都有$d_{L^2}(f_n,f)\leq\varepsilon$，也即$f_n$也依$L^2$度量收敛于$f$。
 
-###### (b) 举例：存在序列$f_n$依$L^2$度量收敛于$f$，但不一致收敛于$f$<span style='color:blue'>（提示：取$f=0$，并试着让函数列$f_n$有较大的上确界范数）</span>
+###### (b) 举例：存在序列$f_n$依$L^2$度量收敛于$f$，但不一致收敛于$f$<span style="color:blue">（提示：取$f=0$，并试着让函数列$f_n$有较大的上确界范数）</span>
 
 > 取$f=0$，对任意的$n\geq 0$，考虑$f_n$有：
 > $$
@@ -488,11 +491,11 @@ coverHeight: 320px
 > $$
 > 因此显然有$f_n$依$L^2$度量收敛于$f$，但是又有：对$\varepsilon=0.5>0$，对任意的$n\geq 1$都存在$0.5\in\mathbb R$有$|f_n(0.5)-f(0.5)|=1>0.5$。于是直接依据一致收敛的定义我们知道$f_n$不是一致收敛于$f$的。
 
-###### (c) 举例：存在序列$f_n$依$L^2$度量收敛于$f$，但不逐点收敛于$f$<span style='color:blue'>（提示：取$f=0$，并试着让函数列$f_n$在某一点处较大）</span>
+###### (c) 举例：存在序列$f_n$依$L^2$度量收敛于$f$，但不逐点收敛于$f$<span style="color:blue">（提示：取$f=0$，并试着让函数列$f_n$在某一点处较大）</span>
 
 > 同样用题(b)中的例子，注意到对$0.5$有$\displaystyle\lim_{n\to\infty}f_n(0.5)=1\ne 0(f(0.5))$，从而即$f_n$也不是逐点收敛于$f$的。
 
-###### (d) 举例：存在序列$f_n$逐点收敛于$f$，但不依$L^2$度量收敛于$f$<span style='color:blue'>（提示：取$f=0$，并试着让函数列$f_n$有较大的$L^2$范数）</span>
+###### (d) 举例：存在序列$f_n$逐点收敛于$f$，但不依$L^2$度量收敛于$f$<span style="color:blue">（提示：取$f=0$，并试着让函数列$f_n$有较大的$L^2$范数）</span>
 
 > 取$f=0$，对任意的$n\geq 0$，考虑$f_n$在$[0,1)$上有：
 > $$

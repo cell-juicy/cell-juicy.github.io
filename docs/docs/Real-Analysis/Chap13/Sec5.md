@@ -4,67 +4,70 @@ space: 实分析
 order:
   - 13
   - 5
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
-# 13.5 拓扑空间<span style='color:blue'>（选学）</span>
+# 13.5 拓扑空间<span style="color:blue">（选学）</span>
 
 ## 摘录
 
-1. <span style='color:red'>（度量空间的回顾与拓扑空间的开始）</span>度量空间中我们将**度量**$d$作为基础对象，而对于更具一般性的拓扑空间来说，不存在度量的概念。拓扑空间以**开集簇**作为基本概念。在拓扑空间中，我们从开集入手，因此度量和度量球等在度量空间中有用的定义都是不必要的。不过对于前面章节中的概念（例如收敛，紧致性，连通性等），我们仍然能找到拓扑空间之中的拓展。
+1. <span style="color:red">（度量空间的回顾与拓扑空间的开始）</span>度量空间中我们将**度量**$d$作为基础对象，而对于更具一般性的拓扑空间来说，不存在度量的概念。拓扑空间以**开集簇**作为基本概念。在拓扑空间中，我们从开集入手，因此度量和度量球等在度量空间中有用的定义都是不必要的。不过对于前面章节中的概念（例如收敛，紧致性，连通性等），我们仍然能找到拓扑空间之中的拓展。
 
 ---
 
 ## 定义
 
-1. <span style='color:red'>（13.5.1 拓扑空间）</span>一个**拓扑空间**是一个有序对$(X,\mathcal{F})$，其中$X$是一个集合，而$\mathcal{F}\subset 2^X$是$X$的一个子集簇，该集簇中的元素叫做**开集**。此外，集簇$\mathcal{F}$还必须满足如下性质：
+1. <span style="color:red">（13.5.1 拓扑空间）</span>一个**拓扑空间**是一个有序对$(X,\mathcal{F})$，其中$X$是一个集合，而$\mathcal{F}\subset 2^X$是$X$的一个子集簇，该集簇中的元素叫做**开集**。此外，集簇$\mathcal{F}$还必须满足如下性质：
 
    > * 空集$\varnothing$与整个集合本身$X$都是开集，也即$\varnothing\in\mathcal{F}$与$X\in\mathcal{F}$。
    > * 任意有限多个开集的交都是开集，也即若有$V_1,...,V_n$都是$\mathcal{F}$中的元素，那么$V_1\cap...\cap V_n$也属于$\mathcal F$。
    > * 任意多个（包括无限个）开集的并都是开集，也即若有$(V_\alpha)_{\alpha\in I}$是$\mathcal{F}$中的一簇集合，那么$\displaystyle\bigcup_{\alpha\in I}V_\alpha$也属于$\mathcal F$。
 
-   <span style='color:blue'>（注：因此我们可以看到，任何的度量空间都是一个拓扑空间（我们只要将度量空间中所有的开集组成集合簇与原空间组成序对）。但是不是所有的拓扑空间都能通过度量生成，例如习题13.5.6中的例子）</span>
+   <span style="color:blue">（注：因此我们可以看到，任何的度量空间都是一个拓扑空间（我们只要将度量空间中所有的开集组成集合簇与原空间组成序对）。但是不是所有的拓扑空间都能通过度量生成，例如习题13.5.6中的例子）</span>
 
-2. <span style='color:red'>（13.5.2 邻域）</span>设$(X,\mathcal{F})$是一个拓扑空间，并设$x\in X$。$x$的**邻域**是指$\mathcal{F}$中包含$x$的开集。
+2. <span style="color:red">（13.5.2 邻域）</span>设$(X,\mathcal{F})$是一个拓扑空间，并设$x\in X$。$x$的**邻域**是指$\mathcal{F}$中包含$x$的开集。
 
-   <span style='color:blue'>（注：让我们回到度量空间，考虑某个度量空间$(X,d)$，某个实数$r>0$与某个点$x\in X$，度量球$B(x,r)$就是$x$的一个邻域）</span>
+   <span style="color:blue">（注：让我们回到度量空间，考虑某个度量空间$(X,d)$，某个实数$r>0$与某个点$x\in X$，度量球$B(x,r)$就是$x$的一个邻域）</span>
 
-3. <span style='color:red'>（13.5.4 拓扑收敛）</span>设$m$是一个整数，$(X,\mathcal{F})$是一个拓扑空间，$(x^{(n)})_{n=m}^\infty$是$X$中的点列，并设$x$是$X$中的点。我们称序列$(x^{(n)})_{n=m}^\infty$**收敛于**$x$，当且仅当对于$x$的每一个邻域$V$，都存在$N\geq m$使得对所有的$n\geq N$均有$x^{(n)}\in V$。
+3. <span style="color:red">（13.5.4 拓扑收敛）</span>设$m$是一个整数，$(X,\mathcal{F})$是一个拓扑空间，$(x^{(n)})_{n=m}^\infty$是$X$中的点列，并设$x$是$X$中的点。我们称序列$(x^{(n)})_{n=m}^\infty$**收敛于**$x$，当且仅当对于$x$的每一个邻域$V$，都存在$N\geq m$使得对所有的$n\geq N$均有$x^{(n)}\in V$。
 
-   <span style='color:blue'>（注：这个概念也是同度量空间中收敛的概念是一致的，但是对于拓扑空间中极限是否具有唯一性这个问题，如果拓扑空间满足一个称为**豪斯道夫特性**的性质那么这个问题就是肯定的，对于其它的拓扑空间则不一定）</span>
+   <span style="color:blue">（注：这个概念也是同度量空间中收敛的概念是一致的，但是对于拓扑空间中极限是否具有唯一性这个问题，如果拓扑空间满足一个称为**豪斯道夫特性**的性质那么这个问题就是肯定的，对于其它的拓扑空间则不一定）</span>
 
-4. <span style='color:red'>（13.5.5 内点，外点和边界点）</span>设$(X,\mathcal{F})$是拓扑空间，$E$是$X$的子集，并设$x_0$是$X$中的点。如果存在$x_0$的一个邻域$V$使得$V\subseteq E$，那么我们称$x_0$是$E$的**内点**；如果存在$x_0$的一个邻域$V$使得$V\cap E=\varnothing$，那么我们称$x_0$是$E$的**外点**；如果$x_0$既不是$E$的内点也不是$E$的外点，那么我们称$x_0$是$E$的**边界点**。
+4. <span style="color:red">（13.5.5 内点，外点和边界点）</span>设$(X,\mathcal{F})$是拓扑空间，$E$是$X$的子集，并设$x_0$是$X$中的点。如果存在$x_0$的一个邻域$V$使得$V\subseteq E$，那么我们称$x_0$是$E$的**内点**；如果存在$x_0$的一个邻域$V$使得$V\cap E=\varnothing$，那么我们称$x_0$是$E$的**外点**；如果$x_0$既不是$E$的内点也不是$E$的外点，那么我们称$x_0$是$E$的**边界点**。
 
-   <span style='color:blue'>（注：这个概念也是同度量空间中的概念是一致的）</span>
+   <span style="color:blue">（注：这个概念也是同度量空间中的概念是一致的）</span>
 
-5. <span style='color:red'>（13.5.6 闭包）</span>设$(X,\mathcal{F})$是拓扑空间，$E$是$X$的子集，并设$x_0$是$X$中的点。如果$x_0$的每一个邻域$V$都与$E$有非空的交集，那么我们称$x_0$是$E$的**附着点**。由$E$的全体附着点所构成的集合被称为$E$的**闭包**。记作$\overline{E}$。
+5. <span style="color:red">（13.5.6 闭包）</span>设$(X,\mathcal{F})$是拓扑空间，$E$是$X$的子集，并设$x_0$是$X$中的点。如果$x_0$的每一个邻域$V$都与$E$有非空的交集，那么我们称$x_0$是$E$的**附着点**。由$E$的全体附着点所构成的集合被称为$E$的**闭包**。记作$\overline{E}$。
 
-   <span style='color:blue'>（注：有一个[定理12.2.10](../Chap12/Sec2.md)的部分类比，参见习题13.5.10）</span>
+   <span style="color:blue">（注：有一个[定理12.2.10](../Chap12/Sec2.md)的部分类比，参见习题13.5.10）</span>
 
-6. <span style='color:red'>（无编号 闭集）</span>设$(X,\mathcal{F})$是拓扑空间，$E$是$X$的子集。我们称集合$E$是**闭的**，当且仅当它的补集$X\verb|\|E$是开的（也即$X\verb|\|E\in\mathcal{F}$）。
+6. <span style="color:red">（无编号 闭集）</span>设$(X,\mathcal{F})$是拓扑空间，$E$是$X$的子集。我们称集合$E$是**闭的**，当且仅当它的补集$X\verb|\|E$是开的（也即$X\verb|\|E\in\mathcal{F}$）。
 
-   <span style='color:blue'>（注：由[命题12.2.15(e)](../Chap12/Sec2.md)我们知道这个定义于度量空间中的定义也是一致的，还有部分类比[命题12.2.15](../Chap12/Sec2.md)的命题也是成立的，参见习题13.5.11）</span>
+   <span style="color:blue">（注：由[命题12.2.15(e)](../Chap12/Sec2.md)我们知道这个定义于度量空间中的定义也是一致的，还有部分类比[命题12.2.15](../Chap12/Sec2.md)的命题也是成立的，参见习题13.5.11）</span>
 
-7. <span style='color:red'>（13.5.7 相对拓扑）</span>设$(X,\mathcal{F})$是拓扑空间，并设$Y$是$X$的子集，我们定义$\mathcal{F}_Y:=\{V\cap Y:V\in\mathcal{F}\}$，并称其为由$(X,\mathcal{F})$**导出的**$Y$**上的拓扑**。我们称$(Y,\mathcal{F}_Y)$是$(X,\mathcal{F})$的**拓扑子空间**。
+7. <span style="color:red">（13.5.7 相对拓扑）</span>设$(X,\mathcal{F})$是拓扑空间，并设$Y$是$X$的子集，我们定义$\mathcal{F}_Y:=\{V\cap Y:V\in\mathcal{F}\}$，并称其为由$(X,\mathcal{F})$**导出的**$Y$**上的拓扑**。我们称$(Y,\mathcal{F}_Y)$是$(X,\mathcal{F})$的**拓扑子空间**。
 
-   <span style='color:blue'>（注：事实上$(Y,\mathcal{F}_Y)$就是一个拓扑空间，并且根据[命题12.3.4](../Chap12/Sec3.md)我们知道这个概念于度量空间中相应的概念是一致的）</span>
+   <span style="color:blue">（注：事实上$(Y,\mathcal{F}_Y)$就是一个拓扑空间，并且根据[命题12.3.4](../Chap12/Sec3.md)我们知道这个概念于度量空间中相应的概念是一致的）</span>
 
-8. <span style='color:red'>（13.5.8 连续函数）</span>设$(X,\mathcal{F}_X)$与$(Y,\mathcal{F}_Y)$都是拓扑空间，$f:X\to Y$是一个函数，并设$x_0\in X$。我们称$f$在$x_0$处是**连续的**，当且仅当对于$f(x_0)$的每一个邻域$V$都存在一个$x_0$的邻域$U$使得$f(U)\subseteq V$。我们称$f$是**连续的**，当且仅当$f$在每一点$x\in X$处都连续。
+8. <span style="color:red">（13.5.8 连续函数）</span>设$(X,\mathcal{F}_X)$与$(Y,\mathcal{F}_Y)$都是拓扑空间，$f:X\to Y$是一个函数，并设$x_0\in X$。我们称$f$在$x_0$处是**连续的**，当且仅当对于$f(x_0)$的每一个邻域$V$都存在一个$x_0$的邻域$U$使得$f(U)\subseteq V$。我们称$f$是**连续的**，当且仅当$f$在每一点$x\in X$处都连续。
 
-   <span style='color:blue'>（注：这个定义与[定义13.1.1](../Chap13/Sec1.md)是一致的，对[定理13.1.4](../Chap13/Sec1.md)和[定理13.1.5](../Chap13/Sec1.md)的部分类比是成立的）</span>
+   <span style="color:blue">（注：这个定义与[定义13.1.1](../Chap13/Sec1.md)是一致的，对[定理13.1.4](../Chap13/Sec1.md)和[定理13.1.5](../Chap13/Sec1.md)的部分类比是成立的）</span>
 
-9. <span style='color:red'>（13.5.9 紧致拓扑空间）</span>设$(X,\mathcal{F})$是拓扑空间，如果$X$的每一个开覆盖都有一个有限子覆盖，那么我们称空间$(X,\mathcal{F})$是**紧致的**。设$Y$是$X$的子集，如果$(X,\mathcal{F})$导出的$Y$上的拓扑子空间是紧致的，那么我们称$Y$是**紧致的**。
+9. <span style="color:red">（13.5.9 紧致拓扑空间）</span>设$(X,\mathcal{F})$是拓扑空间，如果$X$的每一个开覆盖都有一个有限子覆盖，那么我们称空间$(X,\mathcal{F})$是**紧致的**。设$Y$是$X$的子集，如果$(X,\mathcal{F})$导出的$Y$上的拓扑子空间是紧致的，那么我们称$Y$是**紧致的**。
 
-   <span style='color:blue'>（注：紧致度量空间中的许多内容在紧致拓扑空间中也是成立的，尤其是[定理13.3.1](../Chap13/Sec3.md)和[命题13.3.2](../Chap13/Sec3.md)；相比于度量空间，遗憾的是拓扑空间中不存在柯西序列，完备空间，有界空间，一致连续等概念；通过逐字重复[定义13.4.1](../Chap13/Sec4.md)和[定义13.4.3](../Chap13/Sec4.md)我们还可以为拓扑空间定义连通性的概念（当然，需要用相对拓扑的概念替换掉[定义12.3.3](../Chap12/Sec3.md)），[13.4节](../Chap13/Sec4.md)中大部分的结论和习题在拓扑空间中仍然成立）</span>
+   <span style="color:blue">（注：紧致度量空间中的许多内容在紧致拓扑空间中也是成立的，尤其是[定理13.3.1](../Chap13/Sec3.md)和[命题13.3.2](../Chap13/Sec3.md)；相比于度量空间，遗憾的是拓扑空间中不存在柯西序列，完备空间，有界空间，一致连续等概念；通过逐字重复[定义13.4.1](../Chap13/Sec4.md)和[定义13.4.3](../Chap13/Sec4.md)我们还可以为拓扑空间定义连通性的概念（当然，需要用相对拓扑的概念替换掉[定义12.3.3](../Chap12/Sec3.md)），[13.4节](../Chap13/Sec4.md)中大部分的结论和习题在拓扑空间中仍然成立）</span>
 
 ---
 
 ## 课后习题
 
-##### 13.5.1 设$X$是一个集合，并设$\mathcal{F}:=\{\varnothing,X\}$。证明：$(X,\mathcal{F})$是一个拓扑空间<span style='color:blue'>（$\mathcal{F}$被称为$X$上的<span style='color:red'>平凡拓扑</span>）</span>；如果$X$中包含不止一个元素，证明：平凡拓扑无法由在$X$上定义一个度量来得到，并证明：这个拓扑空间既是紧致的又是连通的
+##### 13.5.1 设$X$是一个集合，并设$\mathcal{F}:=\{\varnothing,X\}$。证明：$(X,\mathcal{F})$是一个拓扑空间<span style="color:blue">（$\mathcal{F}$被称为$X$上的<span style="color:red">平凡拓扑</span>）</span>；如果$X$中包含不止一个元素，证明：平凡拓扑无法由在$X$上定义一个度量来得到，并证明：这个拓扑空间既是紧致的又是连通的
 
 > 证明：$(X,\mathcal{F})$是一个拓扑空间。
 >
@@ -144,7 +147,7 @@ coverHeight: 320px
 >
 > 于是综上，我们证明了定义12.2.5与定义13.5.5中内点和外点的概念是一致的，从而如最开始所说边界点的概念也是一致的。于是我们证明了题目结论。
 
-##### 13.5.4 设$(X,\mathcal{F})$是一个拓扑空间，如果对于任意两个不同的点$x$，$y\in X$，都存在$x$的邻域$V$和$y$的邻域$W$使得$V\cap W=\varnothing$，那么$(X,\mathcal{F})$就被称为<span style='color:red'>豪斯道夫空间</span>。证明：每一个度量空间生成的拓扑空间都是豪斯道夫空间；证明：平凡拓扑空间不是豪斯道夫空间；证明：对于豪斯道夫空间，[命题12.1.20](../Chap12/Sec1.md)的类比成立；举例：存在非豪斯道夫空间，使得[命题12.1.20](../Chap12/Sec1.md)的类比不成立<span style='color:blue'>（实际上我们遇到的绝大多数拓扑空间都是豪斯道夫空间。非豪斯道夫空间有一些病态倾向，所以研究它们没有多少价值）</span>
+##### 13.5.4 设$(X,\mathcal{F})$是一个拓扑空间，如果对于任意两个不同的点$x$，$y\in X$，都存在$x$的邻域$V$和$y$的邻域$W$使得$V\cap W=\varnothing$，那么$(X,\mathcal{F})$就被称为<span style="color:red">豪斯道夫空间</span>。证明：每一个度量空间生成的拓扑空间都是豪斯道夫空间；证明：平凡拓扑空间不是豪斯道夫空间；证明：对于豪斯道夫空间，[命题12.1.20](../Chap12/Sec1.md)的类比成立；举例：存在非豪斯道夫空间，使得[命题12.1.20](../Chap12/Sec1.md)的类比不成立<span style="color:blue">（实际上我们遇到的绝大多数拓扑空间都是豪斯道夫空间。非豪斯道夫空间有一些病态倾向，所以研究它们没有多少价值）</span>
 
 > 证明：每一个度量空间生成的拓扑空间都是豪斯道夫空间。
 >
@@ -190,7 +193,7 @@ coverHeight: 320px
 >
 > 于是即对任意$x\in\mathbb R$我们都有常数序列$(0)_{n=0}^\infty$收敛于$x$，也就是说在这个非豪斯道夫空间中，序列的极限不是唯一的，命题12.1.20的类比不成立。
 
-##### 13.5.5 设$X$是任意给定的一个全序集，它具有序关系$\leq$。称集合$V\subseteq X$是开的，如果对于任意的$x\in V$，总能在$V$中找到一个区间$\{y\in X:a<y<b\}$，或者一条射线$\{y\in X:a<y\}$，或者一条射线$\{y\in X:y<b\}$（其中$a,b\in X$），或者整个空间$X$，使得$x$被包含在其中并包含于$V$。设$\mathcal{F}$是由$X$中全体开集所构成的集合。证明：$(X,\mathcal{F})$是一个拓扑空间<span style='color:blue'>（其中$\mathcal{F}$被称为全序集$(X,\leq)$上的<span style='color:red'>序拓扑</span>）</span>，并且该空间是习题13.5.4意义下的豪斯道夫空间。证明：在实直线$\mathbb R$上（具有标准的序$\leq$），序拓扑与标准拓扑（即由标准度量生成的拓扑）是一致的。如果考虑将序拓扑应用到广义实数集$\mathbb R^*$上，证明：$\mathbb R$是具有边界$\{-\infty,+\infty\}$的开集。设$(x_n)_{n=1}^\infty$是$\mathbb R$中的序列（从而也是$\mathbb R^*$中的序列），证明：$x_n$收敛于$+\infty$，当且仅当$\displaystyle\liminf_{n\to\infty}x_n=+\infty$；$x_n$收敛于$-\infty$，当且仅当$\displaystyle\limsup_{n\to\infty}x_n=-\infty$
+##### 13.5.5 设$X$是任意给定的一个全序集，它具有序关系$\leq$。称集合$V\subseteq X$是开的，如果对于任意的$x\in V$，总能在$V$中找到一个区间$\{y\in X:a<y<b\}$，或者一条射线$\{y\in X:a<y\}$，或者一条射线$\{y\in X:y<b\}$（其中$a,b\in X$），或者整个空间$X$，使得$x$被包含在其中并包含于$V$。设$\mathcal{F}$是由$X$中全体开集所构成的集合。证明：$(X,\mathcal{F})$是一个拓扑空间<span style="color:blue">（其中$\mathcal{F}$被称为全序集$(X,\leq)$上的<span style="color:red">序拓扑</span>）</span>，并且该空间是习题13.5.4意义下的豪斯道夫空间。证明：在实直线$\mathbb R$上（具有标准的序$\leq$），序拓扑与标准拓扑（即由标准度量生成的拓扑）是一致的。如果考虑将序拓扑应用到广义实数集$\mathbb R^*$上，证明：$\mathbb R$是具有边界$\{-\infty,+\infty\}$的开集。设$(x_n)_{n=1}^\infty$是$\mathbb R$中的序列（从而也是$\mathbb R^*$中的序列），证明：$x_n$收敛于$+\infty$，当且仅当$\displaystyle\liminf_{n\to\infty}x_n=+\infty$；$x_n$收敛于$-\infty$，当且仅当$\displaystyle\limsup_{n\to\infty}x_n=-\infty$
 
 > 证明：$(X,\mathcal{F})$是一个拓扑空间，并且该空间是习题13.5.4意义下的豪斯道夫空间。
 >
@@ -332,7 +335,7 @@ coverHeight: 320px
 > $$
 > 于是结论证明完备，类似地我们也可以证明$x_n$收敛于$-\infty$，当且仅当$\displaystyle\limsup_{n\to\infty}x_n=-\infty$。
 
-##### 13.5.6 设$X$是一个不可数集，并设$\mathcal{F}$是由$X$中所有满足下列条件的子集$E$构成的集簇：$E$要么是空集，要么是余有限的<span style='color:blue'>（也就是说$X\verb|\|E$是有限的）</span>。证明：$(X,\mathcal{F})$是一个拓扑空间<span style='color:blue'>（$\mathcal{F}$被称为$X$上的<span style='color:red'>余有限拓扑</span>）</span>，它不是习题13.5.4意义下的豪斯道夫空间，但它是紧致的连通空间。此外，证明：如果$x\in X$并且$(V_n)_{n=1}^{\infty}$是由可数个包含$x$的开集构成的集簇，那么$\displaystyle\bigcap_{n=1}^{\infty}V_n\ne\{x\}$。据此证明：余有限拓扑空间无法由在$X$上定义一个度量$d$来得到<span style='color:blue'>（提示：在度量空间中，$\displaystyle\bigcap_{n=1}^{\infty}B\left(x,\frac{1}{n}\right)$等于什么）</span>
+##### 13.5.6 设$X$是一个不可数集，并设$\mathcal{F}$是由$X$中所有满足下列条件的子集$E$构成的集簇：$E$要么是空集，要么是余有限的<span style="color:blue">（也就是说$X\verb|\|E$是有限的）</span>。证明：$(X,\mathcal{F})$是一个拓扑空间<span style="color:blue">（$\mathcal{F}$被称为$X$上的<span style="color:red">余有限拓扑</span>）</span>，它不是习题13.5.4意义下的豪斯道夫空间，但它是紧致的连通空间。此外，证明：如果$x\in X$并且$(V_n)_{n=1}^{\infty}$是由可数个包含$x$的开集构成的集簇，那么$\displaystyle\bigcap_{n=1}^{\infty}V_n\ne\{x\}$。据此证明：余有限拓扑空间无法由在$X$上定义一个度量$d$来得到<span style="color:blue">（提示：在度量空间中，$\displaystyle\bigcap_{n=1}^{\infty}B\left(x,\frac{1}{n}\right)$等于什么）</span>
 
 > 证明：$(X,\mathcal{F})$是一个拓扑空间。
 >
@@ -440,7 +443,7 @@ coverHeight: 320px
 >
 > （题外话，证明这个结论只需要利用$(X,\mathcal{F})$是非豪斯道夫空间就行了吧，毕竟我们已经在习题13.5.4中证明了任意的度量空间都是豪斯道夫空间，于是$(X,\mathcal{F})$作为非豪斯道夫空间不应该能够通过任何$X$上的度量导出）
 
-##### 13.5.7 设$X$是一个不可数集，并设$\mathcal{F}$是由$X$中所有满足下列条件的子集$E$构成的集簇：$E$要么是空集，要么是余可数的<span style='color:blue'>（也就是说$X\verb|\|E$是至多可数的）</span>。证明：$(X,\mathcal{F})$是一个拓扑空间<span style='color:blue'>（$\mathcal{F}$被称为$X$上的<span style='color:red'>余可数拓扑</span>）</span>，它不是习题13.5.4意义下的豪斯道夫空间，它是一个连通空间，但它不能由度量空间生成，也不是一个紧致空间
+##### 13.5.7 设$X$是一个不可数集，并设$\mathcal{F}$是由$X$中所有满足下列条件的子集$E$构成的集簇：$E$要么是空集，要么是余可数的<span style="color:blue">（也就是说$X\verb|\|E$是至多可数的）</span>。证明：$(X,\mathcal{F})$是一个拓扑空间<span style="color:blue">（$\mathcal{F}$被称为$X$上的<span style="color:red">余可数拓扑</span>）</span>，它不是习题13.5.4意义下的豪斯道夫空间，它是一个连通空间，但它不能由度量空间生成，也不是一个紧致空间
 
 > 证明：$(X,\mathcal{F})$是一个拓扑空间。
 >
@@ -522,7 +525,7 @@ coverHeight: 320px
 >
 > 综上，于是反证假设不成立，余可数拓扑不可能由$X$上定义一个度量$d$导出。
 
-##### 13.5.8 证明：存在一个不可数的良序集$\omega_1+1$，它的最大元素为$\infty$。并且对任意的$y\in\omega_1+1\verb|\|\{\infty\}$，前段$\{x\in\omega_1+1:x<y\}$都是可数的<span style='color:blue'>（提示：利用[习题8.5.19](../Chap8/Sec5.md)给实数排序，取全体可数前段的并集，然后添加上最大元素$\infty$）</span>。如果给$\omega_1+1$附加上习题13.5.5中的序拓扑，证明：$\omega_1+1$是紧致的，但是并非所有的序列都存在一个收敛的子序列<span style='color:blue'>（于是我们在度量空间中知道的两个紧致性等价描述在拓扑空间内不是等价的）</span>
+##### 13.5.8 证明：存在一个不可数的良序集$\omega_1+1$，它的最大元素为$\infty$。并且对任意的$y\in\omega_1+1\verb|\|\{\infty\}$，前段$\{x\in\omega_1+1:x<y\}$都是可数的<span style="color:blue">（提示：利用[习题8.5.19](./Sec5.md)给实数排序，取全体可数前段的并集，然后添加上最大元素$\infty$）</span>。如果给$\omega_1+1$附加上习题13.5.5中的序拓扑，证明：$\omega_1+1$是紧致的，但是并非所有的序列都存在一个收敛的子序列<span style="color:blue">（于是我们在度量空间中知道的两个紧致性等价描述在拓扑空间内不是等价的）</span>
 
 > 注：本题已经在第三版勘误表中被标记为错误删除，$\omega_1+1$事实上同时是列紧且紧的，详情见：[Analysis II:Errata](https://terrytao.wordpress.com/books/analysis-ii/)。（但是由于这个不可数良序集的存在很有趣，关系到最小不可数基数$\aleph_1$的一些相关内容，所以还是写了一点）
 >
@@ -545,7 +548,7 @@ coverHeight: 320px
 > 于是类似上面的做法，为序关系$\preceq$额外定义对所有的$x\in\mathbb R$都有$x\prec\infty$，然后定义$\omega_1+1:=\omega_1\cup\{\infty\}$，于是我们就得到了要求的不可数良序集$\omega_1+1$。
 >
 
-##### 13.5.9 设$(X,\mathcal{F})$是一个紧致的拓扑空间。假设这个空间是<span style='color:red'>第一可数的</span>，也就是说，对于任意的$x\in X$，存在由$x$的可数个邻域$V_1,V_2,...$构成的邻域簇，使得$x$的任意一个邻域都包含该邻域簇中的一个$V_n$。证明：$X$中的每一个序列都有一个收敛的子序列，从而$X$是序列紧致的<span style='color:blue'>（修改[习题12.5.11](../Chap12/Sec5.md)）</span>，解释这为什么不与习题13.5.8矛盾
+##### 13.5.9 设$(X,\mathcal{F})$是一个紧致的拓扑空间。假设这个空间是<span style="color:red">第一可数的</span>，也就是说，对于任意的$x\in X$，存在由$x$的可数个邻域$V_1,V_2,...$构成的邻域簇，使得$x$的任意一个邻域都包含该邻域簇中的一个$V_n$。证明：$X$中的每一个序列都有一个收敛的子序列，从而$X$是序列紧致的<span style="color:blue">（修改[习题12.5.11](../Chap12/Sec5.md)）</span>，解释这为什么不与习题13.5.8矛盾
 
 > 我们首先需要说明在拓扑空间下序列$(x^{(n)})_{n=m}^\infty$存在一个收敛的子序列意味着什么。为了给出一个明确的概念我们需要尝试将度量空间下“极限点”的概念扩展到拓扑空间，我们定义有：
 >
@@ -612,7 +615,7 @@ coverHeight: 320px
 >
 > 显然我们有对任意的$n\geq 1$都有$x_n\notin V$，换言之即$(x_n)_{n=1}^{\infty}$不是符合收敛要求的序列（于是我们用反证证明了(c)不成立）。但是另一方面，对任意$x_0$的邻域$V$，都应该有$V\cap E\ne\varnothing$（否则有$V\subseteq\mathbb Z$是一个至多可数集，那么它就不可能是余可数的，换言之即$V$不会是余可数拓扑下的一个开集），从而根据定义13.5.6我们知道有$x_0$是$E$的一个附着点（于是我们证明了(a)和(b)同时成立）。
 
-##### 13.5.11 设$E$是拓扑空间$(X,\mathcal{F})$的子集。证明：$E$是开的，当且仅当$E$中的每一个元素都是$E$的内点。$E$是闭的，当且仅当$E$包含其全体附着点。证明：[命题12.2.15(e)~(h)](../Chap12/Sec2.md)的类比成立<span style='color:blue'>（其中某些结论可以由定义直接推出）</span>。如果假设$X$是一个豪斯道夫空间，证明：[命题12.2.15(d)](../Chap12/Sec2.md)的类比也成立。举例说明，当$X$不是豪斯道夫空间空间时，(d)是不成立的
+##### 13.5.11 设$E$是拓扑空间$(X,\mathcal{F})$的子集。证明：$E$是开的，当且仅当$E$中的每一个元素都是$E$的内点。$E$是闭的，当且仅当$E$包含其全体附着点。证明：[命题12.2.15(e)~(h)](../Chap12/Sec2.md)的类比成立<span style="color:blue">（其中某些结论可以由定义直接推出）</span>。如果假设$X$是一个豪斯道夫空间，证明：[命题12.2.15(d)](../Chap12/Sec2.md)的类比也成立。举例说明，当$X$不是豪斯道夫空间空间时，(d)是不成立的
 
 > 贴一下扩展到拓扑空间后命题12.2.15(d)~(e)应该有的样子：
 >
@@ -796,7 +799,7 @@ coverHeight: 320px
 >
 > 根据集合的基本知识我们知道如果一个集合$S$是有限的且基数为$\#(S)$，那么它的全体子集构成的幂集$2^S$也是有限的且基数为$2^{\#(S)}$。根据拓扑空间的定义我们知道任取$X$的一个有限子集$S$，则拓扑子空间的开集簇$\mathcal{F}_S$必然是$2^S$的子集，而任取的$S$的开覆盖$(V_\alpha)_{\alpha\in I}$又必然$\mathcal{F}_S$的子集，从而$(V_\alpha)_{\alpha\in I}$本身就是一个有限覆盖（自然也就是子集的有限子覆盖），于是根据紧致集的定义即有$S$是紧的，结论得证。
 
-##### 13.5.15 设$(X,d_X)$和$(Y,d_Y)$是两个度量空间<span style='color:blue'>（从而也是拓扑空间）</span>。证明：[定义13.1.1](../Chap13/Sec1.md)和定义13.5.8中函数$f:X\to Y$的连续性概念<span style='color:blue'>（在一点处的连续概念以及在整个定义域上的连续概念）</span>是一致的
+##### 13.5.15 设$(X,d_X)$和$(Y,d_Y)$是两个度量空间<span style="color:blue">（从而也是拓扑空间）</span>。证明：[定义13.1.1](../Chap13/Sec1.md)和定义13.5.8中函数$f:X\to Y$的连续性概念<span style="color:blue">（在一点处的连续概念以及在整个定义域上的连续概念）</span>是一致的
 
 > 两个在定义域上连续的定义都是在所有点上连续，因此我们只需要验证在一点上的连续概念一致就自然验证了在整个定义域上的连续概念一致。于是考虑任意的$x_0\in X$。
 >
@@ -813,7 +816,7 @@ coverHeight: 320px
 >
 > 综上，于是结论得证。
 
-##### 13.5.16 证明：如果把[定理13.1.4](../Chap13/Sec1.md)推广到拓扑空间，那么(a)就蕴含了(b)<span style='color:blue'>（逆命题不成立，但构造一个反例并不容易）</span>；证明：如果把[定理13.1.5](../Chap13/Sec1.md)推广到拓扑空间，那么(a)、(c)、(d)三者是等价的，它们都蕴含着(b)<span style='color:blue'>（同样，逆向的蕴含关系不成立，但想证明这一点比较困难）</span>
+##### 13.5.16 证明：如果把[定理13.1.4](../Chap13/Sec1.md)推广到拓扑空间，那么(a)就蕴含了(b)<span style="color:blue">（逆命题不成立，但构造一个反例并不容易）</span>；证明：如果把[定理13.1.5](../Chap13/Sec1.md)推广到拓扑空间，那么(a)、(c)、(d)三者是等价的，它们都蕴含着(b)<span style="color:blue">（同样，逆向的蕴含关系不成立，但想证明这一点比较困难）</span>
 
 > 我们先给出推广后的命题：
 >
@@ -903,7 +906,7 @@ coverHeight: 320px
 
 ## 本节相关跳转
 
-[实分析 8.5 有序集](../Chap8/Sec5.md)
+[实分析 8.5 有序集](./Sec5.md)
 
 [实分析 12.1 定义和例子](../Chap12/Sec1.md)
 

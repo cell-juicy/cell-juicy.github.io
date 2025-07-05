@@ -4,39 +4,42 @@ space: 实分析
 order:
   - 19
   - 1
-cover: /assets/reunite.jpg
+cover: /assets/unknown.png
 coverCss:
-  objectPosition: 30% center
-coverFade: 0.3
-coverHeight: 320px
+  objectPosition: 40% center
+coverFade: 0.2
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
 ---
 # 19.1 简单函数
 
 ## 定义
 
-1. <span style='color:red'>（19.1.1 简单函数）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R$是一个可测函数。如果象集$f(\Omega)$是一个有限集，那么我们称$f$是一个简单函数。也就是说，存在有限个实数$c_1,c_2,...,c_N$，使得对于每一个$x\in\Omega$都存在一个$1\leq j\leq N$满足$f(x)=c_j$。
+1. <span style="color:red">（19.1.1 简单函数）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R$是一个可测函数。如果象集$f(\Omega)$是一个有限集，那么我们称$f$是一个简单函数。也就是说，存在有限个实数$c_1,c_2,...,c_N$，使得对于每一个$x\in\Omega$都存在一个$1\leq j\leq N$满足$f(x)=c_j$。
 
-   <span style='color:blue'>（注：一个简单函数的例子，设$\Omega$是$\mathbb R^n$的可测子集，并设$E$是$\Omega$的可测子集，定义**特征函数**$\chi_E:\Omega\to\mathbb R$为：当$x\in E$时，$\chi_E(x)=1$；当$x\notin E$时，$\chi_E(x)=0$（在某些教材中，特征函数$\chi_E$也被写作$1_E$，并称为**指示函数**）。那么$\chi_E$是一个可测函数，并且它还是一个简单函数，因为象集$\chi_E(\Omega)=\{0,1\}$（或者，当$E=\varnothing$时$\chi_E(\Omega)=\{0\}$；当$E=\Omega$时$\chi_E(\Omega)=\{1\}$））</span>
+   <span style="color:blue">（注：一个简单函数的例子，设$\Omega$是$\mathbb R^n$的可测子集，并设$E$是$\Omega$的可测子集，定义**特征函数**$\chi_E:\Omega\to\mathbb R$为：当$x\in E$时，$\chi_E(x)=1$；当$x\notin E$时，$\chi_E(x)=0$（在某些教材中，特征函数$\chi_E$也被写作$1_E$，并称为**指示函数**）。那么$\chi_E$是一个可测函数，并且它还是一个简单函数，因为象集$\chi_E(\Omega)=\{0,1\}$（或者，当$E=\varnothing$时$\chi_E(\Omega)=\{0\}$；当$E=\Omega$时$\chi_E(\Omega)=\{1\}$））</span>
 
-2. <span style='color:red'>（19.1.6 简单函数的勒贝格积分）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R$是一个非负的简单函数。那么$f$是可测的，象集$f(\Omega)$是有限集并且包含在$[0,+\infty)$中。于是，我们将$f$在$\Omega$上的勒贝格积分$\displaystyle\int_{\Omega}f$定义为：
+2. <span style="color:red">（19.1.6 简单函数的勒贝格积分）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R$是一个非负的简单函数。那么$f$是可测的，象集$f(\Omega)$是有限集并且包含在$[0,+\infty)$中。于是，我们将$f$在$\Omega$上的勒贝格积分$\displaystyle\int_{\Omega}f$定义为：
    $$
    \int_{\Omega}f:=\sum_{\lambda\in f(\Omega);\lambda>0}\lambda m(\{x\in\Omega:f(x)=\lambda\})
    $$
-   <span style='color:blue'>（注：我们有时也把$\displaystyle\int_{\Omega}f$记作$\displaystyle\int_{\Omega}f\text{d}m$以此来强调勒贝格测度$m$的作用，或者如果黎曼积分时那样用一个像$x$这样的虚拟变量，比如$\displaystyle\int_{\Omega}f(x)\text{d}x$；这个定义与我们对积分的直观概念相对应，即将积分看作函数图像下方的面积）</span>
+   <span style="color:blue">（注：我们有时也把$\displaystyle\int_{\Omega}f$记作$\displaystyle\int_{\Omega}f\text{d}m$以此来强调勒贝格测度$m$的作用，或者如果黎曼积分时那样用一个像$x$这样的虚拟变量，比如$\displaystyle\int_{\Omega}f(x)\text{d}x$；这个定义与我们对积分的直观概念相对应，即将积分看作函数图像下方的面积）</span>
 
 ---
 
 ## 命题
 
-1. <span style='color:red'>（19.1.3）</span>设$\Omega$是$\mathbb R^n$的一个可测子集，并设$f:\Omega\to\mathbb R$和$g:\Omega\to\mathbb R$是简单函数。那么$f+g$是一个简单函数，另外，对于任意的标量$c\in\mathbb R$，函数$cf$也是一个简单函数。
+1. <span style="color:red">（19.1.3）</span>设$\Omega$是$\mathbb R^n$的一个可测子集，并设$f:\Omega\to\mathbb R$和$g:\Omega\to\mathbb R$是简单函数。那么$f+g$是一个简单函数，另外，对于任意的标量$c\in\mathbb R$，函数$cf$也是一个简单函数。
 
-   <span style='color:blue'>（注：引理19.1.3给出了简单函数构成了向量空间这一基本性质）</span>
+   <span style="color:blue">（注：引理19.1.3给出了简单函数构成了向量空间这一基本性质）</span>
 
-2. <span style='color:red'>（19.1.4）</span>设$\Omega$是$\mathbb R^n$的一个可测子集，并设$f:\Omega\to\mathbb R$是一个简单函数。那么存在有限多个实数$c_1,...,c_N$和$\Omega$中的有限多个互不相交的可测集$E_1,E_2,...,E_N$使得$\displaystyle f=\sum_{i=1}^{N}c_i\chi_{E_i}$。
+2. <span style="color:red">（19.1.4）</span>设$\Omega$是$\mathbb R^n$的一个可测子集，并设$f:\Omega\to\mathbb R$是一个简单函数。那么存在有限多个实数$c_1,...,c_N$和$\Omega$中的有限多个互不相交的可测集$E_1,E_2,...,E_N$使得$\displaystyle f=\sum_{i=1}^{N}c_i\chi_{E_i}$。
 
-   <span style='color:blue'>（注：引理19.1.4给出了简单函数是特征函数的线性组合这一基本性质）</span>
+   <span style="color:blue">（注：引理19.1.4给出了简单函数是特征函数的线性组合这一基本性质）</span>
 
-3. <span style='color:red'>（19.1.5）</span>设$\Omega$是$\mathbb R^n$的一个可测子集，并设$f:\Omega\to\mathbb R$是一个可测函数。如果$f$始终是非负的，即对于所有的$x\in\Omega$都有$f(x)\geq 0$，那么存在一个简单函数序列$f_1,f_2,f_3,...$，其中$f_n:\Omega\to\mathbb R$，使得序列$f_n$是非负且单调递增的：
+3. <span style="color:red">（19.1.5）</span>设$\Omega$是$\mathbb R^n$的一个可测子集，并设$f:\Omega\to\mathbb R$是一个可测函数。如果$f$始终是非负的，即对于所有的$x\in\Omega$都有$f(x)\geq 0$，那么存在一个简单函数序列$f_1,f_2,f_3,...$，其中$f_n:\Omega\to\mathbb R$，使得序列$f_n$是非负且单调递增的：
    $$
    \forall\;x\in\Omega,0\leq f_1(x)\leq f_2(x)\leq f_3(x)\leq...
    $$
@@ -44,21 +47,21 @@ coverHeight: 320px
    $$
    \forall\;x\in\Omega,\lim_{n\to\infty}f_n(x)=f(x)
    $$
-   <span style='color:blue'>（注：引理19.1.5给出了可测函数可以由简单函数逼近这一基本性质）</span>
+   <span style="color:blue">（注：引理19.1.5给出了可测函数可以由简单函数逼近这一基本性质）</span>
 
-4. <span style='color:red'>（19.1.9 非负简单函数积分的另一种表述？）</span>设$\Omega$是$\mathbb R^n$的一个可测子集，并设$E_1,E_2,...,E_N$是$\Omega$的有限多个互不相交的可测子集。设$c_1,...,c_N$都是非负数（不必两两不同），那么有
+4. <span style="color:red">（19.1.9 非负简单函数积分的另一种表述？）</span>设$\Omega$是$\mathbb R^n$的一个可测子集，并设$E_1,E_2,...,E_N$是$\Omega$的有限多个互不相交的可测子集。设$c_1,...,c_N$都是非负数（不必两两不同），那么有
    $$
    \int_{\Omega}\sum_{j=1}^{N}c_j\chi_{E_j}=\sum_{j=1}^{n}c_jm(E_j)
    $$
 
-5. <span style='color:red'>（19.1.10 非负简单函数勒贝格积分的基本性质？）</span>设$\Omega$是$\mathbb R^n$的一个可测子集，并设$f:\Omega\to\mathbb R$和$g:\Omega\to\mathbb R$都是非负简单函数。那么有：
+5. <span style="color:red">（19.1.10 非负简单函数勒贝格积分的基本性质？）</span>设$\Omega$是$\mathbb R^n$的一个可测子集，并设$f:\Omega\to\mathbb R$和$g:\Omega\to\mathbb R$都是非负简单函数。那么有：
 
    > 1. $\displaystyle0\leq\int_{\Omega}f\leq\infty$。另外，$\displaystyle\int_{\Omega}f=0$，当且仅当$m(\{x\in\Omega:f(x)\ne 0\})=0$。
    > 2. $\displaystyle\int_{\Omega}(f+g)=\int_{\Omega}f+\int_{\Omega}g$。
    > 3. 对于任意的正数$c$，有$\displaystyle\int_{\Omega}cf=c\int_{\Omega}f$。
    > 4. 如果对于所有的$x\in\Omega$都有$f(x)\leq g(x)$，那么$\displaystyle\int_{\Omega}f\leq\int_{\Omega}g$。
 
-   <span style='color:blue'>（注：如果我们做一个约定：如果性质$P(x)$对于$\Omega$中除了测度为零的集合之外的所有点都成立，那么我们称$P$**几乎**对于$\Omega$中的每一点都成立。于是，(a)断定了$\displaystyle\int_{\Omega}f=0$当且仅当$f$几乎在$\Omega$中的每一点处都等于零）</span>
+   <span style="color:blue">（注：如果我们做一个约定：如果性质$P(x)$对于$\Omega$中除了测度为零的集合之外的所有点都成立，那么我们称$P$**几乎**对于$\Omega$中的每一点都成立。于是，(a)断定了$\displaystyle\int_{\Omega}f=0$当且仅当$f$几乎在$\Omega$中的每一点处都等于零）</span>
 
 ---
 
@@ -96,13 +99,13 @@ coverHeight: 320px
 > $$
 > 从而我们可以得证有$f(x)=g(x)$对任意的$x\in\Omega$成立，从而引理19.1.4得证。
 
-##### 19.1.3 证明引理19.1.5<span style='color:blue'>（提示：令</span>
+##### 19.1.3 证明引理19.1.5<span style="color:blue">（提示：令</span>
 
 $$
 \color{blue}{f_n(x):=\sup\left\{\frac{j}{2^n}:j\in\mathbb Z,\frac{j}{2^n}\leq\min(f(x),2^n)\right\}}
 $$
 
-##### <span style='color:blue'>即$f_n(x)$是既不大于$f(x)$也不大于$2^n$的$2^{-n}$的最大整数倍，画一张图来看一下$f_1,f_2,f_3$等都是什么，然后证明$f_n$满足所需要的所有性质）</span>
+##### <span style="color:blue">即$f_n(x)$是既不大于$f(x)$也不大于$2^n$的$2^{-n}$的最大整数倍，画一张图来看一下$f_1,f_2,f_3$等都是什么，然后证明$f_n$满足所需要的所有性质）</span>
 
 > 对任意的$n\geq 1$，我们定义函数$f_n:\Omega\to\mathbb R$为：
 > $$
