@@ -1,6 +1,14 @@
 import { defineConfigWithTheme } from 'vitepress';
+import path from 'node:path';
+
 import type { ThemeConfig } from './theme/type';
+
 import vueDevTools from 'vite-plugin-vue-devtools';
+import { visualizer } from 'rollup-plugin-visualizer';
+
+
+const PROJECT_ROOT = path.resolve(__dirname, '../..');
+const REPORT_DIR = path.join(PROJECT_ROOT, 'reports');
 
 
 export default defineConfigWithTheme<ThemeConfig>({
@@ -78,7 +86,21 @@ export default defineConfigWithTheme<ThemeConfig>({
         plugins: [
             // @ts-ignore
             vueDevTools()
-        ]
+        ],
+        build: {
+            rollupOptions: {
+                plugins: [
+                    visualizer({
+                        gzipSize: true,
+                        brotliSize: true,
+                        title: "VitePress Bundle Analysis",
+                        filename: path.join(REPORT_DIR, "rollup_visualizer", "bundle-stats.html"),
+                        projectRoot: PROJECT_ROOT,
+                        open: true,
+                    })
+                ]
+            }
+        }
     },
     markdown: {
         math: true
