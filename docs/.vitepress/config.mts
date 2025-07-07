@@ -94,9 +94,11 @@ export default defineConfigWithTheme<ThemeConfig>({
                         gzipSize: true,
                         brotliSize: true,
                         title: "VitePress Bundle Analysis",
-                        filename: path.join(REPORT_DIR, "rollup_visualizer", "bundle-stats.html"),
+                        filename: path.join(REPORT_DIR, "rollup_visualizer", "bundle-stats.html"), // 修改这里
                         projectRoot: PROJECT_ROOT,
                         open: true,
+                        sourcemap: false,
+                        template: 'treemap',
                     })
                 ]
             }
