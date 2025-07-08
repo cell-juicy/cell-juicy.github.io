@@ -63,7 +63,7 @@ interface RawDocPageData {
         | ((data: DocPageData) => string | undefined);
     url?: string;
     frontmatter?: Record<string, any>;
-    src?: string;
+    // src?: string;
     inherit?: boolean;
     virtual?: boolean;
 }
@@ -226,7 +226,7 @@ export class DocPageData {
 
     get url(): string | undefined { return this.#store.url; }
     get frontmatter(): Record<string, any> | undefined { return this.#store.frontmatter; }
-    get src(): string | undefined { return this.#store.src; }
+    // get src(): string | undefined { return this.#store.src; }
 
     get parent(): DocPageData | undefined { return this.#parentId ? DocPageData.#idMap.get(this.#parentId) : undefined; }
     get children(): DocPageData[] {

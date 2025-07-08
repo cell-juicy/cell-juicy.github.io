@@ -4,16 +4,41 @@ import { processBlogOrder } from "../utils/common";
 
 
 export default createContentLoader("**/*.md", {
-    includeSrc: true,
+    excerpt(file, options) {
+        const mdMatch = file.content.match(/^#\s+(.+?)\s*$/m)
+        if (mdMatch) {
+            file.excerpt = mdMatch[1]
+            return
+        }
+
+        const htmlMatch = file.content.match(/<h1[^>]*>([^<]+)<\/h1>/i)
+        if (htmlMatch) {
+            file.excerpt = htmlMatch[1]
+            return
+        }
+        return
+    },
     transform(rawData) {
         return rawData
             .filter((raw) => raw.frontmatter.layout === "blog")
             .map((raw) => {
+                // Process title
+                let title = (typeof raw.excerpt === 'string') ? raw.excerpt : undefined;
+                if (title) {
+                    let safety = 0;
+                    let prev: string;
+                    do {
+                        prev = title
+                        title = title.replace(/<([a-zA-Z][a-zA-Z0-9]*)[^>]*>([\s\S]*?)<\/\1>/g, (m, t, c) => c);
+                    } while (prev !== title && ++safety < 10);
+                    title = title.replace(/<[a-zA-Z][a-zA-Z0-9]*\s*[^>]*?\/>/g, '');
+                };
+                
                 return {
                     ...raw,
                     url: encodeURI(raw.url),
-                    // @ts-ignore
-                    title: raw.src.match(/^#\s+(.+)/m) ? raw.src.match(/^#\s+(.+)/m)[1] : "",
+                    excerpt: undefined,
+                    title,
                     series: typeof raw.frontmatter.series === 'string' ? raw.frontmatter.series : undefined,
                     tags: Array.isArray(raw.frontmatter.tags)
                         ? raw.frontmatter.tags.filter((tag) => typeof tag === "string" && tag.length > 0)
