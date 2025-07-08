@@ -8,7 +8,6 @@
     "esbuild": "^0.24.2",
     "happy-dom": "^17.4.7",
     "jsdom": "^26.1.0",
-    "markdown-it": "^14.1.0",
     "markdown-it-mathjax3": "^4.3.2",
     "rollup-plugin-visualizer": "^6.0.3",
     "vite": "^6.0.1",
@@ -28,7 +27,6 @@
     "test:ui": "vitest --ui --config docs/.vitepress/theme/test/vitest.config.ts"
   },
   "dependencies": {
-    "@algolia/client-search": "^5.14.2",
     "@unhead/vue": "^2.0.0-rc.13",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vitest/ui": "^3.2.0",
