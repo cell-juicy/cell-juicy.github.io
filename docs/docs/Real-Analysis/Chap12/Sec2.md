@@ -33,7 +33,7 @@ coverHeight:
 
 3. <span style="color:red">（12.2.9 闭包）</span>设$(X,d)$是一个度量空间，$E$是$X$的一个子集，并且设$x_0$是$X$中的一个点。如果对任意的半径$r>0$，球$B(x_0,r)$与$E$的交集总是非空的，那么我们称$x_0$是$E$的**附着点**。$E$的全体附着点构成的集合称为$E$的**闭包**，并记为$\overline{E}$。
 
-   <span style="color:blue">（注：这些概念同我们曾经在实直线上定义的概念（[定义9.1.8](./Sec2.md)与[定义9.1.10](./Sec2.md)）是一致的，不妨想想为什么）</span>
+   <span style="color:blue">（注：这些概念同我们曾经在实直线上定义的概念（[定义9.1.8](/docs/Real-Analysis/Chap9/Sec1.md)与[定义9.1.10](/docs/Real-Analysis/Chap9/Sec1.md)）是一致的，不妨想想为什么）</span>
 
 4. <span style="color:red">（12.2.12 开集和闭集）</span>设$(X,d)$是一个度量空间，并且设$E$是$X$的一个子集。如果$E$包含了自身所有的边界点，也即$\partial E\subseteq E$，那么我们称$E$是**闭的**；如果$E$不包含自身任何的边界点，也即$\partial E\cap E=\varnothing$，那么我们称$E$是**开的**；如果$E$包含了部分自身的边界点而不包含其余边界点，那么$E$是既不是开的也不是闭的。
 
@@ -84,7 +84,7 @@ coverHeight:
 >
 > 然后根据上面的讨论我们知道对任意$x\in X$，若有$x\in E$则$x$是$E$的一个内点；$x\notin E$则$x$是$E$的一个外点。于是不存在$x\in X$既不是$E$的内点也不是$E$的外点，根据定义12.2.5有$E$不存在边界点。
 
-##### 12.2.2 证明命题12.2.10<span style="color:blue">（提示：对某些蕴含关系的证明需要用到[选择公理](./Sec2.md)，就像在[引理8.4.5](./Sec2.md)的证明中那样）</span>
+##### 12.2.2 证明命题12.2.10<span style="color:blue">（提示：对某些蕴含关系的证明需要用到[选择公理](/docs/Real-Analysis/Chap8/Sec4.md)，就像在[引理8.4.5](/docs/Real-Analysis/Chap8/Sec4.md)的证明中那样）</span>
 
 > 我们先证明(a)等价于(b)，然后再证明(a)等价于(c)，从而三个命题在逻辑上都是等价的。
 >
@@ -299,6 +299,6 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 8.4 选择公理](./Sec2.md)
+[实分析 8.4 选择公理](/docs/Real-Analysis/Chap8/Sec4.md)
 
-[实分析 9.1 实直线的子集](./Sec2.md)
+[实分析 9.1 实直线的子集](/docs/Real-Analysis/Chap9/Sec1.md)

@@ -31,13 +31,13 @@ coverHeight:
    >
    > 1. <span style="color:red">（14.3.2 一致极限保持连续性 II）</span>设$(f^{(n)})_{n=1}^\infty$是从度量空间$(X,d_X)$到另一个度量空间$(Y,d_Y)$的函数序列，并设该序列一致收敛于函数$f:X\to Y$。如果对每一个$n$，函数$f^{(n)}$都在$X$上连续，那么极限函数$f$也在$X$上连续。
    >
-   >    <span style="color:blue">（注：应该把这个结论与[例14.2.4](../Chap14/Sec2.md)比较）</span>
+   >    <span style="color:blue">（注：应该把这个结论与[例14.2.4](/docs/Real-Analysis/Chap14/Sec2.md)比较）</span>
 
 2. <span style="color:red">（14.3.3 交换极限和一致极限的次序）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，其中$Y$是一个完备空间，$E$是$X$的子集。并设$(f^{(n)})_{n=1}^\infty$是从$E$到$Y$的函数序列，该序列在$E$上一致收敛于某个函数$f:X\to Y$。设$x_0$是$E$的附着点，并且对每一个$n$，极限$\displaystyle\lim_{x\to x_0;x\in E}f^{(n)}(x)$都存在。那么极限$\displaystyle\lim_{x\to x_0;x\in E}f(x)$也存在，并且等于序列$\displaystyle\left(\lim_{x\to x_0;x\in E}f^{(n)}(x)\right)_{n=1}^\infty$的极限。换言之，下面的两个极限运算的次序可以交换：
    $$
    \lim_{n\to\infty}\lim_{x\to x_0;x\in E}f^{(n)}(x)=\lim_{x\to x_0;x\in E}\lim_{n\to\infty}f^{(n)}(x)
    $$
-   <span style="color:blue">（注：应该把这个结论与[例14.2.5](../Chap14/Sec2.md)比较）</span>
+   <span style="color:blue">（注：应该把这个结论与[例14.2.5](/docs/Real-Analysis/Chap14/Sec2.md)比较）</span>
 
 3. <span style="color:red">（14.3.4 序列的形式？）</span>设$(f^{(n)})_{n=1}^\infty$是从度量空间$(X,d_X)$到另一个度量空间$(Y,d_Y)$的连续函数序列，并且该序列一致收敛于函数$f:X\to Y$，设$x^{(n)}$是$X$中收敛于某极限$x_0$的序列，那么$f^{(n)}(x^{(n)})$（在$Y$中）收敛于$f(x_0)$。
 
@@ -132,7 +132,7 @@ $$
 >
 > 综上，于是证明完毕。
 
-##### 14.3.3 比较命题14.3.3和[例14.2.5](../Chap14/Sec2.md)，你能否解释，为什么在[例14.2.5](../Chap14/Sec2.md)中交换极限运算的次序会给出一个错误的结论，但命题14.3.3中交换极限运算的次序确实正确的
+##### 14.3.3 比较命题14.3.3和[例14.2.5](/docs/Real-Analysis/Chap14/Sec2.md)，你能否解释，为什么在[例14.2.5](/docs/Real-Analysis/Chap14/Sec2.md)中交换极限运算的次序会给出一个错误的结论，但命题14.3.3中交换极限运算的次序确实正确的
 
 > 原书说是例12.2.8，但是那个例子在讨论离散度量下集合的内点和外点，反而例14.2.5确实是讨论极限交换的问题，个人感觉是题目搞错了。
 >
@@ -170,7 +170,7 @@ $$
 > $$
 > 显然是收敛于$\displaystyle\frac{1}{2}$的，但是$f(1)=1$（逐点极限是什么可以翻回原书例14.2.4），这显然与命题14.3.4不符。
 
-##### 14.3.6 证明命题14.3.6，讨论这个命题与[习题14.2.4](../Chap14/Sec2.md)的不同之处
+##### 14.3.6 证明命题14.3.6，讨论这个命题与[习题14.2.4](/docs/Real-Analysis/Chap14/Sec2.md)的不同之处
 
 > 由于$f^{(n)}$是一致收敛于$f$的，于是根据定义14.3.1存在$N>0$使得对任意$n\geq N$与任意的$x\in X$都有：
 > $$
@@ -190,7 +190,7 @@ $$
 
 > 考虑在习题14.2.2(c)中的例子（当然沿用里面的记号），我们知道部分和序列$\displaystyle\sum_{n=1}^{N}f^{(n)}$在开区间$(-1,1)$上逐点收敛于$g$，并且对任意的$N>0$，部分和序列$\displaystyle\sum_{n=1}^{N}f^{(n)}$是有界的（绝对值必然小于$N$），但是$\displaystyle g(x):=\frac{1}{1-x}$显然是在开区间$(-1,1)$上无界的。
 
-##### 14.3.8 设$(X,d)$是一个度量空间。对于每一个正整数$n$，设$f_n:X\to\mathbb R$和$g_n:X\to\mathbb R$都是函数，并且设$(f_n)_{n=1}^\infty$一致收敛于函数$f:X\to\mathbb R$，且$(g_n)_{n=1}^\infty$一致收敛于函数$g:X\to\mathbb R$。并设函数序列$(f_n)_{n=1}^\infty$和$(g_n)_{n=1}^\infty$是一致有界的<span style="color:blue">（这个定义可以看[习题14.2.4](../Chap14/Sec2.md)）</span>，即存在$M>0$使得对所有的$n\geq 1$与$x\in X$都有$|f_n(x)|\leq M$与$|g_n(x)|\leq M$成立。证明：函数序列$f_ng_n:X\to\mathbb R$一致收敛于$fg:X\to\mathbb R$
+##### 14.3.8 设$(X,d)$是一个度量空间。对于每一个正整数$n$，设$f_n:X\to\mathbb R$和$g_n:X\to\mathbb R$都是函数，并且设$(f_n)_{n=1}^\infty$一致收敛于函数$f:X\to\mathbb R$，且$(g_n)_{n=1}^\infty$一致收敛于函数$g:X\to\mathbb R$。并设函数序列$(f_n)_{n=1}^\infty$和$(g_n)_{n=1}^\infty$是一致有界的<span style="color:blue">（这个定义可以看[习题14.2.4](/docs/Real-Analysis/Chap14/Sec2.md)）</span>，即存在$M>0$使得对所有的$n\geq 1$与$x\in X$都有$|f_n(x)|\leq M$与$|g_n(x)|\leq M$成立。证明：函数序列$f_ng_n:X\to\mathbb R$一致收敛于$fg:X\to\mathbb R$
 
 > 首先由于$(f_n)_{n=1}^\infty$和$(g_n)_{n=1}^\infty$是一致有界的，结合命题14.3.6即有$f$与$g$也是有界的，换言之，存在$K_1$，$K_2>0$使得对任意$x\in X$都有$|f(x)|\leq K_1$与$|g(x)|\leq K_2$。特别地，为了方便叙述，我们令有$S:=\max\{K_1,K_2,M\}$，这样对任意的$x\in X$与正整数$n$都有$|f(x)|\leq S$，$|g(x)|\leq S$，$|f_n(x)|\leq S$与$|g_n(x)|\leq S$。
 >
@@ -214,4 +214,4 @@ $$
 
 ## 本节相关跳转
 
-[实分析 14.2 逐点收敛和一致收敛](../Chap14/Sec2.md)
+[实分析 14.2 逐点收敛和一致收敛](/docs/Real-Analysis/Chap14/Sec2.md)

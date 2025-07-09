@@ -29,7 +29,7 @@ coverHeight:
    >    $$
    >    \sum_{n=1}^{\infty}\int_{[a,b]}f^{(n)}=\int_{[a,b]}\sum_{n=1}^{\infty}f^{(n)}
    >    $$
-   >    <span style="color:blue">（注：这个推论结合[魏尔斯特拉斯M判别法（定理14.5.7）](../Chap14/Sec5.md)一起使用会有更好的效果）</span>
+   >    <span style="color:blue">（注：这个推论结合[魏尔斯特拉斯M判别法（定理14.5.7）](/docs/Real-Analysis/Chap14/Sec5.md)一起使用会有更好的效果）</span>
 
 ---
 
@@ -59,4 +59,4 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 14.5 函数级数与魏尔斯特拉斯M判别法](../Chap14/Sec5.md)
+[实分析 14.5 函数级数与魏尔斯特拉斯M判别法](/docs/Real-Analysis/Chap14/Sec5.md)

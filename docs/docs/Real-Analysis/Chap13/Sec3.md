@@ -27,7 +27,7 @@ coverHeight:
 
 2. <span style="color:red">（13.3.2 最大值原理）</span>设$(X,d)$是一个紧致度量空间，并设$f:X\to\mathbb R$是一个连续函数，那么$f$是有界的。更进一步的，$f$在某个点$x_{\max}\in X$处达到最大值，并且在某个点$x_{\min}\in X$处达到最小值。
 
-   <span style="color:blue">（注：这是对[命题9.6.7](./Sec3.md)的推广；然后如同我们在[习题9.6.1](./Sec3.md)中看到的那样，如果$X$不是紧致的则最大值原理就不成立，我们应当把命题13.3.2与[引理9.6.3](./Sec3.md)，[命题9.6.7](./Sec3.md)进行比较）</span>
+   <span style="color:blue">（注：这是对[命题9.6.7](/docs/Real-Analysis/Chap9/Sec6.md)的推广；然后如同我们在[习题9.6.1](/docs/Real-Analysis/Chap9/Sec6.md)中看到的那样，如果$X$不是紧致的则最大值原理就不成立，我们应当把命题13.3.2与[引理9.6.3](/docs/Real-Analysis/Chap9/Sec6.md)，[命题9.6.7](/docs/Real-Analysis/Chap9/Sec6.md)进行比较）</span>
 
 3. <span style="color:red">（13.3.5）</span>设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，并设$(X,d_X)$是紧致的。如果$f:X\to Y$是一个函数，那么$f$是连续的当且仅当$f$是一致连续的。
 
@@ -47,7 +47,7 @@ coverHeight:
 >
 > 根据紧致集的定义（定义12.5.1），于是$f(K)$也是紧致的。
 
-##### 13.3.2 证明命题13.3.2<span style="color:blue">（提示：修改[命题9.6.7](./Sec3.md)的证明过程）</span>
+##### 13.3.2 证明命题13.3.2<span style="color:blue">（提示：修改[命题9.6.7](/docs/Real-Analysis/Chap9/Sec6.md)的证明过程）</span>
 
 > 先证明：$f$是有界的。
 >
@@ -207,4 +207,4 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 9.6 最大值原理](./Sec3.md)
+[实分析 9.6 最大值原理](/docs/Real-Analysis/Chap9/Sec6.md)

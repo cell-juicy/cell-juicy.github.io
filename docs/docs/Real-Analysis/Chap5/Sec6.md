@@ -1,0 +1,272 @@
+---
+layout: doc
+space: 实分析
+order:
+  - 5
+  - 6
+cover: /assets/reunite.jpg
+coverCss:
+  objectPosition: 30% center
+coverFade: 0.3
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
+---
+# 5.6 实数的指数运算 I
+
+## 定义
+
+1. <span style="color:red">（5.6.1 实数的自然数次幂）</span>设$x$是一个实数，为了把$x$升到$0$次幂，我们定义$x^0:=1$。现归纳假设对于某个自然数$n$已经定义了$x^n$，则定义$x^{n+1}:=x^n\cdot x$。
+
+2. <span style="color:red">（5.6.2 实数的整数次幂）</span>设$x$是一个非零实数，那么对任意的负整数$-n$，定义$x^{-n}:={\frac{1}{x}}^n$。
+
+3. <span style="color:red">（5.6.4 $n$次根？）</span>设$x≥0$是一个非负实数，且$n≥1$是一个正整数，则定义$x^{\frac{1}{n}}$<span style="color:blue">（也称作$x$的$n$次根）</span>为：
+   $$
+   x^{\frac{1}{n}}:=\sup\{y∈\mathbb R:y≥0且y^n≤x\}
+   $$
+   
+   另外一般将$x^{\frac{1}{2}}$写作$\sqrt x$。
+   <span style="color:blue">（注：本书不定义负数的$n$次方根，因为只有定义了复数才可以定义负数的$n$次方根，然而本书并不讲复数这方面内容）</span>
+   
+4. <span style="color:red">（5.6.7 向有理数的拓展？）</span>设$x>0$是一个正实数，$q$是一个有理数。由有理数定义令$q=\frac{a}{b}$，其中$a$是整数，$b$是正整数。此时定义：
+   $$
+   x^q:=(x^{\frac 1 b})^a
+   $$
+
+---
+
+## 命题
+
+1. <span style="color:red">（5.6.3 实数幂的运算性质）</span>对命题<span style="color:blue">（[4.3.10，4.3.12](/docs/Real-Analysis/Chap4/Sec3.md)）</span>中有理数$x$，$y$替换成实数$x$，$y$后这两个命题中的所有性质依旧是成立的。
+
+   <span style="color:blue">（内容见下）</span>
+
+    > 1. <span style="color:red">（4.3.10 指数的运算性质I）</span>设$x$与$y$为非零实数，并设$n$和$m$为自然数，则有：
+    >
+    >    > * $x^n\times x^m=x^{(n+m)}$，$(x^n)^m=x^{(nm)}$，$(xy)^n=x^ny^n$。
+    >    > * 若$x\geq y\geq0$，则有$x^n\geq y^n\geq0$，若$x>y\geq0$且$n>0$时，则有$x^n>y^n≥0$。
+    >    > * 若$n>0$，则$x^n=0$当且仅当$x=0$。
+    >    > * 有$|x^n|=|x|^n$。
+    >
+    > 2. <span style="color:red">（4.3.12 指数的运算性质II）</span>设$x$与$y$为非零实数，并设$n$和$m$为**整数**，则有：
+    >
+    >    > * $x^n\times x^m=x^{(n+m)}$，$(x^n)^m=x^{(nm)}$，$(xy)^n=x^ny^n$。
+    >    > * 若$x\geq y\geq0$，则当$n$正数时有$x^n\geq y^n>0$，当$n$负数时有$0<x^n\leq y^n$。
+    >    > * 若$x$，$y>0$，$n\ne0$并且$x^n=y^n$，那么$x=y$。
+    >    > * 有$|x^n|=|x|^n$。
+
+2. <span style="color:red">（5.6.5 $n$次根的存在性）</span>设$x≥0$是一个非负实数且$n≥1$是一个正整数，那么集合$\{y∈R:y≥0且y^n≤x\}$是非空的并且有上界的，特别地，$x^\frac 1 n$是一个实数。
+
+3. <span style="color:red">（5.6.6 整数次根的运算性质？）</span>设$x$，$y≥0$是非负实数，且$n$，$m≥1$是正整数。
+   
+   > * 如果$y=x^\frac 1 n$，那么$y^n=x$。
+   > * 如果$y^n=x$，则$y=x^\frac 1 n$。
+   > * $x^\frac 1 n$是一个非负实数。
+   > * $x>y$，当且仅当$x^\frac 1 n >y^\frac 1 n$。
+   > * 如果$x>1$，那么$x^\frac 1 k$是关于$k$的一个减函数；如果$x<1$，那么$x^\frac 1 k$是关于$k$的一个增函数；如果$x=1$，那么$x^\frac 1 k$对所有的$k$均有$x^\frac 1 k=1$。
+   > * $(xy)^\frac 1 n=x^\frac1n\cdot y^\frac1n$。
+   > * $({x^\frac1n})^\frac1m=x^\frac1{nm}$。
+   
+4. <span style="color:red">（5.6.8 有理数次幂的形式不变性？）</span>设$a$，$a'$均为整数，$b$，$b'$均为正整数，并且有$a/b=a'/b'$。设$x$是一个正实数，则有：
+   $$
+   x^\frac a b=x^\frac{a'}{b'}
+   $$
+   
+5. <span style="color:red">（5.6.9 有理数次幂的运算性质？）</span>设$x$，$y>0$是正实数，且$q$与$r$是有理数，则：
+   
+   > * $x^q$是一个正实数。
+   > * $x^{q+r}=x^q\cdot x^r$且有$x^{qr}=(x^q)^r$。
+   > * $x^{-q}=\frac{1}{x^q}$。
+   > * 如有$q>0$，则$x>y$当且仅当$x^q>y^q$。
+   > * 如有$x>1$，则$x^q>x^r$当且仅当有$q>r$；如有$x<1$，则$x^q>x^r$当且仅当有$q<r$。
+
+<span style="color:blue">（值得一提本节的元证明确实很有意思，可以多看看学习学习（可惜网上没百科））</span>
+
+---
+
+## 课后习题
+
+##### 5.6.1 证明引理5.6.6<span style="color:blue">（提示：回顾[命题5.5.12](/docs/Real-Analysis/Chap5/Sec5.md)的证明过程；同时你可能会发现反证法是一个相当有用的证明工具，特别是将它同[命题5.4.7序的三歧性](/docs/Real-Analysis/Chap5/Sec4.md)与[命题5.4.12](/docs/Real-Analysis/Chap5/Sec4.md)结合使用的时候；可以使用前面的结论来证明后面的结论；对于第5条结论，首先证明$x>1$时$x^{\frac{1}{n}}>1$，以及$x<1$时$x^{\frac{1}{n}}<1$）</span>
+
+> * 如果$y=x^\frac 1 n$，那么$y^n=x$。
+>
+> <span style="color:blue">（证明要用到习题7.1.4的二项式定理，有限级数的概念并不需要用到第五章后的内容，所以至少在这里使用算是合乎规矩的）</span>
+>
+> 使用反证法，我们假设此时有$y^n\ne x$，那么根据实数序的三歧性，必然有$y^n>x$或者$y^n<x$成立。
+>
+> 若$y^n<x$，对于一个很小的正数$\varepsilon$（至少它绝对小于$1$和$y$），考虑$(y+\varepsilon)^n$，有：
+>
+> $$
+> (y+\varepsilon)^n=y^n+ny^{n-1}\varepsilon+...+ny\varepsilon^{n-1}+\varepsilon^{n}
+> $$
+>
+> 由于$\varepsilon<\min(1,y)$，于是我们可以得到对任意整数$m\ne0$，总有$y^{n-m}\varepsilon^m\leq y^{n-1}\varepsilon(\iff\varepsilon^{m-1}\leq y^{m-1})$，于是放缩有：
+> $$
+> y^n+ny^{n-1}\varepsilon+...+ny\varepsilon^{n-1}+\varepsilon^{n}\leq y^n+ny^{n-1}\varepsilon+\frac{n(n-1)}{2}y^{n-1}\varepsilon+...+ny^{n-1}\varepsilon+y^{n-1}\varepsilon
+> $$
+> 根据二项式定理，可以继续化简得到：
+> $$
+> y^n+ny^{n-1}\varepsilon+\frac{n(n-1)}{2}y^{n-1}\varepsilon+...+ny^{n-1}\varepsilon+y^{n-1}\varepsilon=y^n+(2^n-1)y^{n-1}\varepsilon
+> $$
+> 于是取$\displaystyle\varepsilon=\frac{x-y^n}{2^ny^{n-1}}$时，我们有：
+> $$
+> y^n<(y+\varepsilon)^n\leq y^n+(2^n-1)y^{n-1}\varepsilon<x
+> $$
+> 即$y+\varepsilon\in\{y'\in\mathbb R:{y'}^n\leq x\}$，又$y+\varepsilon>y$，于是$y^n<x$时$y$必然不会是集合$\{y'\in\mathbb R:{y'}^n\leq x\}$的最小上界，从而根据定义不可能有$y=x^{\frac{1}{n}}$。
+>
+> 若$y^n>x$，对于一个很小的正数$\varepsilon$（至少它绝对小于$1$和$y$），考虑$(y-\varepsilon)^n$：
+> $$
+> (y-\varepsilon)^n=y^n-ny^{n-1}\varepsilon+...+(-1)^n\varepsilon^n
+> $$
+> 结合上面的，再次利用$y^{n-m}\varepsilon^m\leq y^{n-1}\varepsilon(\iff\varepsilon^{m-1}\leq y^{m-1})$我们可以化简得到：
+> $$
+> \begin{align}
+> (y-\varepsilon)^n&=y^n-ny^{n-1}\varepsilon+...+(-1)^n\varepsilon^n\\
+> &\geq y^n-ny^{n-1}\varepsilon-...-\varepsilon^n\;(对所有正项取负)\\
+> &\geq y^n-ny^{n-1}\varepsilon-...-y^{n-1}\varepsilon\;(替换所有y^{n-a}\varepsilon^a为y^{n-1}\varepsilon)\\
+> &=y^n-(2^n-1)y^{n-1}\varepsilon
+> \end{align}
+> $$
+> 此时我们取$\displaystyle\varepsilon=\frac{y^n-x}{2^ny^{n-1}}$，那么就会得到有$y^n>(y-\varepsilon)^n\geq y^n-(2^n-1)y^{n-1}\varepsilon>x$，于是$y-\varepsilon$也是集合$\{y'\in\mathbb R:{y'}^n\leq x\}$的一个上界（因为对任意集合中元素$z$，$z^n\leq x\leq(y-\varepsilon)^n\iff z\leq y-\varepsilon$），于是$y\ne\sup\{y'\in\mathbb R:{y'}^n\leq x\}$，即根据定义，此时不可能有$y=x^{\frac{1}{n}}$。
+>
+> 综上，根据反证结论当$y=x^\frac 1 n$时，只能有$y^n=x$成立。
+>
+> ---
+>
+>
+> * 如果$y^n=x$，则$y=x^\frac 1 n$。
+>
+> 使用反证法，不妨假设此时有$y\ne x^\frac 1 n$，那么应该有$y>x^\frac 1 n$或$y<x^\frac 1 n$成立。
+>
+> 若$y>x^\frac 1 n$，于是根据命题5.6.3与结论(a)，有$(x^\frac{1}{n})^n<y^n$，即$x<y^n$，这同前置条件$x=y^n$矛盾。
+>
+> 若$y<x^\frac 1 n$，于是根据命题5.6.3与结论(a)，有$(x^\frac{1}{n})^n>y^n$，即$x>y^n$，这也同前置条件$x=y^n$矛盾。
+>
+> 于是综上，当$y^n=x$时，必然只能有$y=x^\frac 1 n$成立。
+>
+> ---
+>
+> * $x^\frac 1 n$是一个非负实数。
+>
+> 若$x\geq1$，那么$1^n=1\leq x$，此时我们有$1\in\{y∈\mathbb R:y≥0且y^n≤x\}$，又根据$x^\frac 1 n=\sup\{y∈\mathbb R:y≥0且y^n≤x\}$，于是此时必然有$x^\frac1n\geq 1$成立。
+>
+> 若$0\leq x<1$，那么根据正的乘法保持序不变，于是可以得到对任意$n\geq 1$，$x^n\geq x^{n+1}$，进而可以归纳得证有$x^n\leq x$对任意$n\geq 1$成立，于是$x\in\{y∈\mathbb R:y≥0且y^n≤x\}$，于是根据最小上界的性质必然有$x^\frac1n\geq x\geq 0$。
+>
+> 综上，总有$x^\frac 1 n\geq 0$，即$x^\frac 1 n$是一个非负实数。
+>
+> ---
+>
+> * $x>y$，当且仅当$x^\frac 1 n >y^\frac 1 n$。
+>
+> 不妨令有$x^{\frac{1}{n}}=a$，$y^{\frac{1}{n}}=b$，于是根据结论1此时有题目命题转化为$a^n>b^n$当且仅当$a>b$，根据命题5.6.3，这样的结论是正确的，于是得证。
+>
+> ---
+>
+> * 如果$x>1$，那么$x^\frac 1 k$是关于$k$的一个减函数；如果$x<1$，那么$x^\frac 1 k$是关于$k$的一个增函数；如果$x=1$，那么$x^\frac 1 k$对所有的$k$均有$x^\frac 1 k=1$。
+>
+> 对任意$k$，不妨令$a_k=x^{\frac{1}{k}}$。
+>
+> 如果有$x=1$，对任意$k$，我们总有$(a_k)^k=(1^\frac1k)^k=1=1^k$，那么根据命题5.6.3，$(a_k)^k=1^k$当且仅当$a_k=x^{\frac{1}{k}}=1$，于是结论得证。
+>
+> 当$x>1$时，根据结论(d)有$x^{\frac{1}{n}}>1^{\frac{1}{n}}=1$；同理，$x<1$时根据结论(d)有$x^{\frac{1}{n}}<1^{\frac{1}{n}}=1$。如果有$x\ne1$，那么我们对任意$k$，根据结论(d)，我们有$a_k$与$a_{k+1}$之间的序关系与$(a_k)^k$与$(a_{k+1})^k$之间的序关系相同，并且$(a_k)^k=x$，$\displaystyle(a_{k+1})^k=\frac{x}{a_{k+1}}$。于是根据上面的结论，我们有：
+>
+> > * 当$x>1$时，$\displaystyle a_{k+1}>1\iff x>\frac{x}{a_{k+1}}$，于是通过结论(d)有$x^{\frac1k}>x^{\frac1{k+1}}$对任意$k$成立，即$x^\frac 1 k$是关于$k$的一个减函数。
+> > * 当$x<1$时，$\displaystyle a_{k+1}<1\iff x<\frac{x}{a_{k+1}}$，于是通过结论(d)有$x^{\frac1k}<x^{\frac1{k+1}}$对任意$k$成立，即$x^\frac 1 k$是关于$k$的一个增函数。
+>
+> 于是综上，结论得证。
+>
+> ---
+>
+> * $(xy)^\frac 1 n=x^\frac1n\cdot y^\frac1n$。
+>
+> 不妨令$a=(xy)^\frac1n$，$b=x^\frac1n$，$c=y^\frac1n$。于是根据结论(c)有$a$，$b$，$c$都是非负实数，结合命题5.6.3与结论(a)，我们有：
+> $$
+> a^n=b^nc^n=(bc)^n
+> $$
+> 于是$a=bc\iff(xy)^\frac 1 n=x^\frac1n\cdot y^\frac1n$，结论得证。
+>
+> ---
+>
+> * $(x^\frac1n)^\frac1m=x^\frac1{nm}$。
+>
+> 不妨令$a=x^\frac1{nm}$，$b=(x^\frac1n)^\frac1m$。于是根据结论(c)有$a$，$b$都是非负实数，结合命题5.6.3与结论(a)，我们有：
+> $$
+> a^{nm}=(b^m)^n=b^{nm}
+> $$
+> 于是$a=b\iff(x^\frac1n)^\frac1m=x^\frac1{nm}$。
+
+##### 5.6.2 证明引理5.6.9<span style="color:blue">（提示：主要利用了引理5.6.6与代数法则）</span>
+
+> * $x^q$是一个正实数。
+>
+> 将$q$表示为$q=a/b$，其中$a$，$b$是整数且$b\ne 0$，根据有理数次幂的定义，有$x^q=(x^{\frac{1}{b}})^a$。根据引理5.6.6(c)，于是$x^{\frac{1}{b}}$是一个正实数，从而根据命题5.4.4可以归纳得到$(x^{\frac{1}{b}})^a$也是正的。
+>
+> ---
+>
+> * $x^{q+r}=x^q\cdot x^r$且有$x^{qr}=(x^q)^r$。
+>
+> $x^{q+r}=x^q\cdot x^r$：
+>
+> 不妨令有$q=a/b$，$r=c/d$，其中$a$，$c$为整数，$b$，$d$为正整数。根据有理数次幂的定义，这等价于$(x^{\frac1{bd}})^{ad+cb}=(x^{\frac1{bd}})^{ad}(x^{\frac1{bd}})^{cb}$，令$e=x^{\frac1{bd}}$，于是原命题等价于$(e)^{ad+cb}=(e)^{ad}(e)^{cb}$，于是根据命题5.6.3可以得证有$x^{q+r}=x^q\cdot x^r$成立。
+>
+> $x^{qr}=(x^q)^r$：
+>
+> 不妨令有$q=a/b$，$r=c/d$，其中$a$，$c$为整数，$b$，$d$为正整数。由有理数次幂的定义，原命题等价于$(x^{\frac1{bd}})^{ac}=(((x^{\frac1{b}})^{a})^{\frac1{d}})^{c}$，若$c=0$，则可以直接计算得到$x^{qr}=(x^q)^r\iff 1=1$显然成立；若$c\ne 0$，则由命题5.6.6我们可以变形有：
+> $$
+> \begin{align}
+> (x^{\frac1{bd}})^{ac}&=(((x^{\frac1{b}})^{a})^{\frac1{d}})^{c}\\
+> &{\large\Updownarrow}\quad\boxed{y^c=x\mathbb Rightarrow y=x^\frac1c}\\
+> (x^{\frac1{bd}})^{a}&=((x^{\frac1{b}})^{a})^{\frac1{d}}\\
+> &{\large\Updownarrow}\quad\boxed{y=x^\frac1d\mathbb Rightarrow y^d=x}\\
+> (x^{\frac1{bd}})^{ad}&=(x^{\frac1{b}})^{a}\\
+> &{\large\Updownarrow}\quad\text{定义5.6.7 转成有理数幂次形式}\\
+> x^\frac{ad}{bd}&=x^\frac{a}{b}
+> \end{align}
+> $$
+> 根据命题5.6.8，我们有$x^\frac{ad}{bd}=x^\frac{a}{b}$成立，于是与该命题等价的$x^{qr}=(x^q)^r$也成立。
+>
+> ---
+>
+> * $x^{-q}=\frac{1}{x^q}$。
+>
+> 根据结论(b)我们应该有原命题等价于$\displaystyle x^{-q}\cdot x^q=\frac{1}{x^q}\cdot x^q\iff x^{q-q}=1\iff x^0=1$，根据定义5.6.1我们知道$x^0=1$恒为真。于是由题目命题与$x^0=1$等价可以得到$\displaystyle x^{-q}=\frac{1}{x^q}$也为真。
+>
+> ---
+>
+> * 如有$q>0$，则$x>y$当且仅当$x^q>y^q$。
+>
+> 不妨令有$q=a/b$，其中$a$，$b$是整数且$b\ne 0$。于是此时根据定义5.6.7可以得到原命题等价于：如有$a>0$，则我们有$x>y$当且仅当$(x^\frac1b)^a>(y^\frac1b)^a$。不妨令$c=x^\frac1b$，$d=y^\frac1b$，根据命题5.6.6有$x>y$当且仅当$c>d>0$，于是原命题又等价于：如有$a>0$，则$c>d$当且仅当$c^a>d^a$，根据命题5.6.6我们知道该结论得证。
+>
+> ---
+>
+> * 如有$x>1$，则$x^q>x^r$当且仅当有$q>r$；如有$x<1$，则$x^q>x^r$当且仅当有$q<r$。
+>
+> 不妨令有$q=a/b$，$r=c/b$，其中$a$，$c$为整数，$b$为正整数（这样的假设是为了方便处理，事实上，即使任取整数使得$q=d/e$，$r=f/g$，你也可以令$a=dg$，$b=eg$，$c=fe$来变形得到我们的假设，因此这样的假设是严谨的）。于是原命题等价于：如有$x>1$，则$(x^\frac1b)^a>(x^\frac1b)^c$当且仅当有$a>c$；如有$x<1$，则$(x^\frac1b)^a>(x^\frac1b)^c$当且仅当有$a<c$。
+>
+> 此时我们令$d=x^\frac1b$，根据习题5.6.1中的证明我们有：$x>1$当且仅当$d>1$；$x<1$当且仅当$d<1$。于是原结论等价于：如有$d>1$，则$(d)^a>(d)^c$当且仅当有$a>c$；如有$x<1$，则$(d)^a>(d)^c$当且仅当有$a<c$。于是分类讨论，应该有：
+>
+> > * $d>1$，于是$d^{a-c}>1$当且仅当$a-c>0\iff a>c$。
+> > * $d<1$，于是$d^{a-c}>1$当且仅当$a-c<0\iff a<c$。
+>
+> 于是结论得证。
+
+##### 5.6.3 证明：如果$x$是一个实数，那么$|x|=(x^2)^{\frac{1}{2}}$
+
+> 对$x$分类讨论：
+>
+> > * $x=0$，那么$|x|=0$，$(x^2)^\frac12=(0)^\frac12=0$，于是成立结论。
+> > * $x>0$，于是$|x|=x$，根据命题5.6.6并且$x$非负，于是$(x^2)^\frac12=x$，于是成立结论。
+> > * $x<0$，于是$|x|=-x$，并且我们有$(-x)^2=(-1)^2x^2=x^2$，由命题5.6.6与$-x$非负，于是$(x^2)^\frac12=((-x)^2)^\frac12=-x$，于是成立结论。
+>
+> 综上，结论成立。
+
+---
+
+## 本节相关跳转
+
+[实分析 4.3 绝对值与指数运算](/docs/Real-Analysis/Chap4/Sec3.md)
+
+[实分析 5.4 对实数排序](/docs/Real-Analysis/Chap5/Sec4.md)
+
+[实分析 5.5 最小上界性质](/docs/Real-Analysis/Chap5/Sec5.md)

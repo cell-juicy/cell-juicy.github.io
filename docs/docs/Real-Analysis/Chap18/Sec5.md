@@ -29,11 +29,11 @@ coverHeight:
 
 1. <span style="color:red">（18.5.2 连续函数是可测的）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R^m$是一个连续函数。那么$f$也是可测的。
 
-   <span style="color:blue">（注：回顾[第12章](../Chap12/Sec3.md)和[第13章](../Chap13/Sec1.md)的内容，回想一下连续函数对开集逆象的影响与相对拓扑的知识会对证明这个命题有所帮助）</span>
+   <span style="color:blue">（注：回顾[第12章](/docs/Real-Analysis/Chap12/Sec3.md)和[第13章](/docs/Real-Analysis/Chap13/Sec1.md)的内容，回想一下连续函数对开集逆象的影响与相对拓扑的知识会对证明这个命题有所帮助）</span>
 
 2. <span style="color:red">（18.5.3 可测函数的等效定义？）</span>设$\Omega$是$\mathbb R^n$的可测子集，并设$f:\Omega\to\mathbb R^m$是一个函数。那么$f$是可测的，当且仅当对于每一个开盒子$B$，$f^{-1}(B)$都是可测的。
 
-   <span style="color:blue">（注：联系[引理18.4.10](../Chap18/Sec4.md)）</span>
+   <span style="color:blue">（注：联系[引理18.4.10](/docs/Real-Analysis/Chap18/Sec4.md)）</span>
 
    > 推论：
    >
@@ -145,7 +145,7 @@ coverHeight:
 > $$
 > 然后根据推论18.4.7与我们已经证明的子结论，我们有$f^{-1}((a,b))$也是可测的。从而综上我们证明了对任意一个开盒子$(a,b)\subseteq\mathbb R$都有$f^{-1}((a,b))$可测，然后根据引理18.5.3我们有$f$是可测的，结论得证。
 
-##### 18.5.5 设$f:\mathbb R^n\to\mathbb R$是一个勒贝格可测函数，并设$g:\mathbb R^n\to\mathbb R$是一个函数，它在测度为零的集合之外与$f$相同，即存在一个测度为零的集合$A\subseteq\mathbb R^n$使得对于所有的$x\in\mathbb R^n\verb|\|A$均有$f(x)=g(x)$。证明：$g$也是勒贝格可测的<span style="color:blue">（提示：利用[习题18.4.10](../Chap18/Sec4.md)）</span>
+##### 18.5.5 设$f:\mathbb R^n\to\mathbb R$是一个勒贝格可测函数，并设$g:\mathbb R^n\to\mathbb R$是一个函数，它在测度为零的集合之外与$f$相同，即存在一个测度为零的集合$A\subseteq\mathbb R^n$使得对于所有的$x\in\mathbb R^n\verb|\|A$均有$f(x)=g(x)$。证明：$g$也是勒贝格可测的<span style="color:blue">（提示：利用[习题18.4.10](/docs/Real-Analysis/Chap18/Sec4.md)）</span>
 
 > 考虑任意的$V\subseteq\mathbb R$是一个开集。注意到：
 > $$
@@ -164,8 +164,8 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 12.3 相对拓扑](../Chap12/Sec3.md)
+[实分析 12.3 相对拓扑](/docs/Real-Analysis/Chap12/Sec3.md)
 
-[实分析 13.1 连续函数](../Chap13/Sec1.md)
+[实分析 13.1 连续函数](/docs/Real-Analysis/Chap13/Sec1.md)
 
-[实分析 18.4 可测集](../Chap18/Sec4.md)
+[实分析 18.4 可测集](/docs/Real-Analysis/Chap18/Sec4.md)

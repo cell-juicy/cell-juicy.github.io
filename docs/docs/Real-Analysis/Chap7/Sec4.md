@@ -1,0 +1,54 @@
+---
+layout: doc
+space: 实分析
+order:
+  - 7
+  - 4
+cover: /assets/reunite.jpg
+coverCss:
+  objectPosition: 30% center
+coverFade: 0.3
+coverHeight:
+  desktop: 360px
+  tablet: 320px
+  mobile: 280px
+---
+# 7.4 级数的重排列
+
+## 命题
+
+1. <span style="color:red">（7.4.1 非负级数的重排列？）</span>设$\displaystyle \sum_{n=0}^{\infty}a_n$是一个**收敛的非负实数**级数，并且$f:\mathbb N\to\mathbb N$是一个**双射**，那么$\displaystyle \sum_{n=0}^{\infty}a_{f(n)}$也是收敛的，并且与原级数有相同的和，即：
+   $$
+   \sum_{n=0}^{\infty}a_n=\sum_{n=0}^{\infty}a_{f(n)}
+   $$
+   
+2. <span style="color:red">（7.4.3 级数的重排列）</span>设$\displaystyle \sum_{n=0}^{\infty}a_n$是一个**绝对收敛**的实数级数，并且$f:\mathbb N\to\mathbb N$是一个**双射**，那么$\displaystyle \sum_{n=0}^{\infty}a_{f(n)}$也是收敛的，并且与原级数有相同的和，即：
+   $$
+   \sum_{n=0}^{\infty}a_n=\sum_{n=0}^{\infty}a_{f(n)}
+   $$
+   
+
+---
+
+## 课后习题
+
+##### 7.4.1 设$\displaystyle{\sum_{n=0}^{\infty}a_n}$是一个绝对收敛的实数级数，设$f:\mathbb N\to \mathbb N$是一个增函数<span style="color:blue">（即对所有的 $n\in \mathbb N$ 都有 $f(n+1)>f(n)$）</span>。证明：$ \displaystyle{\sum_{n=0}^{\infty}a_{f(n)}}$ 也是绝对收敛的级数<span style="color:blue">（提示：试着把$\displaystyle{\sum_{n=0}^{\infty}a_{f(n)}}$的每一个部分和与$\displaystyle{\sum_{n=0}^{\infty}a_n}$（略有不同）的部分和进行比较）</span>
+
+> 在习题6.6.4中，我们已经证明了对$f$存在性质：$f(n)\geq n$对任意$n\in\mathbb N$成立。于是对任意$n\in\mathbb N$，我们指定集合$X_n$与$Y_n$分别有$X_n=\{i\in\mathbb N:0\leq i\leq n\}$与$Y_n=\{i\in\mathbb N:0\leq i\leq f(n)\}$，于是此时依据$f$是单射我们有$\#(X_n)=\#(f(X_n))\leq Y_n$与$f(X_n)\subseteq Y_n$成立。
+>
+> 然后我们考虑部分和$\displaystyle S_N'=\sum_{n=0}^N|a_{f(n)}|$，不难证明$S_N'$也可以写为$\displaystyle \sum_{x\in X_N}|a_{f(x)}|=\sum_{x\in f(X_N)}|a_{x}|$，于是根据有限和的性质（命题7.1.11(e)），我们有对任意$N\geq 0$都有：
+> $$
+> \sum_{x\in Y_N}|a_{x}|=\sum_{x\in f(X_N)}|a_{x}|+\sum_{x\in(Y_N\verb|\|f(X_N))}|a_{x}|\tag{1}
+> $$
+> 其中$\displaystyle S_N=\sum_{x\in Y_N}|a_x|=\sum_{n=0}^{f(n)}|a_{n}|$是$\displaystyle{\sum_{n=0}^{\infty}|a_n|}$的部分和。然后根据绝对值非负的特点，$(1)$中右端两个部分均不小于$0$，于是由$(1)$可进而导出序关系，对任意$N\geq 0$有：
+> $$
+> \sum_{x\in Y_N}|a_{x}|\geq\sum_{x\in f(X_N)}|a_{x}|\tag{2}
+> $$
+> 然后根据命题7.3.1上界推断，$(2)$可进一步升级为存在一个实数$M$使得对任意$N\geq 0$有：
+> $$
+> M\geq\sum_{x\in Y_N}|a_{x}|\geq\sum_{x\in f(X_N)}|a_{x}|\\
+> \Downarrow\\
+> M\geq\sum_{n=0}^N|a_{f(n)}|
+> $$
+> 再根据上界推断，此时$\displaystyle{\sum_{n=0}^{\infty}a_{f(n)}}$也绝对收敛，结论得证。
+

@@ -106,5 +106,5 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
     markdown: {
         math: true
-    }
+    },
 })

@@ -180,7 +180,7 @@ coverHeight:
 >
 > 于是结论得证。
 
-##### 16.2.2 证明：$C(\mathbb R/\mathbb Z;\mathbb C)$上的$L^2$度量$d_{L^2}$的确使$C(\mathbb R/\mathbb Z;\mathbb C)$成为一个度量空间<span style="color:blue">（参见[习题12.1.6](../Chap12/Sec1.md)）</span>
+##### 16.2.2 证明：$C(\mathbb R/\mathbb Z;\mathbb C)$上的$L^2$度量$d_{L^2}$的确使$C(\mathbb R/\mathbb Z;\mathbb C)$成为一个度量空间<span style="color:blue">（参见[习题12.1.6](/docs/Real-Analysis/Chap12/Sec1.md)）</span>
 
 > 于是需要证明：
 >
@@ -519,4 +519,4 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 12.1 定义和例子](../Chap12/Sec1.md)
+[实分析 12.1 定义和例子](/docs/Real-Analysis/Chap12/Sec1.md)

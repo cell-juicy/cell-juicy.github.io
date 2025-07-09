@@ -25,7 +25,7 @@ coverHeight:
    $$
    \left(\sum_{i=1}^{N}f^{(i)}\right)(x):=\sum_{i=1}^{N}f^{(i)}(x)
    $$
-   <span style="color:blue">（注：和[有限级数](./Sec5.md)的内容很相似，并且我们很容易证明，有界函数的有限和是有界的，连续函数的有限和是连续的）</span>
+   <span style="color:blue">（注：和[有限级数](/docs/Real-Analysis/Chap7/Sec1.md)的内容很相似，并且我们很容易证明，有界函数的有限和是有界的，连续函数的有限和是连续的）</span>
 
 ---
 
@@ -47,7 +47,7 @@ coverHeight:
 
 1. <span style="color:red">（14.5.7 魏尔斯特拉斯M判别法）</span>设$(X,d_X)$是一个度量空间，$(f^{(n)})_{n=1}^\infty$是从$X$上使得级数$\displaystyle\sum_{n=1}^\infty\Vert f^{(n)}\Vert_{\infty}$收敛有界连续函数序列。那么，级数$\displaystyle\sum_{n=1}^{\infty}f^{(n)}$是在$X$上一致收敛于某个连续函数$f$的。
 
-   <span style="color:blue">（注：魏尔斯特拉斯M判别法可以简述为：上确界范数的绝对收敛蕴含着函数级数的一致收敛；魏尔斯特拉斯M判别法在处理幂级数的时候会经常用到，这都是[15章](../Chap15/Sec1.md)的后话了）</span>
+   <span style="color:blue">（注：魏尔斯特拉斯M判别法可以简述为：上确界范数的绝对收敛蕴含着函数级数的一致收敛；魏尔斯特拉斯M判别法在处理幂级数的时候会经常用到，这都是[15章](/docs/Real-Analysis/Chap15/Sec1.md)的后话了）</span>
 
 ---
 
@@ -99,7 +99,7 @@ coverHeight:
 > $$
 > 从即$\displaystyle\sum_{i=1}^{N}f^{(i)}$在$X$上是一致连续的（也即是一致连续的）。
 
-##### 14.5.2 证明定理14.5.7<span style="color:blue">（提示：首先证明序列$\displaystyle\sum_{i=1}^{N}f^{(i)}$是$C(X\to\mathbb R)$中的柯西序列，然后利用[定理14.4.5](../Chap14/Sec4.md)）</span>
+##### 14.5.2 证明定理14.5.7<span style="color:blue">（提示：首先证明序列$\displaystyle\sum_{i=1}^{N}f^{(i)}$是$C(X\to\mathbb R)$中的柯西序列，然后利用[定理14.4.5](/docs/Real-Analysis/Chap14/Sec4.md)）</span>
 
 > 由于级数$\displaystyle\sum_{n=1}^\infty\Vert f^{(n)}\Vert_{\infty}$收敛，因此根据命题7.2.5，对任意的$\varepsilon>0$都存在一个$N>0$使得对任意的$p$，$q\geq N$都有：
 > $$
@@ -125,6 +125,6 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 7.1 有限级数](./Sec5.md)
+[实分析 7.1 有限级数](/docs/Real-Analysis/Chap7/Sec1.md)
 
-[实分析 14.4 一致收敛的度量](../Chap14/Sec4.md)
+[实分析 14.4 一致收敛的度量](/docs/Real-Analysis/Chap14/Sec4.md)

@@ -17,7 +17,7 @@ coverHeight:
 
 ## 定义
 
-1. <span style="color:red">（14.4.2 有界函数的度量空间）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，我们用$B(X\to Y)$表示从$X$到$Y$的**有界函数空间**<span style="color:blue">（使用[幂集公理](./Sec4.md)与[分类公理](./Sec4.md)可以知道这是一个集合）</span>
+1. <span style="color:red">（14.4.2 有界函数的度量空间）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，我们用$B(X\to Y)$表示从$X$到$Y$的**有界函数空间**<span style="color:blue">（使用[幂集公理](/docs/Real-Analysis/Chap3/Sec4.md)与[分类公理](/docs/Real-Analysis/Chap3/Sec1.md)可以知道这是一个集合）</span>
    $$
    B(X\to Y):=\{f:f:X\to Y是有界函数\}
    $$
@@ -104,7 +104,7 @@ coverHeight:
 > $$
 > 于是总结即有：对任意的$\varepsilon>0$，存在一个$N>0$使得对任意$n\geq N$都有$d_\infty(f^{(n)},f)<\varepsilon$。于是根据定义12.1.14即有$(f^{(n)})_{n=1}^\infty$依度量$d_{B(X\to Y)}$收敛于$f$。
 
-##### 14.4.3 证明定理14.4.5<span style="color:blue">（提示：这个命题的证明与[定理14.3.1](../Chap14/Sec3.md)的证明类似，但不完全相同）</span>
+##### 14.4.3 证明定理14.4.5<span style="color:blue">（提示：这个命题的证明与[定理14.3.1](/docs/Real-Analysis/Chap14/Sec3.md)的证明类似，但不完全相同）</span>
 
 > 考虑$(f^{(n)})_{n=1}^\infty$是空间$(C(X\to Y),d_{B(X\to Y)}|_{C(X\to Y)\times C(X\to Y)})$中的一个柯西序列。首先我们注意到，对任意的$\varepsilon>0$，由于$(f^{(n)})_{n=1}^\infty$是柯西序列于是存在$N>0$使得对任意的$i$，$j\geq N$都有$d_{B(X\to Y)}(f^{(i)},f^{(j)})<\varepsilon$，于是任意的$x\in X$有：
 > $$
@@ -140,7 +140,7 @@ coverHeight:
 >
 > 综上，我们证明了任意$(f^{(n)})_{n=1}^\infty$是空间$(C(X\to Y),d_{B(X\to Y)}|_{C(X\to Y)\times C(X\to Y)})$中的柯西序列都收敛于某个$f\in C(X\to Y)$，于是根据完备度量空间的定义即有$(C(X\to Y),d_{B(X\to Y)}|_{C(X\to Y)\times C(X\to Y)})$是完备的，题目结论得证。
 
-##### 14.4.4 设$(X,d_X)$和$(Y,d_Y)$都是度量空间，并设$Y^X:=\{f:f:X\to Y\}$是从$X$到$Y$的全体函数的空间<span style="color:blue">（参见[公理3.10幂集公理](./Sec4.md)）</span>。设$x_0\in X$，$V$是$Y$中的开集，并设$V^{(x_0)}\subseteq Y^X$是集合
+##### 14.4.4 设$(X,d_X)$和$(Y,d_Y)$都是度量空间，并设$Y^X:=\{f:f:X\to Y\}$是从$X$到$Y$的全体函数的空间<span style="color:blue">（参见[公理3.10幂集公理](/docs/Real-Analysis/Chap3/Sec4.md)）</span>。设$x_0\in X$，$V$是$Y$中的开集，并设$V^{(x_0)}\subseteq Y^X$是集合
 
 $$
 V^{(x_0)}:=\{f\in Y^X:f(x_0)\in V\}
@@ -198,7 +198,7 @@ $$
 >
 > 综上，于是$(Y^X,\mathcal{F})$是一个拓扑空间。
 
-###### (b) 对于每一个自然数$n$，设$f^{(n)}:X\to Y$是从$X$到$Y$的函数，并设$f:X\to Y$是从$X$到$Y$的函数。证明：函数序列$(f^{(n)})_{n=1}^\infty$依拓扑$\mathcal{F}$收敛于$f$<span style="color:blue">（在[定义13.5.4](../Chap13/Sec5.md)的意义下）</span>，当且仅当$f^{(n)}$逐点收敛于$f$<span style="color:blue">（在[定义14.2.1](../Chap14/Sec2.md)的意义下）</span>
+###### (b) 对于每一个自然数$n$，设$f^{(n)}:X\to Y$是从$X$到$Y$的函数，并设$f:X\to Y$是从$X$到$Y$的函数。证明：函数序列$(f^{(n)})_{n=1}^\infty$依拓扑$\mathcal{F}$收敛于$f$<span style="color:blue">（在[定义13.5.4](/docs/Real-Analysis/Chap13/Sec5.md)的意义下）</span>，当且仅当$f^{(n)}$逐点收敛于$f$<span style="color:blue">（在[定义14.2.1](/docs/Real-Analysis/Chap14/Sec2.md)的意义下）</span>
 
 > 首先我们需要叙述乘积拓扑的一个很显然的辅助结论，这有利于我们的证明：
 >
@@ -245,12 +245,12 @@ $$
 
 ## 本节相关跳转
 
-[实分析 3.1 基础知识](./Sec4.md)
+[实分析 3.1 基础知识](/docs/Real-Analysis/Chap3/Sec1.md)
 
-[实分析 3.4 象和逆象](./Sec4.md)
+[实分析 3.4 象和逆象](/docs/Real-Analysis/Chap3/Sec4.md)
 
-[实分析 13.5 拓扑空间](../Chap13/Sec5.md)
+[实分析 13.5 拓扑空间](/docs/Real-Analysis/Chap13/Sec5.md)
 
-[实分析 14.2 逐点收敛和一致收敛](../Chap14/Sec2.md)
+[实分析 14.2 逐点收敛和一致收敛](/docs/Real-Analysis/Chap14/Sec2.md)
 
-[实分析 14.3 一致收敛性与连续性](../Chap14/Sec3.md)
+[实分析 14.3 一致收敛性与连续性](/docs/Real-Analysis/Chap14/Sec3.md)
