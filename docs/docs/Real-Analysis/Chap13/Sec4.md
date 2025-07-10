@@ -33,15 +33,15 @@ coverHeight:
 
    > 1. $X$是连通的。
    > 2. 只要$x$，$y\in X$且$x<y$，那么区间$[x,y]$就包含在$X$中。
-   > 3. $X$是一个区间（在[定义9.1.1](./Sec4.md)意义下）。
+   > 3. $X$是一个区间（在[定义9.1.1](/docs/Real-Analysis/Chap13/Sec4.md)意义下）。
 
-   <span style="color:blue">（注：因此定义13.4.1可以视为对[定义11.1.1](./Sec4.md)的推广）</span>
+   <span style="color:blue">（注：因此定义13.4.1可以视为对[定义11.1.1](/docs/Real-Analysis/Chap13/Sec4.md)的推广）</span>
 
 2. <span style="color:red">（13.4.6 连续性保持连通性）</span>设$f:X\to Y$是从度量空间$(X,d_X)$到度量空间$(Y,d_Y)$的连续映射，并设$E$是$X$的任意一个连通子集。那么$f(E)$也是连通的。
 
 3. <span style="color:red">（13.4.7 介值定理）</span>设$f:X\to Y$是从度量空间$(X,d_X)$到实直线$\mathbb R$的连续映射，设$E$是$X$的任意一个连通子集，$a$、$b$是$E$中任意两个元素，并设$y$是介于$f(a)$和$f(b)$之间的实数。那么存在$c\in E$使得$f(c)=y$。
 
-   <span style="color:blue">（注：这是对[定理9.7.1](./Sec4.md)的推广）</span>
+   <span style="color:blue">（注：这是对[定理9.7.1](/docs/Real-Analysis/Chap13/Sec4.md)的推广）</span>
 
 ---
 
@@ -85,7 +85,7 @@ coverHeight:
 > $$
 > 即有$z\in X$，于是区间$[x,y]$是包含于$X$的，对形如$(a,b)$，$(a,b]$，$[a,b)$的情形类似地证明即可。
 
-##### 13.4.4 证明定理13.4.6<span style="color:blue">（提示：[定理13.1.5(c)](../Chap13/Sec1.md)中对于连续性的表述在这里是最方便的）</span>
+##### 13.4.4 证明定理13.4.6<span style="color:blue">（提示：[定理13.1.5(c)](/docs/Real-Analysis/Chap13/Sec1.md)中对于连续性的表述在这里是最方便的）</span>
 
 > 不妨使用反证法，我们假设$f(E)$不是连通的，那么存在$f(E)$中的两个非空不相交开集$V$，$W$使得$f(E)=V\cup W$。于是根据定理13.1.5(c)即有$f^{-1}(V)$与$f^{-1}(W)$都是开集。此时注意到对任意$x\in E$，我们都有$f(x)\in E\Longrightarrow f(x)\in V$或$f(x)\in W$，于是$x$要么属于$f^{-1}(V)$要么属于$f^{-1}(W)$。
 >
@@ -131,7 +131,7 @@ coverHeight:
 >
 > ---
 >
-> 关于逆命题，并不是所有的连通集合都是道路连通的，这一点在额外注释中本人收录了一个例子，详情参考：[额外注释：非道路连通但是连通的集合](../Extra.md)。
+> 关于逆命题，并不是所有的连通集合都是道路连通的，这一点在额外注释中本人收录了一个例子，详情参考：[额外注释：非道路连通但是连通的集合](/docs/Real-Analysis/Extra/)。
 
 ##### 13.4.8 设$(X,d)$是一个度量空间，并设$E$是$X$的子集。证明：如果$E$是连通的，那么$E$的闭包$\overline{E}$也是连通的，并解释逆命题是否成立
 
@@ -199,7 +199,7 @@ coverHeight:
 >
 > 综上，于是我们得证了$\sim$的等价类都是连通的闭集。
 
-##### 13.4.10 结合[命题13.3.2](../Chap13/Sec3.md)和推论13.4.7，推导出关于紧致连通区域上的连续函数的定理，它推广了[推论9.7.4](./Sec4.md)
+##### 13.4.10 结合[命题13.3.2](/docs/Real-Analysis/Chap13/Sec3.md)和推论13.4.7，推导出关于紧致连通区域上的连续函数的定理，它推广了[推论9.7.4](/docs/Real-Analysis/Chap13/Sec4.md)
 
 > 我们先给出这个结论，然后再给出证明：
 >
@@ -219,12 +219,12 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 9.1 实直线的子集](./Sec4.md)
+[实分析 9.1 实直线的子集](/docs/Real-Analysis/Chap13/Sec4.md)
 
-[实分析 9.7 介值定理](./Sec4.md)
+[实分析 9.7 介值定理](/docs/Real-Analysis/Chap13/Sec4.md)
 
-[实分析 11.1 划分](./Sec4.md)
+[实分析 11.1 划分](/docs/Real-Analysis/Chap13/Sec4.md)
 
-[实分析 13.1 连续函数](../Chap13/Sec1.md)
+[实分析 13.1 连续函数](/docs/Real-Analysis/Chap13/Sec1.md)
 
-[实分析 13.3 连续性与紧致性](../Chap13/Sec3.md)
+[实分析 13.3 连续性与紧致性](/docs/Real-Analysis/Chap13/Sec3.md)

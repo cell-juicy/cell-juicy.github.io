@@ -58,7 +58,7 @@ coverHeight:
    > * <span style="color:red">（可数次可加性）</span>如果$(A_j)_{j\in J}$是$\mathbb R^n$的可数个子集，那么$\displaystyle m^*\left(\bigcup_{j\in J}A_j\right)\leq\sum_{j\in J}m^*(A_j)$。
    > * <span style="color:red">（平移不变性）</span>如果$\Omega$是$\mathbb R^n$的一个子集，并且$x\in\mathbb R^n$，那么$x+\Omega:=\{x+y:y\in\Omega\}$的外测度满足$m^*(x+\Omega)=m^*(\Omega)$。
 
-   <span style="color:blue">（注：分别对应了[18.1节](../Chap18/Sec1.md)中的性质5、6、7、8、10、13）</span>
+   <span style="color:blue">（注：分别对应了[18.1节](/docs/Real-Analysis/Chap18/Sec1.md)中的性质5、6、7、8、10、13）</span>
 
 2. <span style="color:red">（18.2.6 闭盒子的外测度）</span>对于任意的闭盒子
    $$
@@ -81,7 +81,7 @@ coverHeight:
    >    $$
    >    m^*(B)=\prod_{i=1}^{n}(b_i-a_i)
    >    $$
-   >    特别地，外测度就满足了[正规化性质（第12条）](../Chap18/Sec1.md)。
+   >    特别地，外测度就满足了[正规化性质（第12条）](/docs/Real-Analysis/Chap18/Sec1.md)。
 
 ---
 
@@ -236,7 +236,7 @@ coverHeight:
 >
 > 综上，于是结论得证。
 
-###### 在习题18.2.3~18.2.5中，我们假设$\mathbb R^n$是一个欧几里得空间，并假设在$\mathbb R^n$中有可测集的概念<span style="color:blue">（它可能与勒贝格可测集的概念重合，也可能不重合）</span>和测度的概念<span style="color:blue">（它可能与勒贝格测度的概念重合，也可能不重合）</span>，并且这个测度满足[公理(i)~(xiii)](../Chap18/Sec1.md)，基于此前提完成下面的习题。
+###### 在习题18.2.3~18.2.5中，我们假设$\mathbb R^n$是一个欧几里得空间，并假设在$\mathbb R^n$中有可测集的概念<span style="color:blue">（它可能与勒贝格可测集的概念重合，也可能不重合）</span>和测度的概念<span style="color:blue">（它可能与勒贝格测度的概念重合，也可能不重合）</span>，并且这个测度满足[公理(i)~(xiii)](/docs/Real-Analysis/Chap18/Sec1.md)，基于此前提完成下面的习题。
 
 ##### 18.2.3 完成下面的证明
 
@@ -442,7 +442,7 @@ $$
 > $$
 > 于是$m(B)=\text{vol}(B)$得证。
 
-##### 18.2.6 利用引理18.2.5和命题18.2.6，给出“实数集是不可数集”的另一种证明<span style="color:blue">（即重新证明[推论8.3.4](./Sec2.md)）</span>
+##### 18.2.6 利用引理18.2.5和命题18.2.6，给出“实数集是不可数集”的另一种证明<span style="color:blue">（即重新证明[推论8.3.4](/docs/Real-Analysis/Chap18/Sec2.md)）</span>
 
 > 使用反证法，我们假设$\mathbb R$是一个可数集，那么它的元素可以排列成一个序列$(r_i)_{i=0}^{\infty}$的形式，于是根据正性，可数次可加性与命题18.2.6我们有：
 > $$
@@ -454,6 +454,6 @@ $$
 
 ## 本节相关跳转
 
-[实分析 8.3 不可数集](./Sec2.md)
+[实分析 8.3 不可数集](/docs/Real-Analysis/Chap18/Sec2.md)
 
-[实分析 18.1 目标：勒贝格测度](../Chap18/Sec1.md)
+[实分析 18.1 目标：勒贝格测度](/docs/Real-Analysis/Chap18/Sec1.md)

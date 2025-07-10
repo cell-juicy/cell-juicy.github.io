@@ -147,7 +147,7 @@ coverHeight:
 > $$
 > 特别地，我们有$\Vert e_n\Vert_{2}=\langle e_n,e_m\rangle=1$。综上，于是结论得证。
 
-##### 16.3.3 证明推论16.3.6<span style="color:blue">（提示：利用引理16.3.5。对于第二个恒等式，既可以利用[毕达哥拉斯定理（引理16.2.7(d)）](../Chap16/Sec2.md)和归纳法，也可以代入$\displaystyle f=\sum_{n=-N}^{N}c_ne_n$并展开所有的表达式）</span>
+##### 16.3.3 证明推论16.3.6<span style="color:blue">（提示：利用引理16.3.5。对于第二个恒等式，既可以利用[毕达哥拉斯定理（引理16.2.7(d)）](/docs/Real-Analysis/Chap16/Sec2.md)和归纳法，也可以代入$\displaystyle f=\sum_{n=-N}^{N}c_ne_n$并展开所有的表达式）</span>
 
 > 我们对$N$做归纳来证明这个推论。
 >
@@ -189,4 +189,4 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 16.2 周期函数的内积](../Chap16/Sec2.md)
+[实分析 16.2 周期函数的内积](/docs/Real-Analysis/Chap16/Sec2.md)

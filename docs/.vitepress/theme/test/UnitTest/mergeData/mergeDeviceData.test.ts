@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { mergeDeviceData } from '../../utils/mergeData';
+import { mergeDeviceData } from '../../../utils/mergeData';
 
 describe("mergeDeviceData测试", () => {
     test("优先级规则测试", () => {

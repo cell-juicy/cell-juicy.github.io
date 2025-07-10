@@ -34,7 +34,7 @@ coverHeight:
    $$
    f(x):=\sum_{n=1}^{\infty}4^{-n}\cos(32^{n}\pi x)
    $$
-   根据魏尔斯特拉斯M判别法，我们知道该级数是一致收敛的；因为每一个函数$4^{-n}\cos(32^{n}\pi x)$都是连续的，因此$f$也是连续的；但是$f$是不可微的<span style="color:blue">（参见[习题15.7.10](../Chap15/Sec7.md)）</span>，事实上$f$是在定义域上**处处不可微**的。
+   根据魏尔斯特拉斯M判别法，我们知道该级数是一致收敛的；因为每一个函数$4^{-n}\cos(32^{n}\pi x)$都是连续的，因此$f$也是连续的；但是$f$是不可微的<span style="color:blue">（参见[习题15.7.10](/docs/Real-Analysis/Chap15/Sec7.md)）</span>，事实上$f$是在定义域上**处处不可微**的。
 
 ---
 
@@ -89,7 +89,7 @@ coverHeight:
 >
 > 综上，于是证明完毕。
 
-##### 14.7.2 不假设$f_n'$是连续函数，证明定理14.7.1<span style="color:blue">（提示：于是我们无法使用[微积分基本定理](./Sec7.md)，但是仍可以使用[平均值定理（推论10.2.9）](./Sec7.md)。利用该定理证明若$\displaystyle\sup_{x\in X}|f'_n(x)-f'_m(x)|\leq\varepsilon$，则对所有的$x\in[a,b]$都有$|(f_n(x)-f_m(x))-(f_n(x_0)-f_m(x_0))|\leq\varepsilon|x-x_0|$。然后利用这个结论完成定理14.7.1的证明）</span>
+##### 14.7.2 不假设$f_n'$是连续函数，证明定理14.7.1<span style="color:blue">（提示：于是我们无法使用[微积分基本定理](/docs/Real-Analysis/Chap14/Sec7.md)，但是仍可以使用[平均值定理（推论10.2.9）](/docs/Real-Analysis/Chap14/Sec7.md)。利用该定理证明若$\displaystyle\sup_{x\in X}|f'_n(x)-f'_m(x)|\leq\varepsilon$，则对所有的$x\in[a,b]$都有$|(f_n(x)-f_m(x))-(f_n(x_0)-f_m(x_0))|\leq\varepsilon|x-x_0|$。然后利用这个结论完成定理14.7.1的证明）</span>
 
 > 勘误：因为没有办法确认导函数的有界性，因此$d_\infty(f_n',f_m')\leq\varepsilon$应该改为$\displaystyle\sup_{x\in X}|f'_n(x)-f'_m(x)|\leq\varepsilon$（尽管这实际上是个没那么容易发觉的错误，笔者还是看了陶本人的博客才知道的）
 >
@@ -223,6 +223,6 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 10.2 局部最大值、局部最小值以及导数](./Sec7.md)
+[实分析 10.2 局部最大值、局部最小值以及导数](/docs/Real-Analysis/Chap14/Sec7.md)
 
-[实分析 11.9 微积分的两个基本定理](./Sec7.md)
+[实分析 11.9 微积分的两个基本定理](/docs/Real-Analysis/Chap14/Sec7.md)

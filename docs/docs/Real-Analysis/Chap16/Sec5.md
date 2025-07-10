@@ -21,7 +21,7 @@ coverHeight:
    $$
    \lim_{N\to\infty}\left\Vert f-\sum_{n=-N}^{N}\hat{f}(n)e_n\right\Vert_2=0
    $$
-   <span style="color:blue">（注：证明见原书，主要是内积运算与[魏尔斯特拉斯第二逼近定理](../Chap16/Sec4.md)的运用；需要注意的是，这个结论并不能直接简单地推广给逐点收敛和一致收敛，原书中给出了一个简单的结论：额外假定$f$可微可以将结论推广到逐点收敛；额外假定$f$二次连续可微可以将结论推广到一致收敛（证明自然是没有的，可能可以找本三角分析的书看看啥的））</span>
+   <span style="color:blue">（注：证明见原书，主要是内积运算与[魏尔斯特拉斯第二逼近定理](/docs/Real-Analysis/Chap16/Sec4.md)的运用；需要注意的是，这个结论并不能直接简单地推广给逐点收敛和一致收敛，原书中给出了一个简单的结论：额外假定$f$可微可以将结论推广到逐点收敛；额外假定$f$二次连续可微可以将结论推广到一致收敛（证明自然是没有的，可能可以找本三角分析的书看看啥的））</span>
 
 2. <span style="color:red">（16.5.3 一致收敛的加强？）</span>设$f\in C(\mathbb R/\mathbb Z;\mathbb C)$，如果级数$\displaystyle\sum_{n=-\infty}^{\infty}|\hat{f}(n)|$是绝对收敛的，那么级数$\displaystyle\sum_{n=-\infty}^{\infty}\hat{f}(n)e_n$就一致收敛于$f$。换言之，我们有：
    $$
@@ -369,4 +369,4 @@ $$
 
 ## 本节相关跳转
 
-[实分析 16.4 周期卷积](../Chap16/Sec4.md)
+[实分析 16.4 周期卷积](/docs/Real-Analysis/Chap16/Sec4.md)

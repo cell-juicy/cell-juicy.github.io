@@ -212,7 +212,7 @@ coverHeight:
 >
 > 于是根据定义14.8.6即有$P$是$(\varepsilon,\delta)$恒等逼近的，引理14.8.8得证。
 
-##### 14.8.3 设$f:\mathbb R\to\mathbb R$是一个连续的紧支撑函数。证明：$f$是有界的，并且是一致连续的<span style="color:blue">（提示：利用[命题13.3.2](../Chap13/Sec3.md)和[定理13.3.5](../Chap13/Sec3.md)，但是必须先处理$f$的定义域$\mathbb R$不是紧致的这一问题）</span>
+##### 14.8.3 设$f:\mathbb R\to\mathbb R$是一个连续的紧支撑函数。证明：$f$是有界的，并且是一致连续的<span style="color:blue">（提示：利用[命题13.3.2](/docs/Real-Analysis/Chap13/Sec3.md)和[定理13.3.5](/docs/Real-Analysis/Chap13/Sec3.md)，但是必须先处理$f$的定义域$\mathbb R$不是紧致的这一问题）</span>
 
 > 先证明$f$是有界的。由于$f$是紧支撑函数，因此存在某个区间$[a,b]$使得对任意$x\notin[a,b]$都有$f(x)=0$；而对$x\in[a,b]$，由于$f$是连续的并且$[a,b]$是紧致的（海涅-博雷尔定理），因此$f([a,b])$也应该是有界的，换言之即存在$M>0$使得$f(x)\in[-M,M]$。考虑到$0$（也就是$f$在$[a,b]$以外的函数值）同样属于$[-M,M]$，于是即对任意$x\in\mathbb R$都有$f(x)\in[-M,M]$，也即$f$是有界的。
 >
@@ -482,4 +482,4 @@ $$
 
 ## 本节相关跳转
 
-[实分析 13.3 连续性与紧致性](../Chap13/Sec3.md)
+[实分析 13.3 连续性与紧致性](/docs/Real-Analysis/Chap13/Sec3.md)

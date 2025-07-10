@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect, vi, afterEach } from 'vitest';
 import { nextTick, ref } from 'vue';
-import VPJHeroImage from '../../components/VPJHeroImage.vue';
-import { VPJ_PAGE_LAYOUT_SYMBOL } from '../../utils/symbols';
+import VPJHeroImage from '../../../components/VPJHeroImage.vue';
+import { VPJ_PAGE_LAYOUT_SYMBOL } from '../../../utils/symbols';
 
 // 模拟 vitepress
 vi.mock('vitepress', () => ({

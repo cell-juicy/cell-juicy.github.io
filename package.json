@@ -8,8 +8,8 @@
     "esbuild": "^0.24.2",
     "happy-dom": "^17.4.7",
     "jsdom": "^26.1.0",
-    "markdown-it": "^14.1.0",
     "markdown-it-mathjax3": "^4.3.2",
+    "rollup-plugin-visualizer": "^6.0.3",
     "vite": "^6.0.1",
     "vite-plugin-vue-devtools": "^7.7.6",
     "vitepress": "^1.5.0",
@@ -17,6 +17,7 @@
     "vue": "^3.5.13"
   },
   "scripts": {
+    "debug:build": "node --inspect --max-old-space-size=8192 node_modules/vitepress/bin/vitepress.js build docs",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
@@ -26,7 +27,6 @@
     "test:ui": "vitest --ui --config docs/.vitepress/theme/test/vitest.config.ts"
   },
   "dependencies": {
-    "@algolia/client-search": "^5.14.2",
     "@unhead/vue": "^2.0.0-rc.13",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vitest/ui": "^3.2.0",

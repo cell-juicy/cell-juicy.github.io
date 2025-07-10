@@ -79,7 +79,7 @@ coverHeight:
    $$
    D_vf(x_0):=\lim_{t\to 0;t>0}\frac{f(x_0+tv)-f(x_0)}{t}
    $$
-   <span style="color:blue">（注：应当将这个概念与[可微的定义](../Chap17/Sec2.md)做比较，由于方向导数的除数是标量因此我们可以直接通过极限去定义它；我们不在边界给出定义，但是如果只是为了定义“朝里”方向上的方向导数，那么也可以在边界上给出方向导数的定义）</span>
+   <span style="color:blue">（注：应当将这个概念与[可微的定义](/docs/Real-Analysis/Chap17/Sec2.md)做比较，由于方向导数的除数是标量因此我们可以直接通过极限去定义它；我们不在边界给出定义，但是如果只是为了定义“朝里”方向上的方向导数，那么也可以在边界上给出方向导数的定义）</span>
 
 2. <span style="color:red">（17.3.7 偏导数）</span>设$E$是$\mathbb R^n$的子集，$f:E\to\mathbb R^m$是一个函数，$x_0$是$E$的内点，并设$1\leq j\leq n$。如果极限
    $$
@@ -111,7 +111,7 @@ coverHeight:
 
 ## 课后习题
 
-##### 17.3.1 证明引理17.3.5<span style="color:blue">（这与[习题17.2.2](../Chap17/Sec2.md)类似）</span>
+##### 17.3.1 证明引理17.3.5<span style="color:blue">（这与[习题17.2.2](/docs/Real-Analysis/Chap17/Sec2.md)类似）</span>
 
 > 若$f$在$x_0$处可微，那么存在线性映射$L$使得极限
 > $$
@@ -235,7 +235,7 @@ coverHeight:
 > $$
 > 因此$f$不是符合定理17.3.8要求的函数，自然也不能应用定理17.3.8。
 
-##### 17.3.4 设$f:\mathbb R^n\to\mathbb R^m$是一个可微函数，并且对于所有的$x\in\mathbb R^n$都有$f'(x)=0$。证明：$f$是一个常值函数<span style="color:blue">（提示：你可能会用到一元函数的[平均值定理（推论10.2.9）](./Sec3.md)或者[微积分基本定理](./Sec3.md)。但是需要注意这些定理并不能对多元函数进行直接类比，不建议使用第一性原理来解题）</span>；另一个更难的挑战是，尝试将定义域$\mathbb R^n$换成$\mathbb R^n$的一个连通开子集$\Omega$后再证明这个命题
+##### 17.3.4 设$f:\mathbb R^n\to\mathbb R^m$是一个可微函数，并且对于所有的$x\in\mathbb R^n$都有$f'(x)=0$。证明：$f$是一个常值函数<span style="color:blue">（提示：你可能会用到一元函数的[平均值定理（推论10.2.9）](/docs/Real-Analysis/Chap17/Sec3.md)或者[微积分基本定理](/docs/Real-Analysis/Chap17/Sec3.md)。但是需要注意这些定理并不能对多元函数进行直接类比，不建议使用第一性原理来解题）</span>；另一个更难的挑战是，尝试将定义域$\mathbb R^n$换成$\mathbb R^n$的一个连通开子集$\Omega$后再证明这个命题
 
 > （思路不是本人想的， 转述别人的证明）
 >
@@ -295,8 +295,8 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 10.2 局部最大值、局部最小值以及导数](./Sec3.md)
+[实分析 10.2 局部最大值、局部最小值以及导数](/docs/Real-Analysis/Chap17/Sec3.md)
 
-[实分析 11.9 微积分的两个基本定理](./Sec3.md)
+[实分析 11.9 微积分的两个基本定理](/docs/Real-Analysis/Chap17/Sec3.md)
 
-[实分析 17.2 多元微积分中的导数](../Chap17/Sec2.md)
+[实分析 17.2 多元微积分中的导数](/docs/Real-Analysis/Chap17/Sec2.md)

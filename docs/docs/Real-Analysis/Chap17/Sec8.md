@@ -17,7 +17,7 @@ coverHeight:
 
 ## 摘录
 
-1. <span style="color:red">（关于函数的图）</span>在[习题3.5.10](./Sec8.md)中我们曾经定义了函数$f:\mathbb R\to\mathbb R$的**图**的概念：
+1. <span style="color:red">（关于函数的图）</span>在[习题3.5.10](/docs/Real-Analysis/Chap17/Sec8.md)中我们曾经定义了函数$f:\mathbb R\to\mathbb R$的**图**的概念：
    $$
    \{(x,f(x)):x\in\mathbb R\}
    $$
@@ -50,12 +50,12 @@ coverHeight:
    $$
    \color{blue}{\frac{\part f}{\part x_j}+\frac{\part f}{\part x_n}\frac{\part x_n}{\part x_j}=0}
    $$
-   <span style="color:blue">这也就是上面导数的结论（前提是$\displaystyle\frac{\part f}{\part x_n}\ne 0$）。这个定理事实上是[反函数定理](../Chap17/Sec7.md)的一个推论，详情见原书证明；根据隐函数定理，我们知道只要某个偏导数$\displaystyle\frac{\part f}{\part x_j}$不为$0$，那么变量$x_j$就可以由另外$n-1$个变量确定。于是，只要梯度$\nabla f$不全为$0$，集合$\{x\in\mathbb R^n:f(x)=0\}$就可以写成某个变量$x_j$关于另外$n-1$个变量的函数图。如果梯度$\nabla f$在某个点$x_0$处不存在，那么我们称$f$在$x_0$处有**临界点**，此时函数在该点的性状会变得非常复杂。例如$\{(x,y)\in\mathbb R^2:x^2-y^2=0\}$在$(0,0)$处就不能看成任何函数的图（它是两个直线的并集）；如果一个集合在每一点处都能看作连续函数的图，那么这个集合被称为**流形**。根据隐函数定理我们知道只要集合$\{x\in\mathbb R^n:f(x)=0\}$不包含$f$的临界点，那么它就是一个流形，流形理论是现代几何学（尤其是微分几何学和代数几何学）中的重要内容，不过本书不涉及这部分内容）</span>
+   <span style="color:blue">这也就是上面导数的结论（前提是$\displaystyle\frac{\part f}{\part x_n}\ne 0$）。这个定理事实上是[反函数定理](/docs/Real-Analysis/Chap17/Sec7.md)的一个推论，详情见原书证明；根据隐函数定理，我们知道只要某个偏导数$\displaystyle\frac{\part f}{\part x_j}$不为$0$，那么变量$x_j$就可以由另外$n-1$个变量确定。于是，只要梯度$\nabla f$不全为$0$，集合$\{x\in\mathbb R^n:f(x)=0\}$就可以写成某个变量$x_j$关于另外$n-1$个变量的函数图。如果梯度$\nabla f$在某个点$x_0$处不存在，那么我们称$f$在$x_0$处有**临界点**，此时函数在该点的性状会变得非常复杂。例如$\{(x,y)\in\mathbb R^2:x^2-y^2=0\}$在$(0,0)$处就不能看成任何函数的图（它是两个直线的并集）；如果一个集合在每一点处都能看作连续函数的图，那么这个集合被称为**流形**。根据隐函数定理我们知道只要集合$\{x\in\mathbb R^n:f(x)=0\}$不包含$f$的临界点，那么它就是一个流形，流形理论是现代几何学（尤其是微分几何学和代数几何学）中的重要内容，不过本书不涉及这部分内容）</span>
 
 ---
 
 ## 本节相关跳转
 
-[实分析 3.5 笛卡尔积](./Sec8.md)
+[实分析 3.5 笛卡尔积](/docs/Real-Analysis/Chap17/Sec8.md)
 
-[实分析 17.7 多元微积分的反函数定理](../Chap17/Sec7.md)
+[实分析 17.7 多元微积分的反函数定理](/docs/Real-Analysis/Chap17/Sec7.md)

@@ -2,14 +2,40 @@ import { createContentLoader } from "vitepress";
 import { processDocOrder, any2Number } from "../utils/common";
 
 import type { ResourceInput, ResourceData } from "../types/common";
+import { content, end } from "happy-dom/lib/PropertySymbol.js";
 
 
 export default createContentLoader("**/*.md", {
-    includeSrc: true,
+    excerpt(file, options) {
+        const mdMatch = file.content.match(/^#\s+(.+?)\s*$/m)
+        if (mdMatch) {
+            file.excerpt = mdMatch[1]
+            return
+        }
+
+        const htmlMatch = file.content.match(/<h1[^>]*>([^<]+)<\/h1>/i)
+        if (htmlMatch) {
+            file.excerpt = htmlMatch[1]
+            return
+        }
+        return
+    },
     transform(rawData) {
         return rawData
             .filter((raw) => raw.frontmatter.layout === "doc")
             .map((raw) => {
+                // Process title
+                let title = (typeof raw.excerpt === 'string') ? raw.excerpt : undefined;
+                if (title) {
+                    let safety = 0;
+                    let prev: string;
+                    do {
+                        prev = title
+                        title = title.replace(/<([a-zA-Z][a-zA-Z0-9]*)[^>]*>([\s\S]*?)<\/\1>/g, (m, t, c) => c);
+                    } while (prev !== title && ++safety < 10);
+                    title = title.replace(/<[a-zA-Z][a-zA-Z0-9]*\s*[^>]*?\/>/g, '');
+                };
+                
                 // Filter resources
                 const rawResources: Record<string, ResourceInput> = 
                     (typeof raw.frontmatter.resources === 'object' && raw.frontmatter.resources !== null)
@@ -57,8 +83,8 @@ export default createContentLoader("**/*.md", {
                 return {
                     ...raw,
                     url: encodeURI(raw.url),
-                    // @ts-ignore
-                    title: raw.src.match(/^#\s+(.+)/m) ? raw.src.match(/^#\s+(.+)/m)[1] : undefined,
+                    excerpt: undefined,
+                    title,
                     space: (typeof raw.frontmatter.space === 'string' && raw.frontmatter.space.length > 0)
                         ? raw.frontmatter.space
                         : undefined,

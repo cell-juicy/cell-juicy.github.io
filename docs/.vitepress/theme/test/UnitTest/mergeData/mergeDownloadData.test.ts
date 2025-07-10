@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
-import { mergeDownloadData } from '../../utils/mergeData';
-import type { PageContext } from '../../types/common';
+import { mergeDownloadData } from '../../../utils/mergeData';
+import type { PageContext } from '../../../types/common';
 
 
 // 模拟页面上下文

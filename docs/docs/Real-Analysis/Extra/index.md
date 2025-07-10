@@ -24,7 +24,7 @@ coverHeight:
 
 ## 目录
 
-[toc]
+[[toc]]
 
 ## 结构的相关解释
 
@@ -47,7 +47,7 @@ coverHeight:
 
 3. 三级标题（### **）
 
-   定义，命题等模块下，若原文内容有明显分类则添加三级标题注明分类，例子有：[实分析 4.3 绝对值与指数运算](./Extra.md)
+   定义，命题等模块下，若原文内容有明显分类则添加三级标题注明分类，例子有：[实分析 4.3 绝对值与指数运算](/docs/Real-Analysis/Extra/)
 
 4. 五级标题（##### **）
 
@@ -69,9 +69,9 @@ coverHeight:
 
    注释一些需要醒目的内容，比如当某个概念第一次出现时一定要用粗体标出。
 
-9. [跳转链接](./Extra.md)（\[\*\*\](\*\*)）
+9. [跳转链接](/docs/Real-Analysis/Extra/)（\[\*\*\](\*\*)）
 
-   当内容提到原书其它小节时，给出对应章节的跳转链接，比如[4.3节](./Extra.md)，链接格式统一使用：..\\..\第n章\md\实分析 n.m 标题.md的格式，其中n.m是引用的章节对应数字。特别的，如果是额外注释则不需要在文末的**本节相关跳转**中给出跳转链接。
+   当内容提到原书其它小节时，给出对应章节的跳转链接，比如[4.3节](/docs/Real-Analysis/Extra/)，链接格式统一使用：..\\..\第n章\md\实分析 n.m 标题.md的格式，其中n.m是引用的章节对应数字。特别的，如果是额外注释则不需要在文末的**本节相关跳转**中给出跳转链接。
    
 10. $数学公式$（\$\*\*\$与\$\$\*\*\$\$）
 
@@ -143,7 +143,7 @@ $$
 
 
 
-## [介值定理](./Extra.md)证明
+## [介值定理](/docs/Real-Analysis/Extra/)证明
 
 定理内容：
 
@@ -162,7 +162,7 @@ $$
 > * 显然$E$是$[a,b]$的子集，从而$E$是有界的。
 > * 因为$f(a)<y$且$a\in[a,b]$，所以$E$也是非空的。
 
-由[最小上界原理](./Extra.md)，于是$c:=\sup(E)$是有限的。因为$E$包含$a$，于是$c\geq a$，又因为$E$以$b$为上界<span style="color:blue">（$E$是$[a,b]$的子集）</span>，于是$c\in[a,b]$。现在证明$f(c)=y$，证明思路是从$c$的左侧证明$f(c)\leq y$，然后从$c$的右侧证明$f(c)\geq y$。
+由[最小上界原理](/docs/Real-Analysis/Extra/)，于是$c:=\sup(E)$是有限的。因为$E$包含$a$，于是$c\geq a$，又因为$E$以$b$为上界<span style="color:blue">（$E$是$[a,b]$的子集）</span>，于是$c\in[a,b]$。现在证明$f(c)=y$，证明思路是从$c$的左侧证明$f(c)\leq y$，然后从$c$的右侧证明$f(c)\geq y$。
 
 左侧的证明：
 
@@ -170,9 +170,9 @@ $$
 $$
 c-\frac{1}{n}\leq x_n\leq c
 $$
-根据[夹逼定理](./Extra.md)，于是有$\displaystyle\lim_{n\to\infty}x_n=c$，又由于$f$是连续的，于是这蕴含着$\displaystyle\lim_{n\to\infty}f(x_n)=f(c)$，此外，由于对任意$x_n$，都有$x_n\in E$，于是有$f(x_n)<y$，根据[比较原理](./Extra.md)，于是有$f(c)\leq y$成立。
+根据[夹逼定理](/docs/Real-Analysis/Extra/)，于是有$\displaystyle\lim_{n\to\infty}x_n=c$，又由于$f$是连续的，于是这蕴含着$\displaystyle\lim_{n\to\infty}f(x_n)=f(c)$，此外，由于对任意$x_n$，都有$x_n\in E$，于是有$f(x_n)<y$，根据[比较原理](/docs/Real-Analysis/Extra/)，于是有$f(c)\leq y$成立。
 
-因为$f(b)>y\geq f(c)$，于是$c\ne b$，又根据$c$是$E$的上确界而$b$是$E$的上界，于是$c<b$。特别地，存在一个正整数$N$使得对任意$n\geq N$都有$\displaystyle c+\frac{1}{n}<b$即$\displaystyle c+\frac{1}{n}\in[a,b]$；并且因为$\displaystyle c+\frac{1}{n}>c$与$c$是上确界，所以$\displaystyle c+\frac{1}{n}\notin E$；结合可得有$\displaystyle f(c+\frac{1}{n})\geq y$。又有$\displaystyle c+\frac{1}{n}$收敛于$c$与$f$连续，根据[比较原理](./Extra.md)，于是有$f(c)\geq y$成立。
+因为$f(b)>y\geq f(c)$，于是$c\ne b$，又根据$c$是$E$的上确界而$b$是$E$的上界，于是$c<b$。特别地，存在一个正整数$N$使得对任意$n\geq N$都有$\displaystyle c+\frac{1}{n}<b$即$\displaystyle c+\frac{1}{n}\in[a,b]$；并且因为$\displaystyle c+\frac{1}{n}>c$与$c$是上确界，所以$\displaystyle c+\frac{1}{n}\notin E$；结合可得有$\displaystyle f(c+\frac{1}{n})\geq y$。又有$\displaystyle c+\frac{1}{n}$收敛于$c$与$f$连续，根据[比较原理](/docs/Real-Analysis/Extra/)，于是有$f(c)\geq y$成立。
 
 综上，我们同时有$f(c)\leq y$与$f(c)\geq y$成立，于是只能有$f(c)=y$，此即我们要证明的结论。
 
@@ -188,7 +188,7 @@ $$
 $$
 f(i):=\min(B\verb|\|\{f(j):j<i\})\quad(i\in\mathbb N)\tag{1}
 $$
-由于$\{f(j):j<i\}$对任意$i\in\mathbb N$都是有限集，而$B$根据假设应当是无限集，所以集合$B\verb|\|\{f(j):j<i\}$总是非空的；由于自然数集是良序的，从而根据[良序原理](./Extra.md)，$B\verb|\|\{f(j):j<i\}$的最小元素总是存在的。因此，上面的递归定义对任意$i\in\mathbb N$都是有效的。
+由于$\{f(j):j<i\}$对任意$i\in\mathbb N$都是有限集，而$B$根据假设应当是无限集，所以集合$B\verb|\|\{f(j):j<i\}$总是非空的；由于自然数集是良序的，从而根据[良序原理](/docs/Real-Analysis/Extra/)，$B\verb|\|\{f(j):j<i\}$的最小元素总是存在的。因此，上面的递归定义对任意$i\in\mathbb N$都是有效的。
 
 然后我们考虑函数$f$的性质：
 
@@ -198,7 +198,7 @@ $$
   > $$
   > f(i_2)=\min(B\verb|\|\{f(j):j<i_2\})
   > $$
-  > 由于[良序原理](./Extra.md)，于是有$f(i_2)\in B\verb|\|\{f(j):j<i_2\}\iff f(i_2)\in B$且$f(i_2)\notin\{f(j):j<i_2\}$，这表明对任意的$j<i_2$，都应该有$f(i_2)\ne f(j)$（不然就有$f(i_2)\in\{f(j):j<j_2\}$了），特别地，有$f(i_2)\ne f(i_1)$。于是对任意$i_1$，$i_2\in\mathbb N$且$i_1\ne i_2$，我们都有$f(i_2)\ne f(i_1)$，即$f$确实是一个单射。
+  > 由于[良序原理](/docs/Real-Analysis/Extra/)，于是有$f(i_2)\in B\verb|\|\{f(j):j<i_2\}\iff f(i_2)\in B$且$f(i_2)\notin\{f(j):j<i_2\}$，这表明对任意的$j<i_2$，都应该有$f(i_2)\ne f(j)$（不然就有$f(i_2)\in\{f(j):j<j_2\}$了），特别地，有$f(i_2)\ne f(i_1)$。于是对任意$i_1$，$i_2\in\mathbb N$且$i_1\ne i_2$，我们都有$f(i_2)\ne f(i_1)$，即$f$确实是一个单射。
   >
   > 特别地，我们还需要注意到$f(i_2)\in [B\verb|\|\{f(j):j<i_2\}]\cup\{f(j):i_1\leq j<i_2\}=B\verb|\|\{f(j):j<i_1\}$（因为$f(i_2)$属于这个并集的第一个），而根据定义$(1)$，我们有：
   > $$
@@ -212,11 +212,11 @@ $$
   > $$
   > S=\{y\in B:\forall\;i\in\mathbb N,f(i)\ne y\}\tag{2}
   > $$
-  > 是非空的。根据[良序原理](./Extra.md)，存在$S$的最小元素，于是我们令有：
+  > 是非空的。根据[良序原理](/docs/Real-Analysis/Extra/)，存在$S$的最小元素，于是我们令有：
   > $$
   > k=\min(S)
   > $$
-  > [良序原理](./Extra.md)告诉我们$k\in S$。又根据我们在单射证明中的结论，我们知道有$f$是严格单调递增的且$k\leq f(k)$，于是即对任意$i\geq k$，都有$k\leq f(i)$，于是对集合$S\cup\{f(i):i\geq k\}$中的任意元素$y$，我们都有$k\leq y$；进而由于$k\in S\cup\{f(i):i\geq k\}$（因为$k$属于$S$），因此$k$就是集合$S\cup\{f(i):i\geq k\}$的最小元素。然后注意到有：
+  > [良序原理](/docs/Real-Analysis/Extra/)告诉我们$k\in S$。又根据我们在单射证明中的结论，我们知道有$f$是严格单调递增的且$k\leq f(k)$，于是即对任意$i\geq k$，都有$k\leq f(i)$，于是对集合$S\cup\{f(i):i\geq k\}$中的任意元素$y$，我们都有$k\leq y$；进而由于$k\in S\cup\{f(i):i\geq k\}$（因为$k$属于$S$），因此$k$就是集合$S\cup\{f(i):i\geq k\}$的最小元素。然后注意到有：
   > $$
   > \begin{align}
   > S\cup\{f(i):i\geq k\}&\iff\{y\in B:\forall\;i\in\mathbb N,f(i)\ne y\}\cup\{f(i)\in B:i\geq k\}\\

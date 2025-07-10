@@ -23,7 +23,7 @@ coverHeight:
    $$
    \color{blue}{f^+:=\max(f,0)\qquad f^-:=-\min(f,0)}
    $$
-   <span style="color:blue">根据[推论18.5.6](../Chap18/Sec5.md)可知$f^+$与$f^-$都是可测的，并且显然$f^+$和$f^-$都是非负函数，同时有$f=f^+-f^-$与$|f|=f^++f^-$成立）</span>
+   <span style="color:blue">根据[推论18.5.6](/docs/Real-Analysis/Chap18/Sec5.md)可知$f^+$与$f^-$都是可测的，并且显然$f^+$和$f^-$都是非负函数，同时有$f=f^+-f^-$与$|f|=f^++f^-$成立）</span>
 
 2. <span style="color:red">（19.3.2 勒贝格积分）</span>设$f:\Omega\to\mathbb R^*$是一个绝对可积函数，我们把$f$的勒贝格积分$\displaystyle\int_{\Omega}f$定义为
    $$
@@ -56,7 +56,7 @@ coverHeight:
    $$
    \int_{\Omega}\lim_{n\to\infty}f=\lim_{n\to\infty}\int_{\Omega}f
    $$
-   <span style="color:blue">（注：在[19.2节](../Chap19/Sec2.md)中提到过极限运算和积分运算的顺序不能随意交换，而勒贝格控制收敛定理给出了一个允许交换的条件，即只要存在一个从上方控制每一个函数$f_n$的绝对可积函数$F$，那么积分与极限运算的顺序交换就是合理的）</span>
+   <span style="color:blue">（注：在[19.2节](/docs/Real-Analysis/Chap19/Sec2.md)中提到过极限运算和积分运算的顺序不能随意交换，而勒贝格控制收敛定理给出了一个允许交换的条件，即只要存在一个从上方控制每一个函数$f_n$的绝对可积函数$F$，那么积分与极限运算的顺序交换就是合理的）</span>
    
 3. <span style="color:red">（19.3.6）</span>设$\Omega$是$\mathbb R^n$的可测子集，$f:\Omega\to\mathbb R$是一个函数（不一定是可测的），并设$A$是一个实数。如果$\displaystyle\overline{\int}_{\Omega}f=\underline{\int}_{\Omega}f=A$，那么$f$是绝对可积的，并且：
    $$
@@ -181,7 +181,7 @@ $$
 
 ## 本节相关跳转
 
-[实分析 18.5 可测函数](../Chap18/Sec5.md)
+[实分析 18.5 可测函数](/docs/Real-Analysis/Chap18/Sec5.md)
 
-[实分析 19.2 非负可测函数的积分](../Chap19/Sec2.md)
+[实分析 19.2 非负可测函数的积分](/docs/Real-Analysis/Chap19/Sec2.md)
 

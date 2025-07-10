@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import { describe, test, expect, vi, afterEach } from 'vitest';
 import { nextTick } from 'vue';
 
-import VPJTag from '../../components/VPJTag.vue';
+import VPJTag from '../../../components/VPJTag.vue';
 
 const themeCallback = vi.fn((tag: string) => {});
 const propsCallback = vi.fn((tag: string) => {});
@@ -53,7 +53,7 @@ describe("VPJTag 组件行为测试", () => {
                 }
             })
         }));
-        const { default: VPJTag } = await import('../../components/VPJTag.vue');
+        const { default: VPJTag } = await import('../../../components/VPJTag.vue');
 
         const wrapper = mount(VPJTag, {
             props: {
@@ -82,7 +82,7 @@ describe("VPJTag 组件行为测试", () => {
                 }
             })
         }));
-        const { default: VPJTag } = await import('../../components/VPJTag.vue');
+        const { default: VPJTag } = await import('../../../components/VPJTag.vue');
 
         const wrapper = mount(VPJTag, {
             props: {

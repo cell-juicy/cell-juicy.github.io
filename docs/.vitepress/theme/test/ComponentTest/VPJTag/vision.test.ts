@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect, vi, afterEach } from 'vitest';
-import VPJTag from '../../components/VPJTag.vue';
+import VPJTag from '../../../components/VPJTag.vue';
 
 // 测试后清除mock
 afterEach(() => {
@@ -54,7 +54,7 @@ describe("VPJTag 组件视图测试", () => {
                 }
             })
         }));
-        const { default: VPJTag } = await import('../../components/VPJTag.vue');
+        const { default: VPJTag } = await import('../../../components/VPJTag.vue');
 
         const wrapper = mount(VPJTag, {
             props: {
@@ -81,7 +81,7 @@ describe("VPJTag 组件视图测试", () => {
                 }
             })
         }));
-        const { default: VPJTag } = await import('../../components/VPJTag.vue');
+        const { default: VPJTag } = await import('../../../components/VPJTag.vue');
 
         const wrapper = mount(VPJTag, {
             props: {

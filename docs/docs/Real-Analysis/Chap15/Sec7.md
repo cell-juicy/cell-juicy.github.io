@@ -44,7 +44,7 @@ coverHeight:
    $$
    \pi:=\inf\{x\in(0,+\infty):\sin(x)=0\}
    $$
-   <span style="color:blue">（注：设$E:=\{x\in(0,+\infty):\sin(x)=0\}$是$\sin$在$(0,+\infty)$上全体根的集合。一个或许很容易被忽略的事实是，我们仍然要对上面的定义讨论$\sin(\pi)=0$是否为真，不过这个结论并不困难，利用[定理13.1.5(d)](../Chap13/Sec1.md)的结论与$\sin$的连续性我们很容易得到$E$是闭集，从而$E$包含了自身所有的附着点，也就是说包含了$\inf(E)$；然后，通过导数的推断我们不难判断得到$\cos(\pi)=-1$）</span>
+   <span style="color:blue">（注：设$E:=\{x\in(0,+\infty):\sin(x)=0\}$是$\sin$在$(0,+\infty)$上全体根的集合。一个或许很容易被忽略的事实是，我们仍然要对上面的定义讨论$\sin(\pi)=0$是否为真，不过这个结论并不困难，利用[定理13.1.5(d)](/docs/Real-Analysis/Chap13/Sec1.md)的结论与$\sin$的连续性我们很容易得到$E$是闭集，从而$E$包含了自身所有的附着点，也就是说包含了$\inf(E)$；然后，通过导数的推断我们不难判断得到$\cos(\pi)=-1$）</span>
 
 ---
 
@@ -372,7 +372,7 @@ $$
 > $$
 > 于是结论得证。
 
-##### 15.7.9 回顾习题15.7.8中的反正切函数$\tan^{-1}$，通过修改[定理15.5.6(e)](../Chap15/Sec5.md)的证明来建立下面这个恒等式：
+##### 15.7.9 回顾习题15.7.8中的反正切函数$\tan^{-1}$，通过修改[定理15.5.6(e)](/docs/Real-Analysis/Chap15/Sec5.md)的证明来建立下面这个恒等式：
 
 $$
 \tan^{-1}(x)=\sum_{n=0}^{\infty}\frac{(-1)^nx^{2n+1}}{2n+1},x\in(-1,1)
@@ -384,7 +384,7 @@ $$
 \pi=4-\frac{4}{3}+\frac{4}{5}-\frac{4}{7}+...=4\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}
 $$
 
-##### <span style="color:blue">（注意，由于[交错级数判别法（命题7.2.12）](./Sec7.md)可知，上面这个级数时收敛的）</span>由此推导出$\displaystyle 4-\frac{4}{3}<\pi<4$<span style="color:blue">（当然可以用这个式子计算$\pi=3.1415926...$的更高精确度值，但如果可以，仍然建议使用其它的公式去计算$\pi$，因为这个级数收敛的太慢了）</span>
+##### <span style="color:blue">（注意，由于[交错级数判别法（命题7.2.12）](/docs/Real-Analysis/Chap15/Sec7.md)可知，上面这个级数时收敛的）</span>由此推导出$\displaystyle 4-\frac{4}{3}<\pi<4$<span style="color:blue">（当然可以用这个式子计算$\pi=3.1415926...$的更高精确度值，但如果可以，仍然建议使用其它的公式去计算$\pi$，因为这个级数收敛的太慢了）</span>
 
 > 对任意的$x\in(-1,1)$，由于$-x^2\in(-1,0]$，于是根据几何级数（命题7.3.3）我们有：
 > $$
@@ -458,7 +458,7 @@ $$
 \color{blue}{\sum_{n=1}^{\infty}a_n=\sum_{n=1}^{m-1}a_n+a_m+\sum_{n=m+1}^{\infty}a_n}
 $$
 
-###### <span style="color:blue">另外，利用余弦函数以$2\pi$为周期的事实，以及对于任意的$|r|<1$都有几何级数公式$\displaystyle\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}$，最后还要用到：对任意的实数$x$和$y$都有不等式$|\cos(x)-\cos(y)|\leq|x-y|$。这个不等式可以用[平均值定理（推论10.2.9）](./Sec7.md)或[微积分基本定理（定理11.9.4）](./Sec7.md)来证明）</span>
+###### <span style="color:blue">另外，利用余弦函数以$2\pi$为周期的事实，以及对于任意的$|r|<1$都有几何级数公式$\displaystyle\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}$，最后还要用到：对任意的实数$x$和$y$都有不等式$|\cos(x)-\cos(y)|\leq|x-y|$。这个不等式可以用[平均值定理（推论10.2.9）](/docs/Real-Analysis/Chap15/Sec7.md)或[微积分基本定理（定理11.9.4）](/docs/Real-Analysis/Chap15/Sec7.md)来证明）</span>
 
 > 可以计算有：
 > $$
@@ -521,7 +521,7 @@ $$
 > > $$
 > > 也即题目不等式得证。
 
-###### (c) 利用(b)证明：对于任意的实数$x_0$，函数$f$在$x_0$处不可微<span style="color:blue">（提示：根据[习题5.4.3](./Sec7.md)，对于任意的$x_0$和任意的$m\geq 1$，存在一个整数$j$使得$j\leq 32^mx_0\leq j+1$）</span>
+###### (c) 利用(b)证明：对于任意的实数$x_0$，函数$f$在$x_0$处不可微<span style="color:blue">（提示：根据[习题5.4.3](/docs/Real-Analysis/Chap15/Sec7.md)，对于任意的$x_0$和任意的$m\geq 1$，存在一个整数$j$使得$j\leq 32^mx_0\leq j+1$）</span>
 
 > 不妨假设存在实数$x_0\in\mathbb R$使得$f$在$x_0$处可微，于是我们记有$L:=f'(x_0)$。根据牛顿逼近法（命题10.1.7），对任意的$\varepsilon>0$都存在对应的$\delta>0$使得对任意的$|x-x_0|\leq\delta$都有：
 > $$
@@ -576,7 +576,7 @@ $$
 > $$
 > 但是根据(b)的结论应该有$\displaystyle\left|f\left(\frac{j+1}{32^m}\right)-f\left(\frac{j}{32^m}\right)\right|\geq 4^{-m}$，这导出了矛盾，于是反证假设不成立，$f$只能是处处不可微的。
 
-###### (d) 简单解释(c)的结论为什么不与[推论14.7.3](../Chap14/Sec7.md)矛盾
+###### (d) 简单解释(c)的结论为什么不与[推论14.7.3](/docs/Real-Analysis/Chap14/Sec7.md)矛盾
 
 > 原因是显然的，对任意的$n\geq 1$可以计算导函数有：
 > $$
@@ -592,16 +592,16 @@ $$
 
 ## 本节相关跳转
 
-[实分析 5.4 对实数排序](./Sec7.md)
+[实分析 5.4 对实数排序](/docs/Real-Analysis/Chap15/Sec7.md)
 
-[实分析 7.2 无限级数](./Sec7.md)
+[实分析 7.2 无限级数](/docs/Real-Analysis/Chap15/Sec7.md)
 
-[实分析 10.2 局部最大值、局部最小值以及导数](./Sec7.md)
+[实分析 10.2 局部最大值、局部最小值以及导数](/docs/Real-Analysis/Chap15/Sec7.md)
 
-[实分析 11.9 微积分的两个基本定理](./Sec7.md)
+[实分析 11.9 微积分的两个基本定理](/docs/Real-Analysis/Chap15/Sec7.md)
 
-[实分析 13.1 连续函数](../Chap13/Sec1.md)
+[实分析 13.1 连续函数](/docs/Real-Analysis/Chap13/Sec1.md)
 
-[实分析 14.7 一致收敛和导数](../Chap14/Sec7.md)
+[实分析 14.7 一致收敛和导数](/docs/Real-Analysis/Chap14/Sec7.md)
 
-[实分析 15.5 指数函数和对数函数](../Chap15/Sec5.md)
+[实分析 15.5 指数函数和对数函数](/docs/Real-Analysis/Chap15/Sec5.md)

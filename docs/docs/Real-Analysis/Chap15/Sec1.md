@@ -57,7 +57,7 @@ coverHeight:
 
 ## 课后习题
 
-##### 15.1.1 证明定理15.1.6<span style="color:blue">（提示：对(a)和(b)使用根值判别法（[定理7.5.1](./Sec1.md)）；对(c)使用魏尔斯特拉斯M判别法（[定理14.5.7](../Chap14/Sec5.md)）；对(d)使用[定理14.7.1](../Chap14/Sec7.md)；对(e)使用[推论14.6.2](../Chap14/Sec6.md)）</span>
+##### 15.1.1 证明定理15.1.6<span style="color:blue">（提示：对(a)和(b)使用根值判别法（[定理7.5.1](/docs/Real-Analysis/Chap15/Sec1.md)）；对(c)使用魏尔斯特拉斯M判别法（[定理14.5.7](/docs/Real-Analysis/Chap14/Sec5.md)）；对(d)使用[定理14.7.1](/docs/Real-Analysis/Chap14/Sec7.md)；对(e)使用[推论14.6.2](/docs/Real-Analysis/Chap14/Sec6.md)）</span>
 
 > 在证明前我们需要证明一些辅助结论：
 >
@@ -201,10 +201,10 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 7.5 根值判别法与比值判别法](./Sec1.md)
+[实分析 7.5 根值判别法与比值判别法](/docs/Real-Analysis/Chap15/Sec1.md)
 
-[实分析 14.5 函数级数与魏尔斯特拉斯M判别法](../Chap14/Sec5.md)
+[实分析 14.5 函数级数与魏尔斯特拉斯M判别法](/docs/Real-Analysis/Chap14/Sec5.md)
 
-[实分析 14.6 一致收敛和积分](../Chap14/Sec6.md)
+[实分析 14.6 一致收敛和积分](/docs/Real-Analysis/Chap14/Sec6.md)
 
-[实分析 14.7 一致收敛和导数](../Chap14/Sec7.md)
+[实分析 14.7 一致收敛和导数](/docs/Real-Analysis/Chap14/Sec7.md)

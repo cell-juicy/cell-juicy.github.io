@@ -1,6 +1,14 @@
 import { defineConfigWithTheme } from 'vitepress';
+import path from 'node:path';
+
 import type { ThemeConfig } from './theme/type';
+
 import vueDevTools from 'vite-plugin-vue-devtools';
+// import { visualizer } from 'rollup-plugin-visualizer';
+
+
+const PROJECT_ROOT = path.resolve(__dirname, '../..');
+const REPORT_DIR = path.join(PROJECT_ROOT, 'reports');
 
 
 export default defineConfigWithTheme<ThemeConfig>({
@@ -32,7 +40,7 @@ export default defineConfigWithTheme<ThemeConfig>({
                 "实分析": {
                     enableVirtual: true,
                     github(ctx) {
-                        const repository = "https://github.com/cell-juicy/Note-on-Tao-Zhexuan-real-analysis/tree/main/"
+                        const repository = "https://github.com/cell-juicy/Note-on-Tao-Zhexuan-real-analysis/tree/main"
                         const title = ctx.layoutConfig.title?.replace(/\d+?\.\d+?\s+?(.*?)/, "$1")
                         const { order } = (ctx.layoutConfig.layout === "doc") ? ctx.layoutConfig : {order: [0]}
                         const url = (order?.[0] === 100)
@@ -78,9 +86,25 @@ export default defineConfigWithTheme<ThemeConfig>({
         plugins: [
             // @ts-ignore
             vueDevTools()
-        ]
+        ],
+        // build: {
+        //     rollupOptions: {
+        //         plugins: [
+        //             visualizer({
+        //                 gzipSize: true,
+        //                 brotliSize: true,
+        //                 title: "VitePress Bundle Analysis",
+        //                 filename: path.join(REPORT_DIR, "rollup_visualizer", "bundle-stats.html"), // 修改这里
+        //                 projectRoot: PROJECT_ROOT,
+        //                 open: true,
+        //                 sourcemap: false,
+        //                 template: 'treemap',
+        //             })
+        //         ]
+        //     }
+        // }
     },
     markdown: {
         math: true
-    }
+    },
 })

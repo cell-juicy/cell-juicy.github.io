@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { mergeToolbarButtonData } from '../../utils/mergeData';
+import { mergeToolbarButtonData } from '../../../utils/mergeData';
 
 
 describe("mergeToolbarButtonData 工具栏按钮合并", () => {

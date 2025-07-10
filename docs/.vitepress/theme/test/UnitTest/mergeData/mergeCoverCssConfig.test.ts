@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { mergeCoverCssConfig } from '../../utils/mergeData';
+import { mergeCoverCssConfig } from '../../../utils/mergeData';
 
 describe("mergeCoverCssConfig测试", () => {
     test("基础优先级覆盖", () => {
