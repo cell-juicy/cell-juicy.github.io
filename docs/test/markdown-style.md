@@ -12,13 +12,14 @@ layout: page
 ### 三级标题
 #### 四级标题
 ##### 五级标题
+###### 六级标题
 
 ## 列表类型
 ### 无序列表
 - 基础项
 - **加粗项**
 - 嵌套列表
-  - 子项 » 子项
+  - 子项
   - [ ] 任务项 (未完成)
   - [x] 任务项 (已完成)
 
@@ -40,7 +41,7 @@ layout: page
 ```js
 // JavaScript 高亮
 function highlight(code) {
-  return `\`${code}\``
+  return `\${code}\`
 }
 ```
 

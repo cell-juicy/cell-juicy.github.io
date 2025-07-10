@@ -52,7 +52,7 @@ layout: page
 
 # 这是一个主页（绝赞装修中）
 
-我现在正在测试超赞的markdown样式，你可以在这里看到我的进度 [传送门](/docs/test/markdown-style.md)。
+我现在正在测试超赞的markdown样式，你可以在这里看到我的进度 [传送门](test/markdown-style.md)。
 
 ## 我的博客
 

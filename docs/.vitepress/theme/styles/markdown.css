@@ -1,6 +1,11 @@
+.vpj-markdown {
+    color: var(--vpj-color-text-500);
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
 .vpj-markdown * {
-    flex: 1;
-    overflow-wrap: break-word;
     max-width: 100%;
 }
 
@@ -9,9 +14,16 @@
     margin-top: 30px;
 }
 
+/* Link */
 .vpj-markdown a {
-    color: #4183C4;
+    color: var(--vpj-color-primary-400);
 }
+
+.vpj-markdown a:hover,
+.vpj-markdown a:focus {
+    color: var(--vpj-color-primary-300);
+}
+
 .vpj-markdown h1,
 .vpj-markdown h2,
 .vpj-markdown h3,
@@ -34,21 +46,13 @@
     text-decoration: none;
 }
 .vpj-markdown h1 tt,
-.vpj-markdown h1 code {
-    font-size: inherit;
-}
+.vpj-markdown h1 code,
 .vpj-markdown h2 tt,
-.vpj-markdown h2 code {
-    font-size: inherit;
-}
+.vpj-markdown h2 code,
 .vpj-markdown h3 tt,
-.vpj-markdown h3 code {
-    font-size: inherit;
-}
+.vpj-markdown h3 code,
 .vpj-markdown h4 tt,
-.vpj-markdown h4 code {
-    font-size: inherit;
-}
+.vpj-markdown h4 code,
 .vpj-markdown h5 tt,
 .vpj-markdown h5 code {
     font-size: inherit;
