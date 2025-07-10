@@ -31,7 +31,7 @@ layout: page
 ## 链接与图片
 [普通链接](https://vitepress.dev)  
 [带标题的链接](https://vuejs.org "Vue官网")  
-![Vitepress Logo](https://vitepress.dev/vitepress-logo-mini.svg "Logo标题")  
+![老婆](/assets/birthday.jpg)  
 [空链接](#)  
 [参考式链接][ref]  
 [ref]: https://github.com/vuejs
@@ -172,7 +172,7 @@ $$
 ## 特殊字符测试
 < > & © ® ™  
 10 > 5 && 5 < 10  
-http://example.com/?param=<value>
+http://example.com/?param=
 
 ## 混合嵌套测试
 1. **列表内组合**：

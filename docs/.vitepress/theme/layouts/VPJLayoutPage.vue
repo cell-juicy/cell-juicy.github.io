@@ -56,7 +56,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
                 <slot name="page-gutter-left"/>
             </div>
             <slot>
-                <Content class="vpj-layout-page__content"/>
+                <Content class="vpj-layout-page__content vpj-markdown"/>
             </slot>
             <div class="vpj-layout-page__gutter-right">
                 <slot name="page-gutter-right"/>

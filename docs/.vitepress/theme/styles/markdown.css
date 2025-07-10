@@ -3,3 +3,218 @@
     overflow-wrap: break-word;
     max-width: 100%;
 }
+
+.vpj-markdown > ul:first-child,
+.vpj-markdown > ol:first-child{
+    margin-top: 30px;
+}
+
+.vpj-markdown a {
+    color: #4183C4;
+}
+.vpj-markdown h1,
+.vpj-markdown h2,
+.vpj-markdown h3,
+.vpj-markdown h4,
+.vpj-markdown h5,
+.vpj-markdown h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+.vpj-markdown h1:hover a.anchor,
+.vpj-markdown h2:hover a.anchor,
+.vpj-markdown h3:hover a.anchor,
+.vpj-markdown h4:hover a.anchor,
+.vpj-markdown h5:hover a.anchor,
+.vpj-markdown h6:hover a.anchor {
+    text-decoration: none;
+}
+.vpj-markdown h1 tt,
+.vpj-markdown h1 code {
+    font-size: inherit;
+}
+.vpj-markdown h2 tt,
+.vpj-markdown h2 code {
+    font-size: inherit;
+}
+.vpj-markdown h3 tt,
+.vpj-markdown h3 code {
+    font-size: inherit;
+}
+.vpj-markdown h4 tt,
+.vpj-markdown h4 code {
+    font-size: inherit;
+}
+.vpj-markdown h5 tt,
+.vpj-markdown h5 code {
+    font-size: inherit;
+}
+.vpj-markdown h6 tt,
+.vpj-markdown h6 code {
+    font-size: inherit;
+}
+.vpj-markdown h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+.vpj-markdown h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+.vpj-markdown h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+.vpj-markdown h4 {
+    font-size: 1.25em;
+}
+.vpj-markdown h5 {
+    font-size: 1em;
+}
+.vpj-markdown h6 {
+   font-size: 1em;
+    color: #777;
+}
+.vpj-markdown p,
+.vpj-markdown blockquote,
+.vpj-markdown ul,
+.vpj-markdown ol,
+.vpj-markdown dl,
+.vpj-markdown table{
+    margin: 0.8em 0;
+}
+.vpj-markdown li > ol,
+.vpj-markdown li > ul {
+    margin: 0 0;
+}
+.vpj-markdown hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+.vpj-markdown li p.first {
+    display: inline-block;
+}
+.vpj-markdown ul,
+.vpj-markdown ol {
+    padding-left: 30px;
+}
+.vpj-markdown ul:first-child,
+.vpj-markdown ol:first-child {
+    margin-top: 0;
+}
+.vpj-markdown ul:last-child,
+.vpj-markdown ol:last-child {
+    margin-bottom: 0;
+}
+.vpj-markdown blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+.vpj-markdown blockquote blockquote {
+    padding-right: 0;
+}
+.vpj-markdown table {
+    padding: 0;
+    word-break: initial;
+}
+.vpj-markdown table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+.vpj-markdown table tr:nth-child(2n),
+.vpj-markdown thead {
+    background-color: #f8f8f8;
+}
+.vpj-markdown table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+.vpj-markdown table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+.vpj-markdown table th:first-child,
+.vpj-markdown table td:first-child {
+    margin-top: 0;
+}
+.vpj-markdown table th:last-child,
+.vpj-markdown table td:last-child {
+    margin-bottom: 0;
+}
+
+.vpj-markdown .CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.vpj-markdown .code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.vpj-markdown .md-fences,
+.vpj-markdown code,
+.vpj-markdown tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+.vpj-markdown code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.vpj-markdown .md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.vpj-markdown .md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+.vpj-markdown .md-fences {
+	background-color: #f8f8f8;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
