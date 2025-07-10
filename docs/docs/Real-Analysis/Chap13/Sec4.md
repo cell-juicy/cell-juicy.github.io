@@ -33,15 +33,15 @@ coverHeight:
 
    > 1. $X$是连通的。
    > 2. 只要$x$，$y\in X$且$x<y$，那么区间$[x,y]$就包含在$X$中。
-   > 3. $X$是一个区间（在[定义9.1.1](/docs/Real-Analysis/Chap9/Sec1.md)意义下）。
+   > 3. $X$是一个区间（在[定义9.1.1](/docs/Real-Analysis/Chap13/Sec4.md)意义下）。
 
-   <span style="color:blue">（注：因此定义13.4.1可以视为对[定义11.1.1](/docs/Real-Analysis/Chap11/Sec1.md)的推广）</span>
+   <span style="color:blue">（注：因此定义13.4.1可以视为对[定义11.1.1](/docs/Real-Analysis/Chap13/Sec4.md)的推广）</span>
 
 2. <span style="color:red">（13.4.6 连续性保持连通性）</span>设$f:X\to Y$是从度量空间$(X,d_X)$到度量空间$(Y,d_Y)$的连续映射，并设$E$是$X$的任意一个连通子集。那么$f(E)$也是连通的。
 
 3. <span style="color:red">（13.4.7 介值定理）</span>设$f:X\to Y$是从度量空间$(X,d_X)$到实直线$\mathbb R$的连续映射，设$E$是$X$的任意一个连通子集，$a$、$b$是$E$中任意两个元素，并设$y$是介于$f(a)$和$f(b)$之间的实数。那么存在$c\in E$使得$f(c)=y$。
 
-   <span style="color:blue">（注：这是对[定理9.7.1](/docs/Real-Analysis/Chap9/Sec7.md)的推广）</span>
+   <span style="color:blue">（注：这是对[定理9.7.1](/docs/Real-Analysis/Chap13/Sec4.md)的推广）</span>
 
 ---
 
@@ -199,7 +199,7 @@ coverHeight:
 >
 > 综上，于是我们得证了$\sim$的等价类都是连通的闭集。
 
-##### 13.4.10 结合[命题13.3.2](/docs/Real-Analysis/Chap13/Sec3.md)和推论13.4.7，推导出关于紧致连通区域上的连续函数的定理，它推广了[推论9.7.4](/docs/Real-Analysis/Chap9/Sec7.md)
+##### 13.4.10 结合[命题13.3.2](/docs/Real-Analysis/Chap13/Sec3.md)和推论13.4.7，推导出关于紧致连通区域上的连续函数的定理，它推广了[推论9.7.4](/docs/Real-Analysis/Chap13/Sec4.md)
 
 > 我们先给出这个结论，然后再给出证明：
 >
@@ -219,11 +219,11 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 9.1 实直线的子集](/docs/Real-Analysis/Chap9/Sec1.md)
+[实分析 9.1 实直线的子集](/docs/Real-Analysis/Chap13/Sec4.md)
 
-[实分析 9.7 介值定理](/docs/Real-Analysis/Chap9/Sec7.md)
+[实分析 9.7 介值定理](/docs/Real-Analysis/Chap13/Sec4.md)
 
-[实分析 11.1 划分](/docs/Real-Analysis/Chap11/Sec1.md)
+[实分析 11.1 划分](/docs/Real-Analysis/Chap13/Sec4.md)
 
 [实分析 13.1 连续函数](/docs/Real-Analysis/Chap13/Sec1.md)
 

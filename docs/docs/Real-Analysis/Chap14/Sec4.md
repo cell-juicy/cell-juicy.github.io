@@ -17,7 +17,7 @@ coverHeight:
 
 ## 定义
 
-1. <span style="color:red">（14.4.2 有界函数的度量空间）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，我们用$B(X\to Y)$表示从$X$到$Y$的**有界函数空间**<span style="color:blue">（使用[幂集公理](/docs/Real-Analysis/Chap3/Sec4.md)与[分类公理](/docs/Real-Analysis/Chap3/Sec1.md)可以知道这是一个集合）</span>
+1. <span style="color:red">（14.4.2 有界函数的度量空间）</span>设$(X,d_X)$和$(Y,d_Y)$都是度量空间，我们用$B(X\to Y)$表示从$X$到$Y$的**有界函数空间**<span style="color:blue">（使用[幂集公理](/docs/Real-Analysis/Chap14/Sec4.md)与[分类公理](/docs/Real-Analysis/Chap14/Sec4.md)可以知道这是一个集合）</span>
    $$
    B(X\to Y):=\{f:f:X\to Y是有界函数\}
    $$
@@ -140,7 +140,7 @@ coverHeight:
 >
 > 综上，我们证明了任意$(f^{(n)})_{n=1}^\infty$是空间$(C(X\to Y),d_{B(X\to Y)}|_{C(X\to Y)\times C(X\to Y)})$中的柯西序列都收敛于某个$f\in C(X\to Y)$，于是根据完备度量空间的定义即有$(C(X\to Y),d_{B(X\to Y)}|_{C(X\to Y)\times C(X\to Y)})$是完备的，题目结论得证。
 
-##### 14.4.4 设$(X,d_X)$和$(Y,d_Y)$都是度量空间，并设$Y^X:=\{f:f:X\to Y\}$是从$X$到$Y$的全体函数的空间<span style="color:blue">（参见[公理3.10幂集公理](/docs/Real-Analysis/Chap3/Sec4.md)）</span>。设$x_0\in X$，$V$是$Y$中的开集，并设$V^{(x_0)}\subseteq Y^X$是集合
+##### 14.4.4 设$(X,d_X)$和$(Y,d_Y)$都是度量空间，并设$Y^X:=\{f:f:X\to Y\}$是从$X$到$Y$的全体函数的空间<span style="color:blue">（参见[公理3.10幂集公理](/docs/Real-Analysis/Chap14/Sec4.md)）</span>。设$x_0\in X$，$V$是$Y$中的开集，并设$V^{(x_0)}\subseteq Y^X$是集合
 
 $$
 V^{(x_0)}:=\{f\in Y^X:f(x_0)\in V\}
@@ -245,9 +245,9 @@ $$
 
 ## 本节相关跳转
 
-[实分析 3.1 基础知识](/docs/Real-Analysis/Chap3/Sec1.md)
+[实分析 3.1 基础知识](/docs/Real-Analysis/Chap14/Sec4.md)
 
-[实分析 3.4 象和逆象](/docs/Real-Analysis/Chap3/Sec4.md)
+[实分析 3.4 象和逆象](/docs/Real-Analysis/Chap14/Sec4.md)
 
 [实分析 13.5 拓扑空间](/docs/Real-Analysis/Chap13/Sec5.md)
 

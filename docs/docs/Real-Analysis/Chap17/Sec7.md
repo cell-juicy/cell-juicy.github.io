@@ -17,7 +17,7 @@ coverHeight:
 
 ## 摘录
 
-1. <span style="color:red">（一元反函数定理的回顾）</span>在[定理10.4.2](/docs/Real-Analysis/Chap10/Sec4.md)中，我们曾经阐述了一元微积分的反函数定理。该定理断定了只要函数$f:\mathbb R\to\mathbb R$可微且可逆，并且$f^{-1}$在$f(x_0)$处连续，那么只要$f'(x_0)$不等于零，就有$f^{-1}$在$f(x_0)$处可微，并且有：
+1. <span style="color:red">（一元反函数定理的回顾）</span>在[定理10.4.2](/docs/Real-Analysis/Chap17/Sec7.md)中，我们曾经阐述了一元微积分的反函数定理。该定理断定了只要函数$f:\mathbb R\to\mathbb R$可微且可逆，并且$f^{-1}$在$f(x_0)$处连续，那么只要$f'(x_0)$不等于零，就有$f^{-1}$在$f(x_0)$处可微，并且有：
    $$
    (f^{-1})'(f(x_0))=\frac{1}{f'(x_0)}
    $$
@@ -184,6 +184,6 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 10.4 反函数及其导数](/docs/Real-Analysis/Chap10/Sec4.md)
+[实分析 10.4 反函数及其导数](/docs/Real-Analysis/Chap17/Sec7.md)
 
 [实分析 17.6 压缩映射定理](/docs/Real-Analysis/Chap17/Sec6.md)

@@ -23,15 +23,15 @@ coverHeight:
    $$
    那么我们称序列$(x^{(n_j)})_{j=1}^\infty$是原序列$(x^{(n)})_{n=m}^\infty$的**子序列**。
 
-   <span style="color:blue">（注：这个定义是[定义6.6.1](/docs/Real-Analysis/Chap6/Sec6.md)的推广；原书中这里写的是单调递增的整数序列，个人认为强调一下是个严格单调递增的序列会更好，符合它自己的描述）</span>
+   <span style="color:blue">（注：这个定义是[定义6.6.1](/docs/Real-Analysis/Chap12/Sec4.md)的推广；原书中这里写的是单调递增的整数序列，个人认为强调一下是个严格单调递增的序列会更好，符合它自己的描述）</span>
    
 2. <span style="color:red">（12.4.4 极限点）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的一个点列，并设$L\in X$。我们称$L$是$(x^{(n)})_{n=m}^\infty$的一个**极限点**，当且仅当对于任意的$N\geq m$和$\varepsilon>0$，存在一个$n\geq N$使得$d(x^{(n)},L)\leq\varepsilon$。
 
-   <span style="color:blue">（注：这个定义是[定义6.4.1](/docs/Real-Analysis/Chap6/Sec4.md)的推广）</span>
+   <span style="color:blue">（注：这个定义是[定义6.4.1](/docs/Real-Analysis/Chap12/Sec4.md)的推广）</span>
 
 3. <span style="color:red">（12.4.6 柯西序列）</span>设$(x^{(n)})_{n=m}^\infty$是度量空间$(X,d)$中的一个点列。我们称$(x^{(n)})_{n=m}^\infty$是一个**柯西序列**，当且仅当对于任意的$\varepsilon>0$，存在一个$N\geq m$使得$d(x^{(j)},x^{(k)})<\varepsilon$对所有的$j$，$k\geq N$均成立。
 
-   <span style="color:blue">（注：这个定义是[定义6.1.3](/docs/Real-Analysis/Chap6/Sec1.md)的推广；在[命题6.4.18](/docs/Real-Analysis/Chap6/Sec4.md)中我们说明了实数空间中收敛序列与柯西序列的等价性，但是这个结论并不能推广到任意的度量空间中，这和度量空间的完备性有关）</span>
+   <span style="color:blue">（注：这个定义是[定义6.1.3](/docs/Real-Analysis/Chap12/Sec4.md)的推广；在[命题6.4.18](/docs/Real-Analysis/Chap12/Sec4.md)中我们说明了实数空间中收敛序列与柯西序列的等价性，但是这个结论并不能推广到任意的度量空间中，这和度量空间的完备性有关）</span>
 
 4. <span style="color:red">（12.4.10 完备度量空间）</span>度量空间$(X,d)$是**完备的**，当且仅当$(X,d)$中的每一个柯西序列在$(X,d)$中都是收敛的。
 
@@ -62,7 +62,7 @@ coverHeight:
 
 ## 课后习题
 
-##### 12.4.1 证明引理12.4.3<span style="color:blue">（提示：回顾对[命题6.6.5](/docs/Real-Analysis/Chap6/Sec6.md)的证明）</span>
+##### 12.4.1 证明引理12.4.3<span style="color:blue">（提示：回顾对[命题6.6.5](/docs/Real-Analysis/Chap12/Sec4.md)的证明）</span>
 
 > 根据题设$(x^{(n)})_{n=m}^\infty$收敛于极限$x_0$，于是对任意的$\varepsilon>0$，存在$N\geq m$使得对任意的$n\geq N$都有$d(x^{(n)},x_0)\leq\varepsilon$。
 >
@@ -72,7 +72,7 @@ coverHeight:
 > $$
 > 综上，于是根据定义12.1.14有$(x^{(n_j)})_{j=1}^\infty$也收敛于$x_0$，于是命题12.4.3得证。
 
-##### 12.4.2 证明命题12.4.5<span style="color:blue">（提示：回顾对[命题6.6.6](/docs/Real-Analysis/Chap6/Sec6.md)的证明）</span>
+##### 12.4.2 证明命题12.4.5<span style="color:blue">（提示：回顾对[命题6.6.6](/docs/Real-Analysis/Chap12/Sec4.md)的证明）</span>
 
 > 分别证明充分必要性：
 >
@@ -105,7 +105,7 @@ coverHeight:
 >
 > 于是根据定义12.4.4，$L$是$(x^{(n)})_{n=m}^\infty$的一个极限点。
 
-##### 12.4.3 证明引理12.4.7<span style="color:blue">（提示：回顾对[命题6.1.12](/docs/Real-Analysis/Chap6/Sec1.md)的证明）</span>
+##### 12.4.3 证明引理12.4.7<span style="color:blue">（提示：回顾对[命题6.1.12](/docs/Real-Analysis/Chap12/Sec4.md)的证明）</span>
 
 > 对于任意的$\varepsilon>0$，令有$\displaystyle\varepsilon':=\frac{\varepsilon}{3}$。根据题设$(x^{(n)})_{n=m}^\infty$收敛于$x_0$，于是存在$N\geq m$使得对任意$n\geq N$都有$d(x^{(n)},x_0)\leq\varepsilon'$。
 >
@@ -207,7 +207,7 @@ $$
 \color{gray}{d_{\overline{X}}(\text{LIM}_{n\to\infty}x_n,\text{LIM}_{n\to\infty}y_n):=\lim_{n\to\infty}d(x_n,y_n)}
 $$
 
-###### 证明：这个函数是定义明确的<span style="color:blue">（这不仅意味着极限$\displaystyle\lim_{n\to\infty}d(x_n,y_n)$存在，还意味着该函数需要满足替换公理，参见[引理5.3.7](/docs/Real-Analysis/Chap5/Sec3.md)）</span>，并给出$\overline{X}$的度量空间结构<span style="color:blue">（这里应该是要证明$(\overline{X},d_{\overline{X}})$是一个度量空间吧（大概），没看到原书中有提到“the structure of a metric space”的具体定义）</span>
+###### 证明：这个函数是定义明确的<span style="color:blue">（这不仅意味着极限$\displaystyle\lim_{n\to\infty}d(x_n,y_n)$存在，还意味着该函数需要满足替换公理，参见[引理5.3.7](/docs/Real-Analysis/Chap12/Sec4.md)）</span>，并给出$\overline{X}$的度量空间结构<span style="color:blue">（这里应该是要证明$(\overline{X},d_{\overline{X}})$是一个度量空间吧（大概），没看到原书中有提到“the structure of a metric space”的具体定义）</span>
 
 > 证明：这个函数是定义明确的。
 >
@@ -405,10 +405,10 @@ $$
 
 ## 本节相关跳转
 
-[实分析 5.3 实数的构造](/docs/Real-Analysis/Chap5/Sec3.md)
+[实分析 5.3 实数的构造](/docs/Real-Analysis/Chap12/Sec4.md)
 
-[实分析 6.1 收敛与极限定律](/docs/Real-Analysis/Chap6/Sec1.md)
+[实分析 6.1 收敛与极限定律](/docs/Real-Analysis/Chap12/Sec4.md)
 
-[实分析 6.4 上极限、下极限和极限点](/docs/Real-Analysis/Chap6/Sec4.md)
+[实分析 6.4 上极限、下极限和极限点](/docs/Real-Analysis/Chap12/Sec4.md)
 
-[实分析 6.6 子序列](/docs/Real-Analysis/Chap6/Sec6.md)
+[实分析 6.6 子序列](/docs/Real-Analysis/Chap12/Sec4.md)

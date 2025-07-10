@@ -17,7 +17,7 @@ coverHeight:
 
 ## 摘录
 
-1. <span style="color:red">（关于函数的图）</span>在[习题3.5.10](/docs/Real-Analysis/Chap3/Sec5.md)中我们曾经定义了函数$f:\mathbb R\to\mathbb R$的**图**的概念：
+1. <span style="color:red">（关于函数的图）</span>在[习题3.5.10](/docs/Real-Analysis/Chap17/Sec8.md)中我们曾经定义了函数$f:\mathbb R\to\mathbb R$的**图**的概念：
    $$
    \{(x,f(x)):x\in\mathbb R\}
    $$
@@ -56,6 +56,6 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 3.5 笛卡尔积](/docs/Real-Analysis/Chap3/Sec5.md)
+[实分析 3.5 笛卡尔积](/docs/Real-Analysis/Chap17/Sec8.md)
 
 [实分析 17.7 多元微积分的反函数定理](/docs/Real-Analysis/Chap17/Sec7.md)

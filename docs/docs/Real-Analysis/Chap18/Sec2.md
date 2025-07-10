@@ -442,7 +442,7 @@ $$
 > $$
 > 于是$m(B)=\text{vol}(B)$得证。
 
-##### 18.2.6 利用引理18.2.5和命题18.2.6，给出“实数集是不可数集”的另一种证明<span style="color:blue">（即重新证明[推论8.3.4](/docs/Real-Analysis/Chap8/Sec3.md)）</span>
+##### 18.2.6 利用引理18.2.5和命题18.2.6，给出“实数集是不可数集”的另一种证明<span style="color:blue">（即重新证明[推论8.3.4](/docs/Real-Analysis/Chap18/Sec2.md)）</span>
 
 > 使用反证法，我们假设$\mathbb R$是一个可数集，那么它的元素可以排列成一个序列$(r_i)_{i=0}^{\infty}$的形式，于是根据正性，可数次可加性与命题18.2.6我们有：
 > $$
@@ -454,6 +454,6 @@ $$
 
 ## 本节相关跳转
 
-[实分析 8.3 不可数集](/docs/Real-Analysis/Chap8/Sec3.md)
+[实分析 8.3 不可数集](/docs/Real-Analysis/Chap18/Sec2.md)
 
 [实分析 18.1 目标：勒贝格测度](/docs/Real-Analysis/Chap18/Sec1.md)

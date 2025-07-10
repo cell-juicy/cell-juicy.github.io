@@ -75,7 +75,7 @@ coverHeight:
 
 ## 课后习题
 
-##### 15.5.1 证明定理15.5.2<span style="color:blue">（提示：对于(a)，利用[比值判别法](/docs/Real-Analysis/Chap7/Sec5.md)；对于(b)和(c)，利用[定理15.1.6](/docs/Real-Analysis/Chap15/Sec1.md)；对于(d)，利用[定理15.4.1](/docs/Real-Analysis/Chap15/Sec4.md)；对于(e)，利用(d)；对于(f)，利用(d)并证明当$x$是正数的时候$\exp(x)>1$。你或许会发现[习题7.1.4](/docs/Real-Analysis/Chap7/Sec1.md)中的二项式公式可能会很有用）</span>
+##### 15.5.1 证明定理15.5.2<span style="color:blue">（提示：对于(a)，利用[比值判别法](/docs/Real-Analysis/Chap15/Sec5.md)；对于(b)和(c)，利用[定理15.1.6](/docs/Real-Analysis/Chap15/Sec1.md)；对于(d)，利用[定理15.4.1](/docs/Real-Analysis/Chap15/Sec4.md)；对于(e)，利用(d)；对于(f)，利用(d)并证明当$x$是正数的时候$\exp(x)>1$。你或许会发现[习题7.1.4](/docs/Real-Analysis/Chap15/Sec5.md)中的二项式公式可能会很有用）</span>
 
 > 逐条证明：
 >
@@ -246,7 +246,7 @@ $$
 >
 > 综上，于是$\text{e}$不可能是一个有理数。
 
-##### 15.5.3 证明命题15.5.4<span style="color:blue">（提示：首先证明当$x$是自然数时的结论，其次证明$x$是整数时的结论，然后证明$x$是有理数时的结论。接着利用“实数是有理数的极限”这一事实取证明关于实数的结论，你或许会发现指数定律（[命题6.7.3](/docs/Real-Analysis/Chap6/Sec7.md)）可能会很有用）</span>
+##### 15.5.3 证明命题15.5.4<span style="color:blue">（提示：首先证明当$x$是自然数时的结论，其次证明$x$是整数时的结论，然后证明$x$是有理数时的结论。接着利用“实数是有理数的极限”这一事实取证明关于实数的结论，你或许会发现指数定律（[命题6.7.3](/docs/Real-Analysis/Chap15/Sec5.md)）可能会很有用）</span>
 
 > 我们首先使用归纳法证明命题15.5.4是对任意的自然数$x$都是成立的。
 >
@@ -371,7 +371,7 @@ $$
 > $$
 > 在某个开区间$(-r,r)$（$r>0$）上收敛于$f$，但是注意到对任意的$x>0$都有$f(x)>0$，因此不可能存在$r>0$使得这个幂级数在$(0,r)$上收敛于$f$。于是导出了矛盾，反证假设不成立，$f$不可能在$0$处实解析。
 
-##### 15.5.5 证明定理15.5.6<span style="color:blue">（提示：对于(a)，利用反函数定理（[定理10.4.2](/docs/Real-Analysis/Chap10/Sec4.md)）或者链式法则（[定理10.1.15](/docs/Real-Analysis/Chap10/Sec1.md)）；对于(b)，(c)，(d)，利用定理15.5.2和指数定律（[命题6.7.3](/docs/Real-Analysis/Chap6/Sec7.md)）；对于(e)，从几何级数公式（[引理7.3.3](/docs/Real-Analysis/Chap7/Sec3.md)）入手，并利用[定理15.1.6](/docs/Real-Analysis/Chap15/Sec1.md)来计算积分）</span>
+##### 15.5.5 证明定理15.5.6<span style="color:blue">（提示：对于(a)，利用反函数定理（[定理10.4.2](/docs/Real-Analysis/Chap15/Sec5.md)）或者链式法则（[定理10.1.15](/docs/Real-Analysis/Chap15/Sec5.md)）；对于(b)，(c)，(d)，利用定理15.5.2和指数定律（[命题6.7.3](/docs/Real-Analysis/Chap15/Sec5.md)）；对于(e)，从几何级数公式（[引理7.3.3](/docs/Real-Analysis/Chap15/Sec5.md)）入手，并利用[定理15.1.6](/docs/Real-Analysis/Chap15/Sec1.md)来计算积分）</span>
 
 > 逐条证明定理15.5.6：
 >
@@ -577,7 +577,7 @@ $$
 > $$
 > 综上我们证明了有极限$\displaystyle\lim_{x\to+\infty;x\in(0,+\infty)}\frac{|P(x)|}{\text{e}^{cx}}=0$。特别地，令$\varepsilon=0.5$则上面的结论表明存在实数$N>0$使得对任意的$x>N$都有$\displaystyle\frac{|P(x)|}{\text{e}^{cx}}\leq 0.5\Longrightarrow|P(x)|<\text{e}^{cx}$，也即题目结论得证。
 
-##### 15.5.10 设$f:(0,+\infty)\times\mathbb R\to\mathbb R$是指数函数$f(x,y):=x^y$，证明：$f$是连续的<span style="color:blue">（提示：注意[命题9.4.10](/docs/Real-Analysis/Chap9/Sec4.md)和[命题9.4.11](/docs/Real-Analysis/Chap9/Sec4.md)只表明了$f$关于每个变量都是连续的，但是这并不能证明你的结论，就像我们在[习题13.2.11](/docs/Real-Analysis/Chap13/Sec2.md)里面展示的那样；最容易的解决方案是将$f$写成$f(x,y)=\exp(y\ln x)$，利用$\exp$和$\ln$的连续性。你还可以尝试挑战一下自己，在不使用对数函数的前提下完成本题的证明）</span>
+##### 15.5.10 设$f:(0,+\infty)\times\mathbb R\to\mathbb R$是指数函数$f(x,y):=x^y$，证明：$f$是连续的<span style="color:blue">（提示：注意[命题9.4.10](/docs/Real-Analysis/Chap15/Sec5.md)和[命题9.4.11](/docs/Real-Analysis/Chap15/Sec5.md)只表明了$f$关于每个变量都是连续的，但是这并不能证明你的结论，就像我们在[习题13.2.11](/docs/Real-Analysis/Chap13/Sec2.md)里面展示的那样；最容易的解决方案是将$f$写成$f(x,y)=\exp(y\ln x)$，利用$\exp$和$\ln$的连续性。你还可以尝试挑战一下自己，在不使用对数函数的前提下完成本题的证明）</span>
 
 > 为了证明$f$是连续的，使用$\exp$和$\ln$的方法，可以考虑将$f$写为下面的形式：
 > $$
@@ -622,19 +622,19 @@ $$
 
 ## 本节相关跳转
 
-[实分析 6.7 实数的指数运算 II](/docs/Real-Analysis/Chap6/Sec7.md)
+[实分析 6.7 实数的指数运算 II](/docs/Real-Analysis/Chap15/Sec5.md)
 
-[实分析 7.1 有限级数](/docs/Real-Analysis/Chap7/Sec1.md)
+[实分析 7.1 有限级数](/docs/Real-Analysis/Chap15/Sec5.md)
 
-[实分析 7.3 非负数的和](/docs/Real-Analysis/Chap7/Sec3.md)
+[实分析 7.3 非负数的和](/docs/Real-Analysis/Chap15/Sec5.md)
 
-[实分析 7.5 根值判别法与比值判别法](/docs/Real-Analysis/Chap7/Sec5.md)
+[实分析 7.5 根值判别法与比值判别法](/docs/Real-Analysis/Chap15/Sec5.md)
 
-[实分析 9.4 连续函数](/docs/Real-Analysis/Chap9/Sec4.md)
+[实分析 9.4 连续函数](/docs/Real-Analysis/Chap15/Sec5.md)
 
-[实分析 10.1 基本定义](/docs/Real-Analysis/Chap10/Sec1.md)
+[实分析 10.1 基本定义](/docs/Real-Analysis/Chap15/Sec5.md)
 
-[实分析 10.4 反函数及其导数](/docs/Real-Analysis/Chap10/Sec4.md)
+[实分析 10.4 反函数及其导数](/docs/Real-Analysis/Chap15/Sec5.md)
 
 [实分析 13.2 连续性和乘积空间](/docs/Real-Analysis/Chap13/Sec2.md)
 

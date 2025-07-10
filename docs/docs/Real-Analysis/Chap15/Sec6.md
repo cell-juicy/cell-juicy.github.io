@@ -47,7 +47,7 @@ coverHeight:
 
 6. <span style="color:red">（15.6.10 复数的绝对值）</span>设$z=a+b\text{i}$是一个复数，其中$a$，$b$都是实数，那么$z$的**绝对值**$|z|$为实数$|z|:=\sqrt{a^2+b^2}=(a^2+b^2)^{1/2}$。
 
-   <span style="color:blue">（注：在[习题5.6.3](/docs/Real-Analysis/Chap5/Sec6.md)中我们提到了绝对值的另一个表达式$|x|=\sqrt{x^2}$，定义15.6.10正是这个式子的推广）</span>
+   <span style="color:blue">（注：在[习题5.6.3](/docs/Real-Analysis/Chap15/Sec6.md)中我们提到了绝对值的另一个表达式$|x|=\sqrt{x^2}$，定义15.6.10正是这个式子的推广）</span>
 
 7. <span style="color:red">（15.6.12 复数的倒数）</span>设$z$是一个非零的复数，那么$z$的倒数$z^{-1}$就被定义为复数$z^{-1}:=|z|^{-2}\overline{z}$。当$z=0$时，我们不给出$0^{-1}$的定义。于是我们可以得到：
    $$
@@ -576,7 +576,7 @@ coverHeight:
 >
 > 综上，于是我们证明了$\mathbb C$的子集$E$是紧致的，当且仅当$E$既是闭的又是有界的。而对于复数集$\mathbb C$本身，显然$\mathbb C$不是有界的，因此$\mathbb C$不可能是紧致的（话说随便水一个收敛于无穷的实数序列就可以证明这个结论了吧）。
 
-##### 15.6.14 证明引理15.6.14<span style="color:blue">（提示：分别把$z_n$和$w_n$划分成实部和虚部，然后使用通常的极限定律（[引理6.1.19](/docs/Real-Analysis/Chap6/Sec1.md)）和引理15.6.13）</span>
+##### 15.6.14 证明引理15.6.14<span style="color:blue">（提示：分别把$z_n$和$w_n$划分成实部和虚部，然后使用通常的极限定律（[引理6.1.19](/docs/Real-Analysis/Chap15/Sec6.md)）和引理15.6.13）</span>
 
 > 为了方便编辑，我们设对任意的$n\geq 1$都有$z_n=a_n+b_n\text{i}$与$w_n=c_n+d_n\text{i}$，并设$(z_n)_{n=1}^{\infty}$和$(w_n)_{n=1}^{\infty}$分别收敛于复数$z=a+b\text{i}$与$w=c+d\text{i}$（其中$a_n$，$b_n$，$c_n$，$d_n$，$a$，$b$，$c$，$d$都是实数）；然后为了不和题设冲突，我们会用大写的$C$替换原前设中的$c$；最后，在这个证明中需要大量使用到引理15.6.13，所以不会特意强调出来（比如说题设表明序列$(a_n)_{n=1}^{\infty}$，$(b_n)_{n=1}^{\infty}$，$(c_n)_{n=1}^{\infty}$，$(d_n)_{n=1}^{\infty}$分别收敛于$a$，$b$，$c$，$d$）。于是我们逐条证明引理15.6.14：
 >
@@ -759,9 +759,9 @@ coverHeight:
 
 ## 本节相关跳转
 
-[实分析 5.6 实数的指数运算 I](/docs/Real-Analysis/Chap5/Sec6.md)
+[实分析 5.6 实数的指数运算 I](/docs/Real-Analysis/Chap15/Sec6.md)
 
-[实分析 6.1 收敛与极限定律](/docs/Real-Analysis/Chap6/Sec1.md)
+[实分析 6.1 收敛与极限定律](/docs/Real-Analysis/Chap15/Sec6.md)
 
 [实分析 12.5 紧致度量空间](/docs/Real-Analysis/Chap12/Sec5.md)
 

@@ -17,7 +17,7 @@ coverHeight:
 
 ## 摘录
 
-1. <span style="color:red">（距离函数）</span>在[定义6.1.5](/docs/Real-Analysis/Chap6/Sec1.md)中我们定义了实数序列收敛于某个实数的概念，从直观上看序列$(x_n)_{n=m}^{\infty}$收敛于$x$，那么序列中的元素$x_n$最终会以某种方式无限趋近于$x$。若定义两个实数$x$，$y$的**距离函数**$d(x,y):=|x-y|$，则我们可以将序列的收敛表述为$d(x,x_n)$收敛于$0$<span style="color:blue">（也就是引理12.1.1的内容）</span>。
+1. <span style="color:red">（距离函数）</span>在[定义6.1.5](/docs/Real-Analysis/Chap12/Sec1.md)中我们定义了实数序列收敛于某个实数的概念，从直观上看序列$(x_n)_{n=m}^{\infty}$收敛于$x$，那么序列中的元素$x_n$最终会以某种方式无限趋近于$x$。若定义两个实数$x$，$y$的**距离函数**$d(x,y):=|x-y|$，则我们可以将序列的收敛表述为$d(x,x_n)$收敛于$0$<span style="color:blue">（也就是引理12.1.1的内容）</span>。
 
 2. <span style="color:red">（空间）</span>**空间**是指由某种特定类型的对象所构成的集合，例如全体实数的空间，全体$3\times 3$矩阵的空间。从数学角度来说，空间和集合之间没特别大的区别，但是一般来说空间会包含更多的结构，例如实数空间包含了加法，乘法这样的运算，但普通的集合并没有这类的性质。<span style="color:blue">（也就是说，空间是具有一定特殊性质或者额外结构的集合）</span>
 
@@ -142,7 +142,7 @@ coverHeight:
 >
 > 综上，于是引理12.1.1证明完毕。
 
-##### 12.1.2 证明具有度量$d(x,y):=|x-y|$的实直线的确是一个度量空间<span style="color:blue">（提示：可以回顾对[命题4.3.3](/docs/Real-Analysis/Chap4/Sec3.md)的证明）</span>
+##### 12.1.2 证明具有度量$d(x,y):=|x-y|$的实直线的确是一个度量空间<span style="color:blue">（提示：可以回顾对[命题4.3.3](/docs/Real-Analysis/Chap12/Sec1.md)的证明）</span>
 
 > 根据定义12.1.2，我们需要证明$d$满足下面四个条件：
 >
@@ -636,7 +636,7 @@ $$
 >
 > 综上，于是充分必要性得证。
 
-##### 12.2.14 证明命题12.1.20<span style="color:blue">（提示：修改[命题6.1.7](/docs/Real-Analysis/Chap6/Sec1.md)的证明）</span>
+##### 12.2.14 证明命题12.1.20<span style="color:blue">（提示：修改[命题6.1.7](/docs/Real-Analysis/Chap12/Sec1.md)的证明）</span>
 
 > 根据定义12.2.14，于是题设等价于对任意的$\varepsilon>0$，都存在$N$，$N'\geq m$使得对任意的$n\geq N$都有$d(x^{(n)},x)\leq\varepsilon/2$与对任意$n\geq N'$都有$d(x^{(n)},x')\leq\varepsilon/2$。于是对任意的$n\geq\max(N,N')$，根据度量空间的三角不等式我们有：
 > $$
@@ -826,8 +826,8 @@ $$
 
 ## 本节相关跳转
 
-[实分析 4.3 绝对值与指数运算](/docs/Real-Analysis/Chap4/Sec3.md)
+[实分析 4.3 绝对值与指数运算](/docs/Real-Analysis/Chap12/Sec1.md)
 
-[实分析 6.1 收敛与极限定律](/docs/Real-Analysis/Chap6/Sec1.md)
+[实分析 6.1 收敛与极限定律](/docs/Real-Analysis/Chap12/Sec1.md)
 
 [实分析 13.5 拓扑空间](/docs/Real-Analysis/Chap13/Sec5.md)
