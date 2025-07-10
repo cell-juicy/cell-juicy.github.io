@@ -54,7 +54,6 @@ function highlight(code) {
 ```
 
 ```diff
-// Diff 高亮
 - const deleted = true;
 + const added = true;
 ```
@@ -92,6 +91,10 @@ function highlight(code) {
 
 ::: danger
 危险型容器（通常为红色）
+:::
+
+::: details
+可伸缩容器
 :::
 
 ### 行内公式

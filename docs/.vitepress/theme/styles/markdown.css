@@ -24,6 +24,7 @@
     color: var(--vpj-color-primary-300);
 }
 
+/* Heading */
 .vpj-markdown h1,
 .vpj-markdown h2,
 .vpj-markdown h3,
@@ -64,12 +65,12 @@
 .vpj-markdown h1 {
     font-size: 2.25em;
     line-height: 1.2;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--vpj-color-border-300);
 }
 .vpj-markdown h2 {
     font-size: 1.75em;
     line-height: 1.225;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--vpj-color-border-300);
 }
 
 .vpj-markdown h3 {
@@ -83,8 +84,8 @@
     font-size: 1em;
 }
 .vpj-markdown h6 {
-   font-size: 1em;
-    color: #777;
+    font-size: 1em;
+    color: var(--vpj-color-text-200);
 }
 .vpj-markdown p,
 .vpj-markdown blockquote,
