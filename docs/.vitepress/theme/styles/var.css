@@ -38,10 +38,10 @@
     --vpj-color-success-300: rgb(84, 219, 155);
     --vpj-color-success-400: rgb(0, 174, 91);
 
-    --vpj-color-info-100: rgb(232, 241, 255);
-    --vpj-color-info-200: rgb(179, 207, 255);
-    --vpj-color-info-300: rgb(89, 126, 247);
-    --vpj-color-info-400: rgb(56, 132, 255);
+    --vpj-color-tip-100: rgb(232, 241, 255);
+    --vpj-color-tip-200: rgb(179, 207, 255);
+    --vpj-color-tip-300: rgb(89, 126, 247);
+    --vpj-color-tip-400: rgb(56, 132, 255);
 
     --vpj-color-warning-100: rgb(255, 247, 232);
     --vpj-color-warning-200: rgb(255, 236, 179);
