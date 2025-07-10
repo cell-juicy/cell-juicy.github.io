@@ -33,6 +33,7 @@
     line-height: 1.4;
     cursor: text;
 }
+
 .vpj-markdown h1:hover a.anchor,
 .vpj-markdown h2:hover a.anchor,
 .vpj-markdown h3:hover a.anchor,
@@ -41,6 +42,7 @@
 .vpj-markdown h6:hover a.anchor {
     text-decoration: none;
 }
+
 .vpj-markdown h1 tt,
 .vpj-markdown h1 code,
 .vpj-markdown h2 tt,
@@ -50,18 +52,18 @@
 .vpj-markdown h4 tt,
 .vpj-markdown h4 code,
 .vpj-markdown h5 tt,
-.vpj-markdown h5 code {
-    font-size: inherit;
-}
+.vpj-markdown h5 code,
 .vpj-markdown h6 tt,
 .vpj-markdown h6 code {
     font-size: inherit;
 }
+
 .vpj-markdown h1 {
     font-size: 2.25em;
     line-height: 1.2;
     border-bottom: 1px solid var(--vpj-color-border-300);
 }
+
 .vpj-markdown h2 {
     font-size: 1.75em;
     line-height: 1.225;
@@ -72,6 +74,7 @@
     font-size: 1.5em;
     line-height: 1.43;
 }
+
 .vpj-markdown h4 {font-size: 1.25em;}
 .vpj-markdown h5 {font-size: 1em;}
 .vpj-markdown h6 {
@@ -126,6 +129,7 @@
     margin-bottom: 0;
 }
 
+/* Blockquote */
 .vpj-markdown blockquote {
     border-left: var(--vpj-border-width-400) solid var(--vpj-color-border-400);
     padding: 0 15px;
@@ -136,38 +140,48 @@
     padding-right: 0;
 }
 
+/* Table */
 .vpj-markdown table {
+    border-collapse: collapse;
     padding: 0;
+    width: 100%;
     word-break: initial;
 }
+
+/* Table Row And Table Header*/
 .vpj-markdown table tr {
-    border: 1px solid #dfe2e5;
+    background-color: var(--vpj-color-bg-100);
     margin: 0;
     padding: 0;
 }
+
 .vpj-markdown table tr:nth-child(2n),
-.vpj-markdown thead {
-    background-color: #f8f8f8;
+.vpj-markdown thead tr {
+    background-color: var(--vpj-color-bg-300);
 }
+
+.vpj-markdown table tr:hover {
+    background-color: var(--vpj-color-bg-200);
+}
+
 .vpj-markdown table th {
     font-weight: bold;
-    border: 1px solid #dfe2e5;
-    border-bottom: 0;
+    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
     margin: 0;
-    padding: 6px 13px;
+    overflow-wrap: break-word;
+    padding: .375rem .75rem;
+    white-space: normal;
+    word-break: break-all;
 }
+
+/* Table Cell */
 .vpj-markdown table td {
-    border: 1px solid #dfe2e5;
+    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
     margin: 0;
-    padding: 6px 13px;
-}
-.vpj-markdown table th:first-child,
-.vpj-markdown table td:first-child {
-    margin-top: 0;
-}
-.vpj-markdown table th:last-child,
-.vpj-markdown table td:last-child {
-    margin-bottom: 0;
+    overflow-wrap: break-word;
+    padding: .375rem .75rem;
+    white-space: normal;
+    word-break: break-all;
 }
 
 .vpj-markdown .code-tooltip {
