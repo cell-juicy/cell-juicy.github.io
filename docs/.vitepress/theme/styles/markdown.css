@@ -127,13 +127,15 @@
 }
 
 .vpj-markdown blockquote {
-    border-left: 4px solid #dfe2e5;
+    border-left: var(--vpj-border-width-400) solid var(--vpj-color-border-400);
     padding: 0 15px;
-    color: #777777;
+    color: var(--vpj-color-text-200);
 }
+
 .vpj-markdown blockquote blockquote {
     padding-right: 0;
 }
+
 .vpj-markdown table {
     padding: 0;
     word-break: initial;
