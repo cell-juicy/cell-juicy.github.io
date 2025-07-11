@@ -7,10 +7,6 @@
     --vpj-code-copy-copied-text-content: "已复制";
 }
 
-.vpj-markdown * {
-    max-width: 100%;
-}
-
 /* Link */
 .vpj-markdown a {
     color: var(--vpj-color-primary-400);
@@ -200,6 +196,12 @@
 .vpj-markdown .custom-block.danger { background-color: var(--vpj-color-danger-100); }
 .vpj-markdown .custom-block.details { background-color: var(--vpj-color-bg-400); }
 
+.vpj-markdown .custom-block.info :not(pre) code { background-color: var(--vpj-color-bg-500); }
+.vpj-markdown .custom-block.tip :not(pre) code { background-color: var(--vpj-color-tip-300); }
+.vpj-markdown .custom-block.warning :not(pre) code { background-color: var(--vpj-color-warning-300); }
+.vpj-markdown .custom-block.danger :not(pre) code { background-color: var(--vpj-color-danger-300); }
+.vpj-markdown .custom-block.details :not(pre) code { background-color: var(--vpj-color-bg-500); }
+
 .vpj-markdown .custom-block > p.custom-block-title:first-child {
     font-weight: var(--vpj-font-weight-600);
     line-height: 1.5;
@@ -342,11 +344,75 @@
     word-wrap: normal;
 }
 
-.vpj-markdown div[class*=language-] span:not(.line.highlighted):not(.line.highlighted *) {
-    background-color: var(--shiki-light-bg, inherit);
+
+.vpj-markdown div[class*=language-] span:not(.line) {
     color: var(--shiki-light);
-    text-decoration: var(--shiki-light-text-decoration, inherit);
-    font-weight: var(--shiki-light-font-weight, inherit);
+}
+
+.vpj-markdown div[class*=language-] span.line {
+    display: inline-block;
+    margin: 0 -24px;
+    padding: 0 24px;
+    width: calc(100% + 48px);
+}
+
+/* Code Highlight/Error/Warning */
+.vpj-markdown div[class*=language-] span.line.highlighted {
+    background-color: var(--vpj-color-bg-500);
+}
+
+.vpj-markdown div[class*=language-] span.line.highlighted.error {
+    background-color: var(--vpj-color-danger-100);
+}
+
+.vpj-markdown div[class*=language-] span.line.highlighted.warning {
+    background-color: var(--vpj-color-warning-100);
+}
+
+/* Code Focus */
+.vpj-markdown div[class*=language-] .has-focused-lines span.line:not(.has-focus) {
+    filter: blur(.1rem);
+    opacity: .7;
+    transition: filter .35s, opacity .35s;
+}
+
+.vpj-markdown div[class*=language-]:hover .has-focused-lines span.line:not(.has-focus) {
+    filter: blur();
+    opacity: 1;
+}
+
+/* Code Diff(Add/Remove) */
+.vpj-markdown div[class*=language-] span.line.diff {
+    display: inline-block;
+    margin: 0 -24px;
+    padding: 0 24px;
+    width: calc(100% + 48px);
+}
+
+.vpj-markdown div[class*=language-] span.line.diff.add {
+    background-color: var(--vpj-color-success-100);
+}
+
+.vpj-markdown div[class*=language-] span.line.diff.remove {
+    background-color: var(--vpj-color-danger-100);
+}
+
+/* Code Line Number */
+.vpj-markdown div[class*=language-].line-numbers-mode  {
+    padding-left: 32px;
+}
+
+.vpj-markdown div[class*=language-].line-numbers-mode > div.line-numbers-wrapper {
+    border-right: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+    color: var(--vpj-color-text-400);
+    font-size: .875rem;
+    left: 0;
+    padding: calc(20px + .5rem) 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 32px;
+    z-index: 1;
 }
 
 .vpj-markdown .md-task-list-item > input {
