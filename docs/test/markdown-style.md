@@ -38,24 +38,113 @@ layout: page
 [ref]: https://github.com/vuejs
 
 ## 代码块
+### 一般语法
+
 ```js
-// JavaScript 高亮
-function highlight(code) {
-  return `\${code}\`
+export default {
+  name: 'MyComponent',
+  // ...
 }
 ```
 
-```css
-/* CSS 高亮 */
-.markdown-body {
-  font-family: system-ui;
-  --theme-color: #42b983;
+```html
+<ul>
+  <li v-for="todo in todos" :key="todo.id">
+    {{ todo.text }}
+  </li>
+</ul>
+```
+
+### 行高亮
+```js{4}
+export default {
+  data () {
+    return {
+      msg: 'Highlighted!'
+    }
+  }
 }
 ```
 
-```diff
-- const deleted = true;
-+ const added = true;
+```js{1,4,6-8}
+export default { // Highlighted
+  data () {
+    return {
+      msg: `Highlighted!
+      This line isn't highlighted,
+      but this and the next 2 are.`,
+      motd: 'VitePress is awesome',
+      lorem: 'ipsum'
+    }
+  }
+}
+```
+
+### 代码聚焦
+```js
+export default {
+  data () {
+    return {
+      msg: 'Focused!' // [!code focus]
+    }
+  }
+}
+```
+
+```js
+export default {
+  data () {
+    return {
+      msg: 'Focused!' // [!code focus:2]
+    }
+  }
+}
+```
+
+### diff创建
+
+```js
+export default {
+  data () {
+    return {
+      msg: 'Removed' // [!code --]
+      msg: 'Added' // [!code ++]
+    }
+  }
+}
+```
+
+### 高亮“错误”和“警告”
+
+```js
+export default {
+  data () {
+    return {
+      msg: 'Error', // [!code error]
+      msg: 'Warning' // [!code warning]
+    }
+  }
+}
+```
+
+### 行号
+
+```ts {1}
+// 默认禁用行号
+const line2 = 'This is line 2'
+const line3 = 'This is line 3'
+```
+
+```ts:line-numbers {1}
+// 启用行号
+const line2 = 'This is line 2'
+const line3 = 'This is line 3'
+```
+
+```ts:line-numbers=2 {1}
+// 行号已启用，并从 2 开始
+const line3 = 'This is line 3'
+const line4 = 'This is line 4'
 ```
 
 ## 表格
