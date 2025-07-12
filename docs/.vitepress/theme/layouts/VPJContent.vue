@@ -33,7 +33,7 @@ const { page, frontmatter } = useData();
             <template #blog-padding-left><slot name="blog-padding-left"/></template>
             <template #blog-padding-right><slot name="blog-padding-right"/></template>
         </VPJLayoutBlog>
-        <VPJLayoutDoc v-if="frontmatter.layout === 'doc'">
+        <VPJLayoutDoc v-else-if="frontmatter.layout === 'doc'">
             <template #doc-header><slot name="doc-header"/></template>
             <template #doc-header-before><slot name="doc-header-before"/></template>
             <template #doc-header-between><slot name="doc-header-between"/></template>

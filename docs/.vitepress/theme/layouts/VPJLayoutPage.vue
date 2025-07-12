@@ -20,6 +20,7 @@ const DEFAULT = {
         desktop: "61.25rem"
     }
 };
+
 // calculate gutter data
 const themeGutter = computed(() => theme.value.layouts?.page?.contentGutter);
 const frontmatterGutter = computed(() => frontmatter.value.contentGutter);

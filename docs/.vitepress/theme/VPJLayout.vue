@@ -1,8 +1,42 @@
 <script setup>
+import { useRoute } from 'vitepress';
+import { nextTick, watch, onMounted, onUnmounted } from 'vue';
+
 import VPJSidebar from './components/VPJSidebar.vue';
 import VPJMobileNavbar from './components/VPJMobileNavbar.vue';
 
 import VPJContent from './layouts/VPJContent.vue';
+
+
+function scrollToAnchor() {
+    if (window) {
+        const hash = window.location.hash;
+        console.log("hash:", hash);
+        if (hash !== "") {
+            nextTick(() => {
+                const target = document.getElementById(decodeURIComponent(hash.substring(1)));
+                console.log("target:", target);
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                };
+            });
+        };
+    };
+};
+
+
+const route = useRoute();
+const stopWatcher = watch(route, scrollToAnchor);
+
+onMounted(() => {
+    setTimeout(scrollToAnchor, 200)
+    window.addEventListener("hashchange", scrollToAnchor)
+})
+
+onUnmounted(() => {
+    window.removeEventListener("hashchange", scrollToAnchor)
+    stopWatcher();
+});
 </script>
 
 
