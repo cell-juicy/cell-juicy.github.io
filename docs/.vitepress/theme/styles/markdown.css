@@ -1,5 +1,448 @@
-.vpj-markdown * {
-    flex: 1;
-    overflow-wrap: break-word;
-    max-width: 100%;
+.vpj-markdown {
+    color: var(--vpj-color-text-500);
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+
+    --vpj-code-copy-icon: url('data:image/svg+xml;utf8,<svg id="Layer_1" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" fill="rgb(78, 89, 105)"><path d="m20 20h-20v-17a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3zm-18-2h16v-15a1 1 0 0 0 -1-1h-14a1 1 0 0 0 -1 1zm20-13.816v17.816h-18v2h20v-17a3 3 0 0 0 -2-2.816z"/></svg>');
+    --vpj-code-copy-copied-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512" fill="rgb(78, 89, 105)"><g id="_01_align_center" data-name="01 align center"><path d="M7.8,20.53a2.99,2.99,0,0,1-2.121-.877L.086,14.061,1.5,12.646l5.593,5.593a1,1,0,0,0,1.414,0L22.5,4.246,23.914,5.66,9.921,19.653A2.99,2.99,0,0,1,7.8,20.53Z"/></g></svg>');
+    --vpj-code-copy-copied-text-content: "已复制";
 }
+
+/* Link */
+.vpj-markdown a {
+    color: var(--vpj-color-primary-400);
+}
+
+.vpj-markdown a:hover,
+.vpj-markdown a:focus {
+    color: var(--vpj-color-primary-300);
+}
+
+/* Heading */
+.vpj-markdown h1,
+.vpj-markdown h2,
+.vpj-markdown h3,
+.vpj-markdown h4,
+.vpj-markdown h5,
+.vpj-markdown h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+
+.vpj-markdown h1:hover a.anchor,
+.vpj-markdown h2:hover a.anchor,
+.vpj-markdown h3:hover a.anchor,
+.vpj-markdown h4:hover a.anchor,
+.vpj-markdown h5:hover a.anchor,
+.vpj-markdown h6:hover a.anchor {
+    text-decoration: none;
+}
+
+.vpj-markdown h1 tt,
+.vpj-markdown h1 code,
+.vpj-markdown h2 tt,
+.vpj-markdown h2 code,
+.vpj-markdown h3 tt,
+.vpj-markdown h3 code,
+.vpj-markdown h4 tt,
+.vpj-markdown h4 code,
+.vpj-markdown h5 tt,
+.vpj-markdown h5 code,
+.vpj-markdown h6 tt,
+.vpj-markdown h6 code {
+    font-size: inherit;
+}
+
+.vpj-markdown h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid var(--vpj-color-border-300);
+}
+
+.vpj-markdown h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid var(--vpj-color-border-300);
+}
+
+.vpj-markdown h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+
+.vpj-markdown h4 {font-size: 1.25em;}
+.vpj-markdown h5 {font-size: 1em;}
+.vpj-markdown h6 {
+    font-size: 1em;
+    color: var(--vpj-color-text-200);
+}
+
+/* Common */
+.vpj-markdown p,
+.vpj-markdown blockquote,
+.vpj-markdown ul,
+.vpj-markdown ol,
+.vpj-markdown dl,
+.vpj-markdown table{
+    margin: 0.8em 0;
+}
+
+/* Horizontal Rule */
+.vpj-markdown hr {
+    height: var(--vpj-border-width-300);
+    padding: 0;
+    margin: 1rem 0;
+    background-color: var(--vpj-color-border-300);
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+/* List */
+.vpj-markdown > ul:first-child,
+.vpj-markdown > ol:first-child{
+    margin-top: 1.875rem;
+}
+
+.vpj-markdown li > ol,
+.vpj-markdown li > ul {
+    margin: 0 0;
+}
+
+.vpj-markdown ul,
+.vpj-markdown ol {
+    padding-left: 1.875rem;
+}
+
+.vpj-markdown ul:first-child,
+.vpj-markdown ol:first-child {
+    margin-top: 0;
+}
+
+.vpj-markdown ul:last-child,
+.vpj-markdown ol:last-child {
+    margin-bottom: 0;
+}
+
+/* Blockquote */
+.vpj-markdown blockquote {
+    border-left: var(--vpj-border-width-400) solid var(--vpj-color-border-400);
+    padding: 0 15px;
+    color: var(--vpj-color-text-200);
+}
+
+.vpj-markdown blockquote blockquote {
+    padding-right: 0;
+}
+
+/* Table */
+.vpj-markdown table {
+    border-collapse: collapse;
+    padding: 0;
+    width: 100%;
+    word-break: initial;
+}
+
+/* Table Row And Table Header*/
+.vpj-markdown table tr {
+    background-color: var(--vpj-color-bg-100);
+    margin: 0;
+    padding: 0;
+}
+
+.vpj-markdown table tr:nth-child(2n),
+.vpj-markdown thead tr {
+    background-color: var(--vpj-color-bg-300);
+}
+
+.vpj-markdown table tr:hover {
+    background-color: var(--vpj-color-bg-200);
+}
+
+.vpj-markdown table th {
+    font-weight: bold;
+    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+    margin: 0;
+    overflow-wrap: break-word;
+    padding: .375rem .75rem;
+    white-space: normal;
+    word-break: break-all;
+}
+
+/* Table Cell */
+.vpj-markdown table td {
+    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+    margin: 0;
+    overflow-wrap: break-word;
+    padding: .375rem .75rem;
+    white-space: normal;
+    word-break: break-all;
+}
+
+/* Custom Container */
+.vpj-markdown .custom-block {
+    border-radius: var(--vpj-border-radius-200);
+    font-size: .875rem;
+    margin: 1rem 0;
+    padding: 1rem 1rem .5rem;
+}
+
+.vpj-markdown .custom-block.info { background-color: var(--vpj-color-bg-400); }
+.vpj-markdown .custom-block.tip { background-color: var(--vpj-color-tip-100); }
+.vpj-markdown .custom-block.warning { background-color: var(--vpj-color-warning-100); }
+.vpj-markdown .custom-block.danger { background-color: var(--vpj-color-danger-100); }
+.vpj-markdown .custom-block.details { background-color: var(--vpj-color-bg-400); }
+
+.vpj-markdown .custom-block.info :not(pre) code { background-color: var(--vpj-color-bg-500); }
+.vpj-markdown .custom-block.tip :not(pre) code { background-color: var(--vpj-color-tip-300); }
+.vpj-markdown .custom-block.warning :not(pre) code { background-color: var(--vpj-color-warning-300); }
+.vpj-markdown .custom-block.danger :not(pre) code { background-color: var(--vpj-color-danger-300); }
+.vpj-markdown .custom-block.details :not(pre) code { background-color: var(--vpj-color-bg-500); }
+
+.vpj-markdown .custom-block > p.custom-block-title:first-child {
+    font-weight: var(--vpj-font-weight-600);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.vpj-markdown .custom-block > summary:first-child {
+    cursor: pointer;
+    font-weight: var(--vpj-font-weight-600);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.vpj-markdown .custom-block > summary:first-child:hover { color: var(--vpj-color-text-300); }
+.vpj-markdown .custom-block > summary:first-child:focus { color: var(--vpj-color-text-400); }
+
+/* Code(Inline) */
+.vpj-markdown :not(pre) > code,
+.vpj-markdown :not(pre) > tt {
+    background-color: var(--vpj-color-bg-200);
+    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+    border-radius: 3px;
+    font-size: 0.9em;
+    padding: 0;
+    padding: .125rem .25rem .125rem .25rem;
+}
+
+/* Code(Block) */
+.vpj-markdown div[class*=language-] {
+    background-color: var(--vpj-color-bg-300);
+    border-radius: var(--vpj-border-radius-200);
+    margin-bottom: .75rem;
+    margin-top: .75rem;
+    position: relative;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+/* Code Language */
+.vpj-markdown div[class*=language-] > span.lang {
+    color: var(--vpj-color-text-200);
+    font-size: .75rem;
+    position: absolute;
+    right: 8px;
+    transition: color .4s, opacity .4s;
+    top: 2px;
+    user-select: none; 
+    z-index: 2;
+}
+
+.vpj-markdown div[class*=language-]:hover > span.lang,
+.vpj-markdown div[class*=language-] > button.copy:focus + span.lang {
+    opacity: 0;
+}
+
+/* Code Copy Button */
+.vpj-markdown div[class*=language-] > button.copy {
+    align-items: center;
+    background-color: var(--vpj-color-bg-300);
+    background-image: var(--vpj-code-copy-icon);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+    border-radius: var(--vpj-border-radius-100);
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    opacity: 0;
+    position: absolute;
+    right: 12px;
+    transition: color .4s, opacity .4s;
+    top: 12px;
+    width: 40px;
+    z-index: 3;
+}
+
+.vpj-markdown div[class*=language-] > button.copy:hover {
+    background-color: var(--vpj-color-bg-100);
+}
+
+.vpj-markdown div[class*=language-]:hover > button.copy {
+    opacity: 1;
+}
+
+/* Code Copy Button: Copied */
+.vpj-markdown div[class*=language-] > button.copy.copied {
+    background-color: var(--vpj-color-bg-100);
+    background-image: var(--vpj-code-copy-copied-icon);
+    border-radius: 0 var(--vpj-border-radius-100) var(--vpj-border-radius-100) 0;
+    opacity: 1;
+}
+
+.vpj-markdown div[class*=language-] > button.copy.copied::before {
+    align-items: center;
+    background-color: var(--vpj-color-bg-100);
+    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+    border-radius: var(--vpj-border-radius-100) 0 0 var(--vpj-border-radius-100);
+    border-right: 0;
+    color: var(--vpj-color-text-300);
+    content: var(--vpj-code-copy-copied-text-content);
+    display: flex;
+    font-size: 12px;
+    height: 40px;
+    padding: 0 10px;
+    position: relative;
+    text-align: center;
+    transform: translate(calc(-50% - 20px));
+    white-space: nowrap;
+    width: fit-content;
+}
+
+/* Code Pre */
+.vpj-markdown div[class*=language-] pre {
+    background: transparent;
+    background-color: var(--shiki-light-bg, inherit);
+    margin: 0;
+    overflow-x: auto;
+    padding: 20px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.vpj-markdown div[class*=language-] code {
+    color: var(--vpj-color-text-300);
+    display: block;
+    font-size: .875rem;
+    line-height: 1.6;
+    min-width: 100%;
+    padding: 0 24px;
+    transition: color .5s;
+    width: fit-content;
+}
+
+.vpj-markdown div[class*=language-] pre, 
+.vpj-markdown div[class*=language-] code{
+    direction: ltr;
+    hyphens: none;
+    tab-size: 4;
+    text-align: left;
+    white-space: pre;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+}
+
+
+.vpj-markdown div[class*=language-] span:not(.line) {
+    color: var(--shiki-light);
+}
+
+.vpj-markdown div[class*=language-] span.line {
+    display: inline-block;
+    margin: 0 -24px;
+    padding: 0 24px;
+    width: calc(100% + 48px);
+}
+
+/* Code Highlight/Error/Warning */
+.vpj-markdown div[class*=language-] span.line.highlighted {
+    background-color: var(--vpj-color-bg-500);
+}
+
+.vpj-markdown div[class*=language-] span.line.highlighted.error {
+    background-color: var(--vpj-color-danger-100);
+}
+
+.vpj-markdown div[class*=language-] span.line.highlighted.warning {
+    background-color: var(--vpj-color-warning-100);
+}
+
+/* Code Focus */
+.vpj-markdown div[class*=language-] .has-focused-lines span.line:not(.has-focus) {
+    filter: blur(.1rem);
+    opacity: .7;
+    transition: filter .35s, opacity .35s;
+}
+
+.vpj-markdown div[class*=language-]:hover .has-focused-lines span.line:not(.has-focus) {
+    filter: blur();
+    opacity: 1;
+}
+
+/* Code Diff(Add/Remove) */
+.vpj-markdown div[class*=language-] span.line.diff {
+    display: inline-block;
+    margin: 0 -24px;
+    padding: 0 24px;
+    width: calc(100% + 48px);
+}
+
+.vpj-markdown div[class*=language-] span.line.diff.add {
+    background-color: var(--vpj-color-success-100);
+}
+
+.vpj-markdown div[class*=language-] span.line.diff.remove {
+    background-color: var(--vpj-color-danger-100);
+}
+
+/* Code Line Number */
+.vpj-markdown div[class*=language-].line-numbers-mode  {
+    padding-left: 32px;
+}
+
+.vpj-markdown div[class*=language-].line-numbers-mode > div.line-numbers-wrapper {
+    border-right: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+    color: var(--vpj-color-text-400);
+    font-size: .875rem;
+    left: 0;
+    padding: calc(20px + .5rem) 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 32px;
+    z-index: 1;
+}
+
+.vpj-markdown .md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+.vpj-markdown .md-fences {
+	background-color: #f8f8f8;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+

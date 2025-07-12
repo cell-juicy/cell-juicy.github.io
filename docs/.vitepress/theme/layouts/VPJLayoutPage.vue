@@ -20,6 +20,7 @@ const DEFAULT = {
         desktop: "61.25rem"
     }
 };
+
 // calculate gutter data
 const themeGutter = computed(() => theme.value.layouts?.page?.contentGutter);
 const frontmatterGutter = computed(() => frontmatter.value.contentGutter);
@@ -56,7 +57,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
                 <slot name="page-gutter-left"/>
             </div>
             <slot>
-                <Content class="vpj-layout-page__content"/>
+                <Content class="vpj-layout-page__content vpj-markdown"/>
             </slot>
             <div class="vpj-layout-page__gutter-right">
                 <slot name="page-gutter-right"/>
