@@ -75,6 +75,15 @@ import {
  * ```
  */
 export interface VPJDocLayoutConfig {
+
+    title?: string;
+
+    titleTemplate?: HeaderTitleTemplateInput;
+
+    favicon?: ImageData;
+
+    description?: string;
+
     /**
      * 侧边栏标签页配置
      * @optional

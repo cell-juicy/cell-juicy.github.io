@@ -1,4 +1,4 @@
-import { HeadFaviconData } from "./common";
+import { ImageData } from "./common";
 
 
 /**
@@ -42,27 +42,12 @@ import { HeadFaviconData } from "./common";
  * ```
  */
 export interface VPJNotFoundLayoutConfig {
-    /**
-     * 404页的标题配置
-     * @optional
-     * @deprecated
-     * 
-     * @remarks
-     * 404页的默认标题（此功能暂不可用）
-     */
+
     title?: string;
 
-    /**
-     * 404页的图标配置
-     * @optional
-     * @deprecated
-     * 
-     * @remarks
-     * 404页的默认图标（此功能暂不可用）
-     */
-    favicon?: 
-        | HeadFaviconData
-        | HeadFaviconData[];
+    favicon?: ImageData;
+
+    description?: string;
 
     /**
      * 404页的内容图标配置
