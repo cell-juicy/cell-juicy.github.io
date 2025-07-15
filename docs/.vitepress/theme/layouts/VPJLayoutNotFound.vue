@@ -1,12 +1,71 @@
 <script setup>
 import { useData } from 'vitepress';
 import { computed } from 'vue';
+import { useHead } from '@unhead/vue';
 
 import VPJDynamicIcon from '../components/VPJDynamicIcon.vue';
 import VPJIconCrossCircle from '../components/icons/VPJIconCrossCircle.vue';
 
+import { mergeSimpleData } from '../utils/mergeData';
+import { resolveTitle } from '../utils/common';
+
 
 const { site, theme, frontmatter, page } = useData();
+
+const computedTitle = computed(() => {
+    // Override default title logic
+    return mergeSimpleData(
+        (input) => typeof input === "string",
+        undefined,
+        page.value.isNotFound ? undefined : frontmatter.value.title,
+        theme.value.layouts?.notFound?.title,
+        resolveTitle(site.value, page.value),
+        "404 | VitePress"
+    );
+});
+
+const computedLink = computed(() => {
+    const link = [];
+
+    // Override default icon logic
+    const mergedFavicon = mergeSimpleData(
+        (input) => typeof input === 'string' || (typeof input === 'object' && input !== null && typeof input.src === 'string'),
+        undefined,
+        page.value.isNotFound ? undefined : frontmatter.value.favicon,
+        theme.value.layouts?.notFound?.favicon,
+        theme.value.logo
+    );
+
+    if (mergedFavicon) {
+        const icon = typeof mergedFavicon === 'string' ? { src: mergedFavicon } : mergedFavicon;
+        link.push({ rel: "icon", href: icon.src, title: typeof icon.alt === 'string' ? icon.alt : undefined })
+    };
+
+    return link;
+});
+
+const computedMeta = computed(() => {
+    const meta = [];
+
+    // Override default description logic
+    const mergedDescription = mergeSimpleData(
+        (input) => typeof input === 'string',
+        undefined,
+        page.value.isNotFound ? undefined : frontmatter.value.description,
+        theme.value.layouts?.notFound?.description,
+        site.value.description
+    );
+    if (mergedDescription) meta.push({ name: "description", content: mergedDescription });
+
+    return meta;
+});
+
+useHead({
+    title: computedTitle,
+    link: computedLink,
+    meta: computedMeta
+});
+
 const computedContent = computed(() => {
     const linkRaw = theme.value.layouts?.notFound?.contentLink ?? {text: '返回主页', link: '/'};
     const linkData = {};

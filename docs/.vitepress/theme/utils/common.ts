@@ -3,7 +3,7 @@ export function any2Number(value: any): number {
     return isNaN(num) ? 0 : num;
 }
 
-
+/* Order Processing */
 export function processBlogOrder(order: any): number {
     return any2Number(order);
 }
@@ -26,3 +26,28 @@ export function processDocOrder(order: any): number[] {
 
     return [0];
 }
+
+/* Resolve Title */
+export function resolveTitle(
+    siteData: { title?: string; titleTemplate?: boolean | string },
+    pageData: { title?: string; titleTemplate?: boolean | string }
+) {
+    const title = pageData.title || siteData.title || "";
+    const template = pageData.titleTemplate ?? siteData.titleTemplate;
+
+    if (typeof template === 'string' && template.includes(':title')) {
+        return template.replace(/:title/g, title);
+    }
+
+    let suffix: string = ` | ${template}`;
+    if (template === false) suffix = '';
+    if (template === true || template === undefined) suffix = ` | ${siteData.title}`;
+    if (siteData.title === template) suffix = '';
+
+    if (title === suffix.slice(3)) {
+        return title;
+    };
+    
+    return `${title}${suffix}`;
+}
+

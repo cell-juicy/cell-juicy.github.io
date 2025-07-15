@@ -1,7 +1,6 @@
 <script setup>
 import { useRoute } from 'vitepress';
-import { nextTick, watch, onMounted, onUnmounted, computed } from 'vue';
-import { useHead } from '@unhead/vue';
+import { nextTick, watch, onMounted, onUnmounted } from 'vue';
 
 import VPJSidebar from './components/VPJSidebar.vue';
 import VPJMobileNavbar from './components/VPJMobileNavbar.vue';
@@ -26,11 +25,6 @@ function scrollToAnchor() {
 
 const route = useRoute();
 const stopAnchorWatcher = watch(route, scrollToAnchor);
-
-const title = computed(() => `测试替换 | ${route.data.title}`);
-useHead({
-    title: title,
-});
 
 
 onMounted(() => {
@@ -80,6 +74,17 @@ onUnmounted(() => {
                 <template #blog-bottom><slot name="blog-bottom"/></template>
                 <template #blog-padding-left><slot name="blog-padding-left"/></template>
                 <template #blog-padding-right><slot name="blog-padding-right"/></template>
+                <template #doc-header><slot name="doc-header"/></template>
+                <template #doc-header-before><slot name="doc-header-before"/></template>
+                <template #doc-header-between><slot name="doc-header-between"/></template>
+                <template #doc-header-after><slot name="doc-header-after"/></template>
+                <template #doc-aside><slot name="doc-aside"/></template>
+                <template #doc-cover><slot name="doc-cover"/></template>
+                <template #doc-controler><slot name="doc-controler"/></template>
+                <template #doc-top><slot name="doc-top"/></template>
+                <template #doc-bottom><slot name="doc-bottom"/></template>
+                <template #doc-padding-left><slot name="doc-padding-left"/></template>
+                <template #doc-padding-right><slot name="doc-padding-right"/></template>
             </VPJContent>
         </div>
     </div>
