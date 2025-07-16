@@ -16,6 +16,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     lang: "zh-CN",
     description: "Cell's personal site",
     themeConfig: {
+        logo: "/assets/logo.svg",
         sidebar: {
             profileDescription: "这里是Cell的个人站点，记录了一些日常的学习心得，仍在建设中。",
             navLinks: [
@@ -28,7 +29,7 @@ export default defineConfigWithTheme<ThemeConfig>({
             ]
         },
         layouts: {
-            
+
         },
         blog: {
             tag: {

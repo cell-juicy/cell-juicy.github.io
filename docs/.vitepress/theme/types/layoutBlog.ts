@@ -74,8 +74,6 @@ import {
  */
 export interface VPJBlogLayoutConfig {
 
-    title?: string;
-
     titleTemplate?: HeaderTitleTemplateInput;
 
     favicon?: ImageData;

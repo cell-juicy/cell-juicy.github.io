@@ -76,8 +76,6 @@ import {
  */
 export interface VPJDocLayoutConfig {
 
-    title?: string;
-
     titleTemplate?: HeaderTitleTemplateInput;
 
     favicon?: ImageData;

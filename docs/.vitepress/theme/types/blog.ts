@@ -97,8 +97,6 @@ import {
  */
 export interface SeriesMetaData {
 
-    title?: string;
-
     titleTemplate?: HeaderTitleTemplateInput;
 
     favicon?: ImageData;

@@ -181,8 +181,6 @@ export interface NodeMetadata {
  */
 export interface SpaceMetaData {
 
-    title?: string;
-
     titleTemplate?: HeaderTitleTemplateInput;
 
     favicon?: ImageData;

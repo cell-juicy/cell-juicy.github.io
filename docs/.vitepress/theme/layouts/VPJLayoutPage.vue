@@ -1,8 +1,9 @@
 <script setup>
 import { Content, useData } from 'vitepress';
 import { computed, provide } from 'vue';
+import { useHead } from '@unhead/vue';
 
-import { mergeDeviceData } from '../utils/mergeData'
+import { mergeDeviceData, mergeSimpleData } from '../utils/mergeData';
 import { isMobile, isTablet } from '../utils/deviceTypes';
 import { VPJ_PAGE_LAYOUT_SYMBOL } from '../utils/symbols';
 
@@ -20,6 +21,30 @@ const DEFAULT = {
         desktop: "61.25rem"
     }
 };
+
+const computedLink = computed(() => {
+    const link = [];
+
+    // Override default icon logic
+    const mergedFavicon = mergeSimpleData(
+        (input) => typeof input === 'string' || (typeof input === 'object' && input !== null && typeof input.src === 'string'),
+        undefined,
+        frontmatter.value.favicon,
+        theme.value.layouts?.notFound?.favicon,
+        theme.value.logo
+    );
+
+    if (mergedFavicon) {
+        const icon = typeof mergedFavicon === 'string' ? { src: mergedFavicon } : mergedFavicon;
+        link.push({ rel: "icon", href: icon.src, title: typeof icon.alt === 'string' ? icon.alt : undefined })
+    };
+
+    return link;
+});
+
+useHead({
+    link: computedLink,
+});
 
 // calculate gutter data
 const themeGutter = computed(() => theme.value.layouts?.page?.contentGutter);
