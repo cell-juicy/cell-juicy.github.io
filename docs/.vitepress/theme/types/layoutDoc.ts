@@ -76,10 +76,143 @@ import {
  */
 export interface VPJDocLayoutConfig {
 
+    /**
+     * 文档页面标题模板
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置所有 `doc` 布局页面在 `<head>` 中渲染的 `<title>` 元素，
+     * 可设置统一的标题格式或基于上下文动态生成标题。
+     * 
+     * 支持以下三种模式：
+     * 
+     * 1. **字符串模板** - 使用 `:space`、`:title`、`:order` 等占位符
+     * 2. **函数模板** - 基于 {@link PageContext} 提供的上下文动态生成标题
+     * 3. **禁用模式（false）** - 跳过模板计算，直接使用上下文中的标题
+     * 
+     * 此项仅用于标签页标题，不影响页面正文标题或内容渲染。
+     * 
+     * 注意事项：
+     * - 优先级低于 `themeConfig.doc.space` 和页面 frontmatter 中的 `titleTemplate`
+     * - 返回字符串将作为最终 `<title>` 使用；返回 `false` 则直接使用上下文标题
+     * - 函数返回值必须是字符串，否则将被视为无效输入
+     * - 字符串模板支持以下占位符：
+     *   - `:space`：当前页面所属空间
+     *   - `:title`：页面主标题
+     *   - `:order`：树目录结构中的位置标识（如 '1.2.3'）
+     * 
+     * @example
+     * 示例 1：统一添加前缀
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       doc: {
+     *         titleTemplate: "[文档] :space · :title"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 示例 2：动态判断标题结构
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       doc: {
+     *         titleTemplate: (ctx) =>
+     *           ctx.layoutConfig.space === "指南"
+     *             ? `${ctx.layoutConfig.title} · 使用指南`
+     *             : false
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link PageContext}
+     * @see {@link HeaderTitleTemplateInput}
+     */
     titleTemplate?: HeaderTitleTemplateInput;
 
+    /**
+     * 文档页面默认图标
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置所有 `doc` 布局页面在 `<head>` 中显示的图标，
+     * 将被注入为 `<link rel="icon">`，用于控制浏览器标签页的图标显示。
+     * 
+     * 支持传入字符串路径，或对象形式包含图标描述信息。
+     * 
+     * 注意事项：
+     * - 页面 frontmatter 中的 `favicon` 优先级更高
+     * - 若空间也未设置，将使用 `themeConfig.logo` 作为兜底图标
+     * 
+     * @example
+     * 示例 1：为所有文档页面设置统一图标
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       doc: {
+     *         favicon: "/images/doc-icon.svg"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 示例 2：提供图标及其说明文本
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       doc: {
+     *         favicon: {
+     *           src: "/images/doc-icon-dark.svg",
+     *           alt: "文档空间徽标",
+     *           media: "(prefers-color-scheme: dark)"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link ImageData}
+     */
     favicon?: ImageData;
 
+    /**
+     * 文档页面默认描述
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置所有 `doc` 布局页面的默认页面描述，
+     * 将被注入为 `<meta name="description">`，部分搜索引擎或社交平台会将其作为摘要展示。
+     * 
+     * 注意事项：
+     * - 页面 frontmatter 中的 `description` 优先级更高
+     * - 若空间也未提供，将使用 `site.description` 作为最终兜底
+     * 
+     * @example
+     * 示例：为技术文档空间设置统一摘要
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       doc: {
+     *         description: "技术文档空间提供完整的API参考和使用指南"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     */
     description?: string;
 
     /**
