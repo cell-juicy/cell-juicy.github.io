@@ -1,4 +1,4 @@
-import { HeadFaviconData } from "./common";
+import { ImageData } from "./common";
 
 
 /**
@@ -43,26 +43,114 @@ import { HeadFaviconData } from "./common";
  */
 export interface VPJNotFoundLayoutConfig {
     /**
-     * 404页的标题配置
+     * 页面默认标题
      * @optional
-     * @deprecated
      * 
      * @remarks
-     * 404页的默认标题（此功能暂不可用）
+     * 该项用于配置默认 404 页面（未显式定义的错误页）在标签页中显示的标题文本，也可作为一般 `not-found` 布局页面未设置标题时的默认值。
+     * 
+     * 不影响页面正文显示，仅用于 `<head>` 元信息中的 `<title>` 标签渲染。
+     * 
+     * 注意事项：
+     * - 页面 frontmatter 中设置的 `title` 将覆盖此项
+     * - 若此项与 frontmatter 均未提供，将使用 VitePress 默认的标题逻辑
+     * 
+     * @example
+     * 示例 1：为默认 404 页面设置标题文本
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       notFound: {
+     *         title: "您访问的页面不存在"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
      */
     title?: string;
 
     /**
-     * 404页的图标配置
+     * 页面默认图标
      * @optional
-     * @deprecated
      * 
      * @remarks
-     * 404页的默认图标（此功能暂不可用）
+     * 该项用于配置默认 404 页面（未显式定义的错误页）在标签页中显示的图标，
+     * 也可作为一般 `not-found` 布局页面未设置图标时的默认值。
+     * 
+     * 会被注入到 `<head>` 中生成 `<link rel="icon">`，用于控制浏览器标签页图标。
+     * 
+     * 支持传入字符串路径，或对象形式包含图标描述信息。
+     * 
+     * 注意事项：
+     * - 页面 frontmatter 中设置的 `favicon` 将覆盖此项
+     * - 若此项与 frontmatter 均未提供，将使用 `themeConfig.logo`，若仍为空则回退到 VitePress 默认逻辑
+     * 
+     * @example
+     * 示例 1：设置默认 404 页图标为项目徽标
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       notFound: {
+     *         favicon: "/logo.svg"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 示例 2：提供图标及其说明文本
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       notFound: {
+     *         favicon: {
+     *           src: "/logo.svg",
+     *           alt: "站点徽标"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link ImageData}
      */
-    favicon?: 
-        | HeadFaviconData
-        | HeadFaviconData[];
+    favicon?: ImageData;
+
+    /**
+     * 页面默认描述
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置默认 404 页面（未显式定义的错误页）在标签页的描述信息，
+     * 也可作为一般 `not-found` 布局页面未设置描述时的默认值。
+     * 
+     * 描述信息将注入到 `<head>` 中的 `<meta name="description">` 标签中，部分搜索引擎或社交平台可能会引用该内容作为页面摘要。
+     * 
+     * 注意事项：
+     * - 页面 frontmatter 中设置的 `description` 将覆盖此项
+     * - 若此项与 frontmatter 均未提供，将使用 `site.description`，若仍为空则省略注入
+     * 
+     * @example
+     * 示例 1：设置默认 404 页面描述
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       notFound: {
+     *         description: "您访问的页面不存在，可能链接已失效或页面已被删除。"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     */
+    description?: string;
 
     /**
      * 404页的内容图标配置

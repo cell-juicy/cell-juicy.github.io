@@ -226,7 +226,7 @@ function normalizeHeaderTitleTemplateInput(
     if (input === false) {
         return input;
     } else if (typeof input === 'string') {
-        if (ctx.layoutConfig.layout === "blog") {
+        if (ctx.layoutConfig?.layout === "blog") {
             const series = ctx.layoutConfig.series;
             const order = ctx.layoutConfig.order;
             const title = ctx.layoutConfig.title;
@@ -252,7 +252,44 @@ function normalizeHeaderTitleTemplateInput(
             return undefined;
         }
     } else {
-        return undefined
+        return undefined;
+    }
+};
+
+function normalizeTitleTemplateInput(
+    input: any,
+    ctx: PageContext
+): string | undefined {
+    if (input === false) {
+        return ctx.layoutConfig?.title ?? undefined;
+    } else if (typeof input === 'string') {
+        if (ctx.layoutConfig?.layout === "blog") {
+            const series = ctx.layoutConfig?.series;
+            const order = ctx.layoutConfig?.order;
+            const title = ctx.layoutConfig?.title;
+            return input
+                .replaceAll(":series", series || "")
+                .replaceAll(":title", title || "")
+                .replaceAll(":order", order?.toString() || "")
+        } else if (ctx.layoutConfig?.layout === "doc") {
+            const space = ctx.layoutConfig?.space;
+            const title = ctx.layoutConfig?.title;
+            return input
+                .replaceAll(":space", space || "")
+                .replaceAll(":title", title || "")
+        } else {
+            console.error(`[Juicy Theme]An error occurred while getting Page Context, and the default value undefined was automatically returned`);
+            return undefined;
+        }
+    } else if (typeof input === 'function') {
+        try {
+            return (typeof input(ctx) === 'string') ? input(ctx) : undefined
+        } catch(e) {
+            console.error(`[Juicy Theme]Fail to resolve header title template: ${e}`);
+            return undefined;
+        }
+    } else {
+        return undefined;
     }
 };
 
@@ -487,6 +524,19 @@ export function mergeHeaderTitleTemplateData(
             .map((input) => normalizeHeaderTitleTemplateInput(input, ctx))
             .find((value) => value !== undefined)
         return (merged === false) ? undefined : merged
+    };
+    return undefined;
+};
+
+export function mergeTitleTemplateData(
+    ctx: PageContext,
+    ...sources: (HeaderTitleTemplateInput | undefined)[]
+): string | undefined {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map((input) => normalizeTitleTemplateInput(input, ctx))
+            .find((value) => typeof value === 'string')
+        return merged
     };
     return undefined;
 };

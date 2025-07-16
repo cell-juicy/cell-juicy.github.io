@@ -97,6 +97,117 @@ import {
  */
 export interface SeriesMetaData {
     /**
+     * 博客系列标题模板
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置某一系列下所有 `blog` 页面在 `<head>` 中渲染的 `<title>` 元素，
+     * 支持静态模板、动态函数或禁用模式，以统一控制系列页面的标题样式。
+     * 
+     * 支持以下三种配置方式：
+     * 
+     * 1. **字符串模板** - 使用 `:series`、`:title`、`:order` 占位符
+     * 2. **函数模板** - 基于 {@link PageContext} 上下文动态生成标题
+     * 3. **禁用模式（false）** - 忽略模板，直接返回页面标题
+     * 
+     * 注意事项：
+     * - 优先级高于 {@link VPJBlogLayoutConfig.titleTemplate} 中的 layout 层级配置
+     * - 函数返回值必须为字符串，否则将被视为无效输入
+     * - 若设置为 `false` 则直接使用上下文中的标题
+     * - 支持的占位符包括：
+     *   - `:series`：当前系列名称
+     *   - `:title`：页面主标题（通常为首个 h1）
+     *   - `:order`：系列排序编号（若配置）
+     * 
+     * @example
+     * 示例 1：为某系列设置统一标题样式
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       series: {
+     *         "技术随笔": {
+     *           titleTemplate: "[随笔] :title"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link PageContext}
+     * @see {@link HeaderTitleTemplateInput}
+     * @see {@link VPJBlogLayoutConfig.titleTemplate}
+     */
+    titleTemplate?: HeaderTitleTemplateInput;
+
+    /**
+     * 博客系列图标
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置某一系列下所有 `blog` 页面标签页图标，
+     * 将被注入为 `<link rel="icon">`，支持简洁路径或包含标题信息的对象形式。
+     * 
+     * 注意事项：
+     * - 优先级高于 {@link VPJBlogLayoutConfig.favicon} 中的 layout 层级配置
+     * - 若未设置该项，则 fallback 至 layout 层级配置或 `themeConfig.logo`
+     * - 若为对象形式，可附加 `alt` 字段作为图标说明
+     * 
+     * @example
+     * 示例 1：为某系列设置专属图标
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       series: {
+     *         "项目日志": {
+     *           favicon: "/icons/log-icon.svg"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link ImageData}
+     * @see {@link VPJBlogLayoutConfig.favicon}
+     */
+    favicon?: ImageData;
+
+    /**
+     * 博客系列页面描述
+     * @optional
+     * 
+     * @remarks
+     * 该项用于设置某一系列下所有 `blog` 页面的默认描述信息，
+     * 将注入为 `<meta name="description">`，常用于 SEO 与摘要显示。
+     * 
+     * 注意事项：
+     * - 优先级高于 {@link VPJBlogLayoutConfig.description} 中的 layout 层级配置
+     * - 若未设置该项，将回退至 layout 配置或站点描述
+     * 
+     * @example
+     * 示例 1：为某系列提供个性化描述
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       series: {
+     *         "旅行随笔": {
+     *           description: "记录我在世界各地的游历与所见所感。"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link VPJBlogLayoutConfig.description}
+     */
+    description?: string;
+    
+    /**
      * 侧边栏标签页配置
      * @optional
      * 

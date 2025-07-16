@@ -12,6 +12,8 @@ import { VPJ_BLOG_DATA_SYMBOL } from "./utils/symbols";
 import { initVPJDocData } from "./composables/useDocData";
 import { VPJ_DOC_DATA_SYMBOL } from "./utils/symbols";
 
+import { inject } from "vue";
+
 // Pinia
 import { createPinia } from "pinia";
 

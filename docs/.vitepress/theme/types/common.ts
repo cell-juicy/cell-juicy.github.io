@@ -31,42 +31,6 @@ export type ImageData =
 
 
 /**
- * 通用的网页头部图标（Favicon）配置类型
- * 
- * @remarks
- * 此类型用于定义网页头部图标（如浏览器标签页图标、Apple Touch Icon 等），支持两种形式：
- * 1. 简写：直接使用图标路径字符串（自动推断默认属性）。
- * 2. 详写：通过对象指定完整的图标属性（如 `rel`, `sizes`, `type`）。
- * 
- * @example
- * 示例1：简写（默认 `rel="icon"`）
- * ```ts
- * const favicon: HeadFaviconData = "/favicon.ico";
- * ```
- * 
- * @example
- * 示例2：详写（指定 Apple Touch Icon）
- * ```ts
- * const appleIcon: HeadFaviconData = {
- *   src: "/apple-touch-icon.png",
- *   rel: "apple-touch-icon",
- *   sizes: "180x180",
- *   type: "image/png"
- * };
- * ```
- */
-export type HeadFaviconData = 
-    | string
-    | {
-        src: string
-        rel?: string
-        sizes?: string
-        type?: 'image/svg+xml' | 'image/png' | 'image/jpeg' | 'image/webp' | 'image/x-icon'
-        media?: string
-    };
-
-
-/**
  * blog/doc布局页面上下文类型
  * 
  * @remarks

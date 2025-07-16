@@ -1,9 +1,13 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
+import { useData } from 'vitepress';
+import { useHead } from '@unhead/vue';
 
 import { useVPJDocLayout } from '../composables/useVPJDocLayout';
 import { useDocData } from '../composables/useDocData';
+
+import { mergeTitleTemplateData, mergeSimpleData } from '../utils/mergeData';
 
 import VPJArticleAside from '../components/VPJArticleAside.vue';
 import VPJArticleHeader from '../components/VPJArticleHeader.vue';
@@ -23,7 +27,63 @@ const {
     contentConfig,
     asideConfig
 } = storeToRefs(store);
-const { cover } = useDocData();
+const { cover, ctx, spaceConfig, layoutConfig } = useDocData();
+
+const { page, theme, site, frontmatter } = useData();
+
+const computedTitle = computed(() => {
+    // Override default title logic
+    return mergeTitleTemplateData(
+        ctx.value,
+        frontmatter.value.titleTemplate,
+        spaceConfig.value.titleTemplate,
+        layoutConfig.value.titleTemplate
+    );
+});
+
+const computedLink = computed(() => {
+    const link = [];
+
+    // Override default icon logic
+    const mergedFavicon = mergeSimpleData(
+        (input) => typeof input === 'string' || (typeof input === 'object' && input !== null && typeof input.src === 'string'),
+        undefined,
+        frontmatter.value.favicon,
+        spaceConfig.value.favicon,
+        layoutConfig.value.favicon,
+        theme.value.logo
+    );
+
+    if (mergedFavicon) {
+        const icon = typeof mergedFavicon === 'string' ? { src: mergedFavicon } : mergedFavicon;
+        link.push({ rel: "icon", href: icon.src, title: typeof icon.alt === 'string' ? icon.alt : undefined })
+    };
+
+    return link;
+});
+
+const computedMeta = computed(() => {
+    const meta = [];
+
+    // Override default description logic
+    const mergedDescription = mergeSimpleData(
+        (input) => typeof input === 'string',
+        undefined,
+        frontmatter.value.description,
+        spaceConfig.value.description,
+        layoutConfig.value.description,
+        site.value.description
+    );
+    if (mergedDescription) meta.push({ name: "description", content: mergedDescription });
+
+    return meta;
+});
+
+useHead({
+    title: computedTitle,
+    link: computedLink,
+    meta: computedMeta
+});
 
 const computedPadding = computed(() => {
     return contentConfig.value.padding || "0"

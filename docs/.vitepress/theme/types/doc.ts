@@ -181,6 +181,136 @@ export interface NodeMetadata {
  */
 export interface SpaceMetaData {
     /**
+     * 文档空间标题模板
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置某一空间下所有 `doc` 页面在 `<head>` 中渲染的 `<title>` 元素，
+     * 支持静态模板、动态函数或禁用模式，以统一控制空间页面的标题样式。
+     * 
+     * 支持以下三种配置方式：
+     * 
+     * 1. **字符串模板** - 使用 `:space`、`:title`、`:order` 占位符
+     * 2. **函数模板** - 基于 {@link PageContext} 上下文动态生成标题
+     * 3. **禁用模式（false）** - 忽略模板，直接返回页面标题
+     * 
+     * 注意事项：
+     * - 优先级高于 {@link VPJDocLayoutConfig.titleTemplate} 中的 layout 层级配置
+     * - 函数返回值必须为字符串，否则将被视为无效输入
+     * - 若设置为 `false` 则使用上下文中的标题
+     * - 支持的占位符包括：
+     *   - `:space`：当前空间名称
+     *   - `:title`：页面主标题（通常为首个 h1）
+     *   - `:order`：树目录层级位置（如 '1.2.3'）
+     * 
+     * @example
+     * 示例 1：为某空间设置统一标题样式
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       spaces: {
+     *         "开发指南": {
+     *           titleTemplate: "[指南] :title · :order"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link PageContext}
+     * @see {@link HeaderTitleTemplateInput}
+     * @see {@link VPJDocLayoutConfig.titleTemplate}
+     */
+    titleTemplate?: HeaderTitleTemplateInput;
+
+    /**
+     * 文档空间图标
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置某一空间下所有 `doc` 页面标签页图标，
+     * 将被注入为 `<link rel="icon">`，支持简洁路径或包含标题信息的对象形式。
+     * 
+     * 注意事项：
+     * - 优先级高于 {@link VPJDocLayoutConfig.favicon} 中的 layout 层级配置
+     * - 若未设置该项，则 fallback 至 layout 层级配置或 `themeConfig.logo`
+     * - 若为对象形式，可附加 `alt` 字段作为图标说明
+     * 
+     * @example
+     * 示例 1：为某空间设置专属图标
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       spaces: {
+     *         "API参考": {
+     *           favicon: "/icons/api-icon.svg"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 示例 2：提供带说明的图标对象
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       spaces: {
+     *         "设计规范": {
+     *           favicon: {
+     *             src: "/icons/design-icon.svg",
+     *             alt: "设计规范空间图标",
+     *           }
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link ImageData}
+     * @see {@link VPJDocLayoutConfig.favicon}
+     */
+    favicon?: ImageData;
+
+    /**
+     * 文档空间页面描述
+     * @optional
+     * 
+     * @remarks
+     * 该项用于设置某一空间下所有 `doc` 页面的默认描述信息，
+     * 将注入为 `<meta name="description">`，常用于 SEO 与摘要显示。
+     * 
+     * 注意事项：
+     * - 优先级高于 {@link VPJDocLayoutConfig.description} 中的 layout 层级配置
+     * - 若未设置该项，将回退至 layout 配置或站点描述
+     * 
+     * @example
+     * 示例 1：为某空间提供个性化描述
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       spaces: {
+     *         "用户手册": {
+     *           description: "包含产品所有功能的详细使用说明和操作指南。"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link VPJDocLayoutConfig.description}
+     */
+    description?: string;
+
+    /**
      * 侧边栏标签页配置
      * @optional
      * 

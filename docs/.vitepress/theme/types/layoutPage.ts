@@ -1,3 +1,6 @@
+import { ImageData } from "./common";
+
+
 /**
  * page布局的全局配置接口
  * 
@@ -31,6 +34,55 @@
  * ```
  */
 export interface VPJPageLayoutConfig {
+    /**
+     * 一般页面默认图标
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置所有 `page` 布局页面在 `<head>` 中显示的图标，
+     * 将被注入为 `<link rel="icon">`，用于控制浏览器标签页的图标显示。
+     * 
+     * 支持传入字符串路径，或对象形式包含图标描述信息。
+     * 
+     * 注意事项：
+     * - 页面 frontmatter 中的 `favicon` 优先级更高
+     * - 若空间也未设置，将使用 `themeConfig.logo` 作为兜底图标
+     * 
+     * @example
+     * 示例 1：为所有一般页面设置统一图标
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         favicon: "/images/page-icon.svg"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 示例 2：提供图标及其说明文本
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         favicon: {
+     *           src: "/images/page-icon-dark.svg",
+     *           alt: "文档空间徽标",
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link ImageData}
+     */
+    favicon?: ImageData;
+
     /**
      * page布局的两侧留白配置
      * @optional

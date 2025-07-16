@@ -23,12 +23,15 @@ export default createContentLoader("**/*.md", {
             .filter((raw) => raw.frontmatter.layout === "blog")
             .map((raw) => {
                 // Process title
-                let title = (typeof raw.excerpt === 'string') ? raw.excerpt : undefined;
-                if (title) {
+                let title: string | undefined;
+                if (typeof raw.frontmatter.title === 'string') {
+                    title = raw.frontmatter.title;
+                } else if (typeof raw.excerpt === 'string') {
+                    title = raw.excerpt;
                     let safety = 0;
                     let prev: string;
                     do {
-                        prev = title
+                        prev = title;
                         title = title.replace(/<([a-zA-Z][a-zA-Z0-9]*)[^>]*>([\s\S]*?)<\/\1>/g, (m, t, c) => c);
                     } while (prev !== title && ++safety < 10);
                     title = title.replace(/<[a-zA-Z][a-zA-Z0-9]*\s*[^>]*?\/>/g, '');

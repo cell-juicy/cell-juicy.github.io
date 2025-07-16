@@ -11,11 +11,9 @@ import VPJContent from './layouts/VPJContent.vue';
 function scrollToAnchor() {
     if (window) {
         const hash = window.location.hash;
-        console.log("hash:", hash);
         if (hash !== "") {
             nextTick(() => {
                 const target = document.getElementById(decodeURIComponent(hash.substring(1)));
-                console.log("target:", target);
                 if (target) {
                     target.scrollIntoView({ behavior: "smooth" });
                 };
@@ -26,7 +24,8 @@ function scrollToAnchor() {
 
 
 const route = useRoute();
-const stopWatcher = watch(route, scrollToAnchor);
+const stopAnchorWatcher = watch(route, scrollToAnchor);
+
 
 onMounted(() => {
     setTimeout(scrollToAnchor, 200)
@@ -35,7 +34,7 @@ onMounted(() => {
 
 onUnmounted(() => {
     window.removeEventListener("hashchange", scrollToAnchor)
-    stopWatcher();
+    stopAnchorWatcher();
 });
 </script>
 
@@ -75,6 +74,17 @@ onUnmounted(() => {
                 <template #blog-bottom><slot name="blog-bottom"/></template>
                 <template #blog-padding-left><slot name="blog-padding-left"/></template>
                 <template #blog-padding-right><slot name="blog-padding-right"/></template>
+                <template #doc-header><slot name="doc-header"/></template>
+                <template #doc-header-before><slot name="doc-header-before"/></template>
+                <template #doc-header-between><slot name="doc-header-between"/></template>
+                <template #doc-header-after><slot name="doc-header-after"/></template>
+                <template #doc-aside><slot name="doc-aside"/></template>
+                <template #doc-cover><slot name="doc-cover"/></template>
+                <template #doc-controler><slot name="doc-controler"/></template>
+                <template #doc-top><slot name="doc-top"/></template>
+                <template #doc-bottom><slot name="doc-bottom"/></template>
+                <template #doc-padding-left><slot name="doc-padding-left"/></template>
+                <template #doc-padding-right><slot name="doc-padding-right"/></template>
             </VPJContent>
         </div>
     </div>
