@@ -30,7 +30,7 @@ const computedLink = computed(() => {
         (input) => typeof input === 'string' || (typeof input === 'object' && input !== null && typeof input.src === 'string'),
         undefined,
         frontmatter.value.favicon,
-        theme.value.layouts?.notFound?.favicon,
+        theme.value.layouts?.page?.favicon,
         theme.value.logo
     );
 

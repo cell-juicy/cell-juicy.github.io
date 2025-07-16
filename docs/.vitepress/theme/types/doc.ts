@@ -265,7 +265,6 @@ export interface SpaceMetaData {
      *           favicon: {
      *             src: "/icons/design-icon.svg",
      *             alt: "设计规范空间图标",
-     *             sizes: "32x32"
      *           }
      *         }
      *       }

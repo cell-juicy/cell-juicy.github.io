@@ -172,38 +172,7 @@ export interface SeriesMetaData {
      * 
      * @see {@link ImageData}
      * @see {@link VPJBlogLayoutConfig.favicon}
-     *//**
-    * 博客系列图标
-    * @optional
-    * 
-    * @remarks
-    * 该项用于配置某一系列下所有 `blog` 页面标签页图标，
-    * 将被注入为 `<link rel="icon">`，支持简洁路径或包含标题信息的对象形式。
-    * 
-    * 注意事项：
-    * - 优先级高于 {@link VPJBlogLayoutConfig.favicon} 中的 layout 层级配置
-    * - 若未设置该项，则 fallback 至 layout 层级配置或 `themeConfig.logo`
-    * - 若为对象形式，可附加 `alt` 字段作为图标说明
-    * 
-    * @example
-    * 示例 1：为某系列设置专属图标
-    * ```ts
-    * export default {
-    *   themeConfig: {
-    *     blog: {
-    *       series: {
-    *         "项目日志": {
-    *           favicon: "/icons/log-icon.svg"
-    *         }
-    *       }
-    *     }
-    *   }
-    * }
-    * ```
-    * 
-    * @see {@link ImageData}
-    * @see {@link VPJBlogLayoutConfig.favicon}
-    */
+     */
     favicon?: ImageData;
 
     /**
