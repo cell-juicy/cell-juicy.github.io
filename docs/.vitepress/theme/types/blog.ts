@@ -1,3 +1,4 @@
+import { BlogPageData } from "../composables/useBlogData copy";
 import {
     AsideTabInput,
     NormalizedAsideTabInput,
@@ -1317,6 +1318,10 @@ export interface SeriesMetaData {
      * @see {@link VPJBlogLayoutConfig} 布局层级配置容器
      */
     presetTags?: string[];
+
+    listTitle?: 
+        | string
+        | ((data: BlogPageData) => string);
 }
 
 /**
