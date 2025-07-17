@@ -11,7 +11,7 @@ const rootDocData = computed(() => {
     if (!space.value) {
         return [];
     }
-    return filter({ space: space.value }).filter((data) => !data.parent)
+    return filter((data) => data.space === space.value).filter((data) => !data.parent)
 })
 </script>
 

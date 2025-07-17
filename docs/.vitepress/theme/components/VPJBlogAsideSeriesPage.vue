@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from 'vitepress';
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 
 import { useBlogData } from '../composables/useBlogData';
 
@@ -12,7 +12,7 @@ import VPJIconBlogPencil from './icons/VPJIconBlogPencil.vue';
 const { filter, series } = useBlogData();
 const route = useRoute();
 
-const articles = computed(() => filter({ series: series.value }).sort((a, b) => a.order - b.order))
+const articles = computed(() => filter((data) => data.series === series.value).sort((a, b) => a.order - b.order))
 </script>
 
 

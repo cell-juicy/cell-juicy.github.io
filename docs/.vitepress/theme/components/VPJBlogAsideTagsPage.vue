@@ -1,12 +1,10 @@
 <script setup>
-import { ref } from 'vue';
-
 import { useBlogData } from '../composables/useBlogData';
 
 import VPJTag from './VPJTag.vue';
 
 
-const { tags, blogData } = useBlogData();
+const { tags } = useBlogData();
 </script>
 
 

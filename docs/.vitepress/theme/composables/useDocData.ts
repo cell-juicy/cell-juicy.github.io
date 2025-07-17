@@ -26,18 +26,6 @@ import type {
 } from '../types/common';
 
 
-interface FilterOption {
-    space?:
-        | string
-        | ((series: string | undefined) => boolean);
-    
-    order?:
-        | number[]
-        | ((order: number[]) => boolean);
-    
-    isVirtual?: boolean;
-}
-
 interface DocData {
     data: Ref<DocPageData | undefined>;
     title: Ref<string | undefined>;
@@ -46,7 +34,7 @@ interface DocData {
     cover: Ref<string | undefined>;
     resources: Ref<Record<string, ResourceInput> | undefined>;
     ctx: Ref<PageContext | undefined>;
-    filter: (option: FilterOption | undefined) => DocPageData[];
+    filter: (callbackFn: (data: DocPageData) => boolean) => DocPageData[];
     spaceConfig: Ref<SpaceMetaData>;
     layoutConfig: Ref<VPJDocLayoutConfig>;
 }
@@ -63,7 +51,6 @@ interface RawDocPageData {
         | ((data: DocPageData) => string | undefined);
     url?: string;
     frontmatter?: Record<string, any>;
-    // src?: string;
     inherit?: boolean;
     virtual?: boolean;
 }
@@ -73,6 +60,11 @@ interface StoreDocPageData extends RawDocPageData {
     id: string;
     inherit: boolean;
     virtual: boolean;
+}
+
+interface DocStoreContext {
+    idMap: Map<string, DocPageData>;
+    duplicateCount: Map<string, number>;
 }
 
 function resolveResourceInput(input: any):Record<string, ResourceData> {
@@ -178,15 +170,14 @@ function mergeResourceData(child: Record<string, ResourceData>, parent: Record<s
 };
 
 export class DocPageData {
-    static #idMap: Map<string, DocPageData> = new Map();
-    static #duplicateCount: Map<string, number> = new Map();
-
     #store: StoreDocPageData;
+    #storeContext: DocStoreContext;
     #parentId?: string;
     #childrenIds: string[] = [];
 
     constructor(
-        raw: RawDocPageData
+        raw: RawDocPageData,
+        storeContext: DocStoreContext
     ) {
         // Initialization
         this.#store = {
@@ -196,9 +187,10 @@ export class DocPageData {
             inherit: (raw.inherit === true) ? true : false,
             virtual: (raw.virtual === true) ? true : false,
         };
+        this.#storeContext = storeContext;
 
         // Register self
-        DocPageData.register(this);
+        this.#register();
 
         // Bind parent
         this.#bindParent();
@@ -218,26 +210,46 @@ export class DocPageData {
         if (typeof this.#store.treeTitle === 'string') {
             return this.#store.treeTitle;
         } else if (typeof this.#store.treeTitle === 'function') {
-            const title  = this.#store.treeTitle(this);
-            if (typeof title === 'string') return title;
-        }
+            try {
+                const title  = this.#store.treeTitle(this);
+                if (typeof title === 'string') return title;
+            } catch (e) {
+                console.error(
+                    `[Juicy Theme]Trying to parse treeTitle from doc page data` +
+                    `(${this.#store.id}) failed, caught error: ${e}`
+                );
+            };
+        };
         return this.title || this.id;
     }
 
     get url(): string | undefined { return this.#store.url; }
     get frontmatter(): Record<string, any> | undefined { return this.#store.frontmatter; }
-    // get src(): string | undefined { return this.#store.src; }
 
-    get parent(): DocPageData | undefined { return this.#parentId ? DocPageData.#idMap.get(this.#parentId) : undefined; }
+    get parent(): DocPageData | undefined { return this.#parentId ? this.#storeContext.idMap.get(this.#parentId) : undefined; }
     get children(): DocPageData[] {
         return this.#childrenIds
-            .map(id => DocPageData.#idMap.get(id))
+            .map(id => this.#storeContext.idMap.get(id))
             .filter((child): child is DocPageData => child !== undefined);
     }
     get id(): string { return this.#store.id; }
     get isVirtual(): boolean { return this.#store.virtual; }
 
     // Methods
+    #register(): void {
+        const baseId = DocPageData.genId(this.#store);
+        if (this.#storeContext.idMap.has(baseId)) {
+            const count = this.#storeContext.duplicateCount.get(baseId) ?? 0;
+            const newId = `${baseId}:duplicate-${count}`;
+            this.#store.id = newId;
+            this.#storeContext.idMap.set(newId, this);
+            this.#storeContext.duplicateCount.set(baseId, count + 1);
+        } else {
+            this.#store.id = baseId;
+            this.#storeContext.idMap.set(baseId, this);
+        }
+    };
+
     #bindParent() {
         for (let i=1; i<this.order.length; i++) {
             const expectedParentOrder = this.order.slice(0, - i);
@@ -245,7 +257,7 @@ export class DocPageData {
                 space: this.#store.space,
                 order: expectedParentOrder,
             });
-            const parent = DocPageData.#idMap.get(expectedParentid);
+            const parent = this.#storeContext.idMap.get(expectedParentid);
 
             if (!parent) continue;
 
@@ -275,21 +287,7 @@ export class DocPageData {
 
     // Static methods
     static genId<T extends { space?: string; order: number[] }>(input: T): string {
-        return `${input.space ?? ""}:${input.order.join("/")}`;
-    };
-
-    static register(data: DocPageData): void {
-        const baseId = DocPageData.genId(data.#store);
-        if (DocPageData.#idMap.has(baseId)) {
-            const count = DocPageData.#duplicateCount.get(baseId) ?? 0;
-            const newId = `${baseId}:duplicate-${count}`;
-            data.#store.id = newId;
-            DocPageData.#idMap.set(newId, data);
-            DocPageData.#duplicateCount.set(baseId, count + 1);
-        } else {
-            data.#store.id = baseId;
-            DocPageData.#idMap.set(baseId, data);
-        }
+        return `doc:${input.space ?? ""}:${input.order.join("/")}`;
     };
 
     static applyMetaData(target: RawDocPageData, meta: NodeMetadata) {
@@ -335,6 +333,8 @@ export class DocPageData {
 
     static applySpaceConfig(dataBase: RawDocPageData[], config: Record<string, SpaceMetaData>) {
         Object.entries(config).forEach(([space, meta]) => {
+            if (typeof meta !== 'object' || meta === null) return;
+
             const nodeMeta = meta.nodeMeta;
             
             // Apply metaData according to order
@@ -368,7 +368,7 @@ export class DocPageData {
             const id = DocPageData.genId(node);
             if (!existingNodes.has(id)) {
                 existingNodes.add(id);
-            }
+            };
         });
 
         dataBase.forEach((node) => {
@@ -448,11 +448,6 @@ export class DocPageData {
         // Sort nodes by space/order
         return DocPageData.sortDataBase(copy);
     };
-
-    static reset() {
-        DocPageData.#idMap.clear();
-        DocPageData.#duplicateCount.clear();
-    };
 };
 
 export function initVPJDocData(route: Route, siteData): DocData {
@@ -470,7 +465,7 @@ export function initVPJDocData(route: Route, siteData): DocData {
             // Update layout config
             layoutConfig.value = theme.value.layouts?.doc || {};
 
-            // Update series config
+            // Update doc config
             docConfig.value = theme.value.doc || {};
 
             // Update space config
@@ -487,18 +482,22 @@ export function initVPJDocData(route: Route, siteData): DocData {
         };
     }, { immediate: true });
 
-    // Process blog data
+    // Process doc data
     const docDataBase = computed(() => {
-        DocPageData.reset();
+        const storeContext: DocStoreContext = {
+            idMap: new Map<string, DocPageData>(),
+            duplicateCount: new Map<string, number>(),
+        };
 
         const processedData = DocPageData.processDataBase(
             data as RawDocPageData[],
             docConfig.value
         );
 
-        return processedData.map((raw) => new DocPageData(raw))
+        return processedData.map((raw) => new DocPageData(raw, storeContext))
     });
 
+    // Calculate current data
     const currentData = computed(() => {
         if (frontmatter.value.layout === "doc") {
             return docDataBase.value.find((data) => (data.url || undefined) === route.path);
@@ -556,29 +555,14 @@ export function initVPJDocData(route: Route, siteData): DocData {
                     space: space.value,
                     order: order.value
                 }
-            }
-        }
+            };
+        };
         return undefined;
     });
 
-    function filter(option?: FilterOption | undefined): DocPageData[] {
-        if (!option) return docDataBase.value;
-
-        return docDataBase.value.filter((doc) => {
-            const matchSpace = option.space === undefined
-                || (typeof option.space === 'string' && doc.space === option.space)
-                || (typeof option.space === 'function' && option.space(doc.space));
-            if (!matchSpace) return false;
-
-            const matchOrder = option.order === undefined
-                || (Array.isArray(option.order) && doc.order.join('/') === option.order.join('/'))
-                || (typeof option.order === 'function' && option.order(doc.order));
-            if (!matchOrder) return false;
-
-            const matchVirtual = option.isVirtual === undefined
-                || doc.isVirtual === option.isVirtual;
-            return matchVirtual;
-        });
+    function filter(callbackFn: (data: DocPageData) => boolean): DocPageData[] {
+        if (!callbackFn) return docDataBase.value;
+        return docDataBase.value.filter(callbackFn);
     };
 
     return {
@@ -599,6 +583,6 @@ export function useDocData(): DocData {
     const data = inject<DocData>(VPJ_DOC_DATA_SYMBOL);
     if (!data) {
         throw new Error('vitepress-theme-juicy doc data not properly injected in app');
-    }
+    };
     return data;
 };

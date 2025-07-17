@@ -1,11 +1,11 @@
 import { ref, computed, inject, watch, Ref } from "vue";
 import { Route } from "vitepress";
+import { cloneDeep } from "lodash-es";
 
 // @ts-ignore
 import { data } from "../data/blog.data";
 
 import { VPJ_BLOG_DATA_SYMBOL } from "../utils/symbols";
-import { processBlogOrder } from "../utils/common";
 
 import type {
     ThemeConfig
@@ -14,39 +14,185 @@ import type {
     VPJBlogLayoutConfig
 } from '../types/layoutBlog';
 import type {
-    SeriesMetaData
+    SeriesMetaData,
+    BlogDefaultsConfig
 } from '../types/blog';
 import type {
     PageContext
 } from '../types/common';
 
 
-interface FilterOption {
-    series?:
-        | string
-        | ((series: string) => boolean);
-    
-    tags?:
-        | string
-        | Array<string>
-        | ((tags: Array<string>) => boolean);
-    
-    order?:
-        | number
-        | ((order: number) => boolean);
-}
-
 interface BlogData {
+    data: Ref<BlogPageData | undefined>;
     title: Ref<string | undefined>;
     series: Ref<string | undefined>;
     tags: Ref<string[] | undefined>;
     order: Ref<number | undefined>;
     cover: Ref<string | undefined>;
     ctx: Ref<PageContext | undefined>;
-    filter: (option: FilterOption | undefined) => Array<any> | undefined;
-    layoutConfig: Ref<VPJBlogLayoutConfig>;
+    filter: (callbackFn: (data: BlogPageData) => boolean) => BlogPageData[];
     seriesConfig: Ref<SeriesMetaData>;
+    layoutConfig: Ref<VPJBlogLayoutConfig>;
 }
+
+interface RawBlogPageData {
+    title?: string;
+    series?: string;
+    order: number;
+    cover?: string | false;
+    tags: string[];
+    listTitle?:
+        | string
+        | ((data: BlogPageData) => string | undefined);
+    url?: string;
+    frontmatter?: Record<string, any>;
+}
+
+interface StoreBlogPageData extends RawBlogPageData {
+    id: string;
+}
+
+interface BlogStoreContext {
+    idMap: Map<string, BlogPageData>;
+    duplicateCount: Map<string, number>;
+}
+
+
+export class BlogPageData {
+    #store: StoreBlogPageData;
+    #storeContext: BlogStoreContext;
+
+    constructor(
+        raw: RawBlogPageData,
+        storeContext: BlogStoreContext
+    ) {
+        // Initialization
+        this.#store = {
+            ...cloneDeep(raw),
+            id: 'unknown',
+            tags: Array.from(new Set(raw.tags))
+        };
+        this.#storeContext = storeContext;
+
+        // Register self
+        this.#register();
+    }
+
+    // Getters
+    get title(): string | undefined { return this.#store.title; }
+    get series(): string | undefined { return this.#store.series; }
+    get order(): number { return this.#store.order; }
+    get cover(): string | false | undefined { return this.#store.cover; }
+    get tags(): string[] { return this.#store.tags; }
+    get listTitle(): string {
+        if (typeof this.#store.listTitle === 'string') {
+            return this.#store.listTitle;
+        } else if (typeof this.#store.listTitle === 'function') {
+            try {
+                const title  = this.#store.listTitle(this);
+                if (typeof title === 'string') return title;
+            } catch (e) {
+                console.error(
+                    `[Juicy Theme]Trying to parse listTitle from blog page data` +
+                    `(${this.#store.id}) failed, caught error: ${e}`
+                );
+            };
+        };
+        return this.title || this.id;
+    }
+
+    get url(): string | undefined { return this.#store.url; }
+    get frontmatter(): Record<string, any> | undefined { return this.#store.frontmatter; }
+
+    get id(): string { return this.#store.id; }
+
+    // Method
+    #register(): void {
+        const baseId = BlogPageData.genId(this.#store);
+        if (this.#storeContext.idMap.has(baseId)) {
+            const count = this.#storeContext.duplicateCount.get(baseId) ?? 0;
+            const newId = `${baseId}:duplicate-${count}`;
+            this.#store.id = newId;
+            this.#storeContext.idMap.set(newId, this);
+            this.#storeContext.duplicateCount.set(baseId, count + 1);
+        } else {
+            this.#store.id = baseId;
+            this.#storeContext.idMap.set(baseId, this);
+        }
+    };
+
+    // Static methods
+    static genId<T extends { series?: string; order: number }>(input: T): string {
+        return `blog:${input.series ?? ""}:${input.order}`;
+    };
+
+    static applyMetaData(target: RawBlogPageData, meta: SeriesMetaData) {
+        // Apply cover
+        if (
+            target.cover === undefined &&
+            (typeof meta.cover === "string" || meta.cover === false)
+        ) {
+            target.cover = meta.cover;
+        };
+
+        // Apply preset tags
+        if (meta.presetTags) {
+            const presetTags = Array.isArray(meta.presetTags)
+                ? meta.presetTags.filter((tag) => typeof tag === "string" && tag.length > 0)
+                : [];
+            target.tags.unshift(...presetTags);
+        };
+
+        // Apply list title
+        if (
+            target.listTitle === undefined &&
+            (typeof meta.listTitle === "string" || typeof meta.listTitle === "function")
+        ) {
+            target.listTitle = meta.listTitle;
+        };
+    };
+
+    static applySeriesConfig(dataBase: RawBlogPageData[], config: Record<string, SeriesMetaData>) {
+        Object.entries(config).forEach(([series, meta]) => {
+            if (typeof meta !== 'object' || !meta) return;
+
+            const targetList = dataBase.filter((node) => {
+                return (node.series === series);
+            });
+
+            targetList.forEach((node) => BlogPageData.applyMetaData(node, meta));
+        });
+    };
+
+    static sortDataBase(dataBase: RawBlogPageData[]) {
+        return dataBase
+            .sort((a: RawBlogPageData, b: RawBlogPageData) => {
+                const seriesA = a.series ?? "";
+                const seriesB = b.series ?? "";
+
+                if (seriesA !== seriesB) {
+                    return seriesA.localeCompare(seriesB);
+                };
+
+                return a.order - b.order;
+            });
+    };
+
+    static processDataBase(dataBase: RawBlogPageData[], config: BlogDefaultsConfig) {
+        const copy = cloneDeep(dataBase);
+
+        // If no config, return the original dataBase
+        if (typeof config !== 'object' || !config) return copy;
+
+        // Apply series meta data
+        if (typeof config.series === 'object' && config.series !== null) {
+            BlogPageData.applySeriesConfig(copy, config.series);
+        };
+
+        // Sort nodes by series/order
+        return BlogPageData.sortDataBase(copy);
+    };
+};
 
 export function initVPJBlogData(route: Route, siteData): BlogData {
     const frontmatter = computed(() => route.data.frontmatter);
@@ -54,12 +200,16 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
 
     // Get theme config and series config
     const layoutConfig: Ref<VPJBlogLayoutConfig> = ref({});
+    const blogConfig: Ref<BlogDefaultsConfig> = ref({});
     const seriesConfig: Ref<SeriesMetaData> = ref({});
 
     watch([theme, frontmatter], (next, prev) => {
         if (JSON.stringify(next) !== JSON.stringify(prev)) {
             // Update layout config
             layoutConfig.value = theme.value.layouts?.blog || {};
+
+            // Update blog config
+            blogConfig.value = theme.value.blog || {};
             
             // Update series config
             if (typeof frontmatter.value.series === 'string' && frontmatter.value.layout === "blog") {
@@ -77,109 +227,63 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
 
     // Process blog data
     const blogDataBase = computed(() => {
-        const blogDataSet = data.map((raw: any) => {
-            const blogData = { ...raw };
-            const seriesData = (
-                typeof blogData.series === 'string' &&
-                theme.value.blog?.series &&
-                typeof theme.value.blog.series === 'object' &&
-                theme.value.blog.series !== null
-            )
-                ? theme.value.blog.series[blogData.series] || {}
-                : {};
-            const layoutData = layoutConfig.value;
-            
-            // process tags
-            if (
-                typeof seriesData === 'object' &&
-                seriesData !== null &&
-                Array.isArray(seriesData.presetTags)
-            ) {
-                blogData.tags.unshift(
-                    ...seriesData.presetTags.filter((tag) => {
-                        return typeof tag === 'string' && tag.length > 0;
-                    })
-                );
-            };
-            blogData.tags = Array.from(new Set(blogData.tags));
-
-            // process cover
-            if (typeof blogData.cover === 'string' || blogData.cover === false) {
-                blogData.cover = (blogData.cover === false) ? undefined : blogData.cover;
-            } else if (typeof seriesData.cover === 'string' || seriesData.cover === false) {
-                blogData.cover = (seriesData.cover === false) ? undefined : seriesData.cover;
-            } else if (typeof layoutData.cover === 'string' || layoutData.cover === false) {
-                blogData.cover = (layoutData.cover === false) ? undefined : layoutData.cover;
-            } else {
-                blogData.cover = undefined;
-            }
-
-            return blogData;
-        });
-        return blogDataSet;
-    });
-
-    // Calculate the series
-    const series = computed(() => {
-        if (typeof frontmatter.value.series === 'string' && frontmatter.value.layout === "blog") return frontmatter.value.series;
-        else return undefined;
-    });
-
-    // Calculate the tags
-    const tags = computed(() => {
-        if (frontmatter.value.layout === "blog") {
-            const tags: string[] = []
-            if (Array.isArray(seriesConfig.value.presetTags)) {
-                seriesConfig.value.presetTags.filter((tag: string) => {
-                    return typeof tag === 'string' && tag.length > 0;
-                }).forEach((tag) => {
-                    tags.push(tag)
-                })
-            };
-            if (Array.isArray(frontmatter.value.tags)) {
-                frontmatter.value.tags.filter((tag: string) => {
-                    return typeof tag === 'string' && tag.length > 0;
-                }).forEach((tag) => {
-                    tags.push(tag)
-                })
-            };
-            return Array.from(new Set(tags));
-        } else {
-            return undefined;
+        const storeContext: BlogStoreContext = {
+            idMap: new Map<string, BlogPageData>(),
+            duplicateCount: new Map<string, number>(),
         };
+    
+        const processedData = BlogPageData.processDataBase(
+            data as RawBlogPageData[],
+            blogConfig.value
+        );
+    
+        return processedData.map((raw) => new BlogPageData(raw, storeContext))
+    });
+
+    // Calculate current data
+    const currentData = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            return blogDataBase.value.find((data) => (data.url || undefined) === route.path);
+        };
+        return undefined;
+    })
+
+    // Calculate the space
+    const series = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            return currentData.value?.series || undefined;
+        };
+        return undefined;
     });
 
     // Calculate the order
     const order = computed(() => {
         if (frontmatter.value.layout === "blog") {
-            return processBlogOrder(frontmatter.value.order);
-        }
+            return currentData.value?.order || undefined;
+        };
         return undefined;
     });
 
     // Calculate the cover
     const cover = computed(() => {
-        let cover: false | string | undefined
-        if (typeof frontmatter.value.cover === "string" || frontmatter.value.cover === false) {
-            cover = frontmatter.value.cover;
-        } else if (typeof seriesConfig.value.cover === "string" || seriesConfig.value.cover === false) {
-            cover = seriesConfig.value.cover;
-        } else if (typeof layoutConfig.value.cover === "string"  || layoutConfig.value.cover === false) {
-            cover = layoutConfig.value.cover;
-        } else {
-            cover = undefined;
+        if (frontmatter.value.layout === "blog") {
+            return currentData.value?.cover || undefined;
         };
-        return (cover === false) ? undefined : cover;
+        return undefined;
     });
+
+    const tags = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            return currentData.value?.tags || undefined;
+        };
+        return undefined;
+    })
 
     // Calculate the title
     const title = computed(() => {
         if (frontmatter.value.layout === "blog") {
-            const currentData = blogDataBase.value.find((data) => {
-                return (data.url || undefined) === route.path
-            });
-            if (currentData) return currentData.title;
-        }
+            return currentData.value?.title || undefined;
+        };
         return undefined;
     });
 
@@ -192,69 +296,29 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
                     layout: "blog",
                     title: title.value,
                     series: series.value,
-                    tags: tags.value,
                     order: order.value
                 }
-            }
-        }
+            };
+        };
         return undefined;
     });
 
-    function filter(option: FilterOption | undefined) {
-        if (!option) {
-            return blogDataBase.value
-        } else if (typeof option === 'object' && option !== null) {
-            // Calculate seriesFilter
-            let seriesFilter: (series: string) => boolean
-            if (typeof option.series === 'string') {
-                seriesFilter = (series: string) => series === option.series
-            } else if (typeof option.series === 'function') {
-                seriesFilter = (series: string) => !!(option.series as (series: string) => boolean)(series)
-            } else {
-                seriesFilter = () => true;
-            };
-
-            // Calculate tagsFilter
-            let tagsFilter: (tags: Array<string>) => boolean
-            if (typeof option.tags === 'string') {
-                tagsFilter = (tags: Array<string>) => tags.includes((option.tags as string))
-            } else if (Array.isArray(option.tags)) {
-                tagsFilter = (tags: Array<string>) => (option.tags as Array<string>).every((tag) => tags.includes(tag))
-            } else if (typeof option.tags === 'function') {
-                tagsFilter = (tags: Array<string>) => !!(option.tags as (tags: Array<string>) => boolean)(tags)
-            } else {
-                tagsFilter = () => true;
-            };
-
-            // Calculate orderFilter
-            let orderFilter: (order: number) => boolean
-            if (typeof option.order === 'number') {
-                orderFilter = (order: number) => order === option.order
-            } else if (typeof option.order === 'function') {
-                orderFilter = (order: number) => !!(option.order as (order: number) => boolean)(order)
-            } else {
-                orderFilter = () => true;
-            };
-
-            return blogDataBase.value
-                .filter((blog) => seriesFilter(blog.series))
-                .filter((blog) => tagsFilter(blog.tags))
-                .filter((blog) => orderFilter(blog.order))
-        } else {
-            return [];
-        };
+    function filter(callbackFn: (data: BlogPageData) => boolean): BlogPageData[] {
+        if (!callbackFn) return blogDataBase.value;
+        return blogDataBase.value.filter(callbackFn);
     };
 
     return {
+        data: currentData,
         title,
         series,
-        tags,
         order,
         cover,
+        tags,
         ctx,
         filter,
         seriesConfig,
-        layoutConfig,
+        layoutConfig
     };
 };
 
