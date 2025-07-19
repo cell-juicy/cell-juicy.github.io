@@ -10,6 +10,6 @@ import Area from "../.vitepress/theme/components/VPJOverlayScrollArea.vue"
 
 这个页面会放一些实验性的组件测试其表现
 
-<Area>
+<Area style="height: 300px; width: 300px;">
 <VPJIconApps/>
 </Area>

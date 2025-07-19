@@ -1,5 +1,48 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
+import { ref, onMounted, onBeforeUnmount, nextTick, computed } from 'vue';
+
+const props = defineProps({
+    overflow: {
+        type: String,
+        default: 'xy'
+    },
+    innerAttrs: {
+        type: Object,
+        default: {}
+    },
+    trackColor: {
+        type: [String, Object],
+        default: "transparent"
+    },
+    trackXAttrs: {
+        type: Object,
+        default: {}
+    },
+    trackYAttrs: {
+        type: Object,
+        default: {}
+    },
+    thumbWidth: {
+        type: Number,
+        default: 4
+    },
+    thumbColor: {
+        type: [String, Object],
+        default: {
+            base: "var(--vpj-color-text-200)",
+            hover: "var(--vpj-color-text-300)",
+            active: "var(--vpj-color-text-300)"
+        }
+    },
+    thumbXAttrs: {
+        type: Object,
+        default: {}
+    },
+    thumbYAttrs: {
+        type: Object,
+        default: {}
+    }
+});
 
 // template refs
 const area = ref(null);
@@ -9,6 +52,8 @@ const thumbX = ref(null);
 const thumbY = ref(null);
 
 // state
+const enableScrollX = computed(() => typeof props.overflow === 'string' && props.overflow.includes('x'));
+const enableScrollY = computed(() => typeof props.overflow === 'string' && props.overflow.includes('y'));
 const showScrollX = ref(false);
 const showScrollY = ref(false);
 const draggingX = ref(false);
@@ -17,6 +62,37 @@ const mouseStartX = ref(0);
 const mouseStartY = ref(0);
 const scrollStartX = ref(0);
 const scrollStartY = ref(0);
+
+const thumbColor = computed(() => {
+    if (typeof props.thumbColor === 'string') {
+        return {
+            base: props.thumbColor,
+            hover: props.thumbColor,
+            active: props.thumbColor,
+        }
+    }
+    return {
+        base: props.thumbColor?.base || "var(--vpj-color-text-200)",
+        hover: props.thumbColor?.hover || props.thumbColor?.base || "var(--vpj-color-text-300)",
+        active: props.thumbColor?.active || props.thumbColor?.hover || props.thumbColor?.base || "var(--vpj-color-text-300)",
+    }
+});
+
+const trackColor = computed(() => {
+    if (typeof props.trackColor === 'string') {
+        return {
+            base: props.trackColor,
+            hover: props.trackColor,
+            active: props.trackColor,
+        }
+    }
+    return {
+        base: props.trackColor?.base || "var(--vpj-color-text-200)",
+        hover: props.trackColor?.hover || props.trackColor?.base || "var(--vpj-color-text-300)",
+        active: props.trackColor?.active || props.trackColor?.hover || props.trackColor?.base || "var(--vpj-color-text-300)",
+    }
+})
+
 
 function updateScrolls() {
     if (!area.value || !trackX.value || !trackY.value || !thumbX.value || !thumbY.value) return;
@@ -152,6 +228,7 @@ onBeforeUnmount(() => {
     >
         <div
             @scroll="updateScrolls"
+            v-bind="props.innerAttrs"
             ref="area"
             class="vpj-overlay-scroll__area"
         >
@@ -159,7 +236,8 @@ onBeforeUnmount(() => {
         </div>
         <div
             @click.stop.prevent="jumpToX"
-            v-show="showScrollX"
+            v-show="showScrollX && enableScrollX"
+            v-bind="props.trackXAttrs"
             ref="trackX"
             :class="[
                 'vpj-overlay-scroll__track-x',
@@ -169,13 +247,15 @@ onBeforeUnmount(() => {
             <div
                 @mousedown.stop="startDragX"
                 @selectstart.prevent
+                v-bind="props.thumbXAttrs"
                 ref="thumbX"
                 class="vpj-overlay-scroll__thumb-x"
             />
         </div>
         <div
             @click.stop.prevent="jumpToY"
-            v-show="showScrollY"
+            v-show="showScrollY && enableScrollY"
+            v-bind="props.trackYAttrs"
             ref="trackY"
             :class="[
                 'vpj-overlay-scroll__track-y',
@@ -185,6 +265,7 @@ onBeforeUnmount(() => {
             <div
                 @mousedown.stop="startDragY"
                 @selectstart.prevent
+                v-bind="props.thumbYAttrs"
                 ref="thumbY"
                 class="vpj-overlay-scroll__thumb-y"
             />
@@ -197,16 +278,13 @@ onBeforeUnmount(() => {
     .vpj-overlay-scroll {
         position: relative;
         overflow: hidden;
-        height: 300px;
-        width: 300px;
-        background-color: lightgreen;
     }
 
     .vpj-overlay-scroll__area {
         height: 100%;
         width: 100%;
-        overflow-x: auto;
-        overflow-y: auto;
+        overflow-x: v-bind("enableScrollX ? 'auto' : 'hidden'");
+        overflow-y: v-bind("enableScrollY ? 'auto' : 'hidden'");
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
@@ -218,12 +296,22 @@ onBeforeUnmount(() => {
     /* Track */
     .vpj-overlay-scroll__track-x,
     .vpj-overlay-scroll__track-y {
-        border-radius: 3px;
+        background-color: v-bind("trackColor.base");
+        border-radius: v-bind("`${Number(props.thumbWidth) / 2}px`");
         opacity: 0;
         pointer-events: none;
         position: absolute;
         transition: opacity 0.3s ease;
-        background-color: lightcoral;
+    }
+
+    .vpj-overlay-scroll__track-x:hover,
+    .vpj-overlay-scroll__track-y:hover {
+        background-color: v-bind("trackColor.hover");
+    }
+
+    .vpj-overlay-scroll__thumb-x:active,
+    .vpj-overlay-scroll__thumb-y:active {
+        background-color: v-bind("trackColor.active");
     }
 
     .vpj-overlay-scroll:hover .vpj-overlay-scroll__track-x,
@@ -233,34 +321,48 @@ onBeforeUnmount(() => {
     .vpj-overlay-scroll__track-x.dragging,
     .vpj-overlay-scroll__track-y.dragging {
         opacity: 1;
-        pointer-events: auto; /* 悬停时启用交互 */
+        pointer-events: auto;
     }
 
     .vpj-overlay-scroll__track-x {
         bottom: 0;
-        height: 6px;
+        height: v-bind("`${Number(props.thumbWidth)}px`");
         left: 0;
         right: 0;
-        cursor: pointer; /* 添加光标指示可点击 */
+        cursor: pointer;
     }
 
     .vpj-overlay-scroll__track-y {
         bottom: 0;
         right: 0;
         top: 0;
-        width: 6px;
-        cursor: pointer; /* 添加光标指示可点击 */
+        width: v-bind("`${Number(props.thumbWidth)}px`");
+        cursor: pointer;
     }
 
     /* Thumb */
     .vpj-overlay-scroll__thumb-x,
     .vpj-overlay-scroll__thumb-y {
-        border-radius: 3px;
+        border-radius: v-bind("`${Number(props.thumbWidth) / 2}px`");
         cursor: pointer;
         left: 0;
         position: absolute;
         top: 0;
-        background-color: lightblue;
+        background-color: v-bind("thumbColor.base");
+    }
+
+    .vpj-overlay-scroll__thumb-x:hover,
+    .vpj-overlay-scroll__thumb-y:hover {
+        background-color: v-bind("thumbColor.hover");
+    }
+
+    .vpj-overlay-scroll__thumb-x:active,
+    .vpj-overlay-scroll__thumb-y:active,
+    .vpj-overlay-scroll__thumb-x:focus,
+    .vpj-overlay-scroll__thumb-y:focus,
+    .vpj-overlay-scroll__track-x.dragging .vpj-overlay-scroll__thumb-x,
+    .vpj-overlay-scroll__track-y.dragging .vpj-overlay-scroll__thumb-y {
+        background-color: v-bind("thumbColor.active");
     }
 
     .vpj-overlay-scroll__thumb-x {
@@ -268,7 +370,6 @@ onBeforeUnmount(() => {
         transition: 
             opacity 0.3s ease,
             width 0.2s ease;
-        width: 18px;
     }
 
     .vpj-overlay-scroll__thumb-y {
@@ -276,6 +377,5 @@ onBeforeUnmount(() => {
         transition: 
             opacity 0.3s ease,
             height 0.2s ease;
-        height: 18px;
     }
 </style>
