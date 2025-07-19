@@ -32,6 +32,13 @@ export default defineConfigWithTheme<ThemeConfig>({
 
         },
         blog: {
+            series: {
+                "测试博客": {
+                    listTitle(data) {
+                        return `测试替换${data.order}-${data.title}`
+                    }
+                }
+            },
             tag: {
                 textProcessor: (tag) => `# ${tag}`
             },

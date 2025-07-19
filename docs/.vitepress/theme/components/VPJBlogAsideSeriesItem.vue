@@ -2,6 +2,7 @@
 import { useRoute } from 'vitepress';
 
 import VPJTag from './VPJTag.vue';
+import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
 import VPJIconBlogPencil from '../components/icons/VPJIconBlogPencil.vue';
 
@@ -32,14 +33,16 @@ const route = useRoute();
         </div>
         <div class="vpj-layout-blog__aside-blog-info">
             <div class="vpj-layout-blog__aside-blog-title vpj-text">
-                {{ props.data.title }}
+                {{ props.data.listTitle }}
             </div>
             <div class="vpj-layout-blog__aside-blog-tagboxmask">
-                <div class="vpj-layout-blog__aside-blog-tagbox vpj-scroll-x">
-                    <div class="vpj-layout-blog__aside-blog-taglist">
-                        <VPJTag v-for="tag in props.data.tags" :key="tag" :tag="tag"/>
-                    </div>
-                </div>
+                <VPJOverlayScrollArea
+                    overflow="x"
+                    thumb-width=3
+                    :inner-attrs="{ class: 'vpj-layout-blog__aside-blog-taglist'}"
+                >
+                    <VPJTag v-for="tag in props.data.tags" :key="tag" :tag="tag"/>
+                </VPJOverlayScrollArea>
             </div>
         </div>
     </a>
@@ -171,26 +174,14 @@ const route = useRoute();
         );
     }
 
-    .vpj-layout-blog__aside-blog-tagbox {
-        margin-top: .1rem;
-        height: 100%;
-        width: 100%;
-        overflow-y: hidden;
-        visibility: hidden;
-    }
-
-    .vpj-layout-blog__aside-blog-taglist,
-    .vpj-layout-blog__aside-blog-tagbox:hover,
-    .vpj-layout-blog__aside-blog-tagbox:focus {
-        visibility: visible;
-    }
-
-    .vpj-layout-blog__aside-blog-taglist {
+    :deep(.vpj-layout-blog__aside-blog-taglist) {
         display: flex;
         flex-direction: row;
         flex-shrink: 0;
         flex-wrap: nowrap;
         gap: .25rem;
+        height: 100%;
+        margin-top: .125rem;
         padding-left: .4rem;
         padding-right: .4rem;
     }

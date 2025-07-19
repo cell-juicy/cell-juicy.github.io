@@ -7,6 +7,8 @@ import { mergeDeviceData, mergeSimpleData } from '../utils/mergeData';
 import { isMobile, isTablet } from '../utils/deviceTypes';
 import { VPJ_PAGE_LAYOUT_SYMBOL } from '../utils/symbols';
 
+import VPJOverlayScrollArea from '../components/VPJOverlayScrollArea.vue';
+
 
 const { theme, frontmatter } = useData();
 const DEFAULT = {
@@ -74,7 +76,11 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
 
 
 <template>
-    <div class="vpj-layout-page">
+    <VPJOverlayScrollArea
+        overflow="xy"
+        thumb-width="5"
+        class="vpj-layout-page"
+    >
         <div class="vpj-layout-page__hero-iamge"/>
         <slot name="page-top"/>
         <div class="vpj-layout-page__grid-layout">
@@ -89,7 +95,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
             </div>
         </div>
         <slot name="page-bottom"/>
-    </div>
+    </VPJOverlayScrollArea>
 </template>
 
 
@@ -98,9 +104,6 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
     .vpj-layout-page {
         background-color: var(--vpj-color-bg-100);
         height: 100%;
-        overflow: auto;
-        scrollbar-color: var(--vpj-color-text-100) var(--vpj-color-bg-200);
-        scrollbar-gutter: auto;
         width: 100%;
     }
 

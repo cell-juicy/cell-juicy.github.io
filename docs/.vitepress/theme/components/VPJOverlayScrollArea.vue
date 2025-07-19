@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, nextTick, computed, useTemplateRef } from 'vue';
 
+
 const props = defineProps({
     overflow: {
         type: String,
@@ -27,8 +28,8 @@ const props = defineProps({
         default: {}
     },
     thumbWidth: {
-        type: Number,
-        default: 4
+        type: String,
+        default: "4"
     },
     thumbColor: {
         type: [String, Object],
@@ -111,20 +112,20 @@ function updateScrolls() {
     showScrollY.value = ch > vh;
     
     nextTick(() => {
-        const tw = trackX.value.clientWidth;
-        const th = trackY.value.clientHeight;
+        const trw = trackX.value.clientWidth;
+        const trh = trackY.value.clientHeight;
 
         if (showScrollX.value) {
-            const width = Math.max(20, (vw / cw) * tw);
-            const transformX = (area.value.scrollLeft / cw) * tw;
+            const width = Math.max(20, (vw / cw) * trw);
+            const transformX = (area.value.scrollLeft / (cw - vw)) * (trw - width);
 
             thumbX.value.style.width = `${width}px`;
             thumbX.value.style.transform = `translateX(${transformX}px)`;
         };
 
         if (showScrollY.value) {
-            const height = Math.max(20, (vh / ch) * th);
-            const transformY = (area.value.scrollTop / ch) * th;
+            const height = Math.max(20, (vh / ch) * trh);
+            const transformY = (area.value.scrollTop / (ch - vh)) * (trh - height);
 
             thumbY.value.style.height = `${height}px`;
             thumbY.value.style.transform = `translateY(${transformY}px)`;
@@ -256,8 +257,9 @@ onBeforeUnmount(() => {
             ]"
         >
             <div
-                @mousedown.stop="startDragX"
+                @mousedown.stop.prevent="startDragX"
                 @selectstart.prevent
+                @click.stop.prevent
                 v-bind="props.thumbXAttrs"
                 ref="thumbX"
                 class="vpj-overlay-scroll__thumb-x"
@@ -274,8 +276,9 @@ onBeforeUnmount(() => {
             ]"
         >
             <div
-                @mousedown.stop="startDragY"
+                @mousedown.stop.prevent="startDragY"
                 @selectstart.prevent
+                @click.stop.prevent
                 v-bind="props.thumbYAttrs"
                 ref="thumbY"
                 class="vpj-overlay-scroll__thumb-y"
@@ -287,12 +290,18 @@ onBeforeUnmount(() => {
 
 <style scoped>
     .vpj-overlay-scroll {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
         position: relative;
         overflow: hidden;
     }
 
     .vpj-overlay-scroll__area {
+        flex: 1;
         height: 100%;
+        min-height: 0;
+        min-width: 0;
         width: 100%;
         overflow-x: v-bind("enableScrollX ? 'auto' : 'hidden'");
         overflow-y: v-bind("enableScrollY ? 'auto' : 'hidden'");
@@ -325,10 +334,10 @@ onBeforeUnmount(() => {
         background-color: v-bind("trackColor.active");
     }
 
-    .vpj-overlay-scroll:hover .vpj-overlay-scroll__track-x,
-    .vpj-overlay-scroll:hover .vpj-overlay-scroll__track-y,
-    .vpj-overlay-scroll:focus .vpj-overlay-scroll__track-x,
-    .vpj-overlay-scroll:focus .vpj-overlay-scroll__track-y,
+    .vpj-overlay-scroll:hover > .vpj-overlay-scroll__track-x,
+    .vpj-overlay-scroll:hover > .vpj-overlay-scroll__track-y,
+    .vpj-overlay-scroll:focus > .vpj-overlay-scroll__track-x,
+    .vpj-overlay-scroll:focus > .vpj-overlay-scroll__track-y,
     .vpj-overlay-scroll__track-x.dragging,
     .vpj-overlay-scroll__track-y.dragging {
         opacity: 1;

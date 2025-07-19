@@ -4,6 +4,8 @@ import { computed } from 'vue';
 import { useDocData } from '../composables/useDocData';
 
 import VPJDocAsideResourcesItem from './VPJDocAsideResourcesItem.vue';
+import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
+
 import { any2Number } from '../utils/common';
 
 
@@ -22,7 +24,11 @@ const resourcesData = computed(() => {
 
 
 <template>
-    <div class="vpj-layout-doc__aside-tab-page vpj-scroll-y">
+    <VPJOverlayScrollArea
+        overflow="y"
+        class="vpj-layout-doc__aside-tab-outer"
+        :inner-attrs="{ class: 'vpj-layout-doc__aside-tab-inner' }"
+    >
         <div
             v-if="resourcesData.length > 0"
             class="vpj-layout-doc__aside-resources-list"
@@ -33,18 +39,21 @@ const resourcesData = computed(() => {
                 :data="resource"
             />
         </div>
-    </div>
+    </VPJOverlayScrollArea>
 </template>
 
 
 <style scoped>
-    .vpj-layout-doc__aside-tab-page {
-        align-content: flex-start;
+    .vpj-layout-doc__aside-tab-outer {
         background-color: var(--vpj-color-bg-100);
-        display: flex;
-        flex-direction: column;
         height: 100%;
         width: 100%;
+    }
+
+    :deep(.vpj-layout-doc__aside-tab-inner) {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
     }
 
     .vpj-layout-doc__aside-resources-list {

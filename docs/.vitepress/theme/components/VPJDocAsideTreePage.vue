@@ -4,6 +4,7 @@ import { computed } from 'vue';
 import { useDocData } from '../composables/useDocData';
 
 import VPJDocAsideTreeItem from './VPJDocAsideTreeItem.vue';
+import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
 
 const { filter, space } = useDocData();
@@ -17,7 +18,11 @@ const rootDocData = computed(() => {
 
 
 <template>
-    <div class="vpj-layout-doc__aside-tab-page vpj-scroll-y">
+    <VPJOverlayScrollArea
+        overflow="y"
+        class="vpj-layout-doc__aside-tab-outer"
+        :inner-attrs="{ class: 'vpj-layout-doc__aside-tab-inner' }"
+    >
         <div
             v-if="rootDocData.length > 0"
             class="vpj-layout-doc__aside-doc-tree"
@@ -28,21 +33,21 @@ const rootDocData = computed(() => {
                 :data="docData"
             />
         </div>
-    </div>
+    </VPJOverlayScrollArea>
 </template>
 
 
 <style scoped>
-    .vpj-layout-doc__aside-tab-page {
-        align-content: flex-start;
+    .vpj-layout-doc__aside-tab-outer {
         background-color: var(--vpj-color-bg-100);
+        height: 100%;
+        width: 100%;
+    }
+
+    :deep(.vpj-layout-doc__aside-tab-inner) {
+        align-items: center;
         display: flex;
         flex-direction: column;
-        height: 100%;
-        padding-bottom: 1rem;
-        padding-left: 1.25rem;
-        padding-top: 1rem;
-        width: 100%;
     }
 
     .vpj-layout-doc__aside-doc-tree {
@@ -50,6 +55,9 @@ const rootDocData = computed(() => {
         flex-direction: column;
         gap: .25rem;
         min-height: min-content;
+        padding-bottom: 1rem;
+        padding-left: 1.25rem;
+        padding-top: 1rem;
         width: 100%;
     }
 </style>

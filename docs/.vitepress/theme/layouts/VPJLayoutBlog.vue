@@ -13,6 +13,7 @@ import VPJArticleAside from '../components/VPJArticleAside.vue';
 import VPJArticleHeader from '../components/VPJArticleHeader.vue';
 import VPJArticleCover from '../components/VPJArticleCover.vue';
 import VPJDynamicIconBtn from '../components/VPJDynamicIconBtn.vue';
+import VPJOverlayScrollArea from '../components/VPJOverlayScrollArea.vue';
 
 import VPJIconAngleSquareLeft from '../components/icons/VPJIconAngleSquareLeft.vue';
 import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight.vue';
@@ -130,7 +131,12 @@ const computedMarginBottom = computed(() => {
                     }"
                 />
             </slot>
-            <div class="vpj-layout-blog__wrapper">
+            <VPJOverlayScrollArea
+                overflow="xy"
+                thumb-width="5"
+                :inner-attrs="{ class: 'vpj-layout-blog__wrapper-inner' }"
+                class="vpj-layout-blog__wrapper-outer"
+            >
                 <slot name="blog-cover">
                     <VPJArticleCover
                         :cover="cover"
@@ -162,7 +168,7 @@ const computedMarginBottom = computed(() => {
                         <slot name="blog-bottom"/>
                     </article>
                 </div>
-            </div>
+            </VPJOverlayScrollArea>
         </main>
     </div>
 </template>
@@ -185,21 +191,22 @@ const computedMarginBottom = computed(() => {
         width: 100%;
     }
 
-    .vpj-layout-blog__wrapper {
+    .vpj-layout-blog__wrapper-outer {
+        flex: 1;
+        height: 100%;
+    }
+
+    :deep(.vpj-layout-blog__wrapper-inner) {
         display: flex;
         flex: 1;
         flex-direction: column;
-        height: 100%;
-        overflow: auto;
-        scrollbar-color: var(--vpj-color-text-100) var(--vpj-color-bg-200);
-        scrollbar-gutter: auto;
     }
 
     .vpj-layout-blog__container {
         display: flex;
         flex: 1;
         flex-direction: row;
-        min-height: min-content;
+        min-height: max-content;
         width: 100%;
     }
 
@@ -208,8 +215,9 @@ const computedMarginBottom = computed(() => {
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
-        height: 100%;
+        min-height: max-content;
         opacity: 0;
+        padding-bottom: auto;
         transition: opacity 0.2s ease-in-out;
         width: 48px;
     }

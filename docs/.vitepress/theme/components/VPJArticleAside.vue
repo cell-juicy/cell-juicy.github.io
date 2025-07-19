@@ -8,6 +8,7 @@ import VPJBlogAsideSeriesPage from './VPJBlogAsideSeriesPage.vue';
 import VPJBlogAsideTagsPage from './VPJBlogAsideTagsPage.vue';
 import VPJDocAsideTreePage from './VPJDocAsideTreePage.vue';
 import VPJDocAsideResourcesPage from './VPJDocAsideResourcesPage.vue';
+import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 
 import VPJIconCrossSmall from './icons/VPJIconCrossSmall.vue';
@@ -88,18 +89,20 @@ onUnmounted(() => {
         >
             <header class="vpj-article-aside__header">
                 <div class="vpj-article-aside__tabboxmask">
-                    <div class="vpj-article-aside__tabbox vpj-scroll-x">
-                        <div class="vpj-article-aside__tablist">
-                            <button
-                                v-for="data in tabsData"
-                                :key="data.key"
-                                @click="activeTabKey = data.key"
-                                :class="['vpj-article-aside__tab', { 'current': activeTabKey === data.key }]"
-                            >
-                                {{ data.name }}
-                            </button>
-                        </div>
-                    </div>
+                    <VPJOverlayScrollArea
+                        overflow="x"
+                        thumb-width=3
+                        :inner-attrs="{ class: 'vpj-article-aside__tablist' }"
+                    >
+                        <button
+                            v-for="data in tabsData"
+                            :key="data.key"
+                            @click="activeTabKey = data.key"
+                            :class="['vpj-article-aside__tab', { 'current': activeTabKey === data.key }]"
+                        >
+                            {{ data.name }}
+                        </button>
+                    </VPJOverlayScrollArea>
                 </div>
                 <VPJDynamicIconBtn
                     @click="props.state.close"
@@ -166,20 +169,7 @@ onUnmounted(() => {
         );
     }
 
-    .vpj-article-aside__tabbox {
-        height: 100%;
-        width: 100%;
-        overflow-y: hidden;
-        visibility: hidden;
-    }
-
-    .vpj-article-aside__tablist,
-    .vpj-article-aside__tabbox:hover,
-    .vpj-article-aside__tabbox:focus {
-        visibility: visible;
-    }
-
-    .vpj-article-aside__tablist {
+    :deep(.vpj-article-aside__tablist) {
         align-items: center;
         display: flex;
         flex: 1;
