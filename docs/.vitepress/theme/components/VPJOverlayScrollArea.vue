@@ -1,10 +1,14 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick, computed } from 'vue';
+import { ref, onMounted, onBeforeUnmount, nextTick, computed, useTemplateRef } from 'vue';
 
 const props = defineProps({
     overflow: {
         type: String,
         default: 'xy'
+    },
+    areaAttrs: {
+        type: Object,
+        default: {}
     },
     innerAttrs: {
         type: Object,
@@ -29,9 +33,9 @@ const props = defineProps({
     thumbColor: {
         type: [String, Object],
         default: {
-            base: "var(--vpj-color-text-200)",
-            hover: "var(--vpj-color-text-300)",
-            active: "var(--vpj-color-text-300)"
+            base: "var(--vpj-color-text-100)",
+            hover: "var(--vpj-color-text-200)",
+            active: "var(--vpj-color-text-200)"
         }
     },
     thumbXAttrs: {
@@ -45,11 +49,12 @@ const props = defineProps({
 });
 
 // template refs
-const area = ref(null);
-const trackX = ref(null);
-const trackY = ref(null);
-const thumbX = ref(null);
-const thumbY = ref(null);
+const area = useTemplateRef("area");
+const content = useTemplateRef("content");
+const trackX = useTemplateRef("trackX");
+const trackY = useTemplateRef("trackY");
+const thumbX = useTemplateRef("thumbX");
+const thumbY = useTemplateRef("thumbY");
 
 // state
 const enableScrollX = computed(() => typeof props.overflow === 'string' && props.overflow.includes('x'));
@@ -101,32 +106,30 @@ function updateScrolls() {
     const vh = area.value.clientHeight;
     const cw = area.value.scrollWidth;
     const ch = area.value.scrollHeight;
-    const tw = trackX.value.clientWidth;
-    const th = trackY.value.clientHeight;
 
-    if (cw <= vw) {
-        showScrollX.value = false
-    } else {
-        showScrollX.value = true;
+    showScrollX.value = cw > vw
+    showScrollY.value = ch > vh;
+    
+    nextTick(() => {
+        const tw = trackX.value.clientWidth;
+        const th = trackY.value.clientHeight;
 
-        const width = Math.max(20, (vw / cw) * tw);
-        const transform = (area.value.scrollLeft / cw) * tw;
+        if (showScrollX.value) {
+            const width = Math.max(20, (vw / cw) * tw);
+            const transformX = (area.value.scrollLeft / cw) * tw;
 
-        thumbX.value.style.width = `${width}px`;
-        thumbX.value.style.transform = `translateX(${transform}px)`;
-    };
+            thumbX.value.style.width = `${width}px`;
+            thumbX.value.style.transform = `translateX(${transformX}px)`;
+        };
 
-    if (ch <= vh) {
-        showScrollY.value = false;
-    } else {    
-        showScrollY.value = true;
-        
-        const height = Math.max(20, (vh / ch) * th);
-        const transform = (area.value.scrollTop / ch) * th;
+        if (showScrollY.value) {
+            const height = Math.max(20, (vh / ch) * th);
+            const transformY = (area.value.scrollTop / ch) * th;
 
-        thumbY.value.style.height = `${height}px`;
-        thumbY.value.style.transform = `translateY(${transform}px)`;
-    };
+            thumbY.value.style.height = `${height}px`;
+            thumbY.value.style.transform = `translateY(${transformY}px)`;
+        };
+    });
 };
 
 function startDragX(e) {
@@ -207,32 +210,40 @@ function jumpToY(e) {
     area.value.scrollTop = ratio * length;
 };
 
+let observer;
 
 onMounted(() => {
     if (area.value && thumbX.value && trackX.value && thumbY.value && trackY.value) {
-        nextTick(() => updateScrolls());
+        updateScrolls();
         window.addEventListener("resize", updateScrolls);
+        observer = new ResizeObserver(updateScrolls);
+        observer.observe(content.value);
     };
 });
 
 onBeforeUnmount(() => {
     window.removeEventListener("resize", updateScrolls);
+    if (observer) observer.disconnect();
 });
 </script>
 
 
 <template>
     <div
-        @mouseenter.stop.prevent.once="updateScrolls"
         class="vpj-overlay-scroll"
     >
         <div
             @scroll="updateScrolls"
-            v-bind="props.innerAttrs"
+            v-bind="props.areaAttrs"
             ref="area"
             class="vpj-overlay-scroll__area"
         >
-            <slot/>
+            <div
+                v-bind="props.innerAttrs"
+                ref="content"
+            >
+                <slot/>
+            </div>
         </div>
         <div
             @click.stop.prevent="jumpToX"
