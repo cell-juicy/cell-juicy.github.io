@@ -1,6 +1,6 @@
 ---
 layout: blog
-series: "Vue 入门学习笔记"
+series: "测试博客"
 tags:
   - Vue
   - 组件
