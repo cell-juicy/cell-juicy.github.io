@@ -12,7 +12,8 @@ import {
     NormalizedToolbarDownloadInput,
     ToolbarButtonInput,
     NormalizedToolbarButtonInput,
-    PageContext
+    PageContext,
+    TitleTemplateInput
 } from "./common";
 
 import {
@@ -140,7 +141,7 @@ export interface SeriesMetaData {
      * @see {@link HeaderTitleTemplateInput}
      * @see {@link VPJBlogLayoutConfig.titleTemplate}
      */
-    titleTemplate?: HeaderTitleTemplateInput;
+    titleTemplate?: TitleTemplateInput;
 
     /**
      * 博客系列图标

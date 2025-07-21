@@ -553,7 +553,7 @@ export function initVPJDocData(route: Route, siteData): DocData {
                     layout: "doc",
                     title: title.value,
                     space: space.value,
-                    order: order.value
+                    order: order.value as number[]
                 }
             };
         };

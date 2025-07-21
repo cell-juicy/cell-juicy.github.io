@@ -11,7 +11,8 @@ import {
     HeaderTitleTemplateInput,
     ToolbarButtonInput,
     NormalizedToolbarButtonInput,
-    PageContext
+    PageContext,
+    TitleTemplateInput
 } from "./common";
 
 
@@ -135,7 +136,7 @@ export interface VPJDocLayoutConfig {
      * @see {@link PageContext}
      * @see {@link HeaderTitleTemplateInput}
      */
-    titleTemplate?: HeaderTitleTemplateInput;
+    titleTemplate?: TitleTemplateInput;
 
     /**
      * 文档页面默认图标
@@ -705,7 +706,7 @@ export interface VPJDocLayoutConfig {
     /**
      * 封面图高度配置
      * @optional
-     * @default "240px"
+     * @default "300px"
      * 
      * @remarks
      * 此项用于控制封面图的高度显示，支持以下配置方式：
@@ -1035,7 +1036,7 @@ export interface VPJDocLayoutConfig {
     /**
      * doc 布局内容最大宽度配置
      * @optional
-     * @default "760px"
+     * @default "820px"
      * 
      * @remarks
      * 此项用于控制内容最大宽度，支持以下配置方式：

@@ -1,4 +1,4 @@
-import { ImageData } from "./common";
+import { DeviceSpecificInput, ImageData, HeaderTitleTemplateInput } from "./common";
 
 
 /**
@@ -14,8 +14,8 @@ import { ImageData } from "./common";
  * 
  * 1. 内容：
  * 
- * @see {@link VPJPageLayoutConfig.contentGutter} 两侧留白宽度
- * @see {@link VPJPageLayoutConfig.contentWidth} 内容区域宽度
+ * @see {@link VPJPageLayoutConfig.contentPadding} 两侧留白宽度
+ * @see {@link VPJPageLayoutConfig.contentMaxWidth} 内容区域宽度
  * 
  * @example
  * 示例1：一个简单的配置示例
@@ -25,8 +25,8 @@ import { ImageData } from "./common";
  *   themeConfig: {
  *     layouts: {
  *       page: {
- *         contentGutter: "2rem",
- *         contentWidth: "70rem"
+ *         contentPadding: "2rem",
+ *         contentMaxWidth: "70rem"
  *       }
  *     }
  *   }
@@ -34,6 +34,8 @@ import { ImageData } from "./common";
  * ```
  */
 export interface VPJPageLayoutConfig {
+    titleTemplate?: string;
+
     /**
      * 一般页面默认图标
      * @optional
@@ -83,6 +85,12 @@ export interface VPJPageLayoutConfig {
      */
     favicon?: ImageData;
 
+    description?: string;
+
+    contentMarginBottom?: DeviceSpecificInput;
+
+    contentMarginTop?: DeviceSpecificInput;
+
     /**
      * page布局的两侧留白配置
      * @optional
@@ -98,7 +106,7 @@ export interface VPJPageLayoutConfig {
      * 
      * * 该项同样可以在应用了page布局的页面frontmatter中单独设置，具体参考示例。
      * * 自定义的优先级顺序是：页面frontmatter > 主题配置 > 默认值，并且移动端、平板端、桌面端的配置继承独立计算。
-     * * 该项并不是直接控制留白宽度，实际布局中留白列占据grid布局的宽度为`minmax(min(contentGutter, 100%), 1fr)`。
+     * * 该项并不是直接控制留白宽度，实际布局中留白列占据grid布局的宽度为`minmax(min(contentPadding, 100%), 1fr)`。
      * * 此项的设置对同一个页面下的VPJHeroImage组件同样生效。
      * 
      * @example
@@ -109,7 +117,7 @@ export interface VPJPageLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       page: {
-     *         contentGutter: "2rem"
+     *         contentPadding: "2rem"
      *       }
      *     }
      *   }
@@ -124,7 +132,7 @@ export interface VPJPageLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       page: {
-     *         contentGutter: {
+     *         contentPadding: {
      *           mobile: "2rem",
      *           tablet: "2.5rem",
      *           desktop: "5rem"
@@ -140,7 +148,7 @@ export interface VPJPageLayoutConfig {
      * ```markdown
      * // 在你想要单独定制的页面frontmatter中添加如下配置，这会在0~768px的窗口应用留白宽度1rem，768px~1024px的窗口应用留白宽度3rem，>1024px的窗口应用留白宽度5rem
      * ---
-     * contentGutter: 
+     * contentPadding: 
      *   mobile: "1rem"
      *   tablet: "3rem"
      *   desktop: "5rem"
@@ -152,7 +160,7 @@ export interface VPJPageLayoutConfig {
      * ```markdown
      * // 假设这是a.md页面的frontmatter设置
      * ---
-     * contentGutter: 
+     * contentPadding: 
      *   mobile: "10ch"
      *   tablet: "20ch"
      * ---
@@ -163,7 +171,7 @@ export interface VPJPageLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       page: {
-     *         contentGutter: {
+     *         contentPadding: {
      *           tablet: "24px",
      *           desktop: "48px"
      *         }
@@ -178,13 +186,7 @@ export interface VPJPageLayoutConfig {
      * 2. 768px\~1024px的窗口应用留白宽度20ch（继承顺序frontmatter(20ch) > theme(24px) > default(1.5rem)）
      * 3. \>1024px的窗口应用留白宽度48px（继承顺序frontmatter(undefined) > theme(48px) > default(4rem)）
      */
-    contentGutter?:
-        | string
-        | {
-            mobile?: string;
-            tablet?: string;
-            desktop?: string
-        };
+    contentPadding?: DeviceSpecificInput;
     
     /**
      * page布局的内容宽度配置
@@ -201,7 +203,7 @@ export interface VPJPageLayoutConfig {
      * 
      * * 该项同样可以在应用了page布局的页面frontmatter中单独设置，具体参考示例。
      * * 自定义的优先级顺序是：页面frontmatter > 主题配置 > 默认值，并且移动端、平板端、桌面端的配置继承独立计算。
-     * * 该项并不是直接控制内容宽度，实际布局中内容列占据grid布局的宽度为`minmax(min(calc(2 * contentGutter), 100%), contentWidth)`。
+     * * 该项并不是直接控制内容宽度，实际布局中内容列占据grid布局的宽度为`minmax(min(calc(2 * contentPadding), 100%), contentMaxWidth)`。
      * * 此项的设置对同一个页面下的VPJHeroImage组件同样生效。
      * 
      * @example
@@ -212,7 +214,7 @@ export interface VPJPageLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       page: {
-     *         contentWidth: "600px"
+     *         contentMaxWidth: "600px"
      *       }
      *     }
      *   }
@@ -227,7 +229,7 @@ export interface VPJPageLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       page: {
-     *         contentWidth: {
+     *         contentMaxWidth: {
      *           mobile: "40rem",
      *           tablet: "55rem",
      *           desktop: "65rem"
@@ -243,7 +245,7 @@ export interface VPJPageLayoutConfig {
      * ```markdown
      * // 在你想要单独定制的页面frontmatter中添加如下配置，这会在0~768px的窗口应用内容宽度490px，768px~1024px的窗口应用内容宽度780px，>1024px的窗口应用内容宽度960px
      * ---
-     * contentWidth: 
+     * contentMaxWidth: 
      *   mobile: "490px"
      *   tablet: "780px"
      *   desktop: "960px"
@@ -255,7 +257,7 @@ export interface VPJPageLayoutConfig {
      * ```markdown
      * // 假设这是a.md页面的frontmatter设置
      * ---
-     * contentGutter: 
+     * contentPadding: 
      *   mobile: "100ch"
      *   tablet: "200ch"
      * ---
@@ -266,7 +268,7 @@ export interface VPJPageLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       page: {
-     *         contentWidth: {
+     *         contentMaxWidth: {
      *           tablet: "600px",
      *           desktop: "900px"
      *         }
@@ -281,11 +283,5 @@ export interface VPJPageLayoutConfig {
      * 2. 768px~1024px宽的窗口应用内容宽度20ch（继承顺序frontmatter(200ch) > theme(600px) > default(61.25rem)）
      * 3. \>1024px宽的窗口应用内容宽度48px（继承顺序frontmatter(undefined) > theme(900px) > default(61.25rem)）
      */
-    contentWidth?:
-        | string
-        | {
-            mobile?: string;
-            tablet?: string;
-            desktop?: string
-        };
+    contentMaxWidth?: DeviceSpecificInput;
 }

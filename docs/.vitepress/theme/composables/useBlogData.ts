@@ -296,7 +296,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
                     layout: "blog",
                     title: title.value,
                     series: series.value,
-                    order: order.value
+                    order: order.value as number
                 }
             };
         };

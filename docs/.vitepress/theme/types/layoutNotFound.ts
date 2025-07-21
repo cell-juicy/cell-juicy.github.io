@@ -19,10 +19,10 @@ import { ImageData } from "./common";
  * 
  * 2. 内容：
  * 
- * @see {@link VPJNotFoundLayoutConfig.contentIcon} 内容图标
- * @see {@link VPJNotFoundLayoutConfig.contentTitle} 内容标题
- * @see {@link VPJNotFoundLayoutConfig.contentText} 内容文本
- * @see {@link VPJNotFoundLayoutConfig.contentLink} 内容链接
+ * @see {@link VPJNotFoundLayoutConfig.statusIcon} 内容图标
+ * @see {@link VPJNotFoundLayoutConfig.heading} 内容标题
+ * @see {@link VPJNotFoundLayoutConfig.message} 内容文本
+ * @see {@link VPJNotFoundLayoutConfig.guidance} 内容链接
  * 
  * @example
  * 示例1：一个简单的配置示例
@@ -32,9 +32,9 @@ import { ImageData } from "./common";
  *   themeConfig: {
  *     layouts: {
  *       notFound: {
- *         contentTitle: "出现了一点问题",
- *         contentText: "你访问的页面不存在",
- *         contentLink: {text: "点我返回主页", link: "/zh/"}
+ *         heading: "出现了一点问题",
+ *         message: "你访问的页面不存在",
+ *         guidance: {text: "点我返回主页", link: "/zh/"}
  *       }
  *     }
  *   }
@@ -178,7 +178,7 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentIcon: "/path/to/icon.png"
+     *         statusIcon: "/path/to/icon.png"
      *       }
      *     }
      *   }
@@ -193,7 +193,7 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentIcon: { src: "/path/to/icon.png", alt: "some description" }
+     *         statusIcon: { src: "/path/to/icon.png", alt: "some description" }
      *       }
      *     }
      *   }
@@ -208,14 +208,15 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentIcon: "CustomIcon" // 也可以像这样输入 contentIcon: { component: "CustomIcon" }
+     *         statusIcon: "CustomIcon" // 也可以像这样输入 statusIcon: { component: "CustomIcon" }
      *       }
      *     }
      *   }
      * }
      * ```
      */
-    contentIcon?:
+    statusIcon?:
+        | false
         | ImageData
         | { component: string };
 
@@ -225,7 +226,7 @@ export interface VPJNotFoundLayoutConfig {
      * @default "页面未找到"
      * 
      * @remarks
-     * 该项控制404页内容的标题内容，接受一个字符串作为标题输入（此标题文本在contentIcon控制的图标下方）
+     * 该项控制404页内容的标题内容，接受一个字符串作为标题输入（此标题文本在statusIcon控制的图标下方）
      * 
      * @example
      * 示例1：修改标题
@@ -235,14 +236,14 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentTitle: "404 Error"
+     *         heading: "404 Error"
      *       }
      *     }
      *   }
      * }
      * ```
      */
-    contentTitle?: string;
+    heading?: string;
 
     /**
      * 404页的内容文本配置
@@ -250,7 +251,7 @@ export interface VPJNotFoundLayoutConfig {
      * @default "很抱歉，您尝试访问的页面不存在或可能已被删除。"
      * 
      * @remarks
-     * 该项控制404页内容的文本内容，接受一个字符串作为标题输入（此文本内容在contentTitle控制的标题文本下方）
+     * 该项控制404页内容的文本内容，接受一个字符串作为标题输入（此文本内容在heading控制的标题文本下方）
      * 
      * @example
      * 示例1：修改标题
@@ -260,14 +261,14 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentText: "An error occurred, please click to return to the home page."
+     *         message: "An error occurred, please click to return to the home page."
      *       }
      *     }
      *   }
      * }
      * ```
      */
-    contentText?: string;
+    message?: string;
 
     /**
      * 404页的内容链接配置
@@ -288,7 +289,7 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentLink: "Home"
+     *         guidance: "Home"
      *       }
      *     }
      *   }
@@ -303,7 +304,7 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentLink: { text: "关于我们", link: "/about/" }
+     *         guidance: { text: "关于我们", link: "/about/" }
      *       }
      *     }
      *   }
@@ -318,14 +319,15 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentLink: { link: "/zh/" }
+     *         guidance: { link: "/zh/" }
      *       }
      *     }
      *   }
      * }
      * ```
      */
-    contentLink?:
+    guidance?:
+        | false
         | string
-        | { text?: string; link?: string};
+        | { text?: string; link?: string | false};
 }

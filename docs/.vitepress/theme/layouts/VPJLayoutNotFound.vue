@@ -1,7 +1,10 @@
 <script setup>
 import { useData } from 'vitepress';
+import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import { useHead } from '@unhead/vue';
+
+import { useVPJLayout } from '../composables/useVPJLayout';
 
 import VPJDynamicIcon from '../components/VPJDynamicIcon.vue';
 import VPJIconCrossCircle from '../components/icons/VPJIconCrossCircle.vue';
@@ -10,82 +13,13 @@ import { mergeSimpleData } from '../utils/mergeData';
 import { resolveTitle } from '../utils/common';
 
 
-const { site, theme, frontmatter, page } = useData();
+const store = useVPJLayout();
+const {
+    headConfig,
+    notFoundContent
+} = storeToRefs(store);
 
-const computedTitle = computed(() => {
-    // Override default title logic
-    return mergeSimpleData(
-        (input) => typeof input === "string",
-        undefined,
-        page.value.isNotFound ? undefined : frontmatter.value.title,
-        theme.value.layouts?.notFound?.title,
-        resolveTitle(site.value, page.value),
-        "404 | VitePress"
-    );
-});
-
-const computedLink = computed(() => {
-    const link = [];
-
-    // Override default icon logic
-    const mergedFavicon = mergeSimpleData(
-        (input) => typeof input === 'string' || (typeof input === 'object' && input !== null && typeof input.src === 'string'),
-        undefined,
-        page.value.isNotFound ? undefined : frontmatter.value.favicon,
-        theme.value.layouts?.notFound?.favicon,
-        theme.value.logo
-    );
-
-    if (mergedFavicon) {
-        const icon = typeof mergedFavicon === 'string' ? { src: mergedFavicon } : mergedFavicon;
-        link.push({ rel: "icon", href: icon.src, title: typeof icon.alt === 'string' ? icon.alt : undefined })
-    };
-
-    return link;
-});
-
-const computedMeta = computed(() => {
-    const meta = [];
-
-    // Override default description logic
-    const mergedDescription = mergeSimpleData(
-        (input) => typeof input === 'string',
-        undefined,
-        page.value.isNotFound ? undefined : frontmatter.value.description,
-        theme.value.layouts?.notFound?.description,
-        site.value.description
-    );
-    if (mergedDescription) meta.push({ name: "description", content: mergedDescription });
-
-    return meta;
-});
-
-useHead({
-    title: computedTitle,
-    link: computedLink,
-    meta: computedMeta
-});
-
-const computedContent = computed(() => {
-    const linkRaw = theme.value.layouts?.notFound?.contentLink ?? {text: '返回主页', link: '/'};
-    const linkData = {};
-    if (typeof linkRaw === 'string') {
-        linkData.text = linkRaw;
-        linkData.href = '/'
-    } else if (linkRaw && typeof linkRaw === 'object') {
-        linkData.text = linkRaw.text ?? '返回主页';
-        linkData.href = linkRaw.link ?? '/';
-    } else {
-        linkData.text = '返回主页';
-        linkData.href = '/';
-    }
-    return {
-        icon: theme.value.layouts?.notFound?.contentIcon ?? VPJIconCrossCircle,
-        title: theme.value.layouts?.notFound?.contentTitle ?? '页面未找到',
-        text: theme.value.layouts?.notFound?.contentText ?? '很抱歉，您尝试访问的页面不存在或可能已被删除。',
-        link: linkData
-    }
-})
+useHead(headConfig);
 </script>
 
 
@@ -93,21 +27,28 @@ const computedContent = computed(() => {
     <div class="vpj-layout-notfound">
         <div class="vpj-layout-notfound__content">
             <VPJDynamicIcon
-                :icon="computedContent.icon"
+                :icon="notFoundContent.statusIcon"
                 class="vpj-layout-notfound__content-icon"
             />
-            <div class="vpj-layout-notfound__content-title">
-                {{ computedContent.title }}
+            <div
+                v-if="notFoundContent.heading"
+                class="vpj-layout-notfound__content-title"
+            >
+                {{ notFoundContent.heading }}
             </div>
-            <div class="vpj-layout-notfound__content-text">
-                {{ computedContent.text}}
+            <div
+                v-if="notFoundContent.message"
+                class="vpj-layout-notfound__content-text"
+            >
+                {{ notFoundContent.message }}
             </div>
             <a
+                v-if="typeof notFoundContent.guidance.link === 'string'"
                 class="vpj-layout-notfound__content-link"
-                :href="computedContent.link.href"
+                :href="notFoundContent.guidance.link"
             >
                 <span class="vpj-text">
-                    {{ computedContent.link.text }}
+                    {{ notFoundContent.guidance.text || "" }}
                 </span>
             </a>
         </div>

@@ -1,76 +1,39 @@
 <script setup>
-import { Content, useData } from 'vitepress';
+import { storeToRefs } from 'pinia';
 import { computed, provide } from 'vue';
 import { useHead } from '@unhead/vue';
 
-import { mergeDeviceData, mergeSimpleData } from '../utils/mergeData';
-import { isMobile, isTablet } from '../utils/deviceTypes';
+import { useVPJLayout } from '../composables/useVPJLayout';
+
 import { VPJ_PAGE_LAYOUT_SYMBOL } from '../utils/symbols';
 
 import VPJOverlayScrollArea from '../components/VPJOverlayScrollArea.vue';
 
 
-const { theme, frontmatter } = useData();
-const DEFAULT = {
-    GUTTER: {
-        mobile: "1.5rem",
-        tablet: "1.5rem",
-        desktop: "4rem"
-    },
-    WIDTH: {
-        mobile: "61.25rem",
-        tablet: "61.25rem",
-        desktop: "61.25rem"
-    }
-};
+const store = useVPJLayout();
+const {
+    headConfig,
+    contentConfig
+} = storeToRefs(store);
 
-const computedLink = computed(() => {
-    const link = [];
+useHead(headConfig);
 
-    // Override default icon logic
-    const mergedFavicon = mergeSimpleData(
-        (input) => typeof input === 'string' || (typeof input === 'object' && input !== null && typeof input.src === 'string'),
-        undefined,
-        frontmatter.value.favicon,
-        theme.value.layouts?.page?.favicon,
-        theme.value.logo
-    );
-
-    if (mergedFavicon) {
-        const icon = typeof mergedFavicon === 'string' ? { src: mergedFavicon } : mergedFavicon;
-        link.push({ rel: "icon", href: icon.src, title: typeof icon.alt === 'string' ? icon.alt : undefined })
-    };
-
-    return link;
+const computedPadding = computed(() => {
+    return contentConfig.value.padding || "0"
 });
-
-useHead({
-    link: computedLink,
+const computedMaxWidth = computed(() => {
+    return contentConfig.value.maxWidth || "100%"
 });
-
-// calculate gutter data
-const themeGutter = computed(() => theme.value.layouts?.page?.contentGutter);
-const frontmatterGutter = computed(() => frontmatter.value.contentGutter);
-const computedGutter = computed(() => {
-    const merge = mergeDeviceData(frontmatterGutter.value, themeGutter.value, DEFAULT.GUTTER);
-    if (isMobile.value) return merge.mobile;
-    if (isTablet.value) return merge.tablet;
-    return merge.desktop;
-})
-// calculate width data
-const themeWidth = computed(() =>theme.value.layouts?.page?.contentWidth);
-const frontmatterWidth = computed(() => frontmatter.value.contentWidth);
-const computedWidth = computed(() => {
-    const merge = mergeDeviceData(frontmatterWidth.value, themeWidth.value, DEFAULT.WIDTH);
-    if (isMobile.value) return merge.mobile;
-    if (isTablet.value) return merge.tablet;
-    return merge.desktop;
-})
-
+const computedMarginTop = computed(() => {
+    return contentConfig.value.marginTop || "0"
+});
+const computedMarginBottom = computed(() => {
+    return contentConfig.value.marginBottom || "0"
+});
 
 provide(VPJ_PAGE_LAYOUT_SYMBOL, {
-    computedGutter,
-    computedWidth
+    computedPadding,
+    computedMaxWidth
 });
 </script>
 
@@ -119,6 +82,8 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
             minmax(min(v-bind(computedGutter), 100%), 1fr)
             minmax(min(calc(2 * v-bind(computedGutter)), 100%), v-bind(computedWidth))
             minmax(min(v-bind(computedGutter), 100%), 1fr);
+        margin-top: v-bind(computedMarginTop);
+        margin-bottom: v-bind(computedMarginBottom);
         min-height: 0;
         width: 100%;
     }

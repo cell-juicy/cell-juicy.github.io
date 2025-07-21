@@ -60,22 +60,22 @@ const computedCss = computed(() => {
         backgroundRepeat: props.bgCss?.backgroundRepeat ?? "no-repeat"
     }
 })
-const computedGutter = computed(() => {
-    if (isPageLayout.value) return layoutConfig.computedGutter?.value;
+const computedPadding = computed(() => {
+    if (isPageLayout.value) return layoutConfig.computedPadding?.value;
     else {
         if (isDesktop.value) return "4rem";
         return "1.5rem";
     };
 });
-const computedWidth = computed(() => {
-    if (isPageLayout.value) return layoutConfig.computedWidth?.value;
+const computedMaxWidth = computed(() => {
+    if (isPageLayout.value) return layoutConfig.computedMaxWidth?.value;
     return "61.25rem"
 });
 const computedGrid = computed(() => {
     return [
-        `minmax(min(${computedGutter.value}, 100%), 1fr) `,
-        `minmax(min(calc(2 * ${computedGutter.value}), 100%), ${computedWidth.value}) `,
-        `minmax(min(${computedGutter.value}, 100%), 1fr)`
+        `minmax(min(${computedPadding.value}, 100%), 1fr) `,
+        `minmax(min(calc(2 * ${computedPadding.value}), 100%), ${computedMaxWidth.value}) `,
+        `minmax(min(${computedPadding.value}, 100%), 1fr)`
     ].join(" ")
 })
 

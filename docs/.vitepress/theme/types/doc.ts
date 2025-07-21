@@ -12,7 +12,8 @@ import type {
     ToolbarButtonInput,
     NormalizedToolbarButtonInput,
     PageContext,
-    ResourceInput
+    ResourceInput,
+    TitleTemplateInput
 } from "./common";
 
 import type {
@@ -223,7 +224,7 @@ export interface SpaceMetaData {
      * @see {@link HeaderTitleTemplateInput}
      * @see {@link VPJDocLayoutConfig.titleTemplate}
      */
-    titleTemplate?: HeaderTitleTemplateInput;
+    titleTemplate?: TitleTemplateInput;
 
     /**
      * 文档空间图标

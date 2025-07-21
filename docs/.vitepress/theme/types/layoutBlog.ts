@@ -12,7 +12,8 @@ import {
     ToolbarButtonInput,
     NormalizedToolbarButtonInput,
     PageContext,
-    ImageData
+    ImageData,
+    TitleTemplateInput
 } from "./common";
 
 
@@ -132,7 +133,7 @@ export interface VPJBlogLayoutConfig {
      * @see {@link PageContext}
      * @see {@link HeaderTitleTemplateInput}
      */
-    titleTemplate?: HeaderTitleTemplateInput;
+    titleTemplate?: TitleTemplateInput;
 
     /**
      * 博客页面默认图标

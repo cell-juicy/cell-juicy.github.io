@@ -19,7 +19,9 @@ import type {
     ToolbarGithubLinkData,
     ToolbarButtonData,
     ToolbarButtonInput,
+    TitleTemplateInput,
 } from "../types/common";
+import type { PageData, SiteData } from 'vitepress';
 import { any2Number } from "./common";
 
 
@@ -257,41 +259,56 @@ function normalizeHeaderTitleTemplateInput(
 };
 
 function normalizeTitleTemplateInput(
-    input: any,
-    ctx: PageContext
+    input: TitleTemplateInput,
+    ctx: PageContext | undefined,
+    site: SiteData,
+    page: PageData,
 ): string | undefined {
-    if (input === false) {
-        return ctx.layoutConfig?.title ?? undefined;
-    } else if (typeof input === 'string') {
-        if (ctx.layoutConfig?.layout === "blog") {
-            const series = ctx.layoutConfig?.series;
-            const order = ctx.layoutConfig?.order;
-            const title = ctx.layoutConfig?.title;
-            return input
-                .replaceAll(":series", series || "")
-                .replaceAll(":title", title || "")
-                .replaceAll(":order", order?.toString() || "")
-        } else if (ctx.layoutConfig?.layout === "doc") {
-            const space = ctx.layoutConfig?.space;
-            const title = ctx.layoutConfig?.title;
-            return input
-                .replaceAll(":space", space || "")
-                .replaceAll(":title", title || "")
-        } else {
-            console.error(`[Juicy Theme]An error occurred while getting Page Context, and the default value undefined was automatically returned`);
-            return undefined;
-        }
-    } else if (typeof input === 'function') {
+    if (input === undefined) return undefined;
+
+    if (typeof input === 'function') {
         try {
-            return (typeof input(ctx) === 'string') ? input(ctx) : undefined
-        } catch(e) {
-            console.error(`[Juicy Theme]Fail to resolve header title template: ${e}`);
-            return undefined;
+            const result = ctx ? input(ctx) : undefined;
+            if (typeof result === 'string') return result;
+        } catch (e) {
+            console.error(`[Juicy Theme]Fail to resolve title template: ${e}.`);
         }
-    } else {
         return undefined;
+    };
+
+    const title = ctx?.layoutConfig?.title ?? page.title ?? site.title ?? "";
+
+    if (typeof input === 'string') {
+        if (ctx) {
+            if (ctx.layoutConfig.layout === "blog" &&
+                [":series", ":order", ":title"].some(k => input.includes(k))) {
+                return input
+                    .replace(/:order/g, String(ctx.layoutConfig?.order ?? ""))
+                    .replace(/:series/g, ctx.layoutConfig?.series ?? "")
+                    .replace(/:title/g, title);
+            };
+            if (ctx.layoutConfig.layout === "doc" &&
+                [":space", ":title"].some(k => input.includes(k))) {
+                return input
+                    .replace(/:space/g, ctx.layoutConfig?.space ?? "")
+                    .replace(/:title/g, title);
+            };
+        } else if (input.includes(':title')) {
+            return input.replace(/:title/g, title);
+        };
+    };
+
+    let suffix = ` | ${input}`;
+    if (input === false) suffix = '';
+    if (input === true) suffix = ` | ${site.title}`;
+    if (site.title === input) suffix = '';
+
+    if (suffix.startsWith(' | ') && title === suffix.slice(3)) {
+        return title;
     }
-};
+
+    return `${title}${suffix}`;
+}
 
 function normalizeToolbarButtonData(
     input: any
@@ -529,12 +546,14 @@ export function mergeHeaderTitleTemplateData(
 };
 
 export function mergeTitleTemplateData(
-    ctx: PageContext,
-    ...sources: (HeaderTitleTemplateInput | undefined)[]
+    ctx: PageContext | undefined,
+    site: SiteData,
+    page: PageData,
+    ...sources: TitleTemplateInput[]
 ): string | undefined {
     if (Array.isArray(sources)) {
         const merged = sources
-            .map((input) => normalizeTitleTemplateInput(input, ctx))
+            .map((input) => normalizeTitleTemplateInput(input, ctx, site, page))
             .find((value) => typeof value === 'string')
         return merged
     };
