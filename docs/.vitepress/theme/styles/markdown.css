@@ -426,27 +426,33 @@
     z-index: 1;
 }
 
-.vpj-markdown .md-task-list-item > input {
-  margin-left: -1.3em;
+.vpj-markdown .MathJax[display="true"] {
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    scrollbar-width: unset;
+    scrollbar-color: unset;
 }
 
-.vpj-markdown .md-fences {
-	background-color: #f8f8f8;
+.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar {
+    height: 4px;
 }
 
-.mathjax-block>.code-tooltip {
-	bottom: .375rem;
+.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
-.md-mathjax-midline {
-    background: #fafafa;
+.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-thumb {
+    background-color: var(--vpj-color-text-100);
+    border-radius: 2px;
 }
 
-.md-image>.md-meta {
-    /*border: 1px solid #ddd;*/
-    border-radius: 3px;
-    padding: 2px 0px 0px 4px;
-    font-size: 0.9em;
-    color: inherit;
+.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-thumb:hover {
+    background-color: var(--vpj-color-text-200);
+}
+
+.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-thumb:active {
+    background-color: var(--vpj-color-text-300);
 }
 
