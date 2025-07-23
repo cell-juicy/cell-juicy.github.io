@@ -42,34 +42,7 @@ import { ImageData } from "./common";
  * ```
  */
 export interface VPJNotFoundLayoutConfig {
-    /**
-     * 页面默认标题
-     * @optional
-     * 
-     * @remarks
-     * 该项用于配置默认 404 页面（未显式定义的错误页）在标签页中显示的标题文本，也可作为一般 `not-found` 布局页面未设置标题时的默认值。
-     * 
-     * 不影响页面正文显示，仅用于 `<head>` 元信息中的 `<title>` 标签渲染。
-     * 
-     * 注意事项：
-     * - 页面 frontmatter 中设置的 `title` 将覆盖此项
-     * - 若此项与 frontmatter 均未提供，将使用 VitePress 默认的标题逻辑
-     * 
-     * @example
-     * 示例 1：为默认 404 页面设置标题文本
-     * ```ts
-     * export default {
-     *   themeConfig: {
-     *     layouts: {
-     *       notFound: {
-     *         title: "您访问的页面不存在"
-     *       }
-     *     }
-     *   }
-     * }
-     * ```
-     */
-    title?: string;
+    titleTemplate?: string | boolean;
 
     /**
      * 页面默认图标

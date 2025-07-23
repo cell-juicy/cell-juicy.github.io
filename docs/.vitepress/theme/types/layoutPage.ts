@@ -34,7 +34,7 @@ import { DeviceSpecificInput, ImageData, HeaderTitleTemplateInput } from "./comm
  * ```
  */
 export interface VPJPageLayoutConfig {
-    titleTemplate?: string;
+    titleTemplate?: string | boolean;
 
     /**
      * 一般页面默认图标

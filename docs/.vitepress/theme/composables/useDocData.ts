@@ -378,9 +378,9 @@ export class DocPageData {
             const nodeSpace = node.space;
             const spaceConfig = (
                 typeof nodeSpace === 'string' &&
-                (typeof docConfig.space === 'object' && docConfig.space !== null) &&
-                (typeof docConfig.space[nodeSpace] === 'object' && docConfig.space[nodeSpace] !== null)
-            ) ? docConfig.space[nodeSpace] : {};
+                (typeof docConfig === 'object' && docConfig) &&
+                (typeof docConfig[nodeSpace] === 'object' && docConfig[nodeSpace] !== null)
+            ) ? docConfig[nodeSpace] : {};
 
             // Skip nodes whose space is set to disable virtual node generation
             if (node.allowVirtualParents === undefined && !spaceConfig.enableVirtual) return;
@@ -431,7 +431,7 @@ export class DocPageData {
             });
     };
 
-    static processDataBase(dataBase: RawDocPageData[], config: DocDefaultsConfig) {
+    static processDataBase(dataBase: RawDocPageData[], config: Record<string, SpaceMetaData>) {
         const copy = cloneDeep(dataBase);
 
         // If no config, return the original dataBase
@@ -441,8 +441,8 @@ export class DocPageData {
         DocPageData.generateVirtualNodes(copy, config);
 
         // Apply space meta data
-        if (typeof config.space === 'object' && config.space !== null) {
-            DocPageData.applySpaceConfig(copy, config.space);
+        if (typeof config === 'object' && config !== null) {
+            DocPageData.applySpaceConfig(copy, config);
         }
 
         // Sort nodes by space/order
@@ -456,7 +456,7 @@ export function initVPJDocData(route: Route, siteData): DocData {
 
     // Get theme config and series config
     const layoutConfig: Ref<VPJDocLayoutConfig> = ref({});
-    const docConfig: Ref<DocDefaultsConfig> = ref({});
+    const docConfig: Ref<Record<string, SpaceMetaData>> = ref({});
     const spaceConfig: Ref<SpaceMetaData> = ref({});
 
     // Watch theme and frontmatter
@@ -472,11 +472,10 @@ export function initVPJDocData(route: Route, siteData): DocData {
             if (typeof frontmatter.value.space === 'string' && frontmatter.value.layout === "doc") {
                 const name = frontmatter.value.space;
                 if (
-                    theme.value.doc?.space &&
-                    typeof theme.value.doc.space === 'object' &&
-                    theme.value.doc.space !== null
+                    theme.value.doc &&
+                    typeof theme.value.doc === 'object'
                 ) {
-                    spaceConfig.value = theme.value.doc.space[name] || {};
+                    spaceConfig.value = theme.value.doc[name] || {};
                 };
             };
         };

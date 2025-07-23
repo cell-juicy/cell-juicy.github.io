@@ -14,8 +14,7 @@ import type {
     VPJBlogLayoutConfig
 } from '../types/layoutBlog';
 import type {
-    SeriesMetaData,
-    BlogDefaultsConfig
+    SeriesMetaData
 } from '../types/blog';
 import type {
     PageContext
@@ -178,15 +177,15 @@ export class BlogPageData {
             });
     };
 
-    static processDataBase(dataBase: RawBlogPageData[], config: BlogDefaultsConfig) {
+    static processDataBase(dataBase: RawBlogPageData[], config: Record<string, SeriesMetaData>) {
         const copy = cloneDeep(dataBase);
 
         // If no config, return the original dataBase
         if (typeof config !== 'object' || !config) return copy;
 
         // Apply series meta data
-        if (typeof config.series === 'object' && config.series !== null) {
-            BlogPageData.applySeriesConfig(copy, config.series);
+        if (typeof config === 'object' && config) {
+            BlogPageData.applySeriesConfig(copy, config);
         };
 
         // Sort nodes by series/order
@@ -200,7 +199,7 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
 
     // Get theme config and series config
     const layoutConfig: Ref<VPJBlogLayoutConfig> = ref({});
-    const blogConfig: Ref<BlogDefaultsConfig> = ref({});
+    const blogConfig: Ref<Record<string, SeriesMetaData>> = ref({});
     const seriesConfig: Ref<SeriesMetaData> = ref({});
 
     watch([theme, frontmatter], (next, prev) => {
@@ -215,11 +214,10 @@ export function initVPJBlogData(route: Route, siteData): BlogData {
             if (typeof frontmatter.value.series === 'string' && frontmatter.value.layout === "blog") {
                 const name = frontmatter.value.series;
                 if (
-                    theme.value.blog?.series &&
-                    typeof theme.value.blog.series === 'object' &&
-                    theme.value.blog.series !== null
+                    theme.value.blog &&
+                    typeof theme.value.blog === 'object'
                 ) {
-                    seriesConfig.value = theme.value.blog.series[name] || {};
+                    seriesConfig.value = theme.value.blog[name] || {};
                 };
             };
         };

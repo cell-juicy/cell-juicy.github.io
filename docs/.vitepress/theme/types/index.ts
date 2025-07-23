@@ -31,11 +31,11 @@ import {
 } from "./layoutDoc";
 
 import {
-    BlogDefaultsConfig
+    SeriesMetaData
 } from "./blog";
 
 import {
-    DocDefaultsConfig
+    SpaceMetaData
 } from "./doc";
 
 
@@ -163,16 +163,16 @@ export interface ThemeConfig {
     /**
      * 博客(blog)页默认数据配置
      * @optional
-     * @see {@link BlogDefaultsConfig} 博客页默认数据配置接口
+     * @see {@link SeriesMetaData} 系列默认数据配置接口
      */
-    blog?: BlogDefaultsConfig;
+    blog?: Record<string, SeriesMetaData>;
 
     /**
      * 文档(doc)页默认数据配置
      * @optional
-     * @see {@link DocDefaultsConfig} 文档页默认数据配置接口
+     * @see {@link SpaceMetaData} 空间默认数据配置接口
      */
-    doc?: DocDefaultsConfig;
+    doc?: Record<string, SpaceMetaData>;
 
     /**
      * 组件默认配置
