@@ -1,6 +1,5 @@
 <script setup>
-import { useData } from 'vitepress';
-import { computed, inject, ref, watch, watchEffect, onMounted } from 'vue';
+import { computed, inject, ref, onMounted } from 'vue';
 import { isDesktop } from '../utils/deviceTypes';
 import { VPJ_PAGE_LAYOUT_SYMBOL } from '../utils/symbols';
 
@@ -32,7 +31,7 @@ const props = defineProps({
         default: () => ({})
     }
 })
-const { page } = useData();
+
 const layoutConfig = inject(VPJ_PAGE_LAYOUT_SYMBOL, null);
 const isPageLayout = computed(() => !!layoutConfig);
 const imageRootExists = ref(false);
@@ -79,19 +78,6 @@ const computedGrid = computed(() => {
     ].join(" ")
 })
 
-
-watchEffect(checkImageRoot);
-watch(isPageLayout, (value) => {
-    if (!value) {
-        console.warn('[Juicy Theme Warn]: ' +
-            'The VPJHeroImage component can only be used in a page layout or an extended page layout.' +
-            'Please check if you have used the VPJHeroImage component in a page that does not use a page' + 
-            ' layout or an extended page layout by mistake. The incorrectly used VPJHeroImage component' +
-            ' has been hidden.' + 
-            `${!page.value.isNotFound ? `\n(At file: ${page.value.filePath})` : ''}`
-        )
-    }
-}, { immediate: true });
 onMounted(() => {
     checkImageRoot()
 })
