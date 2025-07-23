@@ -242,6 +242,7 @@ onBeforeUnmount(() => {
             <div
                 v-bind="props.innerAttrs"
                 ref="content"
+                class="vpj-overlay-scroll__content"
             >
                 <slot/>
             </div>
@@ -311,6 +312,11 @@ onBeforeUnmount(() => {
 
     .vpj-overlay-scroll__area::-webkit-scrollbar {
         display: none;
+    }
+
+    .vpj-overlay-scroll__content {
+        min-height: 100%;
+        min-width: 100%;
     }
 
     /* Track */

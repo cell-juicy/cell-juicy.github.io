@@ -21,3 +21,8 @@ function range(n) {
         <a :href="`/blogs/blog${n}.html`">第{{ n }}篇测试博文</a>
     </li>
 </ol>
+
+我们还添加了两个页面以观察组件的回退设置：
+
+1. [当一篇blog失去series与tags](/blogs/test1.md)
+2. [当一篇article失去侧边栏标签页](/blogs/test2.md)]

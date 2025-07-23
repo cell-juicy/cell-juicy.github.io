@@ -3,6 +3,10 @@ import type {
 } from "./common";
 
 import type {
+    ComponentFallbackConfig
+} from "./component"
+
+import type {
     SidebarConfig
 } from "./sidebar";
 
@@ -169,4 +173,11 @@ export interface ThemeConfig {
      * @see {@link DocDefaultsConfig} 文档页默认数据配置接口
      */
     doc?: DocDefaultsConfig;
+
+    /**
+     * 组件默认配置
+     * @optional
+     * @see {@link ComponentFallbackConfig} 组件默认配置接口
+     */
+    components?: ComponentFallbackConfig;
 }

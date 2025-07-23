@@ -1,11 +1,5 @@
 ---
 layout: blog
-series: "测试博客"
-tags:
-  - DevTools
-  - 调试技巧
-  - console
-  - 日志管理
 order: 2
 ---
 

@@ -33,7 +33,12 @@ const props = defineProps({
     }
 });
 
-const { frontmatter } = useData();
+const DEFAULT = {
+    NOTAB: "暂无可用的侧边栏标签页",
+    UNKNOWNTAB: "当前标签页无法加载",
+}
+
+const { frontmatter, theme } = useData();
 const layout = computed(() => frontmatter.value.layout);
 
 const tabsData = computed(() => {
@@ -65,16 +70,24 @@ const activeTabComponent = computed(() => {
     };
     return "";
 });
+const noTab = computed(() => {
+    const message = theme.value.components?.aside?.noTab;
+    return (typeof message === 'string') ? message : DEFAULT.NOTAB;
+});
+const unknownTab = computed(() => {
+    const message = theme.value.components?.aside?.unknownTab;
+    return (typeof message === 'string') ? message : DEFAULT.UNKNOWNTAB;
+});
 
 
-const stopWatch = watch(tabsData, (newVal) => {
+const stopWatcher = watch(tabsData, (newVal) => {
     if (newVal.length > 0) {
         activeTabKey.value = newVal[0].key;
     }
 }, { immediate: true });
 
 onUnmounted(() => {
-    stopWatch();
+    stopWatcher();
 });
 </script>
 
@@ -110,8 +123,14 @@ onUnmounted(() => {
                     class="vpj-article-aside__close"
                 />
             </header>
-            <div class="vpj-article-aside__content">
+            <div v-if="tabsData.length === 0" class="vpj-article-aside__fallback">
+                {{ noTab }}
+            </div>
+            <div v-else class="vpj-article-aside__content">
                 <component v-if="activeTabComponent" :is="activeTabComponent"/>
+                <div v-else class="vpj-article-aside__fallback">
+                    {{ unknownTab }}
+                </div>
             </div>
         </aside>
         <div
@@ -139,6 +158,7 @@ onUnmounted(() => {
 
     .vpj-article-aside.collapsed {
         width: 0;
+        border-right-color: transparent;
     }
 
     .vpj-article-aside__header {
@@ -153,6 +173,26 @@ onUnmounted(() => {
     .vpj-article-aside__content {
         flex: 1;
         width: 100%;
+    }
+
+    /* Fallback */
+    .vpj-article-aside__fallback {
+        align-items: center;
+        color: var(--vpj-color-text-100);
+        display: flex;
+        flex: 1;
+        font-size: 1.25rem;
+        height: 100%;
+        justify-content: center;
+        line-height: 1.5;
+        min-height: 0;
+        min-width: 0;
+        overflow: hidden;
+        overflow-wrap: break-word;
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+        width: 100%;
+        word-break: break-all;
     }
 
     /* Tabs */
@@ -237,6 +277,7 @@ onUnmounted(() => {
         fill: var(--vpj-color-text-400);
     }
 
+    /* Overlay */
     .vpj-article-aside__overlay {
         display: block;
         bottom: 0;

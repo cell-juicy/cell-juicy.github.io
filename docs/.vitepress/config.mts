@@ -39,9 +39,6 @@ export default defineConfigWithTheme<ThemeConfig>({
                     }
                 }
             },
-            tag: {
-                textProcessor: (tag) => `# ${tag}`
-            },
         },
         doc: {
             space: {
@@ -62,6 +59,18 @@ export default defineConfigWithTheme<ThemeConfig>({
                     nodeMeta: {
                         global: {
                             inherit: true,
+                            resources: {
+                                bookEn: {
+                                    url: "https://pan.quark.cn/s/f629e0fc4f6b",
+                                    label: "实分析原书下载（英文原版）",
+                                    type: "download"
+                                },
+                                bookZh: {
+                                    url: "https://pan.quark.cn/s/b6e896d0c74e",
+                                    label: "实分析原书下载（中文翻译版）",
+                                    type: "download"
+                                },
+                            },
                             treeTitle(data) {
                                 return data.title?.replace(/(\d+)\.(\d+)[^\S\r\n]*(.*)/, '$1.$2节 $3') || data.id;
                             },
@@ -89,6 +98,11 @@ export default defineConfigWithTheme<ThemeConfig>({
                 },
             },
         },
+        components: {
+            tag: {
+                format: (tag) => `# ${tag}`
+            },
+        }
     },
     vite: {
         plugins: [

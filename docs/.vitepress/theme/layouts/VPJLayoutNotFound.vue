@@ -1,16 +1,11 @@
 <script setup>
-import { useData } from 'vitepress';
 import { storeToRefs } from 'pinia';
-import { computed } from 'vue';
 import { useHead } from '@unhead/vue';
 
 import { useVPJLayout } from '../composables/useVPJLayout';
 
 import VPJDynamicIcon from '../components/VPJDynamicIcon.vue';
 import VPJIconCrossCircle from '../components/icons/VPJIconCrossCircle.vue';
-
-import { mergeSimpleData } from '../utils/mergeData';
-import { resolveTitle } from '../utils/common';
 
 
 const store = useVPJLayout();
@@ -27,7 +22,9 @@ useHead(headConfig);
     <div class="vpj-layout-notfound">
         <div class="vpj-layout-notfound__content">
             <VPJDynamicIcon
-                :icon="notFoundContent.statusIcon"
+                :icon="notFoundContent.statusIcon === 'VPJIconCrossCircle'
+                    ? VPJIconCrossCircle
+                    : notFoundContent.statusIcon"
                 class="vpj-layout-notfound__content-icon"
             />
             <div

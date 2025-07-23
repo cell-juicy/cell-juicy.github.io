@@ -1,11 +1,6 @@
 ---
 layout: blog
 series: "测试博客"
-tags:
-  - Vue
-  - 组件
-  - props
-  - 非常非常非常长的标签用来测试样式表现
 order: 3
 ---
 

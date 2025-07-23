@@ -25,8 +25,6 @@ import type { CoverCssConfigData, DeviceSpecificData } from '../types/common';
 import type { VPJBlogLayoutConfig } from '../types/layoutBlog';
 import type { VPJDocLayoutConfig } from '../types/layoutDoc';
 import type { VPJPageLayoutConfig } from '../types/layoutPage';
-import { value } from 'happy-dom/lib/PropertySymbol.js';
-import { text } from 'stream/consumers';
 
 
 const DEFAULT = {

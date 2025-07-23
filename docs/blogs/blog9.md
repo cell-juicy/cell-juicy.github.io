@@ -1,6 +1,6 @@
 ---
 layout: blog
-series: "测试博客"
+series: "测试博客2"
 tags:
   - Markdown
   - 排版
