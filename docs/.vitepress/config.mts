@@ -29,7 +29,11 @@ export default defineConfigWithTheme<ThemeConfig>({
             ]
         },
         layouts: {
-
+            doc: {
+                titleTemplate(ctx) {
+                    return `${ctx.route.path.slice(-10)}`
+                },
+            }
         },
         blog: {
             "测试博客": {

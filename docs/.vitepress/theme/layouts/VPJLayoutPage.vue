@@ -47,14 +47,14 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
         <div class="vpj-layout-page__hero-iamge"/>
         <slot name="page-top"/>
         <div class="vpj-layout-page__grid-layout">
-            <div class="vpj-layout-page__gutter-left">
-                <slot name="page-gutter-left"/>
+            <div class="vpj-layout-page__padding-left">
+                <slot name="page-padding-left"/>
             </div>
             <slot>
                 <Content class="vpj-layout-page__content vpj-markdown"/>
             </slot>
-            <div class="vpj-layout-page__gutter-right">
-                <slot name="page-gutter-right"/>
+            <div class="vpj-layout-page__padding-right">
+                <slot name="page-padding-right"/>
             </div>
         </div>
         <slot name="page-bottom"/>
@@ -79,22 +79,22 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
     .vpj-layout-page__grid-layout {
         display: grid;
         grid-template-columns:
-            minmax(min(v-bind(computedGutter), 100%), 1fr)
-            minmax(min(calc(2 * v-bind(computedGutter)), 100%), v-bind(computedWidth))
-            minmax(min(v-bind(computedGutter), 100%), 1fr);
+            minmax(min(v-bind(computedPadding), 100%), 1fr)
+            minmax(min(calc(2 * v-bind(computedPadding)), 100%), v-bind(computedMaxWidth))
+            minmax(min(v-bind(computedPadding), 100%), 1fr);
         margin-top: v-bind(computedMarginTop);
         margin-bottom: v-bind(computedMarginBottom);
         min-height: 0;
         width: 100%;
     }
 
-    .vpj-layout-page__gutter-left {
+    .vpj-layout-page__padding-left {
         grid-column: 1;
         min-height: 0;
         width: 100%;
     }
 
-    .vpj-layout-page__gutter-right {
+    .vpj-layout-page__padding-right {
         grid-column: 3;
         min-height: 0;
         width: 100%;

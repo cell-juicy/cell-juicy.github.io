@@ -156,8 +156,8 @@ describe('VPJHeroImage 视图测试', () => {
             props: { src: 'hero.jpg' },
             slots: {
                 default: h('div', { class: 'main-content' }, 'Main Content'),
-                'gutter-left': h('div', { class: 'left-widget' }, 'Left Widget'),
-                'gutter-right': h('div', { class: 'right-widget' }, 'Right Widget'),
+                'padding-left': h('div', { class: 'left-widget' }, 'Left Widget'),
+                'padding-right': h('div', { class: 'right-widget' }, 'Right Widget'),
             }
         });
 
@@ -166,9 +166,9 @@ describe('VPJHeroImage 视图测试', () => {
         const gridLayout = container.querySelector('.vpj-hero-image__grid-layout');
         expect(gridLayout).toBeTruthy();
 
-        const leftCol = gridLayout?.querySelector('.vpj-hero-image__gutter-left');
+        const leftCol = gridLayout?.querySelector('.vpj-hero-image__padding-left');
         const contentCol = gridLayout?.querySelector('.vpj-hero-image__content');
-        const rightCol = gridLayout?.querySelector('.vpj-hero-image__gutter-right');
+        const rightCol = gridLayout?.querySelector('.vpj-hero-image__padding-right');
         
         expect(window.getComputedStyle(leftCol!).gridColumn).toBe('1');
         expect(window.getComputedStyle(contentCol!).gridColumn).toBe('2');

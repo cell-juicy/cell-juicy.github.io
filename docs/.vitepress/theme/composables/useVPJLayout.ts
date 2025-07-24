@@ -29,7 +29,7 @@ import type { VPJPageLayoutConfig } from '../types/layoutPage';
 
 const DEFAULT = {
     "NOT-FOUND": {
-        TITLETEMPLATE: undefined,
+        TITLETEMPLATE: true,
         FAVICON: undefined,
         DESCRPTION: undefined,
         STATUSICON: "VPJIconCrossCircle",
@@ -38,7 +38,7 @@ const DEFAULT = {
         GUIDANCE: { text: "返回主页", link: "/" }
     },
     "PAGE": {
-        TITLETEMPLATE: undefined,
+        TITLETEMPLATE: true,
         FAVICON: undefined,
         DESCRPTION: undefined,
         CONTENTMARGINBOTTOM: "1.5rem",
@@ -51,7 +51,7 @@ const DEFAULT = {
         },
     },
     "BLOG": {
-        TITLETEMPLATE: undefined,
+        TITLETEMPLATE: true,
         FAVICON: undefined,
         DESCRPTION: undefined,
         HEADERTITLETEMPLATE: ":series",
@@ -89,7 +89,7 @@ const DEFAULT = {
         },
     },
     "DOC":{
-        TITLETEMPLATE: undefined,
+        TITLETEMPLATE: true,
         FAVICON: undefined,
         DESCRPTION: undefined,
         HEADERTITLETEMPLATE: ":space",
@@ -168,6 +168,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         if (layout.value === "blog") return blogLayoutConfig.value;
         if (layout.value === "doc") return docLayoutConfig.value;
         if (layout.value === "page") return pageLayoutConfig.value;
+        if (layout.value === "not-found") return notFoundLayoutConfig.value;
         return {};
     });
     const specificConfig = computed(() => {

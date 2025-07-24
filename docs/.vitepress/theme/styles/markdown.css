@@ -429,6 +429,7 @@
 .vpj-markdown .MathJax[display="true"] {
     max-width: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
     padding-bottom: 6px;
     padding-top: 6px;
     scrollbar-width: unset;

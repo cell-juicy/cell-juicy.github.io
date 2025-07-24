@@ -101,14 +101,14 @@ onMounted(() => {
                 <div class="vpj-hero-image__grid-layout" :style="{
                     gridTemplateColumns: computedGrid
                 }">
-                    <div class="vpj-hero-image__gutter-left" style="grid-column: 1;">
-                        <slot name="gutter-left"/>
+                    <div class="vpj-hero-image__padding-left" style="grid-column: 1;">
+                        <slot name="padding-left"/>
                     </div>
                     <div class="vpj-hero-image__content" style="grid-column: 2;">
                         <slot/>
                     </div>
-                    <div class="vpj-hero-image__gutter-right" style="grid-column: 3;">
-                        <slot name="gutter-right"/>
+                    <div class="vpj-hero-image__padding-right" style="grid-column: 3;">
+                        <slot name="padding-right"/>
                     </div>
                 </div>
             </div>
@@ -140,8 +140,8 @@ onMounted(() => {
         width: 100%;
     }
 
-    .vpj-hero-image__gutter-left,
-    .vpj-hero-image__gutter-right {
+    .vpj-hero-image__padding-left,
+    .vpj-hero-image__padding-right {
         height: 100%;
         overflow: hidden;
     }
