@@ -1,8 +1,7 @@
 // https://vitepress.dev/guide/custom-theme
 import VPJLayout from "./VPJLayout.vue";
 
-// ThemeConfig type
-// import type { ThemeConfig } from "./type";
+import type { EnhanceAppContext } from "vitepress";
 
 // Blog Data
 import { initVPJBlogData } from "./composables/useBlogData";
@@ -11,8 +10,6 @@ import { VPJ_BLOG_DATA_SYMBOL } from "./utils/symbols";
 // Doc Data
 import { initVPJDocData } from "./composables/useDocData";
 import { VPJ_DOC_DATA_SYMBOL } from "./utils/symbols";
-
-import { inject } from "vue";
 
 // Pinia
 import { createPinia } from "pinia";
@@ -29,7 +26,7 @@ import "./styles/markdown.css";
 /** @type {import('vitepress').Theme} */
 export default {
     Layout: VPJLayout,
-    enhanceApp: async ({ app, router, siteData }) => {
+    enhanceApp: async ({ app, router, siteData }: EnhanceAppContext) => {
         // Pinia support
         const pinia = createPinia();
         app.use(pinia);
@@ -54,9 +51,12 @@ export default {
         app.provide(VPJ_DOC_DATA_SYMBOL, docData);
 
         // Add custom global components
+        // @ts-ignore
         const icons = import.meta.glob('./components/icons/*.vue');
         const iconPromises = Object.entries(icons).map(async ([path, loader]) => {
+            // @ts-ignore
             const name = path.split('/').pop().replace('.vue', '');
+            // @ts-ignore
             const module = await loader();
             app.component(name, module.default || module);
         });

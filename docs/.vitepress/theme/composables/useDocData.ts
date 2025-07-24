@@ -1,5 +1,4 @@
-import { ref, computed, inject, watch, Ref } from "vue";
-import { Route } from "vitepress";
+import { ref, computed, inject, watch } from "vue";
 import { cloneDeep } from "lodash-es";
 
 // @ts-ignore
@@ -8,22 +7,12 @@ import { data } from "../data/doc.data";
 import { VPJ_DOC_DATA_SYMBOL } from "../utils/symbols";
 import { any2Number, processDocOrder } from "../utils/common";
 
-import type {
-    ThemeConfig
-} from '../types';
-import type {
-    VPJDocLayoutConfig
-} from "../types/layoutDoc";
-import type {
-    SpaceMetaData,
-    NodeMetadata,
-    DocDefaultsConfig
-} from "../types/doc";
-import type {
-    PageContext,
-    ResourceInput,
-    ResourceData
-} from '../types/common';
+import type { Ref } from "vue";
+import type { Route, SiteData } from "vitepress";
+import type { ThemeConfig } from '../types';
+import type { VPJDocLayoutConfig } from "../types/layoutDoc";
+import type { SpaceMetaData, NodeMetadata } from "../types/doc";
+import type { PageContext, ResourceInput, ResourceData } from '../types/common';
 
 
 interface DocData {
@@ -360,7 +349,7 @@ export class DocPageData {
         });
     };
 
-    static generateVirtualNodes(dataBase: RawDocPageData[], docConfig: DocDefaultsConfig) {
+    static generateVirtualNodes(dataBase: RawDocPageData[], docConfig: Record<string, SpaceMetaData>) {
         const existingNodes: Set<string> = new Set();
         const virtualNodes: RawDocPageData[] = [];
 
@@ -450,7 +439,7 @@ export class DocPageData {
     };
 };
 
-export function initVPJDocData(route: Route, siteData): DocData {
+export function initVPJDocData(route: Route, siteData: Ref<SiteData>): DocData {
     const frontmatter = computed(() => route.data.frontmatter);
     const theme: Ref<ThemeConfig> = computed(() => siteData.value.themeConfig);
 

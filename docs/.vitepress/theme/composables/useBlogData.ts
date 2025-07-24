@@ -1,5 +1,4 @@
-import { ref, computed, inject, watch, Ref } from "vue";
-import { Route } from "vitepress";
+import { ref, computed, inject, watch } from "vue";
 import { cloneDeep } from "lodash-es";
 
 // @ts-ignore
@@ -7,18 +6,12 @@ import { data } from "../data/blog.data";
 
 import { VPJ_BLOG_DATA_SYMBOL } from "../utils/symbols";
 
-import type {
-    ThemeConfig
-} from '../types';
-import type {
-    VPJBlogLayoutConfig
-} from '../types/layoutBlog';
-import type {
-    SeriesMetaData
-} from '../types/blog';
-import type {
-    PageContext
-} from '../types/common';
+import type { Ref } from "vue";
+import type { Route, SiteData } from "vitepress";
+import type { ThemeConfig } from '../types';
+import type { VPJBlogLayoutConfig } from '../types/layoutBlog';
+import type { SeriesMetaData } from '../types/blog';
+import type { PageContext } from '../types/common';
 
 
 interface BlogData {
@@ -193,7 +186,7 @@ export class BlogPageData {
     };
 };
 
-export function initVPJBlogData(route: Route, siteData): BlogData {
+export function initVPJBlogData(route: Route, siteData: Ref<SiteData>): BlogData {
     const frontmatter = computed(() => route.data.frontmatter);
     const theme: Ref<ThemeConfig> = computed(() => siteData.value.themeConfig);
 
