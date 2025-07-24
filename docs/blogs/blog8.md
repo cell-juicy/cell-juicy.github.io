@@ -1,6 +1,6 @@
 ---
 layout: blog
-series: "CSS 精修系列"
+series: "测试博客"
 tags:
   - CSS
   - Grid

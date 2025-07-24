@@ -8,11 +8,11 @@ const props = defineProps({
         type: String,
         required: true
     },
-    callback: {
+    click: {
         type: Function,
         default: undefined
     },
-    processor: {
+    format: {
         type: Function,
         default: undefined
     }
@@ -20,31 +20,27 @@ const props = defineProps({
 
 const { theme } = useData();
 
-const resolvedCallback = computed(() => {
-    if (props.callback && typeof props.callback === 'function') return props.callback;
-    if (typeof theme.value.blog?.tag?.defaultCallback === 'function') return theme.value.blog.tag.defaultCallback;
-    return () => {}
+const resolvedClick = computed(() => {
+    if (props.click && typeof props.click === 'function') return props.click;
+    if (typeof theme.value.components?.tag?.onClick === 'function') return theme.value.components?.tag?.onClick;
+    return () => {};
 })
-const resolvedProcessor = computed(() => {
-    if (props.processor && typeof props.processor === 'function') return props.processor;
-    if (typeof theme.value.blog?.tag?.textProcessor === 'function') return theme.value.blog.tag.textProcessor;
+const resolvedFormat = computed(() => {
+    if (props.format && typeof props.format === 'function') return props.format;
+    if (typeof theme.value.components?.tag?.format === 'function') return theme.value.components?.tag?.format;
     return (tag) => tag;
 })
 
-const callback = computed(() => {
+const click = computed(() => {
     if (props.tag && typeof props.tag === 'string') {
-        return (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            resolvedCallback.value(props.tag);
-        }
+        return () => resolvedClick.value(props.tag);
     }
     return () => {}
 });
 
 const text = computed(() => {
     if (props.tag && typeof props.tag === 'string') {
-        const processed = resolvedProcessor.value(props.tag);
+        const processed = resolvedFormat.value(props.tag);
         return (typeof processed === 'string' && processed.trim().length > 0) 
             ? processed
             : props.tag;
@@ -56,7 +52,7 @@ const text = computed(() => {
 
 <template>
     <button
-        @click="callback"
+        @click.stop.prevent="click"
         class="vpj-blog-tag"
     >
         <div class="vpj-text">

@@ -1,32 +1,45 @@
-import { ImageData } from "./common";
+import { DeviceSpecificInput, ImageData, HeaderTitleTemplateInput } from "./common";
 
 
 /**
- * page布局的全局配置接口
+ * page 布局的全局配置接口
  * 
  * @remarks
- * 此接口定义了page布局的所有可配置项，主要是页面布局相关的配置。
+ * 此接口定义了 `page` 布局的所有可配置项，主要用于控制页面内容区域的布局样式，包括边距、宽度与 `<head>` 元信息的处理。
+ * 
  * 通过此配置，可以实现以下功能：
  * 
- * - 自定义page布局默认的两侧留白宽度与内容区域的宽度。
+ * - 自定义页面的左右留白、最大宽度、上下边距
+ * - 自定义页面的元信息
  * 
  * 可以配置的全部属性如下：
  * 
- * 1. 内容：
+ * 1. **元信息配置**
  * 
- * @see {@link VPJPageLayoutConfig.contentGutter} 两侧留白宽度
- * @see {@link VPJPageLayoutConfig.contentWidth} 内容区域宽度
+ * @see {@link VPJPageLayoutConfig.titleTemplate} 页面标题模板配置
+ * @see {@link VPJPageLayoutConfig.favicon} 页面默认图标
+ * @see {@link VPJPageLayoutConfig.description} 页面默认描述
+ * 
+ * 2. **内容配置**
+ * 
+ * @see {@link VPJPageLayoutConfig.contentPadding} 内边距
+ * @see {@link VPJPageLayoutConfig.contentMaxWidth} 最大宽度
+ * @see {@link VPJPageLayoutConfig.contentMarginTop} 顶部边距
+ * @see {@link VPJPageLayoutConfig.contentMarginBottom} 底部边距
  * 
  * @example
- * 示例1：一个简单的配置示例
+ * 示例 1：一个简单的配置示例
  * ```ts
  * // config.mjs
  * export default {
  *   themeConfig: {
  *     layouts: {
  *       page: {
- *         contentGutter: "2rem",
- *         contentWidth: "70rem"
+ *         titleTemplate: "页面 - :title",
+ *         contentPadding: "2rem",
+ *         contentMaxWidth: "70rem",
+ *         contentMarginTop: "3rem",
+ *         contentMarginBottom: "2rem"
  *       }
  *     }
  *   }
@@ -35,7 +48,58 @@ import { ImageData } from "./common";
  */
 export interface VPJPageLayoutConfig {
     /**
-     * 一般页面默认图标
+     * 页面标题模板
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置所有 `page` 布局页面在 `<head>` 中渲染的 `<title>` 元素，可设置统一的标题格式。
+     * 
+     * 仅支持以下三种模式：
+     * 
+     * 1. **字符串模板** - 使用 `:title` 占位符
+     * 2. **禁用模式（false）** - 跳过模板计算，直接使用标题
+     * 3. **默认模式（true）** - 使用默认模板
+     * 
+     * 注意事项：
+     * 
+     * - 不支持函数形式输入
+     * - 字符串模板中仅支持 `:title` 占位符
+     * - 页面 frontmatter 中的 `titleTemplate` 优先级更高
+     * 
+     * @example
+     * 示例 1：添加统一前缀
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         titleTemplate: "页面 - :title"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 示例 2：完全禁用模板
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         titleTemplate: false
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link TitleTemplateInput}
+     */
+    titleTemplate?: string | boolean;
+
+    /**
+     * 页面默认图标
      * @optional
      * 
      * @remarks
@@ -46,10 +110,10 @@ export interface VPJPageLayoutConfig {
      * 
      * 注意事项：
      * - 页面 frontmatter 中的 `favicon` 优先级更高
-     * - 若空间也未设置，将使用 `themeConfig.logo` 作为兜底图标
+     * - 若系列也未设置，将使用 `themeConfig.logo` 作为兜底图标
      * 
      * @example
-     * 示例 1：为所有一般页面设置统一图标
+     * 示例 1：设置统一图标
      * ```ts
      * export default {
      *   themeConfig: {
@@ -63,15 +127,15 @@ export interface VPJPageLayoutConfig {
      * ```
      * 
      * @example
-     * 示例 2：提供图标及其说明文本
+     * 示例 2：图标及说明文本
      * ```ts
      * export default {
      *   themeConfig: {
      *     layouts: {
      *       page: {
      *         favicon: {
-     *           src: "/images/page-icon-dark.svg",
-     *           alt: "文档空间徽标",
+     *           src: "/images/page-icon.svg",
+     *           alt: "页面图标"
      *         }
      *       }
      *     }
@@ -84,208 +148,256 @@ export interface VPJPageLayoutConfig {
     favicon?: ImageData;
 
     /**
-     * page布局的两侧留白配置
+     * 页面默认描述
      * @optional
-     * @default {mobile: "1.5rem", tablet: "1.5rem", desktop: "4rem"}
      * 
      * @remarks
-     * 该项控制page布局中两侧留白的宽度，支持两种类型的输入：
-     * 
-     * 1. 一个字符串，作为css变量应用于所有尺寸的设备上。
-     * 2. 一个对象，通过键mobile、tablet和desktop分别设置移动端（0\~768px）、平板端（768\~1024px）和桌面端（>1024px）的留白宽度。
+     * 该项用于配置所有 `page` 布局页面的默认页面描述，
+     * 将被注入为 `<meta name="description">`，部分搜索引擎或社交平台会将其作为摘要展示。
      * 
      * 注意事项：
-     * 
-     * * 该项同样可以在应用了page布局的页面frontmatter中单独设置，具体参考示例。
-     * * 自定义的优先级顺序是：页面frontmatter > 主题配置 > 默认值，并且移动端、平板端、桌面端的配置继承独立计算。
-     * * 该项并不是直接控制留白宽度，实际布局中留白列占据grid布局的宽度为`minmax(min(contentGutter, 100%), 1fr)`。
-     * * 此项的设置对同一个页面下的VPJHeroImage组件同样生效。
+     * - 页面 frontmatter 中的 `description` 优先级更高
+     * - 若系列也未提供，将使用 `site.description` 作为最终兜底
      * 
      * @example
-     * 示例1：通过主题配置覆盖默认值
+     * 示例 1：提供统一页面描述
      * ```ts
-     * // config.mjs，这会在所有尺寸的窗口中应用2rem作为留白宽度
      * export default {
      *   themeConfig: {
      *     layouts: {
      *       page: {
-     *         contentGutter: "2rem"
+     *         description: "这是一个静态页面，包含通用信息。"
      *       }
      *     }
      *   }
      * }
      * ```
-     * 
-     * @example
-     * 示例2：不同尺寸屏幕下的不同留白宽度
-     * ```ts
-     * // config.mjs，这会在0~768px的窗口应用留白宽度2rem，768px~1024px的窗口应用留白宽度2.5rem，>1024px的窗口应用留白宽度5rem
-     * export default {
-     *   themeConfig: {
-     *     layouts: {
-     *       page: {
-     *         contentGutter: {
-     *           mobile: "2rem",
-     *           tablet: "2.5rem",
-     *           desktop: "5rem"
-     *         } // 如果不完全覆盖，则会继承默认值，例如输入为{mobile: "2rem"}，则tablet和desktop尺寸的窗口留白宽度会继承默认值
-     *       }
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例3：在页面frontmatter中单独设置
-     * ```markdown
-     * // 在你想要单独定制的页面frontmatter中添加如下配置，这会在0~768px的窗口应用留白宽度1rem，768px~1024px的窗口应用留白宽度3rem，>1024px的窗口应用留白宽度5rem
-     * ---
-     * contentGutter: 
-     *   mobile: "1rem"
-     *   tablet: "3rem"
-     *   desktop: "5rem"
-     * ---
-     * ```
-     * 
-     * @example
-     * 示例4：不完全覆盖的示例
-     * ```markdown
-     * // 假设这是a.md页面的frontmatter设置
-     * ---
-     * contentGutter: 
-     *   mobile: "10ch"
-     *   tablet: "20ch"
-     * ---
-     * ```
-     * ```ts
-     * // config.mjs，假设这是站点主题配置
-     * export default {
-     *   themeConfig: {
-     *     layouts: {
-     *       page: {
-     *         contentGutter: {
-     *           tablet: "24px",
-     *           desktop: "48px"
-     *         }
-     *       }
-     *     }
-     *   }
-     * }
-     * ```
-     * 最终a.md页面的留白宽度会是：
-     * 
-     * 1. 0\~768px的窗口应用留白宽度10ch（继承顺序frontmatter(10ch) > theme(undefined) > default(1.5rem)）
-     * 2. 768px\~1024px的窗口应用留白宽度20ch（继承顺序frontmatter(20ch) > theme(24px) > default(1.5rem)）
-     * 3. \>1024px的窗口应用留白宽度48px（继承顺序frontmatter(undefined) > theme(48px) > default(4rem)）
      */
-    contentGutter?:
-        | string
-        | {
-            mobile?: string;
-            tablet?: string;
-            desktop?: string
-        };
-    
+    description?: string;
+
     /**
-     * page布局的内容宽度配置
+     * 内容区域底部边距配置（page布局）
      * @optional
-     * @default "61.25rem"
+     * @default "1.5rem"
      * 
      * @remarks
-     * 该项控制page布局中页面内容的宽度，支持两种类型的输入：
+     * 此项用于控制 `page` 布局下内容区域底部的预留间距，支持以下配置方式：
      * 
-     * 1. 一个字符串，作为css变量应用于所有尺寸的设备上。
-     * 2. 一个对象，通过键mobile、tablet和desktop分别设置移动端（0\~768px）、平板端（768\~1024px）和桌面端（>1024px）的留白宽度。
+     * 1. **统一值模式** - 直接使用 CSS 高度值（如 `"2rem"`）
+     * 2. **设备响应模式** - 分设备配置移动端 / 平板 / 桌面端高度
+     * 3. **禁用模式** - 使用 `false` 取消底部边距
+     * 
+     * 输入值将被标准化为 {@link NormalizedDeviceSpecificInput} 格式参与合并。
      * 
      * 注意事项：
-     * 
-     * * 该项同样可以在应用了page布局的页面frontmatter中单独设置，具体参考示例。
-     * * 自定义的优先级顺序是：页面frontmatter > 主题配置 > 默认值，并且移动端、平板端、桌面端的配置继承独立计算。
-     * * 该项并不是直接控制内容宽度，实际布局中内容列占据grid布局的宽度为`minmax(min(calc(2 * contentGutter), 100%), contentWidth)`。
-     * * 此项的设置对同一个页面下的VPJHeroImage组件同样生效。
+     * - 可在页面 frontmatter 中配置（如 `contentMarginBottom: "60px"`）
+     * - 最终值将被注入为 CSS 变量，用于调整布局留白，请使用合法的 CSS 单位（如 `px`、`vh`、`rem` 等）
+     * - 若设为 `false`，则内容区域将与容器底部无间距
      * 
      * @example
-     * 示例1：通过主题配置覆盖默认值
+     * 示例 1：响应式配置
      * ```ts
-     * // config.mjs，这会在所有尺寸的窗口中应用600px作为内容宽度
      * export default {
      *   themeConfig: {
      *     layouts: {
      *       page: {
-     *         contentWidth: "600px"
-     *       }
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例2：不同尺寸屏幕下的不同内容宽度
-     * ```ts
-     * // config.mjs，这会在0~768px的窗口应用内容宽度40rem，768px~1024px的窗口应用内容宽度55rem，>1024px的窗口应用内容宽度65rem
-     * export default {
-     *   themeConfig: {
-     *     layouts: {
-     *       page: {
-     *         contentWidth: {
-     *           mobile: "40rem",
-     *           tablet: "55rem",
-     *           desktop: "65rem"
-     *         } // 如果不完全覆盖，则会继承默认值，例如输入为{mobile: "40rem"}，则tablet和desktop尺寸的窗口内容宽度会继承默认值
-     *       }
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例3：在页面frontmatter中单独设置
-     * ```markdown
-     * // 在你想要单独定制的页面frontmatter中添加如下配置，这会在0~768px的窗口应用内容宽度490px，768px~1024px的窗口应用内容宽度780px，>1024px的窗口应用内容宽度960px
-     * ---
-     * contentWidth: 
-     *   mobile: "490px"
-     *   tablet: "780px"
-     *   desktop: "960px"
-     * ---
-     * ```
-     * 
-     * @example
-     * 示例4：不完全覆盖的示例
-     * ```markdown
-     * // 假设这是a.md页面的frontmatter设置
-     * ---
-     * contentGutter: 
-     *   mobile: "100ch"
-     *   tablet: "200ch"
-     * ---
-     * ```
-     * ```ts
-     * // config.mjs，假设这是站点主题配置
-     * export default {
-     *   themeConfig: {
-     *     layouts: {
-     *       page: {
-     *         contentWidth: {
-     *           tablet: "600px",
-     *           desktop: "900px"
+     *         contentMarginBottom: {
+     *           mobile: "1rem",
+     *           tablet: "1.5rem",
+     *           desktop: "2rem"
      *         }
      *       }
      *     }
      *   }
      * }
      * ```
-     * 最终a.md页面的内容宽度会是：
      * 
-     * 1. 0~768px宽的窗口应用内容宽度100ch（继承顺序frontmatter(100ch) > theme(undefined) > default(61.25rem)）
-     * 2. 768px~1024px宽的窗口应用内容宽度20ch（继承顺序frontmatter(200ch) > theme(600px) > default(61.25rem)）
-     * 3. \>1024px宽的窗口应用内容宽度48px（继承顺序frontmatter(undefined) > theme(900px) > default(61.25rem)）
+     * @example
+     * 示例 2：统一边距配置
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         contentMarginBottom: "2rem"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link DeviceSpecificInput}
+     * @see {@link NormalizedDeviceSpecificInput}
      */
-    contentWidth?:
-        | string
-        | {
-            mobile?: string;
-            tablet?: string;
-            desktop?: string
-        };
+    contentMarginBottom?: DeviceSpecificInput;
+
+    /**
+     * 内容区域顶部边距配置（page布局）
+     * @optional
+     * @default "1.5rem"
+     * 
+     * @remarks
+     * 此项用于控制 `page` 布局下内容区域顶部的预留间距，支持以下配置方式：
+     * 
+     * 1. **统一值模式** - 直接使用 CSS 高度值（如 `"2rem"`）
+     * 2. **设备响应模式** - 分设备配置移动端 / 平板 / 桌面端高度
+     * 3. **禁用模式** - 使用 `false` 取消顶部边距
+     * 
+     * 输入值将被标准化为 {@link NormalizedDeviceSpecificInput} 格式参与合并。
+     * 
+     * 注意事项：
+     * - 可在页面 frontmatter 中配置（如 `contentMarginTop: "60px"`）
+     * - 最终值将被注入为 CSS 变量，用于调整布局留白，请使用合法的 CSS 单位（如 `px`、`vh`、`rem` 等）
+     * - 若设为 `false`，则内容区域将紧贴顶部容器
+     * 
+     * @example
+     * 示例 1：响应式配置
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         contentMarginTop: {
+     *           mobile: "1rem",
+     *           tablet: "1.5rem",
+     *           desktop: "2rem"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 示例 2：统一边距配置
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         contentMarginTop: "2rem"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link DeviceSpecificInput}
+     * @see {@link NormalizedDeviceSpecificInput}
+     */
+    contentMarginTop?: DeviceSpecificInput;
+
+    /**
+     * 内容区域两侧间隔宽度配置（page布局）
+     * @optional
+     * @default { mobile: "1.5rem", tablet: "1.5rem", desktop: "4rem" }
+     * 
+     * @remarks
+     * 此项用于控制 `page` 布局下内容区域左右间隔，支持以下配置方式：
+     * 
+     * 1. **统一值模式** - 直接使用 CSS 宽度值（如 `"2rem"`）
+     * 2. **设备响应模式** - 分设备配置移动端 / 平板 / 桌面端宽度
+     * 3. **禁用模式** - 使用 `false` 取消两侧间隔
+     * 
+     * 输入值将被标准化为 {@link NormalizedDeviceSpecificInput} 格式参与合并。
+     * 
+     * 注意事项：
+     * - 可在页面 frontmatter 中配置（如 `contentPadding: "4rem"`）
+     * - 实际用于设置布局 grid 的左右 `minmax(min(value, 100%), 1fr)` 值
+     * - 在桌面端（>1024px）下，若存在侧边栏控制器，会在此基础上增加 48px 用于视觉对称
+     * - 若设为 `false`，两侧间隔将为 0
+     * 
+     * @example
+     * 示例 1：响应式配置
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         contentPadding: {
+     *           mobile: "1rem",
+     *           tablet: "2rem",
+     *           desktop: "4rem"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 示例 2：统一值配置
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         contentPadding: "2rem"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link DeviceSpecificInput}
+     * @see {@link NormalizedDeviceSpecificInput}
+     */
+    contentPadding?: DeviceSpecificInput;
+
+    /**
+     * 内容最大宽度配置（page布局）
+     * @optional
+     * @default "760px"
+     * 
+     * @remarks
+     * 此项用于控制 `page` 布局下内容区域的最大宽度，支持以下配置方式：
+     * 
+     * 1. **统一值模式** - 直接使用 CSS 宽度值（如 `"60rem"`）
+     * 2. **设备响应模式** - 分设备配置移动端 / 平板 / 桌面端宽度
+     * 3. **禁用模式** - 使用 `false` 使内容宽度自适应容器宽度
+     * 
+     * 输入值将被标准化为 {@link NormalizedDeviceSpecificInput} 格式参与合并。
+     * 
+     * 注意事项：
+     * - 可在页面 frontmatter 中配置（如 `contentMaxWidth: "960px"`）
+     * - 实际用于设置布局 grid 的中间列宽度，逻辑为 `minmax(min(2 * padding, 100%), maxWidth)`
+     * - 若设为 `false`，将取消最大宽度限制，内容宽度为 100%
+     * 
+     * @example
+     * 示例 1：响应式配置
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         contentMaxWidth: {
+     *           mobile: "400px",
+     *           tablet: "540px",
+     *           desktop: "680px"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 示例 2：统一宽度配置
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         contentMaxWidth: "48rem"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link contentPadding} 页面左右间距配置
+     * @see {@link DeviceSpecificInput}
+     * @see {@link NormalizedDeviceSpecificInput}
+     */
+    contentMaxWidth?: DeviceSpecificInput;
 }

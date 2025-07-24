@@ -1,6 +1,6 @@
 ---
 layout: blog
-series: "JavaScript 语法精讲"
+series: "测试博客"
 tags:
   - 解构赋值
   - ES6

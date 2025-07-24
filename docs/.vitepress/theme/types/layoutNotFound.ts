@@ -9,20 +9,22 @@ import { ImageData } from "./common";
  * 通过此配置，可以实现以下功能：
  * 
  * - 自定义404页的内容图标，标题，文本等内容
+ * - 自定义404页的元信息。
  * 
  * 可以配置的全部属性如下：
  * 
- * 1. 标题栏
+ * 1. **内容配置**
  * 
- * @see {@link VPJNotFoundLayoutConfig.title} 标签页标题（未实现）
- * @see {@link VPJNotFoundLayoutConfig.favicon} 标签页图标（未实现）
+ * @see {@link VPJNotFoundLayoutConfig.statusIcon} 内容图标
+ * @see {@link VPJNotFoundLayoutConfig.heading} 内容标题
+ * @see {@link VPJNotFoundLayoutConfig.message} 内容文本
+ * @see {@link VPJNotFoundLayoutConfig.guidance} 内容链接
  * 
- * 2. 内容：
+ * 2. **元信息配置**
  * 
- * @see {@link VPJNotFoundLayoutConfig.contentIcon} 内容图标
- * @see {@link VPJNotFoundLayoutConfig.contentTitle} 内容标题
- * @see {@link VPJNotFoundLayoutConfig.contentText} 内容文本
- * @see {@link VPJNotFoundLayoutConfig.contentLink} 内容链接
+ * @see {@link VPJNotFoundLayoutConfig.titleTemplate} 标题模板
+ * @see {@link VPJNotFoundLayoutConfig.favicon} 导航栏图标
+ * @see {@link VPJNotFoundLayoutConfig.description} 描述
  * 
  * @example
  * 示例1：一个简单的配置示例
@@ -32,9 +34,9 @@ import { ImageData } from "./common";
  *   themeConfig: {
  *     layouts: {
  *       notFound: {
- *         contentTitle: "出现了一点问题",
- *         contentText: "你访问的页面不存在",
- *         contentLink: {text: "点我返回主页", link: "/zh/"}
+ *         heading: "出现了一点问题",
+ *         message: "你访问的页面不存在",
+ *         guidance: {text: "点我返回主页", link: "/zh/"}
  *       }
  *     }
  *   }
@@ -43,33 +45,54 @@ import { ImageData } from "./common";
  */
 export interface VPJNotFoundLayoutConfig {
     /**
-     * 页面默认标题
+     * 页面标题模板
      * @optional
      * 
      * @remarks
-     * 该项用于配置默认 404 页面（未显式定义的错误页）在标签页中显示的标题文本，也可作为一般 `not-found` 布局页面未设置标题时的默认值。
+     * 该项用于配置所有 `page` 布局页面在 `<head>` 中渲染的 `<title>` 元素，可设置统一的标题格式。
      * 
-     * 不影响页面正文显示，仅用于 `<head>` 元信息中的 `<title>` 标签渲染。
+     * 仅支持以下三种模式：
+     * 
+     * 1. **字符串模板** - 使用 `:title` 占位符
+     * 2. **禁用模式（false）** - 跳过模板计算，直接使用标题
+     * 3. **默认模式（true）** - 使用默认模板
      * 
      * 注意事项：
-     * - 页面 frontmatter 中设置的 `title` 将覆盖此项
-     * - 若此项与 frontmatter 均未提供，将使用 VitePress 默认的标题逻辑
+     * 
+     * - 不支持函数形式输入
+     * - 字符串模板中仅支持 `:title` 占位符
+     * - 页面 frontmatter 中的 `titleTemplate` 优先级更高
      * 
      * @example
-     * 示例 1：为默认 404 页面设置标题文本
+     * 示例 1：添加统一前缀
      * ```ts
      * export default {
      *   themeConfig: {
      *     layouts: {
-     *       notFound: {
-     *         title: "您访问的页面不存在"
+     *       page: {
+     *         titleTemplate: "页面 - :title"
      *       }
      *     }
      *   }
      * }
      * ```
+     * 
+     * @example
+     * 示例 2：完全禁用模板
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         titleTemplate: false
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
      */
-    title?: string;
+    titleTemplate?: string | boolean;
 
     /**
      * 页面默认图标
@@ -178,7 +201,7 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentIcon: "/path/to/icon.png"
+     *         statusIcon: "/path/to/icon.png"
      *       }
      *     }
      *   }
@@ -193,7 +216,7 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentIcon: { src: "/path/to/icon.png", alt: "some description" }
+     *         statusIcon: { src: "/path/to/icon.png", alt: "some description" }
      *       }
      *     }
      *   }
@@ -208,14 +231,15 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentIcon: "CustomIcon" // 也可以像这样输入 contentIcon: { component: "CustomIcon" }
+     *         statusIcon: "CustomIcon" // 也可以像这样输入 statusIcon: { component: "CustomIcon" }
      *       }
      *     }
      *   }
      * }
      * ```
      */
-    contentIcon?:
+    statusIcon?:
+        | false
         | ImageData
         | { component: string };
 
@@ -225,7 +249,7 @@ export interface VPJNotFoundLayoutConfig {
      * @default "页面未找到"
      * 
      * @remarks
-     * 该项控制404页内容的标题内容，接受一个字符串作为标题输入（此标题文本在contentIcon控制的图标下方）
+     * 该项控制404页内容的标题内容，接受一个字符串作为标题输入（此标题文本在statusIcon控制的图标下方）
      * 
      * @example
      * 示例1：修改标题
@@ -235,14 +259,14 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentTitle: "404 Error"
+     *         heading: "404 Error"
      *       }
      *     }
      *   }
      * }
      * ```
      */
-    contentTitle?: string;
+    heading?: string;
 
     /**
      * 404页的内容文本配置
@@ -250,7 +274,7 @@ export interface VPJNotFoundLayoutConfig {
      * @default "很抱歉，您尝试访问的页面不存在或可能已被删除。"
      * 
      * @remarks
-     * 该项控制404页内容的文本内容，接受一个字符串作为标题输入（此文本内容在contentTitle控制的标题文本下方）
+     * 该项控制404页内容的文本内容，接受一个字符串作为标题输入（此文本内容在heading控制的标题文本下方）
      * 
      * @example
      * 示例1：修改标题
@@ -260,14 +284,14 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentText: "An error occurred, please click to return to the home page."
+     *         message: "An error occurred, please click to return to the home page."
      *       }
      *     }
      *   }
      * }
      * ```
      */
-    contentText?: string;
+    message?: string;
 
     /**
      * 404页的内容链接配置
@@ -288,7 +312,7 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentLink: "Home"
+     *         guidance: "Home"
      *       }
      *     }
      *   }
@@ -303,7 +327,7 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentLink: { text: "关于我们", link: "/about/" }
+     *         guidance: { text: "关于我们", link: "/about/" }
      *       }
      *     }
      *   }
@@ -318,14 +342,15 @@ export interface VPJNotFoundLayoutConfig {
      *   themeConfig: {
      *     layouts: {
      *       notFound: {
-     *         contentLink: { link: "/zh/" }
+     *         guidance: { link: "/zh/" }
      *       }
      *     }
      *   }
      * }
      * ```
      */
-    contentLink?:
+    guidance?:
+        | false
         | string
-        | { text?: string; link?: string};
+        | { text?: string; link?: string | false};
 }

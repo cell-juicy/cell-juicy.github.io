@@ -1,6 +1,6 @@
 ---
 layout: blog
-series: "开发者工具教程"
+series: "测试博客"
 tags:
   - DevTools
   - Chrome

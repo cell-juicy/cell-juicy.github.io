@@ -109,7 +109,7 @@ const childrenCollapsed = ref(true);
     }
 
     .vpj-layout-doc__aside-doc-node-link:hover,
-    .vpj-layout-doc__aside-doc-node-link:focus,
+    .vpj-layout-doc__aside-doc-node-link:active,
     .vpj-layout-doc__aside-doc-node-link.current {
         background-color: var(--vpj-color-bg-300);
         color: var(--vpj-color-text-400);

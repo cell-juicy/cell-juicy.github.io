@@ -55,8 +55,8 @@ export type ImageData =
 export type PageContext = {
     route: Route;
     layoutConfig:
-        | { layout: "blog"; series?: string; tags?: string[], order?: number; title?: string }
-        | { layout: "doc"; space?: string; order?: number[]; title?: string };
+        | { layout: "blog"; series?: string; tags?: string[], order: number; title?: string }
+        | { layout: "doc"; space?: string; order: number[]; title?: string };
 }
 
 
@@ -448,7 +448,14 @@ export type ToolbarButtonData = {
 export type HeaderTitleTemplateInput =
     | false
     | string
-    | ((ctx: PageContext) => string | false)
+    | ((ctx: PageContext) => string | false);
+
+
+export type TitleTemplateInput =
+    | undefined
+    | string
+    | boolean
+    | ((ctx: PageContext) => string)
 
 
 /**

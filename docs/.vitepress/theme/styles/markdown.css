@@ -3,6 +3,10 @@
     display: flex;
     flex-direction: column;
     line-height: 1.6;
+    overflow: visible;
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-break: break-all;
 
     --vpj-code-copy-icon: url('data:image/svg+xml;utf8,<svg id="Layer_1" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" fill="rgb(78, 89, 105)"><path d="m20 20h-20v-17a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3zm-18-2h16v-15a1 1 0 0 0 -1-1h-14a1 1 0 0 0 -1 1zm20-13.816v17.816h-18v2h20v-17a3 3 0 0 0 -2-2.816z"/></svg>');
     --vpj-code-copy-copied-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512" fill="rgb(78, 89, 105)"><g id="_01_align_center" data-name="01 align center"><path d="M7.8,20.53a2.99,2.99,0,0,1-2.121-.877L.086,14.061,1.5,12.646l5.593,5.593a1,1,0,0,0,1.414,0L22.5,4.246,23.914,5.66,9.921,19.653A2.99,2.99,0,0,1,7.8,20.53Z"/></g></svg>');
@@ -422,27 +426,34 @@
     z-index: 1;
 }
 
-.vpj-markdown .md-task-list-item > input {
-  margin-left: -1.3em;
+.vpj-markdown .MathJax[display="true"] {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    scrollbar-width: unset;
+    scrollbar-color: unset;
 }
 
-.vpj-markdown .md-fences {
-	background-color: #f8f8f8;
+.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar {
+    height: 4px;
 }
 
-.mathjax-block>.code-tooltip {
-	bottom: .375rem;
+.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
-.md-mathjax-midline {
-    background: #fafafa;
+.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-thumb {
+    background-color: var(--vpj-color-text-100);
+    border-radius: 2px;
 }
 
-.md-image>.md-meta {
-    /*border: 1px solid #ddd;*/
-    border-radius: 3px;
-    padding: 2px 0px 0px 4px;
-    font-size: 0.9em;
-    color: inherit;
+.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-thumb:hover {
+    background-color: var(--vpj-color-text-200);
+}
+
+.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-thumb:active {
+    background-color: var(--vpj-color-text-300);
 }
 

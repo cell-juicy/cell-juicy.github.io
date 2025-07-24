@@ -61,8 +61,8 @@ onUnmounted(() => {
             <VPJContent>
                 <template #page-top><slot name="page-top"/></template>
                 <template #page-bottom><slot name="page-bottom"/></template>
-                <template #page-gutter-left><slot name="page-gutter-left"/></template>
-                <template #page-gutter-right><slot name="page-gutter-right"/></template>
+                <template #page-padding-left><slot name="page-padding-left"/></template>
+                <template #page-padding-right><slot name="page-padding-right"/></template>
                 <template #blog-header><slot name="blog-header"/></template>
                 <template #blog-header-before><slot name="blog-header-before"/></template>
                 <template #blog-header-between><slot name="blog-header-between"/></template>

@@ -17,8 +17,8 @@ const { page, frontmatter } = useData();
         <VPJLayoutPage v-else-if="frontmatter.layout === 'page'">
             <template #page-top><slot name="page-top"/></template>
             <template #page-bottom><slot name="page-bottom"/></template>
-            <template #page-gutter-left><slot name="page-gutter-left"/></template>
-            <template #page-gutter-right><slot name="page-gutter-right"/></template>
+            <template #page-padding-left><slot name="page-padding-left"/></template>
+            <template #page-padding-right><slot name="page-padding-right"/></template>
         </VPJLayoutPage>
         <VPJLayoutBlog v-else-if="frontmatter.layout === 'blog'">
             <template #blog-header><slot name="blog-header"/></template>

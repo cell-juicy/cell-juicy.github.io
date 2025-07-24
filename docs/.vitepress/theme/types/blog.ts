@@ -1,3 +1,4 @@
+import { BlogPageData } from "../composables/useBlogData";
 import {
     AsideTabInput,
     NormalizedAsideTabInput,
@@ -11,7 +12,8 @@ import {
     NormalizedToolbarDownloadInput,
     ToolbarButtonInput,
     NormalizedToolbarButtonInput,
-    PageContext
+    PageContext,
+    TitleTemplateInput
 } from "./common";
 
 import {
@@ -54,6 +56,7 @@ import {
  * 
  * 4. **页面数据配置**  
  * @see {@link SeriesMetaData.presetTags} 预设标签
+ * @see {@link SeriesMetaData.listTitle} 目录标题
  * 
  * 注意事项：
  * - 通过此接口配置会根据键值来为series名称等于此键值的blog页进行配置。
@@ -139,7 +142,7 @@ export interface SeriesMetaData {
      * @see {@link HeaderTitleTemplateInput}
      * @see {@link VPJBlogLayoutConfig.titleTemplate}
      */
-    titleTemplate?: HeaderTitleTemplateInput;
+    titleTemplate?: TitleTemplateInput;
 
     /**
      * 博客系列图标
@@ -1317,167 +1320,8 @@ export interface SeriesMetaData {
      * @see {@link VPJBlogLayoutConfig} 布局层级配置容器
      */
     presetTags?: string[];
-}
 
-/**
- * blog全局配置接口
- * 
- * @remarks
- * 此接口定义了blog页相关的可配置项，包含根据系列配置不同blog页的默认数据，以及全局注册组件VPJTag的配置内容。
- * 
- * 通过此配置，可以实现以下功能：
- * 
- * - 根据系列为不同系列的blog页配置不同的默认配置。
- * - 为所有默认组件中的VPJTag组件设置属性，包括修改回调函数，添加文本处理函数。
- * 
- * 可配置的全部属性如下：
- * 
- * @see {@link BlogDefaultsConfig.tag} Tag配置
- * @see {@link BlogDefaultsConfig.series} 系列默认数据配置
- * 
- * @example
- * 示例1：配置blog
- * ```ts
- * // config.ts
- * export default defineConfig({
- *   themeConfig: {
- *     blog: {
- *       tag: {
- *         defaultCallback(tag) {console.log(tag)},
- *         textProcessor: (tag) => `#${tag}` 
- *       },
- *       series: {
- *         "杂谈收录 其1": {
- *           asideTabs: {
- *             tags: false,
- *             customTab: {
- *               name: "自定义页面",
- *               component: "CustomComponent",
- *               order: 2
- *             }
- *           },
- *           cover: "/public/path/to/image2.png",
- *           github: "https://github.com/my-name/my-repositories2"
- *         }
- *       }
- *     }
- *   }
- * })
- * ```
- */
-export interface BlogDefaultsConfig {
-    /**
-     * 系列默认配置
-     * @see {@link SeriesMetaData} blog系列默认数据接口
-     */
-    series?: Record<string, SeriesMetaData>;
-
-    /**
-     * VPJTag默认配置
-     * 
-     * @remarks
-     * 此接口定义了VPJTag组件默认配置的所有可配置项，包括通用文本转换以及回调函数等内容。
-     * 
-     * 通过此项配置，可以实现以下功能：
-     * 
-     * - 配置所有默认组件中VPJTag的回调函数
-     * - 配置所有默认组件中VPJTag的文字二次处理函数
-     * 
-     * @example
-     * 示例1：配置VPJTag
-     * ```ts
-     * // config.ts
-     * export default defineConfig({
-     *   themeConfig: {
-     *     blog: {
-     *       tag: {
-     *         defaultCallback(tag) {console.log(tag)},
-     *         textProcessor: (tag) => `#${tag}` 
-     *       },
-     *     }
-     *   }
-     * })
-     * ```
-     */
-    tag?: {
-        /**
-         * 全局标签点击回调函数
-         * @optional
-         * 
-         * @param tag 
-         * @returns 
-         * 
-         * @remarks
-         * 此项用于配置对应所有VPJTag的默认回调函数，支持以下配置方式：
-         * 
-         * 1. **函数模式**：根据tag执行相应操作。
-         * 
-         * 注意事项：
-         * 
-         * - 根据传入的callback函数，实际执行的点击回调函数为：
-         * 
-         *   ```
-         *   function clickCallback(event) {
-         *     event.preventDefault();
-         *     event.stopPropagation();
-         *     callback(tag);
-         *   }
-         *   ```
-         * 
-         * @example
-         * 示例1：配置所有的VPJTag默认在点击时在控制台打印其tag值
-         * ```ts
-         * // config.ts
-         * export default defineConfig({
-         *   themeConfig: {
-         *     blog: {
-         *       tag: {
-         *         defaultCallback(tag) {console.log(tag)},
-         *       },
-         *     }
-         *   }
-         * })
-         * ```
-         * 
-         */
-        defaultCallback?: (tag: string) => void;
-        
-        /**
-         * 全局标签文本处理函数
-         * @optional
-         * 
-         * @param tag 
-         * @returns 
-         * 
-         * @remarks
-         * 此项用于配置对应所有VPJTag的默认文本处理函数，支持以下配置方式：
-         * 
-         * 1. **函数模式**：根据tag执行返回对应的字符串。
-         * 
-         * 注意事项：
-         * 
-         * - 根据传入的processor函数，实际Tag组件上的文本为：
-         * 
-         *   ```
-         *   (typeof processor(tag) === "string" && processor(tag).length > 0) ? processor(tag) : tag
-         *   ```
-         * 
-         * @example
-         * 示例1：配置所有的VPJTag默认显示文本改成“#tag”的形式
-         * ```ts
-         * // config.ts
-         * export default defineConfig({
-         *   themeConfig: {
-         *     blog: {
-         *       tag: {
-         *         textProcessor(tag) {return `#${tag}`},
-         *       },
-         *     }
-         *   }
-         * })
-         * ```
-         * 
-         */
-        textProcessor?: (tag: string) => string;
-    };
+    listTitle?: 
+        | string
+        | ((data: BlogPageData) => string);
 }

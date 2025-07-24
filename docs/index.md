@@ -1,7 +1,6 @@
 ---
 layout: page
-title: "主页"
-titleTemplate: ":title | Cell的个人博客"
+title: 主页
 ---
 <script setup>
 </script>

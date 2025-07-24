@@ -4,6 +4,7 @@ import { storeToRefs } from 'pinia';
 import { useVPJSidebar } from '../composables/useVPJSidebar';
 
 import VPJDynamicIcon from '../components/VPJDynamicIcon.vue';
+import VPJOverlayScrollArea from '../components/VPJOverlayScrollArea.vue';
 
 
 const store = useVPJSidebar();
@@ -31,7 +32,14 @@ const props = defineProps({
         </header>
         <div class="vpj-profile-card__main">
             <component v-if="profileConfig.description.component" :is="profileConfig.description.component"/>
-            <div v-else class="vpj-profile-card__description vpj-scroll-y">{{ profileConfig.description }}</div>
+            <VPJOverlayScrollArea
+                v-else
+                overflow="y"
+                :inner-attrs="{ class: 'vpj-profile-card__description-inner' }"
+                class="vpj-profile-card__description-outer"
+            >
+                {{ profileConfig.description }}
+            </VPJOverlayScrollArea>
         </div>
     </div>
 </template>
@@ -92,23 +100,27 @@ const props = defineProps({
         flex: 1;
         flex-direction: column;
         min-height: 0;
-        min-width: 0;
+        width: 100%;
     }
 
     /* Default description style */
-    .vpj-profile-card__description {
+    .vpj-profile-card__description-outer {
         align-self: stretch;
+        flex: 1;
+        width: 100%;
+    }
+
+    :deep(.vpj-profile-card__description-inner) {
         color: var(--vpj-color-text-400);
         font-size: .875rem;
         font-weight: var(--vpj-font-weight-600);
-        flex: 1;
-        min-height: 0;
-        min-width: 0;
+        min-height: max-content;
         padding-left: 12px;
         padding-right: 12px;
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
+        width: 100%;
         word-break: break-all;
     }
 

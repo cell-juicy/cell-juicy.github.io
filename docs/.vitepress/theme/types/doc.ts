@@ -12,7 +12,8 @@ import type {
     ToolbarButtonInput,
     NormalizedToolbarButtonInput,
     PageContext,
-    ResourceInput
+    ResourceInput,
+    TitleTemplateInput
 } from "./common";
 
 import type {
@@ -223,7 +224,7 @@ export interface SpaceMetaData {
      * @see {@link HeaderTitleTemplateInput}
      * @see {@link VPJDocLayoutConfig.titleTemplate}
      */
-    titleTemplate?: HeaderTitleTemplateInput;
+    titleTemplate?: TitleTemplateInput;
 
     /**
      * 文档空间图标
@@ -1419,57 +1420,4 @@ export interface SpaceMetaData {
 
         [orderString: string]: NodeMetadata | undefined;
     }
-}
-
-/**
- * doc 全局配置接口
- * 
- * @remarks
- * 此接口定义了文档页（doc）相关的全局可配置项，包含根据空间（space）配置不同文档页的默认数据。
- * 
- * 通过此配置，可以实现以下功能：
- * 
- * - 根据空间为不同空间的文档页配置默认显示配置。
- * - 控制`useDocData()`创建的数据中虚拟页面数据的生成。
- * 
- * 可配置的全部属性如下：
- * 
- * @see {@link DocDefaultsConfig.space} 文档空间默认数据配置
- * @see {@link DocDefaultsConfig.enableVirtual} 是否启用虚拟节点
- * 
- * @example
- * 示例1：配置文档页默认行为
- * ```ts
- * // config.ts
- * export default defineConfig({
- *   themeConfig: {
- *     doc: {
- *       space: {
- *         "开发规范": {
- *           github: "https://github.com/my-org/dev-spec",
- *           md: {
- *             url: "/specs/dev.md",
- *             download: "开发规范.md"
- *           },
- *           asideTabs: {
- *             tags: false,
- *             customTab: {
- *               name: "术语说明",
- *               component: "TermGlossary",
- *               order: 3
- *             }
- *           }
- *         }
- *       }
- *     }
- *   }
- * })
- * ```
- */
-export interface DocDefaultsConfig {
-    /**
-     * 空间默认配置
-     * @see {@link SpaceMetaData} doc空间默认数据接口
-     */
-    space?: Record<string, SpaceMetaData>;
 }

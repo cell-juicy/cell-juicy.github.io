@@ -1,6 +1,6 @@
 ---
 layout: blog
-series: "算法小抄"
+series: "测试博客"
 tags:
   - 算法
   - 双指针

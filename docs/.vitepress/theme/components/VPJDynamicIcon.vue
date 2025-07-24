@@ -56,5 +56,4 @@ const componentSource = computed(() => {
 <template>
     <img v-if="isImage" :src="imageSource.src" :alt="imageSource.alt"/>
     <component v-else-if="isComponent" :is="componentSource"/>
-    <div v-else class="vpj-error">Invalid Icon input, {{props.icon}} is not a image path/Vue component.</div>
 </template>

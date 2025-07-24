@@ -42,13 +42,18 @@ export default createContentLoader("**/*.md", {
                     url: encodeURI(raw.url),
                     excerpt: undefined,
                     title,
-                    series: typeof raw.frontmatter.series === 'string' ? raw.frontmatter.series : undefined,
+                    series: (typeof raw.frontmatter.series === 'string' && raw.frontmatter.series.length > 0)
+                        ? raw.frontmatter.series
+                        : undefined,
                     tags: Array.isArray(raw.frontmatter.tags)
                         ? raw.frontmatter.tags.filter((tag) => typeof tag === "string" && tag.length > 0)
                         : [],
                     order: processBlogOrder(raw.frontmatter.order),
                     cover: (typeof raw.frontmatter.cover === "string" || raw.frontmatter.cover === false)
                         ? raw.frontmatter.cover
+                        : undefined,
+                    listTitle: (typeof raw.frontmatter.listTitle === 'string')
+                        ? raw.frontmatter.listTitle
                         : undefined,
                 }
             });

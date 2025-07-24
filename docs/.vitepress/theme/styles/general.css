@@ -55,6 +55,13 @@ body {
 }
 
 /* 自定义滚动条组件 */
+.vpj-scroll-x,
+.vpj-scroll-y,
+.vpj-scroll-xy {
+    scrollbar-width: unset;
+    scrollbar-color: unset;
+}
+
 .vpj-scroll-x {
     overflow-x: auto;
 }
