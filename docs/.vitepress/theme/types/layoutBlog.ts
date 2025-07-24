@@ -29,6 +29,7 @@ import {
  * - 自定义顶部栏标题文本，图标，配置默认的GitHub，PDF，markdown按钮信息，添加自定义的工具按钮。
  * - 自定义封面图，配置封面图高度，描述文本，添加自定义的css效果。
  * - 自定义内容区域的边距，内边距，最大宽度等。
+ * - 自定义页面的元信息。
  *
  * 可配置的全部属性如下：
  *
@@ -55,6 +56,12 @@ import {
  * @see {@link VPJBlogLayoutConfig.contentMarginBottom} 底部边距  
  * @see {@link VPJBlogLayoutConfig.contentPadding} 内边距  
  * @see {@link VPJBlogLayoutConfig.contentMaxWidth} 最大宽度
+ * 
+ * 5. **元信息配置**
+ * 
+ * @see {@link VPJBlogLayoutConfig.titleTemplate} 标题模板
+ * @see {@link VPJBlogLayoutConfig.favicon} 导航栏图标
+ * @see {@link VPJBlogLayoutConfig.description} 描述
  * 
  * @example
  * 示例1：配置封面和侧边栏
@@ -131,7 +138,7 @@ export interface VPJBlogLayoutConfig {
      * ```
      * 
      * @see {@link PageContext}
-     * @see {@link HeaderTitleTemplateInput}
+     * @see {@link TitleTemplateInput}
      */
     titleTemplate?: TitleTemplateInput;
 

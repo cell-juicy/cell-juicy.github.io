@@ -10,7 +10,7 @@ import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
 const DEFAULT = {
     EMPTY: "没有找到同空间的文档",
-    NOSPACE: "当前博客还没被收录进空间中",
+    NOSPACE: "当前文档还没被收录进空间中",
 };
 
 const { filter, space } = useDocData();

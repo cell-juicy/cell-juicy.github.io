@@ -9,20 +9,22 @@ import { ImageData } from "./common";
  * 通过此配置，可以实现以下功能：
  * 
  * - 自定义404页的内容图标，标题，文本等内容
+ * - 自定义404页的元信息。
  * 
  * 可以配置的全部属性如下：
  * 
- * 1. 标题栏
- * 
- * @see {@link VPJNotFoundLayoutConfig.title} 标签页标题（未实现）
- * @see {@link VPJNotFoundLayoutConfig.favicon} 标签页图标（未实现）
- * 
- * 2. 内容：
+ * 1. **内容配置**
  * 
  * @see {@link VPJNotFoundLayoutConfig.statusIcon} 内容图标
  * @see {@link VPJNotFoundLayoutConfig.heading} 内容标题
  * @see {@link VPJNotFoundLayoutConfig.message} 内容文本
  * @see {@link VPJNotFoundLayoutConfig.guidance} 内容链接
+ * 
+ * 2. **元信息配置**
+ * 
+ * @see {@link VPJNotFoundLayoutConfig.titleTemplate} 标题模板
+ * @see {@link VPJNotFoundLayoutConfig.favicon} 导航栏图标
+ * @see {@link VPJNotFoundLayoutConfig.description} 描述
  * 
  * @example
  * 示例1：一个简单的配置示例
@@ -42,6 +44,54 @@ import { ImageData } from "./common";
  * ```
  */
 export interface VPJNotFoundLayoutConfig {
+    /**
+     * 页面标题模板
+     * @optional
+     * 
+     * @remarks
+     * 该项用于配置所有 `page` 布局页面在 `<head>` 中渲染的 `<title>` 元素，可设置统一的标题格式。
+     * 
+     * 仅支持以下三种模式：
+     * 
+     * 1. **字符串模板** - 使用 `:title` 占位符
+     * 2. **禁用模式（false）** - 跳过模板计算，直接使用标题
+     * 3. **默认模式（true）** - 使用默认模板
+     * 
+     * 注意事项：
+     * 
+     * - 不支持函数形式输入
+     * - 字符串模板中仅支持 `:title` 占位符
+     * - 页面 frontmatter 中的 `titleTemplate` 优先级更高
+     * 
+     * @example
+     * 示例 1：添加统一前缀
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         titleTemplate: "页面 - :title"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 示例 2：完全禁用模板
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         titleTemplate: false
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     */
     titleTemplate?: string | boolean;
 
     /**

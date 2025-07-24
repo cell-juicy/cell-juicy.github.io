@@ -28,6 +28,7 @@ import {
  * - 自定义顶部栏标题文本，图标，配置默认的GitHub，PDF，Markdown按钮信息，添加自定义的工具按钮。
  * - 自定义封面图，配置封面图高度，描述文本，添加自定义的CSS样式。
  * - 自定义内容区域的边距，内边距，最大宽度等。
+ * - 自定义页面的元信息。
  *
  * 可配置的全部属性如下：
  *
@@ -54,6 +55,12 @@ import {
  * @see {@link VPJDocLayoutConfig.contentMarginBottom} 底部边距  
  * @see {@link VPJDocLayoutConfig.contentPadding} 内边距  
  * @see {@link VPJDocLayoutConfig.contentMaxWidth} 最大宽度
+ * 
+ * 5. **元信息配置**
+ * 
+ * @see {@link VPJDocLayoutConfig.titleTemplate} 标题模板
+ * @see {@link VPJDocLayoutConfig.favicon} 导航栏图标
+ * @see {@link VPJDocLayoutConfig.description} 描述
  * 
  * @example
  * 示例1：配置封面和侧边栏
