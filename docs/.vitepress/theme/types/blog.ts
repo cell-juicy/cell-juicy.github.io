@@ -56,6 +56,7 @@ import {
  * 
  * 4. **页面数据配置**  
  * @see {@link SeriesMetaData.presetTags} 预设标签
+ * @see {@link SeriesMetaData.listTitle} 目录标题
  * 
  * 注意事项：
  * - 通过此接口配置会根据键值来为series名称等于此键值的blog页进行配置。
