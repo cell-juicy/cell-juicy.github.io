@@ -1,10 +1,12 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { computed } from 'vue';
+import { computed, provide, useTemplateRef } from 'vue';
 import { useHead } from '@unhead/vue';
 
 import { useVPJLayout } from '../composables/useVPJLayout';
 import { useDocData } from '../composables/useDocData';
+
+import { VPJ_ARTICLE_LAYOUT_SYMBOL } from '../utils/symbols';
 
 import VPJArticleAside from '../components/VPJArticleAside.vue';
 import VPJArticleHeader from '../components/VPJArticleHeader.vue';
@@ -41,6 +43,10 @@ const computedMarginTop = computed(() => {
 });
 const computedMarginBottom = computed(() => {
     return contentConfig.value.marginBottom || "0"
+});
+
+provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
+    content: useTemplateRef("article-content")
 });
 </script>
 
@@ -102,7 +108,7 @@ const computedMarginBottom = computed(() => {
                                 <slot name="doc-padding-left"/>
                             </div>
                             <slot>
-                                <Content class="vpj-markdown"/>
+                                <Content ref="article-content" class="vpj-markdown"/>
                             </slot>
                             <div class="vpj-layout-doc__article-padding-right">
                                 <slot name="doc-padding-right"/>
