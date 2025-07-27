@@ -2,22 +2,14 @@
 import { computed } from 'vue';
 import { useData } from 'vitepress';
 
-import { useBlogData } from '../composables/useBlogData';
-
-import VPJTag from './VPJTag.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
 const DEFAULT = {
-    EMPTY: "当前博客没有设置标签"
+    EMPTY: "",
+    NOTOC: "",
 };
 
-const { tags } = useBlogData();
 const { theme } = useData();
-
-const empty = computed(() => {
-    const message = theme.value.components?.asideTabTags?.empty;
-    return (typeof message === 'string') ? message : DEFAULT.EMPTY;
-})
 </script>
 
 
@@ -25,23 +17,21 @@ const empty = computed(() => {
     <VPJOverlayScrollArea
         overflow="y"
         class="vpj-layout-blog__aside-tab-outer"
+        :area-attrs="{ class: 'vpj-layout-blog__aside-tab-area' }"
         :inner-attrs="{ class: 'vpj-layout-blog__aside-tab-inner' }"
     >
         <div
-            v-if="!tags || tags.length === 0"
+            v-if="!"
             class="vpj-article-aside__fallback"
         >
-            {{ empty }}
         </div>
         <div
-            v-else
-            class="vpj-layout-blog__aside-blog-tags"
+            v-else-if="articles.length === 0"
+            class="vpj-article-aside__fallback"
         >
-            <VPJTag
-                v-for="tag in tags"
-                :key="tag"
-                :tag="tag"
-            />
+        </div>
+        <div v-else class="vpj-article-aside__outline">
+            
         </div>
     </VPJOverlayScrollArea>
 </template>
@@ -58,16 +48,7 @@ const empty = computed(() => {
         align-items: center;
         display: flex;
         flex-direction: column;
-    }
-
-    .vpj-layout-blog__aside-blog-tags {
-        align-content: flex-start;
-        column-gap: .25rem;
-        display: flex;
-        flex-wrap: wrap;
-        padding: .75rem .5rem;
-        row-gap: .5rem;
-        width: 100%;
+        width: 100%
     }
 
     .vpj-article-aside__fallback {
