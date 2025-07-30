@@ -1,37 +1,54 @@
 <script setup>
-import { computed } from 'vue';
-import { useData } from 'vitepress';
+import { computed, inject, onMounted, shallowRef } from 'vue';
+import { useData, onContentUpdated } from 'vitepress';
+
+import { getHeaders } from '../utils/outline';
+import { VPJ_ARTICLE_LAYOUT_SYMBOL } from '../utils/symbols';
 
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
+import VPJArticleAsideOutlineItem from './VPJArticleAsideOutlineItem.vue';
 
 const DEFAULT = {
-    EMPTY: "",
-    NOTOC: "",
+    EMPTY: "没有大纲标题",
+    LEVEL: "deep",
+    IGNORE: /\b(vpj-tag|header-anchor|footnote-ref|ignore-header)\b/,
 };
 
 const { theme } = useData();
+
+const headers = shallowRef([]);
+const article = inject(VPJ_ARTICLE_LAYOUT_SYMBOL, {});
+
+function updateOutline() {
+    const content = article?.content?.value;
+    if (content) {
+        headers.value = getHeaders(content, DEFAULT.LEVEL, DEFAULT.IGNORE);
+    };
+}
+
+onContentUpdated(updateOutline);
+onMounted(updateOutline);
 </script>
 
 
 <template>
     <VPJOverlayScrollArea
         overflow="y"
+        ref="scrollArea"
         class="vpj-layout-blog__aside-tab-outer"
         :area-attrs="{ class: 'vpj-layout-blog__aside-tab-area' }"
         :inner-attrs="{ class: 'vpj-layout-blog__aside-tab-inner' }"
     >
         <div
-            v-if="!"
+            v-if="headers.length === 0"
             class="vpj-article-aside__fallback"
         >
-        </div>
-        <div
-            v-else-if="articles.length === 0"
-            class="vpj-article-aside__fallback"
-        >
+            {{ DEFAULT.EMPTY }}
         </div>
         <div v-else class="vpj-article-aside__outline">
-            
+            <VPJArticleAsideOutlineItem
+                :data="headers"
+            />
         </div>
     </VPJOverlayScrollArea>
 </template>

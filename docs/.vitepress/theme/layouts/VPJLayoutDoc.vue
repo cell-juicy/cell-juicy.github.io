@@ -108,7 +108,7 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
                                 <slot name="doc-padding-left"/>
                             </div>
                             <slot>
-                                <Content ref="article-content" class="vpj-markdown"/>
+                                <div ref="article-content" class="vpj-markdown"><Content/></div>
                             </slot>
                             <div class="vpj-layout-doc__article-padding-right">
                                 <slot name="doc-padding-right"/>

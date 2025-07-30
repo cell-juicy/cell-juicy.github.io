@@ -226,6 +226,11 @@ onBeforeUnmount(() => {
     window.removeEventListener("resize", updateScrolls);
     if (observer) observer.disconnect();
 });
+
+defineExpose({
+    area,
+    inner: content,
+})
 </script>
 
 

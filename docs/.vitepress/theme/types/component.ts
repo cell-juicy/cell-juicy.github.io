@@ -302,6 +302,18 @@ export type ComponentFallbackConfig = {
     };
 
     /**
+     * 
+     */
+    asideTabOutline?: {
+        
+        level?: number | [number, number] | "deep";
+        
+        ignore?: string;
+
+        empty?: string;
+    };
+
+    /**
      * `VPJDocAsideResourcesPage` 组件的默认提示配置
      *
      * @see {@link ComponentFallbackConfig.asideTabResources.empty} 当前页面没有配置任何资源时的提示文本
