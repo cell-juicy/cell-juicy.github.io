@@ -1,8 +1,8 @@
 <script setup>
-import { computed, inject, onMounted, shallowRef } from 'vue';
+import { ref, inject, onMounted, shallowRef, useTemplateRef, watch, onUnmounted } from 'vue';
 import { useData, onContentUpdated } from 'vitepress';
 
-import { getHeaders } from '../utils/outline';
+import { getHeaders, useActiveAnchor } from '../utils/outline';
 import { VPJ_ARTICLE_LAYOUT_SYMBOL } from '../utils/symbols';
 
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
@@ -18,6 +18,13 @@ const { theme } = useData();
 
 const headers = shallowRef([]);
 const article = inject(VPJ_ARTICLE_LAYOUT_SYMBOL, {});
+const outline = useTemplateRef("outline");
+const scrollArea = ref(null);
+
+const stopWatcher = watch(article.scrollArea, () => {
+    const area = article?.scrollArea?.value?.area;
+    scrollArea.value = area ? area : null;
+}, { immediate: true })
 
 function updateOutline() {
     const content = article?.content?.value;
@@ -28,13 +35,17 @@ function updateOutline() {
 
 onContentUpdated(updateOutline);
 onMounted(updateOutline);
+onUnmounted(() => {
+    stopWatcher();
+})
+
+useActiveAnchor(outline, scrollArea)
 </script>
 
 
 <template>
     <VPJOverlayScrollArea
         overflow="y"
-        ref="scrollArea"
         class="vpj-layout-blog__aside-tab-outer"
         :area-attrs="{ class: 'vpj-layout-blog__aside-tab-area' }"
         :inner-attrs="{ class: 'vpj-layout-blog__aside-tab-inner' }"
@@ -45,7 +56,7 @@ onMounted(updateOutline);
         >
             {{ DEFAULT.EMPTY }}
         </div>
-        <div v-else class="vpj-article-aside__outline">
+        <div v-else ref="outline" class="vpj-article-aside__outline">
             <VPJArticleAsideOutlineItem
                 :data="headers"
             />

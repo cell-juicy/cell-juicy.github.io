@@ -20,6 +20,8 @@ const props = defineProps({
 </template>
 
 
-<style scoped>
-
+<style>
+    .active {
+        color: green;
+    }
 </style>

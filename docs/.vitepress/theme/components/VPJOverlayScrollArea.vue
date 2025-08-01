@@ -308,11 +308,12 @@ defineExpose({
         height: 100%;
         min-height: 0;
         min-width: 0;
-        width: 100%;
         overflow-x: v-bind("enableScrollX ? 'auto' : 'hidden'");
         overflow-y: v-bind("enableScrollY ? 'auto' : 'hidden'");
+        position: relative;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        width: 100%;
     }
 
     .vpj-overlay-scroll__area::-webkit-scrollbar {

@@ -46,7 +46,8 @@ const computedMarginBottom = computed(() => {
 });
 
 provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
-    content: useTemplateRef("article-content")
+    content: useTemplateRef("article-content"),
+    scrollArea: useTemplateRef("article-scroll-area")
 });
 </script>
 
@@ -84,6 +85,7 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
                 overflow="xy"
                 thumb-width="5"
                 :inner-attrs="{ class: 'vpj-layout-doc__wrapper-inner' }"
+                ref="article-scroll-area"
                 class="vpj-layout-doc__wrapper-outer"
             >
                 <slot name="doc-cover">
