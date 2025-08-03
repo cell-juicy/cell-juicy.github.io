@@ -13,6 +13,7 @@
  * 2. **主题未注册组件**
  * 
  * @see {@link ComponentFallbackConfig.aside} `VPJArticleAside`配置接口
+ * @see {@link ComponentFallbackConfig.asideTabOutline} `VPJArticleAsideOutlinePage`配置接口
  * @see {@link ComponentFallbackConfig.asideTabTags} `VPJBlogAsideTagsPage`配置接口
  * @see {@link ComponentFallbackConfig.asideTabSeries} `VPJBlogAsideSeriesPage`配置接口
  * @see {@link ComponentFallbackConfig.asideTabTree} `VPJDocAsideTreePage`配置接口
@@ -302,14 +303,99 @@ export type ComponentFallbackConfig = {
     };
 
     /**
+     * `VPJArticleAsideOutlinePage` 组件的大纲（TOC）配置项
      * 
+     * @remark
+     * 如果不以对象形式输入，那么会被直接视为对level的配置
+     *
+     * @see {@link ComponentFallbackConfig.asideTabOutline.level} 控制标题层级范围
+     * @see {@link ComponentFallbackConfig.asideTabOutline.ignore} 过滤标题子元素的内容拼接
+     * @see {@link ComponentFallbackConfig.asideTabOutline.empty} 无内容时显示的提示文本
      */
-    asideTabOutline?: {
-        
+    asideTabOutline?: number | [number, number] | "deep" |{
+        /**
+         * 控制大纲标题的层级范围
+         * @optional
+         * @default "deep"（等价于 [2, 6]）
+         *
+         * @remarks
+         * - 可以为单个数字，例如 `2`，表示只显示 `<h2>` 级别标题
+         * - 也可以为 `[2, 4]` 表示只显示 `<h2>` 到 `<h4>` 范围内的标题
+         * - 特殊值 `"deep"` 表示使用默认区间 `[2, 6]`
+         *
+         * @example
+         * 只显示 h2 和 h3 的标题
+         * ```ts
+         * export default {
+         *   themeConfig: {
+         *     components: {
+         *       asideTabOutline: {
+         *         level: [2, 3]
+         *       }
+         *     }
+         *   }
+         * }
+         * ```
+         *
+         * @see {@link ComponentFallbackConfig.asideTabOutline}
+         */
         level?: number | [number, number] | "deep";
         
+        /**
+         * 忽略特定标题的内容文本拼接（通过类名匹配）
+         * @optional
+         * @default /\b(vpj-blog-tag|header-anchor|footnote-ref|ignore-header)\b/
+         *
+         * @remarks
+         * - 此配置会被转为正则，用于在序列化标题时过滤不应参与的子元素内容
+         * - 当标题子元素的 `className` 匹配该规则时，其 `textContent` 不会附加到生成的大纲标题中
+         * - **若希望移除某个标题本身**（而非其子内容）应直接为该标题元素添加 `ignore-header` 类
+         *
+         * @example
+         * 忽略具有 `no-outline` 类名的子元素文本
+         * ```ts
+         * export default {
+         *   themeConfig: {
+         *     components: {
+         *       asideTabOutline: {
+         *         ignore: "no-outline"
+         *       }
+         *     }
+         *   }
+         * }
+         * ```
+         */
         ignore?: string;
 
+        /**
+         * 当前页面无大纲时显示的提示文本
+         * @optional
+         * @default "没有大纲标题"
+         *
+         * @remarks
+         * 此项用于配置当页面不存在任何可用标题时，大纲页的默认提示文本。
+         * 
+         * 适用情况例如：
+         * 
+         * 1. 当前页面没有满足层级或过滤条件的标题
+         * 2. 页面内容完全为空或不适用于生成大纲
+         *
+         * @example
+         * 自定义提示文本
+         * ```ts
+         * export default {
+         *   themeConfig: {
+         *     components: {
+         *       asideTabOutline: {
+         *         empty: "本页暂无大纲"
+         *       }
+         *     }
+         *   }
+         * }
+         * ```
+         *
+         * @see {@link ComponentFallbackConfig.asideTabOutline}
+         */
         empty?: string;
     };
 
