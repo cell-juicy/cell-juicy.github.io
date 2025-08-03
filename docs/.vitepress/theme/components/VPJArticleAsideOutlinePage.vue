@@ -56,10 +56,20 @@ useActiveAnchor(outline, scrollArea)
         >
             {{ DEFAULT.EMPTY }}
         </div>
-        <div v-else ref="outline" class="vpj-article-aside__outline">
-            <VPJArticleAsideOutlineItem
-                :data="headers"
-            />
+        <div
+            v-else
+            ref="outline"
+            class="vpj-article-aside__outline"
+        >
+            <ul
+                class="vpj-article-aside__outline-list"
+            >
+                <VPJArticleAsideOutlineItem
+                    v-for="header in headers"
+                    :key="header.link"
+                    :data="header"
+                />
+            </ul>
         </div>
     </VPJOverlayScrollArea>
 </template>
@@ -77,6 +87,20 @@ useActiveAnchor(outline, scrollArea)
         display: flex;
         flex-direction: column;
         width: 100%
+    }
+
+    .vpj-article-aside__outline {
+        width: 100%;
+    }
+
+    .vpj-article-aside__outline-list {
+        align-items: flex-start;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        width: 100%;
     }
 
     .vpj-article-aside__fallback {
