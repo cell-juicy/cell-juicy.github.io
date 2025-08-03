@@ -14,7 +14,7 @@ interface IgnoreNode {
     shouldIgnore: boolean;
 };
 
-const IGNORE_HEADER = /[-_\s]ignore-header$/;
+const IGNORE_HEADER = "ignore-header";
 const store: HeaderData[] = []
 
 export function getHeaders(
@@ -53,7 +53,7 @@ export function getHeaders(
 
         if (node.level > high || node.level < low) return;
         if (
-            IGNORE_HEADER.test(node.element.id) ||
+            node.element.classList.contains(IGNORE_HEADER) ||
             (parent && "shouldIgnore" in parent)
         ) {
             stack.push({ level: node.level, shouldIgnore: true });
@@ -115,9 +115,7 @@ export function useActiveAnchor(outline: Ref<Element | null>, scrollArea: Ref<El
 
         let activeLink: string | null = null;
         for (const { link, top } of headers) {
-            if (top > currTop + 1) {
-                break;
-            }
+            if (top > currTop + 1) break;
             activeLink = link;
         }
         activateLink(activeLink);
@@ -143,15 +141,36 @@ export function useActiveAnchor(outline: Ref<Element | null>, scrollArea: Ref<El
     }
 }
 
+export function resolveOutlineInput(input: any) {
+    const validator = (value: any) => (
+       (Array.isArray(value) && (value.length > 0) && value.every((v) => typeof v === "number")) ||
+       typeof value === "number" ||
+       value === "deep" ||
+       value === undefined
+    );
+
+    if (validator(input)) {
+        return {
+            level: input,
+            ignore: undefined
+        };
+    } else if (typeof input === "object" && input !== null) {
+        const level = (validator(input.level)) ? input.level : undefined;
+        const ignore = (typeof input.ignore === "string") ? input.ignore : undefined;
+        return { level, ignore };
+    };
+    return {};
+}
+
 function resolveRange(range: number | [number, number] | "deep" | undefined): [number, number] {
     if (typeof range === "number") {
         return [range, range];
-    } else if (Array.isArray(range)) {
+    } else if (Array.isArray(range) && range.every((v) => typeof v === "number")) {
         return [Math.min(...range), Math.max(...range)]
     } else if (range === "deep") {
         return [2, 6];
     };
-    return [2, 6];
+    return [1, 6];
 }
 
 function serializeHeader(h: Element, ignoreRE: RegExp | string) {

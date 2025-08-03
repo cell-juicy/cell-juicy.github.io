@@ -67,11 +67,12 @@ const text = computed(() => {
         align-items: center;
         background-color: var(--vpj-color-primary-100);
         border-radius: .75rem;
-        display: flex;
+        display: inline-flex;
         flex-shrink: 0;
         height: 1.5rem;
         padding-left: .75rem;
         padding-right: .75rem;
+        vertical-align: middle;
         width: auto;
     }
 
