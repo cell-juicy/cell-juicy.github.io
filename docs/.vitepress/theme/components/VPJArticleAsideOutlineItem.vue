@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref, useTemplateRef } from 'vue';
 
 import VPJDynamicIcon from './VPJDynamicIcon.vue';
 
@@ -18,10 +18,28 @@ const props = defineProps({
 });
 
 const collapsed = ref(true);
+const title = useTemplateRef("title");
 const paddingLeft = computed(() => {
     const correction = props.data?.children?.length === 0 ? 20 : 0;
     return 6 + correction + props.depth * 16 + "px"
 });
+
+
+onMounted(() => {
+    if (title.value) {
+        for (const part of props.data.title) {
+            if (part.type === "math") {
+                const temp = document.createElement("template");
+                temp.innerHTML = part.text;
+                for (const el of temp.content.childNodes) {
+                    title.value.appendChild(el.cloneNode(true));
+                };
+            } else if (part.type === "text") {
+                title.value.appendChild(document.createTextNode(part.text));
+            };
+        };
+    };
+})
 </script>
 
 
@@ -46,9 +64,7 @@ const paddingLeft = computed(() => {
                     class="vpj-article-aside__outline-toggle-icon"
                 />
             </button>
-            <span class="vpj-article-aside__outline-title">
-                {{ props.data.title }}
-            </span>
+            <span ref="title" class="vpj-article-aside__outline-title"/>
         </a>
         <ul
             v-show="props.data?.children?.length > 0 && !collapsed"

@@ -3,7 +3,7 @@ import type { Ref } from 'vue';
 
 interface HeaderData {
     element: Element;
-    title: string;
+    title: { type: string; text: string }[];
     link: string;
     level: number;
     children: HeaderData[];
@@ -176,15 +176,23 @@ function resolveRange(range: number | [number, number] | "deep" | undefined): [n
 function serializeHeader(h: Element, ignoreRE: RegExp | string) {
     let ret = "";
     const pattern = (typeof ignoreRE === 'string') ? new RegExp(ignoreRE) : ignoreRE;
+    const result: HeaderData["title"] = [];
     for (const node of h.childNodes) {
         if (node.nodeType === 1) {
             if (pattern.test((node as Element).className)) continue;
-            ret += node.textContent;
+            if (isLaTex((node as Element))) {
+                result.push({ type: "text", text: ret });
+                ret = "";
+                result.push({ type: "math", text: (node as HTMLElement).outerHTML });
+            } else {
+                ret += node.textContent || "";
+            }
         } else if (node.nodeType === 3) {
-            ret += node.textContent;
+            ret += node.textContent || "";
         };
     };
-    return ret.trim();
+    if (ret.length > 0) result.push({ type: "text", text: ret });
+    return result;
 }
 
 function getAbsoluteTop(el: Element, root: Element): number {
@@ -198,4 +206,13 @@ function getAbsoluteTop(el: Element, root: Element): number {
         curr = (curr as HTMLElement).offsetParent;
     };
     return offsetTop;
+}
+
+function isLaTex(el: Element) {
+    return (
+        el.tagName === "MJX-CONTAINER" &&
+        el.classList.contains("MathJax") &&
+        el.getAttribute("jax") === "SVG" &&
+        el.getAttribute("display") !== "true"
+    );
 }
