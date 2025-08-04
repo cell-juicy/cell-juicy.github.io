@@ -26,7 +26,7 @@ const children = computed(() => {
 });
 const route = useRoute();
 
-const childrenCollapsed = ref(true);
+const collapsed = ref(true);
 </script>
 
 
@@ -44,26 +44,32 @@ const childrenCollapsed = ref(true);
                 <span class="vpj-text">{{ data.treeTitle }}</span>
                 <VPJDynamicIconBtn
                     v-if="children.length > 0"
-                    @click.stop.prevent="childrenCollapsed = !childrenCollapsed"
-                    :icon="childrenCollapsed ? VPJIconCaretLeft : VPJIconCaretDown"
-                    class="vpj-layout-doc__aside-doc-node-toggle"
+                    @click.stop.prevent="collapsed = !collapsed"
+                    :icon="VPJIconCaretDown"
+                    :class="[
+                        'vpj-layout-doc__aside-doc-node-toggle',
+                        {'collapsed': collapsed}
+                    ]"
                 />
             </a>
             <button
                 v-else
-                @click.stop.prevent="childrenCollapsed = !childrenCollapsed"
+                @click.stop.prevent="collapsed = !collapsed"
                 class="vpj-layout-doc__aside-doc-node-link"
             >
                 <span class="vpj-text">{{ data.treeTitle }}</span>
                 <VPJDynamicIcon
                     v-if="children.length > 0"
-                    :icon="childrenCollapsed ? VPJIconCaretLeft : VPJIconCaretDown"
-                    class="vpj-layout-doc__aside-doc-node-mark"
+                    :icon="VPJIconCaretDown"
+                    :class="[
+                        'vpj-layout-doc__aside-doc-node-mark',
+                        {'collapsed': collapsed}
+                    ]"
                 />
             </button>
         </div>
         <div
-            v-show="children.length > 0 && !childrenCollapsed"
+            v-show="children.length > 0 && !collapsed"
             class="vpj-layout-doc__aside-doc-node-children"
         >
             <VPJDocAsideTreeItem
@@ -127,6 +133,7 @@ const childrenCollapsed = ref(true);
     .vpj-layout-doc__aside-doc-node-toggle :deep(.vpj-icon) {
         fill: var(--vpj-color-text-300);
         height: 12px;
+        transition: transform 0.2s ease-in-out;
         width: 12px;
     }
 
@@ -134,12 +141,22 @@ const childrenCollapsed = ref(true);
         border-radius: var(--vpj-border-radius-100);
         fill: var(--vpj-color-text-300);
         height: 24px;
-        width: 24px;
         padding: 6px;
+        transition: transform 0.2s ease-in-out;
+        width: 24px;
     }
 
-    .vpj-layout-doc__aside-doc-node-toggle:hover {
+    .vpj-layout-doc__aside-doc-node-toggle:hover,
+    .vpj-layout-doc__aside-doc-node-toggle:active {
         background-color: var(--vpj-color-bg-500);
+    }
+
+    .vpj-layout-doc__aside-doc-node-toggle.collapsed :deep(.vpj-icon) {
+        transform: rotate(90deg);
+    }
+
+    .vpj-layout-doc__aside-doc-node-mark.collapsed {
+        transform: rotate(90deg);
     }
 
     /* Children */

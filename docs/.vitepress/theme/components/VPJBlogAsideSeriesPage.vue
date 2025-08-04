@@ -46,7 +46,10 @@ const empty = computed(() => {
         >
             {{ empty }}
         </div>
-        <div v-else="" class="vpj-layout-blog__aside-blog-series">
+        <div
+            v-else
+            class="vpj-layout-blog__aside-blog-series"
+        >
             <VPJBlogAsideSeriesItem
                 v-for="article in articles"
                 :key="article.url"

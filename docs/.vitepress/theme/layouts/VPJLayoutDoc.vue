@@ -1,10 +1,12 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { computed } from 'vue';
+import { computed, provide, useTemplateRef } from 'vue';
 import { useHead } from '@unhead/vue';
 
 import { useVPJLayout } from '../composables/useVPJLayout';
 import { useDocData } from '../composables/useDocData';
+
+import { VPJ_ARTICLE_LAYOUT_SYMBOL } from '../utils/symbols';
 
 import VPJArticleAside from '../components/VPJArticleAside.vue';
 import VPJArticleHeader from '../components/VPJArticleHeader.vue';
@@ -42,6 +44,11 @@ const computedMarginTop = computed(() => {
 const computedMarginBottom = computed(() => {
     return contentConfig.value.marginBottom || "0"
 });
+
+provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
+    content: useTemplateRef("article-content"),
+    scrollArea: useTemplateRef("article-scroll-area")
+});
 </script>
 
 
@@ -78,6 +85,7 @@ const computedMarginBottom = computed(() => {
                 overflow="xy"
                 thumb-width="5"
                 :inner-attrs="{ class: 'vpj-layout-doc__wrapper-inner' }"
+                ref="article-scroll-area"
                 class="vpj-layout-doc__wrapper-outer"
             >
                 <slot name="doc-cover">
@@ -102,7 +110,7 @@ const computedMarginBottom = computed(() => {
                                 <slot name="doc-padding-left"/>
                             </div>
                             <slot>
-                                <Content class="vpj-markdown"/>
+                                <div ref="article-content" class="vpj-markdown"><Content/></div>
                             </slot>
                             <div class="vpj-layout-doc__article-padding-right">
                                 <slot name="doc-padding-right"/>

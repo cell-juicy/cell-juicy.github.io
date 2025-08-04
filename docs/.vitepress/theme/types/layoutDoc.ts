@@ -228,7 +228,8 @@ export interface VPJDocLayoutConfig {
      * @optional
      * @default {
      *   tree: { name: "目录", component: "VPJDocAsideTreePage", order: 0 },
-     *   resources: { name: "资源", component: "VPJDocAsideResourcesPage", order: 0 }
+     *   resources: { name: "资源", component: "VPJDocAsideResourcesPage", order: 0 },
+     *   outline: { name: "大纲", component: "VPJArticleAsideOutlinePage", order: 0 },
      * }
      * 
      * @remarks
@@ -247,7 +248,7 @@ export interface VPJDocLayoutConfig {
      * - 合并后不包含 `name` 属性的标签页数据会将 `component` 属性的值默认赋予给 `name`。
      * - 合并后不包含 `order` 属性的标签页数据会将其默认值设置为 0，`order` 越小标签越靠前（无效数字将被转化为 0）。
      * - 如果你希望修改默认标签页的配置，可以为 `tree` 或 `resources` 属性赋值合法输入，例如 `tree: { order: 10 }` 将覆盖默认排序。
-     * - `"VPJDocAsideTreePage"` 与 `"VPJDocAsideResourcesPage"` 是默认的内置组件名称，即使你已经在全局注册了组件，也会被主题内置组件覆盖。
+     * - `"VPJArticleAsideOutlinePage"`，`"VPJDocAsideTreePage"` 与 `"VPJDocAsideResourcesPage"` 是默认的内置组件名称，即使你已经在全局注册了组件，也会被主题内置组件覆盖。
      * 
      * @example
      * 示例1：替换默认目录组件

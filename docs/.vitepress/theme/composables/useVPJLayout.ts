@@ -71,6 +71,7 @@ const DEFAULT = {
         ASIDETABS: {
             series: {name: "系列", component: "VPJBlogAsideSeriesPage", order: 0},
             tags: {name: "标签", component: "VPJBlogAsideTagsPage", order: 0},
+            outline: {name: "大纲", component: "VPJArticleAsideOutlinePage", order: 0},
         },
         COVERALT: undefined,
         COVERHEIGHT: "240px",
@@ -108,7 +109,8 @@ const DEFAULT = {
         TOOLBAR: {},
         ASIDETABS: {
             tree: {name: "目录", component: "VPJDocAsideTreePage", order: 0},
-            resources: {name: "资源", component: "VPJDocAsideResourcesPage", order: 0}
+            resources: {name: "资源", component: "VPJDocAsideResourcesPage", order: 0},
+            outline: {name: "大纲", component: "VPJArticleAsideOutlinePage", order: 0},
         },
         COVERALT: undefined,
         COVERHEIGHT: "300px",

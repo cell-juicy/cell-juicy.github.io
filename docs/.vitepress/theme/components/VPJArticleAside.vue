@@ -8,6 +8,7 @@ import VPJBlogAsideSeriesPage from './VPJBlogAsideSeriesPage.vue';
 import VPJBlogAsideTagsPage from './VPJBlogAsideTagsPage.vue';
 import VPJDocAsideTreePage from './VPJDocAsideTreePage.vue';
 import VPJDocAsideResourcesPage from './VPJDocAsideResourcesPage.vue';
+import VPJArticleAsideOutlinePage from './VPJArticleAsideOutlinePage.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 
@@ -65,6 +66,7 @@ const activeTabComponent = computed(() => {
             if (tab.component === "VPJBlogAsideSeriesPage" && layout.value === "blog") return VPJBlogAsideSeriesPage;
             if (tab.component === "VPJDocAsideTreePage" && layout.value === "doc") return VPJDocAsideTreePage;
             if (tab.component === "VPJDocAsideResourcesPage" && layout.value === "doc") return VPJDocAsideResourcesPage;
+            if (tab.component === "VPJArticleAsideOutlinePage") return VPJArticleAsideOutlinePage;
             return tab.component;
         };
     };

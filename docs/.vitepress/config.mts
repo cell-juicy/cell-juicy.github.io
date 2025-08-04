@@ -1,7 +1,7 @@
 import { defineConfigWithTheme } from 'vitepress';
 import path from 'node:path';
 
-import type { ThemeConfig } from './theme/type';
+import type { ThemeConfig } from './theme/types';
 
 import vueDevTools from 'vite-plugin-vue-devtools';
 // import { visualizer } from 'rollup-plugin-visualizer';

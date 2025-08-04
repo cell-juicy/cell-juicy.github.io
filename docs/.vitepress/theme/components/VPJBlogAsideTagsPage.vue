@@ -33,7 +33,10 @@ const empty = computed(() => {
         >
             {{ empty }}
         </div>
-        <div v-else class="vpj-layout-blog__aside-blog-tags">
+        <div
+            v-else
+            class="vpj-layout-blog__aside-blog-tags"
+        >
             <VPJTag
                 v-for="tag in tags"
                 :key="tag"
