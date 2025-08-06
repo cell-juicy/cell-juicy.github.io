@@ -178,19 +178,21 @@ defineExpose({
         @mouseleave="tooltipVisible = false"
         class="vpj-btn"
     >
-        <VPJDynamicIcon
-            v-if="props.icon"
-            v-bind="props.iconAttrs"
-            :icon="props.icon"
-            class="vpj-icon"
-        />
-        <span
-            v-if="props.text"
-            v-bind="props.textAttrs"
-            class="vpj-text"
-        >
-            {{ props.text }}
-        </span>
+        <slot>
+            <VPJDynamicIcon
+                v-if="props.icon"
+                v-bind="props.iconAttrs"
+                :icon="props.icon"
+                class="vpj-icon"
+            />
+            <span
+                v-if="props.text"
+                v-bind="props.textAttrs"
+                class="vpj-text"
+            >
+                {{ props.text }}
+            </span>
+        </slot>
         <Teleport to=".vpj-portals-root">
             <div 
                 v-if="props.tooltip && tooltipVisible"
