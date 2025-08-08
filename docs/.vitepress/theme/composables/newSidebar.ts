@@ -115,7 +115,7 @@ function normalizeFooterItem<T extends FooterItem>(input: T): NormalizeFooterIte
                 ? undefined
                 : input.text,
         highlight: normalizeHighlight(input.highlight),
-        showOnCollapse: typeof input.showOnCollapse === 'boolean' ? input.showOnCollapse : true
+        showOnCollapsed: typeof input.showOnCollapsed === 'boolean' ? input.showOnCollapsed : true
     };
 }
 
@@ -171,7 +171,9 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
             DEFAULT.LOGO
         );
         const description = mergeSimpleData(
-            (input: any) => typeof input === 'string', undefined,
+            (input: any) => (typeof input === 'string') ||
+                (typeof input === 'object' && input !== null && typeof input.component === 'string'),
+            undefined,
             profileConfig.description,
             site.value.description,
             DEFAULT.DESCRIPTION

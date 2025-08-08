@@ -22,7 +22,7 @@ export interface NavItem extends SidebarItem {
 
 export interface FooterItem extends SidebarItem {
     link: string;
-    showOnCollapse?: boolean;
+    showOnCollapsed?: boolean;
 }
 
 interface SidebarProfile {
@@ -33,7 +33,9 @@ interface SidebarProfile {
     cardLogo?:
         | ImageData
         | { component?: string };
-    description?: string;
+    description?:
+        | string
+        | { component?: string };
 }
 
 export interface SocialLink {

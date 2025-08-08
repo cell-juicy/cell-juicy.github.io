@@ -1,16 +1,26 @@
 <script setup>
+import { provide } from 'vue';
 import { storeToRefs } from 'pinia';
 
-import { useVPJSidebar } from '../composables/useVPJSidebar';
+import { useVPJSidebar } from '../composables/newSidebar';
+import { VPJ_SIDEBAR_SYMBOL } from '../utils/symbols';
 
-import VPJSidebarHeader from './VPJSidebarHeader.vue';
-import VPJSidebarNav from './VPJSidebarNav.vue';
-import VPJSidebarFooter from './VPJSidebarFooter.vue';
+import VPJSidebarHeader from './NewHeader.vue';
+import VPJSidebarNav from './NewNav.vue';
+import VPJSidebarFooter from './NewFooter.vue';
 
 
 const store = useVPJSidebar();
-const { collapsed, enabled } = storeToRefs(store);
+const {
+    collapsed,
+    highlight,
+    enabled,
+} = storeToRefs(store);
 const { close } = store;
+
+provide(VPJ_SIDEBAR_SYMBOL, {
+    highlight,
+});
 </script>
 
 

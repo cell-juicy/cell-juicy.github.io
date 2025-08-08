@@ -18,7 +18,9 @@ export default defineConfigWithTheme<ThemeConfig>({
     themeConfig: {
         logo: "/assets/logo.svg",
         sidebar: {
-            profileDescription: "这里是Cell的个人站点，记录了一些日常的学习心得，仍在建设中。",
+            profile: {
+                description: "这里是Cell的个人站点，记录了一些日常的学习心得，仍在建设中。"
+            },
             navLinks: [
                 {icon: "VPJIconHome", text: "我的主页", link: "/", tooltip: "主页"},
                 {icon: "VPJIconBlogPencil", text: "我的博客", link: "/blogs/", tooltip: "博客"},

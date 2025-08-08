@@ -3,7 +3,7 @@ import { computed, ref } from 'vue';
 import { useData } from 'vitepress';
 import { storeToRefs } from 'pinia';
 
-import { useVPJSidebar } from '../composables/useVPJSidebar';
+import { useVPJSidebar } from '../composables/newSidebar';
 
 import { isMobile } from '../utils/deviceTypes';
 
@@ -31,7 +31,7 @@ const computedTitle = computed(() => {
     } else if (typeof mobileNavTitle === 'string') {
         return { text: mobileNavTitle }
     } else {
-        return { text: headerConfig.value.title }
+        return { text: headerConfig.value.profile.title }
     }
 });
 </script>

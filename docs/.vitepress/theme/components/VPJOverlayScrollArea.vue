@@ -15,6 +15,10 @@ const props = defineProps({
         type: Object,
         default: {}
     },
+    tag: {
+        type: String,
+        default: "div"
+    },
     trackColor: {
         type: [String, Object],
         default: "transparent"
@@ -235,7 +239,8 @@ defineExpose({
 
 
 <template>
-    <div
+    <component
+        :is="props.tag"
         class="vpj-overlay-scroll"
     >
         <div
@@ -290,7 +295,7 @@ defineExpose({
                 class="vpj-overlay-scroll__thumb-y"
             />
         </div>
-    </div>
+    </component>
 </template>
 
 

@@ -27,7 +27,7 @@ const props = defineProps({
         default: {}
     },
     tooltip: {
-        type: String,
+        type: [String, undefined],
     },
     tooltipAttrs: {
         type: Object,

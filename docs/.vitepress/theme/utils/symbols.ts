@@ -1,3 +1,6 @@
+// sidebar symbol
+export const VPJ_SIDEBAR_SYMBOL = Symbol("sidebar");
+
 // page layout symbol
 export const VPJ_PAGE_LAYOUT_SYMBOL = Symbol("page layout");
 

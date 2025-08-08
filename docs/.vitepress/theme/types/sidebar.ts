@@ -257,7 +257,7 @@ export interface SidebarNavItemData {
  * 
  * 2. 显示控制：
  * 
- * @see {@link SidebarFooterItemData.showOnCollapse} 折叠状态显示控制
+ * @see {@link SidebarFooterItemData.showOnCollapsed} 折叠状态显示控制
  * 
  * 3. 扩展属性：
  * 
@@ -280,7 +280,7 @@ export interface SidebarNavItemData {
  *   icon: { src: "/social/github.svg", alt: "GitHub Logo" },
  *   text: "源码仓库",
  *   link: "https://github.com",
- *   showOnCollapse: true,
+ *   showOnCollapsed: true,
  *   attrs: { rel: "noopener" }
  * }
  * ```
@@ -377,7 +377,7 @@ export interface SidebarFooterItemData {
      * 
      * @see {@link SidebarConfig.showFooterOnCollapse}
      */
-    showOnCollapse?: boolean;
+    showOnCollapsed?: boolean;
 
     /**
      * 侧边栏底部链接项的额外属性配置
@@ -956,7 +956,7 @@ export interface SidebarConfig {
      * 该项控制侧边栏底部区域在侧边栏收起时是否显示，接受一个Boolean值作为输入。
      * 
      * 注意事项：
-     * * 部分内容的配置只有在此项为true时才有意义，例如sidebar.footerLinks列表项中的showOnCollapse属性。
+     * * 部分内容的配置只有在此项为true时才有意义，例如sidebar.footerLinks列表项中的showOnCollapsed属性。
      * 
      * @example
      * 示例1：在侧边栏折叠时显示底部内容
@@ -993,7 +993,7 @@ export interface SidebarConfig {
      *     sidebar: {
      *       footerLinks: [
      *         {icon: "VPJIconInfo", text: "关于我们", link: "/about/", target: "_self"},
-     *         {icon: "VPJIconGithub", text: "Github", link: "https://github.com/", showOnCollapse: false},
+     *         {icon: "VPJIconGithub", text: "Github", link: "https://github.com/", showOnCollapsed: false},
      *       ]
      *     }
      *   }
