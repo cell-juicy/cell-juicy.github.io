@@ -25,6 +25,7 @@ interface NormalizeNavItem extends NavItem {
     tooltip?: string;
     highlight: { normal?: string, hover?: string, active?: string };
     items?: NormalizeNavItem[];
+    depth: number;
 }
 
 interface NormalizeFooterItem extends FooterItem {
@@ -101,6 +102,7 @@ function normalizeNavItem<T extends NavItem>(input: T, depth: number = 0): Norma
         highlight: normalizeHighlight(input.highlight),
         items,
         collapsed: typeof input.collapsed === 'boolean' ? input.collapsed : true,
+        depth
     };
 }
 

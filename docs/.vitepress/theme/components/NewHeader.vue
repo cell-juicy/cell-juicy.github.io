@@ -59,7 +59,12 @@ onMounted(() => {
 
 
 <template>
-    <header :class="['vpj-sidebar__header', {'collapsed': collapsed}]">
+    <header
+        :class="[
+            'vpj-sidebar__header',
+            { 'collapsed': collapsed }
+        ]"
+    >
         <slot name="sidebar-header-top"/>
         <div class="vpj-sidebar__header-container">
             <VPJDynamicIconBtn
@@ -121,7 +126,7 @@ onMounted(() => {
         display: flex;
         flex-direction: column;
         gap: .625rem;
-        padding-bottom: 1rem;
+        padding-bottom: .5rem;
         padding-left: .75rem;
         padding-right: .75rem;
     }
@@ -142,11 +147,9 @@ onMounted(() => {
         border-radius: var(--vpj-border-radius-100);
         flex: 1;
         gap: .75rem;
-        height: 36px;
+        height: 2rem;
         min-width: 0;
-        padding: auto;
-        padding-left: .625rem;
-        padding-right: .625rem;
+        padding: .5rem;
     }
 
     .vpj-sidebar__header-btn:hover,
@@ -168,6 +171,8 @@ onMounted(() => {
     .vpj-sidebar__header-btn :deep(.vpj-text) {
         color: var(--vpj-color-text-400);
         font-size: .875rem;
+        opacity: 1;
+        transition: opacity .2s ease-in-out;
     }
 
     .vpj-sidebar__header-profile-overlay {
@@ -182,11 +187,6 @@ onMounted(() => {
     }
 
     /* StyleSheet for collapsed state */
-    .vpj-sidebar__header.collapsed {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
     /* Container */
     .vpj-sidebar__header.collapsed .vpj-sidebar__header-container {
         flex-direction: column;
@@ -195,46 +195,34 @@ onMounted(() => {
 
     /* Button */
     .vpj-sidebar__header.collapsed .vpj-sidebar__header-btn {
-        width: 36px;
-        padding: 10px;
+        width: 2rem;
     }
 
     /* Button Text (hide when collapsed) */
     .vpj-sidebar__header.collapsed .vpj-sidebar__header-btn :deep(.vpj-text) {
-        display: none;
+        opacity: 0;
     }
 
     /* Profile button */
-    [data-action="profile"]:disabled {
-        background-color: var(--vpj-color-bg-300);
-        border: 0;
-        border-radius: var(--vpj-border-radius-100);
-        flex: 1;
-        gap: .75rem;
-        height: 36px;
-        min-width: 0;
-        padding: auto;
-        padding-left: .625rem;
-        padding-right: .625rem;
+    [data-action="profile"] {
+        padding: .4rem;
+        transition: width .2s ease-in-out;
     }
 
     [data-action="profile"] :deep(.vpj-text) {
         font-weight: var(--vpj-font-weight-600);
     }
 
-    [data-action="profile"] :deep(.vpj-icon),
-    .vpj-sidebar__header.collapsed [data-action="profile"] :deep(.vpj-icon) {
-        height: 24px;
-        width: 24px;
-    }
-
-    .vpj-sidebar__header.collapsed [data-action="profile"]  {
-        padding: 6px;
+    [data-action="profile"] :deep(.vpj-icon) {
+        border-radius: var(--vpj-border-radius-100);
+        height: 1.4rem;
+        width: 1.4rem;
     }
 
     /* Toggle button */
     [data-action="toggle"] {
         flex: 0 0 auto;
+        width: 2rem;
     }
 
     /* Profile Card */
@@ -252,8 +240,7 @@ onMounted(() => {
         left: v-bind("profileProsition.left");
         right: v-bind("profileProsition.right");
         top: v-bind("profileProsition.top");
-        max-width: 246px;
-        min-width: 246px;
+        max-width: min(15.25rem, 42.5vw);
         max-height: 355px;
         z-index: 102;
     }
@@ -272,15 +259,16 @@ onMounted(() => {
     }
 
     .vpj-sidebar__profile-logo {
-        width: 24px;
-        height: 24px;
+        border-radius: var(--vpj-border-radius-100);
+        height: 1.6rem;
         flex-shrink: 0;
+        width: 1.6rem;
     }
 
     .vpj-sidebar__profile-title {
         color: var(--vpj-color-text-400);
         flex: 1;
-        font-size: .875rem;
+        font-size: 1.1rem;
         font-weight: var(--vpj-font-weight-600);
     }
 

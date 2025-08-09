@@ -34,8 +34,10 @@ body {
 .vpj-icon {
     display: inline-block;
     flex-shrink: 0;
-    height: 16px;
-    width: 16px;
+    height: 1rem;
+    object-fit: cover;
+    object-position: center center;
+    width: 1rem;
 }
 
 .vpj-text {

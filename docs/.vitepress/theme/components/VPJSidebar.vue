@@ -48,7 +48,9 @@ provide(VPJ_SIDEBAR_SYMBOL, {
         <slot name="sidebar-bottom"/>
     </aside>
     <Teleport to=".vpj-portals-root">
-        <div v-if="!collapsed" @click="close" class="vpj-sidebar__overlay"/>
+        <Transition>
+            <div v-if="!collapsed" @click="close" class="vpj-sidebar__overlay"/>
+        </Transition>
     </Teleport>
 </template>
 
@@ -65,14 +67,16 @@ provide(VPJ_SIDEBAR_SYMBOL, {
         min-height: 0;
         padding-bottom: 1rem;
         padding-top: 1rem;
-        transition: width 0.15s ease-in-out;
-        width: 260px;
+        transition:
+            width 0.2s ease-in-out,
+            transform 0.2s ease-in-out;
+        width: min(16.5rem, 50vw);
         z-index: 0;
     }
 
     /* StyleSheet for collapsed state */
     .vpj-sidebar.collapsed {
-        width: 60px;
+        width: 3.5rem;
     }
 
     /* StyleSheet for overlay(only show on mobile screen) */
@@ -84,10 +88,9 @@ provide(VPJ_SIDEBAR_SYMBOL, {
     @media screen and (max-width: 768px) {
         /* Sidebar */
         .vpj-sidebar {
-            width: 300px;
+            width: min(20rem, 60vw);
             position: fixed;
             left: 0;
-            transition: transform 0.15s ease-in-out;
             z-index: 101;
         }
 
@@ -107,5 +110,21 @@ provide(VPJ_SIDEBAR_SYMBOL, {
             top: 0;
             z-index: 100;
         }
+    }
+
+    /* Vue Transition */
+    .v-enter-from,
+    .v-leave-to {
+        opacity: 0;
+    }
+
+    .v-enter-to,
+    .v-leave-from {
+        opacity: 1;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+        transition: opacity 0.2s ease-in-out;
     }
 </style>

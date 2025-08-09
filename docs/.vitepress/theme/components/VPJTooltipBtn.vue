@@ -194,20 +194,36 @@ defineExpose({
             </span>
         </slot>
         <Teleport to=".vpj-portals-root">
-            <div 
-                v-if="props.tooltip && tooltipVisible"
-                v-bind="props.tooltipAttrs"
-                ref="tooltipRef"
-                class="vpj-teleport"
-                :style="tooltipCss"
-            >
-                {{ props.tooltip }}
-            </div>
+            <Transition>
+                <div 
+                    v-if="props.tooltip && tooltipVisible"
+                    v-bind="props.tooltipAttrs"
+                    ref="tooltipRef"
+                    class="vpj-teleport"
+                    :style="tooltipCss"
+                >
+                    {{ props.tooltip }}
+                </div>
+            </Transition>
         </Teleport>
     </component>
 </template>
 
 
 <style scoped>
-    
+    /* Vue Transition */
+    .v-enter-from,
+    .v-leave-to {
+        opacity: 0;
+    }
+
+    .v-enter-to,
+    .v-leave-from {
+        opacity: 1;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+        transition: opacity 0.2s ease-in-out;
+    }
 </style>
