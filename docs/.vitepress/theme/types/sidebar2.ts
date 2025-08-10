@@ -28,7 +28,9 @@ export interface FooterItem extends SidebarItem {
 interface SidebarProfile {
     enabled?: boolean;
     title?: string;
-    logo?: string;
+    logo?:
+        | ImageData
+        | { component?: string };
     cardTitle?: string;
     cardLogo?:
         | ImageData

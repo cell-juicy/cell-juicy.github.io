@@ -54,7 +54,7 @@ const {
                 class="vpj-sidebar__footer-item"
             >
                 <VPJTooltipBtn
-                    v-show="!collapsed || item.showOnCollapsed"
+                    v-show="!collapsed || (item.showOnCollapsed && item.icon)"
                     :isLink="true"
                     :icon="item.icon"
                     :text="item.text"
@@ -76,7 +76,7 @@ const {
             </li>
         </ul>
         <VPJOverlayScrollArea
-            v-show="!collapsed"
+            v-show="!collapsed && config.socialLinks.length > 0"
             overflow="x"
             thumb-width=3
             :inner-attrs="{ class: 'vpj-sidebar__footer-social-links-inner' }"

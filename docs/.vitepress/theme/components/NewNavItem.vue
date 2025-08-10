@@ -47,8 +47,13 @@ const {
 const itemsCollapsed = ref(!!props.data?.collapsed);
 const iconHovered = ref(false);
 
-const hasChildren = computed(() => props.data?.items?.length > 0 && Number(props.data.depth) <= 5);
-const hasIcon = computed(() => props.data?.icon);
+const hasChildren = computed(() => {
+    if (Number(props.data.depth) > 5) return false;
+    return collapsed.value
+        ? props.data.items.some((item) => !!item.icon || item.items.length > 0)
+        : props.data.items.length > 0;
+});
+const hasIcon = computed(() => !!props.data?.icon);
 
 // Css
 const gap = computed(() => collapsed.value ? ".625rem" : ".125rem");
@@ -60,7 +65,7 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
 
 <template>
     <li
-        v-if="!collapsed || (hasIcon) || (hasChildren && !hasIcon)"
+        v-if="!collapsed || (hasIcon) || (hasChildren)"
         class="vpj-sidebar__nav-item"
     >
         <VPJTooltipBtn
@@ -109,11 +114,7 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
             </span>
         </VPJTooltipBtn>
         <ul
-            v-show="
-                (Number(props.data.depth) <= 5) &&
-                (props.data.items?.length > 0) &&
-                !itemsCollapsed
-            "
+            v-show="!itemsCollapsed && hasChildren"
             class="vpj-sidebar__nav-item-sub"
         >
             <NewNavItem

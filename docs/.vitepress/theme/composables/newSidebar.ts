@@ -85,7 +85,7 @@ function normalizeHighlight(input: any): { normal?: string, hover?: string, acti
 }
 
 function normalizeNavItem<T extends NavItem>(input: T, depth: number = 0): NormalizeNavItem {
-    const items = Array.isArray(input.items) && (depth <= 5)
+    const items = Array.isArray(input.items) && (depth < 5)
         ? input.items
             .filter((item) => isNavItem(item))
             .map((item) => normalizeNavItem(item, depth + 1))
