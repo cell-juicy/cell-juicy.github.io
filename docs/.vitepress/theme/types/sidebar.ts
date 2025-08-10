@@ -50,6 +50,7 @@ export interface SocialLink {
 
 export interface SidebarConfig {
     enabled?: boolean;
+    collapsed?: boolean;
     profile?: SidebarProfile;
     highlight?: (path: string, allLinks: string[]) => string | undefined;
     navLinks?:

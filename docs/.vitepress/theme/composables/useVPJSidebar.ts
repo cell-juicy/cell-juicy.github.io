@@ -24,7 +24,7 @@ import defaultAvatar from '../assets/avatar.svg';
 interface NormalizeNavItem extends NavItem {
     tooltip?: string;
     highlight: { normal?: string, hover?: string, active?: string };
-    items?: NormalizeNavItem[];
+    items: NormalizeNavItem[];
     depth: number;
 }
 
@@ -138,7 +138,11 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
     });
 
     // state
-    const collapsed: Ref<boolean> = ref(true);
+    const collapsed: Ref<boolean> = ref(
+        typeof sidebarConfig.value.collapsed === 'boolean'
+            ? sidebarConfig.value.collapsed
+            : true
+    );
     function toggle(): void { collapsed.value = !collapsed.value; };
     function close(): void { collapsed.value = true; };
     function open(): void { collapsed.value = false; };

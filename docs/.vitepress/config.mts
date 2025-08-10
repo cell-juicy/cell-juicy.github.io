@@ -42,7 +42,7 @@ export default defineConfigWithTheme<ThemeConfig>({
                     {icon: "VPJIconBlogPencil", text: "我的博客", link: "/blogs/", tooltip: "博客"},
                     {icon: "VPJIconBookBookmark", text: "我的笔记", link: "/docs/", tooltip: "笔记", collapsed: false,
                         items: [
-                            {icon: "VPJIconBookBookmark", text: "实分析下", link: "/docs/Real-Analysis/Extra/", tooltip: "实分析（下半）（测试）",
+                            {icon: "VPJIconBookBookmark", text: "实分析下", link: "/docs/Real-Analysis/Extra/", tooltip: "实分析（下半）（测试）", collapsed: false,
                                 items: [
                                     {text: "第12章 度量空间", link: "/docs/Real-Analysis/Chap12/Sec1.html", tooltip: "第12章 度量空间"},
                                     {text: "第13章 度量空间上的连续函数", link: "/docs/Real-Analysis/Chap13/Sec1.html", tooltip: "第13章 度量空间上的连续函数"},
