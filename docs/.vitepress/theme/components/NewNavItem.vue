@@ -47,15 +47,26 @@ const {
 const itemsCollapsed = ref(!!props.data?.collapsed);
 const iconHovered = ref(false);
 
+const hasChildren = computed(() => props.data?.items?.length > 0 && Number(props.data.depth) <= 5);
+const hasIcon = computed(() => props.data?.icon);
+
+// Css
 const gap = computed(() => collapsed.value ? ".625rem" : ".125rem");
-const paddingLeft = computed(() => collapsed.value ? ".5rem" : `${Number(props.data.depth * .75) + .5}rem`)
+const paddingLeft = computed(() => `${(collapsed.value ? 0 : Number(props.data.depth * .75)) + .375}rem`)
 const textOpacity = computed(() => collapsed.value ? "0" : "1");
+const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" : "none");
 </script>
 
 
 <template>
-    <li class="vpj-sidebar__nav-item">
+    <li
+        v-if="!collapsed || (hasIcon) || (hasChildren && !hasIcon)"
+        class="vpj-sidebar__nav-item"
+    >
         <VPJTooltipBtn
+            @click="() => {
+                if (typeof data.link !== 'string' && hasChildren) itemsCollapsed = !itemsCollapsed
+            }"
             :is-link="typeof data.link === 'string' ? true : false"
             :offset="tooltipOffset"
             :tooltip="data.tooltip"
@@ -75,10 +86,10 @@ const textOpacity = computed(() => collapsed.value ? "0" : "1");
             <span
                 @mouseenter="iconHovered = true"
                 @mouseleave="iconHovered = false"
-                class="vpj-sidebar__nav-item-warpper"
+                class="vpj-sidebar__nav-item-wrapper"
             >
                 <button
-                    v-if="iconHovered && props.data.items?.length > 0 && props.depth <= 5"
+                    v-if="(iconHovered && hasChildren) || (hasChildren && !hasIcon)"
                     @click.stop.prevent="itemsCollapsed = !itemsCollapsed"
                     class="vpj-sidebar__nav-item-toggle"
                 >
@@ -86,7 +97,6 @@ const textOpacity = computed(() => collapsed.value ? "0" : "1");
                         class="vpj-icon"
                         :icon="VPJIconAngleSmallDown"
                     />
-                >
                 </button>
                 <VPJDynamicIcon
                     v-else-if="props.data.icon"
@@ -117,7 +127,12 @@ const textOpacity = computed(() => collapsed.value ? "0" : "1");
 
 <style scoped>
     .vpj-sidebar__nav-item {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: v-bind(gap);
         list-style: none;
+        transition: gap .2s ease-in-out;
         width: 100%;
     }
 
@@ -131,15 +146,16 @@ const textOpacity = computed(() => collapsed.value ? "0" : "1");
         display: flex;
         flex: 1;
         flex-direction: row;
-        gap: .5rem;
+        gap: .25rem;
         height: 2rem;
         min-width: 0;
-        padding: .5rem;
+        padding: .375rem;
         padding-left: v-bind(paddingLeft);
         text-decoration: none;
         transition:
             padding .2s ease-in-out,
             width .2s ease-in-out;
+        width: 100%;
     }
 
     .vpj-sidebar__nav-item-link:hover,
@@ -147,26 +163,59 @@ const textOpacity = computed(() => collapsed.value ? "0" : "1");
         background-color: var(--vpj-color-bg-500);
     }
 
-    /* Nav link icon */
-    .vpj-sidebar__nav-item-warpper {
+    /* Nav link icon wrapper */
+    .vpj-sidebar__nav-item-wrapper {
         align-items: center;
         display: flex;
-        height: 1rem;
-        width: 1rem;
+        flex-shrink: 0;
+        height: 1.25rem;
+        width: 1.25rem;
     }
 
-    .vpj-sidebar__nav-item-link .vpj-icon {
+    /* Nav toggle btn */
+    .vpj-sidebar__nav-item-toggle {
+        align-items: center;
+        background-color: var(--vpj-color-bg-300);
+        border-radius: var(--vpj-border-radius-100);
+        display: flex;
+        height: 100%;
+        padding: .25rem;
+        width: 100%;
+    }
+
+    .vpj-sidebar__nav-item-toggle:hover,
+    .vpj-sidebar__nav-item-toggle:active {
+        background-color: var(--vpj-color-bg-100);
+    }
+
+    .vpj-sidebar__nav-item-toggle > .vpj-icon {
+        height: .75rem;
         fill: var(--vpj-color-text-300);
-        height: 1rem;
-        width: 1rem;
+        transition: transform .2s ease-in-out;
+        transform: v-bind(toggleTransition);
+        width: .75rem;
     }
 
-    .vpj-sidebar__nav-item-link:hover .vpj-icon,
-    .vpj-sidebar__nav-item-link:active .vpj-icon {
+    .vpj-sidebar__nav-item-toggle:hover > .vpj-icon,
+    .vpj-sidebar__nav-item-toggle:active > .vpj-icon {
         fill: var(--vpj-color-text-400);
     }
 
-    .vpj-sidebar__nav-item-link .vpj-text {
+    /* Nav link icon */
+    .vpj-sidebar__nav-item-wrapper > .vpj-icon {
+        fill: var(--vpj-color-text-300);
+        height: 1rem;
+        margin: .125rem;
+        width: 1rem;
+    }
+
+    .vpj-sidebar__nav-item-wrapper:hover > .vpj-icon,
+    .vpj-sidebar__nav-item-wrapper:active > .vpj-icon {
+        fill: var(--vpj-color-text-400);
+    }
+
+    /* Nav link text */
+    .vpj-sidebar__nav-item-link > .vpj-text {
         color: var(--vpj-color-text-400);
         font-size: .875rem;
         opacity: v-bind(textOpacity);
@@ -174,15 +223,15 @@ const textOpacity = computed(() => collapsed.value ? "0" : "1");
     }
 
     /* Highlight link */
-    .vpj-sidebar__nav-item-link.highlight .vpj-icon {
+    .vpj-sidebar__nav-item-link.highlight .vpj-sidebar__nav-item-wrapper > .vpj-icon {
         fill: var(--vpj-highlight-normal, var(--vpj-color-primary-400));
     }
 
-    .vpj-sidebar__nav-item-link.highlight:hover .vpj-icon {
+    .vpj-sidebar__nav-item-link.highlight:hover .vpj-sidebar__nav-item-wrapper > .vpj-icon {
         fill: var(--vpj-highlight-hover, var(--vpj-color-primary-500));
     }
 
-    .vpj-sidebar__nav-item-link.highlight:active .vpj-icon {
+    .vpj-sidebar__nav-item-link.highlight:active .vpj-sidebar__nav-item-wrapper > .vpj-icon {
         fill: var(--vpj-highlight-active, var(--vpj-color-primary-300));
     }
 
@@ -194,11 +243,9 @@ const textOpacity = computed(() => collapsed.value ? "0" : "1");
         flex-shrink: 0;
         gap: v-bind(gap);
         list-style-type: none;
-        margin: v-bind(gap) 0;
+        margin: 0;
         padding: 0;
-        transition:
-            gap .2s ease-in-out,
-            margin .2s ease-in-out;
+        transition: gap .2s ease-in-out;
         width: 100%;
     }
 </style>

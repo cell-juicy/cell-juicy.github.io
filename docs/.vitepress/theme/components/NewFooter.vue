@@ -4,6 +4,8 @@ import { storeToRefs } from 'pinia';
 import { useVPJSidebar } from '../composables/newSidebar';
 
 import VPJTooltipBtn from './VPJTooltipBtn.vue';
+import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue'
+import VPJDynamicIcon from './VPJDynamicIcon.vue';
 
 
 const tooltipPosition = "right";
@@ -73,6 +75,27 @@ const {
                 />
             </li>
         </ul>
+        <VPJOverlayScrollArea
+            v-show="!collapsed"
+            overflow="x"
+            thumb-width=3
+            :inner-attrs="{ class: 'vpj-sidebar__footer-social-links-inner' }"
+            class="vpj-sidebar__footer-social-links-outer"
+        >
+            <a
+                v-for="data in config.socialLinks"
+                class="vpj-sidebar__footer-social-link"
+                :href="data.link"
+                :aria-label="data.ariaLabel"
+                target="_blank"
+                rel="noopener"
+            >
+                <VPJDynamicIcon
+                    class="vpj-icon"
+                    :icon="data.icon"
+                />
+            </a>
+        </VPJOverlayScrollArea>
         <slot name="sidebar-footer-bottom"/>
     </footer>
 </template>
@@ -116,8 +139,7 @@ const {
         gap: .5rem;
         height: 2rem;
         min-width: 0;
-        padding-left: .5rem;
-        padding-right: .5rem;
+        padding: .5rem;
         text-decoration: none;
     }
 
@@ -126,7 +148,7 @@ const {
         background-color: var(--vpj-color-bg-500);
     }
 
-    /* Nav link icon & text */
+    /* Footer link icon & text */
     .vpj-sidebar__footer-item-link :deep(.vpj-icon) {
         fill: var(--vpj-color-text-300);
     }
@@ -156,12 +178,63 @@ const {
         fill: var(--vpj-highlight-active, var(--vpj-color-primary-300));
     }
 
+    /* Social Links */
+    .vpj-sidebar__footer-social-links-outer {
+        margin-top: .375rem;
+        width: 100%;
+    }
+
+    :deep(.vpj-sidebar__footer-social-links-inner) {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        gap: .1rem;
+        height: 2rem;
+        margin-bottom: 4px;
+        width: 100%;
+    }
+
+    .vpj-sidebar__footer-social-link,
+    .vpj-sidebar__footer-social-link:visited {
+        align-items: center;
+        background-color: var(--vpj-color-bg-300);
+        border: 0;
+        border-radius: var(--vpj-border-radius-100);
+        display: flex;
+        flex-shrink: 0;
+        height: 2rem;
+        justify-content: center;
+        padding: .5rem;
+        text-decoration: none;
+        width: 2rem;
+    }
+
+    .vpj-sidebar__footer-social-link:hover,
+    .vpj-sidebar__footer-social-link:active {
+        background-color: var(--vpj-color-bg-500);
+    }
+
+    .vpj-sidebar__footer-social-link > .vpj-icon {
+        height: 1rem;
+        width: 1rem;
+    }
+
+    .vpj-sidebar__footer-social-link > .vpj-icon {
+        fill: var(--vpj-color-text-300);
+    }
+
+    .vpj-sidebar__footer-social-link:hover > .vpj-icon,
+    .vpj-sidebar__footer-social-link:active > .vpj-icon {
+        fill: var(--vpj-color-text-400);
+    }
+
+
     /* StyleSheet for collapsed state */
     .vpj-sidebar__footer.collapsed .vpj-sidebar__footer-link-list {
         gap: .375rem;
     }
 
-    /* Nav links */
+    /* Footer links */
     .vpj-sidebar__footer.collapsed .vpj-sidebar__footer-item-link {
         width: 2rem;
     }
