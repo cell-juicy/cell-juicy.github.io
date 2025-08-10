@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
-import { useVPJSidebar } from '../composables/newSidebar'
+import { useVPJSidebar } from '../composables/useVPJSidebar'
 
 import VPJTooltipBtn from './VPJTooltipBtn.vue';
 import VPJDynamicIcon from './VPJDynamicIcon.vue';
@@ -117,7 +117,7 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
             v-show="!itemsCollapsed && hasChildren"
             class="vpj-sidebar__nav-item-sub"
         >
-            <NewNavItem
+            <VPJSidebarNavItem
                 v-for="item in props.data.items"
                 :data="item"
             />

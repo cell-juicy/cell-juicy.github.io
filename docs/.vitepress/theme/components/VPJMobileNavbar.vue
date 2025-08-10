@@ -3,7 +3,7 @@ import { computed, ref } from 'vue';
 import { useData } from 'vitepress';
 import { storeToRefs } from 'pinia';
 
-import { useVPJSidebar } from '../composables/newSidebar';
+import { useVPJSidebar } from '../composables/useVPJSidebar';
 
 import { isMobile } from '../utils/deviceTypes';
 

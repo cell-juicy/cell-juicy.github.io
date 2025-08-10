@@ -8,7 +8,7 @@ import type {
 
 import type {
     SidebarConfig
-} from "./sidebar2";
+} from "./sidebar";
 
 import type {
     MobileNavConfig

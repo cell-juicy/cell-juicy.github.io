@@ -2,37 +2,100 @@
 import { storeToRefs } from 'pinia';
 
 import { useVPJSidebar } from '../composables/useVPJSidebar';
-import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 
+import VPJTooltipBtn from './VPJTooltipBtn.vue';
+import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue'
+import VPJDynamicIcon from './VPJDynamicIcon.vue';
+
+
+const tooltipPosition = "right";
+const tooltipOffset = {x: 6, y: 0};
+const tooltipAttrs = {
+    style: {
+        alignItems: "center",
+        background: "var(--vpj-color-text-500)",
+        borderRadius: "var(--vpj-border-radius-100)",
+        color: "var(--vpj-color-bg-100)",
+        display: "flex",
+        fontSize: ".875rem",
+        maxWidth: "200px",
+        paddingTop: ".375rem",
+        paddingBottom: ".375rem",
+        paddingLeft: ".5rem",
+        paddingRight: ".5rem",
+        zIndex: 102
+    },
+    class: [
+        "vpj-text"
+    ]
+};
 
 const store = useVPJSidebar();
-const { collapsed, footerConfig } = storeToRefs(store);
+const {
+    collapsed,
+    highlight,
+    footerConfig: config
+} = storeToRefs(store);
 </script>
 
 
 <template>
     <footer
-        v-show="!collapsed || footerConfig.show"
-        :class="['vpj-sidebar-footer', {'collapsed': collapsed}]"
+        :class="[
+            'vpj-sidebar__footer',
+            { 'collapsed': collapsed }
+        ]"
     >
         <slot name="sidebar-footer-top"/>
-        <ul class="vpj-sidebar-footer__link-list">
+        <ul class="vpj-sidebar__footer-link-list">
             <li
-                v-for="item in footerConfig.links"
+                v-for="item in config.footerLinks"
                 :key="item.text"
-                class="vpj-sidebar-footer__link-item"
+                class="vpj-sidebar__footer-item"
             >
-                <VPJDynamicIconBtn
-                    v-show="!collapsed || item.showOnCollapse"
-                    v-bind="item.attrs"
+                <VPJTooltipBtn
+                    v-show="!collapsed || (item.showOnCollapsed && item.icon)"
                     :isLink="true"
                     :icon="item.icon"
                     :text="item.text"
+                    :offset="tooltipOffset"
+                    :tooltip="item.tooltip"
+                    :tooltip-attrs="tooltipAttrs"
+                    :tooltip-position="tooltipPosition"
                     :href="item.link"
-                    class="vpj-sidebar-footer__link"
+                    :class="[
+                        'vpj-sidebar__footer-item-link',
+                        { 'highlight': highlight === item.link }
+                    ]"
+                    :style="{
+                        '--vpj-highlight-normal': item.highlight.normal,
+                        '--vpj-highlight-hover': item.highlight.hover,
+                        '--vpj-highlight-active': item.highlight.active,
+                    }"
                 />
             </li>
         </ul>
+        <VPJOverlayScrollArea
+            v-show="!collapsed && config.socialLinks.length > 0"
+            overflow="x"
+            thumb-width=3
+            :inner-attrs="{ class: 'vpj-sidebar__footer-social-links-inner' }"
+            class="vpj-sidebar__footer-social-links-outer"
+        >
+            <a
+                v-for="data in config.socialLinks"
+                class="vpj-sidebar__footer-social-link"
+                :href="data.link"
+                :aria-label="data.ariaLabel"
+                target="_blank"
+                rel="noopener"
+            >
+                <VPJDynamicIcon
+                    class="vpj-icon"
+                    :icon="data.icon"
+                />
+            </a>
+        </VPJOverlayScrollArea>
         <slot name="sidebar-footer-bottom"/>
     </footer>
 </template>
@@ -40,7 +103,7 @@ const { collapsed, footerConfig } = storeToRefs(store);
 
 <style scoped>
     /* Footer layout */
-    .vpj-sidebar-footer {
+    .vpj-sidebar__footer {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -54,7 +117,7 @@ const { collapsed, footerConfig } = storeToRefs(store);
     }
 
     /* Footer links */
-    .vpj-sidebar-footer__link-list {
+    .vpj-sidebar__footer-link-list {
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
@@ -67,53 +130,116 @@ const { collapsed, footerConfig } = storeToRefs(store);
     }
 
     /* Footer link */
-    .vpj-sidebar-footer__link,
-    .vpj-sidebar-footer__link:visited {
+    .vpj-sidebar__footer-item-link,
+    .vpj-sidebar__footer-item-link:visited {
         background-color: var(--vpj-color-bg-300);
         border: 0;
         border-radius: var(--vpj-border-radius-100);
         flex: 1;
-        gap: .75rem;
-        height: 36px;
+        gap: .5rem;
+        height: 2rem;
         min-width: 0;
-        padding-left: .625rem;
-        padding-right: .625rem;
+        padding: .5rem;
         text-decoration: none;
     }
 
-    .vpj-sidebar-footer__link:hover,
-    .vpj-sidebar-footer__link:active {
+    .vpj-sidebar__footer-item-link:hover,
+    .vpj-sidebar__footer-item-link:active {
         background-color: var(--vpj-color-bg-500);
     }
 
-    /* Nav link icon & text */
-    .vpj-sidebar-footer__link :deep(.vpj-icon) {
+    /* Footer link icon & text */
+    .vpj-sidebar__footer-item-link :deep(.vpj-icon) {
         fill: var(--vpj-color-text-300);
     }
 
-    .vpj-sidebar-footer__link:hover :deep(.vpj-icon),
-    .vpj-sidebar-footer__link:active :deep(.vpj-icon) {
+    .vpj-sidebar__footer-item-link:hover :deep(.vpj-icon),
+    .vpj-sidebar__footer-item-link:active :deep(.vpj-icon) {
         fill: var(--vpj-color-text-400);
     }
 
-    .vpj-sidebar-footer__link :deep(.vpj-text) {
+    .vpj-sidebar__footer-item-link :deep(.vpj-text) {
         color: var(--vpj-color-text-400);
         font-size: .875rem;
+        opacity: 1;
+        transition: opacity .2s ease-in-out;
     }
+
+    /* Highlight link */
+    .vpj-sidebar__footer-item-link.highlight :deep(.vpj-icon) {
+        fill: var(--vpj-highlight-normal, var(--vpj-color-primary-400));
+    }
+
+    .vpj-sidebar__footer-item-link.highlight:hover :deep(.vpj-icon) {
+        fill: var(--vpj-highlight-hover, var(--vpj-color-primary-500));
+    }
+
+    .vpj-sidebar__footer-item-link.highlight:active :deep(.vpj-icon) {
+        fill: var(--vpj-highlight-active, var(--vpj-color-primary-300));
+    }
+
+    /* Social Links */
+    .vpj-sidebar__footer-social-links-outer {
+        margin-top: .375rem;
+        width: 100%;
+    }
+
+    :deep(.vpj-sidebar__footer-social-links-inner) {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        gap: .1rem;
+        height: 2rem;
+        margin-bottom: 4px;
+        width: 100%;
+    }
+
+    .vpj-sidebar__footer-social-link,
+    .vpj-sidebar__footer-social-link:visited {
+        align-items: center;
+        background-color: var(--vpj-color-bg-300);
+        border: 0;
+        border-radius: var(--vpj-border-radius-100);
+        display: flex;
+        flex-shrink: 0;
+        height: 2rem;
+        justify-content: center;
+        padding: .5rem;
+        text-decoration: none;
+        width: 2rem;
+    }
+
+    .vpj-sidebar__footer-social-link:hover,
+    .vpj-sidebar__footer-social-link:active {
+        background-color: var(--vpj-color-bg-500);
+    }
+
+    .vpj-sidebar__footer-social-link > .vpj-icon {
+        height: 1rem;
+        width: 1rem;
+    }
+
+    .vpj-sidebar__footer-social-link > .vpj-icon {
+        fill: var(--vpj-color-text-300);
+    }
+
+    .vpj-sidebar__footer-social-link:hover > .vpj-icon,
+    .vpj-sidebar__footer-social-link:active > .vpj-icon {
+        fill: var(--vpj-color-text-400);
+    }
+
 
     /* StyleSheet for collapsed state */
-    .vpj-sidebar-footer.collapsed {
-        padding-left: 12px;
-        padding-right: 8px;
-    }
-
-    .vpj-sidebar-footer.collapsed .vpj-sidebar-footer__link-list {
+    .vpj-sidebar__footer.collapsed .vpj-sidebar__footer-link-list {
         gap: .375rem;
     }
 
-    /* Nav links */
-    .vpj-sidebar-footer.collapsed .vpj-sidebar-footer__link {
-        width: 36px;
-        padding: 10px;
+    /* Footer links */
+    .vpj-sidebar__footer.collapsed .vpj-sidebar__footer-item-link {
+        width: 2rem;
+    }
+
+    .vpj-sidebar__footer.collapsed .vpj-sidebar__footer-item-link :deep(.vpj-text) {
+        opacity: 0;
     }
 </style>

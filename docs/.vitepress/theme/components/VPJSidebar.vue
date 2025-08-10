@@ -2,12 +2,12 @@
 import { provide } from 'vue';
 import { storeToRefs } from 'pinia';
 
-import { useVPJSidebar } from '../composables/newSidebar';
+import { useVPJSidebar } from '../composables/useVPJSidebar';
 import { VPJ_SIDEBAR_SYMBOL } from '../utils/symbols';
 
-import VPJSidebarHeader from './NewHeader.vue';
-import VPJSidebarNav from './NewNav.vue';
-import VPJSidebarFooter from './NewFooter.vue';
+import VPJSidebarHeader from './VPJSidebarHeader.vue';
+import VPJSidebarNav from './VPJSidebarNav.vue';
+import VPJSidebarFooter from './VPJSidebarFooter.vue';
 
 
 const store = useVPJSidebar();
