@@ -43,10 +43,10 @@ const {
         flex: 1;
         flex-direction: column;
         mask-image: linear-gradient(to bottom,
-            rgba(0, 0, 0, 0) 0,
-            rgba(0, 0, 0, 1) .5rem,
-            rgba(0, 0, 0, 1) calc(100% - .5rem),
-            rgba(0, 0, 0, 0) 100%
+            transparent 0,
+            black .5rem,
+            black calc(100% - .5rem),
+            transparent 100%
         );
         min-height: 0;
         padding: 0;
