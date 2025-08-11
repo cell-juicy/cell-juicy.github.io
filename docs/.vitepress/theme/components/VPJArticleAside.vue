@@ -100,7 +100,10 @@ onUnmounted(() => {
         :disabled="!isMobile"
     >
         <aside
-            :class="['vpj-article-aside', {'collapsed': props.state.collapsed}]"
+            :class="[
+                'vpj-article-aside',
+                { 'collapsed': props.state.collapsed }
+            ]"
         >
             <header class="vpj-article-aside__header">
                 <div class="vpj-article-aside__tabboxmask">
@@ -135,11 +138,13 @@ onUnmounted(() => {
                 </div>
             </div>
         </aside>
-        <div
-            v-if="!isDesktop && !props.state.collapsed"
-            @click="props.state.close"
-            class="vpj-article-aside__overlay"
-        />
+        <Transition>
+            <div
+                v-if="!isDesktop && !props.state.collapsed"
+                @click="props.state.close"
+                class="vpj-article-aside__overlay"
+            />
+        </Transition>
     </Teleport>
 </template>
 
@@ -154,7 +159,9 @@ onUnmounted(() => {
         flex-shrink: 0;
         height: 100%;
         overflow: hidden;
-        transition: width 0.2s ease-in-out;
+        transition:
+            transform 0.2s ease-in-out,
+            width 0.2s ease-in-out;
         width: 300px;
     }
 
@@ -313,12 +320,12 @@ onUnmounted(() => {
             top: 0;
             bottom: 0;
             height: 100vh;
-            transition: transform 0.15s ease-in-out;
             z-index: 101;
         }
 
         /* Collapsed */
         .vpj-article-aside.collapsed {
+            width: 300px;
             transform: translateX(-100%);
         }
 
@@ -331,5 +338,21 @@ onUnmounted(() => {
         .vpj-article-aside__close {
             display: flex;
         }
+    }
+
+    /* Vue Transition */
+    .v-enter-from,
+    .v-leave-to {
+        opacity: 0;
+    }
+
+    .v-enter-to,
+    .v-leave-from {
+        opacity: 1;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+        transition: opacity 0.2s ease-in-out;
     }
 </style>

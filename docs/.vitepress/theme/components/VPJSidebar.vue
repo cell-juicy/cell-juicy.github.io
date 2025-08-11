@@ -1,7 +1,9 @@
 <script setup>
+import { provide } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useVPJSidebar } from '../composables/useVPJSidebar';
+import { VPJ_SIDEBAR_SYMBOL } from '../utils/symbols';
 
 import VPJSidebarHeader from './VPJSidebarHeader.vue';
 import VPJSidebarNav from './VPJSidebarNav.vue';
@@ -9,8 +11,16 @@ import VPJSidebarFooter from './VPJSidebarFooter.vue';
 
 
 const store = useVPJSidebar();
-const { collapsed, enabled } = storeToRefs(store);
+const {
+    collapsed,
+    highlight,
+    enabled,
+} = storeToRefs(store);
 const { close } = store;
+
+provide(VPJ_SIDEBAR_SYMBOL, {
+    highlight,
+});
 </script>
 
 
@@ -38,7 +48,9 @@ const { close } = store;
         <slot name="sidebar-bottom"/>
     </aside>
     <Teleport to=".vpj-portals-root">
-        <div v-if="!collapsed" @click="close" class="vpj-sidebar__overlay"/>
+        <Transition>
+            <div v-if="!collapsed" @click="close" class="vpj-sidebar__overlay"/>
+        </Transition>
     </Teleport>
 </template>
 
@@ -55,14 +67,16 @@ const { close } = store;
         min-height: 0;
         padding-bottom: 1rem;
         padding-top: 1rem;
-        transition: width 0.15s ease-in-out;
-        width: 260px;
+        transition:
+            width 0.2s ease-in-out,
+            transform 0.2s ease-in-out;
+        width: min(16.5rem, 50vw);
         z-index: 0;
     }
 
     /* StyleSheet for collapsed state */
     .vpj-sidebar.collapsed {
-        width: 60px;
+        width: 3.5rem;
     }
 
     /* StyleSheet for overlay(only show on mobile screen) */
@@ -74,10 +88,9 @@ const { close } = store;
     @media screen and (max-width: 768px) {
         /* Sidebar */
         .vpj-sidebar {
-            width: 300px;
+            width: min(20rem, 60vw);
             position: fixed;
             left: 0;
-            transition: transform 0.15s ease-in-out;
             z-index: 101;
         }
 
@@ -97,5 +110,21 @@ const { close } = store;
             top: 0;
             z-index: 100;
         }
+    }
+
+    /* Vue Transition */
+    .v-enter-from,
+    .v-leave-to {
+        opacity: 0;
+    }
+
+    .v-enter-to,
+    .v-leave-from {
+        opacity: 1;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+        transition: opacity 0.2s ease-in-out;
     }
 </style>

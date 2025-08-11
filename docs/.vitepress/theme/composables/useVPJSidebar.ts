@@ -1,236 +1,305 @@
 import { useData, useRoute } from 'vitepress';
-import { computed, Ref, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { defineStore } from 'pinia';
 
+import { mergeSimpleData } from '../utils/mergeData';
+
 import type {
-    SiteData
+    SiteData,
+    PageData
 } from 'vitepress';
+import type {
+    Ref
+} from 'vue';
 import type {
     ThemeConfig
 } from '../types'
 import type {
     SidebarConfig,
-    SidebarNavItemData,
-    SidebarFooterItemData
+    NavItem,
+    FooterItem,
+    SocialLink
 } from '../types/sidebar';
 
 // @ts-ignore
 import defaultAvatar from '../assets/avatar.svg';
 
 
-function normalizePath(id: string): string {
-    /*
-    @vpj-error-note(not solved)
-    If you try to import normalizePath from vite, an error will be raised:Uncaught SyntaxError: Identifier '__vite__injectQuery' has already been declared (at ${mod.id}:40607:1)
-    */
-    return id.replace(/\\/g, '/');
+interface NormalizeNavItem extends NavItem {
+    tooltip?: string;
+    highlight: { normal?: string, hover?: string, active?: string };
+    items: NormalizeNavItem[];
+    depth: number;
 }
 
-function getNavHighlightFunc(
-    input: boolean |
-        (
-            (currentPath: string, navLinkList: string[]) => string | undefined
-        )
-) {
-    if (typeof input === 'function') return input;
+interface NormalizeFooterItem extends FooterItem {
+    tooltip?: string;
+    highlight: { normal?: string, hover?: string, active?: string };
+}
 
-    return (currentPath: string, navLinkList: string[]) => {
-        const normalizeCurrent = normalizePath(currentPath);
-        const parentLinkList = navLinkList
-            .map(normalizePath)
-            .filter((path) => {
-                return normalizeCurrent.startsWith(path)
-            })
-            .sort((a: string, b: string): number => b.length - a.length);
-        return parentLinkList.length > 0 ? parentLinkList[0] : undefined;
-    }
+
+const DEFAULT = {
+    ENABLED: true,
+    COLLAPSED: true,
+    TITLE: "VitePress",
+    LOGO: defaultAvatar,
+    DESCRIPTION: "",
+    ENABLEPROFILE: true,
+    HIGHLIGHT: (path: string, allLinks: string[]) => {
+        return allLinks
+            .filter(link => path.startsWith(link))
+            .sort((a, b) => b.length - a.length)[0];
+    },
+};
+
+
+function imageValidator(input: any): boolean {
+    return (typeof input === 'string') ||
+        (typeof input === 'object' && input  && typeof input.src === 'string') ||
+        (typeof input === 'object' && input  && typeof input.component === 'string');
+}
+
+function isNavItem(input: any): boolean {
+    return (typeof input === 'object' && input !== null) &&
+        (typeof input.text === 'string')
+}
+
+function isFooterItem(input: any): boolean {
+    return (typeof input === 'object' && input !== null) &&
+        (typeof input.text === 'string') &&
+        (typeof input.link === 'string')
+}
+
+function isSocialLink(input: any): boolean {
+    return (typeof input === 'object' && input !== null) &&
+        (imageValidator(input.icon)) &&
+        (typeof input.link === 'string')
+}
+
+function normalizeHighlight(input: any): { normal?: string, hover?: string, active?: string } {
+    if (typeof input === 'string') {
+        return { normal: input, hover: input, active: input };
+    } else if (typeof input === 'object' && input !== null) {
+        return {
+            normal: typeof input.normal === 'string' ? input.normal : undefined,
+            hover: typeof input.hover === 'string' ? input.hover : undefined,
+            active: typeof input.active === 'string' ? input.active : undefined
+        };
+    } else {
+        return { normal: undefined, hover: undefined, active: undefined };
+    };
+}
+
+function normalizeNavItem<T extends NavItem>(input: T, depth: number = 0): NormalizeNavItem {
+    const items = Array.isArray(input.items) && (depth < 5)
+        ? input.items
+            .filter((item) => isNavItem(item))
+            .map((item) => normalizeNavItem(item, depth + 1))
+        : [];
+    return {
+        text: input.text,
+        link: typeof input.link === 'string' ? input.link : undefined,
+        icon: imageValidator(input.icon) ? input.icon : undefined,
+        tooltip: typeof input.tooltip === 'string'
+            ? input.tooltip
+            : (input.tooltip === false)
+                ? undefined
+                : input.text,
+        highlight: normalizeHighlight(input.highlight),
+        items,
+        collapsed: typeof input.collapsed === 'boolean' ? input.collapsed : true,
+        depth
+    };
+}
+
+function normalizeFooterItem<T extends FooterItem>(input: T): NormalizeFooterItem {    
+    return {
+        text: input.text,
+        link: input.link,
+        icon: imageValidator(input.icon) ? input.icon : undefined,
+        tooltip: typeof input.tooltip === 'string'
+            ? input.tooltip
+            : (input.tooltip === false)
+                ? undefined
+                : input.text,
+        highlight: normalizeHighlight(input.highlight),
+        showOnCollapsed: typeof input.showOnCollapsed === 'boolean' ? input.showOnCollapsed : true
+    };
 }
 
 
 export const useVPJSidebar = defineStore('vpj-sidebar', () => {
     // Initialize sidebar config
-    const {
-        theme,
-        site
-    }: {
+    const { theme, site, page }: {
         theme: Ref<ThemeConfig>,
-        site: Ref<SiteData>
+        site: Ref<SiteData>,
+        page: Ref<PageData>
     } = useData();
     const route = useRoute();
 
-    const sidebar: Ref<SidebarConfig> = ref(theme.value.sidebar || {});
+    const sidebarConfig: Ref<SidebarConfig> = ref(theme.value.sidebar || {});
     watch(theme, (next, prev) => {
         if (JSON.stringify(next) !== JSON.stringify(prev)) {
-            sidebar.value = theme.value.sidebar || {};
-        };   
-    });
-    const enabled = computed(() => {
-        return sidebar.value.enable === undefined ? true : sidebar.value.enable
-    });
-
-    // Header config
-    const headerConfig = computed(() => {
-        return {
-            logo: sidebar.value.headerLogo || theme.value.logo || defaultAvatar,
-            title: sidebar.value.headerTitle || site.value.title || 'VitePress'
-        }
-    })
-    const profileConfig = computed(() => {
-        return {
-            enabled: sidebar.value.enableProfile === undefined ? true : sidebar.value.enableProfile,
-            logo: sidebar.value.profileLogo || headerConfig.value.logo,
-            title: sidebar.value.profileTitle || headerConfig.value.title,
-            description: sidebar.value.profileDescription || site.value.description || ''
-        }
-    })
-
-    // Nav config
-    const navConfig = computed(() => {
-        const invalidAttrsKeys = [
-            'class',
-            'data-tooltip',
-            'highlight',
-            'href',
-            'icon',
-            'iconAttrs',
-            'isLink',
-            'link',
-            'style',
-            'text',
-            'textAttrs',
-            'tooltip'
-        ];
-        return {
-            links: Array.isArray(sidebar.value.navLinks) ? sidebar.value.navLinks?.filter((item: SidebarNavItemData) => {
-                    return item.link !== undefined &&
-                        item.text !== undefined &&
-                        item.icon !== undefined;
-                }).map((raw: SidebarNavItemData) => {
-                    const item = {...raw};
-                    // initialize tooltip
-                    if (item.tooltip === undefined) {
-                        item.tooltip = item.text;
-                    }
-                    // initialize highlight
-                    if (item.highlight === undefined) {
-                        item.highlight = {};
-                    } else if (item.highlight === true) {
-                        item.highlight = {};
-                    } else if (typeof item.highlight === 'string') {
-                        item.highlight = {
-                            normal: item.highlight,
-                            hover: item.highlight,
-                            active: item.highlight
-                        };
-                    }
-                    // inistialize attrs
-                    if (item.attrs === undefined || typeof item.attrs !== 'object') {
-                        item.attrs = {};
-                    } else {
-                        const attrsCopy = {...item.attrs};
-                        invalidAttrsKeys.forEach((key) => {
-                            if (attrsCopy[key]) {
-                                console.log(
-                                    `Invalid attribute attrs key "${key}" in sidebar nav item({link:${item.link},` +
-                                    `text: ${item.text}, ...}), please check your input.`
-                                );
-                                delete attrsCopy[key];
-                            }
-                        });
-                        item.attrs = attrsCopy;
-                    };
-                    return item;
-                }) || []
-                : [],
-            content: sidebar.value.navContent,
-            tooltip: sidebar.value.enableTooltip === undefined ? true : sidebar.value.enableTooltip,
-        }
-    })
-    const highlightConfig = sidebar.value.enableHighlight === undefined ? true : sidebar.value.enableHighlight;
-    let highlightFunc: (currentPath: string, navLinkList: string[]) => string | undefined;
-    if (typeof highlightConfig === 'function') {
-        highlightFunc = highlightConfig;
-    } else if (highlightConfig === true) {
-        highlightFunc = getNavHighlightFunc(true);
-    } else {
-        highlightFunc = () => undefined;
-    }
-    const highlightPath = computed(() => {
-        if (route.data.isNotFound) return undefined;
-        return highlightFunc(
-            route.path,
-            navConfig.value.links.map((item: SidebarNavItemData): string => item.link)
-        );
-    });
-
-    // Footer config
-    const footerConfig = computed(() => {
-        const invalidAttrsKeys = [
-            'class',
-            'href',
-            'icon',
-            'iconAttrs',
-            'isLink',
-            'link',
-            'style',
-            'text',
-            'textAttrs'
-        ];
-        return {
-            show: sidebar.value.showFooterOnCollapse === undefined ? false : sidebar.value.showFooterOnCollapse,
-            links: Array.isArray(sidebar.value.footerLinks) ? sidebar.value.footerLinks?.filter((item) => {
-                    return item.link !== undefined &&
-                        item.text !== undefined &&
-                        item.icon !== undefined;
-                }).map((raw: SidebarFooterItemData) => {
-                    // inistialize attrs
-                    let attrsCopy: Record<string, any> = {target: '_blank'};
-                    if (typeof raw.attrs === 'object') {
-                        attrsCopy = {...raw.attrs};
-                        invalidAttrsKeys.forEach((key) => {
-                            if (attrsCopy[key]) {
-                                console.log(
-                                    `Invalid attribute attrs key "${key}" in sidebar footer item({link:${raw.link},` +
-                                    `text: ${raw.text}, ...}), please check your input.`
-                                );
-                                delete attrsCopy[key];
-                            }
-                        });
-                    };
-                    return {
-                        link: raw.link,
-                        text: raw.text,
-                        icon: raw.icon,
-                        showOnCollapse: raw.showOnCollapse === undefined ? true : raw.showOnCollapse,
-                        attrs: attrsCopy
-                    };
-                }) || []
-                : [],
+            sidebarConfig.value = theme.value.sidebar || {};
         };
-    })
+    });
 
     // state
-    const collapsed: Ref<boolean> = ref(true);
-    function toggle(): void {
-        collapsed.value = !collapsed.value;
-    };
-    function close(): void {
-        collapsed.value = true;
-    };
-    function open(): void {
-        collapsed.value = false;
-    };
+    const collapsed: Ref<boolean> = ref(
+        typeof sidebarConfig.value.collapsed === 'boolean'
+            ? sidebarConfig.value.collapsed
+            : DEFAULT.COLLAPSED
+    );
+    function toggle(): void { collapsed.value = !collapsed.value; };
+    function close(): void { collapsed.value = true; };
+    function open(): void { collapsed.value = false; };
+
+    // Enable Sidebar?
+    const enabled: Ref<boolean> = computed(() => typeof sidebarConfig.value.enabled === 'boolean'
+        ? sidebarConfig.value.enabled
+        : DEFAULT.ENABLED
+    );
+
+    // Header Config
+    const headerConfig = computed(() => {
+        const imageValidator = (input: any) => (typeof input === 'string') ||
+            (typeof input === 'object' && input  && typeof input.src === 'string') ||
+            (typeof input === 'object' && input  && typeof input.component === 'string');
+
+        // Calculate profile
+        const profileConfig = (typeof sidebarConfig.value.profile === 'object' && sidebarConfig.value.profile !== null)
+            ? sidebarConfig.value.profile
+            : {};
+        const enabled = mergeSimpleData((input: any) => typeof input === 'boolean', undefined,
+            profileConfig.enabled,
+            DEFAULT.ENABLEPROFILE
+        );
+        const title = mergeSimpleData(
+            (input: any) => typeof input === 'string', undefined,
+            profileConfig.title,
+            site.value.title,
+            DEFAULT.TITLE
+        );
+        const logo = mergeSimpleData(
+            imageValidator, undefined,
+            profileConfig.logo,
+            theme.value.logo,
+            DEFAULT.LOGO
+        );
+        const description = mergeSimpleData(
+            (input: any) => (typeof input === 'string') ||
+                (typeof input === 'object' && input !== null && typeof input.component === 'string'),
+            undefined,
+            profileConfig.description,
+            site.value.description,
+            DEFAULT.DESCRIPTION
+        );
+        const cardTitle = typeof profileConfig.cardTitle === 'string' ? profileConfig.cardTitle : title;
+        const cardLogo = imageValidator(profileConfig.cardLogo) ? profileConfig.cardLogo : logo;
+        const profile = { enabled, title, logo, cardTitle, cardLogo, description };
+
+        return {
+            profile
+        };
+    });
+
+    // Nav Config
+    const navConfig = computed(() => {
+        // Caculate navLinks
+        const navLinks: NormalizeNavItem[] = [];
+        const navLinksConfig = sidebarConfig.value.navLinks;
+        if (Array.isArray(navLinksConfig)) {
+            navLinksConfig
+                .filter(item => isNavItem(item))
+                .forEach(item => navLinks.push(normalizeNavItem(item)));
+        } else if (typeof navLinksConfig === 'object' && navLinksConfig !== null) {
+            const basePaths = Object.keys(navLinksConfig).sort((a, b) => b.length - a.length);
+            const curr = basePaths.find(basePath => route.path.startsWith(basePath));
+            if (curr && Array.isArray(navLinksConfig[curr])) {
+                navLinksConfig[curr]
+                    .filter(item => isNavItem(item))
+                    .forEach(item => navLinks.push(normalizeNavItem(item)));
+            };
+        };
+
+        return {
+            navLinks
+        };
+    });
+
+    const footerConfig = computed(() => {
+        // Calculate footerLinks
+        const footerLinks: NormalizeFooterItem[] = [];
+        const footerLinksConfig = sidebarConfig.value.footerLinks;
+        if (Array.isArray(footerLinksConfig)) {
+            footerLinksConfig
+                .filter(item => isFooterItem(item))
+                .forEach(item => footerLinks.push(normalizeFooterItem(item)));
+        };
+
+        const socialLinks: SocialLink[] = [];
+        const socialLinksConfig = sidebarConfig.value.socialLinks;
+        if (Array.isArray(socialLinksConfig)) {
+            socialLinksConfig
+                .filter(item => isSocialLink(item))
+                .forEach(item => {
+                    const normalized = {
+                        icon: item.icon,
+                        link: item.link,
+                        ariaLabel: (typeof item.ariaLabel === 'string')
+                            ? item.ariaLabel
+                            : undefined,
+                    };
+                    socialLinks.push(normalized);
+                });
+        };
+
+        return {
+            footerLinks,
+            socialLinks
+        };
+    });
+
+    const highlight = computed(() => {
+        if (page.value.isNotFound) return undefined;
+        
+        const allLinks: string[] = [];
+        const navItems = navConfig.value.navLinks;
+        const footerItems = footerConfig.value.footerLinks;
+
+        function register(item: NormalizeNavItem | NormalizeFooterItem) {
+            if (item.link) allLinks.push(item.link)
+            if ("items" in item && Array.isArray(item.items)) item.items.forEach(register);
+        };
+
+        navItems.forEach(register);
+        footerItems.forEach(register);
+
+        const highlightFunc = (typeof sidebarConfig.value.highlight === 'function')
+            ? sidebarConfig.value.highlight
+            : DEFAULT.HIGHLIGHT;
+        
+        try {
+            const result = highlightFunc(route.path, allLinks);
+            return (typeof result === 'string') ? result : undefined;
+        } catch (e) {
+            console.error(`[Juicy Theme]Fail to resolve sidebar highlight item: ${e}.`);
+            return undefined;
+        };
+    });
+
 
     return {
         enabled,
+        highlight,
+
         headerConfig,
-        profileConfig,
         navConfig,
-        highlightPath,
         footerConfig,
+
         collapsed,
         toggle,
         close,
         open
-    }
-})
+    };
+});

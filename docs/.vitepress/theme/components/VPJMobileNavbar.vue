@@ -31,7 +31,7 @@ const computedTitle = computed(() => {
     } else if (typeof mobileNavTitle === 'string') {
         return { text: mobileNavTitle }
     } else {
-        return { text: headerConfig.value.title }
+        return { text: headerConfig.value.profile.title }
     }
 });
 </script>
@@ -64,10 +64,10 @@ const computedTitle = computed(() => {
         display: flex;
         flex-direction: row;
         flex-shrink: 0;
-        height: 48px;
+        height: 2.75rem;
         min-width: 0;
-        padding-left: .5rem;
-        padding-right: .5rem;
+        padding-left: .625rem;
+        padding-right: .625rem;
     }
 
     /* Title */
@@ -84,10 +84,9 @@ const computedTitle = computed(() => {
         border: 0;
         border-radius: var(--vpj-border-radius-100);
         flex-shrink: 0;
-        gap: .75rem;
-        height: 36px;
-        width: 36px;
-        padding: 10px;
+        height: 1.5rem;
+        width: 1.5rem;
+        padding: .25rem;
     }
 
     .vpj-mobile-nav__btn:hover,

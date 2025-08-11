@@ -5,14 +5,18 @@ import { storeToRefs } from 'pinia';
 import { useVPJSidebar } from '../composables/useVPJSidebar';
 
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
-import VPJProfileCard from './VPJProfileCard.vue';
+import VPJDynamicIcon from './VPJDynamicIcon.vue';
+import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
+
 import VPJIconAngleSquareLeft from './icons/VPJIconAngleSquareLeft.vue';
 import VPJIconAngleSqureRight from './icons/VPJIconAngleSquareRight.vue';
 
 
-// Sidebar header config and state
 const store = useVPJSidebar();
-const { collapsed, headerConfig, profileConfig } = storeToRefs(store);
+const {
+    collapsed,
+    headerConfig: config
+} = storeToRefs(store);
 const { toggle } = store;
 
 // Toggle button
@@ -31,7 +35,7 @@ const profileProsition = ref({
 
 onMounted(() => {
     if (profileBtn.value) {
-        if (profileConfig.value.enabled) {
+        if (config.value.profile?.enabled) {
             // add EventListener to profile button
             profileBtn.value.elementSelf.addEventListener('click', () => {
                 const rect = profileBtn.value.elementSelf.getBoundingClientRect();
@@ -48,28 +52,33 @@ onMounted(() => {
                 }
                 profileVisible.value = !profileVisible.value;
             });
-        }
-    }
-})
+        };
+    };
+});
 </script>
 
 
 <template>
-    <header :class="['vpj-sidebar-header', {'collapsed': collapsed}]">
+    <header
+        :class="[
+            'vpj-sidebar__header',
+            { 'collapsed': collapsed }
+        ]"
+    >
         <slot name="sidebar-header-top"/>
-        <div class="vpj-sidebar-header__container">
+        <div class="vpj-sidebar__header-container">
             <VPJDynamicIconBtn
-                :icon="headerConfig.logo"
-                :text="headerConfig.title"
+                :icon="config.profile.logo"
+                :text="config.profile.title"
                 ref="profileBtn"
-                class="vpj-sidebar-header__btn"
+                class="vpj-sidebar__header-btn"
                 data-action="profile"
-                :disabled="!profileConfig.enabled"
+                :disabled="!config.profile.enabled"
             />
             <VPJDynamicIconBtn
                 @click="toggle" 
                 :icon="toggleBtnIcon" 
-                class="vpj-sidebar-header__btn" 
+                class="vpj-sidebar__header-btn" 
                 data-action="toggle"
             />
         </div>
@@ -79,9 +88,33 @@ onMounted(() => {
         <div
             v-if="profileVisible"
             @click="profileVisible = false"
-            class="vpj-sidebar-header__profile-overlay"
+            class="vpj-sidebar__header-profile-overlay"
         >
-            <VPJProfileCard :position="profileProsition"/>
+            <div @click.stop class="vpj-sidebar__profile">
+                <header class="vpj-sidebar__profile-header">
+                    <VPJDynamicIcon
+                        :icon="config.profile.cardLogo"
+                        class="vpj-sidebar__profile-logo"
+                    />
+                    <span class="vpj-sidebar__profile-title vpj-text">
+                        {{ config.profile.cardTitle }}
+                    </span>
+                </header>
+                <div class="vpj-sidebar__profile-main">
+                    <component
+                        v-if="config.profile.description.component"
+                        :is="config.profile.description.component"
+                    />
+                    <VPJOverlayScrollArea
+                        v-else
+                        overflow="y"
+                        :inner-attrs="{ class: 'vpj-sidebar__profile-description-inner' }"
+                        class="vpj-sidebar__profile-description-outer"
+                    >
+                        {{ config.profile.description }}
+                    </VPJOverlayScrollArea>
+                </div>
+            </div>
         </div>
     </Teleport>
 </template>
@@ -89,17 +122,17 @@ onMounted(() => {
 
 <style scoped>
     /* Header layout */
-    .vpj-sidebar-header {
+    .vpj-sidebar__header {
         display: flex;
         flex-direction: column;
         gap: .625rem;
-        padding-bottom: 1rem;
+        padding-bottom: .5rem;
         padding-left: .75rem;
         padding-right: .75rem;
     }
 
     /* Row Container */
-    .vpj-sidebar-header__container {
+    .vpj-sidebar__header-container {
         display: flex;
         flex: 1;
         flex-direction: row;
@@ -108,41 +141,41 @@ onMounted(() => {
     }
 
     /* Button style */
-    .vpj-sidebar-header__btn {
+    .vpj-sidebar__header-btn {
         background-color: var(--vpj-color-bg-300);
         border: 0;
         border-radius: var(--vpj-border-radius-100);
         flex: 1;
         gap: .75rem;
-        height: 36px;
+        height: 2rem;
         min-width: 0;
-        padding: auto;
-        padding-left: .625rem;
-        padding-right: .625rem;
+        padding: .5rem;
     }
 
-    .vpj-sidebar-header__btn:hover,
-    .vpj-sidebar-header__btn:active {
+    .vpj-sidebar__header-btn:hover,
+    .vpj-sidebar__header-btn:active {
         background-color: var(--vpj-color-bg-500);
     }
 
     /* Button Icon style */
-    .vpj-sidebar-header__btn :deep(.vpj-icon) {
+    .vpj-sidebar__header-btn :deep(.vpj-icon) {
         fill: var(--vpj-color-text-300);
     }
 
-    .vpj-sidebar-header__btn:hover :deep(.vpj-icon),
-    .vpj-sidebar-header__btn:active :deep(.vpj-icon) {
+    .vpj-sidebar__header-btn:hover :deep(.vpj-icon),
+    .vpj-sidebar__header-btn:active :deep(.vpj-icon) {
         fill: var(--vpj-color-text-400);
     }
 
     /* Button Text style */
-    .vpj-sidebar-header__btn :deep(.vpj-text) {
+    .vpj-sidebar__header-btn :deep(.vpj-text) {
         color: var(--vpj-color-text-400);
         font-size: .875rem;
+        opacity: 1;
+        transition: opacity .2s ease-in-out;
     }
 
-    .vpj-sidebar-header__profile-overlay {
+    .vpj-sidebar__header-profile-overlay {
         background-color: transparent;
         display: block;
         position: fixed;
@@ -154,59 +187,131 @@ onMounted(() => {
     }
 
     /* StyleSheet for collapsed state */
-    .vpj-sidebar-header.collapsed {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
     /* Container */
-    .vpj-sidebar-header.collapsed .vpj-sidebar-header__container {
+    .vpj-sidebar__header.collapsed .vpj-sidebar__header-container {
         flex-direction: column;
         gap: .625rem;
     }
 
     /* Button */
-    .vpj-sidebar-header.collapsed .vpj-sidebar-header__btn {
-        width: 36px;
-        padding: 10px;
+    .vpj-sidebar__header.collapsed .vpj-sidebar__header-btn {
+        width: 2rem;
     }
 
     /* Button Text (hide when collapsed) */
-    .vpj-sidebar-header.collapsed .vpj-sidebar-header__btn :deep(.vpj-text) {
-        display: none;
+    .vpj-sidebar__header.collapsed .vpj-sidebar__header-btn :deep(.vpj-text) {
+        opacity: 0;
     }
 
-    /* Individual stylesheet */
     /* Profile button */
-    [data-action="profile"]:disabled {
-        background-color: var(--vpj-color-bg-300);
-        border: 0;
-        border-radius: var(--vpj-border-radius-100);
-        flex: 1;
-        gap: .75rem;
-        height: 36px;
-        min-width: 0;
-        padding: auto;
-        padding-left: .625rem;
-        padding-right: .625rem;
+    [data-action="profile"] {
+        padding: .4rem;
+        transition: width .2s ease-in-out;
     }
 
     [data-action="profile"] :deep(.vpj-text) {
         font-weight: var(--vpj-font-weight-600);
     }
 
-    [data-action="profile"] :deep(.vpj-icon),
-    .vpj-sidebar-header.collapsed [data-action="profile"] :deep(.vpj-icon) {
-        height: 24px;
-        width: 24px;
-    }
-
-    .vpj-sidebar-header.collapsed [data-action="profile"]  {
-        padding: 6px;
+    [data-action="profile"] :deep(.vpj-icon) {
+        border-radius: var(--vpj-border-radius-100);
+        height: 1.4rem;
+        width: 1.4rem;
     }
 
     /* Toggle button */
     [data-action="toggle"] {
         flex: 0 0 auto;
+        width: 2rem;
+    }
+
+    /* Profile Card */
+    .vpj-sidebar__profile {
+        background-color: var(--vpj-color-bg-100);
+        border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+        border-radius: var(--vpj-border-radius-200);
+        box-shadow: var(--vpj-shadow-300);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        bottom: v-bind("profileProsition.bottom");
+        left: v-bind("profileProsition.left");
+        right: v-bind("profileProsition.right");
+        top: v-bind("profileProsition.top");
+        max-width: min(15.25rem, 42.5vw);
+        max-height: 355px;
+        z-index: 102;
+    }
+
+    /* Header */
+    .vpj-sidebar__profile-header {
+        align-items: center;
+        border-bottom: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 4px;
+        padding-bottom: 12px;
+    }
+
+    .vpj-sidebar__profile-logo {
+        border-radius: var(--vpj-border-radius-100);
+        height: 1.6rem;
+        flex-shrink: 0;
+        width: 1.6rem;
+    }
+
+    .vpj-sidebar__profile-title {
+        color: var(--vpj-color-text-400);
+        flex: 1;
+        font-size: 1rem;
+        font-weight: var(--vpj-font-weight-600);
+    }
+
+    /* Main */
+    .vpj-sidebar__profile-main {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-height: 0;
+        width: 100%;
+    }
+
+    /* Default description style */
+    .vpj-sidebar__profile-description-outer {
+        align-self: stretch;
+        flex: 1;
+        width: 100%;
+    }
+
+    :deep(.vpj-sidebar__profile-description-inner) {
+        color: var(--vpj-color-text-400);
+        font-size: .875rem;
+        font-weight: var(--vpj-font-weight-600);
+        min-height: max-content;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        width: 100%;
+        word-break: break-all;
+    }
+
+    /* StyleSheet for mobile screen */
+    @media screen and (max-width: 768px) {
+        .vpj-sidebar__profile {
+            bottom: auto;
+            left: 12px;
+            right: 12px;
+            top: 12px;
+            min-width: none;
+            max-width: none;
+        }
     }
 </style>

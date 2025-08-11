@@ -1,1006 +1,998 @@
+import type { SiteConfig } from "vitepress";
+
 import type { ImageData } from "./common";
-import type { ThemeConfig } from "./index";
+import type { ThemeConfig } from ".";
 
 
 /**
- * 侧边栏导航项的配置接口
+ * 侧边栏基础项配置接口
  * 
  * @remarks
- * 此接口定义了单个侧边栏导航项的所有可配置属性，包括图标、文本、链接、提示文本、高亮等。
+ * 此接口定义了所有侧边栏导航项的基础配置规范，是 {@link NavItem}、{@link FooterItem} 的基类。
  * 
- * 可配置的属性列表如下：
+ * 通过此接口，可以实现以下功能：
+ * - 定义导航项的文本内容和链接目标
+ * - 配置图标展示和悬浮提示
+ * - 自定义项的高亮样式
  * 
- * 1. 核心属性：
+ * 关键特性：
+ * - 所有侧边栏项的公共属性均在此定义
+ * - 支持亮/暗模式双图标配置
+ * - 高亮样式支持统一或分状态配置
  * 
- * @see {@link SidebarNavItemData.icon} 图标配置（必填）
- * @see {@link SidebarNavItemData.text} 文本内容（必填）
- * @see {@link SidebarNavItemData.link} 链接路径（必填）
- * 
- * 2. 交互属性：
- * 
- * @see {@link SidebarNavItemData.tooltip} 提示文本配置
- * @see {@link SidebarNavItemData.highlight} 高亮行为配置
- * 
- * 3. 扩展属性：
- * 
- * @see {@link SidebarNavItemData.attrs} 额外HTML属性
- * 
- * @example
- * 示例1：基础导航项配置
- * ```ts
- * {
- *   icon: "/home.svg",
- *   text: "首页",
- *   link: "/"
- * }
- * ```
+ * 核心属性：
+ * @see {@link SidebarItem.text} 显示文本（必需）
+ * @see {@link SidebarItem.link} 目标链接
+ * @see {@link SidebarItem.icon} 图标配置
+ * @see {@link SidebarItem.tooltip} 悬浮提示
+ * @see {@link SidebarItem.highlight} 高亮样式
  * 
  * @example
- * 示例2：完整配置
+ * 基础项配置示例：
  * ```ts
  * {
- *   icon: { component: "CustomIcon" },
  *   text: "文档",
  *   link: "/docs",
- *   tooltip: "查看文档",
- *   highlight: { normal: "#2c3e50", hover: "#3498db" },
- *   attrs: { target: "_blank" }
+ *   icon: { light: "/icon-light.svg", dark: "/icon-dark.svg" },
+ *   highlight: "#42b883"
  * }
  * ```
  */
-export interface SidebarNavItemData {
+interface SidebarItem {
     /**
-     * 侧边栏导航项的图标配置
-     * @required
+     * 导航项显示文本
      * 
      * @remarks
-     * 该项控制按钮显示的图标，支持三种类型的图标配置：
+     * 用于显示在导航项上的主要文字内容。
      * 
-     * 1. 一个路径字符串，指向图标的位置（建议放在public文件夹下使用）。
-     * 2. 一个全局注册的组件名。
-     * 3. 一个对象，为图片资源添加更多的扩展属性。
-     * 
-     * 只输入一个字符串时，会检测输入字符串末尾是否包含文件扩展名png|jpeg|jpg|gif|webp|svg中的一种，以此判断是否将此字符串视为文件路径。
+     * 注意事项：
+     * - 导航项必须包含此属性
+     * - 支持多语言文本（需自行实现国际化）
      * 
      * @example
-     * 示例1：指定图片路径
      * ```ts
-     * {..., icon: "/assets/home.svg", ...} // -> <img src="/assets/home.svg"/>
-     * ```
-     * 
-     * @example
-     * 示例2：指定组件名
-     * ```ts
-     * {..., icon: "VPJIconApps", ...} // -> <component is="VPJIconApps"/>
-     * ```
-     * 
-     * @example
-     * 示例3：为图片添加alt属性
-     * ```ts
-     * {..., icon: {src: "/assets/home.svg", alt: "home"}, ...} // -> <img src="/assets/home.svg" alt="home"/>
-     * ```
-     * 
-     * @example
-     * 示例4：强制指定组件
-     * ```ts
-     * {..., icon: {component: "nameEndWithsvg"}, ...} // -> <component is="nameEndWithsvg"/>
-     * ```
-     * 
-     * @see {@link ImageData}
-     */
-    icon:
-        | ImageData
-        | { component: string };
-
-    /**
-     * 侧边栏导航项的文本配置
-     * @required
-     * 
-     * @remarks
-     * 该项控制按钮在侧边栏展开时显示的文本，接受一个字符串作为输入
-     * 
-     * @example
-     * 示例1：为按钮设置文本内容
-     * ```ts
-     * {..., text: "首页", ...} // -> <span>首页</span>
+     * { text: "首页" }
      * ```
      */
     text: string;
 
     /**
-     * 侧边栏导航项的链接配置
-     * @required
+     * 导航项目标链接
+     * @optional
      * 
      * @remarks
-     * 该项控制按钮链接所指向的路径，接受一个字符串作为路径输入
+     * 点击导航项时跳转的目标地址。
+     * 
+     * 注意事项：
+     * - 可以是绝对路径或相对路径
+     * - 外部链接会自动添加 `target="_blank"`
+     * - 页脚项必须包含此属性
      * 
      * @example
-     * 示例1：为按钮设置链接路径
      * ```ts
-     * {..., link: "/", ...} // -> <a href="/">...</a>
+     * { link: "/getting-started" }
      * ```
      */
-    link: string;
+    link?: string;
 
     /**
-     * 侧边栏导航项的提示文本配置
+     * 导航项图标
      * @optional
-     * @default item.text 默认直接使用该项的text值作为提示文本
      * 
      * @remarks
-     * 该项控制按钮在侧边栏折叠时显示的提示文本，支持两种类型的输入：
-     * 1. 一个字符串，作为提示文本的内容。
-     * 2. null，表示禁用该项的提示文本。
-     * 当配置了非null的内容后，这会使得按钮在侧边栏收起且鼠标悬浮于上方时在按钮右侧区域弹出一个文本提示。
+     * 显示在文本左侧的图标，支持多种格式：
+     * - 标准图片：`{ light: '...', dark: '...' }`
+     * - 自定义组件：`{ component: 'CustomIcon' }`
+     * 
      * 注意事项：
-     * * 该项配置仅在侧边栏配置中enableTooltip项设置为true时生效，当sidebar.enableTooltip设置为false时此项会被自动覆盖为null。
-     * * 弹出提示的长度被限制不超过120px，超出部分会被截断，并显示省略号（"..."）表示。
+     * - 侧边栏收起时仅显示有图标的项
+     * - 图片路径相对于 `.vitepress/public` 目录
      * 
      * @example
-     * 示例1：默认情况直接使用项的text值作为提示文本
      * ```ts
-     * {..., text: "首页", ...} // -> 提示为"首页"
+     * // 双模式图标
+     * { icon: { light: '/icons/sun.svg', dark: '/icons/moon.svg' } }
+     * 
+     * // 自定义组件
+     * { icon: { component: 'UserIcon' } }
      * ```
+     */
+    icon?:
+        | ImageData
+        | { component?: string };
+    
+    /**
+     * 导航项悬浮提示
+     * @optional
+     * 
+     * @remarks
+     * 鼠标悬停时显示的提示文本。
+     * 
+     * 注意事项：
+     * - 默认使用 `text` 值作为提示
+     * - 设为 `false` 禁用提示
+     * - 收起状态下提示仍然生效
      * 
      * @example
-     * 示例2：为按钮设置提示文本
      * ```ts
-     * {..., text: "首页", tooltip: "home", ...} // -> 提示为"home"
-     * ```
+     * // 自定义提示
+     * { tooltip: "返回主页" }
      * 
-     * @example
-     * 示例3：禁用按钮的提示文本
-     * ```ts
-     * {..., text: "首页", tooltip: null, ...} // -> 提示文本不会显示
+     * // 禁用提示
+     * { tooltip: false }
      * ```
-     * 
-     * @see {@link SidebarNavItemData.text} item.text
-     * @see {@link SidebarConfig.enableTooltip} sidebar.enableTooltip
      */
     tooltip?:
         | string
-        | null;
-
+        | false;
+    
     /**
-     * 侧边栏导航项的高亮配置
+     * 导航项高亮样式
      * @optional
-     * @default true 默认启用高亮功能
      * 
      * @remarks
-     * 该项控制按钮的高亮行为，当启用了sidebar.enableHighlight时会根据所使用的筛选函数为唯一匹配的侧边栏项的图标添加一个高亮样式，接受三种类型的输入：
-     * 1. 一个Boolean值，表示是否启用高亮。
-     * 2. 一个字符串，表示高亮时图标的颜色。
-     * 3. 一个对象，可以分别指定normal（正常状态）、hover（鼠标悬浮时）和active（激活状态）三种状态下图标的颜色。
+     * 控制导航项在不同状态下的图标颜色。
+     * 
      * 注意事项：
-     * * 该项配置仅在侧边栏配置中enableHighlight项设置非false的值时生效，当sidebar.enableHighlight设置为false时此项会被自动覆盖为null。
-     * * 该项配置只对使用没有指定fill属性的纯svg图标作为图标的侧边栏项有效，如果匹配到的项使用的是图片路径或者指定了fill属性的svg图标，那么只会为此项添加一个highlight类。
-     * * 默认情况下，高亮样式的颜色配置是：
-     *   - normal: var(--vpj-color-primary-400)
-     *   - hover: var(--vpj-color-primary-500)
-     *   - active: var(--vpj-color-primary-300)
+     * - 支持统一颜色或分状态配置
+     * - 颜色值可以是 CSS 颜色名/HEX/RGB 等
+     * - 优先级高于全局高亮配置
      * 
      * @example
-     * 示例1：启用高亮功能
      * ```ts
-     * {..., highlight: true, ...} // -> 启用高亮功能
-     * ```
+     * // 统一颜色
+     * { highlight: "#42b883" }
      * 
-     * @example
-     * 示例2：禁用高亮功能
-     * ```ts
-     * {..., highlight: false, ...} // -> 禁用高亮功能
+     * // 分状态配置
+     * {
+     *   highlight: {
+     *     normal: "#34495e",
+     *     hover: "#42b883",
+     *     active: "#ff5500"
+     *   }
+     * }
      * ```
-     * 
-     * @example
-     * 示例3：指定高亮颜色
-     * ```ts
-     * {..., highlight: "red", ...} // -> 当项目高亮时，图标始终为红色
-     * ```
-     * 
-     * @example
-     * 示例4：分别指定不同状态下的颜色
-     * ```ts
-     * {..., highlight: {normal: "red", hover: "blue"}, ...} // -> 当项目高亮时，图标在正常状态为红色，鼠标悬浮时为蓝色，激活状态则启用默认的--vpj-color-primary-300值
-     * {..., highlight: {normal: "red", hover: "darkred", active: "lightred"}, ...} // -> 使用自己的颜色方案覆盖全部的默认值
-     * ```
-     * 
-     * @see {@link SidebarConfig.enableHighlight} sidebar.enableHighlight
      */
     highlight?:
-        | boolean
         | string
-        | {normal?: string; hover?: string; active?: string};
-
-    /**
-     * 侧边栏导航项的额外属性配置
-     * @optional
-     * @default {} 默认不添加额外属性
-     * 
-     * @remarks
-     * 该项控制侧边栏导航项的额外属性，接受一个对象，其中的键值对会直接传入到链接上（详情参考[锚元素-MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a#%E5%B1%9E%E6%80%A7)），需要注意以下键值是无效的：
-     * - class
-     * - data-tooltip
-     * - highlight
-     * - href
-     * - icon
-     * - iconAttrs
-     * - isLink
-     * - link
-     * - style
-     * - text
-     * - textAttrs
-     * - tooltip
-     * 
-     * @example
-     * 示例1：让侧边栏导航项在新标签页打开
-     * ```ts
-     * {..., attrs: {target: "_blank"}, ...} // -> <a href="..." target="_blank">...</a>
-     * ```
-     */
-    attrs?: Record<string, any>;
-};
-
+        | { normal?: string; hover?: string; active?: string };
+}
 
 /**
- * 侧边栏底部链接项的配置接口
+ * 导航项配置接口
  * 
  * @remarks
- * 此接口定义了侧边栏底部链接项的所有可配置属性，包括图标、文本、链接、折叠显示行为等。
+ * 此接口扩展自 {@link SidebarItem}，专门用于配置侧边栏主导航区域的导航项，支持多级嵌套结构。
  * 
- * 可配置的属性列表如下：
+ * 通过此配置，可以实现以下功能：
+ * - 创建单层或多层级导航菜单
+ * - 控制子菜单的初始展开状态
+ * - 构建复杂的导航结构（最多6层）
  * 
- * 1. 核心属性：
+ * 关键特性：
+ * - 支持动态路由匹配
+ * - 收起状态智能显示（仅显示带图标的项）
+ * - 嵌套层级深度控制
  * 
- * @see {@link SidebarFooterItemData.icon} 图标配置（必填）
- * @see {@link SidebarFooterItemData.text} 文本内容（必填）
- * @see {@link SidebarFooterItemData.link} 链接路径（必填）
- * 
- * 2. 显示控制：
- * 
- * @see {@link SidebarFooterItemData.showOnCollapse} 折叠状态显示控制
- * 
- * 3. 扩展属性：
- * 
- * @see {@link SidebarFooterItemData.attrs} 额外HTML属性
+ * 特有属性：
+ * @see {@link NavItem.items} 子导航项列表
+ * @see {@link NavItem.collapsed} 子项初始折叠状态
  * 
  * @example
- * 示例1：基础底部链接配置
+ * 多级导航配置示例：
  * ```ts
  * {
- *   icon: "VPJIconGithub",
- *   text: "GitHub",
- *   link: "https://github.com"
- * }
- * ```
- * 
- * @example
- * 示例2：完整配置
- * ```ts
- * {
- *   icon: { src: "/social/github.svg", alt: "GitHub Logo" },
- *   text: "源码仓库",
- *   link: "https://github.com",
- *   showOnCollapse: true,
- *   attrs: { rel: "noopener" }
+ *   text: "产品",
+ *   icon: "package",
+ *   collapsed: false, // 初始展开
+ *   items: [
+ *     { text: "VitePress", link: "/products/vitepress" },
+ *     { 
+ *       text: "生态系统",
+ *       items: [
+ *         { text: "Vite", link: "/products/vite" }
+ *       ]
+ *     }
+ *   ]
  * }
  * ```
  */
-export interface SidebarFooterItemData {
+export interface NavItem extends SidebarItem {
     /**
-     * 侧边栏底部链接项的图标配置
-     * @required
+     * 子导航项列表
+     * @optional
      * 
      * @remarks
-     * 该项控制按钮显示的图标，支持三种类型的图标配置：
+     * 用于创建多级导航菜单，支持嵌套结构。
      * 
-     * 1. 一个路径字符串，指向图标的位置（建议放在public文件夹下使用）。
-     * 2. 一个全局注册的组件名。
-     * 3. 一个对象，为图片资源添加更多的扩展属性。
-     * 
-     * 只输入一个字符串时，会检测输入字符串末尾是否包含文件扩展名png|jpeg|jpg|gif|webp|svg中的一种，以此判断是否将此字符串视为文件路径。。
-     * 
-     * @example
-     * 示例1：指定图片路径
-     * ```ts
-     * {..., icon: "/assets/home.svg", ...} // -> <img src="/assets/home.svg"/>
-     * ```
+     * 注意事项：
+     * - 最多支持 6 层嵌套
+     * - 与 `link` 属性互斥（不可同时存在）
+     * - 子项继承父项图标样式
      * 
      * @example
-     * 示例2：指定组件名
      * ```ts
-     * {..., icon: "VPJIconApps", ...} // -> <component is="VPJIconApps"/>
-     * ```
-     * 
-     * @example
-     * 示例3：为图片添加alt属性
-     * ```ts
-     * {..., icon: {src: "/assets/home.svg", alt: "home"}, ...} // -> <img src="/assets/home.svg" alt="home"/>
-     * ```
-     * 
-     * @example
-     * 示例4：强制指定组件
-     * ```ts
-     * {..., icon: {component: "nameEndWithsvg"}, ...} // -> <component is="nameEndWithsvg"/>
-     * ```
-     * 
-     * @see {@link ImageData}
-     */
-    icon:
-        | ImageData
-        | { component: string };
-
-    /**
-     * 侧边栏底部链接项的文本配置
-     * @required
-     * 
-     * @remarks
-     * 该项控制按钮在侧边栏展开时显示的文本，接受一个字符串作为输入
-     * 
-     * @example
-     * 示例1：为按钮设置文本内容
-     * ```ts
-     * {..., text: "关于", ...} // -> <span>关于</span>
+     * items: [
+     *   { text: "子项1", link: "/sub1" },
+     *   { text: "子项2", link: "/sub2" }
+     * ]
      * ```
      */
-    text: string;
+    items?: NavItem[];
 
     /**
-     * 侧边栏底部链接项的链接配置
-     * @required
+     * 子项列表初始折叠状态
+     * @optional
+     * @default true
      * 
      * @remarks
-     * 该项控制按钮链接所指向的路径，接受一个字符串作为路径输入
+     * 控制子导航项列表是否默认展开。
      * 
      * @example
-     * 示例1：为按钮设置链接路径
      * ```ts
-     * {..., link: "/about/", ...} // -> <a href="/about/">...</a>
+     * // 初始展开子项
+     * { collapsed: false }
+     * ```
+     */
+    collapsed?: boolean;
+}
+
+/**
+ * 页脚项配置接口
+ * 
+ * @remarks
+ * 此接口扩展了 {@link SidebarItem}，专门用于配置侧边栏底部的功能链接项。
+ * 
+ * 通过此配置，可以实现以下功能：
+ * - 添加辅助性功能链接（帮助、反馈等）
+ * - 控制收起状态下的可见性
+ * - 提供与主导航一致但更简洁的交互
+ * 
+ * 关键约束：
+ * - 必须同时包含 `text` 和 `link` 属性
+ * - 不支持嵌套结构
+ * - 不支持动态路由
+ * 
+ * 特有属性：
+ * @see {@link FooterItem.showOnCollapsed} 收起状态可见性控制
+ * 
+ * @example
+ * 页脚项配置示例：
+ * ```ts
+ * {
+ *   text: "意见反馈",
+ *   link: "/feedback",
+ *   icon: "message-circle",
+ *   showOnCollapsed: true // 收起时仍显示
+ * }
+ * ```
+ */
+export interface FooterItem extends SidebarItem {
+    /** 
+     * 必须提供目标链接
+     * @example
+     * ```ts
+     * { link: "/contact" }
      * ```
      */
     link: string;
 
     /**
-     * 侧边栏底部链接项的显示选项
+     * 侧边栏收起时是否显示
      * @optional
-     * @default true 默认为在侧边栏收起时显示
+     * @default true
      * 
      * @remarks
-     * 该项控制按钮是否在侧边栏折叠状态下显示（隐藏文本仅显示图标，参考侧边栏导航项的隐藏行为），接受一个Boolean值输入
-     * 注意事项：
-     * * 此项配置仅在侧边栏配置中的sidebar.showFooterOnCollapse设置为true时生效，当sidebar.showFooterOnCollaspe设置为false时此项会被自动覆盖为false
+     * 控制页脚项在侧边栏收起状态下的可见性。
      * 
      * @example
-     * 示例1：为单独一个按钮设置在侧边栏收起时隐藏
      * ```ts
-     * {..., showOnCollaspe: false, ...} // -> 按钮会在侧边栏收起时完全隐藏
-     * ```
-     * 
-     * @see {@link SidebarConfig.showFooterOnCollapse}
-     */
-    showOnCollapse?: boolean;
-
-    /**
-     * 侧边栏底部链接项的额外属性配置
-     * @optional
-     * @default {target: "_blank"}  默认情况下，底部链接项的链接会在新标签页打开
-     * 
-     * @remarks
-     * 该项控制侧边栏导航项的额外属性，接受一个对象，其中的键值对会直接传入到链接上（详情参考[锚元素-MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a#%E5%B1%9E%E6%80%A7)），需要注意以下键值是无效的：
-     * - class
-     * - href
-     * - icon
-     * - iconAttrs
-     * - isLink
-     * - link
-     * - style
-     * - text
-     * - textAttrs
-     * 
-     * @example
-     * 示例1：添加type属性
-     * ```ts
-     * {..., attrs:{type: "button"}, ...} // -> <a href="..." type="button">...</a>
+     * // 收起时隐藏此项
+     * { showOnCollapsed: false }
      * ```
      */
-    attrs?: Record<string, any>;
-};
-
+    showOnCollapsed?: boolean;
+}
 
 /**
- * 侧边栏的全局配置接口
+ * 侧边栏资料卡配置接口
  * 
  * @remarks
- * 此接口定义了侧边栏的所有可配置项，包括启用状态、标题、Logo、导航项、底部链接等。
- * 通过此配置，可以实现以下功能：
+ * 此接口定义了侧边栏顶部用户资料卡的可配置项，用于展示用户/站点的标识信息和描述。
  * 
- * - 控制侧边栏的显示与隐藏
- * - 自定义资料卡按钮的标题和图标
- * - 配置导航项的高亮和提示文本行为
- * - 添加底部链接项（如社交媒体或外部资源链接）
+ * 通过此配置，可以实现以下功能：
+ * - 控制资料卡功能启用状态
+ * - 设置资料卡标题和描述文本
+ * - 配置不同位置使用的图标/头像
+ * - 继承站点全局配置作为默认值
  * 
  * 可以配置的全部属性如下：
  * 
- * 1. 全局：
+ * 1. **功能控制**
+ * @see {@link SidebarProfile.enabled} 资料卡启用开关
  * 
- * @see {@link SidebarConfig.enable} 启用侧边栏
- * 
- * 2. 头部区域：
- * 
- * @see {@link SidebarConfig.headerTitle} 头部标题
- * @see {@link SidebarConfig.headerLogo} 头部Logo
- * @see {@link SidebarConfig.enableProfile} 启用资料卡
- * @see {@link SidebarConfig.profileTitle} 资料卡标题
- * @see {@link SidebarConfig.profileLogo} 资料卡Logo
- * @see {@link SidebarConfig.profileDescription} 资料卡内容
- * 
- * 3. 导航区域：
- * 
- * @see {@link SidebarConfig.navLinks} 导航链接列表
- * @see {@link SidebarConfig.enableTooltip} 启用文本提示
- * @see {@link SidebarConfig.enableHighlight} 启用高亮
- * @see {@link SidebarConfig.navContent} 导航附加组件
- * 
- * 4. 底部区域：
- * 
- * @see {@link SidebarConfig.showFooterOnCollapse} 底部折叠显示
- * @see {@link SidebarConfig.footerLinks} 底部链接列表
+ * 2. **内容配置**
+ * @see {@link SidebarProfile.title} 按钮显示标题
+ * @see {@link SidebarProfile.logo} 按钮显示图标
+ * @see {@link SidebarProfile.cardTitle} 资料卡内标题
+ * @see {@link SidebarProfile.cardLogo} 资料卡内图标
+ * @see {@link SidebarProfile.description} 资料卡描述内容
  * 
  * @example
- * 示例1：一个简单的配置示例
+ * 基本配置示例：
  * ```ts
- * // config.mjs
- * export default {
+ * profile: {
+ *   title: "技术博客",
+ *   logo: "/avatar.png",
+ *   description: "分享前端开发知识"
+ * }
+ * ```
+ */
+interface SidebarProfile {
+    /**
+     * 是否启用资料卡
+     * @optional
+     * @default true
+     * 
+     * @remarks
+     * 用于控制侧边栏顶部资料卡按钮是否启用。
+     * 当设置为 `false` 时，资料卡按钮会被禁用，顶部只显示 logo 和文本，点击不弹出资料卡内容。
+     * 默认值为 `true`，表示资料卡功能启用。
+     * 
+     * @example
+     * 在主题配置中禁用资料卡：
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     sidebar: {
+     *       profile: {
+     *         enabled: false
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     */
+    enabled?: boolean;
+
+    /**
+     * 资料卡按钮的文本标题
+     * @optional
+     * 
+     * @remarks
+     * 用于设置资料卡按钮上显示的文本。
+     * 如果未设置此项，会优先使用站点配置中的 {@link SiteData.title}；
+     * 若站点标题也未设置，则使用默认字符串 `"VitePress"`。
+     * 
+     * 该文本通常用于标识用户或站点名称。
+     * 
+     * @example
+     * 设置资料卡按钮的文本标题：
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     sidebar: {
+     *       profile: {
+     *         title: "我的博客"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link SiteData.title} 站点标题
+     */
+    title?: string;
+
+    /**
+     * 资料卡按钮的 logo
+     * @optional
+     * 
+     * @remarks
+     * 用于设置资料卡按钮显示的 logo 图标。
+     * 如果未设置此项，会优先使用 {@link ThemeConfig.logo} 的配置值；
+     * 若 {@link ThemeConfig.logo} 也未设置，则使用主题内置的默认图标。
+     * 
+     * 支持字符串路径或自定义组件形式。
+     * 
+     * @example
+     * 设置资料卡按钮的 logo：
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     sidebar: {
+     *       profile: {
+     *         logo: "/images/my-avatar.png"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link ImageData} 一般图片输入格式
+     * @see {@link ThemeConfig.logo} 主题logo配置
+     */
+    logo?:
+        | ImageData
+        | { component?: string };
+    
+    /**
+     * 资料卡顶部显示的标题
+     * @optional
+     * 
+     * @remarks
+     * 用于设置资料卡内顶部区域显示的标题。
+     * 如果未设置此项，则默认使用 {@link SidebarProfile.title} 的值作为标题。
+     * 
+     * 此配置主要用于区分按钮文本与资料卡内详细标题的需求。
+     * 
+     * @example
+     * 设置资料卡顶部标题：
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     sidebar: {
+     *       profile: {
+     *         cardTitle: "关于我"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link SidebarProfile.title} 资料卡按钮文本标题
+     */
+    cardTitle?: string;
+
+    /**
+     * 资料卡顶部显示的图标
+     * @optional
+     * 
+     * @remarks
+     * 用于设置资料卡内顶部区域显示的图标。
+     * 如果未设置此项，则默认使用 {@link SidebarProfile.logo} 作为图标。
+     * 
+     * 支持字符串路径或自定义组件形式，用于个性化资料卡展示。
+     * 
+     * @example
+     * 设置资料卡顶部图标：
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     sidebar: {
+     *       profile: {
+     *         cardLogo: "/images/profile-icon.png"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link ImageData} 一般图片输入格式
+     * @see {@link SidebarProfile.logo} 资料卡按钮logo
+     */
+    cardLogo?:
+        | ImageData
+        | { component?: string };
+
+    /**
+     * 资料卡的描述文本
+     * @optional
+     * 
+     * @remarks
+     * 用于设置资料卡内显示的描述信息。
+     * 支持字符串或自定义组件形式：
+     * - 若为字符串，直接显示文本内容；
+     * - 若为 `{ component: string }` 形式，会渲染已注册的 Vue 组件替代文本描述。
+     * 
+     * 如果未设置此项，则默认使用站点配置中的 {@link SiteData.description}；
+     * 若站点描述也未设置，则留空不显示。
+     * 
+     * @example
+     * 设置资料卡描述文本为字符串：
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     sidebar: {
+     *       profile: {
+     *         description: "欢迎访问我的博客"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link SiteData.description}
+     */
+    description?:
+        | string
+        | { component?: string };
+}
+
+/**
+ * 社交媒体链接配置接口
+ * 
+ * @remarks
+ * 此接口定义了社交媒体链接项的配置规范，用于在侧边栏底部添加平台入口。
+ * 
+ * 通过此配置，可以实现以下功能：
+ * - 添加各类社交媒体平台入口
+ * - 使用内置图标或自定义图标
+ * - 提供无障碍访问支持
+ * 
+ * 可以配置的全部属性如下：
+ * 
+ * 1. **必需属性**
+ * @see {@link SocialLink.icon} 社交媒体图标
+ * @see {@link SocialLink.link} 社交媒体链接
+ * 
+ * 2. **辅助属性**
+ * @see {@link SocialLink.ariaLabel} 无障碍标签
+ * 
+ * @example
+ * 配置示例：
+ * ```ts
+ * socialLinks: [
+ *   { icon: "github", link: "https://github.com" }
+ * ]
+ * ```
+ */
+export interface SocialLink {
+    /**
+     * 社交媒体图标
+     * 
+     * @example
+     * ```ts
+     * // 内置图标
+     * { icon: 'github' }
+     * 
+     * // 自定义图标
+     * { icon: { component: 'WeChatIcon' } }
+     * ```
+     */
+    icon:
+        | ImageData
+        | { component?: string };
+    
+    /**
+     * 社交媒体链接
+     * 
+     * @example
+     * ```ts
+     * { link: "https://github.com/your-account" }
+     * ```
+     */
+    link: string;
+
+    /**
+     * 无障碍标签
+     * @optional
+     * 
+     * @remarks
+     * 为图标链接提供描述性文本，增强可访问性。
+     * 
+     * @example
+     * ```ts
+     * { ariaLabel: "访问我们的GitHub仓库" }
+     * ```
+     */
+    ariaLabel?: string;
+}
+
+
+/**
+ * 侧边栏全局配置接口
+ * 
+ * @remarks
+ * 此接口定义了侧边栏的所有可配置项，用于控制网站侧边导航区域的展示形式、内容和交互行为。
+ * 
+ * 通过此配置，可以实现以下功能：
+ * - 控制侧边栏整体启用状态和初始折叠状态
+ * - 定制顶部资料卡（用户信息展示）
+ * - 配置主导航链接和分组结构
+ * - 添加底部功能链接和社交媒体入口
+ * - 自定义导航项高亮逻辑
+ * 
+ * 可以配置的全部属性如下：
+ * 
+ * 1. **基础配置**
+ * @see {@link SidebarConfig.enabled} 侧边栏功能开关
+ * @see {@link SidebarConfig.collapsed} 初始折叠状态
+ * 
+ * 2. **资料卡配置**
+ * @see {@link SidebarConfig.profile} 顶部资料卡设置
+ * 
+ * 3. **导航配置**
+ * @see {@link SidebarConfig.navLinks} 主导航链接列表
+ * @see {@link SidebarConfig.footerLinks} 底部功能链接
+ * @see {@link SidebarConfig.socialLinks} 社交媒体链接
+ * 
+ * 4. **高级功能**
+ * @see {@link SidebarConfig.highlight} 自定义高亮逻辑
+ * 
+ * @example
+ * 完整配置示例：
+ * ```ts
+ * // .vitepress/config.ts
+ * import { defineConfig } from 'vitepress'
+ * 
+ * export default defineConfig({
  *   themeConfig: {
  *     sidebar: {
- *       enable: true,
- *       headerTitle: "我的网站",
+ *       enabled: true,
+ *       collapsed: true,
+ *       profile: {
+ *         title: "我的博客",
+ *         logo: "/logo.png"
+ *       },
  *       navLinks: [
- *         { icon: "/home.svg", text: "首页", link: "/" },
- *         { icon: "/book.svg", text: "我的笔记", link: "/" }
+ *         { text: "首页", link: "/", icon: "home" }
  *       ],
  *       footerLinks: [
- *         { icon: "VPJIconGithub", text: "GitHub", link: "https://github.com" }
- *       ]
+ *         { text: "关于", link: "/about", showOnCollapsed: true }
+ *       ],
+ *       socialLinks: [
+ *         { icon: "github", link: "https://github.com" }
+ *       ],
+ *       highlight: (path) => path.split('?')[0]
  *     }
  *   }
- * }
+ * })
  * ```
  */
 export interface SidebarConfig {
     /**
-     * 是否启用侧边栏
+     * 侧边栏功能开关
      * @optional
-     * @default true 默认启用侧边栏
+     * @default true
      * 
      * @remarks
-     * 该项控制是否启用侧边栏，接受一个Boolean值输入
-     * 
-     * @example
-     * 示例1：禁用侧边栏
-     * ```ts
-     * // config.mjs
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       enable: false
-     *     }
-     *   }
-     * }
-     * ```
-     */
-    enable?: boolean;
-
-    /**
-     * 侧边栏的标题配置
-     * @optional
-     * @default site.title | "VitePress" 默认从站点配置继承title，如果此值为空则默认为"VitePress"
-     * 
-     * @remarks
-     * 该项控制侧边栏头部的标题，接受一个字符串作为输入，这个标题会被放置在侧边栏的顶部资料卡按钮中
-     * 
-     * @example
-     * 示例1：自定义资料卡按钮的文本
-     * ```ts
-     * // config.mjs，文本被设置为"An interesting title"
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       headerTitle: "An interesting title"
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例2：当站点配置的标题存在时，不填入值会从site.title继承标题
-     * ```ts
-     * // config.mjs，文本被设置为"My vitepress site"
-     * export default {
-     *   title: "My vitepress site",
-     *   themeConfig: {
-     *     ...
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例3：当站点配置的标题不存在时，不填入值会将标题设置为"VitePress"
-     * ```ts
-     * // config.mjs，文本被设置为"VitePress"
-     * export default {
-     *   ...,
-     *   themeConfig: {
-     *     ...
-     *   }
-     * }
-     * ```
-     */
-    headerTitle?: string;
-
-    /**
-     * 侧边栏的logo配置
-     * @optional
-     * @default theme.logo | defaultAvatar 默认从主题配置继承logo，若未配置则启用主题默认logo
-     * 
-     * @remarks
-     * 该项控制侧边栏资料卡按钮的logo，支持三种类型的图标配置：
-     * 
-     * 1. 一个路径字符串，指向图标的位置（建议放在public文件夹下使用）。
-     * 2. 一个全局注册的组件名。
-     * 3. 一个对象，为图片资源添加更多的扩展属性。
-     * 
-     * 只输入一个字符串时，会检测输入字符串末尾是否包含文件扩展名png|jpeg|jpg|gif|webp|svg中的一种，以此判断是否将此字符串视为文件路径。
+     * 该配置项用于控制侧边栏整体功能是否启用。
+     * 当设置为 `false` 时，侧边栏将不会被渲染或激活，适用于不需要侧边栏的场景。
+     * 默认值为 `true`，即侧边栏默认处于启用状态。
      * 
      * 注意事项：
-     * 
-     * * logo的尺寸通过css限制为24px × 24px
-     * 
-     * > 默认的logo如下：
-     * >
-     * > ![defaultAvatar](../assets/avatar.svg)
+     * - 该开关控制整个侧边栏的显示和交互逻辑。
+     * - 可以通过主题配置或页面级配置进行覆盖。
      * 
      * @example
-     * 示例1：指定图片作为logo
+     * 在主题配置中关闭侧边栏：
      * ```ts
-     * // config.mjs，这会使用<img src="/assets/avatar.svg">作为图标
      * export default {
      *   themeConfig: {
      *     sidebar: {
-     *       headerLogo: "/assets/avatar.svg" // 也可以用headerLogo: {src: "/assets/avatar.svg", alt: "logo"}这样的输入指定更多信息
+     *       enabled: false
      *     }
      *   }
      * }
      * ```
-     * 
-     * @example
-     * 示例2：指定组件名作为logo
-     * ```ts
-     * // config.mjs，这会使用CustomIconComponent作为图标
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       headerLogo: "CustomIconComponent" // 也可以用headerLogo: {component: "CustomIconComponent"}这样的输入指定组件（这主要是避免名字以svg这样后缀结尾组件的自动输入误判）
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例3：从theme.logo继承图标
-     * ```ts
-     * // config.mjs，这会使用<img src="/path/to/logo.png">作为图标
-     * export default {
-     *   themeConfig: {
-     *     logo: "/path/to/logo.png"
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例4：完全不指定，使用defaultAvatar作为图标
-     * ```ts
-     * // config.mjs，这会使用defaultAvatar作为图标
-     * export default {
-     *   ...,
-     *   themeConfig: {
-     *     ...
-     *   }
-     * }
-     * ```
-     * 
-     * @see {@link ThemeConfig.logo} theme.logo
      */
-    headerLogo?: 
-        | ImageData
-        | { component: string };
+    enabled?: boolean;
 
     /**
-     * 是否启用侧边栏资料卡
+     * 侧边栏初始折叠状态
      * @optional
-     * @default true 默认为true
+     * @default true
      * 
      * @remarks
-     * 该项控制是否启用侧边栏的资料卡按钮，即点击是否会弹出资料卡。接受一个Boolean值作为输入。
+     * 用于设置侧边栏加载时是否默认处于折叠状态。
+     * 当设置为 `true` 时，侧边栏初始为收起状态；设置为 `false` 时，初始展开。
      * 
      * 注意事项：
-     * * 该项事实上控制的是是否为资料卡按钮添加disable属性
-     * * 资料卡的弹出位置逻辑如下：
-     *   - 如果是移动端，那么浮动于页面顶部
-     *   - 如果是PC端，那么根据资料卡按钮的位置决定出现位置，如果资料卡按钮下方有超过352px（资料卡的最大高度）的空间，那么卡片浮动于资料卡按钮下方；否则出现在按钮上方的区域）
+     * - 该配置只影响初始状态，运行时的折叠/展开可由组件内部状态控制。
+     * - 可根据页面需求或用户偏好进行配置。
      * 
      * @example
-     * 示例1：禁用资料卡按钮
+     * 主题配置中默认展开侧边栏：
      * ```ts
-     * // config.mjs，这会禁用资料卡按钮
      * export default {
      *   themeConfig: {
      *     sidebar: {
-     *       enableProfile: false;
+     *       collapsed: false
      *     }
      *   }
      * }
      * ```
      */
-    enableProfile?: boolean;
-    
-    /**
-     * 侧边栏资料卡的logo配置
-     * @optional
-     * @default sidebar.headerLogo 默认从侧边栏配置继承headerLogo
-     * 
-     * @remarks
-     * 该项控制侧边栏资料卡的logo，支持三种类型的图标配置：
-     * 
-     * 1. 一个路径字符串，指向图标的位置（建议放在public文件夹下使用）。
-     * 2. 一个全局注册的组件名。
-     * 3. 一个对象，为图片资源添加更多的扩展属性。
-     * 
-     * 只输入一个字符串时，会检测输入字符串末尾是否包含文件扩展名png|jpeg|jpg|gif|webp|svg中的一种，以此判断是否将此字符串视为文件路径。
-     * 
-     * 注意事项：
-     * 
-     * * 只有侧边栏配置中enableProfile为true的时候此配置项才有意义
-     * * logo的尺寸通过css限制为24px × 24px（同headerLogo一样）。
-     * 
-     * @example
-     * 示例1：指定图片作为logo
-     * ```ts
-     * // config.mjs，这会使用<img src="/assets/avatar.svg">作为图标
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       profileLogo: "/assets/avatar.svg" // 也可以用profileLogo: {src: "/assets/avatar.svg", alt: "logo"}这样的输入指定更多信息
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例2：指定组件名作为logo
-     * ```ts
-     * // config.mjs，这会使用CustomIconComponent作为图标
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       profileLogo: "CustomIconComponent" // 也可以用profileLogo: {component: "CustomIconComponent"}这样的输入指定组件（这主要是避免名字以svg这样后缀结尾组件的自动输入误判）
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例3：从headerLogo继承图标
-     * ```ts
-     * // config.mjs，这会使用<img src="/path/to/logo.png">作为图标（如果你不指定headerLogo，那么会按照headerLogo的默认值逻辑往下寻找默认值）
-     * export default {
-     *   themeConfig: {
-     *     headerLogo: "/path/to/logo.png"
-     *   }
-     * }
-     * ```
-     * 
-     * @see {@link SidebarConfig.headerLogo} sidebar.headerLogo
-     * @see {@link SidebarConfig.enableProfile} sidebar.enableProfile
-     */
-    profileLogo?: 
-        | ImageData
-        | { component: string };
-    
-    /**
-     * 侧边栏资料卡的标题配置
-     * @optional
-     * @default sidebar.headerTitle 默认从侧边栏配置里面继承headerTitle
-     * 
-     * @remarks
-     * 该项控制侧边栏资料卡的标题内容，接受一个字符串作为输入
-     * 
-     * 注意事项：
-     * * 标题长度受限于资料卡的宽度，超出最大长度时超出部分会变成"..."
-     * * 当sidebar.headerTitle和本项都没有填入值时，会按照headerTitle的默认值逻辑向下查找默认值，具体内容参考sidebar.headerTitle的注释
-     * 
-     * @example
-     * 示例1：自定义标题
-     * ```ts
-     * // config.mjs，这会使用"Something for profile card"作为资料卡标题
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       profileTitle: "Something for profile card"
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例2：继承sidebar.headerTitle的标题
-     * ```ts
-     * // config.mjs，这会使用"Something for sidebar header"作为资料卡标题
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       headerTitle: "Something for sidebar header"
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @see {@link SidebarConfig.headerTitle} sidebar.headerTitle
-     */
-    profileTitle?: string;
+    collapsed?: boolean;
 
     /**
-     * 侧边栏资料卡的描述配置
+     * 侧边栏顶部资料卡配置
      * @optional
-     * @default site.description | "" 默认从站点配置继承description
      * 
      * @remarks
-     * 侧边栏资料卡的描述，支持两种类型的图标配置：
-     * 1. 一个字符串，直接作为文本填入
-     * 2. 一个全局注册的组件名，这会直接替换description原本的div元素直接插入资料卡组件
-     * 注意事项：
-     * * 资料卡最大限制高度为352px，如果填入的描述内容超过了这个高度，那么会启用滚动条将描述变成滚动区域。但是这对自定义组件无效，因此如果填入自定义组件可能需要考虑溢出内容的问题。
+     * 该配置项用于定制侧边栏头部显示的资料卡（Profile Card）部分内容，
+     * 包括标题、头像、描述等信息，增强侧边栏的个性化展示。
+     * 
+     * 资料卡主要用于展示用户或站点的相关信息，通常位于侧边栏顶部。
+     * 具体配置详情参见 {@link SidebarProfile} 接口。
      * 
      * @example
-     * 示例1：自定义资料卡的内容
+     * 简单示例：
      * ```ts
-     * // config.mjs，这会使用"Welcome to my vitepress site"作为资料卡的内容
      * export default {
      *   themeConfig: {
      *     sidebar: {
-     *       profileDescription: "Welcome to my vitepress site"
+     *       profile: {
+     *         enabled: true,
+     *         title: "我的博客",
+     *         logo: "/avatar.png",
+     *         description: "欢迎访问我的博客"
+     *       }
      *     }
      *   }
      * }
      * ```
      * 
-     * @example
-     * 示例2：使用自定义的组件作为资料卡的内容
-     * ```ts
-     * // config.mjs，这会使用组件SomeAmazingComponent作为资料卡的内容
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       profileDescription: { component: "SomeAmazingComponent" }
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例3：继承站点配置
-     * ```ts
-     * // config.mjs，这会使用"Summary of the website"作为资料卡的描述
-     * export default {
-     *   themeConfig: {
-     *     description: "Summary of the website"
-     *   }
-     * }
-     * ```
+     * @see {@link SidebarProfile}
      */
-    profileDescription?: 
-        | string
-        | { component: string };
+    profile?: SidebarProfile;
 
     /**
-     * 侧边栏的导航项列表配置
+     * 自定义侧边栏高亮项匹配规则
      * @optional
-     * @default [] 默认情况下没有导航项
+     * @default
+     * 默认使用最长路径前缀匹配规则：
+     * ```ts
+     * (path, allLinks) => {
+     *   return allLinks
+     *     .filter(link => path.startsWith(link))
+     *     .sort((a, b) => b.length - a.length)[0];
+     * }
+     * ```
      * 
      * @remarks
-     * 该项控制侧边栏中导航链接列表，通过配置此项可以在侧边栏导航区域中设置链接按钮。具体的可配置内容请参考SidebarNavItemData的内容
+     * 该函数用于自定义侧边栏导航项的高亮匹配逻辑。系统会收集所有导航项和页脚项的 `link` 组成 `allLinks` 数组，
+     * 传入当前路由路径 `path` 和该数组，返回的字符串将作为高亮判据与每个导航项的 `link` 进行**精确匹配**。
+     * 匹配成功的项会添加 `.highlight` 类名，其图标会通过 `fill` 属性应用特殊颜色。
+     * 
+     * 注意事项：
+     * - 高亮颜色可通过 {@link SidebarItem.highlight} 属性单独配置
+     * - 当页面是 404 状态时，自动跳过匹配
+     * - 返回 `undefined` 或非字符串值时，不会高亮任何项
+     * - 无匹配项时不会应用高亮
+     * - 函数执行错误会被捕获并在控制台输出警告
+     * 
+     * @param path - 当前路由路径 (来自 `route.path`)
+     * @param allLinks - 所有导航项和页脚项的 `link` 组成的数组
+     * @returns 用于精确匹配高亮项的链接字符串 或 `undefined`
      * 
      * @example
-     * 示例1：添加三个导航链接，分别通往/docs/，/blogs/和主页/
+     * 在 Vitepress 配置文件中实现自定义高亮逻辑：
      * ```ts
-     * // config.mjs
+     * // .vitepress/config.ts
      * export default {
+     *   themeConfig: {
+     *     sidebar: {
+     *       // 自定义高亮函数：匹配基础路径忽略查询参数
+     *       highlight: (path) => path.split('?')[0]
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @example
+     * 匹配动态路由的配置示例：
+     * ```ts
+     * // .vitepress/config.ts
+     * export default {
+     *   themeConfig: {
+     *     sidebar: {
+     *       // 将 /posts/123 高亮为 /posts/[id]
+     *       highlight: (path) => path.replace(/\/\d+$/, '/[id]')
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link SidebarItem.highlight} 单独配置项的高亮颜色
+     * @see {@link NavItem} 导航项结构
+     * @see {@link FooterItem} 页脚项结构
+     */
+    highlight?: (path: string, allLinks: string[]) => string | undefined;
+
+    /**
+     * 侧边栏导航链接配置
+     * @optional
+     * 
+     * @remarks
+     * 用于生成侧边栏主导航区的链接列表，支持两种配置模式：
+     * 1. **统一模式**：直接使用 `NavItem[]` 数组，所有页面使用同一套导航配置
+     * 2. **动态模式**：使用对象 `{ [basePath: string]: NavItem[] }`，根据当前路由前缀动态切换导航配置
+     *    - 键为路由前缀（如 `'/guide/'`）
+     *    - 值为该前缀下使用的导航项数组
+     *    - 匹配规则：选择当前路由最长匹配前缀的配置
+     * 
+     * 注意事项：
+     * - 每个导航项必须包含 `text: string` 属性
+     * - 侧边栏收起时：无图标且无子项的项会被隐藏
+     * - 悬浮提示默认使用 `text` 值，设为 `false` 可禁用提示
+     * - 高亮样式支持统一颜色字符串或分状态（常态/hover/激活）配置
+     * - 嵌套层级最多支持 6 层，超出部分会被截断
+     * - 子项列表默认折叠，通过 `collapsed: false` 初始展开
+     * 
+     * @example
+     * **完整配置文件示例（统一模式）**：
+     * ```ts
+     * // .vitepress/config.ts
+     * import { defineConfig } from 'vitepress'
+     * 
+     * export default defineConfig({
      *   themeConfig: {
      *     sidebar: {
      *       navLinks: [
-     *         {icon: "VPJIconHome", text: "我的主页", link: "/", tooltip: "主页"},
-     *         {icon: "VPJIconBlogPencil", text: "我的博客", link: "/blogs/", tooltip: "博客"},
-     *         {icon: "VPJIconBookBookmark", text: "我的笔记", link: "/docs/", tooltip: "笔记"}
-     *       ],
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @see {@link SidebarNavItemData} SidebarNavItemData
-     */
-    navLinks?: SidebarNavItemData[];
-
-    /**
-     * 侧边栏导航项的提示文本全局配置
-     * @optional
-     * @default true 默认为启用提示文本
-     * 
-     * @remarks
-     * 该项控制是否启用侧边栏导航项的提示文本，接受一个Boolean值作为输入。当此项设置为false时，会覆盖所有sidebar.navLinks中项的tooltip配置。
-     * 
-     * 注意事项：
-     * 
-     * * 如果你只希望单独控制某一项的提示文本，你应该在sidebar.navLinks的输入中为此项配置tooltip属性而不是更改此项内容，详情请移步SidebarNavItemData的注释。
-     * 
-     * @example
-     * 示例1：关闭全体导航项的提示文本功能
-     * ```ts
-     * // config.mjs
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       enableTooltip: false
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @see {@link SidebarConfig.navLinks} sidebar.navLinks
-     * @see {@link SidebarNavItemData} SidebarNavItemData
-     */
-    enableTooltip?: boolean;
-
-    /**
-     * 侧边栏导航项的高亮全局配置
-     * 是否高亮当前页面最接近的父路径，这会为当前路由匹配到的最近父路径项的图标添加一个高亮样式。也可以输入一个接受函数来自定义高亮项的逻辑
-     * @optional
-     * @default true 默认为启用高亮功能
-     * 
-     * @remarks
-     * 该项控制侧边栏导航链接列表的高亮功能配置，支持两种类型的输入：
-     * 
-     * 1. 一个Boolean值，表示是否启用高亮功能。
-     * 2. 一个参数为当前链接与导航项链接数组，且返回值为需要高亮的导航项链接或者undefined的高亮逻辑函数。
-     * 
-     * 默认情况下（即只填入Boolean值时），高亮导航项的逻辑是从导航链接列表中找出与当前路径匹配的最长父路径。
-     * 
-     * 注意事项：
-     * 
-     * * 所有链接路径与高亮逻辑函数返回值一致的项都会被视为高亮项。
-     * * 高亮项实质上是为该项添加一个highlight类，默认情况下，它会通过css在项目的图标上发生作用（前提是使用了未指定fill属性的svg图标）。
-     * * 虽然理论上自己指定高亮逻辑时可以通过返回奇怪的路径来取消高亮，但是仍然建议返回undefined。
-     * * 如果你想要定制项的高亮效果，请移步到SidebarNavItemData.highlight属性的注释。
-     * 
-     * @example
-     * 示例1：关闭侧边栏导航项列表的高亮功能
-     * ```ts
-     * // config.mjs，这会关闭高亮
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       enableHighlight: false;
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @example
-     * 示例2：使用自定义的高亮逻辑
-     * ```ts
-     * // path/to/function.js
-     * export function customHighlight(curr, navList) {
-     *   ... // 编写你的逻辑
-     * }
-     * 
-     * // config.mjs，这会使用customHighlight覆盖掉默认的高亮逻辑
-     * import { customHighlight } from "path/to/function.js"
-     * 
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       enableHighlight: customHighlight;
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @see {@link SidebarNavItemData.highlight} SidebarNavItemData.highlight
-     */
-    enableHighlight?:
-        | boolean
-        | ((currentPath: string, navLinkList: string[]) => string | undefined);
-
-    /**
-     * 侧边栏的额外内容配置
-     * @optional
-     * @default undefined 默认情况下不填入内容
-     * 
-     * @remarks
-     * 该项控制侧边栏中导航栏链接列表下方区域内容，接受一个已经在全局注册的组件名作为额外内容填入。
-     * 
-     * 注意事项：
-     * * 填入的组件只有在侧边栏展开时才会显示。
-     * 
-     * @example
-     * 示例1：使用注册的组件CustomMenu插入侧边栏导航区
-     * ```ts
-     * // config.mjs
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       navContent: "CustomMenu"
-     *     }
-     *   }
-     * }
-     * ```
-     */
-    navContent?: string;
-
-    /**
-     * 
-     * 是否在侧边栏折叠时显示底部内容
-     * @optional
-     * @default false 默认隐藏底部内容
-     * 
-     * @remarks
-     * 该项控制侧边栏底部区域在侧边栏收起时是否显示，接受一个Boolean值作为输入。
-     * 
-     * 注意事项：
-     * * 部分内容的配置只有在此项为true时才有意义，例如sidebar.footerLinks列表项中的showOnCollapse属性。
-     * 
-     * @example
-     * 示例1：在侧边栏折叠时显示底部内容
-     * ```ts
-     * // config.mjs
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       showFooterOnCollapse: true
-     *     }
-     *   }
-     * }
-     * ```
-     * 
-     * @see {@link SidebarConfig.footerLinks} sidebar.footerLinks
-     * @see {@link SidebarFooterItemData.showOnCollaspe} showOnColllapse
-     */
-    showFooterOnCollapse?: boolean;
-
-    /**
-     * 侧边栏底部的链接列表配置
-     * @optional
-     * @default [] 默认情况下没有底部链接项
-     * 
-     * @remarks
-     * 该项控制侧边栏中底部链接列表，通过配置此项可以在侧边栏导航区域中设置链接按钮，行为上类似于sidebar.navLinks导航栏列表。具体的可配置内容请参考SidebarFooterItemData的内容
-     * 
-     * @example
-     * 示例1：添加两个链接，分别通往/about/与https://github.com/
-     * ```ts
-     * // config.mjs
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       footerLinks: [
-     *         {icon: "VPJIconInfo", text: "关于我们", link: "/about/", target: "_self"},
-     *         {icon: "VPJIconGithub", text: "Github", link: "https://github.com/", showOnCollapse: false},
+     *         {
+     *           text: '首页',
+     *           link: '/',
+     *           icon: { light: '/icons/home-light.svg', dark: '/icons/home-dark.svg' },
+     *           tooltip: '返回首页'  // 自定义提示
+     *         },
+     *         {
+     *           text: '产品',
+     *           collapsed: false,    // 初始展开子项
+     *           items: [
+     *             { 
+     *               text: 'VitePress', 
+     *               link: '/products/vitepress',
+     *               highlight: '#42b883'  // 统一高亮色
+     *             },
+     *             { 
+     *               text: 'Vue', 
+     *               link: '/products/vue',
+     *               highlight: {        // 分状态高亮
+     *                 normal: '#34495e',
+     *                 hover: '#42b883',
+     *                 active: '#35495e'
+     *               }
+     *             }
+     *           ]
+     *         }
      *       ]
      *     }
      *   }
+     * })
+     * ```
+     * 
+     * @example
+     * **动态模式配置示例**：
+     * ```ts
+     * // .vitepress/config.ts
+     * export default {
+     *   themeConfig: {
+     *     sidebar: {
+     *       navLinks: {
+     *         // 中文路径配置
+     *         '/zh/': [
+     *           { text: "首页", link: "/zh/" },
+     *           { text: "文档", link: "/zh/docs/" }
+     *         ],
+     *         // 英文路径配置
+     *         '/en/': [
+     *           { text: "Home", link: "/en/" },
+     *           { text: "Documentation", link: "/en/docs/" }
+     *         ]
+     *       }
+     *     }
+     *   }
      * }
      * ```
      * 
-     * @see {@link SidebarFooterItemData} SidebarFooterItemData
+     * @see {@link NavItem} 导航项详细配置
+     * @see {@link SidebarConfig.highlight} 全局高亮控制函数
      */
-    footerLinks?: SidebarFooterItemData[]
+    navLinks?:
+        | NavItem[]
+        | { [basePath: string]: NavItem[] };
+    
+    /**
+     * 侧边栏页脚链接配置
+     * @optional
+     * 
+     * @remarks
+     * 用于配置侧边栏底部的固定链接区域，提供额外的导航或功能入口。
+     * 与导航链接不同，页脚链接：
+     * - 不支持嵌套结构（无 `items` 属性）
+     * - 不支持动态路由配置
+     * - 仅支持单层链接列表
+     * 
+     * 注意事项：
+     * - 必须同时包含 `text` 和 `link` 属性才被视为有效项
+     * - 默认在侧边栏收缩时显示（可通过 `showOnCollapsed: false` 隐藏）
+     * - 图标和悬浮提示行为与导航项一致
+     * - 高亮配置方式与 {@link NavItem.highlight} 相同
+     * - 无效项会被静默过滤
+     * 
+     * @example
+     * **完整配置文件示例**：
+     * ```ts
+     * // .vitepress/config.ts
+     * import { defineConfig } from 'vitepress'
+     * 
+     * export default defineConfig({
+     *   themeConfig: {
+     *     sidebar: {
+     *       footerLinks: [
+     *         {
+     *           text: '意见反馈',
+     *           link: 'https://feedback.example.com',
+     *           icon: { 
+     *             light: '/icons/feedback-light.svg', 
+     *             dark: '/icons/feedback-dark.svg' 
+     *           },
+     *           showOnCollapsed: true  // 收缩时仍显示（默认）
+     *         },
+     *         {
+     *           text: 'GitHub',
+     *           link: 'https://github.com/your-repo',
+     *           tooltip: '访问源码仓库',
+     *           highlight: '#6e5494'  // GitHub 主题紫色
+     *         },
+     *         {
+     *           text: '联系我们',
+     *           link: '/contact',
+     *           showOnCollapsed: false  // 收缩时隐藏此项
+     *         }
+     *       ]
+     *     }
+     *   }
+     * })
+     * ```
+     * 
+     * @see {@link FooterItem} 页脚项详细配置
+     * @see {@link NavItem} 导航项配置参考
+     */
+    footerLinks?: FooterItem[];
+
+    /**
+     * 社交媒体链接配置
+     * @optional
+     * 
+     * @remarks
+     * 用于在侧边栏底部（页脚链接下方）添加社交媒体图标链接。
+     * 这些链接以图标按钮形式展示，提供快速访问社交媒体账号的入口。
+     * 
+     * 注意事项：
+     * - **侧边栏收起时会隐藏整个社交链接区域**
+     * - 必须同时提供有效的 `icon` 和 `link` 属性才被视为有效项
+     * - 图标支持图片路径或自定义组件
+     * - 建议为每个链接添加 `ariaLabel` 提升可访问性
+     * - 无效项会被静默过滤
+     * 
+     * @example
+     * **完整配置文件示例**：
+     * ```ts
+     * // .vitepress/config.ts
+     * import { defineConfig } from 'vitepress'
+     * 
+     * export default defineConfig({
+     *   themeConfig: {
+     *     sidebar: {
+     *       socialLinks: [
+     *         {
+     *           icon: 'github',  // 使用内置图标名称
+     *           link: 'https://github.com/your-account',
+     *           ariaLabel: 'GitHub 仓库'
+     *         },
+     *         {
+     *           icon: { 
+     *             light: '/icons/twitter-light.svg',
+     *             dark: '/icons/twitter-dark.svg'
+     *           },
+     *           link: 'https://twitter.com/your-account'
+     *         },
+     *         {
+     *           icon: { component: 'CustomWeChatIcon' }, // 自定义组件
+     *           link: '/wechat-contact',
+     *           ariaLabel: '微信联系'
+     *         }
+     *       ]
+     *     }
+     *   }
+     * })
+     * ```
+     * 
+     * @see {@link SocialLink} 社交链接项详细配置
+     * @see {@link ImageData} 图标图片格式
+     */
+    socialLinks?: SocialLink[];
 }

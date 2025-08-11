@@ -27,7 +27,7 @@ const props = defineProps({
         default: {}
     },
     tooltip: {
-        type: String,
+        type: [String, undefined],
     },
     tooltipAttrs: {
         type: Object,
@@ -178,34 +178,52 @@ defineExpose({
         @mouseleave="tooltipVisible = false"
         class="vpj-btn"
     >
-        <VPJDynamicIcon
-            v-if="props.icon"
-            v-bind="props.iconAttrs"
-            :icon="props.icon"
-            class="vpj-icon"
-        />
-        <span
-            v-if="props.text"
-            v-bind="props.textAttrs"
-            class="vpj-text"
-        >
-            {{ props.text }}
-        </span>
-        <Teleport to=".vpj-portals-root">
-            <div 
-                v-if="props.tooltip && tooltipVisible"
-                v-bind="props.tooltipAttrs"
-                ref="tooltipRef"
-                class="vpj-teleport"
-                :style="tooltipCss"
+        <slot>
+            <VPJDynamicIcon
+                v-if="props.icon"
+                v-bind="props.iconAttrs"
+                :icon="props.icon"
+                class="vpj-icon"
+            />
+            <span
+                v-if="props.text"
+                v-bind="props.textAttrs"
+                class="vpj-text"
             >
-                {{ props.tooltip }}
-            </div>
+                {{ props.text }}
+            </span>
+        </slot>
+        <Teleport to=".vpj-portals-root">
+            <Transition>
+                <div 
+                    v-if="props.tooltip && tooltipVisible"
+                    v-bind="props.tooltipAttrs"
+                    ref="tooltipRef"
+                    class="vpj-teleport"
+                    :style="tooltipCss"
+                >
+                    {{ props.tooltip }}
+                </div>
+            </Transition>
         </Teleport>
     </component>
 </template>
 
 
 <style scoped>
-    
+    /* Vue Transition */
+    .v-enter-from,
+    .v-leave-to {
+        opacity: 0;
+    }
+
+    .v-enter-to,
+    .v-leave-from {
+        opacity: 1;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+        transition: opacity 0.2s ease-in-out;
+    }
 </style>

@@ -15,17 +15,83 @@ export default defineConfigWithTheme<ThemeConfig>({
     title: "Cell的个人站点",
     lang: "zh-CN",
     description: "Cell's personal site",
+    head: [
+        ["meta", { name: "algolia-site-verification", content: "95E8D005DA95BF4F" }]
+    ],
+    markdown: {
+        math: true
+    },
+    vite: {
+        plugins: [
+            // @ts-ignore
+            vueDevTools()
+        ],
+        // build: {
+        //     rollupOptions: {
+        //         plugins: [
+        //             visualizer({
+        //                 gzipSize: true,
+        //                 brotliSize: true,
+        //                 title: "VitePress Bundle Analysis",
+        //                 filename: path.join(REPORT_DIR, "rollup_visualizer", "bundle-stats.html"), // 修改这里
+        //                 projectRoot: PROJECT_ROOT,
+        //                 open: true,
+        //                 sourcemap: false,
+        //                 template: 'treemap',
+        //             })
+        //         ]
+        //     }
+        // }
+    },
     themeConfig: {
         logo: "/assets/logo.svg",
         sidebar: {
-            profileDescription: "这里是Cell的个人站点，记录了一些日常的学习心得，仍在建设中。",
-            navLinks: [
-                {icon: "VPJIconHome", text: "我的主页", link: "/", tooltip: "主页"},
-                {icon: "VPJIconBlogPencil", text: "我的博客", link: "/blogs/", tooltip: "博客"},
-                {icon: "VPJIconBookBookmark", text: "我的笔记", link: "/docs/", tooltip: "笔记"}
-            ],
+            profile: {
+                description: "这里是Cell的个人站点，记录了一些日常的学习心得，仍在建设中。"
+            },
+            navLinks: {
+                "/": [
+                    {icon: "VPJIconHome", text: "我的主页", link: "/", tooltip: "主页"},
+                    {icon: "VPJIconBlogPencil", text: "我的博客", link: "/blogs/", tooltip: "博客"},
+                    {icon: "VPJIconBookBookmark", text: "我的笔记", link: "/docs/", tooltip: "笔记"},
+                ],
+                "/docs/": [
+                    {icon: "VPJIconHome", text: "我的主页", link: "/", tooltip: "主页"},
+                    {icon: "VPJIconBlogPencil", text: "我的博客", link: "/blogs/", tooltip: "博客"},
+                    {icon: "VPJIconBookBookmark", text: "我的笔记", link: "/docs/", tooltip: "笔记", collapsed: false,
+                        items: [
+                            {icon: "VPJIconBookBookmark", text: "实分析下", link: "/docs/Real-Analysis/Extra/", tooltip: "实分析（下半）（测试）"},
+                            {icon: "VPJIconBookBookmark", text: "测试文档库", link: "/docs/book1/", tooltip: "测试book1"},
+                        ],
+                    },
+                ],
+                "/docs/Real-Analysis/": [
+                    {icon: "VPJIconHome", text: "我的主页", link: "/", tooltip: "主页"},
+                    {icon: "VPJIconBlogPencil", text: "我的博客", link: "/blogs/", tooltip: "博客"},
+                    {icon: "VPJIconBookBookmark", text: "我的笔记", link: "/docs/", tooltip: "笔记", collapsed: false,
+                        items: [
+                            {icon: "VPJIconBookBookmark", text: "实分析下", link: "/docs/Real-Analysis/Extra/", tooltip: "实分析（下半）（测试）", collapsed: false,
+                                items: [
+                                    {text: "第12章 度量空间", link: "/docs/Real-Analysis/Chap12/Sec1.html", tooltip: "第12章 度量空间"},
+                                    {text: "第13章 度量空间上的连续函数", link: "/docs/Real-Analysis/Chap13/Sec1.html", tooltip: "第13章 度量空间上的连续函数"},
+                                    {text: "第14章 一致收敛", link: "/docs/Real-Analysis/Chap14/Sec1.html", tooltip: "第14章 一致收敛"},
+                                    {text: "第15章 幂级数", link: "/docs/Real-Analysis/Chap15/Sec1.html", tooltip: "第15章 幂级数"},
+                                    {text: "第16章 傅里叶级数", link: "/docs/Real-Analysis/Chap16/Sec1.html", tooltip: "第16章 傅里叶级数"},
+                                    {text: "第17章 多元微分学", link: "/docs/Real-Analysis/Chap17/Sec1.html", tooltip: "第17章 多元微分学"},
+                                    {text: "第18章 勒贝格测度", link: "/docs/Real-Analysis/Chap18/Sec1.html", tooltip: "第18章 勒贝格测度"},
+                                    {text: "第19章 勒贝格积分", link: "/docs/Real-Analysis/Chap19/Sec1.html", tooltip: "第19章 勒贝格积分"}
+                                ]
+                            },
+                            {icon: "VPJIconBookBookmark", text: "测试文档库", link: "/docs/book1/", tooltip: "测试book1"},
+                        ],
+                    },
+                ],
+            },
             footerLinks: [
                 {icon: "VPJIconInfo", text: "关于我们", link: "/about/"}
+            ],
+            socialLinks: [
+                {icon: "VPJIconGithub", ariaLabel: "Cell's GitHub Profile", link: "https://github.com/cell-juicy/"},
             ]
         },
         layouts: {
@@ -99,30 +165,5 @@ export default defineConfigWithTheme<ThemeConfig>({
                 format: (tag) => `# ${tag}`
             },
         }
-    },
-    vite: {
-        plugins: [
-            // @ts-ignore
-            vueDevTools()
-        ],
-        // build: {
-        //     rollupOptions: {
-        //         plugins: [
-        //             visualizer({
-        //                 gzipSize: true,
-        //                 brotliSize: true,
-        //                 title: "VitePress Bundle Analysis",
-        //                 filename: path.join(REPORT_DIR, "rollup_visualizer", "bundle-stats.html"), // 修改这里
-        //                 projectRoot: PROJECT_ROOT,
-        //                 open: true,
-        //                 sourcemap: false,
-        //                 template: 'treemap',
-        //             })
-        //         ]
-        //     }
-        // }
-    },
-    markdown: {
-        math: true
     },
 })
