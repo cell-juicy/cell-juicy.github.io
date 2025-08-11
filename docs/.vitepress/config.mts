@@ -15,6 +15,34 @@ export default defineConfigWithTheme<ThemeConfig>({
     title: "Cell的个人站点",
     lang: "zh-CN",
     description: "Cell's personal site",
+    head: [
+        ["meta", { name: "algolia-site-verification", content: "95E8D005DA95BF4F" }]
+    ],
+    markdown: {
+        math: true
+    },
+    vite: {
+        plugins: [
+            // @ts-ignore
+            vueDevTools()
+        ],
+        // build: {
+        //     rollupOptions: {
+        //         plugins: [
+        //             visualizer({
+        //                 gzipSize: true,
+        //                 brotliSize: true,
+        //                 title: "VitePress Bundle Analysis",
+        //                 filename: path.join(REPORT_DIR, "rollup_visualizer", "bundle-stats.html"), // 修改这里
+        //                 projectRoot: PROJECT_ROOT,
+        //                 open: true,
+        //                 sourcemap: false,
+        //                 template: 'treemap',
+        //             })
+        //         ]
+        //     }
+        // }
+    },
     themeConfig: {
         logo: "/assets/logo.svg",
         sidebar: {
@@ -137,30 +165,5 @@ export default defineConfigWithTheme<ThemeConfig>({
                 format: (tag) => `# ${tag}`
             },
         }
-    },
-    vite: {
-        plugins: [
-            // @ts-ignore
-            vueDevTools()
-        ],
-        // build: {
-        //     rollupOptions: {
-        //         plugins: [
-        //             visualizer({
-        //                 gzipSize: true,
-        //                 brotliSize: true,
-        //                 title: "VitePress Bundle Analysis",
-        //                 filename: path.join(REPORT_DIR, "rollup_visualizer", "bundle-stats.html"), // 修改这里
-        //                 projectRoot: PROJECT_ROOT,
-        //                 open: true,
-        //                 sourcemap: false,
-        //                 template: 'treemap',
-        //             })
-        //         ]
-        //     }
-        // }
-    },
-    markdown: {
-        math: true
     },
 })

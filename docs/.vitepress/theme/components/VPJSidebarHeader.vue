@@ -268,7 +268,7 @@ onMounted(() => {
     .vpj-sidebar__profile-title {
         color: var(--vpj-color-text-400);
         flex: 1;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: var(--vpj-font-weight-600);
     }
 

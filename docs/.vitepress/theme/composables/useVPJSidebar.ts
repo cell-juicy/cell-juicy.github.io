@@ -1,12 +1,16 @@
 import { useData, useRoute } from 'vitepress';
-import { computed, Ref, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { defineStore } from 'pinia';
 
 import { mergeSimpleData } from '../utils/mergeData';
 
 import type {
-    SiteData
+    SiteData,
+    PageData
 } from 'vitepress';
+import type {
+    Ref
+} from 'vue';
 import type {
     ThemeConfig
 } from '../types'
@@ -35,6 +39,8 @@ interface NormalizeFooterItem extends FooterItem {
 
 
 const DEFAULT = {
+    ENABLED: true,
+    COLLAPSED: true,
     TITLE: "VitePress",
     LOGO: defaultAvatar,
     DESCRIPTION: "",
@@ -124,9 +130,10 @@ function normalizeFooterItem<T extends FooterItem>(input: T): NormalizeFooterIte
 
 export const useVPJSidebar = defineStore('vpj-sidebar', () => {
     // Initialize sidebar config
-    const { theme, site }: {
+    const { theme, site, page }: {
         theme: Ref<ThemeConfig>,
-        site: Ref<SiteData>
+        site: Ref<SiteData>,
+        page: Ref<PageData>
     } = useData();
     const route = useRoute();
 
@@ -141,14 +148,17 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
     const collapsed: Ref<boolean> = ref(
         typeof sidebarConfig.value.collapsed === 'boolean'
             ? sidebarConfig.value.collapsed
-            : true
+            : DEFAULT.COLLAPSED
     );
     function toggle(): void { collapsed.value = !collapsed.value; };
     function close(): void { collapsed.value = true; };
     function open(): void { collapsed.value = false; };
 
     // Enable Sidebar?
-    const enabled: Ref<boolean> = computed(() => sidebarConfig.value.enabled === undefined ? true : !!sidebarConfig.value.enabled)
+    const enabled: Ref<boolean> = computed(() => typeof sidebarConfig.value.enabled === 'boolean'
+        ? sidebarConfig.value.enabled
+        : DEFAULT.ENABLED
+    );
 
     // Header Config
     const headerConfig = computed(() => {
@@ -251,6 +261,8 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
     });
 
     const highlight = computed(() => {
+        if (page.value.isNotFound) return undefined;
+        
         const allLinks: string[] = [];
         const navItems = navConfig.value.navLinks;
         const footerItems = footerConfig.value.footerLinks;
