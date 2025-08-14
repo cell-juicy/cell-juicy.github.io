@@ -13,7 +13,9 @@ import {
     NormalizedToolbarButtonInput,
     PageContext,
     ImageData,
-    TitleTemplateInput
+    TitleTemplateInput,
+    EditLinkInput,
+    FooterInput
 } from "./common";
 
 
@@ -1116,4 +1118,16 @@ export interface VPJBlogLayoutConfig {
      * @see {@link NormalizedDeviceSpecificInput} 设备响应式标准化类型
      */
     contentMaxWidth?: DeviceSpecificInput;
+
+    next?:
+        | string
+        | false;
+
+    prev?:
+        | string
+        | false;
+    
+    editLinks: EditLinkInput;
+
+    footer: FooterInput;
 }

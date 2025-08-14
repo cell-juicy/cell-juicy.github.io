@@ -13,7 +13,9 @@ import {
     ToolbarButtonInput,
     NormalizedToolbarButtonInput,
     PageContext,
-    TitleTemplateInput
+    TitleTemplateInput,
+    EditLinkInput,
+    FooterInput
 } from "./common";
 
 import {
@@ -1324,4 +1326,16 @@ export interface SeriesMetaData {
     listTitle?: 
         | string
         | ((data: BlogPageData) => string);
+    
+    next?:
+        | false
+        | string;
+    
+    prev?: 
+        | false
+        | string;
+
+    editLink?: EditLinkInput;
+
+    footer?: FooterInput;
 }

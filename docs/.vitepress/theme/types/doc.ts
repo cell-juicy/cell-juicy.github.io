@@ -13,7 +13,9 @@ import type {
     NormalizedToolbarButtonInput,
     PageContext,
     ResourceInput,
-    TitleTemplateInput
+    TitleTemplateInput,
+    EditLinkInput,
+    FooterInput
 } from "./common";
 
 import type {
@@ -1419,5 +1421,17 @@ export interface SpaceMetaData {
         global?: NodeMetadata;
 
         [orderString: string]: NodeMetadata | undefined;
-    }
+    },
+
+    next?:
+        | false
+        | string;
+    
+    prev?:
+        | false
+        | string;
+    
+    editLink?: EditLinkInput;
+
+    footer?: FooterInput;
 }

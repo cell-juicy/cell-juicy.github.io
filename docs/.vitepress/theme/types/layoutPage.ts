@@ -1,4 +1,4 @@
-import { DeviceSpecificInput, ImageData, HeaderTitleTemplateInput } from "./common";
+import { DeviceSpecificInput, ImageData, HeaderTitleTemplateInput, FooterInput } from "./common";
 
 
 /**
@@ -400,4 +400,6 @@ export interface VPJPageLayoutConfig {
      * @see {@link NormalizedDeviceSpecificInput}
      */
     contentMaxWidth?: DeviceSpecificInput;
+
+    footer: FooterInput;
 }
