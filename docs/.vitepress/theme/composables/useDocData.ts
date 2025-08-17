@@ -1,5 +1,5 @@
 import { ref, computed, inject, watch } from "vue";
-import { cloneDeep } from "lodash-es";
+import { cloneDeep, extend } from "lodash-es";
 
 // @ts-ignore
 import { data } from "../data/doc.data";
@@ -22,6 +22,8 @@ interface DocData {
     order: Ref<number[] | undefined>;
     cover: Ref<string | undefined>;
     resources: Ref<Record<string, ResourceInput> | undefined>;
+    next: Ref<{ text?: string; link?: string } | undefined>;
+    prev: Ref<{ text?: string; link?: string } | undefined>;
     ctx: Ref<PageContext | undefined>;
     filter: (callbackFn: (data: DocPageData) => boolean) => DocPageData[];
     spaceConfig: Ref<SpaceMetaData>;
@@ -40,6 +42,12 @@ interface RawDocPageData {
         | ((data: DocPageData) => string | undefined);
     url?: string;
     frontmatter?: Record<string, any>;
+    next:
+        | { text?: string; link?: string }
+        | { text: false; link: false };
+    prev:
+        | { text?: string; link?: string }
+        | { text: false; link: false };
     inherit?: boolean;
     virtual?: boolean;
 }
@@ -47,6 +55,8 @@ interface RawDocPageData {
 interface StoreDocPageData extends RawDocPageData {
     resources: Record<string, ResourceData>;
     id: string;
+    next: { text?: string; link?: string };
+    prev: { text?: string; link?: string };
     inherit: boolean;
     virtual: boolean;
 }
@@ -173,6 +183,14 @@ export class DocPageData {
             ...cloneDeep(raw),
             resources: resolveResourceInput(raw.resources),
             id: 'unknown',
+            next: {
+                text: (raw.next.text === false) ? undefined : raw.next.text,
+                link: (raw.next.link === false) ? undefined : raw.next.link,
+            },
+            prev: {
+                text: (raw.prev.text === false) ? undefined : raw.prev.text,
+                link: (raw.prev.link === false) ? undefined : raw.prev.link,
+            },
             inherit: (raw.inherit === true) ? true : false,
             virtual: (raw.virtual === true) ? true : false,
         };
@@ -195,6 +213,8 @@ export class DocPageData {
     get cover(): string | false | undefined { return this.#store.cover; }
     get inherit(): boolean { return this.#store.inherit; }
     get resources(): Record<string, ResourceData> { return this.#store.resources; }
+    get next() { return this.#store.next; }
+    get prev() { return this.#store.prev; }
     get treeTitle(): string {
         if (typeof this.#store.treeTitle === 'string') {
             return this.#store.treeTitle;
@@ -389,6 +409,8 @@ export class DocPageData {
                     space: node.space,
                     order: [...currentOrder],
                     virtual: true,
+                    next: {},
+                    prev: {}
                 });
                 existingNodes.add(expectedParentid);
             };
@@ -397,15 +419,93 @@ export class DocPageData {
         dataBase.push(...virtualNodes)
     };
 
+    static bindNextPrev(dataBase: RawDocPageData[], config: Record<string, SpaceMetaData>) {
+        const spaceMap = new Map<string, RawDocPageData[]>();
+        dataBase.forEach((node) => {
+            if (node.space === undefined) return;
+            if (spaceMap.has(node.space)) {
+                spaceMap.get(node.space)?.push(node);
+            } else {
+                spaceMap.set(node.space, [node]);
+            };
+        });
+
+        function siblingCompare<T extends {idx: number, order: number[]}>(a: T, b: T)  {
+            const la = a.order[a.order.length - 1] ?? -1;
+            const lb = b.order[b.order.length - 1] ?? -1;
+            if (la !== lb) return la - lb;
+            return a.idx - b.idx;
+        };
+
+        spaceMap.forEach((nodes, space) => {
+            const sorted = DocPageData.sortDataBase(nodes)
+            type DFStreeNode = { idx: number; order: number[]; children: DFStreeNode[] };
+
+            // Generate DFS sequence
+            const DFS: RawDocPageData[] = [];
+            const treeRoot: DFStreeNode = { idx: -1, order: [], children: [] };
+            const treeNodes: DFStreeNode[] = sorted.map((n, idx) => ({ idx, order: n.order, children: []}));
+            const map = new Map<string, DFStreeNode[]>();
+
+            treeNodes.forEach((node) => {
+                const key = DocPageData.genId(node);
+                if (!map.has(key)) map.set(key, []);
+                map.get(key)?.push(node);
+            })
+            
+            treeNodes.forEach((node) => {
+                if (node.order.length === 1) {
+                    treeRoot.children.push(node)
+                } else {
+                    let hasParent = false;
+                    for (let i=1; i<node.order.length; i++) {
+                        const excerptParent = DocPageData.genId({order: node.order.slice(0, -i)});
+
+                        if (!map.has(excerptParent)) continue;
+
+                        const parent = map.get(excerptParent);
+                        (parent as DFStreeNode[])[0].children.push(node);
+                        hasParent = true;
+                        break;
+                    };
+                    if (!hasParent) treeRoot.children.push(node);
+                };
+            });
+
+            function dfs(node: DFStreeNode) {
+                if (node.idx >= 0) DFS.push(sorted[node.idx]);
+                node.children.sort(siblingCompare);
+                node.children.forEach(dfs);
+            };
+
+            dfs(treeRoot);
+
+            // Bind prev & next
+            for (let i=0; i<DFS.length; i++) {
+                const curr = DFS[i];
+
+                if (i > 0) {
+                    const prev = DFS[i - 1];
+                    curr.prev.text = (curr.prev.text === undefined) ? prev.title : curr.prev.text;
+                    curr.prev.link = (curr.prev.link === undefined) ? prev.url : curr.prev.link;
+                };
+
+                if (i < DFS.length - 1) {
+                    const next = DFS[i + 1];
+                    curr.next.text = (curr.next.text === undefined) ? next.title : curr.next.text;
+                    curr.next.link = (curr.next.link === undefined) ? next.url : curr.next.link;
+                };
+            };
+        });
+    };
+
     static sortDataBase(dataBase: RawDocPageData[]) {
         return dataBase
             .sort((a: RawDocPageData, b: RawDocPageData) => {
                 const spaceA = a.space ?? "";
                 const spaceB = b.space ?? "";
 
-                if (spaceA !== spaceB) {
-                    return spaceA.localeCompare(spaceB);
-                }
+                if (spaceA !== spaceB) return spaceA.localeCompare(spaceB);
 
                 const len = Math.max(a.order.length, b.order.length);
                 for (let i = 0; i < len; i++) {
@@ -423,8 +523,8 @@ export class DocPageData {
     static processDataBase(dataBase: RawDocPageData[], config: Record<string, SpaceMetaData>) {
         const copy = cloneDeep(dataBase);
 
-        // If no config, return the original dataBase
-        if (typeof config !== 'object' || !config) return copy;
+        // Bind next and prev node
+        DocPageData.bindNextPrev(copy, config);
         
         // Generate virtual nodes
         DocPageData.generateVirtualNodes(copy, config);
@@ -432,7 +532,7 @@ export class DocPageData {
         // Apply space meta data
         if (typeof config === 'object' && config !== null) {
             DocPageData.applySpaceConfig(copy, config);
-        }
+        };
 
         // Sort nodes by space/order
         return DocPageData.sortDataBase(copy);
@@ -525,9 +625,26 @@ export function initVPJDocData(route: Route, siteData: Ref<SiteData>): DocData {
         return undefined;
     });
 
+    // Calculate the resources
     const resources = computed(() => {
         if (frontmatter.value.layout === "doc") {
             return currentData.value?.resources || undefined;
+        };
+        return undefined;
+    });
+
+        // Calculate next
+    const next = computed(() => {
+        if (frontmatter.value.layout === "doc") {
+            return currentData.value?.next || undefined;
+        };
+        return undefined;
+    });
+
+    // Calculate prev
+    const prev = computed(() => {
+        if (frontmatter.value.layout === "doc") {
+            return currentData.value?.prev || undefined;
         };
         return undefined;
     });
@@ -560,6 +677,8 @@ export function initVPJDocData(route: Route, siteData: Ref<SiteData>): DocData {
         order,
         cover,
         resources,
+        prev,
+        next,
         ctx,
         filter,
         spaceConfig,

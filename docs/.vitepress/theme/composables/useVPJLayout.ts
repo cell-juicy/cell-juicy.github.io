@@ -12,7 +12,9 @@ import {
     mergeHeaderTitleTemplateData,
     mergeSimpleData,
     mergeTitleTemplateData,
-    mergeToolbarButtonData
+    mergeToolbarButtonData,
+    mergeFooterData,
+    mergeEditLinkData,
 } from '../utils/mergeData';
 
 import { useBlogData } from './useBlogData';
@@ -49,6 +51,8 @@ const DEFAULT = {
             tablet: "1.5rem",
             desktop: "4rem"
         },
+        FOOTER: undefined,
+        EDITLINK: undefined,
     },
     "BLOG": {
         TITLETEMPLATE: true,
@@ -88,6 +92,10 @@ const DEFAULT = {
             tablet: "2rem",
             desktop: "4rem"
         },
+        FOOTER: undefined,
+        EDITLINK: undefined,
+        NEXT: "下一页",
+        PREV: "上一页",
     },
     "DOC":{
         TITLETEMPLATE: true,
@@ -127,6 +135,10 @@ const DEFAULT = {
             tablet: "2rem",
             desktop: "4rem"
         },
+        FOOTER: undefined,
+        EDITLINK: undefined,
+        NEXT: "下一页",
+        PREV: "上一页",
     },
 };
 
@@ -280,6 +292,18 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         };
         return undefined;
     });
+    // Footer config
+    const footerConfig = computed(() => {
+        if (["blog", "doc", "page"].includes(layout.value || "")) {
+            return mergeFooterData(
+                frontmatter.value.footer,
+                specificConfig.value.footer,
+                layoutConfig.value.footer,
+                defaultConfig.value.FOOTER
+            );
+        };
+        return undefined;
+    });
 
     // Aside config
     const asideConfig = computed(() => {
@@ -312,7 +336,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
             
             // Calculate header icon
-            const headerIcon = mergeSimpleData<false | string | { component: string }>(
+            const headerIcon = mergeSimpleData<false | string | { component: string }, false>(
                 (v) => {
                     return typeof v === 'string' ||
                         v === false || 
@@ -381,7 +405,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     const coverConfig = computed(() => {
         if (["blog", "doc"].includes(layout.value || "")) {
             // Calculate alt
-            const alt = mergeSimpleData<false | string>(
+            const alt = mergeSimpleData<false | string, false>(
                 (v) => typeof v === 'string' || v === false,
                 false,
                 frontmatter.value.coverAlt,
@@ -391,7 +415,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
 
             // Calculate fade
-            const fade = mergeSimpleData<false | number | string>(
+            const fade = mergeSimpleData<false | number | string, false>(
                 (v) => typeof v === 'number' || v === false || typeof v === 'string',
                 false,
                 frontmatter.value.coverFade,
@@ -424,6 +448,47 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 css
             }
         };
+        return undefined;
+    });
+    // Article footer config
+    const articleFooterConfig = computed(() => {
+        if (["blog", "doc"].includes(layout.value || "")) {
+            // Calculate edit link
+            const editLink = mergeEditLinkData(
+                // @ts-ignore
+                ctx.value,
+                frontmatter.value.editLink,
+                specificConfig.value.editLink,
+                (layoutConfig.value as VPJDocLayoutConfig | VPJBlogLayoutConfig).editLink,
+                defaultConfig.value.EDITLINK
+            );
+
+            // Calculate next label
+            const nextLabel = mergeSimpleData<string | false, false>(
+                (v) => typeof v === 'string' || v === false,
+                false,
+                frontmatter.value.next?.label,
+                specificConfig.value.next,
+                (layoutConfig.value as VPJDocLayoutConfig | VPJBlogLayoutConfig).next,
+                defaultConfig.value.NEXT
+            );
+
+            // Calculate prev label
+            const prevLabel = mergeSimpleData<string | false, false>(
+                (v) => typeof v === 'string' || v === false,
+                false,
+                frontmatter.value.prev?.label,
+                specificConfig.value.prev,
+                (layoutConfig.value as VPJDocLayoutConfig | VPJBlogLayoutConfig).prev,
+                defaultConfig.value.PREV
+            );
+
+            return {
+                editLink,
+                nextLabel,
+                prevLabel
+            };
+        }
         return undefined;
     });
 

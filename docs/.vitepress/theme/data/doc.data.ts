@@ -1,8 +1,7 @@
 import { createContentLoader } from "vitepress";
-import { processDocOrder, any2Number } from "../utils/common";
+import { processDocOrder, any2Number, resolveNavigationInput } from "../utils/common";
 
 import type { ResourceInput, ResourceData } from "../types/common";
-import { content, end } from "happy-dom/lib/PropertySymbol.js";
 
 
 export default createContentLoader("**/*.md", {
@@ -38,6 +37,10 @@ export default createContentLoader("**/*.md", {
                     } while (prev !== title && ++safety < 10);
                     title = title.replace(/<[a-zA-Z][a-zA-Z0-9]*\s*[^>]*?\/>/g, '');
                 };
+
+                // Process next&prev
+                let next = resolveNavigationInput(raw.frontmatter.next);
+                let prev = resolveNavigationInput(raw.frontmatter.prev);
                 
                 // Filter resources
                 const rawResources: Record<string, ResourceInput> = 
@@ -105,6 +108,8 @@ export default createContentLoader("**/*.md", {
                     allowVirtualParents: (raw.frontmatter.allowVirtualParents === undefined)
                         ? undefined
                         : !!raw.frontmatter.allowVirtualParents,
+                    next,
+                    prev,
                 }
             })
     },

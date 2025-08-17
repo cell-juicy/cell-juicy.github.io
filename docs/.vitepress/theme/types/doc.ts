@@ -1431,6 +1431,8 @@ export interface SpaceMetaData {
         | false
         | string;
     
+    autoNextPrev?: boolean;
+    
     editLink?: EditLinkInput;
 
     footer?: FooterInput;

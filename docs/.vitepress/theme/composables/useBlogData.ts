@@ -21,6 +21,8 @@ interface BlogData {
     tags: Ref<string[] | undefined>;
     order: Ref<number | undefined>;
     cover: Ref<string | undefined>;
+    next: Ref<{ text?: string; link?: string } | undefined>;
+    prev: Ref<{ text?: string; link?: string } | undefined>;
     ctx: Ref<PageContext | undefined>;
     filter: (callbackFn: (data: BlogPageData) => boolean) => BlogPageData[];
     seriesConfig: Ref<SeriesMetaData>;
@@ -38,10 +40,18 @@ interface RawBlogPageData {
         | ((data: BlogPageData) => string | undefined);
     url?: string;
     frontmatter?: Record<string, any>;
+    next:
+        | { text?: string; link?: string }
+        | { text: false; link: false };
+    prev:
+        | { text?: string; link?: string }
+        | { text: false; link: false };
 }
 
 interface StoreBlogPageData extends RawBlogPageData {
     id: string;
+    next: { text?: string; link?: string };
+    prev: { text?: string; link?: string };
 }
 
 interface BlogStoreContext {
@@ -62,7 +72,15 @@ export class BlogPageData {
         this.#store = {
             ...cloneDeep(raw),
             id: 'unknown',
-            tags: Array.from(new Set(raw.tags))
+            tags: Array.from(new Set(raw.tags)),
+            next: {
+                text: (raw.next.text === false) ? undefined : raw.next.text,
+                link: (raw.next.link === false) ? undefined : raw.next.link,
+            },
+            prev: {
+                text: (raw.prev.text === false) ? undefined : raw.prev.text,
+                link: (raw.prev.link === false) ? undefined : raw.prev.link,
+            },
         };
         this.#storeContext = storeContext;
 
@@ -92,6 +110,8 @@ export class BlogPageData {
         };
         return this.title || this.id;
     }
+    get next() { return this.#store.next; }
+    get prev() { return this.#store.prev; }
 
     get url(): string | undefined { return this.#store.url; }
     get frontmatter(): Record<string, any> | undefined { return this.#store.frontmatter; }
@@ -110,7 +130,7 @@ export class BlogPageData {
         } else {
             this.#store.id = baseId;
             this.#storeContext.idMap.set(baseId, this);
-        }
+        };
     };
 
     // Static methods
@@ -170,19 +190,46 @@ export class BlogPageData {
             });
     };
 
-    static processDataBase(dataBase: RawBlogPageData[], config: Record<string, SeriesMetaData>) {
-        const copy = cloneDeep(dataBase);
+    static bindNextPrev(dataBase: RawBlogPageData[]) {
+        for (let i=0; i<dataBase.length; i++) {
+            const curr = dataBase[i];
 
-        // If no config, return the original dataBase
-        if (typeof config !== 'object' || !config) return copy;
+            // Skip if no series
+            if (curr.series === undefined) continue;
+
+            // Bind prev
+            if (i > 0) {
+                const prev = dataBase[i - 1];
+                if (prev && curr.series === prev.series) {
+                    curr.prev.text = (curr.prev.text === undefined) ? prev.title : curr.prev.text;
+                    curr.prev.link = (curr.prev.link === undefined) ? prev.url : curr.prev.link;
+                };
+            };
+
+            // Bind next
+            if (i < dataBase.length - 1) {
+                const next = dataBase[i + 1];
+                if (next && curr.series === next.series) {
+                    curr.next.text = (curr.next.text === undefined) ? next.title : curr.next.text;
+                    curr.next.link = (curr.next.link === undefined) ? next.url : curr.next.link;
+                };
+            };
+        };
+    };
+
+    static processDataBase(dataBase: RawBlogPageData[], config: Record<string, SeriesMetaData>) {
+        // Sort nodes by series/order
+        const copy = BlogPageData.sortDataBase(cloneDeep(dataBase));
 
         // Apply series meta data
         if (typeof config === 'object' && config) {
             BlogPageData.applySeriesConfig(copy, config);
         };
 
-        // Sort nodes by series/order
-        return BlogPageData.sortDataBase(copy);
+        // Bind next and prev node
+        BlogPageData.bindNextPrev(copy);
+
+        return copy;
     };
 };
 
@@ -278,6 +325,22 @@ export function initVPJBlogData(route: Route, siteData: Ref<SiteData>): BlogData
         return undefined;
     });
 
+    // Calculate next
+    const next = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            return currentData.value?.next || undefined;
+        };
+        return undefined;
+    });
+
+    // Calculate prev
+    const prev = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            return currentData.value?.prev || undefined;
+        };
+        return undefined;
+    });
+
     // Calculate the context
     const ctx: Ref<PageContext | undefined> = computed(() => {
         if (frontmatter.value.layout === "blog") {
@@ -306,6 +369,8 @@ export function initVPJBlogData(route: Route, siteData: Ref<SiteData>): BlogData
         order,
         cover,
         tags,
+        next,
+        prev,
         ctx,
         filter,
         seriesConfig,
@@ -317,6 +382,6 @@ export function useBlogData(): BlogData {
     const data = inject<BlogData>(VPJ_BLOG_DATA_SYMBOL);
     if (!data) {
         throw new Error('vitepress-theme-juicy blog data not properly injected in app');
-    }
+    };
     return data;
 };

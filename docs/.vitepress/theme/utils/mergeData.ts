@@ -6,12 +6,16 @@ import type {
     DeviceSpecificData,
     DeviceSpecificInput,
     HeaderTitleTemplateInput,
+    EditLinkInput,
+    FooterInput,
     NormalizedAsideTabInput,
     NormalizedDeviceSpecificInput,
     NormalizedToolbarButtonInput,
     NormalizedToolbarDownloadInput,
     NormalizedToolbarGithubLinkInput,
     NormalizedCoverCssConfigInput,
+    NormalizedEditLinkInput,
+    NormalizedFooterInput,
     PageContext,
     ToolbarDownloadInput,
     ToolbarDownloadData,
@@ -20,6 +24,8 @@ import type {
     ToolbarButtonData,
     ToolbarButtonInput,
     TitleTemplateInput,
+    EditLinkData,
+    FooterData
 } from "../types/common";
 import type { PageData, SiteData } from 'vitepress';
 import { any2Number } from "./common";
@@ -348,26 +354,67 @@ function normalizeCoverCssConfig(
     return {} as NormalizedCoverCssConfigInput;
 };
 
+function normalizeEditLink(ctx: PageContext | undefined, input: any): NormalizedEditLinkInput {
+    if (!ctx) return {};
+    if (input === false) {
+        return { link: false };
+    } else if (typeof input === 'object' && input !== null) {
+        let link: string | false | undefined = undefined;
+        let text: string | undefined = (typeof input.text === 'string') ? input.text : undefined;
+        if (input.pattern === false) {
+            link = false;
+        } else if (typeof input.pattern === 'string') {
+            link = input.pattern.replace(/:path/g, ctx.route.path)
+        } else if (typeof input.pattern === 'function') {
+            try {
+                link = (typeof input.pattern(ctx) === 'string') ? input.pattern(ctx) : undefined;
+            } catch (e) {
+                console.error(`[Juicy Theme]Fail to resolve edit link: ${e}`);
+                link = undefined;
+            };
+        };
+        return {
+            link,
+            text,
+        };
+    };
+    return {};
+};
+
+function normalizeFooter(input: any): NormalizedFooterInput {
+    if (input === false) {
+        return { message: false, copyright: false }
+    } else if (typeof input === 'object' && input) {
+        let message: string | false | undefined = (input.message === false)
+            ? false
+            : (typeof input.message === 'string')
+                ? input.message
+                : undefined;
+        let copyright: string | false | undefined = (input.copyright === false)
+            ? false
+            : (typeof input.copyright === 'string')
+                ? input.copyright
+                : undefined;
+        return { message, copyright };
+    };
+    return { message: undefined, copyright: undefined }
+}
+
 // merge data
-export function mergeSimpleData<T>(
-    validator: (input: T) => boolean,
-    cancel: any,
+export function mergeSimpleData<T, C = never>(
+    validator: (value: T) => boolean,
+    cancel: C,
     ...sources: (T | undefined)[]
-) {
-    if (Array.isArray(sources) && typeof validator === 'function') {
-        const merged = sources.map((value) => {
-            return (value !== undefined && validator(value)) ? value : undefined;
-        }).find((value) => {
-            return value !== undefined;
-        })
-        if (cancel !== undefined) {
-            return (merged === cancel) ? undefined : merged;
-        } else {
-            return merged;
-        }
+): Exclude<T, C> | undefined {
+    if (typeof validator === 'function') {
+        const merged = sources
+            .map(value => (value !== undefined && validator(value)) ? value : undefined)
+            .find(value => value !== undefined);
+        
+        return (merged === cancel) ? undefined : merged as Exclude<T, C> | undefined;
     }
     return undefined;
-};
+}
 
 export function mergeDeviceData(
     ...sources: (DeviceSpecificInput | undefined)[]
@@ -646,3 +693,50 @@ export function mergeCoverCssConfig(
     };
     return {} as CoverCssConfigData;
 };
+
+export function mergeEditLinkData(
+    ctx: PageContext | undefined,
+    ...sources: (EditLinkInput | undefined)[]
+): EditLinkData {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map((source) => normalizeEditLink(ctx, source))
+            .reduce((acc, cur) => {
+                return {
+                    link: (typeof cur.link === 'string' || cur.link === false) && acc.link === undefined
+                        ? cur.link
+                        : acc.link,
+                    text: (typeof cur.text === 'string') && acc.text === undefined
+                        ? cur.text
+                        : acc.text,
+                };
+            });
+        return {
+            link: (merged.link === false) ? undefined : merged.link,
+            text: merged.text
+        };
+    }
+    return {} as EditLinkData;
+}
+
+export function mergeFooterData(...sources: (FooterInput | undefined)[]): FooterData {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map(normalizeFooter)
+            .reduce((acc, cur) => {
+                return {
+                    message: (typeof cur.message === 'string' || cur.message === false) && acc.message === undefined
+                        ? cur.message
+                        : acc.message,
+                    copyright: (typeof cur.copyright === 'string' || cur.copyright === false) && acc.copyright === undefined
+                        ? cur.copyright
+                        : acc.copyright,
+                }
+            });
+        return {
+            message: merged.message === false ? undefined : merged.message,
+            copyright: merged.copyright === false ? undefined : merged.copyright
+        }
+    }
+    return {} as FooterData;
+}

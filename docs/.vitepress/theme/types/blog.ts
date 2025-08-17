@@ -1334,6 +1334,8 @@ export interface SeriesMetaData {
     prev?: 
         | false
         | string;
+    
+    autoNextPrev?: boolean;
 
     editLink?: EditLinkInput;
 
