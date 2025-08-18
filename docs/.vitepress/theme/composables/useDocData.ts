@@ -1,5 +1,5 @@
 import { ref, computed, inject, watch } from "vue";
-import { cloneDeep, extend } from "lodash-es";
+import { cloneDeep } from "lodash-es";
 
 // @ts-ignore
 import { data } from "../data/doc.data";
@@ -273,7 +273,7 @@ export class DocPageData {
             parent.#childrenIds.push(this.#store.id);
             this.#parentId = parent.#store.id;
             break;
-        }
+        };
     };
 
     #inheritFromParent() {
@@ -431,11 +431,11 @@ export class DocPageData {
         });
 
         function siblingCompare<T extends {idx: number, order: number[]}>(a: T, b: T)  {
-            const la = a.order[a.order.length - 1] ?? -1;
-            const lb = b.order[b.order.length - 1] ?? -1;
-            if (la !== lb) return la - lb;
-            return a.idx - b.idx;
-        };
+                for (let i = 0; i < Math.min(a.order.length, b.order.length); i++) {
+                    if (a.order[i] !== b.order[i]) return a.order[i] - b.order[i];
+                };
+                return a.order.length - b.order.length;
+            };
 
         spaceMap.forEach((nodes, space) => {
             const sorted = DocPageData.sortDataBase(nodes)
@@ -507,16 +507,11 @@ export class DocPageData {
 
                 if (spaceA !== spaceB) return spaceA.localeCompare(spaceB);
 
-                const len = Math.max(a.order.length, b.order.length);
+                const len = Math.min(a.order.length, b.order.length);
                 for (let i = 0; i < len; i++) {
-                    const aVal = a.order[i] ?? -1;
-                    const bVal = b.order[i] ?? -1;
-                    if (aVal !== bVal) {
-                        return aVal - bVal;
-                    }
-                }
-
-                return 0;
+                    if (a.order[i] !== b.order[i]) return a.order[i] - b.order[i];
+                };
+                return a.order.length - b.order.length;
             });
     };
 
