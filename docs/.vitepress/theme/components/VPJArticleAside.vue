@@ -80,6 +80,7 @@ const unknownTab = computed(() => {
     const message = theme.value.components?.aside?.unknownTab;
     return (typeof message === 'string') ? message : DEFAULT.UNKNOWNTAB;
 });
+const fallbackOpacity = computed(() => props.state.collapsed ? "0": "1");
 
 
 const stopWatcher = watch(tabsData, (newVal) => {
@@ -106,22 +107,21 @@ onUnmounted(() => {
             ]"
         >
             <header class="vpj-article-aside__header">
-                <div class="vpj-article-aside__tabboxmask">
-                    <VPJOverlayScrollArea
-                        overflow="x"
-                        thumb-width=3
-                        :inner-attrs="{ class: 'vpj-article-aside__tablist' }"
+                <VPJOverlayScrollArea
+                    overflow="x"
+                    thumb-width=3
+                    :inner-attrs="{ class: 'vpj-article-aside__tablist' }"
+                    class="vpj-article-aside__tabboxmask"
+                >
+                    <button
+                        v-for="data in tabsData"
+                        :key="data.key"
+                        @click="activeTabKey = data.key"
+                        :class="['vpj-article-aside__tab', { 'current': activeTabKey === data.key }]"
                     >
-                        <button
-                            v-for="data in tabsData"
-                            :key="data.key"
-                            @click="activeTabKey = data.key"
-                            :class="['vpj-article-aside__tab', { 'current': activeTabKey === data.key }]"
-                        >
-                            {{ data.name }}
-                        </button>
-                    </VPJOverlayScrollArea>
-                </div>
+                        {{ data.name }}
+                    </button>
+                </VPJOverlayScrollArea>
                 <VPJDynamicIconBtn
                     @click="props.state.close"
                     :icon="VPJIconCrossSmall"
@@ -185,7 +185,7 @@ onUnmounted(() => {
     }
 
     /* Fallback */
-    .vpj-article-aside__fallback {
+    :deep(.vpj-article-aside__fallback) {
         align-items: center;
         color: var(--vpj-color-text-100);
         display: flex;
@@ -196,10 +196,13 @@ onUnmounted(() => {
         line-height: 1.5;
         min-height: 0;
         min-width: 0;
+        opacity: v-bind(fallbackOpacity);
         overflow: hidden;
         overflow-wrap: break-word;
         padding-left: 1.2rem;
         padding-right: 1.2rem;
+        transition: opacity 0.2s ease-in-out;
+        user-select: none;
         width: 100%;
         word-break: break-all;
     }

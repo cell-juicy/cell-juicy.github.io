@@ -26,7 +26,7 @@ const children = computed(() => {
 });
 const route = useRoute();
 
-const collapsed = ref(true);
+const collapsed = ref(false);
 </script>
 
 

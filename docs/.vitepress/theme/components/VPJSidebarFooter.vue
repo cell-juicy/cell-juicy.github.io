@@ -110,8 +110,6 @@ const {
         flex-shrink: 0;
         min-height: 0;
         overflow-x: hidden;
-        padding-left: .75rem;
-        padding-right: calc(.75rem - 4px);
         padding-top: 1rem;
         width: 100%;
     }
@@ -124,7 +122,8 @@ const {
         gap: .125rem;
         list-style-type: none;
         margin: 0;
-        padding: 0;
+        padding-left: .75rem;
+        padding-right: .75rem;
         position: relative;
         width: 100%;
     }
@@ -181,6 +180,13 @@ const {
     /* Social Links */
     .vpj-sidebar__footer-social-links-outer {
         margin-top: .375rem;
+        mask-image: linear-gradient(
+            to right,
+            transparent,
+            black .4rem,
+            black calc(100% - .4rem),
+            transparent
+        );
         width: 100%;
     }
 
@@ -191,6 +197,8 @@ const {
         gap: .1rem;
         height: 2rem;
         margin-bottom: 4px;
+        padding-left: .6rem;
+        padding-right: .6rem;
         width: 100%;
     }
 
