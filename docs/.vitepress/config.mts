@@ -95,7 +95,12 @@ export default defineConfigWithTheme<ThemeConfig>({
             ]
         },
         layouts: {
-            
+            blog: {
+                editLink: {
+                    pattern: "https://github.com/cell-juicy/cell-juicy.github.io/tree/main/docs/:path",
+                    text: "在 GitHub 上编辑此页",
+                },
+            },
         },
         blog: {
             "测试博客": {
@@ -105,6 +110,11 @@ export default defineConfigWithTheme<ThemeConfig>({
             }
         },
         doc: {
+            "book1": {
+                headerTitleTemplate(ctx) {
+                    return `测试用书1 | 当前文章order：${(ctx.layoutConfig.order as number[]).join("/")}`
+                },
+            },
             "实分析": {
                 enableVirtual: true,
                 github(ctx) {
@@ -164,6 +174,10 @@ export default defineConfigWithTheme<ThemeConfig>({
             tag: {
                 format: (tag) => `# ${tag}`
             },
-        }
+        },
+        footer: {
+            message: "基于 MIT 许可发布",
+            copyright: "版权所有 © 2019-2025 测试开发者",
+        },
     },
 })

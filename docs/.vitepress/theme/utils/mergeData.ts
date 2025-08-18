@@ -364,7 +364,7 @@ function normalizeEditLink(ctx: PageContext | undefined, input: any): Normalized
         if (input.pattern === false) {
             link = false;
         } else if (typeof input.pattern === 'string') {
-            link = input.pattern.replace(/:path/g, ctx.route.path)
+            link = input.pattern.replace(/:path/g, ctx.route.data.relativePath)
         } else if (typeof input.pattern === 'function') {
             try {
                 link = (typeof input.pattern(ctx) === 'string') ? input.pattern(ctx) : undefined;

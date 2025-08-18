@@ -1,4 +1,5 @@
 import type {
+    FooterInput,
     ImageData
 } from "./common";
 
@@ -180,4 +181,7 @@ export interface ThemeConfig {
      * @see {@link ComponentFallbackConfig} 组件默认配置接口
      */
     components?: ComponentFallbackConfig;
+
+
+    footer?: FooterInput;
 }

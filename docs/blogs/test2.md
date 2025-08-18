@@ -3,6 +3,7 @@ layout: blog
 asideTabs:
   series: false
   tags: false
+  outline: false
 ---
 
 # 为什么我们总觉得“写完就完了” —— 谈谈代码的生命周期

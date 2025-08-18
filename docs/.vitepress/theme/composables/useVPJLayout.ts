@@ -94,8 +94,8 @@ const DEFAULT = {
         },
         FOOTER: undefined,
         EDITLINK: undefined,
-        NEXT: "下一页",
-        PREV: "上一页",
+        NEXT: "Next",
+        PREV: "Previous",
     },
     "DOC":{
         TITLETEMPLATE: true,
@@ -299,6 +299,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 frontmatter.value.footer,
                 specificConfig.value.footer,
                 layoutConfig.value.footer,
+                theme.value.footer,
                 defaultConfig.value.FOOTER
             );
         };
@@ -573,6 +574,9 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         asideConfig,
         coverConfig,
         headerConfig,
+
+        footerConfig,
+        articleFooterConfig,
 
         notFoundContent
     };
