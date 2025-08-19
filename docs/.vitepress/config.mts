@@ -191,6 +191,6 @@ export default defineConfigWithTheme<ThemeConfig>({
         },
         next: "下一页",
         prev: "上一页",
-        enableVitrual: true
+        enableVitrual: true,
     },
 })

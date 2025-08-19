@@ -146,8 +146,8 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
 
     // state
     const collapsed: Ref<boolean> = ref(
-        typeof sidebarConfig.value.collapsed === 'boolean'
-            ? sidebarConfig.value.collapsed
+        typeof theme.value.sidebarCollapsed === 'boolean'
+            ? theme.value.sidebarCollapsed
             : DEFAULT.COLLAPSED
     );
     function toggle(): void { collapsed.value = !collapsed.value; };

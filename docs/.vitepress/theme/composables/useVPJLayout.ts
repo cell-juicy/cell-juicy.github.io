@@ -197,7 +197,11 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     });
 
     // state
-    const asideCollapsed: Ref<boolean> = ref(true);
+    const asideCollapsed: Ref<boolean> = ref(
+        (typeof theme.value.asideCollapsed === "boolean")
+            ? theme.value.asideCollapsed
+            : true
+    );
     function asideToggle(): void { asideCollapsed.value = !asideCollapsed.value; };
     function asideClose(): void { asideCollapsed.value = true; };
     function asideOpen(): void { asideCollapsed.value = false; };

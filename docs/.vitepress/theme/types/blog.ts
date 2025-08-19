@@ -211,7 +211,7 @@ export interface SeriesMetaData {
      * @see {@link VPJBlogLayoutConfig.description}
      */
     description?: string;
-    
+
     /**
      * 侧边栏标签页配置
      * @optional
