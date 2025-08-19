@@ -8,9 +8,11 @@ import { useBlogData } from '../composables/useBlogData';
 
 import { VPJ_ARTICLE_LAYOUT_SYMBOL } from '../utils/symbols';
 
+import VPJFooter from '../components/VPJFooter.vue';
 import VPJArticleAside from '../components/VPJArticleAside.vue';
 import VPJArticleHeader from '../components/VPJArticleHeader.vue';
 import VPJArticleCover from '../components/VPJArticleCover.vue';
+import VPJArticleFooter from '../components/VPJArticleFooter.vue';
 import VPJDynamicIconBtn from '../components/VPJDynamicIconBtn.vue';
 import VPJOverlayScrollArea from '../components/VPJOverlayScrollArea.vue';
 
@@ -28,7 +30,7 @@ const {
     coverConfig,
     asideConfig
 } = storeToRefs(store);
-const { cover } = useBlogData();
+const { cover, prev, next } = useBlogData();
 
 useHead(headConfig);
 
@@ -110,7 +112,14 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
                                 <slot name="blog-padding-left"/>
                             </div>
                             <slot>
-                                <div ref="article-content" class="vpj-markdown"><Content/></div>
+                                <div ref="article-content" class="vpj-layout-blog__article-content">
+                                    <Content class="vpj-markdown"/>
+                                    <VPJArticleFooter
+                                        :prev="prev"
+                                        :next="next"
+                                    />
+                                    <VPJFooter/>
+                                </div>
                             </slot>
                             <div class="vpj-layout-blog__article-padding-right">
                                 <slot name="blog-padding-right"/>
@@ -211,13 +220,12 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         flex: 1;
         flex-direction: column;
         justify-content: space-between;
-        margin-bottom: v-bind(computedMarginBottom);
-        margin-top: v-bind(computedMarginTop);
         padding-right: 48px;
     }
 
     .vpj-layout-blog__grid-layout {
         display: grid;
+        flex: 1;
         grid-template-columns:
             minmax(min(v-bind(computedPadding), 100%), 1fr)
             minmax(min(calc(2 * v-bind(computedPadding)), 100%), v-bind(computedMaxWidth))
@@ -236,9 +244,17 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         max-width: 100%;
     }
 
-    .vpj-markdown {
+    .vpj-layout-blog__article-content {
+        display: flex;
+        flex-direction: column;
         grid-column: 2;
+        margin-top: v-bind(computedMarginTop);
         max-width: 100%;
+    }
+
+    .vpj-layout-blog__article-content > .vpj-markdown {
+        flex: 1;
+        margin-bottom: v-bind(computedMarginBottom);
     }
 
     @media screen and (max-width: 1024px) {

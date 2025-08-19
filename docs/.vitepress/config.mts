@@ -101,10 +101,21 @@ export default defineConfigWithTheme<ThemeConfig>({
             "测试博客": {
                 listTitle(data) {
                     return `测试替换${data.order}-${data.title}`
+                },
+                editLink: {
+                    pattern: "https://github.com/cell-juicy/cell-juicy.github.io/tree/main/docs/:path",
+                    text: "在 GitHub 上查看此页"
                 }
             }
         },
         doc: {
+            "book1": {
+                headerTitleTemplate(ctx) {
+                    return `测试用书1 | 当前文章order：${(ctx.layoutConfig.order as number[]).join("/")}`
+                },
+                prev: "Previous",
+                next: "Next"
+            },
             "实分析": {
                 enableVirtual: true,
                 github(ctx) {
@@ -158,12 +169,24 @@ export default defineConfigWithTheme<ThemeConfig>({
                     "18": {treeTitle: "第18章 勒贝格测度"},
                     "19": {treeTitle: "第19章 勒贝格积分"}
                 },
+                next: "上一节",
+                prev: "下一节",
+                editLink: {
+                    text: "发现错误？在Github上与我们交流"
+                }
             },
         },
         components: {
             tag: {
                 format: (tag) => `# ${tag}`
             },
-        }
+        },
+        editLink: {
+            pattern: "https://github.com/cell-juicy/cell-juicy.github.io/tree/main/docs/:path",
+            text: "在 GitHub 上查看此页",
+        },
+        next: "下一页",
+        prev: "上一页",
+        enableVitrual: true,
     },
 })

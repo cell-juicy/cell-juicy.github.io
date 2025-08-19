@@ -2,7 +2,10 @@
 layout: doc
 space: book1
 order: 6/0/1/2/3
-allowVirtualParents: true
+next:
+  label: "想看看一个实际的文档库会像什么样？"
+  text: "我的实分析笔记"
+  link: "/docs/Real-Analysis/Chap12/Sec1.html"
 ---
 
 # 测试用的书1，章节7，子节1，小节2，小小节3，小小小节4

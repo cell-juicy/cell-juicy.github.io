@@ -378,7 +378,7 @@ $$
 \tan^{-1}(x)=\sum_{n=0}^{\infty}\frac{(-1)^nx^{2n+1}}{2n+1},x\in(-1,1)
 $$
 
-##### 利用[阿贝尔定理（定理15.3.1）](D:\Study\note\实分析\第15章\md\实分析 15.3 阿贝尔定理.md)，把这个恒等式推广到$x=1$时的情形，进而推导出恒等式：
+##### 利用[阿贝尔定理（定理15.3.1）](/docs/Real-Analysis/Chap15/Sec3.md)，把这个恒等式推广到$x=1$时的情形，进而推导出恒等式：
 
 $$
 \pi=4-\frac{4}{3}+\frac{4}{5}-\frac{4}{7}+...=4\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}
@@ -603,5 +603,7 @@ $$
 [实分析 13.1 连续函数](/docs/Real-Analysis/Chap13/Sec1.md)
 
 [实分析 14.7 一致收敛和导数](/docs/Real-Analysis/Chap14/Sec7.md)
+
+[实分析 15.3 阿贝尔定理](/docs/Real-Analysis/Chap15/Sec3.md)
 
 [实分析 15.5 指数函数和对数函数](/docs/Real-Analysis/Chap15/Sec5.md)

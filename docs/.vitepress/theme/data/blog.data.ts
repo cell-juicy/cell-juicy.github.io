@@ -1,6 +1,6 @@
 import { createContentLoader } from "vitepress";
 
-import { processBlogOrder } from "../utils/common";
+import { processBlogOrder, resolveNavigationInput } from "../utils/common";
 
 
 export default createContentLoader("**/*.md", {
@@ -36,6 +36,9 @@ export default createContentLoader("**/*.md", {
                     } while (prev !== title && ++safety < 10);
                     title = title.replace(/<[a-zA-Z][a-zA-Z0-9]*\s*[^>]*?\/>/g, '');
                 };
+                // Process next&prev
+                let next = resolveNavigationInput(raw.frontmatter.next);
+                let prev = resolveNavigationInput(raw.frontmatter.prev);
                 
                 return {
                     ...raw,
@@ -55,7 +58,9 @@ export default createContentLoader("**/*.md", {
                     listTitle: (typeof raw.frontmatter.listTitle === 'string')
                         ? raw.frontmatter.listTitle
                         : undefined,
-                }
+                    next,
+                    prev,
+                };
             });
     },
 })

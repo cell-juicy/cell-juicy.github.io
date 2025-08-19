@@ -1,5 +1,7 @@
 ---
 layout: doc
+outline:
+  level: 7
 ---
 
 # 快速开始指南

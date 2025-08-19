@@ -13,7 +13,9 @@ import {
     ToolbarButtonInput,
     NormalizedToolbarButtonInput,
     PageContext,
-    TitleTemplateInput
+    TitleTemplateInput,
+    EditLinkInput,
+    FooterInput
 } from "./common";
 
 import {
@@ -209,7 +211,7 @@ export interface SeriesMetaData {
      * @see {@link VPJBlogLayoutConfig.description}
      */
     description?: string;
-    
+
     /**
      * 侧边栏标签页配置
      * @optional
@@ -1321,7 +1323,306 @@ export interface SeriesMetaData {
      */
     presetTags?: string[];
 
+    /**
+     * 博客目录标题配置
+     * @optional
+     * @default (data) => data.title || data.id
+     *
+     * @remarks
+     * 控制 blog 页面在目录（默认的侧边栏目录页）中实际显示的标题，支持：
+     *
+     * 1. **字符串模式** —— 使用固定标题字符串
+     * 2. **函数模式** —— 传入 {@link BlogPageData}，返回标题字符串；返回 `undefined` 触发回退
+     *
+     * 解析与回退顺序：
+     * (1) 若配置为字符串，直接使用；
+     * (2) 若配置为函数且返回 **字符串**，使用该值；
+     * (3) 否则回退到 `data.title`；
+     * (4) 若仍无有效标题，则使用 `data.id`。
+     *
+     * 注意事项：
+     * - 仅字符串会被采纳；`undefined` 或非字符串视为无效并触发回退
+     *
+     * @example
+     * 根据order创建标题
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       "Example": {
+     *         listTitle(data) { return `Example ${data.order} - ${data.title}`}
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @see {@link BlogPageData}
+     */
     listTitle?: 
         | string
         | ((data: BlogPageData) => string);
+
+    /**
+     * 系列级「下一页」按钮提示文本配置
+     * @optional
+     *
+     * @remarks
+     * 用于为指定系列下所有页面的下一页按钮配置提示文本。
+     *
+     * 配置规则：
+     * - `string` → 使用该值作为提示文本
+     * - `false` → 隐藏提示文本
+     * 
+     * 注意事项：
+     * 
+     * * 此处的配置在主题合并配置时比起themeConfig.layouts.blog中的同名配置（参见 {@link VPJBlogLayoutConfig.next}）拥有更高优先级，但合并优先级始终低于页面frontmatter的配置
+     * * 此项不控制跳转按钮的链接与标题，如需修改按钮的跳转链接与标题，请在 frontmatter 中配置：next.text 与 next.link
+     *
+     * @example
+     * 为「教程」系列统一设置提示文本
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       "教程": {
+     *         next: "下一节"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @example
+     * 在某个页面的 frontmatter 中覆盖提示文本
+     * ```yaml
+     * ---
+     * next:
+     *   label: "继续阅读"
+     * ---
+     * ```
+     *
+     * @example
+     * 在某个页面的 frontmatter 中修改跳转链接与标题
+     * ```yaml
+     * ---
+     * next:
+     *   link: /guide/advanced
+     *   text: "进阶部分"
+     * ---
+     * ```
+     * 
+     * @see {@link VPJBlogLayoutConfig.next} 布局层级下一页提示文本配置
+     */
+    next?:
+        | false
+        | string;
+
+    /**
+     * 系列级「上一页」按钮提示文本配置
+     * @optional
+     *
+     * @remarks
+     * 用于为指定系列下所有页面的上一页按钮配置提示文本。
+     *
+     * 配置规则：
+     * - `string` → 使用该值作为提示文本
+     * - `false` → 隐藏提示文本
+     * 
+     * 注意事项：
+     * 
+     * * 此处的配置在主题合并配置时比起themeConfig.layouts.blog中的同名配置（参见 {@link VPJBlogLayoutConfig.prev}）拥有更高优先级，但合并优先级始终低于页面frontmatter的配置
+     * * 此项不控制跳转按钮的链接与标题，如需修改按钮的跳转链接与标题，请在 frontmatter 中配置：prev.text 与 prev.link
+     *
+     * @example
+     * 为「教程」系列统一设置提示文本
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       "教程": {
+     *         prev: "上一节"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @example
+     * 在某个页面的 frontmatter 中覆盖提示文本
+     * ```yaml
+     * ---
+     * prev:
+     *   label: "返回上一步"
+     * ---
+     * ```
+     *
+     * @example
+     * 在某个页面的 frontmatter 中修改跳转链接与标题
+     * ```yaml
+     * ---
+     * prev:
+     *   link: /guide/intro
+     *   text: "返回引言"
+     * ---
+     * ```
+     * 
+     * @see {@link VPJBlogLayoutConfig.prev} 布局层级上一页提示文本配置
+     */
+    prev?: 
+        | false
+        | string;
+
+    /**
+     * 页面编辑链接配置
+     * @optional
+     *
+     * @remarks
+     * 控制指定系列下页面的「编辑此页」链接，支持以下配置：
+     *
+     * 1. **禁用模式**：设为 `false`，完全禁用编辑链接
+     * 2. **对象模式**：
+     *    - `pattern`：
+     *      - `false` → 禁用链接
+     *      - `string` → 使用字符串模板生成链接，支持占位符 `:path`，其值为当前页面的相对路径（`route.data.relativePath`）
+     *      - `(ctx: PageContext) => string` → 动态函数返回编辑链接
+     *    - `text`：
+     *      - 链接显示的文本
+     *      - 若省略但 `pattern` 生成了有效链接，则链接以单个图标的形式展示
+     *
+     * 注意事项：
+     * - `pattern` 返回 `undefined` 或空值时，将视为无效输入，不会生成链接
+     * - `text` 为可选项，不影响链接生成
+     * - 页面 frontmatter 中的同名配置会覆盖此项
+     * - 此处的配置在主题合并配置时比起 `themeConfig.layouts.blog` 中的同名配置
+     *   （参见 {@link VPJBlogLayoutConfig.editLink}）拥有更高优先级，但合并优先级始终低于页面 frontmatter 的配置
+     *
+     * @example
+     * 禁用「教程」系列的所有编辑链接
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       "教程": {
+     *         editLink: false
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @example
+     * 为「教程」系列配置 GitHub 编辑链接
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       "教程": {
+     *         editLink: {
+     *           pattern: "https://github.com/org/repo/edit/main/:path",
+     *           text: "在 GitHub 编辑此页"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @see {@link EditLinkInput}
+     * @see {@link PageContext}
+     * @see {@link VPJBlogLayoutConfig.editLink}
+     */
+    editLink?: EditLinkInput;
+
+    /**
+     * 页面底部信息配置
+     * @optional
+     *
+     * @remarks
+     * 用于配置页面底部的消息和版权信息，整体支持以下形式：
+     *
+     * - `false` → 显式禁用底部信息，覆盖掉低优先级配置中的值
+     * - 对象形式 → 分别配置 `message` 与 `copyright`
+     *
+     * 字段说明：
+     * - `message?: string | false` → 底部消息文本（支持 HTML，使用 `false` 禁用）
+     * - `copyright?: string | false` → 版权信息文本（支持 HTML，使用 `false` 禁用）
+     *
+     * 注意事项：
+     * - 此配置项的内容会通过 `v-html` 注入到对应元素，而非作为纯文本，因此可使用 HTML 标签
+     * - 设置为 `false` 可显式取消之前的合并结果，而不仅仅是留空
+     * - 页面 frontmatter 中的同名配置会覆盖此项
+     * - 此处的配置在主题合并时比起 `themeConfig.layouts.blog` 中的同名配置
+     *   （参见 {@link VPJBlogLayoutConfig.footer}）拥有更高优先级，但始终低于页面 frontmatter 的配置
+     *
+     * @example
+     * 为「教程」系列配置底部信息
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       "教程": {
+     *         footer: {
+     *           message: "由 <b>团队 A</b> 维护",
+     *           copyright: "© 2025 MyProject"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @example
+     * 显式禁用底部信息
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       "教程": {
+     *         footer: false
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @see {@link FooterInput}
+     * @see {@link VPJBlogLayoutConfig.footer}
+     */
+    footer?: FooterInput;
+
+    /**
+     * 自动生成上一页/下一页链接
+     * @optional
+     *
+     * @remarks
+     * 控制站点是否为每个页面自动生成 `next` / `prev` 链接。  
+     * 自动生成规则：
+     * - 基于同一系列的文章，按照 `order` 从小到大排序
+     * - 当前页面的前一篇作为 `prev`，后一篇作为 `next`，会自动读取页面的title和url作为链接的文字和链接。
+     *
+     * 注意事项：
+     * - 即使开启此功能，页面 frontmatter 中配置的 `next` / `prev` 仍然优先覆盖
+     * - 相当于为未配置 `next` / `prev` 的页面提供默认值
+     * - 此处配置在主题合并时比起 `themeConfig.layouts.blog` 中的同名配置
+     *   （参见 {@link VPJBlogLayoutConfig.autoNextPrev}）拥有更高优先级，但始终低于页面 frontmatter 的配置
+     * - 可配合系列级别的 `next` / `prev` 配置使用，以统一默认提示文本
+     *
+     * @example
+     * 为「教程」系列开启自动生成 next/prev
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     blog: {
+     *       "教程": {
+     *         autoNextPrev: true
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @see {@link VPJBlogLayoutConfig.autoNextPrev}
+     */
+    autoNextPrev?: boolean;
 }

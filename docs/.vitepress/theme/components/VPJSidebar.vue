@@ -65,9 +65,10 @@ provide(VPJ_SIDEBAR_SYMBOL, {
         flex-shrink: 0;
         height: 100%;
         min-height: 0;
-        padding-bottom: 1rem;
+        padding-bottom: .5rem;
         padding-top: 1rem;
         transition:
+            padding-bottom 0.2s ease-in-out,
             width 0.2s ease-in-out,
             transform 0.2s ease-in-out;
         width: min(16.5rem, 50vw);
@@ -76,6 +77,7 @@ provide(VPJ_SIDEBAR_SYMBOL, {
 
     /* StyleSheet for collapsed state */
     .vpj-sidebar.collapsed {
+        padding-bottom: 1rem;
         width: 3.5rem;
     }
 

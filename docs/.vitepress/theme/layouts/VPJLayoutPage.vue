@@ -8,6 +8,7 @@ import { useVPJLayout } from '../composables/useVPJLayout';
 import { VPJ_PAGE_LAYOUT_SYMBOL } from '../utils/symbols';
 
 import VPJOverlayScrollArea from '../components/VPJOverlayScrollArea.vue';
+import VPJFooter from '../components/VPJFooter.vue';
 
 
 const store = useVPJLayout();
@@ -43,6 +44,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
         overflow="xy"
         thumb-width="5"
         class="vpj-layout-page"
+        :inner-attrs="{ class: 'vpj-layout-page__inner' }"
     >
         <div class="vpj-layout-page__hero-iamge"/>
         <slot name="page-top"/>
@@ -51,7 +53,10 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
                 <slot name="page-padding-left"/>
             </div>
             <slot>
-                <Content class="vpj-layout-page__content vpj-markdown"/>
+                <div class="vpj-layout-page__content">
+                    <Content class=" vpj-markdown"/>
+                    <VPJFooter/>
+                </div>                
             </slot>
             <div class="vpj-layout-page__padding-right">
                 <slot name="page-padding-right"/>
@@ -70,7 +75,13 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
         width: 100%;
     }
 
+    :deep(.vpj-layout-page__inner) {
+        display: flex;
+        flex-direction: column;
+    }
+
     .vpj-layout-page__hero-iamge {
+        flex-shrink: 0;
         min-height: 0;
         width: 100%;
     }
@@ -78,13 +89,12 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
     /* Grid layout */
     .vpj-layout-page__grid-layout {
         display: grid;
+        flex: 1;
         grid-template-columns:
             minmax(min(v-bind(computedPadding), 100%), 1fr)
             minmax(min(calc(2 * v-bind(computedPadding)), 100%), v-bind(computedMaxWidth))
             minmax(min(v-bind(computedPadding), 100%), 1fr);
-        margin-top: v-bind(computedMarginTop);
-        margin-bottom: v-bind(computedMarginBottom);
-        min-height: 0;
+        min-height: max-content;
         width: 100%;
     }
 
@@ -102,9 +112,16 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
 
     /* Content */
     .vpj-layout-page__content {
+        display: flex;
+        flex-direction: column;
         grid-column: 2;
         min-height: 0;
-        padding-bottom: 2.5rem;
+        margin-top: v-bind(computedMarginTop);
         width: 100%;
+    }
+
+    .vpj-layout-page__content > .vpj-markdown {
+        flex: 1;
+        margin-bottom: v-bind(computedMarginBottom);
     }
 </style>

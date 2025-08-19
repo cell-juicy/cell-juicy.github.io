@@ -1,5 +1,3 @@
-import type { SiteConfig } from "vitepress";
-
 import type { ImageData } from "./common";
 import type { ThemeConfig } from ".";
 
@@ -668,33 +666,6 @@ export interface SidebarConfig {
      * ```
      */
     enabled?: boolean;
-
-    /**
-     * 侧边栏初始折叠状态
-     * @optional
-     * @default true
-     * 
-     * @remarks
-     * 用于设置侧边栏加载时是否默认处于折叠状态。
-     * 当设置为 `true` 时，侧边栏初始为收起状态；设置为 `false` 时，初始展开。
-     * 
-     * 注意事项：
-     * - 该配置只影响初始状态，运行时的折叠/展开可由组件内部状态控制。
-     * - 可根据页面需求或用户偏好进行配置。
-     * 
-     * @example
-     * 主题配置中默认展开侧边栏：
-     * ```ts
-     * export default {
-     *   themeConfig: {
-     *     sidebar: {
-     *       collapsed: false
-     *     }
-     *   }
-     * }
-     * ```
-     */
-    collapsed?: boolean;
 
     /**
      * 侧边栏顶部资料卡配置

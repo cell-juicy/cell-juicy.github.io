@@ -544,3 +544,41 @@ export type ResourceData = {
     download?: boolean | string,
     type?: "file" | "image" | "website" | "download"
 }
+
+
+export type FooterInput = 
+    | false
+    | NormalizedFooterInput;
+
+export type NormalizedFooterInput = {
+    message?: string | false;
+    copyright?: string | false;
+}
+
+export type FooterData = {
+    message?: string;
+    copyright?: string;
+}
+
+
+export type EditLinkInput = 
+    | false
+    | {
+        pattern?:
+            | false
+            | string
+            | ((ctx: PageContext) => string);
+        text?: string;
+    };
+
+export type NormalizedEditLinkInput = {
+    link?:
+        | false
+        | string;
+    text?: string;
+}
+
+export type EditLinkData = {
+    link?: string;
+    text?: string;
+}

@@ -6,6 +6,7 @@ import { data } from "../data/doc.data";
 
 import { VPJ_DOC_DATA_SYMBOL } from "../utils/symbols";
 import { any2Number, processDocOrder } from "../utils/common";
+import { mergeSimpleData } from "../utils/mergeData";
 
 import type { Ref } from "vue";
 import type { Route, SiteData } from "vitepress";
@@ -22,6 +23,8 @@ interface DocData {
     order: Ref<number[] | undefined>;
     cover: Ref<string | undefined>;
     resources: Ref<Record<string, ResourceInput> | undefined>;
+    next: Ref<{ text?: string; link?: string } | undefined>;
+    prev: Ref<{ text?: string; link?: string } | undefined>;
     ctx: Ref<PageContext | undefined>;
     filter: (callbackFn: (data: DocPageData) => boolean) => DocPageData[];
     spaceConfig: Ref<SpaceMetaData>;
@@ -40,6 +43,12 @@ interface RawDocPageData {
         | ((data: DocPageData) => string | undefined);
     url?: string;
     frontmatter?: Record<string, any>;
+    next:
+        | { text?: string; link?: string }
+        | { text: false; link: false };
+    prev:
+        | { text?: string; link?: string }
+        | { text: false; link: false };
     inherit?: boolean;
     virtual?: boolean;
 }
@@ -47,6 +56,8 @@ interface RawDocPageData {
 interface StoreDocPageData extends RawDocPageData {
     resources: Record<string, ResourceData>;
     id: string;
+    next: { text?: string; link?: string };
+    prev: { text?: string; link?: string };
     inherit: boolean;
     virtual: boolean;
 }
@@ -60,7 +71,7 @@ function resolveResourceInput(input: any):Record<string, ResourceData> {
     const normalized: Record<string, ResourceInput> = 
         (typeof input === 'object' && input !== null)
             ? input
-            : {};;
+            : {};
     const result: Record<string, ResourceData> = {};
 
     Object.entries(normalized).forEach(([key, value]) => {
@@ -173,6 +184,14 @@ export class DocPageData {
             ...cloneDeep(raw),
             resources: resolveResourceInput(raw.resources),
             id: 'unknown',
+            next: {
+                text: (raw.next.text === false) ? undefined : raw.next.text,
+                link: (raw.next.link === false) ? undefined : raw.next.link,
+            },
+            prev: {
+                text: (raw.prev.text === false) ? undefined : raw.prev.text,
+                link: (raw.prev.link === false) ? undefined : raw.prev.link,
+            },
             inherit: (raw.inherit === true) ? true : false,
             virtual: (raw.virtual === true) ? true : false,
         };
@@ -195,6 +214,8 @@ export class DocPageData {
     get cover(): string | false | undefined { return this.#store.cover; }
     get inherit(): boolean { return this.#store.inherit; }
     get resources(): Record<string, ResourceData> { return this.#store.resources; }
+    get next() { return this.#store.next; }
+    get prev() { return this.#store.prev; }
     get treeTitle(): string {
         if (typeof this.#store.treeTitle === 'string') {
             return this.#store.treeTitle;
@@ -236,7 +257,7 @@ export class DocPageData {
         } else {
             this.#store.id = baseId;
             this.#storeContext.idMap.set(baseId, this);
-        }
+        };
     };
 
     #bindParent() {
@@ -253,7 +274,7 @@ export class DocPageData {
             parent.#childrenIds.push(this.#store.id);
             this.#parentId = parent.#store.id;
             break;
-        }
+        };
     };
 
     #inheritFromParent() {
@@ -345,56 +366,172 @@ export class DocPageData {
                 const spaceNodeList = dataBase.filter((node) => node.space === space);
                 spaceNodeList.forEach((node) => DocPageData.applyMetaData(node, globalMetaData));
             };
-
         });
     };
 
-    static generateVirtualNodes(dataBase: RawDocPageData[], docConfig: Record<string, SpaceMetaData>) {
+    static generateVirtualNodes(
+        dataBase: RawDocPageData[],
+        docConfig: Record<string, SpaceMetaData>,
+        themeConfig: ThemeConfig,
+    ) {
         const existingNodes: Set<string> = new Set();
         const virtualNodes: RawDocPageData[] = [];
+        const spaceMap: Map<string, RawDocPageData[]> = new Map();
 
         dataBase.forEach((node) => {
             const id = DocPageData.genId(node);
             if (!existingNodes.has(id)) {
                 existingNodes.add(id);
             };
-        });
-
-        dataBase.forEach((node) => {
-            // Skip nodes that do not allow virtual parents
-            if (node.allowVirtualParents === false) return;
-
-            const nodeSpace = node.space;
-            const spaceConfig = (
-                typeof nodeSpace === 'string' &&
-                (typeof docConfig === 'object' && docConfig) &&
-                (typeof docConfig[nodeSpace] === 'object' && docConfig[nodeSpace] !== null)
-            ) ? docConfig[nodeSpace] : {};
-
-            // Skip nodes whose space is set to disable virtual node generation
-            if (node.allowVirtualParents === undefined && !spaceConfig.enableVirtual) return;
-
-            const currentOrder = [...node.order];
-
-            while (currentOrder.length > 1) {
-                currentOrder.pop();
-                const expectedParentid = DocPageData.genId({
-                    space: node.space,
-                    order: currentOrder,
-                });
-
-                if (existingNodes.has(expectedParentid)) break;
-
-                virtualNodes.push({
-                    space: node.space,
-                    order: [...currentOrder],
-                    virtual: true,
-                });
-                existingNodes.add(expectedParentid);
+            if (node.space === undefined) return;
+            if (spaceMap.has(node.space)) {
+                spaceMap.get(node.space)?.push(node);
+            } else {
+                spaceMap.set(node.space, [node]);
             };
         });
 
-        dataBase.push(...virtualNodes)
+        spaceMap.forEach((nodes, space) => {
+            const spaceConfig = (
+                (typeof docConfig === 'object' && docConfig) &&
+                (typeof docConfig[space] === 'object' && docConfig[space] !== null)
+            ) ? docConfig[space] : {};
+
+            nodes.forEach((node) => {
+                const allowed = mergeSimpleData<boolean, undefined>(
+                    (value) => typeof value === 'boolean', undefined,
+                    node.allowVirtualParents,
+                    spaceConfig.enableVirtual,
+                    themeConfig.enableVitrual,
+                    false
+                );
+
+                if (!allowed) return;
+
+                const currentOrder = [...node.order];
+
+                while (currentOrder.length > 1) {
+                    currentOrder.pop();
+                    const expectedParentid = DocPageData.genId({
+                        space: node.space,
+                        order: currentOrder,
+                    });
+
+                    if (existingNodes.has(expectedParentid)) break;
+
+                    virtualNodes.push({
+                        space: node.space,
+                        order: [...currentOrder],
+                        virtual: true,
+                        next: {},
+                        prev: {}
+                    });
+                    existingNodes.add(expectedParentid);
+                };
+            });
+        });
+
+        dataBase.push(...virtualNodes);
+    };
+
+    static bindNextPrev(
+        dataBase: RawDocPageData[],
+        docConfig: Record<string, SpaceMetaData>,
+        layoutConfig: VPJDocLayoutConfig,
+        themeConfig: ThemeConfig
+    ) {
+        const spaceMap = new Map<string, RawDocPageData[]>();
+        dataBase.forEach((node) => {
+            if (node.space === undefined) return;
+            if (spaceMap.has(node.space)) {
+                spaceMap.get(node.space)?.push(node);
+            } else {
+                spaceMap.set(node.space, [node]);
+            };
+        });
+
+        function siblingCompare<T extends {idx: number, order: number[]}>(a: T, b: T)  {
+                for (let i = 0; i < Math.min(a.order.length, b.order.length); i++) {
+                    if (a.order[i] !== b.order[i]) return a.order[i] - b.order[i];
+                };
+                return a.order.length - b.order.length;
+            };
+
+        spaceMap.forEach((nodes, space) => {
+            const spaceConfig = (
+                (typeof docConfig === 'object' && docConfig) &&
+                (typeof docConfig[space] === 'object' && docConfig[space] !== null)
+            ) ? docConfig[space] : {};
+
+            const allowed = mergeSimpleData(
+                (value) => typeof value === 'boolean', undefined,
+                spaceConfig.autoNextPrev,
+                layoutConfig.autoNextPrev,
+                themeConfig.autoNextPrev,
+                true
+            );
+
+            if (!allowed) return;
+
+            const sorted = DocPageData.sortDataBase(nodes)
+            type DFStreeNode = { idx: number; order: number[]; children: DFStreeNode[] };
+
+            // Generate DFS sequence
+            const DFS: RawDocPageData[] = [];
+            const treeRoot: DFStreeNode = { idx: -1, order: [], children: [] };
+            const treeNodes: DFStreeNode[] = sorted.map((n, idx) => ({ idx, order: n.order, children: []}));
+            const map = new Map<string, DFStreeNode[]>();
+
+            treeNodes.forEach((node) => {
+                const key = DocPageData.genId(node);
+                if (!map.has(key)) map.set(key, []);
+                map.get(key)?.push(node);
+            });
+            
+            treeNodes.forEach((node) => {
+                if (node.order.length === 1) {
+                    treeRoot.children.push(node)
+                } else {
+                    let hasParent = false;
+                    for (let i=1; i<node.order.length; i++) {
+                        const excerptParent = DocPageData.genId({order: node.order.slice(0, -i)});
+
+                        if (!map.has(excerptParent)) continue;
+
+                        const parent = map.get(excerptParent);
+                        (parent as DFStreeNode[])[0].children.push(node);
+                        hasParent = true;
+                        break;
+                    };
+                    if (!hasParent) treeRoot.children.push(node);
+                };
+            });
+
+            function dfs(node: DFStreeNode) {
+                if (node.idx >= 0) DFS.push(sorted[node.idx]);
+                node.children.sort(siblingCompare);
+                node.children.forEach(dfs);
+            };
+
+            dfs(treeRoot);
+
+            // Bind prev & next
+            for (let i=0; i<DFS.length; i++) {
+                const curr = DFS[i];
+
+                if (i > 0) {
+                    const prev = DFS[i - 1];
+                    curr.prev.text = (curr.prev.text === undefined) ? prev.title : curr.prev.text;
+                    curr.prev.link = (curr.prev.link === undefined) ? prev.url : curr.prev.link;
+                };
+
+                if (i < DFS.length - 1) {
+                    const next = DFS[i + 1];
+                    curr.next.text = (curr.next.text === undefined) ? next.title : curr.next.text;
+                    curr.next.link = (curr.next.link === undefined) ? next.url : curr.next.link;
+                };
+            };
+        });
     };
 
     static sortDataBase(dataBase: RawDocPageData[]) {
@@ -403,36 +540,34 @@ export class DocPageData {
                 const spaceA = a.space ?? "";
                 const spaceB = b.space ?? "";
 
-                if (spaceA !== spaceB) {
-                    return spaceA.localeCompare(spaceB);
-                }
+                if (spaceA !== spaceB) return spaceA.localeCompare(spaceB);
 
-                const len = Math.max(a.order.length, b.order.length);
+                const len = Math.min(a.order.length, b.order.length);
                 for (let i = 0; i < len; i++) {
-                    const aVal = a.order[i] ?? -1;
-                    const bVal = b.order[i] ?? -1;
-                    if (aVal !== bVal) {
-                        return aVal - bVal;
-                    }
-                }
-
-                return 0;
+                    if (a.order[i] !== b.order[i]) return a.order[i] - b.order[i];
+                };
+                return a.order.length - b.order.length;
             });
     };
 
-    static processDataBase(dataBase: RawDocPageData[], config: Record<string, SpaceMetaData>) {
+    static processDataBase(
+        dataBase: RawDocPageData[],
+        docConfig: Record<string, SpaceMetaData>,
+        layoutConfig: VPJDocLayoutConfig,
+        themeConfig: ThemeConfig
+    ) {
         const copy = cloneDeep(dataBase);
 
-        // If no config, return the original dataBase
-        if (typeof config !== 'object' || !config) return copy;
+        // Bind next and prev node
+        DocPageData.bindNextPrev(copy, docConfig, layoutConfig, themeConfig);
         
         // Generate virtual nodes
-        DocPageData.generateVirtualNodes(copy, config);
+        DocPageData.generateVirtualNodes(copy, docConfig, themeConfig);
 
         // Apply space meta data
-        if (typeof config === 'object' && config !== null) {
-            DocPageData.applySpaceConfig(copy, config);
-        }
+        if (typeof docConfig === 'object' && docConfig !== null) {
+            DocPageData.applySpaceConfig(copy, docConfig);
+        };
 
         // Sort nodes by space/order
         return DocPageData.sortDataBase(copy);
@@ -452,18 +587,17 @@ export function initVPJDocData(route: Route, siteData: Ref<SiteData>): DocData {
     watch([theme, frontmatter], (next, prev) => {
         if (JSON.stringify(next) !== JSON.stringify(prev)) {
             // Update layout config
-            layoutConfig.value = theme.value.layouts?.doc || {};
+            layoutConfig.value = (typeof theme.value.layouts?.doc === 'object' && theme.value.layouts?.doc)
+                ? theme.value.layouts?.doc
+                : {};
 
             // Update doc config
-            docConfig.value = theme.value.doc || {};
+            docConfig.value = (typeof theme.value.doc === 'object' && theme.value.doc) ? theme.value.doc : {};
 
             // Update space config
             if (typeof frontmatter.value.space === 'string' && frontmatter.value.layout === "doc") {
                 const name = frontmatter.value.space;
-                if (
-                    theme.value.doc &&
-                    typeof theme.value.doc === 'object'
-                ) {
+                if (typeof theme.value.doc === 'object' && theme.value.doc) {
                     spaceConfig.value = theme.value.doc[name] || {};
                 };
             };
@@ -479,10 +613,12 @@ export function initVPJDocData(route: Route, siteData: Ref<SiteData>): DocData {
 
         const processedData = DocPageData.processDataBase(
             data as RawDocPageData[],
-            docConfig.value
+            docConfig.value,
+            layoutConfig.value,
+            theme.value
         );
 
-        return processedData.map((raw) => new DocPageData(raw, storeContext))
+        return processedData.map((raw) => new DocPageData(raw, storeContext));
     });
 
     // Calculate current data
@@ -525,9 +661,26 @@ export function initVPJDocData(route: Route, siteData: Ref<SiteData>): DocData {
         return undefined;
     });
 
+    // Calculate the resources
     const resources = computed(() => {
         if (frontmatter.value.layout === "doc") {
             return currentData.value?.resources || undefined;
+        };
+        return undefined;
+    });
+
+        // Calculate next
+    const next = computed(() => {
+        if (frontmatter.value.layout === "doc") {
+            return currentData.value?.next || undefined;
+        };
+        return undefined;
+    });
+
+    // Calculate prev
+    const prev = computed(() => {
+        if (frontmatter.value.layout === "doc") {
+            return currentData.value?.prev || undefined;
         };
         return undefined;
     });
@@ -560,6 +713,8 @@ export function initVPJDocData(route: Route, siteData: Ref<SiteData>): DocData {
         order,
         cover,
         resources,
+        prev,
+        next,
         ctx,
         filter,
         spaceConfig,
