@@ -1422,17 +1422,219 @@ export interface SpaceMetaData {
         [orderString: string]: NodeMetadata | undefined;
     },
 
+    /**
+     * 系列级「下一页」按钮提示文本配置（文档布局）
+     * @optional
+     *
+     * @remarks
+     * 用于为指定空间下所有文档页面的下一页按钮配置提示文本。
+     *
+     * 配置规则：
+     * - `string` → 使用该值作为提示文本
+     * - `false` → 隐藏提示文本
+     *
+     * 覆盖与优先级：
+     * - 页面 frontmatter 中 `next.label` 若存在，将覆盖空间级配置
+     * - 若需修改按钮的跳转链接与标题，请在 frontmatter 中配置：
+     *   - `next.link`：目标页面链接
+     *   - `next.text`：按钮标题文本
+     * - 此处配置在主题合并时比起 `themeConfig.layouts.doc` 中的同名配置
+     *   （参见 {@link VPJDocLayoutConfig.next}）拥有更高优先级，但始终低于页面 frontmatter 的配置
+     *
+     * @example
+     * 为「指南」空间统一设置下一页提示文本
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       "指南": {
+     *         next: "下一步"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link VPJDocLayoutConfig.next} 布局层级下一页提示文本配置
+     */
     next?:
         | false
         | string;
-    
+
+    /**
+     * 系列级「上一页」按钮提示文本配置（文档布局）
+     * @optional
+     *
+     * @remarks
+     * 用于为指定空间下所有文档页面的上一页按钮配置提示文本。
+     *
+     * 配置规则：
+     * - `string` → 使用该值作为提示文本
+     * - `false` → 隐藏提示文本
+     *
+     * 覆盖与优先级：
+     * - 页面 frontmatter 中 `prev.label` 若存在，将覆盖空间级配置
+     * - 若需修改按钮的跳转链接与标题，请在 frontmatter 中配置：
+     *   - `prev.link`：目标页面链接
+     *   - `prev.text`：按钮标题文本
+     * - 此处配置在主题合并时比起 `themeConfig.layouts.doc` 中的同名配置
+     *   （参见 {@link VPJDocLayoutConfig.prev}）拥有更高优先级，但始终低于页面 frontmatter 的配置
+     *
+     * @example
+     * 为「指南」空间统一设置上一页提示文本
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       "指南": {
+     *         prev: "上一步"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link VPJDocLayoutConfig.prev} 布局层级上一页提示文本配置 
+     */
     prev?:
         | false
         | string;
     
-    autoNextPrev?: boolean;
-    
+    /**
+     * 文档空间编辑链接配置
+     * @optional
+     *
+     * @remarks
+     * 控制指定空间下文档页面的「编辑此页」链接，支持：
+     *
+     * - `false` → 禁用编辑链接
+     * - 对象形式：
+     *   - `pattern`：生成链接，支持 `false`（禁用）、字符串模板（`:path` 为页面相对路径）、函数 `(ctx: PageContext) => string`
+     *   - `text`：链接显示文本；若省略但 `pattern` 有效，则显示单个图标
+     *
+     * 注意事项：
+     * - 页面 frontmatter 中同名配置会覆盖此项
+     * - 此处配置在主题合并时比起 `themeConfig.layouts.doc` 中的同名配置
+     *   （参见 {@link VPJDocLayoutConfig.editLink}）拥有更高优先级，但低于页面 frontmatter 配置
+     *
+     * @example
+     * 为「指南」空间配置 GitHub 编辑链接
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       "指南": {
+     *         editLink: {
+     *           pattern: "https://github.com/org/repo/edit/main/:path",
+     *           text: "编辑此页"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @example
+     * 禁用编辑链接
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       "指南": {
+     *         editLink: false
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link VPJDocLayoutConfig.editLink} 布局层级编辑链接配置
+     */
     editLink?: EditLinkInput;
 
+    /**
+     * 文档空间底部信息配置
+     * @optional
+     *
+     * @remarks
+     * 用于配置指定空间下文档页面的底部消息和版权信息。
+     *
+     * 配置规则：
+     * - `false` → 禁用底部信息，覆盖掉低优先级配置
+     * - 对象形式：
+     *   - `message?: string | false` → 底部消息文本（支持 HTML）
+     *   - `copyright?: string | false` → 版权信息文本（支持 HTML）
+     *
+     * 注意事项：
+     * - 页面 frontmatter 中同名配置会覆盖此项
+     * - 此处配置在主题合并时比起 `themeConfig.layouts.doc` 中的同名配置
+     *   （参见 {@link VPJDocLayoutConfig.footer}）拥有更高优先级，但低于页面 frontmatter 配置
+     *
+     * @example
+     * 为「指南」空间配置底部信息
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       "指南": {
+     *         footer: {
+     *           message: "由 <b>团队 B</b> 维护",
+     *           copyright: "© 2025 MyProject"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @example
+     * 禁用底部信息
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       "指南": {
+     *         footer: false
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link VPJDocLayoutConfig.footer} 布局层级页脚配置
+     */
     footer?: FooterInput;
+
+    /**
+     * 自动生成上一页/下一页链接（文档空间）
+     * @optional
+     *
+     * @remarks
+     * 控制是否为指定空间下的文档页面自动生成 `next` / `prev` 链接。
+     * 自动生成规则：
+     * - 基于当前空间文档树，采用 DFS 算法寻找前一页与后一页
+     *
+     * 注意事项：
+     * - 页面 frontmatter 中配置的 `next` / `prev` 会优先覆盖
+     * - 相当于为未配置 `next` / `prev` 的页面提供默认值
+     * - 此处配置在主题合并时比起 `themeConfig.layouts.doc` 中的同名配置
+     *   （参见 {@link VPJDocLayoutConfig.autoNextPrev}）拥有更高优先级，但低于页面 frontmatter 配置
+     *
+     * @example
+     * 为「指南」空间开启自动生成 next/prev
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     doc: {
+     *       "指南": {
+     *         autoNextPrev: true
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     * 
+     * @see {@link VPJDocLayoutConfig.autoNextPrev} 布局层级自动上下页开关
+     */
+    autoNextPrev?: boolean;
 }

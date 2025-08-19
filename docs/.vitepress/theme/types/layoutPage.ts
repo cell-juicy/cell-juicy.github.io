@@ -401,5 +401,53 @@ export interface VPJPageLayoutConfig {
      */
     contentMaxWidth?: DeviceSpecificInput;
 
+    /**
+     * 页面布局底部信息配置
+     * @optional
+     *
+     * @remarks
+     * 用于配置一般页面（page 布局）底部的消息和版权信息。
+     *
+     * 配置规则：
+     * - `false` → 禁用底部信息
+     * - 对象形式：
+     *   - `message?: string | false` → 底部消息（支持 HTML）
+     *   - `copyright?: string | false` → 版权信息（支持 HTML）
+     *
+     * 注意事项：
+     * - 页面 frontmatter 会覆盖此配置
+     * - 此布局级配置是所有 page 页面默认值
+     *
+     * @example
+     * 配置 page 布局默认底部信息
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         footer: {
+     *           message: "由 <b>团队 C</b> 维护",
+     *           copyright: "© 2025 MyProject"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     *
+     * @example
+     * 禁用 page 页面底部信息
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       page: {
+     *         footer: false
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     */
     footer: FooterInput;
 }

@@ -1,4 +1,4 @@
-import {
+import type {
     DeviceSpecificInput,
     NormalizedDeviceSpecificInput,
     CoverCssConfigInput,
@@ -1119,17 +1119,170 @@ export interface VPJBlogLayoutConfig {
      */
     contentMaxWidth?: DeviceSpecificInput;
 
+    /**
+     * 布局级「下一页」按钮提示文本配置（博客布局）
+     * @optional
+     *
+     * @remarks
+     * 用于为所有博客页面配置默认下一页按钮提示文本。
+     *
+     * 配置规则：
+     * - `string` → 使用该值作为提示文本
+     * - `false` → 隐藏提示文本
+     *
+     * 注意事项：
+     * - 页面 frontmatter 中 `next.label` 优先覆盖此配置
+     * - 系列级配置会覆盖此布局级配置
+     *
+     * @example
+     * 在布局中配置下一页按钮默认提示文本
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       blog: {
+     *         next: "下一节"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     */
     next?:
         | string
         | false;
 
+    /**
+     * 布局级「上一页」按钮提示文本配置（博客布局）
+     * @optional
+     *
+     * @remarks
+     * 用于为所有博客页面配置默认上一页按钮提示文本。
+     *
+     * 配置规则：
+     * - `string` → 使用该值作为提示文本
+     * - `false` → 隐藏提示文本
+     *
+     * 注意事项：
+     * - 页面 frontmatter 中 `prev.label` 优先覆盖此配置
+     * - 系列级配置会覆盖此布局级配置
+     *
+     * @example
+     * 在布局中配置上一页按钮默认提示文本
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       blog: {
+     *         prev: "上一节"
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     */
     prev?:
         | string
         | false;
     
+    /**
+     * 布局级博客编辑链接配置
+     * @optional
+     *
+     * @remarks
+     * 控制所有博客页面默认的「编辑此页」链接。
+     *
+     * 配置规则：
+     * - `false` → 禁用编辑链接
+     * - 对象形式：
+     *   - `pattern`：生成链接，支持 `false`、字符串模板（`:path`）或函数 `(ctx: PageContext) => string`
+     *   - `text`：显示文本；省略但 `pattern` 有效，则显示图标
+     *
+     * 注意事项：
+     * - 页面 frontmatter 会覆盖此配置
+     * - 系列级配置会覆盖布局级配置
+     *
+     * @example
+     * 配置博客布局默认 GitHub 编辑链接
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       blog: {
+     *         editLink: {
+     *           pattern: "https://github.com/org/repo/edit/main/:path",
+     *           text: "编辑此页"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     */
     editLink?: EditLinkInput;
 
+    /**
+     * 布局级博客底部信息配置
+     * @optional
+     *
+     * @remarks
+     * 配置所有博客页面默认的底部消息和版权信息。
+     *
+     * 配置规则：
+     * - `false` → 禁用底部信息
+     * - 对象形式：
+     *   - `message?: string | false` → 底部消息（支持 HTML）
+     *   - `copyright?: string | false` → 版权信息（支持 HTML）
+     *
+     * 注意事项：
+     * - 页面 frontmatter 会覆盖此配置
+     * - 系列级配置会覆盖布局级配置
+     *
+     * @example
+     * 配置博客布局默认底部信息
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       blog: {
+     *         footer: {
+     *           message: "由 <b>团队 A</b> 维护",
+     *           copyright: "© 2025 MyProject"
+     *         }
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     */
     footer?: FooterInput;
 
+    /**
+     * 布局级自动生成上一页/下一页链接（博客布局）
+     * @optional
+     *
+     * @remarks
+     * 控制是否为所有博客页面自动生成 `next` / `prev` 链接。
+     * 自动生成规则：
+     * - 基于系列文章，按照 `order` 从小到大生成前一页/后一页
+     *
+     * 注意事项：
+     * - 页面 frontmatter 配置会覆盖此配置
+     * - 系列级配置会覆盖布局级配置
+     *
+     * @example
+     * 开启博客布局自动生成 next/prev
+     * ```ts
+     * export default {
+     *   themeConfig: {
+     *     layouts: {
+     *       blog: {
+     *         autoNextPrev: true
+     *       }
+     *     }
+     *   }
+     * }
+     * ```
+     */
     autoNextPrev?: boolean;
 }

@@ -181,13 +181,9 @@ export default defineConfigWithTheme<ThemeConfig>({
                 format: (tag) => `# ${tag}`
             },
         },
-        footer: {
-            message: "基于 MIT 许可发布",
-            copyright: "版权所有 © 2025 测试开发者",
-        },
         editLink: {
-            pattern: "https://github.com/cell-juicy/cell-juicy.github.io/edit/main/docs/:path",
-            text: "在 GitHub 上编辑此页",
+            pattern: "https://github.com/cell-juicy/cell-juicy.github.io/tree/main/docs/:path",
+            text: "在 GitHub 上查看此页",
         },
         next: "下一页",
         prev: "上一页",

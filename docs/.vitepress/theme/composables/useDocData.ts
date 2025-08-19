@@ -71,7 +71,7 @@ function resolveResourceInput(input: any):Record<string, ResourceData> {
     const normalized: Record<string, ResourceInput> = 
         (typeof input === 'object' && input !== null)
             ? input
-            : {};;
+            : {};
     const result: Record<string, ResourceData> = {};
 
     Object.entries(normalized).forEach(([key, value]) => {

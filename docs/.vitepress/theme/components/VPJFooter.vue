@@ -14,8 +14,8 @@ const {
 <template>
     <footer v-if="config.message || config.copyright" class="vpj-footer">
         <div class="vpj-footer__container">
-            <p v-if="config.message && config.message.length > 0" class="vpj-footer__message">{{ config.message }}</p>
-            <p v-if="config.copyright && config.copyright.length > 0" class="vpj-footer__copyright">{{ config.copyright }}</p>
+            <p v-if="config.message && config.message.length > 0" class="vpj-footer__message" v-html="config.message"/>
+            <p v-if="config.copyright && config.copyright.length > 0" class="vpj-footer__copyright" v-html="config.copyright"/>
         </div>
     </footer>
 </template>
