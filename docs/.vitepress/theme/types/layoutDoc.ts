@@ -1109,9 +1109,9 @@ export interface VPJDocLayoutConfig {
         | string
         | false;
     
-    autoNextPrev?: boolean;
-    
     editLink?: EditLinkInput;
 
     footer?: FooterInput;
+
+    autoNextPrev?: boolean;
 }

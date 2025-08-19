@@ -1313,7 +1313,6 @@ export interface SpaceMetaData {
     /**
      * 是否启用虚拟父节点生成逻辑
      * @optional
-     * @defaults false
      * 
      * @remarks
      * 此项用于控制是否为当前文档空间下的页面节点自动生成缺失的虚拟父节点。生成逻辑基于 `order` 推导上级节点的存在性，若上级不存在，则将其以“结构占位”的形式补足为虚拟节点。

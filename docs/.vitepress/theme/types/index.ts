@@ -1,5 +1,6 @@
 import type {
     FooterInput,
+    EditLinkInput,
     ImageData
 } from "./common";
 
@@ -183,5 +184,19 @@ export interface ThemeConfig {
     components?: ComponentFallbackConfig;
 
 
+    next?:
+            | string
+            | false;
+
+    prev?:
+        | string
+        | false;
+
+    editLink?: EditLinkInput;
+
     footer?: FooterInput;
+
+    enableVitrual?: boolean;
+
+    autoNextPrev?: boolean;
 }

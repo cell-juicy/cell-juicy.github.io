@@ -1326,18 +1326,18 @@ export interface SeriesMetaData {
     listTitle?: 
         | string
         | ((data: BlogPageData) => string);
-    
+
     next?:
         | false
         | string;
-    
+
     prev?: 
         | false
         | string;
-    
-    autoNextPrev?: boolean;
 
     editLink?: EditLinkInput;
 
     footer?: FooterInput;
+
+    autoNextPrev?: boolean;
 }
