@@ -5,6 +5,7 @@ import { cloneDeep } from "lodash-es";
 import { data } from "../data/blog.data";
 
 import { VPJ_BLOG_DATA_SYMBOL } from "../utils/symbols";
+import { mergeSimpleData } from "../utils/mergeData";
 
 import type { Ref } from "vue";
 import type { Route, SiteData } from "vitepress";
@@ -190,44 +191,75 @@ export class BlogPageData {
             });
     };
 
-    static bindNextPrev(dataBase: RawBlogPageData[]) {
-        for (let i=0; i<dataBase.length; i++) {
-            const curr = dataBase[i];
+    static bindNextPrev(
+        dataBase: RawBlogPageData[],
+        blogConfig: Record<string, SeriesMetaData>,
+        layoutConfig: VPJBlogLayoutConfig,
+        themeConfig: ThemeConfig
+    ) {
+        const seriesMap = new Map<string, RawBlogPageData[]>();
 
-            // Skip if no series
-            if (curr.series === undefined) continue;
+        dataBase.forEach((blog) => {
+            if (blog.series === undefined) return;
+            if (seriesMap.has(blog.series)) {
+                seriesMap.get(blog.series)?.push(blog);
+            } else {
+                seriesMap.set(blog.series, [blog]);
+            };
+        });
 
-            // Bind prev
-            if (i > 0) {
-                const prev = dataBase[i - 1];
-                if (prev && curr.series === prev.series) {
+        seriesMap.forEach((blogs, series) => {
+            const seriesConfig = (
+                (typeof blogConfig === 'object' && blogConfig) &&
+                (typeof blogConfig[series] === 'object' && blogConfig[series] !== null)
+            ) ? blogConfig[series] : {};
+
+            const allowed = mergeSimpleData(
+                (value) => typeof value === 'boolean', undefined,
+                seriesConfig.autoNextPrev,
+                layoutConfig.autoNextPrev,
+                themeConfig.autoNextPrev,
+                true
+            );
+
+            if (!allowed) return;
+
+            BlogPageData.sortDataBase(blogs);
+            for (let i=0; i<blogs.length; i++) {
+                const curr = blogs[i];
+                // Bind prev
+                if (i > 0) {
+                    const prev = blogs[i - 1];
                     curr.prev.text = (curr.prev.text === undefined) ? prev.title : curr.prev.text;
                     curr.prev.link = (curr.prev.link === undefined) ? prev.url : curr.prev.link;
                 };
-            };
 
-            // Bind next
-            if (i < dataBase.length - 1) {
-                const next = dataBase[i + 1];
-                if (next && curr.series === next.series) {
+                // Bind next
+                if (i < blogs.length - 1) {
+                    const next = blogs[i + 1];
                     curr.next.text = (curr.next.text === undefined) ? next.title : curr.next.text;
                     curr.next.link = (curr.next.link === undefined) ? next.url : curr.next.link;
                 };
             };
-        };
+        });
     };
 
-    static processDataBase(dataBase: RawBlogPageData[], config: Record<string, SeriesMetaData>) {
+    static processDataBase(
+        dataBase: RawBlogPageData[],
+        blogConfig: Record<string, SeriesMetaData>,
+        layoutConfig: VPJBlogLayoutConfig,
+        themeConfig: ThemeConfig
+    ) {
         // Sort nodes by series/order
         const copy = BlogPageData.sortDataBase(cloneDeep(dataBase));
 
         // Apply series meta data
-        if (typeof config === 'object' && config) {
-            BlogPageData.applySeriesConfig(copy, config);
+        if (typeof blogConfig === 'object' && blogConfig) {
+            BlogPageData.applySeriesConfig(copy, blogConfig);
         };
 
         // Bind next and prev node
-        BlogPageData.bindNextPrev(copy);
+        BlogPageData.bindNextPrev(copy, blogConfig, layoutConfig, themeConfig);
 
         return copy;
     };
@@ -245,18 +277,17 @@ export function initVPJBlogData(route: Route, siteData: Ref<SiteData>): BlogData
     watch([theme, frontmatter], (next, prev) => {
         if (JSON.stringify(next) !== JSON.stringify(prev)) {
             // Update layout config
-            layoutConfig.value = theme.value.layouts?.blog || {};
+            layoutConfig.value = (typeof theme.value.layouts?.blog === 'object' && theme.value.layouts?.blog)
+                ? theme.value.layouts?.blog
+                : {};
 
             // Update blog config
-            blogConfig.value = theme.value.blog || {};
+            blogConfig.value = (typeof theme.value.blog === 'object' && theme.value.blog) ? theme.value.blog : {};
             
             // Update series config
             if (typeof frontmatter.value.series === 'string' && frontmatter.value.layout === "blog") {
                 const name = frontmatter.value.series;
-                if (
-                    theme.value.blog &&
-                    typeof theme.value.blog === 'object'
-                ) {
+                if (typeof theme.value.blog === 'object' && theme.value.blog) {
                     seriesConfig.value = theme.value.blog[name] || {};
                 };
             };
@@ -272,7 +303,9 @@ export function initVPJBlogData(route: Route, siteData: Ref<SiteData>): BlogData
     
         const processedData = BlogPageData.processDataBase(
             data as RawBlogPageData[],
-            blogConfig.value
+            blogConfig.value,
+            layoutConfig.value,
+            theme.value
         );
     
         return processedData.map((raw) => new BlogPageData(raw, storeContext))

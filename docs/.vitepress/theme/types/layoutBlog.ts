@@ -1127,9 +1127,9 @@ export interface VPJBlogLayoutConfig {
         | string
         | false;
     
-    autoNextPrev?: boolean;
-    
     editLink?: EditLinkInput;
 
     footer?: FooterInput;
+
+    autoNextPrev?: boolean;
 }

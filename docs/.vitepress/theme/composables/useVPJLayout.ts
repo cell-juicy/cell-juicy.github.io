@@ -461,6 +461,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 frontmatter.value.editLink,
                 specificConfig.value.editLink,
                 (layoutConfig.value as VPJDocLayoutConfig | VPJBlogLayoutConfig).editLink,
+                theme.value.editLink,
                 defaultConfig.value.EDITLINK
             );
 
@@ -471,6 +472,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 frontmatter.value.next?.label,
                 specificConfig.value.next,
                 (layoutConfig.value as VPJDocLayoutConfig | VPJBlogLayoutConfig).next,
+                theme.value.next,
                 defaultConfig.value.NEXT
             );
 
@@ -481,6 +483,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 frontmatter.value.prev?.label,
                 specificConfig.value.prev,
                 (layoutConfig.value as VPJDocLayoutConfig | VPJBlogLayoutConfig).prev,
+                theme.value.prev,
                 defaultConfig.value.PREV
             );
 
