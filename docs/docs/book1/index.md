@@ -73,6 +73,10 @@ resources:
   neural-activity-map:
     url: https://neurocdn.fakeimages.org/maps/neural-activity-map.jpg
     label: "神经活动图"
+prev:
+  label: "想回去看看blog布局？"
+  text: "测试博客1"
+  link: "/blogs/blog1.html"
 ---
 
 # 这是一本假书

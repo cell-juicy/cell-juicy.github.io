@@ -6,7 +6,7 @@ tags:
   - 路径处理
   - path模块
   - 工具函数
-order: 3
+order: 2
 ---
 
 # 用 path 模块处理文件路径的正确姿势

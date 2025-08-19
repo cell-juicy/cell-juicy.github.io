@@ -197,8 +197,8 @@ const {
         gap: .1rem;
         height: 2rem;
         margin-bottom: 4px;
-        padding-left: .6rem;
-        padding-right: .6rem;
+        padding-left: .5rem;
+        padding-right: .5rem;
         width: 100%;
     }
 

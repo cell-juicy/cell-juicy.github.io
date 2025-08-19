@@ -4,6 +4,10 @@ asideTabs:
   series: false
   tags: false
   outline: false
+prev:
+  label: "上一篇测试"
+  text: "测试1"
+  link: "/blogs/test1.html"
 ---
 
 # 为什么我们总觉得“写完就完了” —— 谈谈代码的生命周期

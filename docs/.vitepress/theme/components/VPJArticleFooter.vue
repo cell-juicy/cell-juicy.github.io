@@ -65,7 +65,10 @@ const {
                 rel="noopener noreferrer"
             >
                 <VPJIconEdit class="vpj-article-footer__edit-link-icon"/>
-                <span class="vpj-article-footer__edit-link-text vpj-text">
+                <span
+                    v-if="config.editLink.text.length > 0"
+                    class="vpj-article-footer__edit-link-text vpj-text"
+                >
                     {{ config.editLink.text }}
                 </span>
             </a>
@@ -135,14 +138,15 @@ const {
     }
 
     .vpj-article-footer__navgation-label {
-        font-size: .75rem;
-        line-height: 1rem;
         color: var(--vpj-color-text-300);
+        font-size: .75rem;
+        line-height: 1.25rem;
     }
 
     .vpj-article-footer__navgation-text {
         color: var(--vpj-color-text-400);
         font-size: 1rem;
+        line-height: 1.25rem;
         transition: color 0.2s ease-in-out;
     }
 

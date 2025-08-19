@@ -1,6 +1,11 @@
 ---
 layout: blog
-order: 2
+order: 3
+series: "测试博客2"
+next:
+  label: "想看看doc布局？"
+  text: "测试用的book1"
+  link: "/docs/book1/"
 ---
 
 # 善用 console 提高调试效率
