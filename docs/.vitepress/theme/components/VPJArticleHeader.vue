@@ -1,5 +1,4 @@
 <script setup>
-import { useData } from 'vitepress';
 import { computed } from 'vue';
 
 import VPJDynamicIcon from './VPJDynamicIcon.vue'
@@ -34,6 +33,7 @@ const tooltipAttrs = {
         paddingBottom: ".375rem",
         paddingLeft: ".5rem",
         paddingRight: ".5rem",
+        zIndex: "102"
     }
 }
 
@@ -135,13 +135,14 @@ const showDivider = computed(() => {
                             :href="props.config?.github?.url"
                             :isLink="true"
                             :icon="VPJIconGithub"
-                            target="_blank"
                             :tooltip="props.config?.github?.tooltip"
                             :tooltipPosition="tooltipPosition"
                             :tooltipAttrs="tooltipAttrs"
                             :offset="tooltipOffset"
                             :safeMargin="tooltipSafeMargin"
                             class="vpj-article-header__button"
+                            target="_blank"
+                            rel="noopener"
                         />
                         <VPJTooltipBtn
                             v-if="props.config?.pdf?.url"
@@ -162,6 +163,7 @@ const showDivider = computed(() => {
                             :offset="tooltipOffset"
                             :safeMargin="tooltipSafeMargin"
                             class="vpj-article-header__button"
+                            rel="noopener"
                         />
                         <VPJTooltipBtn
                             v-if="props.config?.md?.url"
@@ -182,6 +184,7 @@ const showDivider = computed(() => {
                             :offset="tooltipOffset"
                             :safeMargin="tooltipSafeMargin"
                             class="vpj-article-header__button"
+                            rel="noopener"
                         />
                         <div v-if="showDivider" class="vpj-article-header__divider"/>
                         <VPJTooltipBtn
@@ -196,6 +199,7 @@ const showDivider = computed(() => {
                             :safeMargin="tooltipSafeMargin"
                             @click="tool.callback"
                             class="vpj-article-header__button"
+                            rel="noopener"
                         />
                     </div>
                 </Teleport>

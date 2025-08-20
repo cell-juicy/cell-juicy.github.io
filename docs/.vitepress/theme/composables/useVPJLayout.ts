@@ -43,7 +43,7 @@ const DEFAULT = {
         TITLETEMPLATE: true,
         FAVICON: undefined,
         DESCRPTION: undefined,
-        CONTENTMARGINBOTTOM: "1.5rem",
+        CONTENTMARGINBOTTOM: "2.5rem",
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "61.25rem",
         CONTENTPADDING: {
@@ -84,7 +84,7 @@ const DEFAULT = {
             objectFit: "cover",
             objectPosition: "center center"
         },
-        CONTENTMARGINBOTTOM: "1.5rem",
+        CONTENTMARGINBOTTOM: "2.5rem",
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "760px",
         CONTENTPADDING: {
@@ -127,7 +127,7 @@ const DEFAULT = {
             objectFit: "cover",
             objectPosition: "center center"
         },
-        CONTENTMARGINBOTTOM: "1.5rem",
+        CONTENTMARGINBOTTOM: "2.5rem",
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "820px",
         CONTENTPADDING: {

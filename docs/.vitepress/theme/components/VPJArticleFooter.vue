@@ -1,5 +1,6 @@
 <script setup>
 import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
 
 import { useVPJLayout } from '../composables/useVPJLayout';
 
@@ -21,13 +22,26 @@ const props = defineProps({
 
 const store = useVPJLayout();
 const {
-    articleFooterConfig: config
+    articleFooterConfig: config,
+    contentConfig: content,
+    footerConfig: footer
 } = storeToRefs(store);
+
+const computedMarginBottom = computed(() => {
+    const marginBottom = content.value.marginBottom || "0";
+    if (!(footer.value.message || footer.value.copyright)) {
+        return `min(${marginBottom}, 4.5rem)`
+    };
+    return ".5rem"
+})
 </script>
 
 
 <template>
-    <div class="vpj-article-footer">
+    <div
+        v-if="config.editLink.link || prev.link || next.link"
+        class="vpj-article-footer"
+    >
         <nav
             v-if="next.link || prev.link"
             class="vpj-article-footer__navgation"
@@ -55,7 +69,7 @@ const {
                 <VPJIconArrowRight class="vpj-article-footer__navgation-icon"/>
             </a>
         </nav>
-        <div class="vpj-article-footer__edit-info">
+        <div class="vpj-article-footer__info">
             <a
                 v-if="config.editLink.link"
                 :href="config.editLink.link"
@@ -83,12 +97,13 @@ const {
         flex-direction: column;
         flex-shrink: 0;
         gap: 1.25rem;
-        margin-bottom: .5rem;
+        margin-bottom: v-bind(computedMarginBottom);
     }
 
     .vpj-article-footer__navgation {
         align-items: center;
         display: flex;
+        flex-direction: row;
         flex-shrink: 0;
         gap: 1rem;
         width: 100%;
@@ -162,7 +177,7 @@ const {
     }
 
     /* Edit Link */
-    .vpj-article-footer__edit-info {
+    .vpj-article-footer__info {
         align-items: flex-start;
         display: flex;
         width: 100%;
@@ -178,6 +193,7 @@ const {
 
     .vpj-article-footer__edit-link-icon {
         fill: var(--vpj-color-primary-400);
+        flex-shrink: 0;
         height: 1rem;
         width: 1rem;
     }
@@ -194,5 +210,17 @@ const {
     .vpj-article-footer__edit-link:hover .vpj-article-footer__edit-link-text,
     .vpj-article-footer__edit-link:active .vpj-article-footer__edit-link-text {
         color: var(--vpj-color-primary-300);
+    }
+
+    /* StyleSheet for mobile&tablet screen */
+    @media screen and (max-width: 1024px) {
+        .vpj-article-footer__navgation {
+            flex-direction: column;
+        }
+
+        .vpj-article-footer__navgation-prev,
+        .vpj-article-footer__navgation-next {
+            width: 100%;
+        }
     }
 </style>
