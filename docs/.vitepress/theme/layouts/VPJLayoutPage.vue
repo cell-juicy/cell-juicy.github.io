@@ -10,6 +10,8 @@ import { VPJ_PAGE_LAYOUT_SYMBOL } from '../utils/symbols';
 import VPJOverlayScrollArea from '../components/VPJOverlayScrollArea.vue';
 import VPJFooter from '../components/VPJFooter.vue';
 
+import { data } from '../data/history.data'
+
 
 const store = useVPJLayout();
 const {
@@ -54,6 +56,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
             </div>
             <slot>
                 <div class="vpj-layout-page__content">
+                    {{ data }}
                     <Content class=" vpj-markdown"/>
                     <VPJFooter/>
                 </div>                
