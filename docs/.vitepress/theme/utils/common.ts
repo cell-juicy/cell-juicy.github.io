@@ -38,3 +38,23 @@ export function resolveNavigationInput(input: any): { text?: string; link?: stri
     };
     return {};
 }
+
+
+function formatDate(date: Date, pattern: string): string {
+    const pad = (n: number) => n < 10 ? "0" + n : "" + n;
+    const replacements: Record<string, string> = {
+        ":YYYY": "" + date.getFullYear(),
+        ":YY": ("" + date.getFullYear()).slice(-2),
+        ":MM": pad(date.getMonth()+1),
+        ":M": "" + (date.getMonth()+1),
+        ":DD": pad(date.getDate()),
+        ":D": "" + date.getDate(),
+        ":hh": pad(date.getHours()),
+        ":h": "" + date.getHours(),
+        ":mm": pad(date.getMinutes()),
+        ":m": "" + date.getMinutes(),
+        ":ss": pad(date.getSeconds()),
+        ":s": "" + date.getSeconds()
+    };
+    return pattern.replace(/:YYYY|:YY|:MM|:M|:DD|:D|:hh|:h|:mm|:m|:ss|:s/g, match => replacements[match]);
+}

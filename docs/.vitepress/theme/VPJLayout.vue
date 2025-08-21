@@ -14,9 +14,7 @@ function scrollToAnchor() {
         if (hash !== "") {
             nextTick(() => {
                 const target = document.getElementById(decodeURIComponent(hash.substring(1)));
-                if (target) {
-                    target.scrollIntoView({ behavior: "smooth" });
-                };
+                if (target) target.scrollIntoView({ behavior: "smooth" });
             });
         };
     };

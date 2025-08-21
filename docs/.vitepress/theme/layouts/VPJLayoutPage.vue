@@ -56,7 +56,6 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
             </div>
             <slot>
                 <div class="vpj-layout-page__content">
-                    {{ data }}
                     <Content class=" vpj-markdown"/>
                     <VPJFooter/>
                 </div>                
