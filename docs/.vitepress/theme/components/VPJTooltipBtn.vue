@@ -129,17 +129,17 @@ function updateTooltipPosition() {
     }
 }
 
+
+let observer = undefined;
 if (props.tooltip) {
     const stopTooltipWatcher = watch(tooltipVisible, (val) => {
         if (val) nextTick(updateTooltipPosition);
     });
-    const observer = new ResizeObserver(updateTooltipPosition);
 
     let currentBoundary = null;
     const stopObserverWatcher = watch(() => props.boundary, (val) => {
-        if (currentBoundary) {
-            observer.unobserve(currentBoundary);
-        }
+        if (!observer) return;
+        if (currentBoundary) observer.unobserve(currentBoundary);
         if (val) {
             const newBoundary = document.querySelector(val);
             if (newBoundary) {
@@ -147,13 +147,21 @@ if (props.tooltip) {
                 currentBoundary = newBoundary;
             }
         }
-    }, { immediate: true });
+    });
 
     onMounted(() => {
+        observer = new ResizeObserver(updateTooltipPosition);
         window.removeEventListener('resize', updateTooltipPosition);
         window.addEventListener('resize', updateTooltipPosition);
         observer.observe(button.value);
-    })
+        if (props.boundary) {
+        const newBoundary = document.querySelector(props.boundary)
+            if (newBoundary) {
+                observer.observe(newBoundary);
+                currentBoundary = newBoundary;
+            };
+        };
+    });
 
     onUnmounted(() => {
         window.removeEventListener('resize', updateTooltipPosition);
