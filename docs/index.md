@@ -3,6 +3,12 @@ layout: page
 title: 主页
 ---
 <script setup>
+import { storeToRefs } from 'pinia';
+import { useVPJLayout } from './.vitepress/theme/composables/useVPJLayout';
+
+
+const store = useVPJLayout();
+const { panelToggle } = store;
 </script>
 
 <style scoped>
@@ -46,14 +52,14 @@ title: 主页
     <div class="hero-content">
         <h1>这是Cell的网站</h1>
         <h3>欢迎每一个访客</h3>
-        <button class="button">点击我</button>
+        <button class="button" @click="() => panelToggle('history')">点击我展开面板</button>
     </div>
 </VPJHeroImage>
 
 
 # 这是一个主页（绝赞装修中）
 
-我现在正在测试超赞的markdown样式，你可以在这里看到我的进度 [传送门](test/markdown-style.md)。
+我现在正在测试超赞的markdown样式，你可以在这里看到我的进度 [传送门](test/markdown-style.md)。啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊燕人张飞在此。
 
 ## 我的博客
 

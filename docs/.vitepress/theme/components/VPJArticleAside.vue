@@ -167,7 +167,7 @@ onUnmounted(() => {
 
     .vpj-article-aside.collapsed {
         width: 0;
-        border-right-color: transparent;
+        border-right: none;
     }
 
     .vpj-article-aside__header {

@@ -1,5 +1,5 @@
-import { PageData, useData } from 'vitepress';
-import { ref, computed } from 'vue';
+import { useData } from 'vitepress';
+import { ref, computed, readonly } from 'vue';
 import { defineStore } from 'pinia';
 
 import { isMobile, isTablet } from '../utils/deviceTypes'
@@ -21,7 +21,7 @@ import { useBlogData } from './useBlogData';
 import { useDocData } from './useDocData';
 
 import type { Ref, ComputedRef } from 'vue';
-import type { SiteData } from 'vitepress';
+import type { SiteData, PageData } from 'vitepress';
 import type { ThemeConfig } from '../types';
 import type { CoverCssConfigData, DeviceSpecificData } from '../types/common';
 import type { VPJBlogLayoutConfig } from '../types/layoutBlog';
@@ -142,6 +142,9 @@ const DEFAULT = {
     },
 };
 
+const PANEL_TAB = ["history"] as const;
+type PANEL_TAB_TYPE = typeof PANEL_TAB[number];
+
 function getDeviceSpecificData(data: DeviceSpecificData) {
     if (isMobile.value) return data.mobile;
     if (isTablet.value) return data.tablet;
@@ -205,6 +208,26 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     function asideToggle(): void { asideCollapsed.value = !asideCollapsed.value; };
     function asideClose(): void { asideCollapsed.value = true; };
     function asideOpen(): void { asideCollapsed.value = false; };
+
+    const panelCollapsed: Ref<boolean> = ref(true);
+    const panelTab: Ref<PANEL_TAB_TYPE | undefined> = ref(undefined);
+    function panelToggle(tab: PANEL_TAB_TYPE): void {
+        if (PANEL_TAB.includes(tab) && panelCollapsed.value === true) {
+            panelOpen(tab);
+        } else {
+            panelClose();
+        };
+    };
+    function panelClose(): void {
+        panelTab.value = undefined;
+        panelCollapsed.value = true;
+    }
+    function panelOpen(tab: PANEL_TAB_TYPE): void {
+        if (PANEL_TAB.includes(tab)) {
+            panelTab.value = tab;
+            panelCollapsed.value = false;
+        };
+    }
 
     // Head config
     const headConfig = computed(() => {
@@ -570,10 +593,16 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     });
 
     return {
-        asideCollapsed,
+        asideCollapsed: readonly(asideCollapsed),
         asideClose,
         asideOpen,
         asideToggle,
+
+        panelCollapsed: readonly(panelCollapsed),
+        panelTab: readonly(panelTab),
+        panelClose,
+        panelOpen,
+        panelToggle,
 
         headConfig,
         contentConfig,
