@@ -39,6 +39,17 @@ export default createContentLoader("**/*.md", {
                 // Process next&prev
                 let next = resolveNavigationInput(raw.frontmatter.next);
                 let prev = resolveNavigationInput(raw.frontmatter.prev);
+
+                // Process lastUpdated&createdAt
+                const lastUpdated = (raw.frontmatter.lastUpdated instanceof Date || raw.frontmatter.lastUpdated === false)
+                    ? raw.frontmatter.lastUpdated
+                    : undefined;
+                const createdAt = (raw.frontmatter.createdAt instanceof Date || raw.frontmatter.createdAt === false)
+                    ? raw.frontmatter.createdAt
+                    : undefined;
+                const timeLabel = (typeof raw.frontmatter.timeLabel === 'string' || raw.frontmatter.timeLabel === false)
+                    ? raw.frontmatter.timeLabel
+                    : undefined;
                 
                 return {
                     ...raw,
@@ -60,6 +71,9 @@ export default createContentLoader("**/*.md", {
                         : undefined,
                     next,
                     prev,
+                    lastUpdated,
+                    createdAt,
+                    timeLabel,
                 };
             });
     },

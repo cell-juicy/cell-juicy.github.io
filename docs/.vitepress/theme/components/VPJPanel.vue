@@ -7,7 +7,6 @@ import { useVPJLayout } from '../composables/useVPJLayout';
 
 import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes';
 
-import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 
 import VPJIconCrossSmall from './icons/VPJIconCrossSmall.vue';

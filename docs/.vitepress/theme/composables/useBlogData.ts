@@ -3,6 +3,8 @@ import { cloneDeep } from "lodash-es";
 
 // @ts-ignore
 import { data } from "../data/blog.data";
+// @ts-ignore
+import { data as history } from "../data/history.data";
 
 import { VPJ_BLOG_DATA_SYMBOL } from "../utils/symbols";
 import { mergeSimpleData } from "../utils/mergeData";
@@ -47,12 +49,20 @@ interface RawBlogPageData {
     prev:
         | { text?: string; link?: string }
         | { text: false; link: false };
+    lastUpdated?:
+        | Date
+        | false;
+    createdAt?:
+        | Date
+        | false;
 }
 
 interface StoreBlogPageData extends RawBlogPageData {
     id: string;
     next: { text?: string; link?: string };
     prev: { text?: string; link?: string };
+    lastUpdated?: Date;
+    createdAt?: Date;
 }
 
 interface BlogStoreContext {
@@ -82,6 +92,8 @@ export class BlogPageData {
                 text: (raw.prev.text === false) ? undefined : raw.prev.text,
                 link: (raw.prev.link === false) ? undefined : raw.prev.link,
             },
+            lastUpdated: (raw.lastUpdated === false) ? undefined : raw.lastUpdated,
+            createdAt: (raw.createdAt === false) ? undefined : raw.createdAt,
         };
         this.#storeContext = storeContext;
 

@@ -3,6 +3,8 @@ import { cloneDeep } from "lodash-es";
 
 // @ts-ignore
 import { data } from "../data/doc.data";
+// @ts-ignore
+import { data as history } from "../data/history.data";
 
 import { VPJ_DOC_DATA_SYMBOL } from "../utils/symbols";
 import { any2Number, processDocOrder } from "../utils/common";
@@ -49,6 +51,12 @@ interface RawDocPageData {
     prev:
         | { text?: string; link?: string }
         | { text: false; link: false };
+    lastUpdated?:
+        | Date
+        | false;
+    createdAt?:
+        | Date
+        | false;
     inherit?: boolean;
     virtual?: boolean;
 }
@@ -58,6 +66,8 @@ interface StoreDocPageData extends RawDocPageData {
     id: string;
     next: { text?: string; link?: string };
     prev: { text?: string; link?: string };
+    lastUpdated?: Date;
+    createdAt?: Date;
     inherit: boolean;
     virtual: boolean;
 }
@@ -194,6 +204,8 @@ export class DocPageData {
             },
             inherit: (raw.inherit === true) ? true : false,
             virtual: (raw.virtual === true) ? true : false,
+            lastUpdated: (raw.lastUpdated === false) ? undefined : raw.lastUpdated,
+            createdAt: (raw.createdAt === false) ? undefined : raw.createdAt,
         };
         this.#storeContext = storeContext;
 

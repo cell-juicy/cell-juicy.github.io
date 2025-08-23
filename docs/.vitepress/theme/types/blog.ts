@@ -1625,4 +1625,8 @@ export interface SeriesMetaData {
      * @see {@link VPJBlogLayoutConfig.autoNextPrev}
      */
     autoNextPrev?: boolean;
+
+    timeLabel?:
+        | string
+        | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
 }
