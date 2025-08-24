@@ -6,15 +6,24 @@ import type { SiteConfig } from 'vitepress';
 
 
 interface CommitInfo {
-    time: Date,
+    time: number,
     hash: string,
     author: string,
     message: string,
     status: string
 }
 
+interface HistoryEntry {
+    path: string,
+    url: string,
+    history: CommitInfo[]
+}
+
+declare const data: Record<string, HistoryEntry>
+export { data }
+
 export default {
-    watch: ['**/*.md'],
+    watch: ["**/*.md"],
 
     load(watchFiles: string[]) {
         const config: SiteConfig = (global as any).VITEPRESS_CONFIG
@@ -22,7 +31,9 @@ export default {
             throw new Error("content loader invoked without an active vitepress process, or before vitepress config is resolved.")
         };
 
-        if (!config.lastUpdated) return [];
+        const result: Record<string, HistoryEntry> = {};
+
+        if (!config.lastUpdated) return result;
 
         let logOutput = "";
         try {
@@ -34,10 +45,10 @@ export default {
         } catch (e) {
             if (e.code === "ENOENT") {
                 console.warn("[Juicy Theme] Error: Git is not installed or not available in PATH. Please install Git to use this feature.");
-                return [];
+                return result;
             }
             console.error("[Juicy Theme] Error: Data loader failed to fetch Git commit history. Throw error:", e);
-            return [];
+            return result;
         };
 
         const rawCommit = logOutput.split("\x00\x00\x00");
@@ -45,7 +56,7 @@ export default {
 
         const commits = rawCommit.map((raw) => {
             const parts = raw.split("\x00\x00");
-            const time = new Date(Number(parts[0]) * 1000);
+            const time = Number(parts[0]) * 1000;
             const hash = parts[1];
             const author = parts[2];
             const message = parts.slice(3, -1).join("\x00\x00");
@@ -73,7 +84,7 @@ export default {
             };
         };
 
-        return watchFiles.map((file) => {
+        watchFiles.forEach((file) => {
             const url =
                 '/' +
                 normalizePath(path.relative(config.srcDir, file))
@@ -81,7 +92,9 @@ export default {
                     .replace(/\.md$/, config.cleanUrls ? '' : '.html');
 
             const history = fileCommitMap.get(file) ?? [];
-            return { path: file, url, history };
+            result[url] = { path: file, url, history };
         });
+
+        return result;
     }
 };

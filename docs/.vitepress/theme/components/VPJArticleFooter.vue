@@ -2,11 +2,13 @@
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 
+import { isDesktop } from '../utils/deviceTypes';
+
 import { useVPJLayout } from '../composables/useVPJLayout';
 
 import VPJIconArrowLeft from '../components/icons/VPJIconArrowLeft.vue';
 import VPJIconArrowRight from '../components/icons/VPJIconArrowRight.vue';
-import VPJIconEdit from '../components/icons/VPJIconEdit.vue'
+import VPJIconEdit from '../components/icons/VPJIconEdit.vue';
 
 
 const props = defineProps({
@@ -39,7 +41,7 @@ const computedMarginBottom = computed(() => {
 
 <template>
     <div
-        v-if="config.editLink.link || prev.link || next.link"
+        v-if="config.editLink.link || prev.link || next.link || config.timeLabel"
         class="vpj-article-footer"
     >
         <nav
@@ -86,6 +88,12 @@ const computedMarginBottom = computed(() => {
                     {{ config.editLink.text }}
                 </span>
             </a>
+            <span
+                v-if="config.timeLabel.length > 0 && isDesktop"
+                class="vpj-article-footer__time-label vpj-text"
+            >
+                {{ config.timeLabel }}
+            </span>
         </div>
     </div>
 </template>
@@ -176,18 +184,20 @@ const computedMarginBottom = computed(() => {
         text-align: right;
     }
 
-    /* Edit Link */
     .vpj-article-footer__info {
-        align-items: flex-start;
+        align-items: center;
         display: flex;
+        justify-content: space-between;
         width: 100%;
     }
 
+    /* Edit Link */
     .vpj-article-footer__edit-link {
         align-items: center;
         display: flex;
         gap: .5rem;
         height: 1rem;
+        margin-right: auto;
         text-decoration: none;
     }
 
@@ -210,6 +220,15 @@ const computedMarginBottom = computed(() => {
     .vpj-article-footer__edit-link:hover .vpj-article-footer__edit-link-text,
     .vpj-article-footer__edit-link:active .vpj-article-footer__edit-link-text {
         color: var(--vpj-color-primary-300);
+    }
+
+    /* Time Label */
+    .vpj-article-footer__time-label {
+        color: var(--vpj-color-text-200);
+        height: 1rem;
+        line-height: 1rem;
+        margin-left: auto;
+        text-align: right;
     }
 
     /* StyleSheet for mobile&tablet screen */

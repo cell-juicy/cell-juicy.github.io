@@ -1,5 +1,8 @@
 <script setup>
 import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
+
+import { useVPJLayout } from '../composables/useVPJLayout';
 
 import VPJDynamicIcon from './VPJDynamicIcon.vue'
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
@@ -12,6 +15,11 @@ import VPJIconPDF from './icons/VPJIconPDF.vue';
 
 import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes'
 
+
+const store = useVPJLayout();
+const {
+    articleFooterConfig,
+} = storeToRefs(store);
 
 const tooltipPosition = "bottom"
 const tooltipBoundary = ".vpj-layout-content"
@@ -80,7 +88,8 @@ const toolsData = computed(() => {
 const showActions = computed(() => {
     const hasDefaults = !!props.config?.github?.url 
         || !!props.config?.pdf?.url 
-        || !!props.config?.md?.url;
+        || !!props.config?.md?.url
+        || !!articleFooterConfig.value.timeLabel;
     
     const hasTools = Object.entries(props.config?.toolbar || {}).length > 0;
 
@@ -210,7 +219,12 @@ const showDivider = computed(() => {
             v-show="!isDesktop && showActions"
             class="vpj-article-header__actions"
         >
-            
+            <span
+                v-if="articleFooterConfig.timeLabel.length > 0 && !isDesktop"
+                class="vpj-article-header__time-label vpj-text"
+            >
+                {{ articleFooterConfig.timeLabel }}
+            </span>
         </div>
         <slot name="header-after"/>
     </header>
@@ -329,6 +343,15 @@ const showDivider = computed(() => {
         width: 1px;
         margin-left: .25rem;
         margin-right: .25rem;
+    }
+
+    /* Time Label */
+    .vpj-article-header__time-label {
+        color: var(--vpj-color-text-200);
+        height: 1rem;
+        line-height: 1rem;
+        margin-left: 1rem;
+        text-align: right;
     }
 
     /* Tablet and Mobile style sheet */

@@ -21,6 +21,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     markdown: {
         math: true
     },
+    lastUpdated: true,
     vite: {
         plugins: [
             // @ts-ignore
@@ -188,5 +189,6 @@ export default defineConfigWithTheme<ThemeConfig>({
         next: "下一页",
         prev: "上一页",
         enableVitrual: true,
+        timeLabel: "上次更新于：:lYYYY/:lMM/:lDD  创建于：:cYYYY/:cMM/:cDD"
     },
 })

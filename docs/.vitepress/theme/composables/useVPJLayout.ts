@@ -15,6 +15,7 @@ import {
     mergeToolbarButtonData,
     mergeFooterData,
     mergeEditLinkData,
+    mergeTimeLabelData,
 } from '../utils/mergeData';
 
 import { useBlogData } from './useBlogData';
@@ -96,6 +97,7 @@ const DEFAULT = {
         EDITLINK: undefined,
         NEXT: "Next",
         PREV: "Previous",
+        TIMELABEL: undefined,
     },
     "DOC":{
         TITLETEMPLATE: true,
@@ -139,6 +141,7 @@ const DEFAULT = {
         EDITLINK: undefined,
         NEXT: "下一页",
         PREV: "上一页",
+        TIMELABEL: undefined,
     },
 };
 
@@ -158,8 +161,20 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         theme: Ref<ThemeConfig, ThemeConfig>,
         site: Ref<SiteData<ThemeConfig>, SiteData<ThemeConfig>>
     } = useData();
-    const { layoutConfig: docLayoutConfig, spaceConfig: docSpecificConfig, ctx: docCtx } = useDocData();
-    const { layoutConfig: blogLayoutConfig, seriesConfig: blogSpecificConfig, ctx: blogCtx } = useBlogData();
+    const {
+        layoutConfig: docLayoutConfig,
+        spaceConfig: docSpecificConfig,
+        ctx: docCtx,
+        lastUpdated: docLastUpdated,
+        createdAt: docCreatedAt
+    } = useDocData();
+    const {
+        layoutConfig: blogLayoutConfig,
+        seriesConfig: blogSpecificConfig,
+        ctx: blogCtx,
+        lastUpdated: blogLastUpdated,
+        createdAt: blogCreatedAt
+    } = useBlogData();
     const pageLayoutConfig = computed(() => {
         return (typeof theme.value.layouts?.page === "object" && theme.value.layouts.page)
             ? theme.value.layouts.page
@@ -196,6 +211,16 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     const ctx = computed(() => {
         if (layout.value === "blog") return blogCtx.value;
         if (layout.value === "doc") return docCtx.value;
+        return undefined;
+    });
+    const lastUpdated = computed(() => {
+        if (layout.value === "blog") return blogLastUpdated.value;
+        if (layout.value === "doc") return docLastUpdated.value;
+        return undefined;
+    });
+    const createdAt = computed(() => {
+        if (layout.value === "blog") return blogCreatedAt.value;
+        if (layout.value === "doc") return docCreatedAt.value;
         return undefined;
     });
 
@@ -492,6 +517,17 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 defaultConfig.value.EDITLINK
             );
 
+            // Calculate time label
+            const timeLabel = mergeTimeLabelData(
+                lastUpdated.value,
+                createdAt.value,
+                frontmatter.value.timeLabel,
+                specificConfig.value.timeLabel,
+                (layoutConfig.value as VPJDocLayoutConfig | VPJBlogLayoutConfig).timeLabel,
+                theme.value.timeLabel,
+                defaultConfig.value.TIMELABEL
+            );
+
             // Calculate next label
             const nextLabel = mergeSimpleData<string | false, false>(
                 (v) => typeof v === 'string' || v === false,
@@ -516,6 +552,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
 
             return {
                 editLink,
+                timeLabel,
                 nextLabel,
                 prevLabel
             };

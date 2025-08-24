@@ -30,7 +30,7 @@ const {
     coverConfig,
     asideConfig
 } = storeToRefs(store);
-const { cover, prev, next } = useBlogData();
+const { data, cover, prev, next, lastUpdated, createdAt } = useBlogData();
 
 useHead(headConfig);
 

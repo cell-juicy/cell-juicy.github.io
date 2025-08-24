@@ -3,7 +3,6 @@ import { cloneDeep } from "lodash-es";
 
 // @ts-ignore
 import { data } from "../data/blog.data";
-// @ts-ignore
 import { data as history } from "../data/history.data";
 
 import { VPJ_BLOG_DATA_SYMBOL } from "../utils/symbols";
@@ -26,13 +25,15 @@ interface BlogData {
     cover: Ref<string | undefined>;
     next: Ref<{ text?: string; link?: string } | undefined>;
     prev: Ref<{ text?: string; link?: string } | undefined>;
+    lastUpdated: Ref<Date | undefined>;
+    createdAt: Ref<Date | undefined>;
     ctx: Ref<PageContext | undefined>;
     filter: (callbackFn: (data: BlogPageData) => boolean) => BlogPageData[];
     seriesConfig: Ref<SeriesMetaData>;
     layoutConfig: Ref<VPJBlogLayoutConfig>;
 }
 
-interface RawBlogPageData {
+interface BaseBlodPageData {
     title?: string;
     series?: string;
     order: number;
@@ -49,15 +50,18 @@ interface RawBlogPageData {
     prev:
         | { text?: string; link?: string }
         | { text: false; link: false };
+}
+
+interface RawBlogPageData extends BaseBlodPageData {
     lastUpdated?:
-        | Date
+        | number
         | false;
     createdAt?:
-        | Date
+        | number
         | false;
 }
 
-interface StoreBlogPageData extends RawBlogPageData {
+interface StoreBlogPageData extends BaseBlodPageData {
     id: string;
     next: { text?: string; link?: string };
     prev: { text?: string; link?: string };
@@ -92,8 +96,8 @@ export class BlogPageData {
                 text: (raw.prev.text === false) ? undefined : raw.prev.text,
                 link: (raw.prev.link === false) ? undefined : raw.prev.link,
             },
-            lastUpdated: (raw.lastUpdated === false) ? undefined : raw.lastUpdated,
-            createdAt: (raw.createdAt === false) ? undefined : raw.createdAt,
+            lastUpdated: (typeof raw.lastUpdated === 'number') ? new Date(raw.lastUpdated) : undefined,
+            createdAt: (typeof raw.createdAt === 'number') ? new Date(raw.createdAt) : undefined,
         };
         this.#storeContext = storeContext;
 
@@ -125,6 +129,8 @@ export class BlogPageData {
     }
     get next() { return this.#store.next; }
     get prev() { return this.#store.prev; }
+    get lastUpdated(): Date | undefined { return this.#store.lastUpdated; }
+    get createdAt(): Date | undefined { return this.#store.createdAt; }
 
     get url(): string | undefined { return this.#store.url; }
     get frontmatter(): Record<string, any> | undefined { return this.#store.frontmatter; }
@@ -256,6 +262,24 @@ export class BlogPageData {
         });
     };
 
+    static bindHistory(dataBase: RawBlogPageData[]) {
+        if (!history || Object.keys(history).length === 0) return;
+
+        dataBase.forEach((curr) => {
+            if (!curr.url) return;
+
+            const log = history[curr.url];
+            if (Array.isArray(log?.history) && log.history.length > 0) {
+                curr.lastUpdated = (curr.lastUpdated === undefined)
+                    ? log.history[0].time
+                    : curr.lastUpdated;
+                curr.createdAt = (curr.createdAt === undefined)
+                    ? log.history[log.history.length - 1].time
+                    : curr.createdAt;
+            };
+        });
+    };
+
     static processDataBase(
         dataBase: RawBlogPageData[],
         blogConfig: Record<string, SeriesMetaData>,
@@ -272,6 +296,9 @@ export class BlogPageData {
 
         // Bind next and prev node
         BlogPageData.bindNextPrev(copy, blogConfig, layoutConfig, themeConfig);
+
+        // Bind history
+        BlogPageData.bindHistory(copy);
 
         return copy;
     };
@@ -386,6 +413,22 @@ export function initVPJBlogData(route: Route, siteData: Ref<SiteData>): BlogData
         return undefined;
     });
 
+    // Calculate lastUpdated
+    const lastUpdated = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            return currentData.value?.lastUpdated || undefined;
+        };
+        return undefined;
+    });
+
+    // Calculate createdAt
+    const createdAt = computed(() => {
+        if (frontmatter.value.layout === "blog") {
+            return currentData.value?.createdAt || undefined;
+        };
+        return undefined;
+    });
+
     // Calculate the context
     const ctx: Ref<PageContext | undefined> = computed(() => {
         if (frontmatter.value.layout === "blog") {
@@ -416,6 +459,8 @@ export function initVPJBlogData(route: Route, siteData: Ref<SiteData>): BlogData
         tags,
         next,
         prev,
+        lastUpdated,
+        createdAt,
         ctx,
         filter,
         seriesConfig,

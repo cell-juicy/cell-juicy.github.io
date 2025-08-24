@@ -10,8 +10,6 @@ import { VPJ_PAGE_LAYOUT_SYMBOL } from '../utils/symbols';
 import VPJOverlayScrollArea from '../components/VPJOverlayScrollArea.vue';
 import VPJFooter from '../components/VPJFooter.vue';
 
-import { data } from '../data/history.data'
-
 
 const store = useVPJLayout();
 const {
