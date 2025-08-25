@@ -89,7 +89,7 @@ const computedMarginBottom = computed(() => {
                 </span>
             </a>
             <span
-                v-if="config.timeLabel.length > 0 && isDesktop"
+                v-if="config.timeLabel && isDesktop"
                 class="vpj-article-footer__time-label vpj-text"
             >
                 {{ config.timeLabel }}

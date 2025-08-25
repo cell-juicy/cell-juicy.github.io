@@ -220,7 +220,7 @@ const showDivider = computed(() => {
             class="vpj-article-header__actions"
         >
             <span
-                v-if="articleFooterConfig.timeLabel.length > 0 && !isDesktop"
+                v-if="articleFooterConfig.timeLabel && !isDesktop"
                 class="vpj-article-header__time-label vpj-text"
             >
                 {{ articleFooterConfig.timeLabel }}
