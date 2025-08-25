@@ -1,6 +1,5 @@
 <script setup>
-import { useData } from 'vitepress';
-import { ref, computed, watch, onUnmounted } from 'vue';
+import { ref, computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useVPJLayout } from '../composables/useVPJLayout';
@@ -8,6 +7,7 @@ import { useVPJLayout } from '../composables/useVPJLayout';
 import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes';
 
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
+import VPJPanelHistoryPage from './VPJPanelHistoryPage.vue';
 
 import VPJIconCrossSmall from './icons/VPJIconCrossSmall.vue';
 
@@ -51,7 +51,7 @@ const title = computed(() => {
                 />
             </header>
             <div class="vpj-panel__content">
-                <div v-if="panelTab === 'history'"></div>
+                <VPJPanelHistoryPage v-if="panelTab === 'history'"/>
             </div>
         </aside>
         <Transition>
@@ -149,6 +149,29 @@ const title = computed(() => {
         right: 0;
         top: 0;
         z-index: 100;
+    }
+
+    /* Fallback */
+    :deep(.vpj-panel__fallback) {
+        align-items: center;
+        color: var(--vpj-color-text-100);
+        display: flex;
+        flex: 1;
+        font-size: 1.25rem;
+        height: 100%;
+        justify-content: center;
+        line-height: 1.5;
+        min-height: 0;
+        min-width: 0;
+        opacity: v-bind(fallbackOpacity);
+        overflow: hidden;
+        overflow-wrap: break-word;
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+        transition: opacity 0.2s ease-in-out;
+        user-select: none;
+        width: 100%;
+        word-break: break-all;
     }
 
     /* Tablet style sheet */

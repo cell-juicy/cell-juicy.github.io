@@ -5,13 +5,44 @@ import { execFileSync } from 'node:child_process'
 import type { SiteConfig } from 'vitepress';
 
 
-interface CommitInfo {
-    time: number,
-    hash: string,
-    author: string,
-    message: string,
-    status: string
-}
+type FileInfo = 
+    | {
+        status: "A" | "M" | "D" | "T" | "U" | "X",
+        path: string,
+    }
+    | {
+        status: "R" | "C",
+        from: string,
+        to: string,
+        similarity: number
+    }
+
+type CommitInfo = 
+    | {
+        time: number,
+        hash: string,
+        author: string,
+        message: string,
+        status: "A" | "M" | "D" | "T" | "U" | "X"
+    }
+    | {
+        time: number,
+        hash: string,
+        author: string,
+        message: string,
+        status: "R" | "C",
+        similarity: number,
+        from: string,
+    }
+    | {
+        time: number,
+        hash: string,
+        author: string,
+        message: string,
+        status: "R" | "C",
+        similarity: number,
+        to: string,
+    }
 
 interface HistoryEntry {
     path: string,
@@ -61,27 +92,53 @@ export default {
             const author = parts[2];
             const message = parts.slice(3, -1).join("\x00\x00");
             const filesRaw = parts[parts.length - 1].trim().split("\x00").filter(Boolean);
-            const files: { status: string, path: string }[] = [];
-            for (let i=0; i<filesRaw.length; i+=2) {
+            const files: FileInfo[] = [];
+            for (let i = 0; i < filesRaw.length; ) {
                 const status = filesRaw[i].trim();
-                const path = filesRaw[i+1];
-                files.push({ status, path });
-            }
+                if (status[0] === "R" || status[0] === "C") {
+                    const similarity = (Number(status.slice(1)) || 100) / 100;
+                    const from = filesRaw[i + 1];
+                    const to = filesRaw[i + 2];
+
+                    files.push({ status: status[0], from, to, similarity });
+
+                    i += 1;
+                } else if ((["A", "M", "D", "T", "U", "X"]).includes(status)) {
+                    const path = filesRaw[i + 1];
+                    files.push({ status: status as "A" | "M" | "D" | "T" | "U" | "X", path });
+                };
+                i += 2;
+            };
             return { time, hash, author, message, files };
         });
 
         const fileCommitMap = new Map<string, CommitInfo[]>();
         for (const commit of commits) {
-            for (const f of commit.files) {
-                if (!fileCommitMap.has(f.path)) fileCommitMap.set(f.path, []);
-                fileCommitMap.get(f.path)!.push({
-                    time: commit.time,
-                    hash: commit.hash,
-                    author: commit.author,
-                    message: commit.message,
-                    status: f.status
-                });
-            };
+            commit.files.forEach((info) => {
+                if ("path" in info) {
+                    if (!fileCommitMap.has(info.path))  fileCommitMap.set(info.path, []);
+                    fileCommitMap.get(info.path)?.push({
+                        time: commit.time,
+                        hash: commit.hash,
+                        author: commit.author,
+                        message: commit.message,
+                        status: info.status,
+                    });
+                } else {
+                    const base = {
+                        time: commit.time,
+                        hash: commit.hash,
+                        author: commit.author,
+                        message: commit.message,
+                        status: info.status,
+                        similarity: info.similarity,
+                    };
+                    if (!fileCommitMap.has(info.from) && info.from.endsWith(".md"))  fileCommitMap.set(info.from, []);
+                    fileCommitMap.get(info.from)?.push({ ...base, to: info.to});
+                    if (!fileCommitMap.has(info.to) && info.to.endsWith(".md"))  fileCommitMap.set(info.to, []);
+                    fileCommitMap.get(info.to)?.push({ ...base, from: info.from});
+                };
+            });
         };
 
         watchFiles.forEach((file) => {
