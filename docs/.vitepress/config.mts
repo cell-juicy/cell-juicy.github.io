@@ -181,6 +181,13 @@ export default defineConfigWithTheme<ThemeConfig>({
             tag: {
                 format: (tag) => `# ${tag}`
             },
+            panelTabHistory: {
+                repository: "https://github.com/cell-juicy/cell-juicy.github.io",
+                interval: "month",
+                intervalFormat(date) {
+                    return `${date.getFullYear()}年${date.getMonth() + 1}月`
+                },
+            }
         },
         editLink: {
             pattern: "https://github.com/cell-juicy/cell-juicy.github.io/tree/main/docs/:path",
