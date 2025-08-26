@@ -3,6 +3,7 @@ import { cloneDeep } from "lodash-es";
 
 // @ts-ignore
 import { data } from "../data/doc.data";
+import { data as history } from "../data/history.data";
 
 import { VPJ_DOC_DATA_SYMBOL } from "../utils/symbols";
 import { any2Number, processDocOrder } from "../utils/common";
@@ -25,13 +26,15 @@ interface DocData {
     resources: Ref<Record<string, ResourceInput> | undefined>;
     next: Ref<{ text?: string; link?: string } | undefined>;
     prev: Ref<{ text?: string; link?: string } | undefined>;
+    lastUpdated: Ref<Date | undefined>;
+    createdAt: Ref<Date | undefined>;
     ctx: Ref<PageContext | undefined>;
     filter: (callbackFn: (data: DocPageData) => boolean) => DocPageData[];
     spaceConfig: Ref<SpaceMetaData>;
     layoutConfig: Ref<VPJDocLayoutConfig>;
 }
 
-interface RawDocPageData {
+interface BaseDocPageData {
     title?: string;
     space?: string;
     order: number[];
@@ -53,11 +56,22 @@ interface RawDocPageData {
     virtual?: boolean;
 }
 
-interface StoreDocPageData extends RawDocPageData {
+interface RawDocPageData extends BaseDocPageData {
+    lastUpdated?:
+        | number
+        | false;
+    createdAt?:
+        | number
+        | false;
+}
+
+interface StoreDocPageData extends BaseDocPageData {
     resources: Record<string, ResourceData>;
     id: string;
     next: { text?: string; link?: string };
     prev: { text?: string; link?: string };
+    lastUpdated?: Date;
+    createdAt?: Date;
     inherit: boolean;
     virtual: boolean;
 }
@@ -194,6 +208,8 @@ export class DocPageData {
             },
             inherit: (raw.inherit === true) ? true : false,
             virtual: (raw.virtual === true) ? true : false,
+            lastUpdated: (typeof raw.lastUpdated === 'number') ? new Date(raw.lastUpdated) : undefined,
+            createdAt: (typeof raw.createdAt === 'number') ? new Date(raw.createdAt) : undefined,
         };
         this.#storeContext = storeContext;
 
@@ -216,6 +232,8 @@ export class DocPageData {
     get resources(): Record<string, ResourceData> { return this.#store.resources; }
     get next() { return this.#store.next; }
     get prev() { return this.#store.prev; }
+    get lastUpdated(): Date | undefined { return this.#store.lastUpdated; }
+    get createdAt(): Date | undefined { return this.#store.createdAt; }
     get treeTitle(): string {
         if (typeof this.#store.treeTitle === 'string') {
             return this.#store.treeTitle;
@@ -534,6 +552,24 @@ export class DocPageData {
         });
     };
 
+    static bindHistory(dataBase: RawDocPageData[]) {
+        if (!history || Object.keys(history).length === 0) return;
+
+        dataBase.forEach((curr) => {
+            if (!curr.url) return;
+
+            const log = history[curr.url];
+            if (Array.isArray(log?.history) && log.history.length > 0) {
+                curr.lastUpdated = (curr.lastUpdated === undefined)
+                    ? log.history[0].time
+                    : curr.lastUpdated;
+                curr.createdAt = (curr.createdAt === undefined)
+                    ? log.history[log.history.length - 1].time
+                    : curr.createdAt;
+            };
+        });
+    };
+
     static sortDataBase(dataBase: RawDocPageData[]) {
         return dataBase
             .sort((a: RawDocPageData, b: RawDocPageData) => {
@@ -568,6 +604,9 @@ export class DocPageData {
         if (typeof docConfig === 'object' && docConfig !== null) {
             DocPageData.applySpaceConfig(copy, docConfig);
         };
+
+        // Bind history
+        DocPageData.bindHistory(copy);
 
         // Sort nodes by space/order
         return DocPageData.sortDataBase(copy);
@@ -685,6 +724,22 @@ export function initVPJDocData(route: Route, siteData: Ref<SiteData>): DocData {
         return undefined;
     });
 
+    // Calculate lastUpdated
+    const lastUpdated = computed(() => {
+        if (frontmatter.value.layout === "doc") {
+            return currentData.value?.lastUpdated || undefined;
+        };
+        return undefined;
+    });
+
+    // Calculate createdAt
+    const createdAt = computed(() => {
+        if (frontmatter.value.layout === "doc") {
+            return currentData.value?.createdAt || undefined;
+        };
+        return undefined;
+    });
+
     // Calculate the context
     const ctx: Ref<PageContext | undefined> = computed(() => {
         if (frontmatter.value.layout === "doc") {
@@ -715,6 +770,8 @@ export function initVPJDocData(route: Route, siteData: Ref<SiteData>): DocData {
         resources,
         prev,
         next,
+        lastUpdated,
+        createdAt,
         ctx,
         filter,
         spaceConfig,

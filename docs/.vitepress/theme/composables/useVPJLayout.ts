@@ -1,5 +1,5 @@
-import { PageData, useData } from 'vitepress';
-import { ref, computed } from 'vue';
+import { useData } from 'vitepress';
+import { ref, computed, readonly } from 'vue';
 import { defineStore } from 'pinia';
 
 import { isMobile, isTablet } from '../utils/deviceTypes'
@@ -15,13 +15,14 @@ import {
     mergeToolbarButtonData,
     mergeFooterData,
     mergeEditLinkData,
+    mergeTimeLabelData,
 } from '../utils/mergeData';
 
 import { useBlogData } from './useBlogData';
 import { useDocData } from './useDocData';
 
 import type { Ref, ComputedRef } from 'vue';
-import type { SiteData } from 'vitepress';
+import type { SiteData, PageData } from 'vitepress';
 import type { ThemeConfig } from '../types';
 import type { CoverCssConfigData, DeviceSpecificData } from '../types/common';
 import type { VPJBlogLayoutConfig } from '../types/layoutBlog';
@@ -43,7 +44,7 @@ const DEFAULT = {
         TITLETEMPLATE: true,
         FAVICON: undefined,
         DESCRPTION: undefined,
-        CONTENTMARGINBOTTOM: "1.5rem",
+        CONTENTMARGINBOTTOM: "2.5rem",
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "61.25rem",
         CONTENTPADDING: {
@@ -84,7 +85,7 @@ const DEFAULT = {
             objectFit: "cover",
             objectPosition: "center center"
         },
-        CONTENTMARGINBOTTOM: "1.5rem",
+        CONTENTMARGINBOTTOM: "2.5rem",
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "760px",
         CONTENTPADDING: {
@@ -96,6 +97,7 @@ const DEFAULT = {
         EDITLINK: undefined,
         NEXT: "Next",
         PREV: "Previous",
+        TIMELABEL: undefined,
     },
     "DOC":{
         TITLETEMPLATE: true,
@@ -127,7 +129,7 @@ const DEFAULT = {
             objectFit: "cover",
             objectPosition: "center center"
         },
-        CONTENTMARGINBOTTOM: "1.5rem",
+        CONTENTMARGINBOTTOM: "2.5rem",
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "820px",
         CONTENTPADDING: {
@@ -139,8 +141,12 @@ const DEFAULT = {
         EDITLINK: undefined,
         NEXT: "下一页",
         PREV: "上一页",
+        TIMELABEL: undefined,
     },
 };
+
+const PANEL_TAB = ["history"] as const;
+type PANEL_TAB_TYPE = typeof PANEL_TAB[number];
 
 function getDeviceSpecificData(data: DeviceSpecificData) {
     if (isMobile.value) return data.mobile;
@@ -155,8 +161,20 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         theme: Ref<ThemeConfig, ThemeConfig>,
         site: Ref<SiteData<ThemeConfig>, SiteData<ThemeConfig>>
     } = useData();
-    const { layoutConfig: docLayoutConfig, spaceConfig: docSpecificConfig, ctx: docCtx } = useDocData();
-    const { layoutConfig: blogLayoutConfig, seriesConfig: blogSpecificConfig, ctx: blogCtx } = useBlogData();
+    const {
+        layoutConfig: docLayoutConfig,
+        spaceConfig: docSpecificConfig,
+        ctx: docCtx,
+        lastUpdated: docLastUpdated,
+        createdAt: docCreatedAt
+    } = useDocData();
+    const {
+        layoutConfig: blogLayoutConfig,
+        seriesConfig: blogSpecificConfig,
+        ctx: blogCtx,
+        lastUpdated: blogLastUpdated,
+        createdAt: blogCreatedAt
+    } = useBlogData();
     const pageLayoutConfig = computed(() => {
         return (typeof theme.value.layouts?.page === "object" && theme.value.layouts.page)
             ? theme.value.layouts.page
@@ -195,6 +213,16 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         if (layout.value === "doc") return docCtx.value;
         return undefined;
     });
+    const lastUpdated = computed(() => {
+        if (layout.value === "blog") return blogLastUpdated.value;
+        if (layout.value === "doc") return docLastUpdated.value;
+        return undefined;
+    });
+    const createdAt = computed(() => {
+        if (layout.value === "blog") return blogCreatedAt.value;
+        if (layout.value === "doc") return docCreatedAt.value;
+        return undefined;
+    });
 
     // state
     const asideCollapsed: Ref<boolean> = ref(
@@ -205,6 +233,26 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     function asideToggle(): void { asideCollapsed.value = !asideCollapsed.value; };
     function asideClose(): void { asideCollapsed.value = true; };
     function asideOpen(): void { asideCollapsed.value = false; };
+
+    const panelCollapsed: Ref<boolean> = ref(true);
+    const panelTab: Ref<PANEL_TAB_TYPE | undefined> = ref(undefined);
+    function panelToggle(tab: PANEL_TAB_TYPE): void {
+        if (PANEL_TAB.includes(tab) && panelCollapsed.value === true) {
+            panelOpen(tab);
+        } else {
+            panelClose();
+        };
+    };
+    function panelClose(): void {
+        panelTab.value = undefined;
+        panelCollapsed.value = true;
+    }
+    function panelOpen(tab: PANEL_TAB_TYPE): void {
+        if (PANEL_TAB.includes(tab)) {
+            panelTab.value = tab;
+            panelCollapsed.value = false;
+        };
+    }
 
     // Head config
     const headConfig = computed(() => {
@@ -469,6 +517,17 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 defaultConfig.value.EDITLINK
             );
 
+            // Calculate time label
+            const timeLabel = mergeTimeLabelData(
+                lastUpdated.value,
+                createdAt.value,
+                frontmatter.value.timeLabel,
+                specificConfig.value.timeLabel,
+                (layoutConfig.value as VPJDocLayoutConfig | VPJBlogLayoutConfig).timeLabel,
+                theme.value.timeLabel,
+                defaultConfig.value.TIMELABEL
+            );
+
             // Calculate next label
             const nextLabel = mergeSimpleData<string | false, false>(
                 (v) => typeof v === 'string' || v === false,
@@ -493,6 +552,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
 
             return {
                 editLink,
+                timeLabel,
                 nextLabel,
                 prevLabel
             };
@@ -570,10 +630,16 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     });
 
     return {
-        asideCollapsed,
+        asideCollapsed: readonly(asideCollapsed),
         asideClose,
         asideOpen,
         asideToggle,
+
+        panelCollapsed: readonly(panelCollapsed),
+        panelTab: readonly(panelTab),
+        panelClose,
+        panelOpen,
+        panelToggle,
 
         headConfig,
         contentConfig,

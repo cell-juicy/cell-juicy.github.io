@@ -1637,4 +1637,8 @@ export interface SpaceMetaData {
      * @see {@link VPJDocLayoutConfig.autoNextPrev} 布局层级自动上下页开关
      */
     autoNextPrev?: boolean;
+
+    timeLabel?:
+        | string
+        | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
 }

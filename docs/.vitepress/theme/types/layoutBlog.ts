@@ -1285,4 +1285,8 @@ export interface VPJBlogLayoutConfig {
      * ```
      */
     autoNextPrev?: boolean;
+
+    timeLabel?:
+        | string
+        | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
 }

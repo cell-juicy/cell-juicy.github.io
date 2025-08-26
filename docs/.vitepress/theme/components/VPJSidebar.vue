@@ -71,7 +71,7 @@ provide(VPJ_SIDEBAR_SYMBOL, {
             padding-bottom 0.2s ease-in-out,
             width 0.2s ease-in-out,
             transform 0.2s ease-in-out;
-        width: min(16.5rem, 50vw);
+        width: min(16.5rem, 35vw);
         z-index: 0;
     }
 
@@ -90,7 +90,7 @@ provide(VPJ_SIDEBAR_SYMBOL, {
     @media screen and (max-width: 768px) {
         /* Sidebar */
         .vpj-sidebar {
-            width: min(20rem, 60vw);
+            width: min(20rem, 50vw);
             position: fixed;
             left: 0;
             z-index: 101;

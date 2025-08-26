@@ -28,7 +28,7 @@ import type {
     FooterData
 } from "../types/common";
 import type { PageData, SiteData } from 'vitepress';
-import { any2Number } from "./common";
+import { any2Number, formatTimeLabel } from "./common";
 
 
 const CssConfigKeyList = [
@@ -400,6 +400,21 @@ function normalizeFooter(input: any): NormalizedFooterInput {
     return { message: undefined, copyright: undefined }
 }
 
+function normalizeTimeLabel(lastUpdated: Date | undefined, createdAt: Date | undefined, input: any): string | undefined {
+    if (typeof input === 'string') {
+        return formatTimeLabel(lastUpdated, createdAt, input);
+    } else if (typeof input === 'function'){
+        try {
+            const result = input(lastUpdated, createdAt);
+            return (typeof result === 'string') ? result : undefined;
+        } catch (e) {
+            console.log(`[Juicy Theme] Failed to resolve time label, Catch error:${e}`);
+            return undefined;
+        };
+    };
+    return undefined;
+}
+
 // merge data
 export function mergeSimpleData<T, C = never>(
     validator: (value: T) => boolean,
@@ -739,4 +754,22 @@ export function mergeFooterData(...sources: (FooterInput | undefined)[]): Footer
         }
     }
     return {} as FooterData;
+}
+
+export function mergeTimeLabelData(
+    lastUpdated: Date | undefined,
+    createdAt: Date | undefined,
+    ...sources: (
+        | string
+        | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined)
+        | undefined
+    )[]
+): string | undefined {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map((source) => normalizeTimeLabel(lastUpdated, createdAt, source))
+            .find((source) => source !== undefined);
+        return merged;
+    };
+    return undefined;
 }

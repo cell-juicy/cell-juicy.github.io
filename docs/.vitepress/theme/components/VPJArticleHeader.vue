@@ -1,6 +1,9 @@
 <script setup>
 import { useData } from 'vitepress';
 import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
+
+import { useVPJLayout } from '../composables/useVPJLayout';
 
 import VPJDynamicIcon from './VPJDynamicIcon.vue'
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
@@ -10,9 +13,16 @@ import VPJIconGithub from './icons/VPJIconGithub.vue';
 import VPJIconMarkdown from './icons/VPJIconMarkdown.vue';
 import VPJIconMenuBurger from './icons/VPJIconMenuBurger.vue';
 import VPJIconPDF from './icons/VPJIconPDF.vue';
+import VPJIconTimePast from './icons/VPJIconTimePast.vue'
 
 import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes'
 
+
+const store = useVPJLayout();
+const {
+    articleFooterConfig,
+} = storeToRefs(store);
+const { panelToggle } = store;
 
 const tooltipPosition = "bottom"
 const tooltipBoundary = ".vpj-layout-content"
@@ -34,6 +44,7 @@ const tooltipAttrs = {
         paddingBottom: ".375rem",
         paddingLeft: ".5rem",
         paddingRight: ".5rem",
+        zIndex: "102"
     }
 }
 
@@ -80,7 +91,8 @@ const toolsData = computed(() => {
 const showActions = computed(() => {
     const hasDefaults = !!props.config?.github?.url 
         || !!props.config?.pdf?.url 
-        || !!props.config?.md?.url;
+        || !!props.config?.md?.url
+        || !!articleFooterConfig.value.timeLabel;
     
     const hasTools = Object.entries(props.config?.toolbar || {}).length > 0;
 
@@ -130,18 +142,31 @@ const showDivider = computed(() => {
                 >
                     <div class="vpj-article-header__toolbar">
                         <VPJTooltipBtn
+                            @click="() => panelToggle('history')"
+                            :boundary="tooltipBoundary"
+                            :isLink="false"
+                            :icon="VPJIconTimePast"
+                            tooltip="查看历史记录"
+                            :tooltipPosition="tooltipPosition"
+                            :tooltipAttrs="tooltipAttrs"
+                            :offset="tooltipOffset"
+                            :safeMargin="tooltipSafeMargin"
+                            class="vpj-article-header__button"
+                        />
+                        <VPJTooltipBtn
                             v-if="props.config?.github?.url"
                             :boundary="tooltipBoundary"
                             :href="props.config?.github?.url"
                             :isLink="true"
                             :icon="VPJIconGithub"
-                            target="_blank"
                             :tooltip="props.config?.github?.tooltip"
                             :tooltipPosition="tooltipPosition"
                             :tooltipAttrs="tooltipAttrs"
                             :offset="tooltipOffset"
                             :safeMargin="tooltipSafeMargin"
                             class="vpj-article-header__button"
+                            target="_blank"
+                            rel="noopener"
                         />
                         <VPJTooltipBtn
                             v-if="props.config?.pdf?.url"
@@ -162,6 +187,7 @@ const showDivider = computed(() => {
                             :offset="tooltipOffset"
                             :safeMargin="tooltipSafeMargin"
                             class="vpj-article-header__button"
+                            rel="noopener"
                         />
                         <VPJTooltipBtn
                             v-if="props.config?.md?.url"
@@ -182,6 +208,7 @@ const showDivider = computed(() => {
                             :offset="tooltipOffset"
                             :safeMargin="tooltipSafeMargin"
                             class="vpj-article-header__button"
+                            rel="noopener"
                         />
                         <div v-if="showDivider" class="vpj-article-header__divider"/>
                         <VPJTooltipBtn
@@ -196,6 +223,7 @@ const showDivider = computed(() => {
                             :safeMargin="tooltipSafeMargin"
                             @click="tool.callback"
                             class="vpj-article-header__button"
+                            rel="noopener"
                         />
                     </div>
                 </Teleport>
@@ -206,7 +234,12 @@ const showDivider = computed(() => {
             v-show="!isDesktop && showActions"
             class="vpj-article-header__actions"
         >
-            
+            <span
+                v-if="articleFooterConfig.timeLabel && !isDesktop"
+                class="vpj-article-header__time-label vpj-text"
+            >
+                {{ articleFooterConfig.timeLabel }}
+            </span>
         </div>
         <slot name="header-after"/>
     </header>
@@ -325,6 +358,15 @@ const showDivider = computed(() => {
         width: 1px;
         margin-left: .25rem;
         margin-right: .25rem;
+    }
+
+    /* Time Label */
+    .vpj-article-header__time-label {
+        color: var(--vpj-color-text-200);
+        height: 1rem;
+        line-height: 1rem;
+        margin-left: 1rem;
+        text-align: right;
     }
 
     /* Tablet and Mobile style sheet */

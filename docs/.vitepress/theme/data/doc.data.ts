@@ -41,6 +41,18 @@ export default createContentLoader("**/*.md", {
                 // Process next&prev
                 let next = resolveNavigationInput(raw.frontmatter.next);
                 let prev = resolveNavigationInput(raw.frontmatter.prev);
+
+                // Process lastUpdated&createdAt
+                const lastUpdated = (raw.frontmatter.lastUpdated === false)
+                    ? raw.frontmatter.lastUpdated
+                    : (raw.frontmatter.lastUpdated instanceof Date && !isNaN(raw.frontmatter.lastUpdated.getTime()))
+                        ? raw.frontmatter.lastUpdated.getTime()
+                        : undefined;
+                const createdAt = (raw.frontmatter.createdAt === false)
+                    ? raw.frontmatter.createdAt
+                    : (raw.frontmatter.createdAt instanceof Date && !isNaN(raw.frontmatter.createdAt.getTime()))
+                        ? raw.frontmatter.createdAt.getTime()
+                        : undefined;
                 
                 // Filter resources
                 const rawResources: Record<string, ResourceInput> = 
@@ -110,6 +122,8 @@ export default createContentLoader("**/*.md", {
                         : !!raw.frontmatter.allowVirtualParents,
                     next,
                     prev,
+                    lastUpdated,
+                    createdAt,
                 }
             })
     },

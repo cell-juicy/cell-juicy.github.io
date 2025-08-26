@@ -9,11 +9,11 @@ const props = defineProps({
     },
     areaAttrs: {
         type: Object,
-        default: {}
+        default: () => ({})
     },
     innerAttrs: {
         type: Object,
-        default: {}
+        default: () => ({})
     },
     tag: {
         type: String,
@@ -25,11 +25,11 @@ const props = defineProps({
     },
     trackXAttrs: {
         type: Object,
-        default: {}
+        default: () => ({})
     },
     trackYAttrs: {
         type: Object,
-        default: {}
+        default: () => ({})
     },
     thumbWidth: {
         type: String,
@@ -45,11 +45,11 @@ const props = defineProps({
     },
     thumbXAttrs: {
         type: Object,
-        default: {}
+        default: () => ({})
     },
     thumbYAttrs: {
         type: Object,
-        default: {}
+        default: () => ({})
     }
 });
 

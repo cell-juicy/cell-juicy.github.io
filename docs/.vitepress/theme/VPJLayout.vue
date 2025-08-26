@@ -4,6 +4,7 @@ import { nextTick, watch, onMounted, onUnmounted } from 'vue';
 
 import VPJSidebar from './components/VPJSidebar.vue';
 import VPJMobileNavbar from './components/VPJMobileNavbar.vue';
+import VPJPanel from './components/VPJPanel.vue';
 
 import VPJContent from './layouts/VPJContent.vue';
 
@@ -14,9 +15,7 @@ function scrollToAnchor() {
         if (hash !== "") {
             nextTick(() => {
                 const target = document.getElementById(decodeURIComponent(hash.substring(1)));
-                if (target) {
-                    target.scrollIntoView({ behavior: "smooth" });
-                };
+                if (target) target.scrollIntoView({ behavior: "smooth" });
             });
         };
     };
@@ -87,6 +86,9 @@ onUnmounted(() => {
                 <template #doc-padding-right><slot name="doc-padding-right"/></template>
             </VPJContent>
         </div>
+        <VPJPanel>
+
+        </VPJPanel>
     </div>
 </template>
 

@@ -21,6 +21,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     markdown: {
         math: true
     },
+    lastUpdated: true,
     vite: {
         plugins: [
             // @ts-ignore
@@ -180,6 +181,13 @@ export default defineConfigWithTheme<ThemeConfig>({
             tag: {
                 format: (tag) => `# ${tag}`
             },
+            panelTabHistory: {
+                repository: "https://github.com/cell-juicy/cell-juicy.github.io",
+                interval: "month",
+                intervalFormat(date) {
+                    return `${date.getFullYear()}年${date.getMonth() + 1}月`
+                },
+            }
         },
         editLink: {
             pattern: "https://github.com/cell-juicy/cell-juicy.github.io/tree/main/docs/:path",
@@ -188,5 +196,6 @@ export default defineConfigWithTheme<ThemeConfig>({
         next: "下一页",
         prev: "上一页",
         enableVitrual: true,
+        timeLabel: "上次更新于：:lYYYY/:lMM/:lDD  创建于：:cYYYY/:cMM/:cDD"
     },
 })
