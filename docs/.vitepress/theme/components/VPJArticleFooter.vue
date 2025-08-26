@@ -14,11 +14,11 @@ import VPJIconEdit from '../components/icons/VPJIconEdit.vue';
 const props = defineProps({
     prev: {
         type: Object,
-        default: {}
+        default: () => ({})
     },
     next: {
         type: Object,
-        default: {}
+        default: () => ({})
     }
 })
 

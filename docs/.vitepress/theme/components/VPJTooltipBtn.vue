@@ -17,21 +17,21 @@ const props = defineProps({
     },
     iconAttrs: {
         type: Object,
-        default: {}
+        default: () => ({})
     },
     text: {
         type: String
     },
     textAttrs: {
         type: Object,
-        default: {}
+        default: () => ({})
     },
     tooltip: {
         type: [String, undefined],
     },
     tooltipAttrs: {
         type: Object,
-        default: {}
+        default: () => ({})
     },
     tooltipPosition: {
         type: String,
