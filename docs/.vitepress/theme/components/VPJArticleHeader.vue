@@ -1,4 +1,5 @@
 <script setup>
+import { useData } from 'vitepress';
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
@@ -12,6 +13,7 @@ import VPJIconGithub from './icons/VPJIconGithub.vue';
 import VPJIconMarkdown from './icons/VPJIconMarkdown.vue';
 import VPJIconMenuBurger from './icons/VPJIconMenuBurger.vue';
 import VPJIconPDF from './icons/VPJIconPDF.vue';
+import VPJIconTimePast from './icons/VPJIconTimePast.vue'
 
 import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes'
 
@@ -20,6 +22,7 @@ const store = useVPJLayout();
 const {
     articleFooterConfig,
 } = storeToRefs(store);
+const { panelToggle } = store;
 
 const tooltipPosition = "bottom"
 const tooltipBoundary = ".vpj-layout-content"
@@ -138,6 +141,18 @@ const showDivider = computed(() => {
                     :disabled="isDesktop || !showActions"
                 >
                     <div class="vpj-article-header__toolbar">
+                        <VPJTooltipBtn
+                            @click="() => panelToggle('history')"
+                            :boundary="tooltipBoundary"
+                            :isLink="false"
+                            :icon="VPJIconTimePast"
+                            tooltip="查看历史记录"
+                            :tooltipPosition="tooltipPosition"
+                            :tooltipAttrs="tooltipAttrs"
+                            :offset="tooltipOffset"
+                            :safeMargin="tooltipSafeMargin"
+                            class="vpj-article-header__button"
+                        />
                         <VPJTooltipBtn
                             v-if="props.config?.github?.url"
                             :boundary="tooltipBoundary"
