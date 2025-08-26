@@ -142,11 +142,12 @@ export default {
         };
 
         watchFiles.forEach((file) => {
-            const url =
+            const url = encodeURI(
                 '/' +
                 normalizePath(path.relative(config.srcDir, file))
                     .replace(/(^|\/)index\.md$/, '$1')
-                    .replace(/\.md$/, config.cleanUrls ? '' : '.html');
+                    .replace(/\.md$/, config.cleanUrls ? '' : '.html')
+            );
 
             const history = fileCommitMap.get(file) ?? [];
             result[url] = { path: file, url, history };
