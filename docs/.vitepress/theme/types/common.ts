@@ -84,25 +84,18 @@ export type PageContext = {
  * };
  * ```
  */
-export type DeviceSpecificInput =
-    | false
-    | string
+export type DeviceSpecificInput<T> =
+    | T
     | {
-        mobile?: false | string;
-        tablet?: false | string;
-        desktop?: false | string;
+        mobile?: T;
+        tablet?: T;
+        desktop?: T;
     };
 
-export type NormalizedDeviceSpecificInput = {
-    mobile?: false | string;
-    tablet?: false | string;
-    desktop?: false | string;
-}
-
-export type DeviceSpecificData = {
-    mobile?: string;
-    tablet?: string;
-    desktop?: string;
+export type DeviceSpecificData<T> = {
+    mobile?: T;
+    tablet?: T;
+    desktop?: T;
 }
 
 
