@@ -31,10 +31,14 @@ import type {
 } from "../types/common";
 import type { PageData, SiteData } from 'vitepress';
 import { any2Number, formatTimeLabel } from "./common";
+import { result } from "lodash-es";
 
 
 // Const
 const DeviceSpecificKey = ["mobile", "tablet", "desktop"] as const;
+
+// Tool
+const isStringFalse = (v: any): v is string | false => typeof v === 'string' || v === false;
 
 
 // Type(Normalizer Factory)
@@ -180,11 +184,32 @@ export function createNormalizer<
     };
 };
 
+export function createRecordNormalizer<T>(
+    singleNormalizer: (v: any) => T,
+    allowKeys: string[] = []
+) {
+    return (v: any) => {
+        const result = {};
+
+        if (typeof v !== 'object' || !v) return result;
+
+        Object.entries(v).forEach(([key, value]) => {
+            const allowed = (allowKeys.length === 0) ? true : allowKeys.includes(key);
+
+            if (!allowed) return;
+
+            result[key] = singleNormalizer(value);
+        });
+
+        return result;
+    };
+};
+
 // Sub Factory(Normalizer Factory)
 function createDeviceSpecificNormalizer<T>(
     typeValidator: (v: any) => v is T
 ) {
-    createNormalizer<
+    return createNormalizer<
         DeviceSpecificData<T>,
         T, typeof DeviceSpecificKey,
         DeviceSpecificData<T>
@@ -192,4 +217,4 @@ function createDeviceSpecificNormalizer<T>(
         s: { validator: typeValidator, mapto: DeviceSpecificKey },
         o: { validators: Object.fromEntries(DeviceSpecificKey.map((key) => [key, typeValidator])) }
     });
-}
+};
