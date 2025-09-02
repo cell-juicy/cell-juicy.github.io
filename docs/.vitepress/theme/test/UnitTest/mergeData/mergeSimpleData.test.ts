@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { mergeSimpleData } from '../../../utils/mergeData';
+import { simpleMerger as mergeSimpleData } from '../../../utils/mergeData2';
 
 describe("mergeSimpleData 简单数据合并", () => {
     const isString = (input: any): input is string => typeof input === 'string';

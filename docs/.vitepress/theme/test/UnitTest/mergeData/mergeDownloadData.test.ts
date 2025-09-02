@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { mergeDownloadData } from '../../../utils/mergeData';
+import { toolbarDownloadMerger as mergeDownloadData } from '../../../utils/mergeData2';
 import type { PageContext } from '../../../types/common';
 
 

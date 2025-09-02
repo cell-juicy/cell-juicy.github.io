@@ -1,11 +1,11 @@
 import { describe, test, expect } from 'vitest';
-import { mergeGithubLinkData } from '../../../utils/mergeData';
+import { toolbarGithubMerger as mergeGithubLinkData } from '../../../utils/mergeData2';
 import type { PageContext } from '../../../types/common';
 
 const mockContext: PageContext = {
     // @ts-ignore 测试用数据
     route: { path: '/test', data: { title: '测试页面' } },
-    layoutConfig: { layout: "blog", series: "CSS精修系列" }
+    layoutConfig: { layout: "blog", series: "CSS精修系列", order: 0 }
 };
 
 describe("mergeGithubLinkData GitHub链接合并", () => {

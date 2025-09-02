@@ -562,24 +562,20 @@ export function createMerger<
 export function createRecordMerger<
     I = any,
     V = any,
-    K extends string = string,
-    R = Partial<Record<K, V | undefined>>
+    R = Partial<Record<string, V | undefined>>
 >(
     valueMerger: (...values: Array<I | undefined>) => V | undefined,
-    normalizer: (source: any) => Partial<Record<K, I>>,
-    allowKeys: K[] = []
-): (...sources: Array<Record<K, I> | undefined>) => R {
-    return (...sources: Array<Record<K, I> | undefined>): R => {
-        const merged: Partial<Record<K, V | undefined>> = {};
-        const keys = new Set<K>();
+    normalizer: (source: any) => Partial<Record<string, I>>,
+    process?: (v: Partial<Record<string, V | undefined>>) => R
+): (...sources: Array<Record<string, I> | undefined>) => R {
+    return (...sources: Array<Record<string, I> | undefined>): R => {
+        const merged: Partial<Record<string, V | undefined>> = {};
+        const keys = new Set<string>();
         const normalized = sources.map(normalizer)
 
         for (const s of normalized) {
             if (!s || typeof s !== "object") continue;
-            for (const k in s) {
-                if (allowKeys.length !== 0 && !allowKeys.includes(k as K)) continue;
-                keys.add(k as K);
-            };
+            for (const k in s) { keys.add(k); };
         };
         
         for (const k of keys) {
@@ -588,13 +584,22 @@ export function createRecordMerger<
             if (v !== undefined) merged[k] = v;
         };
 
-        return merged as R;
+        return process ? process(merged) as R : merged as R;
     };
 };
 
 
 // Products(Merger)
-export const asideTabMerger = createRecordMerger<AsideTabInput, NormalizedAsideTabInput, string, Record<string, AsideTabData>>(
+const asideTabProcessor = (v: Partial<Record<string, NormalizedAsideTabInput>>): Record<string, AsideTabData> => 
+    Object.entries(v).reduce((result, [key, value]) => {
+        if (!value || value.component === false || value.component === undefined) return result;
+            
+        const name = value.name ?? value.component;
+        const order = any2Number(value.order);
+        result[key] = { name, component: value.component, order };
+        return result;
+    }, {} as Record<string, AsideTabData>);
+export const asideTabMerger = createRecordMerger<AsideTabInput, NormalizedAsideTabInput, Record<string, AsideTabData>>(
     createMerger({
         type: "object", normalizer: singleAsideTabNormalizer, process(v) {
             const canceled = cancelObject(v, false);
@@ -602,7 +607,8 @@ export const asideTabMerger = createRecordMerger<AsideTabInput, NormalizedAsideT
             return canceled;
         },
     }),
-    asideTabNormalizer
+    asideTabNormalizer,
+    asideTabProcessor
 );
 
 export const coverCssConfigMerger = createMerger<CoverCssConfigInput, NormalizedCoverCssConfigInput, CoverCssConfigData>({
@@ -635,6 +641,14 @@ export const headerTitleMeger = (ctx: PageContext, ...sources: (HeaderTitleTempl
     return merger(...sources);
 };
 
+export const simpleMerger = <T, C = never>(validator: (value: any) => value is T, cancel: C, ...sources: (T | undefined)[]) => {
+    const merger = createMerger<
+        T|undefined, T, C,
+        C extends undefined ? Exclude<T,C> : Exclude<T,C>|undefined
+    >({ type: "simple", normalizer: (v) => validator(v) ? v : undefined, cancel });
+    return merger(...sources)
+};
+
 export const timeLabelMerger = (last: Date, creat: Date, ...sources: (
     | string
     | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined)
@@ -644,7 +658,7 @@ export const timeLabelMerger = (last: Date, creat: Date, ...sources: (
         type: "simple", normalizer: timeLabelNormalizer(last, creat)
     });
     return merger(...sources);
-}
+};
 
 export const titleMeger = (ctx: PageContext, site: SiteData, page: PageData, ...sources: (TitleTemplateInput|undefined)[]) => {
     const merger = createMerger<TitleTemplateInput, string | undefined, never, string | undefined>({
@@ -653,7 +667,19 @@ export const titleMeger = (ctx: PageContext, site: SiteData, page: PageData, ...
     return merger(...sources);
 };
 
-export const toolbarButtonMerger = createRecordMerger<ToolbarButtonInput, NormalizedToolbarButtonInput, string, Record<string, ToolbarDownloadData>>(
+const toolbarButtonProcessor = (v: Partial<Record<string, NormalizedToolbarButtonInput>>): Record<string, ToolbarButtonData> => 
+    Object.entries(v).reduce((result, [key, value]) => {
+        if (value && value.icon !== false && value.icon !== undefined && typeof value.callback === 'function') {
+            result[key] = {
+                icon: value.icon,
+                callback: value.callback,
+                order: any2Number(value.order),
+                tooltip: (value.tooltip === false) ? undefined : value.tooltip
+            };
+        };
+        return result;
+    }, {} as Record<string, ToolbarButtonData>);
+export const toolbarButtonMerger = createRecordMerger<ToolbarButtonInput, NormalizedToolbarButtonInput, Record<string, ToolbarDownloadData>>(
     createMerger<ToolbarButtonInput, NormalizedToolbarButtonInput, ToolbarButtonData>({
         type: "object", normalizer: singleToolbarButtonNormalizer, process(v) {
             const canceled = cancelObject(v, false, ["tooltip", "icon"]);
@@ -661,7 +687,8 @@ export const toolbarButtonMerger = createRecordMerger<ToolbarButtonInput, Normal
             return canceled as ToolbarButtonData;
         }
     }),
-    toolbarButtonNormalizer
+    toolbarButtonNormalizer,
+    toolbarButtonProcessor
 );
 
 export const toolbarDownloadMerger = (ctx: PageContext, ...sources: (ToolbarDownloadInput|undefined)[]) => {

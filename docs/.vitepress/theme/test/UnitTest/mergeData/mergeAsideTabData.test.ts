@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { mergeAsideTabData } from '../../../utils/mergeData';
+import { asideTabMerger as mergeAsideTabData } from '../../../utils/mergeData2';
 
 describe("mergeAsideTabData 侧边栏标签合并", () => {
     test("基础合并逻辑", () => {
