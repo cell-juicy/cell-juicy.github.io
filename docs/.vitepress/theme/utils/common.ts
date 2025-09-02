@@ -1,3 +1,14 @@
+// Type Guard
+export const isString = (v: any): v is string => typeof v === 'string';
+export const isNumber = (v: any): v is number => typeof v === 'number' && !isNaN(v);
+export const isFalse = (v: any): v is false => v === false;
+export const isBoolean = (v: any): v is boolean => typeof v === 'boolean';
+export const isFunction = (v: any): v is Function => typeof v === 'function';
+export const isObject = (v: any): v is Exclude<object, null> => typeof v === 'object' && v && !Array.isArray(v);
+
+export const isStringFalse = (v: any): v is string | false => isString(v) || isFalse(v);
+export const isStringNumber = (v: any): v is string | number => isString(v) || isNumber(v);
+
 export function any2Number(value: any): number {
     const num = Number(value);
     return isNaN(num) ? 0 : num;
