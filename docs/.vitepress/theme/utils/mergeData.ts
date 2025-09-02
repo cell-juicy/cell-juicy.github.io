@@ -402,7 +402,7 @@ function normalizeFooter(input: any): NormalizedFooterInput {
 
 function normalizeTimeLabel(lastUpdated: Date | undefined, createdAt: Date | undefined, input: any): string | undefined {
     if (typeof input === 'string') {
-        return formatTimeLabel(lastUpdated, createdAt, input);
+        return formatTimeLabel(input, lastUpdated, createdAt);
     } else if (typeof input === 'function'){
         try {
             const result = input(lastUpdated, createdAt);

@@ -41,9 +41,9 @@ export function resolveNavigationInput(input: any): { text?: string; link?: stri
 
 
 export function formatTimeLabel(
+    pattern: string,
     lastUpdated: Date | undefined,
-    createdAt: Date | undefined,
-    pattern: string
+    createdAt: Date | undefined
 ): string | undefined {
     if (!lastUpdated && !createdAt) return undefined;
 
@@ -82,7 +82,7 @@ export function formatTimeLabel(
     return pattern.replace(re, match => map[match] || "");
 }
 
-export function formatDate(date: Date, pattern: string) {
+export function formatDate(pattern: string, date: Date) {
     if (!date) return undefined;
 
     const pad = (n: number) => String(n).padStart(2, "0");
