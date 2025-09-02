@@ -525,15 +525,37 @@ export type TitleTemplateInput =
 export type ResourceInput = 
     | false
     | string
-    | ResourceData;
+    | {
+        url?: string | false,
+        label?: string,
+        icon?:
+            | false
+            | string
+            | { component: string },
+        order?: number | string,
+        download?: boolean | string,
+        type?: "file" | "image" | "website" | "download"
+    } ;
+
+export type NormalizedResourceInput = {
+    url?: string | false,
+    label?: string,
+    icon?:
+        | false
+        | string
+        | { component: string },
+    order?: number,
+    download?: boolean | string,
+    type?: "file" | "image" | "website" | "download"
+} 
 
 export type ResourceData = {
-    url?: string | false,
+    url?: string,
     label?: string,
     icon?:
         | string
         | { component: string },
-    order?: number,
+    order: number,
     download?: boolean | string,
     type?: "file" | "image" | "website" | "download"
 }

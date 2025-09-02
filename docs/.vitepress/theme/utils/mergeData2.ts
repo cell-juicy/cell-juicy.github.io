@@ -7,6 +7,7 @@ import type {
     EditLinkInput,
     FooterInput,
     HeaderTitleTemplateInput,
+    ResourceInput,
     TitleTemplateInput,
     ToolbarButtonInput,
     ToolbarDownloadInput,
@@ -15,6 +16,7 @@ import type {
     NormalizedAsideTabInput,
     NormalizedEditLinkInput,
     NormalizedFooterInput,
+    NormalizedResourceInput,
     NormalizedToolbarButtonInput,
     NormalizedToolbarDownloadInput,
     NormalizedToolbarGithubLinkInput,
@@ -25,6 +27,7 @@ import type {
     DeviceSpecificData,
     EditLinkData,
     FooterData,
+    ResourceData,
     ToolbarDownloadData,
     ToolbarGithubLinkData,
     ToolbarButtonData,
@@ -178,6 +181,28 @@ export const headerTitleTemplateNormalizer = (ctx: PageContext) => createNormali
     }, inspector: isStringFalse, fallback: undefined }
 });
 
+const singleResourceNormalizer = createNormalizer<
+    NormalizedResourceInput,
+    string | false, ["url"],
+    Exclude<ResourceInput, string | false>, NormalizedResourceInput
+>({
+    s: { validator: isStringFalse, mapto: ["url"] },
+    o: {
+        validators: {
+            url: isStringFalse,
+            label: isString,
+            icon: (v) => isStringFalse(v) || (isObject(v) && isString(v.component)),
+            order: (v) => isString(v) || isNumber(v),
+            download: (v) => isBoolean(v) || isString(v),
+            type: (v) => isString(v) && ["file", "image", "website", "download"].includes(v)
+        },
+        transformers: {
+            order: (v) => v === undefined ? undefined : any2Number(v)
+        }
+    }
+});
+export const resourceNormalizer = createRecordNormalizer(singleResourceNormalizer);
+
 export const timeLabelNormalizer = (last: Date, creat: Date) => createNormalizer<
     string | undefined,
     undefined, never,
@@ -257,7 +282,7 @@ export const toolbarButtonNormalizer = createRecordNormalizer<NormalizedToolbarB
 
 const isToolbarDownload = (v: any): v is NormalizedToolbarDownloadInput => 
     (isObject(v)) && (("url" in v && (isStringFalse(v.url) || v.url === undefined)) || !("url" in v)) &&
-    (("target" in v && ["_blank", "_self", undefined].includes(v.target as any)) ||  !("target" in v)) &&
+    (("target" in v && isString(v.target) && ["_blank", "_self", undefined].includes(v.target)) ||  !("target" in v)) &&
     (("tooltip" in v &&(isStringFalse(v.tooltip) || v.tooltip === undefined)) ||  !("tooltip" in v)) &&
     (("download" in v &&(isString(v.download) || isBoolean(v.download) || v.download === undefined)) ||  !("download" in v));
 export const toolbarDownloadNormalizer = (ctx: PageContext) => createNormalizer<
@@ -309,13 +334,11 @@ const asideTabProcessor = (v: Partial<Record<string, NormalizedAsideTabInput>>):
         return result;
     }, {} as Record<string, AsideTabData>);
 export const asideTabMerger = createRecordMerger<AsideTabInput, NormalizedAsideTabInput, Record<string, AsideTabData>>(
-    createMerger({
-        type: "object", normalizer: singleAsideTabNormalizer, process(v) {
-            const canceled = cancelObject(v, false);
-            canceled.order = any2Number(canceled.order);
-            return canceled;
-        },
-    }),
+    createMerger({ type: "object", normalizer: singleAsideTabNormalizer, process(v) {
+        const canceled = cancelObject(v, false);
+        canceled.order = any2Number(canceled.order);
+        return canceled;
+    }}),
     asideTabNormalizer,
     asideTabProcessor
 );
@@ -328,9 +351,7 @@ export const deviceSpecificSMerger = createMerger<
     DeviceSpecificInput<string|false>,
     DeviceSpecificData<string|false>,
     DeviceSpecificData<string>
->({
-    type: "object", normalizer: deviceSpecificSNormalizer, process: (v) => cancelObject(v, false) as DeviceSpecificData<string>
-});
+>({ type: "object", normalizer: deviceSpecificSNormalizer, process: (v) => cancelObject(v, false) as DeviceSpecificData<string> });
 
 export const editLinkMerger = (ctx: PageContext, ...sources: (EditLinkInput|undefined)[]) => {
     const merger = createMerger<EditLinkInput, NormalizedEditLinkInput, EditLinkData>({
@@ -349,6 +370,26 @@ export const headerTitleMeger = (ctx: PageContext, ...sources: (HeaderTitleTempl
     });
     return merger(...sources);
 };
+
+const resourceProcessor = (v: Partial<Record<string, NormalizedResourceInput>>): Record<string, ResourceData> =>
+    Object.entries(v).reduce((result, [key, value]) => {
+        if (!value || value.url === false || value.url === undefined) return result;
+            
+        const label = value.label ?? value.url;
+        const order = any2Number(value.order);
+        const icon = value.icon === false ? undefined : value.icon;
+        result[key] = { ...value, label, order, url: value.url, icon };
+        return result;
+    }, {} as Record<string, ResourceData>);
+export const resourceMerger = createRecordMerger<ResourceInput, NormalizedResourceInput, Record<string, ResourceData>>(
+    createMerger({ type: "object", normalizer: singleResourceNormalizer, process(v) {
+        const canceled = cancelObject(v, false, ["url", "icon"]);
+        canceled.order = any2Number(canceled.order);
+        return canceled;
+    } }),
+    resourceNormalizer,
+    resourceProcessor
+);
 
 export const simpleMerger = <T, C = never>(validator: (value: any) => value is T, cancel: C, ...sources: (T | undefined)[]) => {
     const merger = createMerger<
@@ -389,13 +430,11 @@ const toolbarButtonProcessor = (v: Partial<Record<string, NormalizedToolbarButto
         return result;
     }, {} as Record<string, ToolbarButtonData>);
 export const toolbarButtonMerger = createRecordMerger<ToolbarButtonInput, NormalizedToolbarButtonInput, Record<string, ToolbarDownloadData>>(
-    createMerger<ToolbarButtonInput, NormalizedToolbarButtonInput, ToolbarButtonData>({
-        type: "object", normalizer: singleToolbarButtonNormalizer, process(v) {
-            const canceled = cancelObject(v, false, ["tooltip", "icon"]);
-            canceled.order = any2Number(canceled.order);
-            return canceled as ToolbarButtonData;
-        }
-    }),
+    createMerger<ToolbarButtonInput, NormalizedToolbarButtonInput, ToolbarButtonData>({ type: "object", normalizer: singleToolbarButtonNormalizer, process(v) {
+        const canceled = cancelObject(v, false, ["tooltip", "icon"]);
+        canceled.order = any2Number(canceled.order);
+        return canceled as ToolbarButtonData;
+    } }),
     toolbarButtonNormalizer,
     toolbarButtonProcessor
 );
