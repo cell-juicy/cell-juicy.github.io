@@ -2,7 +2,7 @@ import type {
     AsideTabInput,
     NormalizedAsideTabInput,
     DeviceSpecificInput,
-    NormalizedDeviceSpecificInput,
+    ImageData,
     CoverCssConfigInput,
     HeaderTitleTemplateInput,
     ToolbarGithubLinkInput,
@@ -1134,7 +1134,7 @@ export interface SpaceMetaData {
      * @see {@link VPJDocLayoutConfig.coverHeight}
      * @see {@link VPJDocLayoutConfig.cover}
      */
-    coverHeight?: DeviceSpecificInput;
+    coverHeight?: DeviceSpecificInput<string|false>;
 
     /**
      * 封面渐变过渡配置

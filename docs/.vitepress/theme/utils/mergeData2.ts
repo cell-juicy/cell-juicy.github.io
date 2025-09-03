@@ -1,63 +1,37 @@
 import type {
-    PageContext,
-
+    AsideTabData,
     AsideTabInput,
+    CoverCssConfigData,
     CoverCssConfigInput,
+    DeviceSpecificData,
     DeviceSpecificInput,
+    HeaderTitleTemplateInput,
     EditLinkInput,
     FooterInput,
-    HeaderTitleTemplateInput,
-    ResourceInput,
-    TitleTemplateInput,
-    ToolbarButtonInput,
-    ToolbarDownloadInput,
-    ToolbarGithubLinkInput,
-
     NormalizedAsideTabInput,
-    NormalizedEditLinkInput,
-    NormalizedFooterInput,
-    NormalizedResourceInput,
+    NormalizedDeviceSpecificInput,
     NormalizedToolbarButtonInput,
     NormalizedToolbarDownloadInput,
     NormalizedToolbarGithubLinkInput,
     NormalizedCoverCssConfigInput,
-
-    AsideTabData,
-    CoverCssConfigData,
-    DeviceSpecificData,
-    EditLinkData,
-    FooterData,
-    ResourceData,
+    NormalizedEditLinkInput,
+    NormalizedFooterInput,
+    PageContext,
+    ToolbarDownloadInput,
     ToolbarDownloadData,
+    ToolbarGithubLinkInput,
     ToolbarGithubLinkData,
     ToolbarButtonData,
+    ToolbarButtonInput,
+    TitleTemplateInput,
+    EditLinkData,
+    FooterData
 } from "../types/common";
 import type { PageData, SiteData } from 'vitepress';
-
-import {
-    any2Number,
-    formatTimeLabel,
-    isBoolean,
-    isString,
-    isFalse,
-    isFunction,
-    isNumber,
-    isObject,
-    isStringFalse,
-    isStringNumber
-} from "./common";
-
-import {
-    createNormalizer,
-    createRecordNormalizer,
-    createDeviceSpecificNormalizer,
-    createMerger,
-    createRecordMerger
-} from './factory'
+import { any2Number, formatTimeLabel } from "./common";
 
 
-// Const
-const CoverCssConfigKey = [
+const CssConfigKeyList = [
     "boxShadow",
     "filter",
     "maskImage",
@@ -66,100 +40,200 @@ const CoverCssConfigKey = [
     "opacity",
     "transform",
     "transition",
-] as const;
-const FooterKey = ["message", "copyright"] as const;
+];
 
-export function cancelObject<O extends Record<string, any>, K extends keyof O = keyof O>(
-    obj: O,
-    cancelValue: any,
-    keys?: K[]
-): Partial<O> {
-    const result: Partial<O> = { ...obj };
-    const targetKeys = keys ?? (Object.keys(obj) as K[]);
+// type check
+function isAsideTabInput(input: any): input is AsideTabInput {
+    return (
+        (typeof input === 'string') ||
+        (input === false) ||
+        (
+            typeof input === 'object' &&
+            (input !== null) &&
+            (typeof input.name === 'string' || input.name === undefined) &&
+            (typeof input.component === 'string' || input.component === false || input.component === undefined) &&
+            (typeof input.order === 'string' || typeof input.order === 'number' || input.order === undefined)
+        )
+    );
+};
 
-    for (const key of targetKeys) {
-        if (result[key] === cancelValue) {
-            result[key] = undefined;
+function isToolbarGithubLink(input: any): input is NormalizedToolbarGithubLinkInput {
+    return (
+        typeof input === 'object' &&
+        input !== null &&
+        (
+            input.url === undefined ||
+            input.url === false ||
+            typeof input.url === 'string'
+        ) &&
+        (
+            input.tooltip === undefined ||
+            input.tooltip === false ||
+            typeof input.tooltip === 'string'
+        )
+    );
+};
+  
+function isToolbarDownload(input: any): input is NormalizedToolbarDownloadInput {
+    return (
+        typeof input === 'object' &&
+        input !== null &&
+        (
+            input.url === undefined ||
+            input.url === false ||
+            typeof input.url === 'string'
+        ) &&
+        (
+            input.target === undefined ||
+            ['_blank', '_self'].includes(input.target)
+        ) &&
+        (
+            input.tooltip === undefined ||
+            input.tooltip === false ||
+            typeof input.tooltip === 'string'
+        ) &&
+        (
+            input === undefined ||
+            typeof input.download === 'boolean' ||
+            typeof input.download === 'string'
+        )
+    );
+};
+
+function isToolbarButtonInput(input: any): input is ToolbarButtonInput {
+    return (
+        (typeof input === 'string') ||
+        (input === false) ||
+        (
+            typeof input === 'object' &&
+            (
+                input.icon === undefined ||
+                input.icon === false ||
+                typeof input.icon === 'string' ||
+                (typeof input.icon === 'object' && typeof input.icon.component === 'string')
+            ) &&
+            (
+                input.callback === undefined ||
+                typeof input.callback === 'function'
+            ) &&
+            (
+                input.order === undefined ||
+                typeof input.order === 'string' ||
+                typeof input.order === 'number'
+            ) &&
+            (
+                input.tooltip === undefined ||
+                input.tooltip === false ||
+                typeof input.tooltip === 'string'
+            )
+        )
+    );
+};
+
+// normalize data
+function normalizeDeviceInput(
+    input?: any
+): NormalizedDeviceSpecificInput {
+    if (typeof input === 'string' || input === false) {
+        return { mobile: input, tablet: input, desktop: input };
+    } else if (typeof input === 'object' && input !== null) {
+        return {
+            mobile: (typeof input.mobile === 'string' || input.mobile === false) ? input.mobile : undefined,
+            tablet: (typeof input.tablet === 'string' || input.tablet === false) ? input.tablet : undefined,
+            desktop: (typeof input.desktop === 'string' || input.desktop === false) ? input.desktop : undefined,
         };
-    };
-    return result;
-}
-
-
-// Products(Normalizer)
-const singleAsideTabNormalizer = createNormalizer<
-    NormalizedAsideTabInput,
-    string | false, ["component"],
-    Exclude<AsideTabInput, string | false>, NormalizedAsideTabInput
->({
-    s: { validator: isStringFalse, mapto: ["component"] },
-    o: { 
-        validators: {name: isString, component: isStringFalse, order: isStringNumber},
-        transformers: {order: (v) => v === undefined ? undefined : any2Number(v)}
+    } else {
+        return {};
     }
-});
-export const asideTabNormalizer = createRecordNormalizer<NormalizedAsideTabInput>(singleAsideTabNormalizer);
-
-export const coverCssConfigNormalizer = createNormalizer<
-    NormalizedCoverCssConfigInput,
-    never, never,
-    CoverCssConfigInput, CoverCssConfigInput
->({ o: { validators: Object.fromEntries(CoverCssConfigKey.map((key) => [key, isStringFalse])) } });
-
-export const deviceSpecificSNormalizer = createDeviceSpecificNormalizer<string | false>(isStringFalse);
-export const deviceSpecificBNormalizer = createDeviceSpecificNormalizer<boolean>(isBoolean);
-
-const isEditLinkInput = (v: any): v is Exclude<EditLinkInput, false> => {
-    return isObject(v) &&
-        (!("pattern" in v) || (isStringFalse(v.pattern) || isFunction(v.pattern) || v.pattern === undefined)) &&
-        (!("text" in v) || (isString(v.text) || v.text === undefined))
 };
-const isNEditLinkInput = (v: any): v is NormalizedEditLinkInput => {
-    return isObject(v) &&
-        (!("link" in v) || (isStringFalse(v.link) || v.link === undefined)) &&
-        (!("text" in v) || (isString(v.text) || v.text === undefined))
+
+function normalizeAsideTabInput(
+    input: any
+): Record<string, NormalizedAsideTabInput> {
+    if (typeof input === 'object' && input !== null) {
+        return Object.entries(input).reduce((acc, [key, value]) => {
+            if (isAsideTabInput(value)) {
+                if (typeof value === 'string' || value === false) {
+                    acc[key] = { component: value }
+                } else {
+                    acc[key] = {
+                        name: value.name,
+                        component: value.component,
+                        order: (value.order === undefined) ? undefined : any2Number(value.order)
+                    };
+                };
+            };
+            return acc;
+        }, {} as Record<string, NormalizedAsideTabInput>);
+    }
+    return {};
 };
-export const editLinkNormalizer = (ctx: PageContext) => createNormalizer<
-    NormalizedEditLinkInput,
-    false, ["link"],
-    never, never,
-    never, never,
-    Exclude<EditLinkInput, false>, [PageContext], NormalizedEditLinkInput
->({
-    s: { validator: isFalse, mapto: ["link"] },
-    t: { validator: isEditLinkInput, params: [ctx], transformer(input, ctx) {
-        let link: string | false | undefined = undefined;
-        if (input.pattern === false) {
-            link = false;
-        } else if (isString(input.pattern)) {
-            link = input.pattern.replace(/:path/g, ctx.route.data.relativePath)
-        } else if (isFunction(input.pattern)) {
-            link = isString(input.pattern(ctx)) ? input.pattern(ctx) : undefined;
+
+function normalizeGithubInput(
+    input: any,
+    ctx: PageContext
+): NormalizedToolbarGithubLinkInput {
+    if (typeof input === 'string' || input === false) {
+        return {
+            url: input,
         };
-        return { link, text: isString(input.text) ? input.text : undefined };
-    }, inspector: isNEditLinkInput, fallback: {}}
-});
+    } else if (typeof input === 'object' && input !== null) {
+        return {
+            url: (typeof input.url === 'string' || input.url === false) ? input.url : undefined,
+            tooltip: (typeof input.tooltip === 'string' || input.tooltip === false) ? input.tooltip : undefined
+        };
+    } else if (typeof input === 'function') {
+        try {
+            return isToolbarGithubLink(input(ctx)) ? input(ctx) : {}
+        } catch(e) {
+            console.error(`[Juicy Theme]Fail to resolve github link config: ${e}`);
+            return {}
+        }
+    } else {
+        return {}
+    }
+};
 
-export const footerNormalizer = createNormalizer<
-    NormalizedFooterInput,
-    false, typeof FooterKey,
-    Exclude<FooterInput, false>, NormalizedFooterInput
->({
-    s: { validator: isFalse, mapto: FooterKey },
-    o: { validators: Object.fromEntries(FooterKey.map((key) => [key, isStringFalse])) }
-});
+function normalizeDownloadInput(
+    input: any,
+    ctx: PageContext
+): NormalizedToolbarDownloadInput {
+    if (typeof input === 'string' || input === false) {
+        return { url: input };
+    } else if (typeof input === 'object' && input !== null) {
+        return {
+            url: (typeof input.url === 'string' || input.url === false)
+                ? input.url
+                : undefined,
+            target: (input.target === "_blank" || input.target === "_self")
+                ? input.target
+                : undefined,
+            tooltip: (typeof input.tooltip === 'string' || input.tooltip === false)
+                ? input.tooltip
+                : undefined,
+            download: (typeof input.download === 'string' || typeof input.download === 'boolean')
+                ? input.download
+                : undefined
+        };
+    } else if (typeof input === 'function') {
+        try {
+            return isToolbarDownload(input(ctx)) ? input(ctx) : {}
+        } catch(e) {
+            console.error(`[Juicy Theme]Fail to resolve download link config: ${e}`);
+            return {};
+        }
+    } else {
+        return {};
+    }
+};
 
-export const headerTitleTemplateNormalizer = (ctx: PageContext) => createNormalizer<
-    string | false | undefined,
-    false, never,
-    never, never,
-    string | false, [PageContext],
-    string, [PageContext], string | false
->({
-    s: { validator: isFalse },
-    f: { params: [ctx], inspector: isStringFalse },
-    t: { validator: isString, params: [ctx], transformer(input, ctx) {
-        if (!isString(input)) return undefined;
+function normalizeHeaderTitleTemplateInput(
+    input: any,
+    ctx: PageContext
+): false | string | undefined {
+    if (input === false) {
+        return input;
+    } else if (typeof input === 'string') {
         if (ctx.layoutConfig?.layout === "blog") {
             const series = ctx.layoutConfig.series;
             const order = ctx.layoutConfig.order;
@@ -177,278 +251,525 @@ export const headerTitleTemplateNormalizer = (ctx: PageContext) => createNormali
         } else {
             console.error(`[Juicy Theme]An error occurred while getting Page Context, and the default value undefined was automatically returned`);
             return undefined;
-        };
-    }, inspector: isStringFalse, fallback: undefined }
-});
+        }
+    } else if (typeof input === 'function') {
+        try {
+            return (typeof input(ctx) === 'string' || input(ctx) === false) ? input(ctx) : undefined
+        } catch(e) {
+            console.error(`[Juicy Theme]Fail to resolve header title template: ${e}`);
+            return undefined;
+        }
+    } else {
+        return undefined;
+    }
+};
 
-const singleResourceNormalizer = createNormalizer<
-    NormalizedResourceInput,
-    string | false, ["url"],
-    Exclude<ResourceInput, string | false>, NormalizedResourceInput
->({
-    s: { validator: isStringFalse, mapto: ["url"] },
-    o: {
-        validators: {
-            url: isStringFalse,
-            label: isString,
-            icon: (v) => isStringFalse(v) || (isObject(v) && isString(v.component)),
-            order: (v) => isString(v) || isNumber(v),
-            download: (v) => isBoolean(v) || isString(v),
-            type: (v) => isString(v) && ["file", "image", "website", "download"].includes(v)
-        },
-        transformers: {
-            order: (v) => v === undefined ? undefined : any2Number(v)
+function normalizeTitleTemplateInput(
+    input: TitleTemplateInput,
+    ctx: PageContext | undefined,
+    site: SiteData,
+    page: PageData,
+): string | undefined {
+    if (input === undefined) return undefined;
+
+    if (typeof input === 'function') {
+        try {
+            const result = ctx ? input(ctx) : undefined;
+            if (typeof result === 'string') return result;
+        } catch (e) {
+            console.error(`[Juicy Theme]Fail to resolve title template: ${e}.`);
+        }
+        return undefined;
+    };
+
+    const title = ctx?.layoutConfig?.title ?? page.title ?? site.title ?? "";
+
+    if (typeof input === 'string') {
+        if (ctx) {
+            if (ctx.layoutConfig.layout === "blog" &&
+                [":series", ":order", ":title"].some(k => input.includes(k))) {
+                return input
+                    .replace(/:order/g, String(ctx.layoutConfig?.order ?? ""))
+                    .replace(/:series/g, ctx.layoutConfig?.series ?? "")
+                    .replace(/:title/g, title);
+            };
+            if (ctx.layoutConfig.layout === "doc" &&
+                [":space", ":title"].some(k => input.includes(k))) {
+                return input
+                    .replace(/:space/g, ctx.layoutConfig?.space ?? "")
+                    .replace(/:title/g, title);
+            };
+        } else if (input.includes(':title')) {
+            return input.replace(/:title/g, title);
+        };
+    };
+
+    let suffix = ` | ${input}`;
+    if (input === false) suffix = '';
+    if (input === true) suffix = ` | ${site.title}`;
+    if (site.title === input) suffix = '';
+
+    if (suffix.startsWith(' | ') && title === suffix.slice(3)) {
+        return title;
+    }
+
+    return `${title}${suffix}`;
+}
+
+function normalizeToolbarButtonData(
+    input: any
+): Record<string, NormalizedToolbarButtonInput> {
+    if (typeof input === 'object' && input !== null) {
+        return Object.entries(input).reduce((acc, [key, value]) => {
+            if (isToolbarButtonInput(value)) {
+                if (typeof value === 'string' || value === false) {
+                    acc[key] = {icon: value}
+                } else {
+                    acc[key] = {
+                        icon: value.icon,
+                        callback: value.callback,
+                        order: value.order ? any2Number(value.order) : undefined,
+                        tooltip: value.tooltip,
+                    };
+                };
+            };
+            return acc;
+        }, {} as Record<string, NormalizedToolbarButtonInput>);
+    };
+    return {};
+};
+
+function normalizeCoverCssConfig(
+    input: any
+): NormalizedCoverCssConfigInput {
+    if (typeof input === 'object' && input !== null) {
+        const normalized: NormalizedCoverCssConfigInput = {};
+        CssConfigKeyList.forEach((key) => {
+            if (typeof input[key] === 'string' || input[key] === false) {
+                normalized[key] = input[key];
+            };
+        })
+        return normalized;
+    };
+    return {} as NormalizedCoverCssConfigInput;
+};
+
+function normalizeEditLink(ctx: PageContext | undefined, input: any): NormalizedEditLinkInput {
+    if (!ctx) return {};
+    if (input === false) {
+        return { link: false };
+    } else if (typeof input === 'object' && input !== null) {
+        let link: string | false | undefined = undefined;
+        let text: string | undefined = (typeof input.text === 'string') ? input.text : undefined;
+        if (input.pattern === false) {
+            link = false;
+        } else if (typeof input.pattern === 'string') {
+            link = input.pattern.replace(/:path/g, ctx.route.data.relativePath)
+        } else if (typeof input.pattern === 'function') {
+            try {
+                link = (typeof input.pattern(ctx) === 'string') ? input.pattern(ctx) : undefined;
+            } catch (e) {
+                console.error(`[Juicy Theme]Fail to resolve edit link: ${e}`);
+                link = undefined;
+            };
+        };
+        return {
+            link,
+            text,
+        };
+    };
+    return {};
+};
+
+function normalizeFooter(input: any): NormalizedFooterInput {
+    if (input === false) {
+        return { message: false, copyright: false }
+    } else if (typeof input === 'object' && input) {
+        let message: string | false | undefined = (input.message === false)
+            ? false
+            : (typeof input.message === 'string')
+                ? input.message
+                : undefined;
+        let copyright: string | false | undefined = (input.copyright === false)
+            ? false
+            : (typeof input.copyright === 'string')
+                ? input.copyright
+                : undefined;
+        return { message, copyright };
+    };
+    return { message: undefined, copyright: undefined }
+}
+
+function normalizeTimeLabel(lastUpdated: Date | undefined, createdAt: Date | undefined, input: any): string | undefined {
+    if (typeof input === 'string') {
+        return formatTimeLabel(input, lastUpdated, createdAt);
+    } else if (typeof input === 'function'){
+        try {
+            const result = input(lastUpdated, createdAt);
+            return (typeof result === 'string') ? result : undefined;
+        } catch (e) {
+            console.log(`[Juicy Theme] Failed to resolve time label, Catch error:${e}`);
+            return undefined;
+        };
+    };
+    return undefined;
+}
+
+// merge data
+export function mergeSimpleData<T, C = never>(
+    validator: (value: T) => boolean,
+    cancel: C,
+    ...sources: (T | undefined)[]
+): Exclude<T, C> | undefined {
+    if (typeof validator === 'function') {
+        const merged = sources
+            .map(value => (value !== undefined && validator(value)) ? value : undefined)
+            .find(value => value !== undefined);
+        
+        return (merged === cancel) ? undefined : merged as Exclude<T, C> | undefined;
+    }
+    return undefined;
+}
+
+export function mergeDeviceData(
+    ...sources: (DeviceSpecificInput | undefined)[]
+): DeviceSpecificData {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map(normalizeDeviceInput)
+            .reduce((acc, cur) => {
+                return {
+                    mobile: (
+                        (typeof cur.mobile === 'string' || cur.mobile === false) &&
+                        acc.mobile === undefined
+                    )
+                        ? cur.mobile
+                        : acc.mobile,
+                    tablet: (
+                        (typeof cur.tablet === 'string' || cur.tablet === false) &&
+                        acc.tablet === undefined
+                    )
+                        ? cur.tablet
+                        : acc.tablet,
+                    desktop: (
+                        (typeof cur.desktop === 'string' || cur.desktop === false) &&
+                        acc.desktop === undefined
+                    )
+                        ? cur.desktop
+                        : acc.desktop,
+                };
+            },
+            {} as DeviceSpecificData);
+        return {
+            mobile: (merged.mobile === false) ? undefined : merged.mobile,
+            tablet: (merged.tablet === false) ? undefined : merged.tablet,
+            desktop: (merged.desktop === false) ? undefined : merged.desktop,
+        };
+    };
+    return {};
+};
+
+export function mergeAsideTabData(
+    ...sources: (Record<string, AsideTabInput> | undefined)[]
+): Record<string, AsideTabData> {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map(normalizeAsideTabInput)
+            .reduce((acc, cur) => {
+                Object.entries(cur).forEach(([key, value]) => {
+                    if (!acc[key]) {
+                        acc[key] = { ...value };
+                    } else {
+                        acc[key] = {
+                            name: (
+                                typeof acc[key].name === 'string' ||
+                                value.name === undefined
+                            )
+                                ? acc[key].name
+                                : value.name,
+                            component: (
+                                typeof acc[key].component === 'string' ||
+                                acc[key].component === false ||
+                                value.component === undefined
+                            )
+                                ? acc[key].component
+                                : value.component, 
+                            order: (
+                                typeof acc[key].order === 'number' ||
+                                value.order === undefined
+                            )
+                                ? acc[key].order
+                                : value.order,
+                        };
+                    };
+                })
+                return acc;
+            });
+        
+        return Object.entries(merged).reduce((result, [key, value]) => {
+            if (value.component === false || value.component === undefined) return result;
+            
+            const name = value.name ?? value.component;
+            const order = any2Number(value.order);
+            result[key] = { name, component: value.component, order };
+            return result;
+        }, {} as Record<string, AsideTabData>);
+    };
+    return {};
+};
+
+export function mergeGithubLinkData(
+    ctx: PageContext,
+    ...sources: (ToolbarGithubLinkInput | undefined)[]
+): ToolbarGithubLinkData{
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map((input) => normalizeGithubInput(input, ctx))
+            .reduce((acc, cur) => {
+                return {
+                    url: (
+                        (typeof cur.url === 'string' || cur.url === false) &&
+                        acc.url === undefined
+                    )
+                        ? cur.url
+                        : acc.url,
+                    tooltip: (
+                        (typeof cur.tooltip === 'string' || cur.tooltip === false) &&
+                        acc.tooltip === undefined
+                    )
+                        ? cur.tooltip
+                        : acc.tooltip
+                }
+            }, {} as ToolbarGithubLinkData)
+        return {
+            url: (merged.url === false) ? undefined : merged.url,
+            tooltip: (merged.tooltip === false) ? undefined : merged.tooltip
+        };
+    };
+    return {};
+};
+
+export function mergeDownloadData(
+    ctx: PageContext,
+    ...sources: (ToolbarDownloadInput | undefined)[]
+): ToolbarDownloadData {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map((input) => normalizeDownloadInput(input, ctx))
+            .reduce((acc, cur) => {
+                return {
+                    download: (
+                        (typeof cur.download === 'string' || typeof cur.download === 'boolean') &&
+                        acc.download === undefined
+                    )
+                        ? cur.download
+                        : acc.download,
+                    target: ( 
+                        (cur.target === "_blank" || cur.target === "_self") &&
+                        acc.target === undefined
+                    )
+                        ? cur.target
+                        : acc.target,
+                    tooltip: (
+                        (typeof cur.tooltip === 'string' || cur.tooltip === false) &&
+                        acc.tooltip === undefined
+                    )
+                        ? cur.tooltip
+                        : acc.tooltip,
+                    url: (
+                        (typeof cur.url === 'string' || cur.url === false) &&
+                        acc.url === undefined
+                    )
+                        ? cur.url
+                        : acc.url,
+                };
+            }, {});
+        return {
+            download: merged.download,
+            target: merged.target,
+            tooltip: (merged.tooltip === false) ? undefined : merged.tooltip,
+            url: (merged.url === false) ? undefined : merged.url,
+        };
+    };
+    return {};
+};
+
+export function mergeHeaderTitleTemplateData(
+    ctx: PageContext,
+    ...sources: (HeaderTitleTemplateInput | undefined)[]
+): string | undefined {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map((input) => normalizeHeaderTitleTemplateInput(input, ctx))
+            .find((value) => value !== undefined)
+        return (merged === false) ? undefined : merged
+    };
+    return undefined;
+};
+
+export function mergeTitleTemplateData(
+    ctx: PageContext | undefined,
+    site: SiteData,
+    page: PageData,
+    ...sources: TitleTemplateInput[]
+): string | undefined {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map((input) => normalizeTitleTemplateInput(input, ctx, site, page))
+            .find((value) => typeof value === 'string')
+        return merged
+    };
+    return undefined;
+};
+
+export function mergeToolbarButtonData(
+    ...sources: (Record<string, ToolbarButtonInput> | undefined)[]
+): Record<string, ToolbarButtonData> {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map(normalizeToolbarButtonData)
+            .reduce((acc, cur) => {
+                Object.entries(cur).forEach(([key, value]) => {
+                    if (!acc[key]) {
+                        acc[key] = { ...value }
+                    } else {
+                        acc[key] = {
+                            icon: (
+                                typeof acc[key].icon === 'string' ||
+                                acc[key].icon === false ||
+                                (typeof acc[key].icon === 'object' && typeof acc[key].icon.component === 'string') ||
+                                value.icon === undefined
+                            )
+                                ? acc[key].icon
+                                : value.icon,
+                            callback: (
+                                typeof acc[key].callback === 'function' ||
+                                value.callback === undefined
+                            )
+                                ? acc[key].callback
+                                : value.callback,
+                            order: (
+                                typeof acc[key].order === 'number' ||
+                                value.order === undefined
+                            )
+                                ? acc[key].order
+                                : value.order,
+                            tooltip: (
+                                typeof acc[key].tooltip === 'string' ||
+                                acc[key].tooltip === false ||
+                                value.tooltip === undefined
+                            )
+                                ? acc[key].tooltip
+                                : value.tooltip,
+                        };
+                    }
+                });
+                return acc;
+            });
+        return Object.entries(merged).reduce((result, [key, value]) => {
+            // filter invalid items
+            if (
+                value.icon !== false &&
+                value.icon !== undefined &&
+                typeof value.callback === 'function'
+            ) {
+                result[key] = {
+                    icon: value.icon,
+                    callback: value.callback,
+                    order: any2Number(value.order),
+                    tooltip: (value.tooltip === false) ? undefined : value.tooltip
+                }
+            };
+            return result;
+        }, {} as Record<string, ToolbarButtonData>);
+    };
+    return {};
+};
+
+export function mergeCoverCssConfig(
+    ...sources: (CoverCssConfigInput | undefined)[]
+): CoverCssConfigData {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map(normalizeCoverCssConfig)
+            .reduce((acc, cur) => {
+                CssConfigKeyList.forEach((key) => {
+                    acc[key] = (typeof acc[key] === 'string' || acc[key] === false || cur[key] === undefined)
+                        ? acc[key]
+                        : cur[key];
+                });
+                return acc;
+            }, {});
+        const result: CoverCssConfigData = {};
+        CssConfigKeyList.forEach((key) => {    
+            result[key] = (merged[key] === false) ? undefined : merged[key];
+        });
+        return result;
+    };
+    return {} as CoverCssConfigData;
+};
+
+export function mergeEditLinkData(
+    ctx: PageContext | undefined,
+    ...sources: (EditLinkInput | undefined)[]
+): EditLinkData {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map((source) => normalizeEditLink(ctx, source))
+            .reduce((acc, cur) => {
+                return {
+                    link: (typeof cur.link === 'string' || cur.link === false) && acc.link === undefined
+                        ? cur.link
+                        : acc.link,
+                    text: (typeof cur.text === 'string') && acc.text === undefined
+                        ? cur.text
+                        : acc.text,
+                };
+            });
+        return {
+            link: (merged.link === false) ? undefined : merged.link,
+            text: merged.text
+        };
+    }
+    return {} as EditLinkData;
+}
+
+export function mergeFooterData(...sources: (FooterInput | undefined)[]): FooterData {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map(normalizeFooter)
+            .reduce((acc, cur) => {
+                return {
+                    message: (typeof cur.message === 'string' || cur.message === false) && acc.message === undefined
+                        ? cur.message
+                        : acc.message,
+                    copyright: (typeof cur.copyright === 'string' || cur.copyright === false) && acc.copyright === undefined
+                        ? cur.copyright
+                        : acc.copyright,
+                }
+            });
+        return {
+            message: merged.message === false ? undefined : merged.message,
+            copyright: merged.copyright === false ? undefined : merged.copyright
         }
     }
-});
-export const resourceNormalizer = createRecordNormalizer(singleResourceNormalizer);
+    return {} as FooterData;
+}
 
-export const timeLabelNormalizer = (last: Date, creat: Date) => createNormalizer<
-    string | undefined,
-    undefined, never,
-    never, never,
-    string, [Date, Date],
-    string, [Date, Date], string
->({
-    s: { validator: (v): v is undefined => v === undefined },
-    f: { params: [last, creat], inspector: isString },
-    t: { validator: isString, params: [last, creat], transformer: formatTimeLabel, inspector: isString }
-});
-
-export const titleTemplateNormalizer = (ctx: PageContext, site: SiteData, page: PageData) => createNormalizer<
-    string | undefined,
-    undefined, never,
-    never, never,
-    string, [PageContext],
-    boolean | string, [PageContext, SiteData, PageData], string
->({
-    s: { validator: (v): v is undefined => v === undefined },
-    f: { params: [ctx], inspector: isString },
-    t: { validator: (v) => isString(v) || isBoolean(v), params: [ctx, site, page], transformer(input, ctx, site, page) {
-        const title = ctx?.layoutConfig?.title ?? page.title ?? site.title ?? "";
-
-        if (isString(input)) {
-            if (ctx) {
-                if (ctx.layoutConfig.layout === "blog" &&
-                    [":series", ":order", ":title"].some(k => input.includes(k))) {
-                    return input
-                        .replace(/:order/g, String(ctx.layoutConfig?.order ?? ""))
-                        .replace(/:series/g, ctx.layoutConfig?.series ?? "")
-                        .replace(/:title/g, title);
-                };
-                if (ctx.layoutConfig.layout === "doc" &&
-                    [":space", ":title"].some(k => input.includes(k))) {
-                    return input
-                        .replace(/:space/g, ctx.layoutConfig?.space ?? "")
-                        .replace(/:title/g, title);
-                };
-            } else if (input.includes(':title')) {
-                return input.replace(/:title/g, title);
-            };
-        };
-
-        let suffix = ` | ${input}`;
-        if (input === false) suffix = '';
-        if (input === true) suffix = ` | ${site.title}`;
-        if (site.title === input) suffix = '';
-
-        if (suffix.startsWith(' | ') && title === suffix.slice(3)) {
-            return title;
-        }
-
-        return `${title}${suffix}`;
-    }, inspector: isString, fallback: undefined}
-});
-
-const singleToolbarButtonNormalizer = createNormalizer<
-    NormalizedToolbarButtonInput,
-    string | false, ["icon"],
-    Exclude<ToolbarButtonInput, string | false>, NormalizedToolbarButtonInput
->({
-    s: { validator: isStringFalse, mapto: ["icon"] },
-    o: {
-        validators: {
-            icon: (v) => isStringFalse(v) || (isObject(v) && isString(v.component)),
-            callback: isFunction,
-            order: isStringNumber,
-            tooltip: isStringFalse,
-        },
-        transformers: {
-            order:(v) => v === undefined ? undefined : any2Number(v)
-        }
-    },
-});
-export const toolbarButtonNormalizer = createRecordNormalizer<NormalizedToolbarButtonInput>(singleToolbarButtonNormalizer)
-
-const isToolbarDownload = (v: any): v is NormalizedToolbarDownloadInput => 
-    (isObject(v)) && (("url" in v && (isStringFalse(v.url) || v.url === undefined)) || !("url" in v)) &&
-    (("target" in v && isString(v.target) && ["_blank", "_self", undefined].includes(v.target)) ||  !("target" in v)) &&
-    (("tooltip" in v &&(isStringFalse(v.tooltip) || v.tooltip === undefined)) ||  !("tooltip" in v)) &&
-    (("download" in v &&(isString(v.download) || isBoolean(v.download) || v.download === undefined)) ||  !("download" in v));
-export const toolbarDownloadNormalizer = (ctx: PageContext) => createNormalizer<
-    NormalizedToolbarDownloadInput,
-    string | false, ["url"],
-    Exclude<ToolbarDownloadInput, string | false | Function>, NormalizedToolbarDownloadInput,
-    NormalizedToolbarDownloadInput, [PageContext]
->({
-    s: { validator: isStringFalse, mapto: ["url"] },
-    o: {
-        validators: {
-            url: isStringFalse,
-            target: (v: any): v is "_blank" | "_self" => ["_blank", "_self"].includes(v),
-            tooltip: isStringFalse,
-            download: (v) => isString(v) || isBoolean(v)
-        },
-    },
-    f: { params: [ctx], inspector: isToolbarDownload, fallback: {} }
-});
-
-const isToolbarGithub = (v: any): v is NormalizedToolbarGithubLinkInput => 
-    (isObject(v)) && (("url" in v && (isStringFalse(v.url) || v.url === undefined)) || !("url" in v)) &&
-    (("tooltip" in v &&(isStringFalse(v.tooltip) || v.tooltip === undefined)) ||  !("tooltip" in v));
-export const toolbarGithubNormalizer = (ctx: PageContext) => createNormalizer<
-    NormalizedToolbarGithubLinkInput,
-    string | false, ["url"],
-    Exclude<ToolbarGithubLinkInput, string | false | Function>, NormalizedToolbarGithubLinkInput,
-    NormalizedToolbarGithubLinkInput, [PageContext]
->({
-    s: { validator: isStringFalse, mapto: ["url"] },
-    o: {
-        validators: {
-            url: isStringFalse,
-            tooltip: isStringFalse,
-        },
-    },
-    f: { params: [ctx], inspector: isToolbarGithub, fallback: {} }
-});
-
-
-// Products(Merger)
-const asideTabProcessor = (v: Partial<Record<string, NormalizedAsideTabInput>>): Record<string, AsideTabData> => 
-    Object.entries(v).reduce((result, [key, value]) => {
-        if (!value || value.component === false || value.component === undefined) return result;
-            
-        const name = value.name ?? value.component;
-        const order = any2Number(value.order);
-        result[key] = { name, component: value.component, order };
-        return result;
-    }, {} as Record<string, AsideTabData>);
-export const asideTabMerger = createRecordMerger<AsideTabInput, NormalizedAsideTabInput, Record<string, AsideTabData>>(
-    createMerger({ type: "object", normalizer: singleAsideTabNormalizer, process(v) {
-        const canceled = cancelObject(v, false);
-        canceled.order = any2Number(canceled.order);
-        return canceled;
-    }}),
-    asideTabNormalizer,
-    asideTabProcessor
-);
-
-export const coverCssConfigMerger = createMerger<CoverCssConfigInput, NormalizedCoverCssConfigInput, CoverCssConfigData>({
-    type: "object", normalizer: coverCssConfigNormalizer, process: (v) => cancelObject(v, false) as CoverCssConfigData
-});
-
-export const deviceSpecificSMerger = createMerger<
-    DeviceSpecificInput<string|false>,
-    DeviceSpecificData<string|false>,
-    DeviceSpecificData<string>
->({ type: "object", normalizer: deviceSpecificSNormalizer, process: (v) => cancelObject(v, false) as DeviceSpecificData<string> });
-
-export const editLinkMerger = (ctx: PageContext, ...sources: (EditLinkInput|undefined)[]) => {
-    const merger = createMerger<EditLinkInput, NormalizedEditLinkInput, EditLinkData>({
-        type: "object", normalizer: editLinkNormalizer(ctx), process: (v) => cancelObject(v, false) as EditLinkData
-    });
-    return merger(...sources);
-};
-
-export const footerMerger = createMerger<FooterInput, NormalizedFooterInput, FooterData>({
-    type: "object", normalizer: footerNormalizer, process: (v) => cancelObject(v, false) as FooterData
-});
-
-export const headerTitleMeger = (ctx: PageContext, ...sources: (HeaderTitleTemplateInput|undefined)[]) => {
-    const merger = createMerger<HeaderTitleTemplateInput, string | false, false, string | undefined>({
-        type: "simple", normalizer: headerTitleTemplateNormalizer(ctx), cancel: false
-    });
-    return merger(...sources);
-};
-
-const resourceProcessor = (v: Partial<Record<string, NormalizedResourceInput>>): Record<string, ResourceData> =>
-    Object.entries(v).reduce((result, [key, value]) => {
-        if (!value || value.url === false || value.url === undefined) return result;
-            
-        const label = value.label ?? value.url;
-        const order = any2Number(value.order);
-        const icon = value.icon === false ? undefined : value.icon;
-        result[key] = { ...value, label, order, url: value.url, icon };
-        return result;
-    }, {} as Record<string, ResourceData>);
-export const resourceMerger = createRecordMerger<ResourceInput, NormalizedResourceInput, Record<string, ResourceData>>(
-    createMerger({ type: "object", normalizer: singleResourceNormalizer, process(v) {
-        const canceled = cancelObject(v, false, ["url", "icon"]);
-        canceled.order = any2Number(canceled.order);
-        return canceled;
-    } }),
-    resourceNormalizer,
-    resourceProcessor
-);
-
-export const simpleMerger = <T, C = never>(validator: (value: any) => value is T, cancel: C, ...sources: (T | undefined)[]) => {
-    const merger = createMerger<
-        T|undefined, T, C,
-        C extends undefined ? Exclude<T,C> : Exclude<T,C>|undefined
-    >({ type: "simple", normalizer: (v) => validator(v) ? v : undefined, cancel });
-    return merger(...sources)
-};
-
-export const timeLabelMerger = (last: Date, creat: Date, ...sources: (
-    | string
-    | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined)
-    | undefined
-)[]) => {
-    const merger = createMerger<string | ((l: Date | undefined, c: Date | undefined) => string | undefined), string | undefined, never, string | undefined>({
-        type: "simple", normalizer: timeLabelNormalizer(last, creat)
-    });
-    return merger(...sources);
-};
-
-export const titleMeger = (ctx: PageContext, site: SiteData, page: PageData, ...sources: (TitleTemplateInput|undefined)[]) => {
-    const merger = createMerger<TitleTemplateInput, string | undefined, never, string | undefined>({
-        type: "simple", normalizer: titleTemplateNormalizer(ctx, site, page)
-    });
-    return merger(...sources);
-};
-
-const toolbarButtonProcessor = (v: Partial<Record<string, NormalizedToolbarButtonInput>>): Record<string, ToolbarButtonData> => 
-    Object.entries(v).reduce((result, [key, value]) => {
-        if (value && value.icon !== false && value.icon !== undefined && typeof value.callback === 'function') {
-            result[key] = {
-                icon: value.icon,
-                callback: value.callback,
-                order: any2Number(value.order),
-                tooltip: (value.tooltip === false) ? undefined : value.tooltip
-            };
-        };
-        return result;
-    }, {} as Record<string, ToolbarButtonData>);
-export const toolbarButtonMerger = createRecordMerger<ToolbarButtonInput, NormalizedToolbarButtonInput, Record<string, ToolbarDownloadData>>(
-    createMerger<ToolbarButtonInput, NormalizedToolbarButtonInput, ToolbarButtonData>({ type: "object", normalizer: singleToolbarButtonNormalizer, process(v) {
-        const canceled = cancelObject(v, false, ["tooltip", "icon"]);
-        canceled.order = any2Number(canceled.order);
-        return canceled as ToolbarButtonData;
-    } }),
-    toolbarButtonNormalizer,
-    toolbarButtonProcessor
-);
-
-export const toolbarDownloadMerger = (ctx: PageContext, ...sources: (ToolbarDownloadInput|undefined)[]) => {
-    const merger = createMerger<ToolbarDownloadInput, NormalizedToolbarDownloadInput, ToolbarDownloadData>({
-        type: "object", normalizer: toolbarDownloadNormalizer(ctx), process: (v) => cancelObject(v, false) as ToolbarDownloadData
-    });
-    return merger(...sources);
-};
-
-export const toolbarGithubMerger = (ctx: PageContext, ...sources: (ToolbarGithubLinkInput|undefined)[]) => {
-    const merger = createMerger<ToolbarGithubLinkInput, NormalizedToolbarGithubLinkInput, ToolbarGithubLinkData>({
-        type: "object", normalizer: toolbarGithubNormalizer(ctx), process: (v) => cancelObject(v, false) as ToolbarGithubLinkData
-    });
-    return merger(...sources);
-};
+export function mergeTimeLabelData(
+    lastUpdated: Date | undefined,
+    createdAt: Date | undefined,
+    ...sources: (
+        | string
+        | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined)
+        | undefined
+    )[]
+): string | undefined {
+    if (Array.isArray(sources)) {
+        const merged = sources
+            .map((source) => normalizeTimeLabel(lastUpdated, createdAt, source))
+            .find((source) => source !== undefined);
+        return merged;
+    };
+    return undefined;
+}

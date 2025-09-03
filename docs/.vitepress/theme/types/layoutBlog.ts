@@ -1,6 +1,5 @@
 import type {
     DeviceSpecificInput,
-    NormalizedDeviceSpecificInput,
     CoverCssConfigInput,
     ToolbarGithubLinkInput,
     NormalizedToolbarGithubLinkInput,
@@ -774,7 +773,7 @@ export interface VPJBlogLayoutConfig {
      * @see {@link DeviceSpecificInput} 设备响应式输入类型
      * @see {@link NormalizedDeviceSpecificInput} 设备响应式标准化类型
      */
-    coverHeight?: DeviceSpecificInput;
+    coverHeight?: DeviceSpecificInput<string|false>;
     
     /**
      * 封面渐变过渡配置
@@ -939,7 +938,7 @@ export interface VPJBlogLayoutConfig {
      * @see {@link DeviceSpecificInput} 设备响应式输入类型
      * @see {@link NormalizedDeviceSpecificInput} 设备响应式标准化类型
      */
-    contentMarginBottom?: DeviceSpecificInput;
+    contentMarginBottom?: DeviceSpecificInput<string|false>;
     
     /**
      * 内容区域顶部边距配置
@@ -998,7 +997,7 @@ export interface VPJBlogLayoutConfig {
      * @see {@link DeviceSpecificInput} 设备响应式输入类型
      * @see {@link NormalizedDeviceSpecificInput} 设备响应式标准化类型
      */
-    contentMarginTop?: DeviceSpecificInput;
+    contentMarginTop?: DeviceSpecificInput<string|false>;
     
     /**
      * page布局的两侧间隔宽度配置
@@ -1057,7 +1056,7 @@ export interface VPJBlogLayoutConfig {
      * @see {@link DeviceSpecificInput} 设备响应式输入类型
      * @see {@link NormalizedDeviceSpecificInput} 设备响应式标准化类型
      */
-    contentPadding?: DeviceSpecificInput;
+    contentPadding?: DeviceSpecificInput<string|false>;
     
     /**
      * blog布局内容最大宽度配置
@@ -1117,7 +1116,7 @@ export interface VPJBlogLayoutConfig {
      * @see {@link DeviceSpecificInput} 设备响应式输入类型
      * @see {@link NormalizedDeviceSpecificInput} 设备响应式标准化类型
      */
-    contentMaxWidth?: DeviceSpecificInput;
+    contentMaxWidth?: DeviceSpecificInput<string|false>;
 
     /**
      * 布局级「下一页」按钮提示文本配置（博客布局）

@@ -597,3 +597,8 @@ export type EditLinkData = {
     link?: string;
     text?: string;
 }
+
+export type TimeLabelInput = 
+    | string
+    | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined)
+    | undefined

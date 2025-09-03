@@ -1,6 +1,6 @@
 import type {
     DeviceSpecificInput,
-    NormalizedDeviceSpecificInput,
+    ImageData,
     CoverCssConfigInput,
     ToolbarGithubLinkInput,
     NormalizedToolbarGithubLinkInput,
@@ -767,7 +767,7 @@ export interface VPJDocLayoutConfig {
      * @see {@link DeviceSpecificInput} 设备响应式输入类型
      * @see {@link NormalizedDeviceSpecificInput} 设备响应式标准化类型
      */
-    coverHeight?: DeviceSpecificInput;
+    coverHeight?: DeviceSpecificInput<string|false>;
     
     /**
      * 封面渐变过渡配置
@@ -927,7 +927,7 @@ export interface VPJDocLayoutConfig {
      * @see {@link DeviceSpecificInput} 响应式配置输入类型
      * @see {@link NormalizedDeviceSpecificInput} 响应式配置标准化类型
      */
-    contentMarginBottom?: DeviceSpecificInput;
+    contentMarginBottom?: DeviceSpecificInput<string|false>;
     
     /**
      * 内容区域顶部边距配置
@@ -984,7 +984,7 @@ export interface VPJDocLayoutConfig {
      * @see {@link DeviceSpecificInput} 设备响应式输入类型
      * @see {@link NormalizedDeviceSpecificInput} 设备响应式标准化类型
      */
-    contentMarginTop?: DeviceSpecificInput;
+    contentMarginTop?: DeviceSpecificInput<string|false>;
     
     /**
      * page 布局两侧间隔宽度配置
@@ -1041,7 +1041,7 @@ export interface VPJDocLayoutConfig {
      * @see {@link DeviceSpecificInput} 设备响应式输入类型
      * @see {@link NormalizedDeviceSpecificInput} 设备响应式标准化类型
      */
-    contentPadding?: DeviceSpecificInput;
+    contentPadding?: DeviceSpecificInput<string|false>;
     
     /**
      * doc 布局内容最大宽度配置
@@ -1099,7 +1099,7 @@ export interface VPJDocLayoutConfig {
      * @see {@link DeviceSpecificInput} 设备响应式输入类型
      * @see {@link NormalizedDeviceSpecificInput} 设备响应式标准化类型
      */
-    contentMaxWidth?: DeviceSpecificInput;
+    contentMaxWidth?: DeviceSpecificInput<string|false>;
 
     /**
      * 布局级「下一页」按钮提示文本配置

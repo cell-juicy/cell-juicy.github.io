@@ -3,7 +3,7 @@ import {
     AsideTabInput,
     NormalizedAsideTabInput,
     DeviceSpecificInput,
-    NormalizedDeviceSpecificInput,
+    ImageData,
     CoverCssConfigInput,
     HeaderTitleTemplateInput,
     ToolbarGithubLinkInput,
@@ -1091,7 +1091,7 @@ export interface SeriesMetaData {
      * @see {@link VPJBlogLayoutConfig.coverHeight} 布局层级的封面高度配置
      * @see {@link VPJBlogLayoutConfig.cover} 封面图路径配置
      */
-    coverHeight?: DeviceSpecificInput;
+    coverHeight?: DeviceSpecificInput<string|false>;
     
     /**
      * 封面渐变过渡配置

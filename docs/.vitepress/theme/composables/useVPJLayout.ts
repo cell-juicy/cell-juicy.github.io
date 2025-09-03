@@ -4,18 +4,18 @@ import { defineStore } from 'pinia';
 
 import { isMobile, isTablet } from '../utils/deviceTypes'
 import {
-    mergeAsideTabData,
-    mergeCoverCssConfig,
-    mergeDeviceData,
-    mergeDownloadData,
-    mergeGithubLinkData,
-    mergeHeaderTitleTemplateData,
-    mergeSimpleData,
-    mergeTitleTemplateData,
-    mergeToolbarButtonData,
-    mergeFooterData,
-    mergeEditLinkData,
-    mergeTimeLabelData,
+    asideTabMerger,
+    coverCssConfigMerger,
+    deviceSpecificSMerger,
+    toolbarDownloadMerger,
+    toolbarGithubMerger,
+    headerTitleMeger,
+    simpleMerger,
+    titleMeger,
+    toolbarButtonMerger,
+    footerMerger,
+    editLinkMerger,
+    timeLabelMerger,
 } from '../utils/mergeData';
 
 import { useBlogData } from './useBlogData';
@@ -24,7 +24,7 @@ import { useDocData } from './useDocData';
 import type { Ref, ComputedRef } from 'vue';
 import type { SiteData, PageData } from 'vitepress';
 import type { ThemeConfig } from '../types';
-import type { CoverCssConfigData, DeviceSpecificData } from '../types/common';
+import type { CoverCssConfigData, DeviceSpecificData, ImageData } from '../types/common';
 import type { VPJBlogLayoutConfig } from '../types/layoutBlog';
 import type { VPJDocLayoutConfig } from '../types/layoutDoc';
 import type { VPJPageLayoutConfig } from '../types/layoutPage';
@@ -148,7 +148,7 @@ const DEFAULT = {
 const PANEL_TAB = ["history"] as const;
 type PANEL_TAB_TYPE = typeof PANEL_TAB[number];
 
-function getDeviceSpecificData(data: DeviceSpecificData) {
+function getDeviceSpecificData<T>(data: DeviceSpecificData<T>) {
     if (isMobile.value) return data.mobile;
     if (isTablet.value) return data.tablet;
     return data.desktop;
@@ -260,7 +260,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         const meta: Array<any> = [];
 
         // Calculate title
-        const mergedTitle = mergeTitleTemplateData(
+        const mergedTitle = titleMeger(
             ctx.value,
             site.value,
             page.value,
@@ -270,8 +270,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         );
 
         // Calculate favicon
-        const mergedFavicon = mergeSimpleData(
-            (input) => typeof input === 'string' || (typeof input === 'object' && input  && typeof input.src === 'string'),
+        const mergedFavicon = simpleMerger<ImageData, undefined>(
+            (input): input is ImageData => typeof input === 'string' || (typeof input === 'object' && input  && typeof input.src === 'string'),
             undefined,
             (page.value.isNotFound) ? undefined : frontmatter.value.favicon,
             specificConfig.value.favicon,
@@ -284,7 +284,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         };
 
         // Calculate description
-        const mergedDescription = mergeSimpleData(
+        const mergedDescription = simpleMerger(
             (input) => typeof input === 'string',
             undefined,
             (page.value.isNotFound) ? undefined : frontmatter.value.description,
@@ -304,7 +304,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     const contentConfig = computed(() => {
         if (["blog", "doc", "page"].includes(layout.value || "")) {
             // Calculate margin bottom
-            const mergedMarginBottom = mergeDeviceData(
+            const mergedMarginBottom = deviceSpecificSMerger(
                 frontmatter.value.contentMarginBottom,
                 layoutConfig.value.contentMarginBottom,
                 defaultConfig.value.CONTENTMARGINBOTTOM
@@ -312,7 +312,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             let marginBottom: string|undefined = getDeviceSpecificData(mergedMarginBottom);
             
             // Calculate margin top
-            const mergedMarginTop = mergeDeviceData(
+            const mergedMarginTop = deviceSpecificSMerger(
                 frontmatter.value.contentMarginTop,
                 layoutConfig.value.contentMarginTop,
                 defaultConfig.value.CONTENTMARGINTOP
@@ -320,7 +320,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             let marginTop: string|undefined = getDeviceSpecificData(mergedMarginTop);
             
             // Calculate max width
-            const mergedMaxWidth = mergeDeviceData(
+            const mergedMaxWidth = deviceSpecificSMerger(
                 frontmatter.value.contentMaxWidth,
                 layoutConfig.value.contentMaxWidth,
                 defaultConfig.value.CONTENTMAXWIDTH
@@ -328,7 +328,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             let maxWidth: string|undefined = getDeviceSpecificData(mergedMaxWidth);
             
             // Calculate padding
-            const mergedPadding = mergeDeviceData(
+            const mergedPadding = deviceSpecificSMerger(
                 frontmatter.value.contentPadding,
                 layoutConfig.value.contentPadding,
                 defaultConfig.value.CONTENTPADDING
@@ -347,7 +347,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     // Footer config
     const footerConfig = computed(() => {
         if (["blog", "doc", "page"].includes(layout.value || "")) {
-            return mergeFooterData(
+            return footerMerger(
                 frontmatter.value.footer,
                 specificConfig.value.footer,
                 layoutConfig.value.footer,
@@ -362,7 +362,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     const asideConfig = computed(() => {
         if (["blog", "doc"].includes(layout.value || "")) {
             // Calculate aside tabs data
-            const tabs = mergeAsideTabData(
+            const tabs = asideTabMerger(
                 frontmatter.value.asideTabs,
                 specificConfig.value.asideTabs,
                 (layoutConfig.value as VPJBlogLayoutConfig|VPJDocLayoutConfig).asideTabs,
@@ -379,7 +379,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     const headerConfig = computed(() => {
         if (["blog", "doc"].includes(layout.value || "")) {
             // Calculate header title
-            const headerTitle = mergeHeaderTitleTemplateData(
+            const headerTitle = headerTitleMeger(
                 // @ts-ignore
                 ctx.value,
                 frontmatter.value.headerTitleTemplate,
@@ -389,8 +389,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
             
             // Calculate header icon
-            const headerIcon = mergeSimpleData<false | string | { component: string }, false>(
-                (v) => {
+            const headerIcon = simpleMerger<false | string | { component: string }, false>(
+                (v): v is string | {component: string} => {
                     return typeof v === 'string' ||
                         v === false || 
                         (
@@ -406,7 +406,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
             
             // Calculate github
-            const github = mergeGithubLinkData(
+            const github = toolbarGithubMerger(
                 // @ts-ignore
                 ctx.value,
                 frontmatter.value.github,
@@ -416,7 +416,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
             
             // Calculate pdf
-            const pdf = mergeDownloadData(
+            const pdf = toolbarDownloadMerger(
                 // @ts-ignore
                 ctx.value,
                 frontmatter.value.pdf,
@@ -426,7 +426,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
             
             // Calculate md
-            const md = mergeDownloadData(
+            const md = toolbarDownloadMerger(
                 // @ts-ignore
                 ctx.value,
                 frontmatter.value.md,
@@ -436,7 +436,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
 
             // Calculate toolbar button
-            const toolbar = mergeToolbarButtonData(
+            const toolbar = toolbarButtonMerger(
                 frontmatter.value.toolbar,
                 specificConfig.value.toolbar,
                 (layoutConfig.value as VPJBlogLayoutConfig|VPJDocLayoutConfig).toolbar,
@@ -458,8 +458,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     const coverConfig = computed(() => {
         if (["blog", "doc"].includes(layout.value || "")) {
             // Calculate alt
-            const alt = mergeSimpleData<false | string, false>(
-                (v) => typeof v === 'string' || v === false,
+            const alt = simpleMerger<false | string, false>(
+                (v): v is string | false => typeof v === 'string' || v === false,
                 false,
                 frontmatter.value.coverAlt,
                 specificConfig.value.coverAlt,
@@ -468,8 +468,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
 
             // Calculate fade
-            const fade = mergeSimpleData<false | number | string, false>(
-                (v) => typeof v === 'number' || v === false || typeof v === 'string',
+            const fade = simpleMerger<false | number | string, false>(
+                (v): v is number|false|string => typeof v === 'number' || v === false || typeof v === 'string',
                 false,
                 frontmatter.value.coverFade,
                 specificConfig.value.coverFade,
@@ -478,7 +478,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
 
             // Calculate height
-            const mergedHeight = mergeDeviceData(
+            const mergedHeight = deviceSpecificSMerger(
                 frontmatter.value.coverHeight,
                 specificConfig.value.coverHeight,
                 (layoutConfig.value as VPJBlogLayoutConfig|VPJDocLayoutConfig).coverHeight,
@@ -487,7 +487,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             let height: string|undefined = getDeviceSpecificData(mergedHeight);
 
             // Calculate css
-            const css: CoverCssConfigData = mergeCoverCssConfig(
+            const css: CoverCssConfigData = coverCssConfigMerger(
                 frontmatter.value.coverCss,
                 specificConfig.value.coverCss,
                 (layoutConfig.value as VPJBlogLayoutConfig|VPJDocLayoutConfig).coverCss,
@@ -507,7 +507,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     const articleFooterConfig = computed(() => {
         if (["blog", "doc"].includes(layout.value || "")) {
             // Calculate edit link
-            const editLink = mergeEditLinkData(
+            const editLink = editLinkMerger(
                 // @ts-ignore
                 ctx.value,
                 frontmatter.value.editLink,
@@ -518,7 +518,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
 
             // Calculate time label
-            const timeLabel = mergeTimeLabelData(
+            const timeLabel = timeLabelMerger(
                 lastUpdated.value,
                 createdAt.value,
                 frontmatter.value.timeLabel,
@@ -529,8 +529,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
 
             // Calculate next label
-            const nextLabel = mergeSimpleData<string | false, false>(
-                (v) => typeof v === 'string' || v === false,
+            const nextLabel = simpleMerger<string | false, false>(
+                (v): v is string | false => typeof v === 'string' || v === false,
                 false,
                 frontmatter.value.next?.label,
                 specificConfig.value.next,
@@ -540,8 +540,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             );
 
             // Calculate prev label
-            const prevLabel = mergeSimpleData<string | false, false>(
-                (v) => typeof v === 'string' || v === false,
+            const prevLabel = simpleMerger<string | false, false>(
+                (v): v is string | false => typeof v === 'string' || v === false,
                 false,
                 frontmatter.value.prev?.label,
                 specificConfig.value.prev,
@@ -563,8 +563,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     // Not found content
     const notFoundContent = computed(() => {
         //  Calculate status icon
-        const statusIcon = mergeSimpleData(
-            (input: any) => (
+        const statusIcon = simpleMerger(
+            (input: any): input is ImageData | {component: string} => (
                 (input === false) ||
                 (typeof input === 'string') ||
                 (typeof input === 'object' && input && typeof input.component === 'string') ||
@@ -577,7 +577,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         );
 
         // Calculate heading
-        const heading = mergeSimpleData(
+        const heading = simpleMerger(
             (input: any) => typeof input === 'string',
             undefined,
             page.value.isNotFound ? undefined : frontmatter.value.heading,
@@ -586,7 +586,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         );
 
         // Calculate message
-        const message = mergeSimpleData(
+        const message = simpleMerger(
             (input: any) => typeof input === 'string',
             undefined,
             page.value.isNotFound ? undefined : frontmatter.value.message,
