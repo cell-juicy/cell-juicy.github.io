@@ -1,57 +1,13 @@
 import type { Route } from "vitepress";
 
 
-/**
- * 通用的图片数据配置类型
- * 
- * @remarks
- * 此类型用于表示图片资源的配置方式，支持两种形式：
- * 1. 简写：直接使用图片路径字符串。
- * 2. 详写：通过对象指定图片路径及额外属性（如 `alt` 文本）。
- * 
- * 
- * @example
- * 示例1：简写模式（直接使用路径）
- * ```ts
- * const icon: ImageData = "/assets/home.svg";
- * ```
- * 
- * @example
- * 示例2：详细模式（添加 `alt` 属性）
- * ```ts
- * const icon: ImageData = {
- *   src: "/assets/home.svg",
- *   alt: "首页图标"
- * };
- * ```
- */
+export type Falsable<T> = false | T;
+
 export type ImageData = 
     | string
     | { src: string; alt?: string };
 
 
-/**
- * blog/doc布局页面上下文类型
- * 
- * @remarks
- * 此类型用于在布局处理过程中传递路由信息和布局配置，包含：
- * - 当前路由对象 (route)
- * - 布局配置数据 (layoutConfig)，根据页面布局由对应的pinia store生成：
- *   - blog布局：包括系列名称、标签列表和排序序号
- *   - doc布局：包括命名空间和排序序号数组
- * 
- * @example
- * ```ts
- * const ctx: PageContext = {
- *   route: currentRoute,
- *   layoutConfig: {
- *     layout: "blog",
- *     series: "tutorial",
- *     tags: ["vue", "typescript"]
- *   }
- * };
- * ```
- */
 export type PageContext = {
     route: Route;
     layoutConfig:
@@ -60,30 +16,6 @@ export type PageContext = {
 }
 
 
-/**
- * 设备特定输入类型
- * 
- * @remarks
- * 用于根据不同设备显示不同的配置值，支持三种形式：
- * 1. 禁用模式：直接使用 false
- * 2. 统一值模式：使用字符串配置
- * 3. 分设备模式：使用对象分别指定移动端/平板/桌面端配置
- * 
- * @example
- * 示例1：统一高度配置
- * ```ts
- * const height: DeviceSpecificInput = "200px";
- * ```
- * 
- * @example
- * 示例2：分设备配置
- * ```ts
- * const height: DeviceSpecificInput = {
- *   mobile: "150px",
- *   desktop: "300px"
- * };
- * ```
- */
 export type DeviceSpecificInput<T> =
     | T
     | {
@@ -99,152 +31,27 @@ export type DeviceSpecificData<T> = {
 }
 
 
-/**
- * blog/doc布局封面图CSS配置输入类型
- * 
- * @remarks
- * 控制封面图样式的配置类型，支持禁用(false)或CSS字符串值。包含以下属性：
- * - boxShadow: 盒子阴影
- * - filter: 滤镜效果
- * - maskImage: 遮罩图像
- * - objectFit: 图片填充方式
- * - objectPosition: 图片定位
- * - opacity: 透明度
- * - transform: 变形效果
- * - transition: 过渡动画
- * 
- * @example
- * 示例：添加阴影和透明度
- * ```ts
- * const coverCss: CoverCssConfigInput = {
- *   boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
- *   opacity: "0.9"
- * };
- * ```
- */
-export type CoverCssConfigInput ={
-
-    boxShadow?: 
-        | false
-        | string;
-
-    filter?: 
-        | false
-        | string;
-    
-    maskImage?: 
-        | false
-        | string;
-
-    objectFit?: 
-        | false
-        | string;
-
-    objectPosition?: 
-        | false
-        | string;
-
-    opacity?: 
-        | false
-        | string;
-
-    transform?: 
-        | false
-        | string;
-
-    transition?: 
-        | false
-        | string;
-};
+export type CoverCssConfigInput = Falsable<NormalizedCoverCssConfigInput>
 
 export type NormalizedCoverCssConfigInput ={
-
-    boxShadow?: 
-        | false
-        | string;
-
-    filter?: 
-        | false
-        | string;
-    
-    maskImage?: 
-        | false
-        | string;
-
-    objectFit?: 
-        | false
-        | string;
-
-    objectPosition?: 
-        | false
-        | string;
-
-    opacity?: 
-        | false
-        | string;
-
-    transform?: 
-        | false
-        | string;
-
-    transition?: 
-        | false
-        | string;
+    boxShadow?: Falsable<string>;
+    filter?: Falsable<string>;
+    maskImage?: Falsable<string>;
+    objectFit?: Falsable<string>;
+    objectPosition?: Falsable<string>;
+    opacity?: Falsable<string>;
+    transform?: Falsable<string>;
+    transition?: Falsable<string>;
 };
 
-export type CoverCssConfigData ={
-
-    boxShadow?: string;
-
-    filter?: string;
-    
-    maskImage?: string;
-
-    objectFit?: string;
-
-    objectPosition?: string;
-
-    opacity?: string;
-
-    transform?: string;
-
-    transition?: string;
-};
+export type CoverCssConfigData = Record<keyof NormalizedCoverCssConfigInput, string>;
 
 
-/**
- * blog/doc布局侧边栏标签页输入类型
- * 
- * @remarks
- * 配置侧边栏标签页的三种方式：
- * 1. 禁用：使用 false
- * 2. 快捷模式：直接使用组件名称字符串，这被视为等效于输入{ component: "组件名称" }
- * 3. 详细模式：使用配置对象指定名称、组件和排序
- * 
- * @example
- * 示例1：快捷启用组件
- * ```ts
- * const tab: AsideTabInput = "TocTab"; // 等同于 { component: "TocTab" }
- * ```
- * 
- * @example
- * 示例2：详细配置
- * ```ts
- * const tab: AsideTabInput = {
- *   name: "目录",
- *   component: "TocTab",
- *   order: 1
- * };
- * ```
- */
 export type AsideTabInput = 
-    | false
-    | string
+    | Falsable<string>
     | {
         name?: string;
-        component?:
-            | false
-            | string;
+        component?: Falsable<string>;
         order?:
             | number
             | string;
@@ -252,11 +59,8 @@ export type AsideTabInput =
 
 export type NormalizedAsideTabInput = {
     name?: string;
-    component?:
-        | false
-        | string;
-    order?:
-        | number;
+    component?: Falsable<string>;
+    order?: number;
 };
 
 export type AsideTabData = {
@@ -265,88 +69,47 @@ export type AsideTabData = {
     order: number;
 };
 
-/**
- * blog/doc布局工具栏GitHub按钮输入类型
- * 
- * @remarks
- * 配置GitHub按钮的四种方式：
- * 1. 禁用：使用 false
- * 2. 快捷模式：直接使用仓库URL，这被视为等效于输入{ url: "仓库URL" }
- * 3. 对象模式：指定URL和提示文本
- * 4. 动态函数：根据页面上下文生成配置，参见PageContext，ToolbarGithubLinkData类型，只有返回值为ToolbarGithubLinkData的函数才会将返回值参与配置合并
- * 
- * @example
- * 示例：动态生成仓库链接
- * ```ts
- * const github: ToolbarGithubLinkInput = (ctx) => ({
- *   url: ctx.layoutConfig.series === "tutorial" 
- *     ? "https://github.com/tutorials" 
- *     : false
- * });
- * ```
- * 
- * @see {@link PageContext} 页面上下文类型
- * @see {@link ToolbarGithubLinkData} 工具栏GitHub按钮数据类型
- */
-export type ToolbarGithubLinkInput = 
-    | false
-    | string
-    | { url?: string | false, tooltip?: string | false}
-    | ((ctx: PageContext) => NormalizedToolbarGithubLinkInput)
 
-export type NormalizedToolbarGithubLinkInput = {
-    url?:
-        | false
-        | string,
-    tooltip?:
-        | false
+type BaseToolbarInput = {
+    tooltip?: Falsable<string>;
+    order?:
+        | number
         | string
+};
+
+type BaseNormalizedToolbarInput = BaseToolbarInput & { order?: number }
+
+type BaseToolbarData = {
+    tooltip?: string;
+    order: number;
 }
 
-export type ToolbarGithubLinkData = {
+
+export type ToolbarGithubInput = 
+    | Falsable<string>
+    | { url?: Falsable<string>, tooltip?: Falsable<string> }
+    | ((ctx: PageContext) => NormalizedToolbarGithubInput)
+
+export type NormalizedToolbarGithubInput = {
+    url?: Falsable<string>,
+    tooltip?: Falsable<string>
+}
+
+export type ToolbarGithubData = {
     url?: string;
     tooltip?: string;
 }
     
 
-/**
- * blog/doc布局工具栏下载按钮输入类型
- * 
- * @remarks
- * 配置markdown/pdf下载按钮的四种方式：
- * 1. 禁用：使用 false，这被视为等效于输入{ url: false }
- * 2. 快捷模式：直接使用文件URL，这被视为等效于输入{ url: "文件URL" }
- * 3. 对象模式：指定URL，提示文本，目标窗口和下载属性
- * 4. 动态函数：根据页面上下文生成配置，参见PageContext，ToolbarDownloadData类型，只有返回值为ToolbarDownloadData的函数才会将返回值参与配置合并
- * 
- * @example
- * 示例：动态生成仓库链接
- * ```ts
- * const data: ToolbarDownloadInput = (ctx) => ({
- *   url: ctx.layoutConfig.series === "tutorial"
- *     ? "/file/tutorial.pdf"
- *     : false,
- *   download: true,
- * });
- * ```
- * 
- * @see {@link PageContext} 页面上下文类型
- */
 export type ToolbarDownloadInput =
-    | false
-    | string
-    | {
-        url?: string | false;
-        target?: "_blank" | "_self";
-        tooltip?: string | false;
-        download?: boolean | string;
-    }
+    | Falsable<string>
+    | NormalizedToolbarDownloadInput
     | ((ctx: PageContext) => NormalizedToolbarDownloadInput)
 
 export type NormalizedToolbarDownloadInput = {
-    url?: string | false;
+    url?: Falsable<string>;
     target?: "_blank" | "_self";
-    tooltip?: string | false;
+    tooltip?: Falsable<string>;
     download?: boolean | string;
 }
 
@@ -357,91 +120,61 @@ export type ToolbarDownloadData = {
     download?: boolean | string;
 }
 
-/**
- * blog/doc布局工具栏按钮输入类型
- * 
- * @remarks
- * 
- * 配置工具栏按钮的三种方式：
- * 1. 禁用：使用 false，这被视为等效于输入{ icon: false }
- * 2. 快捷模式：直接使用图标名称字符串，这被视为等效于输入{ icon: "图标名称" }
- * 3. 对象模式：指定图标名称，回调函数，排序和提示文本。
- * 注意，只有icon值有效（类型为string或{ component: stirng }）且callback值是一个函数的数据才会被添加到工具栏中，否则会被忽略。
- * 
- * @example
- * 示例1：快捷启用图标
- * ```ts
- * const button: ToolbarButtonInput = "VPJIconApps"; // 等同于 { icon: "VPJIconApps" }
- * ```
- */
+
 export type ToolbarButtonInput = 
-    | false
-    | string
+    | Falsable<string>
     | {
         icon?:
-            | false
-            | string
+            | Falsable<string>
             | { component: string};
-        
         callback?: () => void;
-
         order?:
             | number
             | string;
-
-        tooltip?:
-            | false
-            | string;
+        tooltip?: Falsable<string>;
     };
 
 export type NormalizedToolbarButtonInput = {
     icon?:
-        | false
-        | string
-        | { component: string};
-    
+        | Falsable<string>
+        | { component: string};   
     callback?: () => void;
-
     order?: number;
-
-    tooltip?:
-        | false
-        | string;
+    tooltip?: Falsable<string>;
 };
 
 export type ToolbarButtonData = {
     icon?:
         | string
         | { component: string};
-    
     callback?: () => void;
-
     order: number;
-
     tooltip?: string;
 };
 
-/**
- * blog/doc布局头部标题模板输入类型
- * 
- * @remarks
- * 配置标题文本的三种方式：
- * 1. 禁用：使用 false
- * 2. 字符串模板：支持动态替换占位符
- *   - blog布局可用: :series, :title, :order
- *   - doc布局可用: :space, :title
- * 3. 动态函数：根据页面上下文生成标题，参见PageContext，只有返回值为string/false的函数才会将返回值参与配置合并
- * 
- * @example
- * 示例：带动态占位符的模板
- * ```ts
- * const template: HeaderTitleTemplateInput = "[系列] :series - :title";
- * ```
- */
+
+export type ToolbarFeatureInput =
+    | boolean
+    | NormalizedToolbarFeatureInput;
+
+export type NormalizedToolbarFeatureInput = {
+    enabled?: boolean;
+    tooltip?: Falsable<string>;
+    order?:
+        | string
+        | number
+};
+
+export type ToolbarFeatureData = {
+    enabled?: boolean;
+    tooltip?: string;
+    order: number;
+};
+
+
 export type HeaderTitleTemplateInput =
-    | false
-    | string
-    | ((ctx: PageContext) => string | false);
+    | Falsable<string>
+    | ((ctx: PageContext) => Falsable<string>);
 
 
 export type TitleTemplateInput =
@@ -451,113 +184,39 @@ export type TitleTemplateInput =
     | ((ctx: PageContext) => string)
 
 
-/**
- * 页面资源配置输入类型
- *
- * @remarks
- * 此类型用于为文档页配置右侧工具栏中的资源链接区域，每个资源可显示图标、文本、URL，并支持下载等交互功能。配置方式支持以下几种形式：
- *
- * 1. **禁用资源**：使用 `false` 表示禁用当前资源项，等效于输入 `{ url: false }`。
- * 2. **快捷模式**：直接输入一个字符串作为资源 URL，等效于 `{ url: "资源地址" }`。
- * 3. **对象模式**：完整指定资源的各个字段，包括 URL、图标、标签文本、下载标志等，详见 {@link ResourceData}。
- *
- * 注意事项：
- *
- * - 所有资源项在解析时会被标准化为 {@link ResourceData} 结构。
- * - 若配置为 `false` 或 `{ url: false }`，该资源不会被渲染到页面。
- * - 如果资源的 `url` 字段缺失或为空字符串，视为无效资源，将被自动过滤。
- * - 若资源为可下载类型（如 PDF、Markdown 等），建议使用 `download: true` 明确提示浏览器下载，如果需要自定义下载文件名，请使用 `download: "自定义文件名"`。
- * - `type` 字段可用于显式声明资源类型，用于渲染时进行样式或排序优化，支持值包括 `"file"`、`"image"`、`"website"`、`"download"` 等。
- * - 资源在最终页面中显示顺序受 `order` 字段影响，未指定时默认按定义顺序排列。
- *
- * @example
- * 示例：快捷方式配置 PDF 下载链接
- * ```ts
- * export default {
- *   themeConfig: {
- *     doc: {
- *       space: {
- *         "api-guide": {
- *           nodeMeta: {
- *             global: {
- *               resources: {
- *                 pdf: "/downloads/api-guide.pdf"
- *               }
- *             }
- *           }
- *         }
- *       }
- *     }
- *   }
- * }
- * ```
- *
- * @example
- * 示例：完整对象模式配置图标链接
- * ```ts
- * export default {
- *   themeConfig: {
- *     doc: {
- *       space: {
- *         "design-notes": {
- *           nodeMeta: {
- *             "1": {
- *               resources: {
- *                 figma: {
- *                   url: "https://figma.com/file/xyz",
- *                   label: "设计原稿",
- *                   icon: { component: "figma-icon" },
- *                   type: "website",
- *                   order: 2
- *                 }
- *               }
- *             }
- *           }
- *         }
- *       }
- *     }
- *   }
- * }
- * ```
- *
- * @see {@link ResourceData} 资源字段结构
- */
 export type ResourceInput = 
-    | false
-    | string
+    | Falsable<string>
     | {
-        url?: string | false,
-        label?: string,
+        url?: Falsable<string>;
+        label?: string;
         icon?:
-            | false
-            | string
-            | { component: string },
-        order?: number | string,
-        download?: boolean | string,
-        type?: "file" | "image" | "website" | "download"
-    } ;
+            | Falsable<string>
+            | { component: string };
+        order?: number | string;
+        download?: boolean | string;
+        type?: "file" | "image" | "website" | "download";
+    };
 
 export type NormalizedResourceInput = {
-    url?: string | false,
-    label?: string,
+    url?: Falsable<string>;
+    label?: string;
     icon?:
-        | false
-        | string
-        | { component: string },
-    order?: number,
-    download?: boolean | string,
-    type?: "file" | "image" | "website" | "download"
+        | Falsable<string>
+        | { component: string };
+    order?: number;
+    download?: boolean | string;
+    type?: "file" | "image" | "website" | "download";
 } 
 
 export type ResourceData = {
-    url?: string,
-    label?: string,
+    url: string;
+    label?: string;
     icon?:
         | string
-        | { component: string },
-    order: number,
-    download?: boolean | string,
-    type?: "file" | "image" | "website" | "download"
+        | { component: string };
+    order: number;
+    download?: boolean | string;
+    type?: "file" | "image" | "website" | "download";
 }
 
 
@@ -566,8 +225,8 @@ export type FooterInput =
     | NormalizedFooterInput;
 
 export type NormalizedFooterInput = {
-    message?: string | false;
-    copyright?: string | false;
+    message?: Falsable<string>;
+    copyright?: Falsable<string>;
 }
 
 export type FooterData = {
@@ -576,20 +235,15 @@ export type FooterData = {
 }
 
 
-export type EditLinkInput = 
-    | false
-    | {
-        pattern?:
-            | false
-            | string
-            | ((ctx: PageContext) => string);
-        text?: string;
-    };
+export type EditLinkInput = Falsable<{
+    pattern?:
+        | Falsable<string>
+        | ((ctx: PageContext) => string);
+    text?: string;
+}>;
 
 export type NormalizedEditLinkInput = {
-    link?:
-        | false
-        | string;
+    link?: Falsable<string>;
     text?: string;
 }
 

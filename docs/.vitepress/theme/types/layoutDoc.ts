@@ -2,8 +2,8 @@ import type {
     DeviceSpecificInput,
     ImageData,
     CoverCssConfigInput,
-    ToolbarGithubLinkInput,
-    NormalizedToolbarGithubLinkInput,
+    ToolbarGithubInput,
+    NormalizedToolbarGithubInput,
     ToolbarDownloadInput,
     NormalizedToolbarDownloadInput,
     AsideTabInput,
@@ -421,13 +421,13 @@ export interface VPJDocLayoutConfig {
      * 3. **禁用模式** - 使用 `false` 隐藏按钮
      * 4. **动态函数** - 基于 {@link PageContext} 生成配置
      * 
-     * 具体支持的输入类型参考 {@link ToolbarGithubLinkInput}，输入数据将被标准化为 {@link NormalizedToolbarGithubLinkInput} 格式参与合并。
+     * 具体支持的输入类型参考 {@link ToolbarGithubInput}，输入数据将被标准化为 {@link NormalizedToolbarGithubInput} 格式参与合并。
      * 
      * 注意事项：
      * 
      * - 此项允许在 frontmatter 中动态配置（如根据页面配置不同仓库）
      * - 合并结果为 `false` 的属性会被处理为 `undefined`，当 URL 为 `undefined` 时会隐藏 GitHub 按钮
-     * - 动态函数模式下返回值需符合 {@link NormalizedToolbarGithubLinkInput} 格式才会参与合并，非合法返回值将被忽略
+     * - 动态函数模式下返回值需符合 {@link NormalizedToolbarGithubInput} 格式才会参与合并，非合法返回值将被忽略
      * - 提示文本（tooltip）会显示在按钮下方
      * 
      * @example
@@ -465,10 +465,10 @@ export interface VPJDocLayoutConfig {
      * }
      * ```
      * 
-     * @see {@link ToolbarGithubLinkInput} Github 链接配置类型
-     * @see {@link NormalizedToolbarGithubLinkInput} Github 链接标准化类型
+     * @see {@link ToolbarGithubInput} Github 链接配置类型
+     * @see {@link NormalizedToolbarGithubInput} Github 链接标准化类型
      */
-    github?: ToolbarGithubLinkInput;
+    github?: ToolbarGithubInput;
     
     /**
      * Markdown 下载按钮配置

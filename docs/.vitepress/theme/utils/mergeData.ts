@@ -11,7 +11,7 @@ import type {
     TitleTemplateInput,
     ToolbarButtonInput,
     ToolbarDownloadInput,
-    ToolbarGithubLinkInput,
+    ToolbarGithubInput,
 
     NormalizedAsideTabInput,
     NormalizedEditLinkInput,
@@ -19,7 +19,7 @@ import type {
     NormalizedResourceInput,
     NormalizedToolbarButtonInput,
     NormalizedToolbarDownloadInput,
-    NormalizedToolbarGithubLinkInput,
+    NormalizedToolbarGithubInput,
     NormalizedCoverCssConfigInput,
 
     AsideTabData,
@@ -29,7 +29,7 @@ import type {
     FooterData,
     ResourceData,
     ToolbarDownloadData,
-    ToolbarGithubLinkData,
+    ToolbarGithubData,
     ToolbarButtonData,
     TimeLabelInput,
 } from "../types/common";
@@ -104,7 +104,7 @@ export const asideTabNormalizer = createRecordNormalizer<NormalizedAsideTabInput
 export const coverCssConfigNormalizer = createNormalizer<
     NormalizedCoverCssConfigInput,
     never, never,
-    CoverCssConfigInput, CoverCssConfigInput
+    Exclude<CoverCssConfigInput, false>, NormalizedCoverCssConfigInput
 >({ o: { validators: Object.fromEntries(CoverCssConfigKey.map((key) => [key, isStringFalse])) } });
 
 export const deviceSpecificSNormalizer = createDeviceSpecificNormalizer<string | false>(isStringFalse);
@@ -304,14 +304,14 @@ export const toolbarDownloadNormalizer = (ctx: PageContext) => createNormalizer<
     f: { params: [ctx], inspector: isToolbarDownload, fallback: {} }
 });
 
-const isToolbarGithub = (v: any): v is NormalizedToolbarGithubLinkInput => 
+const isToolbarGithub = (v: any): v is NormalizedToolbarGithubInput => 
     (isObject(v)) && (("url" in v && (isStringFalse(v.url) || v.url === undefined)) || !("url" in v)) &&
     (("tooltip" in v &&(isStringFalse(v.tooltip) || v.tooltip === undefined)) ||  !("tooltip" in v));
 export const toolbarGithubNormalizer = (ctx: PageContext) => createNormalizer<
-    NormalizedToolbarGithubLinkInput,
+    NormalizedToolbarGithubInput,
     string | false, ["url"],
-    Exclude<ToolbarGithubLinkInput, string | false | Function>, NormalizedToolbarGithubLinkInput,
-    NormalizedToolbarGithubLinkInput, [PageContext]
+    Exclude<ToolbarGithubInput, string | false | Function>, NormalizedToolbarGithubInput,
+    NormalizedToolbarGithubInput, [PageContext]
 >({
     s: { validator: isStringFalse, mapto: ["url"] },
     o: {
@@ -374,7 +374,7 @@ export const headerTitleMeger = (ctx: PageContext, ...sources: (HeaderTitleTempl
 
 const resourceProcessor = (v: Partial<Record<string, NormalizedResourceInput>>): Record<string, ResourceData> =>
     Object.entries(v).reduce((result, [key, value]) => {
-        if (!value || value.url === false || value.url === undefined) return result;
+        if (!value || typeof value.url !== 'string') return result;
             
         const label = value.label ?? value.url;
         const order = any2Number(value.order);
@@ -443,9 +443,9 @@ export const toolbarDownloadMerger = (ctx: PageContext, ...sources: (ToolbarDown
     return merger(...sources);
 };
 
-export const toolbarGithubMerger = (ctx: PageContext, ...sources: (ToolbarGithubLinkInput|undefined)[]) => {
-    const merger = createMerger<ToolbarGithubLinkInput, NormalizedToolbarGithubLinkInput, ToolbarGithubLinkData>({
-        type: "object", normalizer: toolbarGithubNormalizer(ctx), process: (v) => cancelObject(v, false) as ToolbarGithubLinkData
+export const toolbarGithubMerger = (ctx: PageContext, ...sources: (ToolbarGithubInput|undefined)[]) => {
+    const merger = createMerger<ToolbarGithubInput, NormalizedToolbarGithubInput, ToolbarGithubData>({
+        type: "object", normalizer: toolbarGithubNormalizer(ctx), process: (v) => cancelObject(v, false) as ToolbarGithubData
     });
     return merger(...sources);
 };

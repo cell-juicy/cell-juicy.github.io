@@ -5,8 +5,8 @@ import type {
     ImageData,
     CoverCssConfigInput,
     HeaderTitleTemplateInput,
-    ToolbarGithubLinkInput,
-    NormalizedToolbarGithubLinkInput,
+    ToolbarGithubInput,
+    NormalizedToolbarGithubInput,
     ToolbarDownloadInput,
     NormalizedToolbarDownloadInput,
     ToolbarButtonInput,
@@ -557,7 +557,7 @@ export interface SpaceMetaData {
      * 3. **禁用模式** - 使用 `false` 隐藏按钮
      * 4. **动态函数** - 基于 {@link PageContext} 生成配置
      * 
-     * 输入数据将被标准化为 {@link NormalizedToolbarGithubLinkInput} 格式参与合并。
+     * 输入数据将被标准化为 {@link NormalizedToolbarGithubInput} 格式参与合并。
      * 
      * 注意事项：
      * 
@@ -628,11 +628,11 @@ export interface SpaceMetaData {
      * }
      * ```
      * 
-     * @see {@link ToolbarGithubLinkInput}
-     * @see {@link NormalizedToolbarGithubLinkInput}
+     * @see {@link ToolbarGithubInput}
+     * @see {@link NormalizedToolbarGithubInput}
      * @see {@link VPJDocLayoutConfig.github}
      */
-    github?: ToolbarGithubLinkInput;
+    github?: ToolbarGithubInput;
 
     /**
      * Markdown 下载按钮配置
