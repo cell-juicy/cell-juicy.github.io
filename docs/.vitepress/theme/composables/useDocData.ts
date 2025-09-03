@@ -6,7 +6,7 @@ import { data } from "../data/doc.data";
 import { data as history } from "../data/history.data";
 
 import { VPJ_DOC_DATA_SYMBOL } from "../utils/symbols";
-import { any2Number, processDocOrder } from "../utils/common";
+import { processDocOrder } from "../utils/common";
 import { simpleMerger, resourceMerger } from "../utils/mergeData";
 
 import type { Ref } from "vue";

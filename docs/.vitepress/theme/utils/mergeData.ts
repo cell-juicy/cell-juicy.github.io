@@ -1,5 +1,7 @@
 import type {
     PageContext,
+    BaseNormalizedToolbarInput,
+    BaseToolbarData,
 
     AsideTabInput,
     CoverCssConfigInput,
@@ -11,16 +13,18 @@ import type {
     TitleTemplateInput,
     ToolbarButtonInput,
     ToolbarDownloadInput,
+    ToolbarFeatureInput,
     ToolbarGithubInput,
 
     NormalizedAsideTabInput,
+    NormalizedCoverCssConfigInput,
     NormalizedEditLinkInput,
     NormalizedFooterInput,
     NormalizedResourceInput,
     NormalizedToolbarButtonInput,
     NormalizedToolbarDownloadInput,
+    NormalizedToolbarFeatureInput,
     NormalizedToolbarGithubInput,
-    NormalizedCoverCssConfigInput,
 
     AsideTabData,
     CoverCssConfigData,
@@ -28,10 +32,11 @@ import type {
     EditLinkData,
     FooterData,
     ResourceData,
-    ToolbarDownloadData,
-    ToolbarGithubData,
-    ToolbarButtonData,
     TimeLabelInput,
+    ToolbarButtonData,
+    ToolbarDownloadData,
+    ToolbarFeatureData,
+    ToolbarGithubData,
 } from "../types/common";
 import type { PageData, SiteData } from 'vitepress';
 
@@ -284,8 +289,9 @@ export const toolbarButtonNormalizer = createRecordNormalizer<NormalizedToolbarB
 const isToolbarDownload = (v: any): v is NormalizedToolbarDownloadInput => 
     (isObject(v)) && (("url" in v && (isStringFalse(v.url) || v.url === undefined)) || !("url" in v)) &&
     (("target" in v && isString(v.target) && ["_blank", "_self", undefined].includes(v.target)) ||  !("target" in v)) &&
-    (("tooltip" in v &&(isStringFalse(v.tooltip) || v.tooltip === undefined)) ||  !("tooltip" in v)) &&
-    (("download" in v &&(isString(v.download) || isBoolean(v.download) || v.download === undefined)) ||  !("download" in v));
+    (("tooltip" in v && (isStringFalse(v.tooltip) || v.tooltip === undefined)) ||  !("tooltip" in v)) &&
+    (("download" in v && (isString(v.download) || isBoolean(v.download) || v.download === undefined)) ||  !("download" in v)) &&
+    (("order" in v && (isNumber(v.order) || v.order === undefined)) ||  !("tooltip" in v));
 export const toolbarDownloadNormalizer = (ctx: PageContext) => createNormalizer<
     NormalizedToolbarDownloadInput,
     string | false, ["url"],
@@ -297,16 +303,40 @@ export const toolbarDownloadNormalizer = (ctx: PageContext) => createNormalizer<
         validators: {
             url: isStringFalse,
             target: (v: any): v is "_blank" | "_self" => ["_blank", "_self"].includes(v),
+            download: (v) => isString(v) || isBoolean(v),
+            order: (v) => isStringNumber(v),
             tooltip: isStringFalse,
-            download: (v) => isString(v) || isBoolean(v)
         },
+        transformers: {
+            order:(v) => v === undefined ? undefined : any2Number(v)
+        }
     },
     f: { params: [ctx], inspector: isToolbarDownload, fallback: {} }
 });
 
+export const toolbarFeatureNormalizer = createNormalizer<
+    NormalizedToolbarFeatureInput,
+    boolean, ["enabled"],
+    Exclude<ToolbarFeatureInput, boolean>, NormalizedToolbarFeatureInput,
+    NormalizedToolbarFeatureInput, [PageContext]
+>({
+    s: { validator: isBoolean, mapto: ["enabled"] },
+    o: {
+        validators: {
+            enabled: isBoolean,
+            order: isStringNumber,
+            tooltip: isStringFalse,
+        },
+        transformers: {
+            order:(v) => v === undefined ? undefined : any2Number(v)
+        }
+    }
+});
+
 const isToolbarGithub = (v: any): v is NormalizedToolbarGithubInput => 
     (isObject(v)) && (("url" in v && (isStringFalse(v.url) || v.url === undefined)) || !("url" in v)) &&
-    (("tooltip" in v &&(isStringFalse(v.tooltip) || v.tooltip === undefined)) ||  !("tooltip" in v));
+    (("tooltip" in v &&(isStringFalse(v.tooltip) || v.tooltip === undefined)) ||  !("tooltip" in v)) &&
+    (("order" in v && (isNumber(v.order) || v.order === undefined)) ||  !("tooltip" in v));
 export const toolbarGithubNormalizer = (ctx: PageContext) => createNormalizer<
     NormalizedToolbarGithubInput,
     string | false, ["url"],
@@ -317,8 +347,12 @@ export const toolbarGithubNormalizer = (ctx: PageContext) => createNormalizer<
     o: {
         validators: {
             url: isStringFalse,
+            order: isStringNumber,
             tooltip: isStringFalse,
         },
+        transformers: {
+            order:(v) => v === undefined ? undefined : any2Number(v)
+        }
     },
     f: { params: [ctx], inspector: isToolbarGithub, fallback: {} }
 });
@@ -414,6 +448,12 @@ export const titleMeger = (ctx: PageContext | undefined, site: SiteData, page: P
     return merger(...sources);
 };
 
+const toolbarProcessor = <T extends BaseNormalizedToolbarInput, O extends BaseToolbarData>(keys: string[]) => (v: T) => {
+    const canceled = cancelObject(v, keys);
+    canceled.order = any2Number(canceled.order);
+    return canceled as unknown as O;
+}
+
 const toolbarButtonProcessor = (v: Partial<Record<string, NormalizedToolbarButtonInput>>): Record<string, ToolbarButtonData> => 
     Object.entries(v).reduce((result, [key, value]) => {
         if (value && value.icon !== false && value.icon !== undefined && typeof value.callback === 'function') {
@@ -438,14 +478,21 @@ export const toolbarButtonMerger = createRecordMerger<ToolbarButtonInput, Normal
 
 export const toolbarDownloadMerger = (ctx: PageContext, ...sources: (ToolbarDownloadInput|undefined)[]) => {
     const merger = createMerger<ToolbarDownloadInput, NormalizedToolbarDownloadInput, ToolbarDownloadData>({
-        type: "object", normalizer: toolbarDownloadNormalizer(ctx), process: (v) => cancelObject(v, false) as ToolbarDownloadData
+        type: "object", normalizer: toolbarDownloadNormalizer(ctx),
+        process: toolbarProcessor<NormalizedToolbarGithubInput, ToolbarGithubData>(["url", "target", "tooltip"])
     });
     return merger(...sources);
 };
 
+export const toolbarFeatureMerger = createMerger<ToolbarFeatureInput, NormalizedToolbarFeatureInput, ToolbarFeatureData>({
+    type: "object", normalizer: toolbarFeatureNormalizer,
+    process: toolbarProcessor<NormalizedToolbarFeatureInput, ToolbarFeatureData>(["tooltip"])
+})
+
 export const toolbarGithubMerger = (ctx: PageContext, ...sources: (ToolbarGithubInput|undefined)[]) => {
     const merger = createMerger<ToolbarGithubInput, NormalizedToolbarGithubInput, ToolbarGithubData>({
-        type: "object", normalizer: toolbarGithubNormalizer(ctx), process: (v) => cancelObject(v, false) as ToolbarGithubData
+        type: "object", normalizer: toolbarGithubNormalizer(ctx),
+        process: toolbarProcessor<NormalizedToolbarGithubInput, ToolbarGithubData>(["url", "tooltip"])
     });
     return merger(...sources);
 };

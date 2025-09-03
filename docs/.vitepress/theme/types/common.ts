@@ -70,16 +70,19 @@ export type AsideTabData = {
 };
 
 
-type BaseToolbarInput = {
+export type BaseToolbarInput = {
     tooltip?: Falsable<string>;
     order?:
         | number
         | string
 };
 
-type BaseNormalizedToolbarInput = BaseToolbarInput & { order?: number }
+export type BaseNormalizedToolbarInput = {
+    tooltip?: Falsable<string>;
+    order?: number;
+}
 
-type BaseToolbarData = {
+export type BaseToolbarData = {
     tooltip?: string;
     order: number;
 }
@@ -87,89 +90,44 @@ type BaseToolbarData = {
 
 export type ToolbarGithubInput = 
     | Falsable<string>
-    | { url?: Falsable<string>, tooltip?: Falsable<string> }
+    | ({ url?: Falsable<string> } & BaseToolbarInput)
     | ((ctx: PageContext) => NormalizedToolbarGithubInput)
 
-export type NormalizedToolbarGithubInput = {
-    url?: Falsable<string>,
-    tooltip?: Falsable<string>
-}
+export type NormalizedToolbarGithubInput = BaseNormalizedToolbarInput & { url?: Falsable<string> };
 
-export type ToolbarGithubData = {
-    url?: string;
-    tooltip?: string;
-}
+export type ToolbarGithubData = BaseToolbarData & { url?: string };
     
 
 export type ToolbarDownloadInput =
     | Falsable<string>
-    | NormalizedToolbarDownloadInput
+    | ({ url?: Falsable<string>; target?: Falsable<"_blank" | "_self">; download?: boolean | string; } & BaseToolbarInput)
     | ((ctx: PageContext) => NormalizedToolbarDownloadInput)
 
-export type NormalizedToolbarDownloadInput = {
-    url?: Falsable<string>;
-    target?: "_blank" | "_self";
-    tooltip?: Falsable<string>;
-    download?: boolean | string;
-}
+export type NormalizedToolbarDownloadInput = 
+    BaseNormalizedToolbarInput & { url?: Falsable<string>; target?: "_blank" | "_self"; download?: boolean | string; };
 
-export type ToolbarDownloadData = {
-    url?: string;
-    target?: "_blank" | "_self";
-    tooltip?: string;
-    download?: boolean | string;
-}
+export type ToolbarDownloadData =
+    BaseToolbarData & { url?: string; target?: "_blank" | "_self"; download?: boolean | string; };
 
 
 export type ToolbarButtonInput = 
     | Falsable<string>
-    | {
-        icon?:
-            | Falsable<string>
-            | { component: string};
-        callback?: () => void;
-        order?:
-            | number
-            | string;
-        tooltip?: Falsable<string>;
-    };
+    | (BaseToolbarInput & { icon?: Falsable<string> | { component: string }; callback?: () => void; });
 
-export type NormalizedToolbarButtonInput = {
-    icon?:
-        | Falsable<string>
-        | { component: string};   
-    callback?: () => void;
-    order?: number;
-    tooltip?: Falsable<string>;
-};
+export type NormalizedToolbarButtonInput =
+    BaseNormalizedToolbarInput & { icon?: Falsable<string> | { component: string }; callback?: () => void; };
 
-export type ToolbarButtonData = {
-    icon?:
-        | string
-        | { component: string};
-    callback?: () => void;
-    order: number;
-    tooltip?: string;
-};
+export type ToolbarButtonData =
+    BaseToolbarData & { icon?: string | { component: string }; callback?: () => void; };
 
 
 export type ToolbarFeatureInput =
     | boolean
-    | NormalizedToolbarFeatureInput;
+    | ({ enabled?: boolean } & BaseToolbarInput);
 
-export type NormalizedToolbarFeatureInput = {
-    enabled?: boolean;
-    tooltip?: Falsable<string>;
-    order?:
-        | string
-        | number
-};
+export type NormalizedToolbarFeatureInput = { enabled?: boolean } & BaseNormalizedToolbarInput;
 
-export type ToolbarFeatureData = {
-    enabled?: boolean;
-    tooltip?: string;
-    order: number;
-};
+export type ToolbarFeatureData = { enabled?: boolean } & BaseToolbarData;
 
 
 export type HeaderTitleTemplateInput =
