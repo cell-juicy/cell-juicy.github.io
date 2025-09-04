@@ -15,7 +15,8 @@ import {
     PageContext,
     TitleTemplateInput,
     EditLinkInput,
-    FooterInput
+    FooterInput,
+    ToolbarFeatureInput
 } from "./common";
 
 import {
@@ -1629,4 +1630,6 @@ export interface SeriesMetaData {
     timeLabel?:
         | string
         | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
+    
+    history?: ToolbarFeatureInput;
 }

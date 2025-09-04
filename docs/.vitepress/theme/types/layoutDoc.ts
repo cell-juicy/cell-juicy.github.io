@@ -14,7 +14,8 @@ import type {
     PageContext,
     TitleTemplateInput,
     EditLinkInput,
-    FooterInput
+    FooterInput,
+    ToolbarFeatureInput
 } from "./common";
 
 
@@ -1271,4 +1272,6 @@ export interface VPJDocLayoutConfig {
     timeLabel?:
         | string
         | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
+    
+    history?: ToolbarFeatureInput;
 }

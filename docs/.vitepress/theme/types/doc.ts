@@ -15,7 +15,8 @@ import type {
     ResourceInput,
     TitleTemplateInput,
     EditLinkInput,
-    FooterInput
+    FooterInput,
+    ToolbarFeatureInput
 } from "./common";
 
 import type {
@@ -1641,4 +1642,6 @@ export interface SpaceMetaData {
     timeLabel?:
         | string
         | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
+    
+    history?: ToolbarFeatureInput;
 }

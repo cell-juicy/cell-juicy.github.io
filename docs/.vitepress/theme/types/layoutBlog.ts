@@ -14,7 +14,8 @@ import type {
     ImageData,
     TitleTemplateInput,
     EditLinkInput,
-    FooterInput
+    FooterInput,
+    ToolbarFeatureInput
 } from "./common";
 
 
@@ -1288,4 +1289,6 @@ export interface VPJBlogLayoutConfig {
     timeLabel?:
         | string
         | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
+    
+    history?: ToolbarFeatureInput;
 }

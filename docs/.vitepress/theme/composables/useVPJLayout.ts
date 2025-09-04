@@ -16,6 +16,7 @@ import {
     footerMerger,
     editLinkMerger,
     timeLabelMerger,
+    toolbarFeatureMerger,
 } from '../utils/mergeData';
 
 import { useBlogData } from './useBlogData';
@@ -73,6 +74,7 @@ const DEFAULT = {
             download: true
         },
         TOOLBAR: {},
+        HISTORY: { tooltip: "查看历史记录" },
         ASIDETABS: {
             series: {name: "系列", component: "VPJBlogAsideSeriesPage", order: 0},
             tags: {name: "标签", component: "VPJBlogAsideTagsPage", order: 0},
@@ -117,6 +119,7 @@ const DEFAULT = {
             download: true
         },
         TOOLBAR: {},
+        HISTORY: { tooltip: "查看历史记录" },
         ASIDETABS: {
             tree: {name: "目录", component: "VPJDocAsideTreePage", order: 0},
             resources: {name: "资源", component: "VPJDocAsideResourcesPage", order: 0},
@@ -443,13 +446,22 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 defaultConfig.value.TOOLBAR
             );
 
+            // Calculate history button
+            const history = toolbarFeatureMerger(
+                frontmatter.value.history,
+                specificConfig.value.history,
+                (layoutConfig.value as VPJBlogLayoutConfig|VPJDocLayoutConfig).history,
+                defaultConfig.value.HISTORY
+            )
+
             return {
                 headerTitle,
                 headerIcon,
                 github,
                 pdf,
                 md,
-                toolbar
+                toolbar,
+                history
             }
         };
         return undefined;
