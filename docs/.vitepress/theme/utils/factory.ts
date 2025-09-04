@@ -290,7 +290,7 @@ export function createRecordMerger<
     return (...sources: Array<Record<string, I> | undefined>): R => {
         const merged: Partial<Record<string, V | undefined>> = {};
         const keys = new Set<string>();
-        const normalized = sources.map(normalizer)
+        const normalized = sources.map(normalizer);
 
         for (const s of normalized) {
             if (!s || typeof s !== "object") continue;

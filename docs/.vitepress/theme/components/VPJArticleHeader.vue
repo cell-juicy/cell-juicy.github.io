@@ -1,52 +1,22 @@
 <script setup>
-import { useData } from 'vitepress';
-import { computed } from 'vue';
+import { useTemplateRef } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useVPJLayout } from '../composables/useVPJLayout';
 
-import VPJDynamicIcon from './VPJDynamicIcon.vue'
+import VPJDynamicIcon from './VPJDynamicIcon.vue';
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
-import VPJTooltipBtn from './VPJTooltipBtn.vue';
+import VPJArticleHeaderToolbar from './VPJArticleHeaderToolbar.vue';
 
-import VPJIconGithub from './icons/VPJIconGithub.vue';
-import VPJIconMarkdown from './icons/VPJIconMarkdown.vue';
 import VPJIconMenuBurger from './icons/VPJIconMenuBurger.vue';
-import VPJIconPDF from './icons/VPJIconPDF.vue';
-import VPJIconTimePast from './icons/VPJIconTimePast.vue'
 
-import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes'
+import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes';
 
 
 const store = useVPJLayout();
 const {
     articleFooterConfig,
 } = storeToRefs(store);
-const { panelToggle } = store;
-
-const tooltipPosition = "bottom"
-const tooltipBoundary = ".vpj-layout-content"
-const tooltipOffset = {x: 0, y: 6}
-const tooltipSafeMargin = 16
-const tooltipAttrs = {
-    style: {
-        alignItems: "center",
-        background: "var(--vpj-color-text-500)",
-        borderRadius: "var(--vpj-border-radius-100)",
-        color: "var(--vpj-color-bg-100)",
-        display: "flex",
-        fontSize: ".875rem",
-        maxWidth: "240px",
-        maxHeight: "200px",
-        lineClamp: "4",
-        overflow: "hidden",
-        paddingTop: ".375rem",
-        paddingBottom: ".375rem",
-        paddingLeft: ".5rem",
-        paddingRight: ".5rem",
-        zIndex: "102"
-    }
-}
 
 const props = defineProps({
     config: {
@@ -71,42 +41,7 @@ const props = defineProps({
     }
 });
 
-const toolsData = computed(() => {
-    if (typeof props.config?.toolbar === 'object' && props.config?.toolbar !== null) {
-        return Object.entries(props.config.toolbar).map(([key, value]) => {
-            return {
-                key,
-                order: value.order,
-                icon: value.icon,
-                callback: value.callback,
-                tooltip: value.tooltip
-            };
-        }).sort((a, b) => {
-            return a.order - b.order
-        });
-    };
-    return [];
-});
-
-const showActions = computed(() => {
-    const hasDefaults = !!props.config?.github?.url 
-        || !!props.config?.pdf?.url 
-        || !!props.config?.md?.url
-        || !!articleFooterConfig.value.timeLabel;
-    
-    const hasTools = Object.entries(props.config?.toolbar || {}).length > 0;
-
-    return hasDefaults || hasTools;
-});
-const showDivider = computed(() => {
-    const hasDefaults = !!props.config?.github?.url 
-        || !!props.config?.pdf?.url 
-        || !!props.config?.md?.url;
-    
-    const hasTools = Object.entries(props.config?.toolbar || {}).length > 0;
-
-    return hasDefaults && hasTools;
-});
+const toolbar = useTemplateRef("toolbar");
 </script>
 
 
@@ -135,107 +70,16 @@ const showDivider = computed(() => {
                     {{ props.config?.headerTitle }}
                 </span>
             </div>
-            <ClientOnly>
-                <Teleport
-                    to=".vpj-article-header__actions"
-                    :disabled="isDesktop || !showActions"
-                >
-                    <div class="vpj-article-header__toolbar">
-                        <VPJTooltipBtn
-                            @click="() => panelToggle('history')"
-                            :boundary="tooltipBoundary"
-                            :isLink="false"
-                            :icon="VPJIconTimePast"
-                            tooltip="查看历史记录"
-                            :tooltipPosition="tooltipPosition"
-                            :tooltipAttrs="tooltipAttrs"
-                            :offset="tooltipOffset"
-                            :safeMargin="tooltipSafeMargin"
-                            class="vpj-article-header__button"
-                        />
-                        <VPJTooltipBtn
-                            v-if="props.config?.github?.url"
-                            :boundary="tooltipBoundary"
-                            :href="props.config?.github?.url"
-                            :isLink="true"
-                            :icon="VPJIconGithub"
-                            :tooltip="props.config?.github?.tooltip"
-                            :tooltipPosition="tooltipPosition"
-                            :tooltipAttrs="tooltipAttrs"
-                            :offset="tooltipOffset"
-                            :safeMargin="tooltipSafeMargin"
-                            class="vpj-article-header__button"
-                            target="_blank"
-                            rel="noopener"
-                        />
-                        <VPJTooltipBtn
-                            v-if="props.config?.pdf?.url"
-                            :boundary="tooltipBoundary"
-                            :download="
-                                (props.config?.pdf?.download === true) ? '' :
-                                    (typeof props.config?.pdf?.download === 'string') ?
-                                        props.config?.pdf?.download :
-                                        undefined
-                            "
-                            :href="props.config?.pdf?.url"
-                            :isLink="true"
-                            :icon="VPJIconPDF"
-                            :target="props.config?.pdf?.target"
-                            :tooltip="props.config?.pdf?.tooltip"
-                            :tooltipPosition="tooltipPosition"
-                            :tooltipAttrs="tooltipAttrs"
-                            :offset="tooltipOffset"
-                            :safeMargin="tooltipSafeMargin"
-                            class="vpj-article-header__button"
-                            rel="noopener"
-                        />
-                        <VPJTooltipBtn
-                            v-if="props.config?.md?.url"
-                            :boundary="tooltipBoundary"
-                            :download="
-                                (props.config?.md?.download === true) ? '' :
-                                    (typeof props.config?.md?.download === 'string') ?
-                                        props.config?.md?.download :
-                                        undefined
-                            "
-                            :href="props.config?.md?.url"
-                            :isLink="true"
-                            :icon="VPJIconMarkdown"
-                            :target="props.config?.md?.target"
-                            :tooltip="props.config?.md?.tooltip"
-                            :tooltipPosition="tooltipPosition"
-                            :tooltipAttrs="tooltipAttrs"
-                            :offset="tooltipOffset"
-                            :safeMargin="tooltipSafeMargin"
-                            class="vpj-article-header__button"
-                            rel="noopener"
-                        />
-                        <div v-if="showDivider" class="vpj-article-header__divider"/>
-                        <VPJTooltipBtn
-                            v-for="tool in toolsData"
-                            :key="tool.key"
-                            :boundary="tooltipBoundary"
-                            :icon="tool.icon"
-                            :tooltip="tool.tooltip"
-                            :tooltipPosition="tooltipPosition"
-                            :tooltipAttrs="tooltipAttrs"
-                            :offset="tooltipOffset"
-                            :safeMargin="tooltipSafeMargin"
-                            @click="tool.callback"
-                            class="vpj-article-header__button"
-                            rel="noopener"
-                        />
-                    </div>
-                </Teleport>
-            </ClientOnly>
+            <VPJArticleHeaderToolbar v-show="isDesktop" ref="toolbar"/>
         </div>
         <slot name="header-between"/>
         <div
-            v-show="!isDesktop && showActions"
+            v-show="!isDesktop && (toolbar.hasToolbar || articleFooterConfig.timeLabel)"
             class="vpj-article-header__actions"
         >
+            <VPJArticleHeaderToolbar/>
             <span
-                v-if="articleFooterConfig.timeLabel && !isDesktop"
+                v-if="articleFooterConfig.timeLabel"
                 class="vpj-article-header__time-label vpj-text"
             >
                 {{ articleFooterConfig.timeLabel }}

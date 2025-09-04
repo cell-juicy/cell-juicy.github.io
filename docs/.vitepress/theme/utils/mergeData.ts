@@ -291,7 +291,7 @@ const isToolbarDownload = (v: any): v is NormalizedToolbarDownloadInput =>
     (("target" in v && isString(v.target) && ["_blank", "_self", undefined].includes(v.target)) ||  !("target" in v)) &&
     (("tooltip" in v && (isStringFalse(v.tooltip) || v.tooltip === undefined)) ||  !("tooltip" in v)) &&
     (("download" in v && (isString(v.download) || isBoolean(v.download) || v.download === undefined)) ||  !("download" in v)) &&
-    (("order" in v && (isNumber(v.order) || v.order === undefined)) ||  !("tooltip" in v));
+    (("order" in v && (isNumber(v.order) || v.order === undefined)) ||  !("order" in v));
 export const toolbarDownloadNormalizer = (ctx: PageContext) => createNormalizer<
     NormalizedToolbarDownloadInput,
     string | false, ["url"],
@@ -336,7 +336,7 @@ export const toolbarFeatureNormalizer = createNormalizer<
 const isToolbarGithub = (v: any): v is NormalizedToolbarGithubInput => 
     (isObject(v)) && (("url" in v && (isStringFalse(v.url) || v.url === undefined)) || !("url" in v)) &&
     (("tooltip" in v &&(isStringFalse(v.tooltip) || v.tooltip === undefined)) ||  !("tooltip" in v)) &&
-    (("order" in v && (isNumber(v.order) || v.order === undefined)) ||  !("tooltip" in v));
+    (("order" in v && (isNumber(v.order) || v.order === undefined)) ||  !("order" in v));
 export const toolbarGithubNormalizer = (ctx: PageContext) => createNormalizer<
     NormalizedToolbarGithubInput,
     string | false, ["url"],

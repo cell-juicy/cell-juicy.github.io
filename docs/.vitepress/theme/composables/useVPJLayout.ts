@@ -74,7 +74,10 @@ const DEFAULT = {
             download: true
         },
         TOOLBAR: {},
-        HISTORY: { tooltip: "查看历史记录" },
+        HISTORY: {
+            enabled: true,
+            tooltip: "查看历史记录"
+        },
         ASIDETABS: {
             series: {name: "系列", component: "VPJBlogAsideSeriesPage", order: 0},
             tags: {name: "标签", component: "VPJBlogAsideTagsPage", order: 0},
@@ -119,7 +122,10 @@ const DEFAULT = {
             download: true
         },
         TOOLBAR: {},
-        HISTORY: { tooltip: "查看历史记录" },
+        HISTORY: {
+            enabled: true,
+            tooltip: "查看历史记录"
+        },
         ASIDETABS: {
             tree: {name: "目录", component: "VPJDocAsideTreePage", order: 0},
             resources: {name: "资源", component: "VPJDocAsideResourcesPage", order: 0},
@@ -452,7 +458,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 specificConfig.value.history,
                 (layoutConfig.value as VPJBlogLayoutConfig|VPJDocLayoutConfig).history,
                 defaultConfig.value.HISTORY
-            )
+            );
 
             return {
                 headerTitle,
