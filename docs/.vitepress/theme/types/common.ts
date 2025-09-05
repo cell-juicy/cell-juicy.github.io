@@ -107,7 +107,7 @@ export type NormalizedToolbarDownloadInput =
     BaseNormalizedToolbarInput & { url?: Falsable<string>; target?: "_blank" | "_self"; download?: boolean | string; };
 
 export type ToolbarDownloadData =
-    BaseToolbarData & { url?: string; target?: "_blank" | "_self"; download?: boolean | string; };
+    BaseToolbarData & { url?: string; target?: "_blank" | "_self"; download?: string; };
 
 
 export type ToolbarButtonInput = 
@@ -173,7 +173,7 @@ export type ResourceData = {
         | string
         | { component: string };
     order: number;
-    download?: boolean | string;
+    download?: string;
     type?: "file" | "image" | "website" | "download";
 }
 

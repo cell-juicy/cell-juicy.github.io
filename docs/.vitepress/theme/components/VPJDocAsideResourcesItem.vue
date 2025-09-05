@@ -42,12 +42,6 @@ const icon = computed(() => {
         else return DefaultIcon.website;
     }
 });
-
-const download = computed(() => {
-    if (props.data.download === true) return "";
-    else if (typeof props.data.download === 'string') return props.data.download;
-    else return undefined
-})
 </script>
 
 
@@ -55,12 +49,12 @@ const download = computed(() => {
     <a
         :href="url"
         class="vpj-layout-doc__aside-resource"
-        :download="download"
+        :download="props.data?.download"
         target="_blank"
         rel="noopener"
     >
         <VPJDynamicIcon
-            :class="props.data.icon
+            :class="props.data?.icon
                 ? 'vpj-layout-doc__aside-resource-icon'
                 : 'vpj-layout-doc__aside-resource-icon-default'"
             :icon="icon"

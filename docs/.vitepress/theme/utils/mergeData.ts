@@ -91,6 +91,12 @@ export function cancelObject<O extends Record<string, any>, K extends keyof O = 
     return result;
 }
 
+function transformDownload(input: boolean | string | undefined): string | undefined {
+    return (typeof input === 'boolean')
+        ? (input === true) ? "" : undefined
+        : (typeof input === 'string') ? input : undefined;
+}
+
 
 // Products(Normalizer)
 const singleAsideTabNormalizer = createNormalizer<
@@ -413,7 +419,8 @@ const resourceProcessor = (v: Partial<Record<string, NormalizedResourceInput>>):
         const label = value.label ?? value.url;
         const order = any2Number(value.order);
         const icon = value.icon === false ? undefined : value.icon;
-        result[key] = { ...value, label, order, url: value.url, icon };
+        const download = transformDownload(value.download);
+        result[key] = { ...value, label, order, url: value.url, icon, download };
         return result;
     }, {} as Record<string, ResourceData>);
 export const resourceMerger = createRecordMerger<ResourceInput, NormalizedResourceInput, Record<string, ResourceData>>(
@@ -451,6 +458,7 @@ export const titleMeger = (ctx: PageContext | undefined, site: SiteData, page: P
 const toolbarProcessor = <T extends BaseNormalizedToolbarInput, O extends BaseToolbarData>(keys: string[]) => (v: T) => {
     const canceled = cancelObject(v, keys);
     canceled.order = any2Number(canceled.order);
+    if ("download" in canceled) canceled.download = transformDownload(canceled.download as string | boolean)
     return canceled as unknown as O;
 }
 

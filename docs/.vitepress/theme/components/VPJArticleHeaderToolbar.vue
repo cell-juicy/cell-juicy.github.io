@@ -73,9 +73,6 @@ const downloads = computed(() => {
         ...md,
         icon: VPJIconMarkdown,
         key: "markdown",
-        download: (typeof md.download === 'boolean')
-            ? (md.download === true) ? true : false
-            : (typeof md.download === 'string') ? md.download : undefined,
     });
     // pdf button
     const pdf = headerConfig.value.pdf;
@@ -83,9 +80,6 @@ const downloads = computed(() => {
         ...pdf,
         icon: VPJIconPDF,
         key: "pdf",
-        download: (typeof pdf.download === 'boolean')
-            ? (pdf.download === true) ? true : false
-            : (typeof pdf.download === 'string') ? pdf.download : undefined,
     });
 
     return result.sort((a, b) => a.order - b.order);
@@ -100,6 +94,7 @@ const features = computed(() => {
         tooltip: history.tooltip,
         icon: VPJIconTimePast,
         callback: () => panelToggle("history"),
+        order: history.order,
         key: "history",
     })
 
@@ -148,6 +143,7 @@ defineExpose({ hasToolbar });
             :safeMargin="tooltipSafeMargin"
             class="vpj-article-header__toolbar-btn"
             :href="download.url"
+            :download="download.download"
         />
         <div
             v-if="tools.length > 0 && downloads.length > 0"
