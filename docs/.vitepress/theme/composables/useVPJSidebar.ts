@@ -2,7 +2,8 @@ import { useData, useRoute } from 'vitepress';
 import { computed, ref, watch } from 'vue';
 import { defineStore } from 'pinia';
 
-import { simpleMerger } from '../utils/mergeData';
+import { getDeviceSpecificData } from '../utils/deviceTypes';
+import { simpleMerger, deviceSpecificBNormalizer } from '../utils/mergeData';
 
 import type {
     SiteData,
@@ -149,11 +150,8 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
     });
 
     // state
-    const collapsed: Ref<boolean> = ref(
-        typeof theme.value.sidebarCollapsed === 'boolean'
-            ? theme.value.sidebarCollapsed
-            : DEFAULT.COLLAPSED
-    );
+    const sidebarCConfig = getDeviceSpecificData(deviceSpecificBNormalizer(theme.value.sidebarCollapsed));
+    const collapsed: Ref<boolean> = ref(typeof sidebarCConfig === 'boolean' ? sidebarCConfig : true);
     function toggle(): void { collapsed.value = !collapsed.value; };
     function close(): void { collapsed.value = true; };
     function open(): void { collapsed.value = false; };

@@ -15,9 +15,6 @@ export default defineConfigWithTheme<ThemeConfig>({
     title: "Cell的个人站点",
     lang: "zh-CN",
     description: "Cell's personal site",
-    head: [
-        ["meta", { name: "algolia-site-verification", content: "95E8D005DA95BF4F" }]
-    ],
     markdown: {
         math: true
     },
@@ -106,7 +103,7 @@ export default defineConfigWithTheme<ThemeConfig>({
                 editLink: {
                     pattern: "https://github.com/cell-juicy/cell-juicy.github.io/tree/main/docs/:path",
                     text: "在 GitHub 上查看此页"
-                }
+                },
             }
         },
         doc: {
@@ -196,6 +193,9 @@ export default defineConfigWithTheme<ThemeConfig>({
         next: "下一页",
         prev: "上一页",
         enableVitrual: true,
-        timeLabel: "上次更新于：:lYYYY/:lMM/:lDD  创建于：:cYYYY/:cMM/:cDD"
+        timeLabel: "上次更新于：:lYY/:lMM/:lDD",
+        asideCollapsed: {
+            desktop: false,
+        },
     },
 })

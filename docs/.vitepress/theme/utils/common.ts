@@ -12,12 +12,12 @@ export const isStringNumber = (v: any): v is string | number => isString(v) || i
 export function any2Number(value: any): number {
     const num = Number(value);
     return isNaN(num) ? 0 : num;
-}
+};
 
 /* Order Processing */
 export function processBlogOrder(order: any): number {
     return any2Number(order);
-}
+};
 
 export function processDocOrder(order: any): number[] {
 
@@ -91,7 +91,7 @@ export function formatTimeLabel(
     const re = new RegExp(Object.keys(map).join("|"), "g");
 
     return pattern.replace(re, match => map[match] || "");
-}
+};
 
 export function formatDate(pattern: string, date: Date) {
     if (!date) return undefined;
@@ -116,4 +116,4 @@ export function formatDate(pattern: string, date: Date) {
     const re = new RegExp(Object.keys(map).join("|"), "g");
 
     return pattern.replace(re, match => map[match] || "");
-}
+};

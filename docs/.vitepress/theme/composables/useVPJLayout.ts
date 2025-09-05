@@ -2,11 +2,12 @@ import { useData } from 'vitepress';
 import { ref, computed, readonly } from 'vue';
 import { defineStore } from 'pinia';
 
-import { isMobile, isTablet } from '../utils/deviceTypes'
+import { getDeviceSpecificData } from '../utils/deviceTypes'
 import {
     asideTabMerger,
     coverCssConfigMerger,
     deviceSpecificSMerger,
+    deviceSpecificBNormalizer,
     toolbarDownloadMerger,
     toolbarGithubMerger,
     headerTitleMeger,
@@ -157,12 +158,6 @@ const DEFAULT = {
 const PANEL_TAB = ["history"] as const;
 type PANEL_TAB_TYPE = typeof PANEL_TAB[number];
 
-function getDeviceSpecificData<T>(data: DeviceSpecificData<T>) {
-    if (isMobile.value) return data.mobile;
-    if (isTablet.value) return data.tablet;
-    return data.desktop;
-}
-
 export const useVPJLayout = defineStore("vpj-layout", () => {
     const { page, frontmatter, theme, site }: {
         page: Ref<PageData, PageData>
@@ -234,11 +229,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
     });
 
     // state
-    const asideCollapsed: Ref<boolean> = ref(
-        (typeof theme.value.asideCollapsed === "boolean")
-            ? theme.value.asideCollapsed
-            : true
-    );
+    const asideCConfig = getDeviceSpecificData(deviceSpecificBNormalizer(theme.value.asideCollapsed));
+    const asideCollapsed: Ref<boolean> = ref(typeof asideCConfig === 'boolean' ? asideCConfig : true);
     function asideToggle(): void { asideCollapsed.value = !asideCollapsed.value; };
     function asideClose(): void { asideCollapsed.value = true; };
     function asideOpen(): void { asideCollapsed.value = false; };

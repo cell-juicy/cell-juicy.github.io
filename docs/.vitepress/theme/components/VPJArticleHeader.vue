@@ -74,12 +74,12 @@ const toolbar = useTemplateRef("toolbar");
         </div>
         <slot name="header-between"/>
         <div
-            v-show="!isDesktop && (toolbar.hasToolbar || articleFooterConfig.timeLabel)"
+            v-show="!isDesktop && (toolbar?.hasToolbar || articleFooterConfig?.timeLabel)"
             class="vpj-article-header__actions"
         >
             <VPJArticleHeaderToolbar/>
             <span
-                v-if="articleFooterConfig.timeLabel"
+                v-if="articleFooterConfig?.timeLabel"
                 class="vpj-article-header__time-label vpj-text"
             >
                 {{ articleFooterConfig.timeLabel }}
@@ -175,24 +175,6 @@ const toolbar = useTemplateRef("toolbar");
         font-size: 24px;
         font-weight: bold;
         line-height: 1;
-    }
-
-    /* Toolbar */
-    .vpj-article-header__toolbar {
-        align-items: center;
-        display: flex;
-        flex-shrink: 0;
-        gap: .25rem;
-        height: 100%;
-        margin-left: auto;
-    }
-
-    .vpj-article-header__info .vpj-article-header__toolbar {
-        justify-self: flex-end;
-    }
-
-    .vpj-article-header__actions .vpj-article-header__toolbar {
-        margin-left: 0;
     }
 
     /* Toolbar Divider */
