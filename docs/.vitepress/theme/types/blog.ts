@@ -3,11 +3,11 @@ import {
     AsideTabInput,
     NormalizedAsideTabInput,
     DeviceSpecificInput,
-    NormalizedDeviceSpecificInput,
+    ImageData,
     CoverCssConfigInput,
     HeaderTitleTemplateInput,
-    ToolbarGithubLinkInput,
-    NormalizedToolbarGithubLinkInput,
+    ToolbarGithubInput,
+    NormalizedToolbarGithubInput,
     ToolbarDownloadInput,
     NormalizedToolbarDownloadInput,
     ToolbarButtonInput,
@@ -15,7 +15,8 @@ import {
     PageContext,
     TitleTemplateInput,
     EditLinkInput,
-    FooterInput
+    FooterInput,
+    ToolbarFeatureInput
 } from "./common";
 
 import {
@@ -487,13 +488,13 @@ export interface SeriesMetaData {
      * 3. **禁用模式** - 使用`false`隐藏按钮
      * 4. **动态函数** - 基于 {@link PageContext} 生成配置
      * 
-     * 具体支持输入类型参考 {@link ToolbarGithubLinkInput} ，输入数据将被标准化为 {@link NormalizedToolbarGithubLinkInput} 格式参与合并。
+     * 具体支持输入类型参考 {@link ToolbarGithubInput} ，输入数据将被标准化为 {@link NormalizedToolbarGithubInput} 格式参与合并。
      * 
      * 注意事项：
      * 
      * - 此处的配置在主题合并配置时比起themeConfig.layouts.blog中的同名配置（参见 {@link VPJBlogLayoutConfig.github}）拥有更高优先级，但合并优先级始终低于页面frontmatter的配置
      * - 合并结果为`false`的属性会被处理为`undefined`，当url为`undefined`时会隐藏GitHub按钮
-     * - 动态函数模式下返回值需符合 {@link NormalizedToolbarGithubLinkInput} 格式，非合法返回值将转为`undefined`
+     * - 动态函数模式下返回值需符合 {@link NormalizedToolbarGithubInput} 格式，非合法返回值将转为`undefined`
      * - 提示文本（tooltip）会显示在按钮下方
      * 
      * @example
@@ -561,11 +562,11 @@ export interface SeriesMetaData {
      * }
      * ```
      * 
-     * @see {@link ToolbarGithubLinkInput} GitHub链接配置类型
-     * @see {@link NormalizedToolbarGithubLinkInput} GitHub链接标准化类型
+     * @see {@link ToolbarGithubInput} GitHub链接配置类型
+     * @see {@link NormalizedToolbarGithubInput} GitHub链接标准化类型
      * @see {@link VPJBlogLayoutConfig.github} 布局层级的GitHub配置
      */
-    github?: ToolbarGithubLinkInput;
+    github?: ToolbarGithubInput;
     
     /**
      * Markdown下载按钮配置
@@ -1091,7 +1092,7 @@ export interface SeriesMetaData {
      * @see {@link VPJBlogLayoutConfig.coverHeight} 布局层级的封面高度配置
      * @see {@link VPJBlogLayoutConfig.cover} 封面图路径配置
      */
-    coverHeight?: DeviceSpecificInput;
+    coverHeight?: DeviceSpecificInput<string|false>;
     
     /**
      * 封面渐变过渡配置
@@ -1629,4 +1630,6 @@ export interface SeriesMetaData {
     timeLabel?:
         | string
         | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
+    
+    history?: ToolbarFeatureInput;
 }

@@ -1,7 +1,8 @@
 import type {
     FooterInput,
     EditLinkInput,
-    ImageData
+    ImageData,
+    DeviceSpecificInput
 } from "./common";
 
 import type {
@@ -207,7 +208,7 @@ export interface ThemeConfig {
      * }
      * ```
      */
-    sidebarCollapsed?: boolean;
+    sidebarCollapsed?: DeviceSpecificInput<boolean>;
 
     /**
      * blog/doc布局侧边标签栏初始折叠状态
@@ -233,7 +234,7 @@ export interface ThemeConfig {
      * }
      * ```
      */
-    asideCollapsed?: boolean;
+    asideCollapsed?: DeviceSpecificInput<boolean>;
 
     /**
      * 主题级默认「下一页」按钮提示文本

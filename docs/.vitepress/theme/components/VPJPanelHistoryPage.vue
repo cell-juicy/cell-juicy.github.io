@@ -41,7 +41,7 @@ const intervalFormat = computed(() => {
         format = config;
     } else {
         const pattern = (typeof config === 'string') ? config : DEFAULT.INTERVALFORMAT;
-        return (date) => formatDate(date, pattern);
+        return (date) => formatDate(pattern, date);
     };
     return (date) => {
         try {

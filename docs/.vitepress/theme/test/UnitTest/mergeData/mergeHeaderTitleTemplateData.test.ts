@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { mergeHeaderTitleTemplateData } from '../../../utils/mergeData';
+import { headerTitleMeger as mergeHeaderTitleTemplateData } from '../../../utils/mergeData2';
 import type { PageContext } from '../../../types/common';
 
 const blogContext: PageContext = {

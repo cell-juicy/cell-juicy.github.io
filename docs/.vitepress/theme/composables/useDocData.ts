@@ -6,8 +6,8 @@ import { data } from "../data/doc.data";
 import { data as history } from "../data/history.data";
 
 import { VPJ_DOC_DATA_SYMBOL } from "../utils/symbols";
-import { any2Number, processDocOrder } from "../utils/common";
-import { mergeSimpleData } from "../utils/mergeData";
+import { processDocOrder } from "../utils/common";
+import { simpleMerger, resourceMerger } from "../utils/mergeData";
 
 import type { Ref } from "vue";
 import type { Route, SiteData } from "vitepress";
@@ -39,7 +39,7 @@ interface BaseDocPageData {
     space?: string;
     order: number[];
     cover?: string | false;
-    resources?: Record<string, ResourceInput>;
+    resourcesList: (Record<string, ResourceInput> | undefined)[]
     allowVirtualParents?: boolean;
     treeTitle?:
         | string
@@ -81,108 +81,6 @@ interface DocStoreContext {
     duplicateCount: Map<string, number>;
 }
 
-function resolveResourceInput(input: any):Record<string, ResourceData> {
-    const normalized: Record<string, ResourceInput> = 
-        (typeof input === 'object' && input !== null)
-            ? input
-            : {};
-    const result: Record<string, ResourceData> = {};
-
-    Object.entries(normalized).forEach(([key, value]) => {
-        if (value === false) {
-            result[key] = { url: false };
-        } else if (typeof value === 'string') {
-            result[key] = {
-                url: value,
-                label: value
-            }
-        } else if (typeof value === 'object') {
-            result[key] = {
-                url: (typeof value.url === 'string' || value.url === false)
-                    ? value.url
-                    : undefined,
-                label: (typeof value.label === 'string')
-                    ? value.label
-                    : undefined,
-                icon: (
-                    typeof value.icon === 'string' ||
-                    (
-                        typeof value.icon === 'object' &&
-                        value.icon !== null &&
-                        typeof value.icon.component === 'string'
-                    )
-                )
-                    ? value.icon
-                    : undefined,
-                download: (typeof value.download === 'boolean' || typeof value.download === 'string')
-                    ? value.download
-                    : undefined,
-                order: ("order" in value) ? any2Number(value.order) : undefined,
-                type: (["file", "image", "website", "download"].includes(value.type || ""))
-                    ? value.type
-                    : undefined,
-            };
-        };
-    });
-
-    return result;
-};
-
-function mergeResourceData(child: Record<string, ResourceData>, parent: Record<string, ResourceData>) {
-    const result: Record<string, ResourceData> = {...child};
-    Object.entries(parent).forEach(([key, value]) => {
-        if (!(key in result)) {
-            result[key] = value;
-        } else {
-            result[key] = {
-                url: (
-                    (typeof value.url === 'string' || value.url === false) &&
-                    result[key].url === undefined
-                )
-                    ? value.url
-                    : result[key].url,
-                label: (
-                    (typeof value.label === 'string') &&
-                    result[key].label === undefined
-                )
-                    ? value.label
-                    : result[key].label,
-                icon: (
-                    (
-                        typeof value.icon === 'string' || (
-                        typeof value.icon === 'object' &&
-                        value.icon !== null &&
-                        typeof value.icon.component === 'string'
-                    )) &&
-                    result[key].icon === undefined
-                )
-                    ? value.icon
-                    : result[key].icon,
-                download: (
-                    (typeof value.download === 'boolean' || typeof value.download === 'string') &&
-                    result[key].download === undefined
-                )
-                    ? value.download
-                    : result[key].download,
-                order: (
-                    ("order" in value) &&
-                    result[key].order === undefined
-                )
-                    ? value.order
-                    : result[key].order,
-                type: (
-                    ["file", "image", "website", "download"].includes(value.type || "") &&
-                    result[key].type === undefined
-                )
-                    ? value.type
-                    : result[key].type,
-            };
-        };
-    });
-
-    return result;
-};
-
 export class DocPageData {
     #store: StoreDocPageData;
     #storeContext: DocStoreContext;
@@ -196,7 +94,8 @@ export class DocPageData {
         // Initialization
         this.#store = {
             ...cloneDeep(raw),
-            resources: resolveResourceInput(raw.resources),
+            resources: {},
+            resourcesList: raw.resourcesList,
             id: 'unknown',
             next: {
                 text: (raw.next.text === false) ? undefined : raw.next.text,
@@ -221,6 +120,8 @@ export class DocPageData {
 
         // Inherit from user config and parent
         this.#inheritFromParent();
+
+        this.#mergeResources();
     }
 
     // Getters
@@ -307,10 +208,12 @@ export class DocPageData {
             };
 
             // Inherit resources
-            this.#store.resources = mergeResourceData(
-                this.#store.resources, parent.resources
-            );
+            this.#store.resourcesList.push(...parent.#store.resourcesList)
         };
+    };
+
+    #mergeResources() {
+        this.#store.resources = resourceMerger(...this.#store.resourcesList);
     };
 
     // Static methods
@@ -345,9 +248,7 @@ export class DocPageData {
 
         // Apply resources
         if (meta.resources !== undefined) {
-            const metaResources = resolveResourceInput(meta.resources);
-            const targetResources = resolveResourceInput(target.resources);
-            target.resources = mergeResourceData(targetResources, metaResources);
+            target.resourcesList.push(meta.resources);
         };
 
         // Apply treeTitle
@@ -416,7 +317,7 @@ export class DocPageData {
             ) ? docConfig[space] : {};
 
             nodes.forEach((node) => {
-                const allowed = mergeSimpleData<boolean, undefined>(
+                const allowed = simpleMerger<boolean, undefined>(
                     (value) => typeof value === 'boolean', undefined,
                     node.allowVirtualParents,
                     spaceConfig.enableVirtual,
@@ -442,7 +343,8 @@ export class DocPageData {
                         order: [...currentOrder],
                         virtual: true,
                         next: {},
-                        prev: {}
+                        prev: {},
+                        resourcesList: [],
                     });
                     existingNodes.add(expectedParentid);
                 };
@@ -481,7 +383,7 @@ export class DocPageData {
                 (typeof docConfig[space] === 'object' && docConfig[space] !== null)
             ) ? docConfig[space] : {};
 
-            const allowed = mergeSimpleData(
+            const allowed = simpleMerger(
                 (value) => typeof value === 'boolean', undefined,
                 spaceConfig.autoNextPrev,
                 layoutConfig.autoNextPrev,

@@ -2,11 +2,11 @@ import type {
     AsideTabInput,
     NormalizedAsideTabInput,
     DeviceSpecificInput,
-    NormalizedDeviceSpecificInput,
+    ImageData,
     CoverCssConfigInput,
     HeaderTitleTemplateInput,
-    ToolbarGithubLinkInput,
-    NormalizedToolbarGithubLinkInput,
+    ToolbarGithubInput,
+    NormalizedToolbarGithubInput,
     ToolbarDownloadInput,
     NormalizedToolbarDownloadInput,
     ToolbarButtonInput,
@@ -15,7 +15,8 @@ import type {
     ResourceInput,
     TitleTemplateInput,
     EditLinkInput,
-    FooterInput
+    FooterInput,
+    ToolbarFeatureInput
 } from "./common";
 
 import type {
@@ -557,7 +558,7 @@ export interface SpaceMetaData {
      * 3. **禁用模式** - 使用 `false` 隐藏按钮
      * 4. **动态函数** - 基于 {@link PageContext} 生成配置
      * 
-     * 输入数据将被标准化为 {@link NormalizedToolbarGithubLinkInput} 格式参与合并。
+     * 输入数据将被标准化为 {@link NormalizedToolbarGithubInput} 格式参与合并。
      * 
      * 注意事项：
      * 
@@ -628,11 +629,11 @@ export interface SpaceMetaData {
      * }
      * ```
      * 
-     * @see {@link ToolbarGithubLinkInput}
-     * @see {@link NormalizedToolbarGithubLinkInput}
+     * @see {@link ToolbarGithubInput}
+     * @see {@link NormalizedToolbarGithubInput}
      * @see {@link VPJDocLayoutConfig.github}
      */
-    github?: ToolbarGithubLinkInput;
+    github?: ToolbarGithubInput;
 
     /**
      * Markdown 下载按钮配置
@@ -1134,7 +1135,7 @@ export interface SpaceMetaData {
      * @see {@link VPJDocLayoutConfig.coverHeight}
      * @see {@link VPJDocLayoutConfig.cover}
      */
-    coverHeight?: DeviceSpecificInput;
+    coverHeight?: DeviceSpecificInput<string|false>;
 
     /**
      * 封面渐变过渡配置
@@ -1641,4 +1642,6 @@ export interface SpaceMetaData {
     timeLabel?:
         | string
         | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
+    
+    history?: ToolbarFeatureInput;
 }

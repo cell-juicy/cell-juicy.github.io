@@ -229,7 +229,7 @@ export interface VPJPageLayoutConfig {
      * @see {@link DeviceSpecificInput}
      * @see {@link NormalizedDeviceSpecificInput}
      */
-    contentMarginBottom?: DeviceSpecificInput;
+    contentMarginBottom?: DeviceSpecificInput<string|false>;
 
     /**
      * 内容区域顶部边距配置（page布局）
@@ -285,7 +285,7 @@ export interface VPJPageLayoutConfig {
      * @see {@link DeviceSpecificInput}
      * @see {@link NormalizedDeviceSpecificInput}
      */
-    contentMarginTop?: DeviceSpecificInput;
+    contentMarginTop?: DeviceSpecificInput<string|false>;
 
     /**
      * 内容区域两侧间隔宽度配置（page布局）
@@ -342,7 +342,7 @@ export interface VPJPageLayoutConfig {
      * @see {@link DeviceSpecificInput}
      * @see {@link NormalizedDeviceSpecificInput}
      */
-    contentPadding?: DeviceSpecificInput;
+    contentPadding?: DeviceSpecificInput<string|false>;
 
     /**
      * 内容最大宽度配置（page布局）
@@ -399,7 +399,7 @@ export interface VPJPageLayoutConfig {
      * @see {@link DeviceSpecificInput}
      * @see {@link NormalizedDeviceSpecificInput}
      */
-    contentMaxWidth?: DeviceSpecificInput;
+    contentMaxWidth?: DeviceSpecificInput<string|false>;
 
     /**
      * 页面布局底部信息配置

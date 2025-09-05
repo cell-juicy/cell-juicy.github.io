@@ -2,7 +2,8 @@ import { useData, useRoute } from 'vitepress';
 import { computed, ref, watch } from 'vue';
 import { defineStore } from 'pinia';
 
-import { mergeSimpleData } from '../utils/mergeData';
+import { getDeviceSpecificData } from '../utils/deviceTypes';
+import { simpleMerger, deviceSpecificBNormalizer } from '../utils/mergeData';
 
 import type {
     SiteData,
@@ -13,7 +14,10 @@ import type {
 } from 'vue';
 import type {
     ThemeConfig
-} from '../types'
+} from '../types';
+import type {
+    ImageData
+} from '../types/common';
 import type {
     SidebarConfig,
     NavItem,
@@ -23,6 +27,7 @@ import type {
 
 // @ts-ignore
 import defaultAvatar from '../assets/avatar.svg';
+
 
 
 interface NormalizeNavItem extends NavItem {
@@ -145,11 +150,8 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
     });
 
     // state
-    const collapsed: Ref<boolean> = ref(
-        typeof theme.value.sidebarCollapsed === 'boolean'
-            ? theme.value.sidebarCollapsed
-            : DEFAULT.COLLAPSED
-    );
+    const sidebarCConfig = getDeviceSpecificData(deviceSpecificBNormalizer(theme.value.sidebarCollapsed));
+    const collapsed: Ref<boolean> = ref(typeof sidebarCConfig === 'boolean' ? sidebarCConfig : true);
     function toggle(): void { collapsed.value = !collapsed.value; };
     function close(): void { collapsed.value = true; };
     function open(): void { collapsed.value = false; };
@@ -162,7 +164,7 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
 
     // Header Config
     const headerConfig = computed(() => {
-        const imageValidator = (input: any) => (typeof input === 'string') ||
+        const imageValidator = (input: any): input is ImageData | {component: string} => (typeof input === 'string') ||
             (typeof input === 'object' && input  && typeof input.src === 'string') ||
             (typeof input === 'object' && input  && typeof input.component === 'string');
 
@@ -170,24 +172,24 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
         const profileConfig = (typeof sidebarConfig.value.profile === 'object' && sidebarConfig.value.profile !== null)
             ? sidebarConfig.value.profile
             : {};
-        const enabled = mergeSimpleData((input: any) => typeof input === 'boolean', undefined,
+        const enabled = simpleMerger((input: any) => typeof input === 'boolean', undefined,
             profileConfig.enabled,
             DEFAULT.ENABLEPROFILE
         );
-        const title = mergeSimpleData(
+        const title = simpleMerger(
             (input: any) => typeof input === 'string', undefined,
             profileConfig.title,
             site.value.title,
             DEFAULT.TITLE
         );
-        const logo = mergeSimpleData(
+        const logo = simpleMerger(
             imageValidator, undefined,
             profileConfig.logo,
             theme.value.logo,
             DEFAULT.LOGO
         );
-        const description = mergeSimpleData(
-            (input: any) => (typeof input === 'string') ||
+        const description = simpleMerger(
+            (input: any): input is string | {component: string} => (typeof input === 'string') ||
                 (typeof input === 'object' && input !== null && typeof input.component === 'string'),
             undefined,
             profileConfig.description,

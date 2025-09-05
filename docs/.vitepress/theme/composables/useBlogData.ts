@@ -6,7 +6,7 @@ import { data } from "../data/blog.data";
 import { data as history } from "../data/history.data";
 
 import { VPJ_BLOG_DATA_SYMBOL } from "../utils/symbols";
-import { mergeSimpleData } from "../utils/mergeData";
+import { simpleMerger } from "../utils/mergeData";
 
 import type { Ref } from "vue";
 import type { Route, SiteData } from "vitepress";
@@ -232,7 +232,7 @@ export class BlogPageData {
                 (typeof blogConfig[series] === 'object' && blogConfig[series] !== null)
             ) ? blogConfig[series] : {};
 
-            const allowed = mergeSimpleData(
+            const allowed = simpleMerger(
                 (value) => typeof value === 'boolean', undefined,
                 seriesConfig.autoNextPrev,
                 layoutConfig.autoNextPrev,

@@ -1,12 +1,23 @@
+// Type Guard
+export const isString = (v: any): v is string => typeof v === 'string';
+export const isNumber = (v: any): v is number => typeof v === 'number' && !isNaN(v);
+export const isFalse = (v: any): v is false => v === false;
+export const isBoolean = (v: any): v is boolean => typeof v === 'boolean';
+export const isFunction = (v: any): v is Function => typeof v === 'function';
+export const isObject = (v: any): v is Exclude<object, null> => typeof v === 'object' && v && !Array.isArray(v);
+
+export const isStringFalse = (v: any): v is string | false => isString(v) || isFalse(v);
+export const isStringNumber = (v: any): v is string | number => isString(v) || isNumber(v);
+
 export function any2Number(value: any): number {
     const num = Number(value);
     return isNaN(num) ? 0 : num;
-}
+};
 
 /* Order Processing */
 export function processBlogOrder(order: any): number {
     return any2Number(order);
-}
+};
 
 export function processDocOrder(order: any): number[] {
 
@@ -41,9 +52,9 @@ export function resolveNavigationInput(input: any): { text?: string; link?: stri
 
 
 export function formatTimeLabel(
+    pattern: string,
     lastUpdated: Date | undefined,
-    createdAt: Date | undefined,
-    pattern: string
+    createdAt: Date | undefined
 ): string | undefined {
     if (!lastUpdated && !createdAt) return undefined;
 
@@ -80,9 +91,9 @@ export function formatTimeLabel(
     const re = new RegExp(Object.keys(map).join("|"), "g");
 
     return pattern.replace(re, match => map[match] || "");
-}
+};
 
-export function formatDate(date: Date, pattern: string) {
+export function formatDate(pattern: string, date: Date) {
     if (!date) return undefined;
 
     const pad = (n: number) => String(n).padStart(2, "0");
@@ -105,4 +116,4 @@ export function formatDate(date: Date, pattern: string) {
     const re = new RegExp(Object.keys(map).join("|"), "g");
 
     return pattern.replace(re, match => map[match] || "");
-}
+};
