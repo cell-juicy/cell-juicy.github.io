@@ -1,4 +1,5 @@
 import type { Route } from "vitepress";
+import type { BlogData, DocData } from "../data/pageData";
 
 
 export type Falsable<T> = false | T;
@@ -14,6 +15,49 @@ export type PageContext = {
         | { layout: "blog"; series?: string; tags?: string[], order: number; title?: string }
         | { layout: "doc"; space?: string; order: number[]; title?: string };
 }
+
+
+export type RawBaseData = {
+    title?: string;
+    url?: string;
+    frontmatter: Record<string, any>;
+    lastUpdated?: Falsable<number>;
+    createdAt?: Falsable<number>;
+};
+
+export type RawPageData = RawBaseData & {
+    layout: "page",
+};
+
+export type RawArticleData = RawBaseData & {
+    layout: "blog" | "doc";
+    cover?: Falsable<string>;
+    next: Falsable<{ text?: string; link?: string }>;
+    prev: Falsable<{ text?: string; link?: string }>;
+};
+
+export type RawBlogData = RawArticleData & {
+    series?: string;
+    order: number;
+    tags: string[];
+    listTitle?:
+        | string
+        | ((data: BlogData) => string | undefined);
+};
+
+export type RawDocData = RawArticleData & {
+    space?: string;
+    order: number[];
+    resourcesList: (Record<string, ResourceInput> | undefined)[]
+    allowVirtualParents?: boolean;
+    treeTitle?:
+        | string
+        | ((data: DocData) => string | undefined);
+    inherit?: boolean;
+    virtual: boolean;
+    children: string[];
+    parent?: string;
+};
 
 
 export type DeviceSpecificInput<T> =

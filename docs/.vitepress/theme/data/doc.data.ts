@@ -1,8 +1,6 @@
 import { createContentLoader } from "vitepress";
 import { processDocOrder, any2Number, resolveNavigationInput } from "../utils/common";
 
-import type { ResourceInput, ResourceData } from "../types/common";
-
 
 export default createContentLoader("**/*.md", {
     excerpt(file, options) {

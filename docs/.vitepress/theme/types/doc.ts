@@ -24,8 +24,8 @@ import type {
 } from "./layoutDoc";
 
 import type {
-    DocPageData
-} from "../composables/useDocData"
+    DocData
+} from "../data/pageData";
 
 
 /**
@@ -104,7 +104,7 @@ export interface NodeMetadata {
     inherit?: boolean;
     treeTitle?:
         | string
-        | ((data: DocPageData) => string);
+        | ((data: DocData) => string);
 }
 
 /**
@@ -1370,8 +1370,7 @@ export interface SpaceMetaData {
      * @remarks
      * 此项用于为对应文档空间的所有页面节点设置默认的节点元数据配置（如 `virtual`、`inherit`、`resource` 等），支持通过两种方式配置页面节点的元数据：
      * 
-     * 1. **全局模式**：通过 `global` 属性配置，将应用到此空间下所有页面节点。
-     * 2. **位序指定模式**：为某个特定的位序order指定配置项，将应用此配置项到对应位序的页面节点。
+     * 1. **位序指定模式**：为某个特定的位序order指定配置项，将应用此配置项到对应位序的页面节点。
      * 
      * 注意事项：
      * 
@@ -1417,9 +1416,6 @@ export interface SpaceMetaData {
      * @see {@link NodeMetadata} 节点元数据类型定义
      */
     nodeMeta?: {
-
-        global?: NodeMetadata;
-
         [orderString: string]: NodeMetadata | undefined;
     },
 
@@ -1638,6 +1634,12 @@ export interface SpaceMetaData {
      * @see {@link VPJDocLayoutConfig.autoNextPrev} 布局层级自动上下页开关
      */
     autoNextPrev?: boolean;
+
+    resources?: Record<string, ResourceInput>;
+    inherit?: boolean;
+    treeTitle?:
+        | string
+        | ((data: DocData) => string);
 
     timeLabel?:
         | string
