@@ -26,6 +26,16 @@ function dictionarySorting(idA: string, idB: string) {
     };
     return orderA.length - orderB.length;
 };
+function deepFreeze<T extends object>(obj: T): T {
+    Object.freeze(obj);
+    for (const key of Object.keys(obj)) {
+        const value = (obj as any)[key];
+        if (value && typeof value === 'object' && !Object.isFrozen(value)) {
+            deepFreeze(value);
+        }
+    };
+    return obj;
+};
 
 
 class BaseData {
@@ -61,24 +71,34 @@ export class PageData extends BaseData{
 
     // Getter
     get layout() { return this.#layout; };
+
+    toJSON() {
+        return {
+            layout: this.layout,
+            title: this.title,
+            url: this.url,
+            createdAt: this.createdAt?.toISOString(),
+            lastUpdated: this.lastUpdated?.toISOString()
+        };
+    };
 };
 
 export class ArticleData extends BaseData {
     #cover?: string | false;
-    #next: { text?: string; link?: string; } | false;
-    #prev: { text?: string; link?: string; } | false;
+    #next: { text?: string; link?: string; } | { text: false, link: false };
+    #prev: { text?: string; link?: string; } | { text: false, link: false };
 
     constructor(raw: RawArticleData) {
         super(raw);
-        this.#cover = raw.cover;
-        this.#next = raw.next;
-        this.#prev = raw.prev;
+        this.#cover = (raw.cover === false) ? undefined : raw.cover;
+        this.#next = Object.freeze((raw.next === false) ? { text: false, link: false } : raw.next);
+        this.#prev = Object.freeze((raw.prev === false) ? { text: false, link: false } : raw.prev);
     };
 
     // Getter
-    get cover() { return (this.#cover === false) ? undefined : this.#cover; };
-    get next() { return (this.#next === false) ? { text: false, link: false } : this.#next };
-    get prev() { return (this.#prev === false) ? { text: false, link: false } : this.#prev };
+    get cover() { return this.#cover };
+    get next() { return this.#next };
+    get prev() { return this.#prev };
 };
 
 export class BlogData extends ArticleData {
@@ -87,6 +107,10 @@ export class BlogData extends ArticleData {
     #order: number;
     #tags: string[];
     #listTitle?: string | ((data: BlogData) => string | undefined);
+
+    #cache: {
+        listTitle?: string;
+    } = {};
 
     constructor(raw: RawBlogData) {
         super(raw);
@@ -98,20 +122,42 @@ export class BlogData extends ArticleData {
 
     // Getter
     get layout() { return this.#layout; };
-    get series() { return this.#series; }
-    get order() { return this.#order; }
-    get tags() { return this.#tags; }
+    get series() { return this.#series; };
+    get order() { return this.#order; };
+    get tags() { return [...this.#tags]; };
     get listTitle() {
-        if (typeof this.#listTitle === 'string') return this.#listTitle;
-        if (typeof this.#listTitle === 'function') {
+        if (this.#cache.listTitle !== undefined) return this.#cache.listTitle;
+        if (isString(this.#listTitle)) {
+            this.#cache.listTitle = this.#listTitle;
+        } else if (isFunction(this.#listTitle)) {
             try {
-                return this.#listTitle(this);
+                const result = this.#listTitle(this);
+                this.#cache.listTitle = isString(result) ? result : (this.title || "");
             } catch(e) {
                 console.warn(`Failed to parse the list title, returned the default value: ${e}`);
+                this.#cache.listTitle = this.title || "";
             };
+        } else {
+            this.#cache.listTitle = this.title || "";
         };
-        return this.title;
+        return this.#cache.listTitle;
     };
+
+    toJSON() {
+        return {
+            layout: this.layout,
+            title: this.title,
+            url: this.url,
+            series: this.series,
+            order: this.order,
+            tags: this.tags,
+            cover: this.cover,
+            next: this.next,
+            prev: this.prev,
+            createdAt: this.createdAt?.toISOString(),
+            lastUpdated: this.lastUpdated?.toISOString()
+        };
+    }
 };
 
 export class DocData extends ArticleData {
@@ -123,13 +169,17 @@ export class DocData extends ArticleData {
     #treeTitle?: string | ((data: DocData) => string | undefined);
     #childrenIds: string[];
     #parentId?: string;
-    #spaceIdMap: Map<string, Map<string, DocData[]>>
+    #spaceIdMap: Map<string, Map<string, DocData[]>>;
+
+    #cache: {
+        treeTitle?: string;
+    } = {};
 
     constructor(raw: RawDocData, spaceIdMap: Map<string, Map<string, DocData[]>>) {
         super(raw);
         this.#space = raw.space;
         this.#order = raw.order;
-        this.#resources = resourceMerger(...raw.resourcesList);
+        this.#resources = deepFreeze(resourceMerger(...raw.resourcesList));
         this.#virtual = raw.virtual;
         this.#treeTitle = raw.treeTitle;
         this.#childrenIds = raw.children;
@@ -140,19 +190,25 @@ export class DocData extends ArticleData {
     // Getter
     get layout() { return this.#layout; };
     get space() { return this.#space; };
-    get order() { return this.#order; };
+    get order() { return [...this.#order]; };
     get resources() { return this.#resources; };
     get virtual() { return this.#virtual; };
     get treeTitle() {
-        if (typeof this.#treeTitle === 'string') return this.#treeTitle;
-        if (typeof this.#treeTitle === 'function') {
+        if (this.#cache.treeTitle !== undefined) return this.#cache.treeTitle;
+        if (isString(this.#treeTitle)) {
+            this.#cache.treeTitle = this.#treeTitle;
+        } else if (isFunction(this.#treeTitle)) {
             try {
-                return this.#treeTitle(this);
+                const result = this.#treeTitle(this);
+                this.#cache.treeTitle = isString(result) ? result : (this.title || "");
             } catch(e) {
                 console.warn(`Failed to parse the tree title, returned the default value: ${e}`);
+                this.#cache.treeTitle = this.title || "";
             };
+        } else {
+            this.#cache.treeTitle = this.title || "";
         };
-        return this.title;
+        return this.#cache.treeTitle;
     };
     get children() {
         if (!this.#childrenIds.length) return [];
@@ -163,21 +219,55 @@ export class DocData extends ArticleData {
     };
     get parent() {
         if (!this.#parentId) return undefined;
-        return this.#spaceIdMap.get(this.#space ?? "")?.get(this.#parentId)?.find((data) => data.hasChildren());
+        const parentIdMap = this.#spaceIdMap.get(this.#space ?? "")?.get(this.#parentId);
+        if (!parentIdMap) return undefined;
+        const currentId = genId({order: this.order});
+        return parentIdMap.find(parent => parent.#childrenIds.includes(currentId));
     };
 
-    hasChildren() {
-        return !!this.#childrenIds.length;
+    toJSON() {
+        return {
+            layout: this.layout,
+            title: this.title,
+            url: this.url,
+            space: this.space,
+            order: this.order,
+            virtual: this.virtual,
+            cover: this.cover,
+            next: this.next,
+            prev: this.prev,
+            resources: this.resources,
+            treeTitle: this.treeTitle,
+            createdAt: this.createdAt?.toISOString(),
+            lastUpdated: this.lastUpdated?.toISOString()
+        };
+    };
+
+    getAncestors(): DocData[] {
+        const ancestors: DocData[] = [];
+        let currentParent = this.parent;
+        while (currentParent) {
+            ancestors.unshift(currentParent);
+            currentParent = currentParent.parent;
+        };
+        return ancestors;
     };
 };
 
 export class VPJDataStore {
+    #allNode: (PageData | DocData | BlogData)[] = [];
+    #urlMap: Map<string, PageData | DocData | BlogData> = new Map();
+    #spaceIdMap: Map<string, Map<string, DocData[]>> = new Map();
+    #seriesMap: Map<string, BlogData[]> = new Map();
+
     constructor(
         raw: (RawPageData | RawBlogData | RawDocData)[],
         config: ThemeConfig
     ) {
         const copy = cloneDeep(raw);
         const processed = VPJDataStore.#processRaw(copy, config);
+        this.#createSpaceIdMaps(processed);
+        this.#initializeData(processed);
     };
 
     static #processRaw(
@@ -206,11 +296,51 @@ export class VPJDataStore {
         ];
     };
 
+    // Method
+    #createSpaceIdMaps(processed: (RawPageData | RawBlogData | RawDocData)[]) {
+        const docRaws = processed.filter((data) => data.layout === "doc");
+        for (const data of docRaws) {
+            const spaceName = data.space ?? "";
+            if (!this.#spaceIdMap.has(spaceName)) this.#spaceIdMap.set(spaceName, new Map());
+            const id = genId(data);
+            const idMap = this.#spaceIdMap.get(spaceName);
+            if (!idMap?.has(id)) idMap?.set(id, []);
+        };
+    };
+
+    #initializeData(processed: (RawPageData | RawBlogData | RawDocData)[]): void{
+        for (const raw of processed) {
+            let instance: PageData | BlogData | DocData;
+
+            switch (raw.layout) {
+                case "page":
+                    instance = new PageData(raw);
+                    break;
+                case "blog":
+                    instance = new BlogData(raw);
+                    const seriesName = raw.series ?? "";
+                    if (!this.#seriesMap.has(seriesName)) this.#seriesMap.set(seriesName, []);
+                    this.#seriesMap.get(seriesName)?.push(instance);
+                    break;
+                case "doc":
+                    instance = new DocData(raw, this.#spaceIdMap);
+                    const spaceName = raw.space ?? "";
+                    const id = genId(raw);
+                    this.#spaceIdMap.get(spaceName)?.get(id)?.push(instance);
+            };
+
+            if (isString(instance.url)) this.#urlMap.set(instance.url, instance);
+            this.#allNode.push(instance);
+        };
+    };
+
+    // Static
     static #applyBlogConfig(raw: RawBlogData[], config: ThemeConfig) {
         const layout = isObject(config.layouts?.blog) ? config.layouts.blog : {};
         const specific = isObject(config.blog) ? config.blog : {};
         for (const data of raw) {
             const series = (isString(data.series) && isObject(specific[data.series])) ? specific[data.series] : {};
+            // cover
             data.cover = (data.cover === undefined)
                 ? isStringFalse(series.cover)
                     ? series.cover
@@ -218,10 +348,12 @@ export class VPJDataStore {
                         ? layout.cover
                         : undefined
                 : data.cover;
+            // presetTags
             if (Array.isArray(series.presetTags)) {
                 const presetTags = series.presetTags.filter((t) => isString(t) && t.length > 0);
                 data.tags = [...presetTags, ...data.tags];
             };
+            // listTitle
             data.listTitle = (data.listTitle === undefined)
                 ? (isString(series.listTitle) || isFunction(series.listTitle))
                     ? series.listTitle
@@ -247,6 +379,7 @@ export class VPJDataStore {
         for (const [spaceName, idIndex] of spaceIndex) {
             if (spaceName === "") continue;
 
+            // nodeMeta
             const space = (isObject(specfic[spaceName])) ? specfic[spaceName] : {};
             const meta = (isObject(space.nodeMeta)) ? space.nodeMeta : {};
             const dfsRoot: {children: string[]} = {children: []}
@@ -273,6 +406,7 @@ export class VPJDataStore {
                 };
             };
 
+            // inherit
             const dfsStack: RawDocData[] = [
                 ...dfsRoot.children.flatMap((id) => (idIndex.get(id) as RawDocData[])).reverse()
             ];
@@ -290,6 +424,7 @@ export class VPJDataStore {
                 };
             };
 
+            // global config
             for (const [,datas] of idIndex) {
                 for (const data of datas) {
                     data.cover = (data.cover === undefined)
@@ -310,6 +445,7 @@ export class VPJDataStore {
             };
         };
 
+        // global config(doc without space)
         if (spaceIndex.has("")) {
             spaceIndex.get("")?.forEach((datas) => {
                 for (const data of datas) {
@@ -371,6 +507,7 @@ export class VPJDataStore {
 
         const spaceIndex: Map<string, Map<string, RawDocData[]>> = new Map();
 
+        // build id map
         for (const data of raw) {
             if (!data.space) continue;
             const id = genId(data);
@@ -397,6 +534,7 @@ export class VPJDataStore {
                 const allowed = isBoolean(datas[0].allowVirtualParents) ? datas[0].allowVirtualParents : enableVirtual;
                 if (!allowed) continue;
 
+                // generate virtual parent nodes
                 const expectedParent = [ ...datas[0].order ];
                 while (expectedParent.length > 1) {
                     expectedParent.pop();
@@ -419,7 +557,8 @@ export class VPJDataStore {
                 };
             };
 
-            const dfsRoot: {children: string[]} = {children: []}
+            // bind parent-child
+            const dfsRoot: {children: string[]} = {children: []};
             for (const [id, datas] of idIndex) {
                 const expectedParent = [ ...datas[0].order ];
                 let isRoot = true;
@@ -441,6 +580,7 @@ export class VPJDataStore {
 
             for (const [_, datas] of idIndex) datas[0].children.sort(dictionarySorting);
 
+            // bind next-prev
             if (!autoNextPrev) continue;
             dfsRoot.children.sort(dictionarySorting);
             const dfsStack: RawDocData[] = [
@@ -488,5 +628,28 @@ export class VPJDataStore {
             result.push(product);
         };
         return result;
+    };
+
+    // Public
+    getAllData() { return this.#allNode; };
+    getAllPage() { return this.#allNode.filter((data) => data.layout === "page") };
+    getAllBlog() { return this.#allNode.filter((data) => data.layout === "blog") };
+    getAllDoc() { return this.#allNode.filter((data) => data.layout === "doc") };
+
+    getDataByUrl(url: string) { return this.#urlMap.get(url) };
+    getBlogBySeries(series: string) { return this.#seriesMap.get(series) || [] };
+    getDocBySpace(space: string) { return Array.from(this.#spaceIdMap.get(space)?.values() || []).flat() };
+
+    filter(predicate: (value: PageData | DocData | BlogData, index: number, array: (PageData | DocData | BlogData)[]) => boolean) {
+        return this.#allNode.filter(predicate);
+    };
+    pageFilter(predicate: (value: PageData, index: number, array: PageData[]) => boolean) {
+        return this.getAllPage().filter(predicate);
+    };
+    blogFilter(predicate: (value: BlogData, index: number, array: BlogData[]) => boolean) {
+        return this.getAllBlog().filter(predicate);
+    };
+    docFilter(predicate: (value: DocData, index: number, array: DocData[]) => boolean) {
+        return this.getAllDoc().filter(predicate);
     };
 };

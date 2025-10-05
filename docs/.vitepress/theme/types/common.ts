@@ -37,6 +37,7 @@ export type RawArticleData = RawBaseData & {
 };
 
 export type RawBlogData = RawArticleData & {
+    layout: "blog";
     series?: string;
     order: number;
     tags: string[];
@@ -46,6 +47,7 @@ export type RawBlogData = RawArticleData & {
 };
 
 export type RawDocData = RawArticleData & {
+    layout: "doc";
     space?: string;
     order: number[];
     resourcesList: (Record<string, ResourceInput> | undefined)[]
