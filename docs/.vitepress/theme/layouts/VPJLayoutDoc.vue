@@ -4,7 +4,7 @@ import { computed, provide, useTemplateRef } from 'vue';
 import { useHead } from '@unhead/vue';
 
 import { useVPJLayout } from '../composables/useVPJLayout';
-import { useDocData } from '../composables/useDocData';
+import { useVPJData } from '../composables/useVPJData';
 
 import { VPJ_ARTICLE_LAYOUT_SYMBOL } from '../utils/symbols';
 
@@ -30,7 +30,7 @@ const {
     coverConfig,
     asideConfig
 } = storeToRefs(store);
-const { cover, next, prev } = useDocData();
+const { cover, next, prev } = useVPJData();
 
 useHead(headConfig);
 

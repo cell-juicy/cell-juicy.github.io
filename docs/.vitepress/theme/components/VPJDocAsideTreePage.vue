@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { useData } from 'vitepress';
 
-import { useDocData } from '../composables/useDocData';
+import { useVPJData } from '../composables/useVPJData';
 
 import VPJDocAsideTreeItem from './VPJDocAsideTreeItem.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
@@ -13,14 +13,14 @@ const DEFAULT = {
     NOSPACE: "当前文档还没被收录进空间中",
 };
 
-const { filter, space } = useDocData();
+const { docFilter, space } = useVPJData();
 const { theme } = useData();
 
 const rootDocData = computed(() => {
     if (!space.value) {
         return [];
-    }
-    return filter((data) => data.space === space.value).filter((data) => !data.parent)
+    };
+    return docFilter((data) => data.space === space.value).filter((data) => !data.parent);
 });
 const noSpace = computed(() => {
     const message = theme.value.components?.asideTabTree?.noSpace;

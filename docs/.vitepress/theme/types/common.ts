@@ -1,5 +1,5 @@
 import type { Route } from "vitepress";
-import type { BlogData, DocData } from "../data/pageData";
+import type { VPJBlogData, VPJDocData } from "../data/pageData";
 
 
 export type Falsable<T> = false | T;
@@ -43,7 +43,7 @@ export type RawBlogData = RawArticleData & {
     tags: string[];
     listTitle?:
         | string
-        | ((data: BlogData) => string | undefined);
+        | ((data: VPJBlogData) => string | undefined);
 };
 
 export type RawDocData = RawArticleData & {
@@ -54,7 +54,7 @@ export type RawDocData = RawArticleData & {
     allowVirtualParents?: boolean;
     treeTitle?:
         | string
-        | ((data: DocData) => string | undefined);
+        | ((data: VPJDocData) => string | undefined);
     inherit?: boolean;
     virtual: boolean;
     children: string[];

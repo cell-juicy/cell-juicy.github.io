@@ -38,7 +38,7 @@ function deepFreeze<T extends object>(obj: T): T {
 };
 
 
-class BaseData {
+class VPJBaseData {
     #frontmatter?: Record<string, any>;
     #title?: string;
     #url?: string;
@@ -62,7 +62,7 @@ class BaseData {
     get lastUpdated() { return this.#lastUpdated; };
 };
 
-export class PageData extends BaseData{
+export class VPJPageData extends VPJBaseData{
     #layout: "page" = "page";
 
     constructor(raw: RawPageData) {
@@ -83,8 +83,8 @@ export class PageData extends BaseData{
     };
 };
 
-export class ArticleData extends BaseData {
-    #cover?: string | false;
+export class VPJArticleData extends VPJBaseData {
+    #cover?: string;
     #next: { text?: string; link?: string; } | { text: false, link: false };
     #prev: { text?: string; link?: string; } | { text: false, link: false };
 
@@ -101,12 +101,12 @@ export class ArticleData extends BaseData {
     get prev() { return this.#prev };
 };
 
-export class BlogData extends ArticleData {
+export class VPJBlogData extends VPJArticleData {
     #layout: "blog" = "blog";
     #series?: string;
     #order: number;
     #tags: string[];
-    #listTitle?: string | ((data: BlogData) => string | undefined);
+    #listTitle?: string | ((data: VPJBlogData) => string | undefined);
 
     #cache: {
         listTitle?: string;
@@ -160,22 +160,22 @@ export class BlogData extends ArticleData {
     }
 };
 
-export class DocData extends ArticleData {
+export class VPJDocData extends VPJArticleData {
     #layout: "doc" = "doc";
     #space?: string;
     #order: number[];
     #resources: Record<string, ResourceInput>;
     #virtual?: boolean;
-    #treeTitle?: string | ((data: DocData) => string | undefined);
+    #treeTitle?: string | ((data: VPJDocData) => string | undefined);
     #childrenIds: string[];
     #parentId?: string;
-    #spaceIdMap: Map<string, Map<string, DocData[]>>;
+    #spaceIdMap: Map<string, Map<string, VPJDocData[]>>;
 
     #cache: {
         treeTitle?: string;
     } = {};
 
-    constructor(raw: RawDocData, spaceIdMap: Map<string, Map<string, DocData[]>>) {
+    constructor(raw: RawDocData, spaceIdMap: Map<string, Map<string, VPJDocData[]>>) {
         super(raw);
         this.#space = raw.space;
         this.#order = raw.order;
@@ -243,8 +243,8 @@ export class DocData extends ArticleData {
         };
     };
 
-    getAncestors(): DocData[] {
-        const ancestors: DocData[] = [];
+    getAncestors(): VPJDocData[] {
+        const ancestors: VPJDocData[] = [];
         let currentParent = this.parent;
         while (currentParent) {
             ancestors.unshift(currentParent);
@@ -255,10 +255,10 @@ export class DocData extends ArticleData {
 };
 
 export class VPJDataStore {
-    #allNode: (PageData | DocData | BlogData)[] = [];
-    #urlMap: Map<string, PageData | DocData | BlogData> = new Map();
-    #spaceIdMap: Map<string, Map<string, DocData[]>> = new Map();
-    #seriesMap: Map<string, BlogData[]> = new Map();
+    #allNode: (VPJPageData | VPJDocData | VPJBlogData)[] = [];
+    #urlMap: Map<string, VPJPageData | VPJDocData | VPJBlogData> = new Map();
+    #spaceIdMap: Map<string, Map<string, VPJDocData[]>> = new Map();
+    #seriesMap: Map<string, VPJBlogData[]> = new Map();
 
     constructor(
         raw: (RawPageData | RawBlogData | RawDocData)[],
@@ -310,20 +310,20 @@ export class VPJDataStore {
 
     #initializeData(processed: (RawPageData | RawBlogData | RawDocData)[]): void{
         for (const raw of processed) {
-            let instance: PageData | BlogData | DocData;
+            let instance: VPJPageData | VPJBlogData | VPJDocData;
 
             switch (raw.layout) {
                 case "page":
-                    instance = new PageData(raw);
+                    instance = new VPJPageData(raw);
                     break;
                 case "blog":
-                    instance = new BlogData(raw);
+                    instance = new VPJBlogData(raw);
                     const seriesName = raw.series ?? "";
                     if (!this.#seriesMap.has(seriesName)) this.#seriesMap.set(seriesName, []);
                     this.#seriesMap.get(seriesName)?.push(instance);
                     break;
                 case "doc":
-                    instance = new DocData(raw, this.#spaceIdMap);
+                    instance = new VPJDocData(raw, this.#spaceIdMap);
                     const spaceName = raw.space ?? "";
                     const id = genId(raw);
                     this.#spaceIdMap.get(spaceName)?.get(id)?.push(instance);
@@ -640,16 +640,16 @@ export class VPJDataStore {
     getBlogBySeries(series: string) { return this.#seriesMap.get(series) || [] };
     getDocBySpace(space: string) { return Array.from(this.#spaceIdMap.get(space)?.values() || []).flat() };
 
-    filter(predicate: (value: PageData | DocData | BlogData, index: number, array: (PageData | DocData | BlogData)[]) => boolean) {
+    filter(predicate: (value: VPJPageData | VPJDocData | VPJBlogData, index: number, array: (VPJPageData | VPJDocData | VPJBlogData)[]) => boolean) {
         return this.#allNode.filter(predicate);
     };
-    pageFilter(predicate: (value: PageData, index: number, array: PageData[]) => boolean) {
+    pageFilter(predicate: (value: VPJPageData, index: number, array: VPJPageData[]) => boolean) {
         return this.getAllPage().filter(predicate);
     };
-    blogFilter(predicate: (value: BlogData, index: number, array: BlogData[]) => boolean) {
+    blogFilter(predicate: (value: VPJBlogData, index: number, array: VPJBlogData[]) => boolean) {
         return this.getAllBlog().filter(predicate);
     };
-    docFilter(predicate: (value: DocData, index: number, array: DocData[]) => boolean) {
+    docFilter(predicate: (value: VPJDocData, index: number, array: VPJDocData[]) => boolean) {
         return this.getAllDoc().filter(predicate);
     };
 };

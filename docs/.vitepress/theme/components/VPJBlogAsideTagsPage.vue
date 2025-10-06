@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { useData } from 'vitepress';
 
-import { useBlogData } from '../composables/useBlogData';
+import { useVPJData } from '../composables/useVPJData';
 
 import VPJTag from './VPJTag.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
@@ -11,7 +11,7 @@ const DEFAULT = {
     EMPTY: "当前博客没有设置标签"
 };
 
-const { tags } = useBlogData();
+const { tags } = useVPJData();
 const { theme } = useData();
 
 const empty = computed(() => {

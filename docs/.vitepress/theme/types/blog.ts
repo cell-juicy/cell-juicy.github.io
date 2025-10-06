@@ -1,4 +1,4 @@
-import { BlogData } from "../data/pageData";
+import { VPJBlogData } from "../data/pageData";
 import {
     AsideTabInput,
     NormalizedAsideTabInput,
@@ -1362,7 +1362,7 @@ export interface SeriesMetaData {
      */
     listTitle?: 
         | string
-        | ((data: BlogData) => string);
+        | ((data: VPJBlogData) => string);
 
     /**
      * 系列级「下一页」按钮提示文本配置

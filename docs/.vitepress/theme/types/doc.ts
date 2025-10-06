@@ -24,7 +24,7 @@ import type {
 } from "./layoutDoc";
 
 import type {
-    DocData
+    VPJDocData
 } from "../data/pageData";
 
 
@@ -104,7 +104,7 @@ export interface NodeMetadata {
     inherit?: boolean;
     treeTitle?:
         | string
-        | ((data: DocData) => string);
+        | ((data: VPJDocData) => string);
 }
 
 /**
@@ -1639,7 +1639,7 @@ export interface SpaceMetaData {
     inherit?: boolean;
     treeTitle?:
         | string
-        | ((data: DocData) => string);
+        | ((data: VPJDocData) => string);
 
     timeLabel?:
         | string

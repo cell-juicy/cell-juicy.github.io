@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { useData } from 'vitepress';
 
-import { useBlogData } from '../composables/useBlogData';
+import { useVPJData } from '../composables/useVPJData';
 
 import VPJBlogAsideSeriesItem from './VPJBlogAsideSeriesItem.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
@@ -12,10 +12,10 @@ const DEFAULT = {
     NOSERIES: "当前博客还没被收录进任何系列",
 };
 
-const { series, filter } = useBlogData();
+const { series, blogFilter } = useVPJData();
 const { theme } = useData();
 
-const articles = computed(() => filter((data) => data.series === series.value).sort((a, b) => a.order - b.order));
+const articles = computed(() => blogFilter((data) => data.series === series.value).sort((a, b) => a.order - b.order));
 const noSeries = computed(() => {
     const message = theme.value.components?.asideTabSeries?.noSeries;
     return (typeof message === 'string') ? message : DEFAULT.NOSERIES;

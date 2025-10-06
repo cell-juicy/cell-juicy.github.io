@@ -2,7 +2,8 @@ import { useData } from 'vitepress';
 import { ref, computed, readonly } from 'vue';
 import { defineStore } from 'pinia';
 
-import { getDeviceSpecificData } from '../utils/deviceTypes'
+import { isObject } from '../utils/common';
+import { getDeviceSpecificData } from '../utils/deviceTypes';
 import {
     asideTabMerger,
     coverCssConfigMerger,
@@ -20,13 +21,12 @@ import {
     toolbarFeatureMerger,
 } from '../utils/mergeData';
 
-import { useBlogData } from './useBlogData';
-import { useDocData } from './useDocData';
+import { useVPJData } from './useVPJData';
 
 import type { Ref, ComputedRef } from 'vue';
 import type { SiteData, PageData } from 'vitepress';
 import type { ThemeConfig } from '../types';
-import type { CoverCssConfigData, DeviceSpecificData, ImageData } from '../types/common';
+import type { CoverCssConfigData, ImageData } from '../types/common';
 import type { VPJBlogLayoutConfig } from '../types/layoutBlog';
 import type { VPJDocLayoutConfig } from '../types/layoutDoc';
 import type { VPJPageLayoutConfig } from '../types/layoutPage';
@@ -166,24 +166,12 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         site: Ref<SiteData<ThemeConfig>, SiteData<ThemeConfig>>
     } = useData();
     const {
-        layoutConfig: docLayoutConfig,
-        spaceConfig: docSpecificConfig,
-        ctx: docCtx,
-        lastUpdated: docLastUpdated,
-        createdAt: docCreatedAt
-    } = useDocData();
-    const {
-        layoutConfig: blogLayoutConfig,
-        seriesConfig: blogSpecificConfig,
-        ctx: blogCtx,
-        lastUpdated: blogLastUpdated,
-        createdAt: blogCreatedAt
-    } = useBlogData();
-    const pageLayoutConfig = computed(() => {
-        return (typeof theme.value.layouts?.page === "object" && theme.value.layouts.page)
-            ? theme.value.layouts.page
-            : {}
-    });
+        ctx,
+        lastUpdated,
+        createdAt,
+        space,
+        series
+    } = useVPJData();
     const notFoundLayoutConfig = computed(() => {
         return (typeof theme.value.layouts?.notFound === "object" && theme.value.layouts.notFound)
             ? theme.value.layouts.notFound
@@ -201,31 +189,26 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         return {};
     });
     const layoutConfig: ComputedRef<VPJBlogLayoutConfig|VPJDocLayoutConfig|VPJPageLayoutConfig> = computed(() => {
-        if (layout.value === "blog") return blogLayoutConfig.value;
-        if (layout.value === "doc") return docLayoutConfig.value;
-        if (layout.value === "page") return pageLayoutConfig.value;
-        if (layout.value === "not-found") return notFoundLayoutConfig.value;
-        return {};
+        const layouts = isObject(theme.value.layouts) ? theme.value.layouts : {};
+        switch (layout.value) {
+            case "page": return isObject(layouts.page) ? layouts.page : {};
+            case "doc":  return isObject(layouts.doc)  ? layouts.doc  : {};
+            case "blog": return isObject(layouts.blog) ? layouts.blog : {};
+            case "not-found": return isObject(layouts.notFound) ? layouts.notFound : {};
+            default: return {};
+        };
     });
     const specificConfig = computed(() => {
-        if (layout.value === "blog") return blogSpecificConfig.value;
-        if (layout.value === "doc") return docSpecificConfig.value;
-        return {};
-    });
-    const ctx = computed(() => {
-        if (layout.value === "blog") return blogCtx.value;
-        if (layout.value === "doc") return docCtx.value;
-        return undefined;
-    });
-    const lastUpdated = computed(() => {
-        if (layout.value === "blog") return blogLastUpdated.value;
-        if (layout.value === "doc") return docLastUpdated.value;
-        return undefined;
-    });
-    const createdAt = computed(() => {
-        if (layout.value === "blog") return blogCreatedAt.value;
-        if (layout.value === "doc") return docCreatedAt.value;
-        return undefined;
+        switch (layout.value) {
+            case "doc":
+                if (!space.value) return {};
+                return isObject(theme.value.doc?.[space.value]) ? theme.value.doc[space.value] : {};
+            case "blog":
+                if (!series.value) return {};
+                return isObject(theme.value.blog?.[series.value]) ? theme.value.blog[series.value] : {};
+            default:
+                return {};
+        };
     });
 
     // state

@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 
-import { useDocData } from '../composables/useDocData';
+import { useVPJData } from '../composables/useVPJData';
 import { useData } from 'vitepress';
 
 import VPJDocAsideResourcesItem from './VPJDocAsideResourcesItem.vue';
@@ -14,7 +14,7 @@ const DEFAULT = {
     EMPTY: "当前文档没有相关资源",
 };
 
-const { resources } = useDocData();
+const { resources } = useVPJData();
 const { theme } = useData();
 
 const resourcesData = computed(() => {
