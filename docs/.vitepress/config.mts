@@ -128,36 +128,34 @@ export default defineConfigWithTheme<ThemeConfig>({
                         tooltip: "查看原始markdown文件"
                     }
                 },
-                nodeMeta: {
-                    global: {
-                        inherit: true,
-                        resources: {
-                            bookEn: {
-                                url: "https://pan.quark.cn/s/f629e0fc4f6b",
-                                label: "实分析原书下载（英文原版）",
-                                type: "download"
-                            },
-                            bookZh: {
-                                url: "https://pan.quark.cn/s/b6e896d0c74e",
-                                label: "实分析原书下载（中文翻译版）",
-                                type: "download"
-                            },
-                        },
-                        treeTitle(data) {
-                            return data.title?.replace(/(\d+)\.(\d+)[^\S\r\n]*(.*)/, '$1.$2节 $3') || data.id;
-                        },
+                inherit: true,
+                resources: {
+                    bookEn: {
+                        url: "https://pan.quark.cn/s/f629e0fc4f6b",
+                        label: "实分析原书下载（英文原版）",
+                        type: "download"
                     },
-                    "1": {treeTitle: "第1章 引言"},
-                    "2": {treeTitle: "第2章 从头开始：自然数"},
-                    "3": {treeTitle: "第3章 集合论"},
-                    "4": {treeTitle: "第4章 整数和有理数"},
-                    "5": {treeTitle: "第5章 实数"},
-                    "6": {treeTitle: "第6章 序列的极限"},
-                    "7": {treeTitle: "第7章 级数"},
-                    "8": {treeTitle: "第8章 无限集"},
-                    "9": {treeTitle: "第9章 R上的连续函数"},
-                    "10": {treeTitle: "第10章 函数的微分"},
-                    "11": {treeTitle: "第11章 黎曼积分"},
+                    bookZh: {
+                        url: "https://pan.quark.cn/s/b6e896d0c74e",
+                        label: "实分析原书下载（中文翻译版）",
+                        type: "download"
+                    },
+                },
+                treeTitle(data) {
+                    return data.title?.replace(/(\d+)\.(\d+)[^\S\r\n]*(.*)/, '$1.$2节 $3') || "";
+                },
+                nodeMeta: {
+                    // "1": {treeTitle: "第1章 引言"},
+                    // "2": {treeTitle: "第2章 从头开始：自然数"},
+                    // "3": {treeTitle: "第3章 集合论"},
+                    // "4": {treeTitle: "第4章 整数和有理数"},
+                    // "5": {treeTitle: "第5章 实数"},
+                    // "6": {treeTitle: "第6章 序列的极限"},
+                    // "7": {treeTitle: "第7章 级数"},
+                    // "8": {treeTitle: "第8章 无限集"},
+                    // "9": {treeTitle: "第9章 R上的连续函数"},
+                    // "10": {treeTitle: "第10章 函数的微分"},
+                    // "11": {treeTitle: "第11章 黎曼积分"},
                     "12": {treeTitle: "第12章 度量空间"},
                     "13": {treeTitle: "第13章 度量空间上的连续函数"},
                     "14": {treeTitle: "第14章 一致收敛"},
@@ -171,7 +169,7 @@ export default defineConfigWithTheme<ThemeConfig>({
                 prev: "下一节",
                 editLink: {
                     text: "发现错误？在Github上与我们交流"
-                }
+                },
             },
         },
         components: {
@@ -192,7 +190,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         },
         next: "下一页",
         prev: "上一页",
-        enableVitrual: true,
+        enableVirtual: true,
         timeLabel: "上次更新于：:lYY/:lMM/:lDD",
         asideCollapsed: {
             desktop: false,
