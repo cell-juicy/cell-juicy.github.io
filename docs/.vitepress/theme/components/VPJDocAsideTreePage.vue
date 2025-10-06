@@ -20,7 +20,14 @@ const rootDocData = computed(() => {
     if (!space.value) {
         return [];
     };
-    return docFilter((data) => data.space === space.value).filter((data) => !data.parent);
+    return docFilter((data) => data.space === space.value)
+        .filter((data) => !data.parent)
+        .sort((a, b) => {
+            for (let i = 0; i < Math.min(a.order.length, b.order.length); i++) {
+                if (a.order[i] !== b.order[i]) return a.order[i] - b.order[i];
+            };
+            return a.order.length - b.order.length;
+        });
 });
 const noSpace = computed(() => {
     const message = theme.value.components?.asideTabTree?.noSpace;

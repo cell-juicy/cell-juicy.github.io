@@ -1,7 +1,8 @@
-import { ref, computed, inject, watch } from 'vue';
+import { computed, inject } from 'vue';
 import { data } from '../data/page.data';
 import { VPJDataStore } from '../data/pageData';
 import { VPJ_DATA_SYMBOL } from '../utils/symbols';
+import { isObject } from '../utils/common';
 
 import type { ComputedRef, Ref } from 'vue';
 import type { Route, SiteData } from 'vitepress';
@@ -12,7 +13,7 @@ import type { VPJPageData, VPJBlogData, VPJDocData } from '../data/pageData';
 
 export type VPJDataItem = VPJPageData | VPJBlogData | VPJDocData;
 export type VPJData = {
-    store: VPJDataStore;
+    store: Ref<VPJDataStore>;
     data: Ref<VPJDataItem | undefined>;
     title: Ref<string | undefined>;
     lastUpdated: Ref<Date | undefined>;
@@ -35,11 +36,12 @@ export type VPJData = {
 };
 
 export function initVPJData(route: Route, siteData: Ref<SiteData>) {
-    const theme: Ref<ThemeConfig> = computed(() => siteData.value.themeConfig);
-    const store = new VPJDataStore(data, theme.value);
-
+    const theme: Ref<ThemeConfig> = computed(() => isObject(siteData.value.themeConfig) ? siteData.value.themeConfig : {});
+    const store = computed(() => {
+        return new VPJDataStore(data, theme.value);
+    });
     const currentData = computed(() => {
-        return store.getDataByUrl(route.path);
+        return store.value.getDataByUrl(route.path);
     });
 
     // page
@@ -148,10 +150,10 @@ export function initVPJData(route: Route, siteData: Ref<SiteData>) {
     });
 
     // filter
-    const filter = store.filter;
-    const docFilter = store.docFilter;
-    const blogFilter = store.blogFilter;
-    const pageFilter = store.pageFilter;
+    const filter = store.value.filter.bind(store.value);
+    const docFilter = store.value.docFilter.bind(store.value);
+    const blogFilter = store.value.blogFilter.bind(store.value);
+    const pageFilter = store.value.pageFilter.bind(store.value);
 
     return {
         store,
