@@ -1,4 +1,5 @@
 import { createContentLoader } from "vitepress";
+import { JSDOM } from "jsdom";
 import { processDocOrder, processBlogOrder, isObject, isString, isFalse, isStringFalse } from "../utils/common";
 
 import type {
@@ -21,21 +22,34 @@ function resolveNavigation(input: any) {
     return {};
 };
 
+const IGNORE_CLASS_RE = /header-anchor|ignore-header/i;
+function resolveTitle(title: string | undefined) {
+    if (!isString(title)) return "";
+
+    const dom = new JSDOM(title)
+    const root = dom.window.document.body.firstElementChild;
+    let result = "";
+
+    if (!root) return result;
+    for (const node of root.childNodes) {
+        if (node.nodeType === 1) {
+            const el = node as HTMLElement;
+            if (IGNORE_CLASS_RE.test(el.className)) continue;
+            result += el.textContent || "";
+        } else if (node.nodeType === 3) {
+            result += node.textContent;
+        };
+    };
+
+    return result.trim();
+};
+
 
 export default createContentLoader("**/*.md", {
     excerpt(file, options) {
         const mdMatch = file.content.match(/^#\s+(.+?)\s*$/m)
-        if (mdMatch) {
-            file.excerpt = mdMatch[1]
-            return
-        }
-
-        const htmlMatch = file.content.match(/<h1[^>]*>([^<]+)<\/h1>/i)
-        if (htmlMatch) {
-            file.excerpt = htmlMatch[1]
-            return
-        }
-        return
+        if (mdMatch) file.excerpt = mdMatch[1];
+        return;
     },
     transform(rawData): (RawPageData|RawBlogData|RawDocData)[] {
         return rawData
@@ -46,16 +60,9 @@ export default createContentLoader("**/*.md", {
                 // Process title
                 let title: string | undefined;
                 if (isString(raw.frontmatter.title)) {
-                    title = raw.frontmatter.title;
+                    title = `<p>${raw.frontmatter.title}</p>`;
                 } else if (isString(raw.excerpt)) {
                     title = raw.excerpt;
-                    let safety = 0;
-                    let prev: string;
-                    do {
-                        prev = title;
-                        title = title.replace(/<([a-zA-Z][a-zA-Z0-9]*)[^>]*>([\s\S]*?)<\/\1>/g, (m, t, c) => c);
-                    } while (prev !== title && ++safety < 10);
-                    title = title.replace(/<[a-zA-Z][a-zA-Z0-9]*\s*[^>]*?\/>/g, '');
                 };
 
                 // Process lastUpdated&createdAt
@@ -73,7 +80,7 @@ export default createContentLoader("**/*.md", {
                 const baseData = {
                     url: encodeURI(raw.url),
                     frontmatter: raw.frontmatter,
-                    title,
+                    title: resolveTitle(title),
                     lastUpdated,
                     createdAt,
                 };
