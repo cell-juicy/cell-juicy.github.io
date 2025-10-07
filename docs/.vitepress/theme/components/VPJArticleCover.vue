@@ -1,61 +1,46 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
+
+import { useVPJData } from '../composables/useVPJData';
+import { useVPJLayout } from '../composables/useVPJLayout';
 
 
-const props = defineProps({
-    cover: {
-        type: String,
-        default: ""
-    },
-    config: {
-        type: Object,
-        default: {
-            alt: "",
-            fade: undefined,
-            height: "0px",
-            css: {
-                objectPosition: "center",
-                objectFit: "cover"
-            }
-        }
-    }
-})
+const store = useVPJLayout();
+const {
+    coverConfig,
+} = storeToRefs(store);
+const { cover } = useVPJData();
 
 
-const computedAlt = computed(() => {
-    return typeof props.config.alt === "string" ? props.config.alt : undefined;
-});
 const computedHeight = computed(() => {
-    return props.config.height || "0";
-});
-const computedSrc = computed(() => {
-    return typeof props.cover === "string" ? props.cover : undefined;
+    return coverConfig.value.height || "0";
 });
 const computedCss = computed(() => {
-    const fadeNumber = isNaN(Number(props.config.fade)) ? 0 : Number(props.config.fade);
+    const fadeNumber = isNaN(Number(coverConfig.value.fade)) ? 0 : Number(coverConfig.value.fade);
     const fadePercentage = Math.min(Math.max(fadeNumber, 0), 1) * 100;
-    const maskImage = (props.config.css?.maskImage)
-        ? props.config.css.maskImage
+    const maskImage = (coverConfig.value.css?.maskImage)
+        ? coverConfig.value.css.maskImage
         : (fadePercentage > 0)
             ? `linear-gradient(to top, transparent 0%, black ${fadePercentage}%, black)`
-            : undefined
+            : undefined;
     return {
-        ...props.config.css,
+        ...coverConfig.value.css,
         maskImage
-    }
+    };
 })
 </script>
 
 
 <template>
     <div
-        v-if="computedSrc"
+        v-if="cover"
         class="vpj-article-cover"
     >
         <img
             class="vpj-article-cover__img"
-            :src="computedSrc"
-            :alt="computedAlt"
+            :src="cover"
+            :alt="coverConfig.alt"
             :style="computedCss"
         >
     </div>

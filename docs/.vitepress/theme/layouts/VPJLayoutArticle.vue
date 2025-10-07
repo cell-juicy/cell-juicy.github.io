@@ -4,7 +4,6 @@ import { computed, provide, useTemplateRef } from 'vue';
 import { useHead } from '@unhead/vue';
 
 import { useVPJLayout } from '../composables/useVPJLayout';
-import { useVPJData } from '../composables/useVPJData';
 
 import { VPJ_ARTICLE_LAYOUT_SYMBOL } from '../utils/symbols';
 
@@ -21,16 +20,12 @@ import VPJIconAngleSquareRight from '../components/icons/VPJIconAngleSquareRight
 
 
 const store = useVPJLayout();
-const { asideToggle, asideClose, asideOpen } = store;
+const { asideToggle } = store;
 const {
     asideCollapsed,
     headConfig,
     contentConfig,
-    headerConfig,
-    coverConfig,
-    asideConfig
 } = storeToRefs(store);
-const { cover, next, prev } = useVPJData();
 
 useHead(headConfig);
 
@@ -55,77 +50,55 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
 
 
 <template>
-    <div class="vpj-layout-doc">
-        <slot name="doc-header">
-            <VPJArticleHeader 
-                :config="headerConfig"
-                :state="{
-                    collapsed: asideCollapsed,
-                    toggle: asideToggle,
-                    close: asideClose,
-                    open: asideOpen
-                }"
-            >
-                <template #header-before><slot name="doc-header-before"/></template>
-                <template #header-between><slot name="doc-header-between"/></template>
-                <template #header-after><slot name="doc-header-after"/></template>
+    <div class="vpj-layout-article">
+        <slot name="article-header">
+            <VPJArticleHeader>
+                <template #header-before><slot name="article-header-before"/></template>
+                <template #header-between><slot name="article-header-between"/></template>
+                <template #header-after><slot name="article-header-after"/></template>
             </VPJArticleHeader>
         </slot>
-        <main class="vpj-layout-doc__main">
-            <slot name="doc-aside">
-                <VPJArticleAside
-                    :config="asideConfig"
-                    :state="{
-                        collapsed: asideCollapsed,
-                        toggle: asideToggle,
-                        close: asideClose,
-                        open: asideOpen
-                    }"
-                />
+        <main class="vpj-layout-article__main">
+            <slot name="article-aside">
+                <VPJArticleAside/>
             </slot>
             <VPJOverlayScrollArea
                 overflow="xy"
                 thumb-width="5"
-                :inner-attrs="{ class: 'vpj-layout-doc__wrapper-inner' }"
+                :inner-attrs="{ class: 'vpj-layout-article__wrapper-inner' }"
                 ref="article-scroll-area"
-                class="vpj-layout-doc__wrapper-outer"
+                class="vpj-layout-article__wrapper-outer"
             >
-                <slot name="doc-cover">
-                    <VPJArticleCover
-                        :cover="cover"
-                        :config="coverConfig"
-                    />
+                <slot name="article-cover">
+                    <VPJArticleCover/>
                 </slot>
-                <div class="vpj-layout-doc__container">
-                    <div class="vpj-layout-doc__aside-controler">
+                <div class="vpj-layout-article__container">
+                    <div class="vpj-layout-article__aside-controler">
                         <VPJDynamicIconBtn
                             :icon="asideCollapsed ? VPJIconAngleSquareRight : VPJIconAngleSquareLeft"
                             @click="asideToggle"
-                            class="vpj-layout-doc__aside-toggle"
+                            class="vpj-layout-article__aside-toggle"
                         />
-                        <slot name="doc-controler"/>
+                        <slot name="article-controler"/>
                     </div>
-                    <article class="vpj-layout-doc__article">
-                        <slot name="doc-top"/>
-                        <div class="vpj-layout-doc__grid-layout">
-                            <div class="vpj-layout-doc__article-padding-left">
-                                <slot name="doc-padding-left"/>
+                    <article class="vpj-layout-article__article">
+                        <slot name="article-top"/>
+                        <div class="vpj-layout-article__grid-layout">
+                            <div class="vpj-layout-article__article-padding-left">
+                                <slot name="article-padding-left"/>
                             </div>
                             <slot>
-                                <div ref="article-content" class="vpj-layout-doc__article-content">
+                                <div ref="article-content" class="vpj-layout-article__article-content">
                                     <Content class="vpj-markdown"/>
-                                    <VPJArticleFooter
-                                        :prev="prev"
-                                        :next="next"
-                                    />
+                                    <VPJArticleFooter/>
                                     <VPJFooter/>
                                 </div>
                             </slot>
-                            <div class="vpj-layout-doc__article-padding-right">
-                                <slot name="doc-padding-right"/>
+                            <div class="vpj-layout-article__article-padding-right">
+                                <slot name="article-padding-right"/>
                             </div>
                         </div>
-                        <slot name="doc-bottom"/>
+                        <slot name="article-bottom"/>
                     </article>
                 </div>
             </VPJOverlayScrollArea>
@@ -135,7 +108,7 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
 
 
 <style scoped>
-    .vpj-layout-doc {
+    .vpj-layout-article {
         background-color: var(--vpj-color-bg-100);
         display: flex;
         flex-direction: column;
@@ -143,7 +116,7 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         width: 100%;
     }
 
-    .vpj-layout-doc__main {
+    .vpj-layout-article__main {
         display: flex;
         flex: 1;
         flex-direction: row;
@@ -151,18 +124,18 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         width: 100%;
     }
 
-    .vpj-layout-doc__wrapper-outer {
+    .vpj-layout-article__wrapper-outer {
         flex: 1;
         height: 100%;
     }
 
-    :deep(.vpj-layout-doc__wrapper-inner) {
+    :deep(.vpj-layout-article__wrapper-inner) {
         display: flex;
         flex: 1;
         flex-direction: column;
     }
 
-    .vpj-layout-doc__container {
+    .vpj-layout-article__container {
         display: flex;
         flex: 1;
         flex-direction: row;
@@ -170,22 +143,23 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         width: 100%;
     }
 
-    .vpj-layout-doc__aside-controler {
+    .vpj-layout-article__aside-controler {
         background-color: transparent;
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
         min-height: max-content;
         opacity: 0;
+        padding-bottom: auto;
         transition: opacity 0.2s ease-in-out;
         width: 48px;
     }
 
-    .vpj-layout-doc__aside-controler:hover {
+    .vpj-layout-article__aside-controler:hover {
         opacity: 1;
     }
 
-    .vpj-layout-doc__aside-toggle {
+    .vpj-layout-article__aside-toggle {
         align-items: center;
         background-color: var(--vpj-color-bg-100);
         border-radius: var(--vpj-border-radius-100);
@@ -197,23 +171,23 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         width: 32px;
     }
 
-    .vpj-layout-doc__aside-toggle :deep(.vpj-icon) {
+    .vpj-layout-article__aside-toggle :deep(.vpj-icon) {
         fill: var(--vpj-color-text-300);
         height: 16px;
         width: 16px;
     }
 
-    .vpj-layout-doc__aside-toggle:hover,
-    .vpj-layout-doc__aside-toggle:active {
+    .vpj-layout-article__aside-toggle:hover,
+    .vpj-layout-article__aside-toggle:active {
         background-color: var(--vpj-color-bg-300);
     }
 
-    .vpj-layout-doc__aside-toggle:hover :deep(.vpj-icon),
-    .vpj-layout-doc__aside-toggle:active :deep(.vpj-icon) {
+    .vpj-layout-article__aside-toggle:hover :deep(.vpj-icon),
+    .vpj-layout-article__aside-toggle:active :deep(.vpj-icon) {
         fill: var(--vpj-color-text-400);
     }
 
-    .vpj-layout-doc__article {
+    .vpj-layout-article__article {
         align-items: center;
         display: flex;
         flex: 1;
@@ -222,7 +196,7 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         padding-right: 48px;
     }
 
-    .vpj-layout-doc__grid-layout {
+    .vpj-layout-article__grid-layout {
         display: grid;
         flex: 1;
         grid-template-columns:
@@ -233,17 +207,17 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         width: 100%;
     }
 
-    .vpj-layout-doc__article-padding-left {
+    .vpj-layout-article__article-padding-left {
         grid-column: 1;
         max-width: 100%;
     }
 
-    .vpj-layout-doc__article-padding-right {
+    .vpj-layout-article__article-padding-right {
         grid-column: 3;
         max-width: 100%;
     }
 
-    .vpj-layout-doc__article-content {
+    .vpj-layout-article__article-content {
         display: flex;
         flex-direction: column;
         grid-column: 2;
@@ -251,17 +225,17 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         max-width: 100%;
     }
 
-    .vpj-layout-doc__article-content > .vpj-markdown {
+    .vpj-layout-article__article-content > .vpj-markdown {
         flex: 1;
         margin-bottom: v-bind(computedMarginBottom);
     }
 
     @media screen and (max-width: 1024px) {
-        .vpj-layout-doc__aside-controler {
+        .vpj-layout-article__aside-controler {
             display: none;
         }
 
-        .vpj-layout-doc__article {
+        .vpj-layout-article__article {
             padding-right: 0;
         }
     }

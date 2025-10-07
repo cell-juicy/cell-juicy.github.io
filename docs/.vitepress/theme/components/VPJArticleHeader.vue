@@ -10,36 +10,15 @@ import VPJArticleHeaderToolbar from './VPJArticleHeaderToolbar.vue';
 
 import VPJIconMenuBurger from './icons/VPJIconMenuBurger.vue';
 
-import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes';
+import { isMobile, isDesktop } from '../utils/deviceTypes';
 
 
 const store = useVPJLayout();
+const { asideToggle } = store;
 const {
     articleFooterConfig,
+    headerConfig,
 } = storeToRefs(store);
-
-const props = defineProps({
-    config: {
-        type: Object,
-        default: {
-            headerIcon: undefined,
-            headerTitle: '',
-            github: {},
-            md: {},
-            pdf: {},
-            toolbar: {}
-        }
-    },
-    state: {
-        type: Object,
-        default: {
-            collasped: true,
-            close() {},
-            open() {},
-            toggle() {}
-        }
-    }
-});
 
 const toolbar = useTemplateRef("toolbar");
 </script>
@@ -51,7 +30,7 @@ const toolbar = useTemplateRef("toolbar");
         <div class="vpj-article-header__info">
             <VPJDynamicIconBtn
                 v-if="!isDesktop"
-                @click="props.state.toggle"
+                @click="asideToggle"
                 :icon="VPJIconMenuBurger"
                 class="vpj-article-header__button"
             />
@@ -62,12 +41,12 @@ const toolbar = useTemplateRef("toolbar");
                 }"
             >
                 <VPJDynamicIcon
-                    v-if="props.config?.headerIcon"
-                    :icon="props.config?.headerIcon"
+                    v-if="headerConfig.headerIcon"
+                    :icon="headerConfig.headerIcon"
                     class="vpj-article-header__series-icon"
                 />
-                <span v-if="props.config?.headerTitle" class="vpj-article-header__series-name">
-                    {{ props.config?.headerTitle }}
+                <span v-if="headerConfig.headerTitle" class="vpj-article-header__series-name">
+                    {{ headerConfig.headerTitle }}
                 </span>
             </div>
             <VPJArticleHeaderToolbar v-show="isDesktop" ref="toolbar"/>

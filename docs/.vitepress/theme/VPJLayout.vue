@@ -29,7 +29,7 @@ const stopAnchorWatcher = watch(route, scrollToAnchor);
 onMounted(() => {
     setTimeout(scrollToAnchor, 200)
     window.addEventListener("hashchange", scrollToAnchor)
-})
+});
 
 onUnmounted(() => {
     window.removeEventListener("hashchange", scrollToAnchor)
@@ -62,32 +62,20 @@ onUnmounted(() => {
                 <template #page-bottom><slot name="page-bottom"/></template>
                 <template #page-padding-left><slot name="page-padding-left"/></template>
                 <template #page-padding-right><slot name="page-padding-right"/></template>
-                <template #blog-header><slot name="blog-header"/></template>
-                <template #blog-header-before><slot name="blog-header-before"/></template>
-                <template #blog-header-between><slot name="blog-header-between"/></template>
-                <template #blog-header-after><slot name="blog-header-after"/></template>
-                <template #blog-aside><slot name="blog-aside"/></template>
-                <template #blog-cover><slot name="blog-cover"/></template>
-                <template #blog-controler><slot name="blog-controler"/></template>
-                <template #blog-top><slot name="blog-top"/></template>
-                <template #blog-bottom><slot name="blog-bottom"/></template>
-                <template #blog-padding-left><slot name="blog-padding-left"/></template>
-                <template #blog-padding-right><slot name="blog-padding-right"/></template>
-                <template #doc-header><slot name="doc-header"/></template>
-                <template #doc-header-before><slot name="doc-header-before"/></template>
-                <template #doc-header-between><slot name="doc-header-between"/></template>
-                <template #doc-header-after><slot name="doc-header-after"/></template>
-                <template #doc-aside><slot name="doc-aside"/></template>
-                <template #doc-cover><slot name="doc-cover"/></template>
-                <template #doc-controler><slot name="doc-controler"/></template>
-                <template #doc-top><slot name="doc-top"/></template>
-                <template #doc-bottom><slot name="doc-bottom"/></template>
-                <template #doc-padding-left><slot name="doc-padding-left"/></template>
-                <template #doc-padding-right><slot name="doc-padding-right"/></template>
+                <template #article-header><slot name="article-header"/></template>
+                <template #article-header-before><slot name="article-header-before"/></template>
+                <template #article-header-between><slot name="article-header-between"/></template>
+                <template #article-header-after><slot name="article-header-after"/></template>
+                <template #article-aside><slot name="article-aside"/></template>
+                <template #article-cover><slot name="article-cover"/></template>
+                <template #article-controler><slot name="article-controler"/></template>
+                <template #article-top><slot name="article-top"/></template>
+                <template #article-bottom><slot name="article-bottom"/></template>
+                <template #article-padding-left><slot name="article-padding-left"/></template>
+                <template #article-padding-right><slot name="article-padding-right"/></template>
             </VPJContent>
         </div>
         <VPJPanel>
-
         </VPJPanel>
     </div>
 </template>

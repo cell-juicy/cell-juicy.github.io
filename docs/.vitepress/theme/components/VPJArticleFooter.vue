@@ -4,6 +4,7 @@ import { computed } from 'vue';
 
 import { isDesktop } from '../utils/deviceTypes';
 
+import { useVPJData } from '../composables/useVPJData';
 import { useVPJLayout } from '../composables/useVPJLayout';
 
 import VPJIconArrowLeft from '../components/icons/VPJIconArrowLeft.vue';
@@ -11,37 +12,27 @@ import VPJIconArrowRight from '../components/icons/VPJIconArrowRight.vue';
 import VPJIconEdit from '../components/icons/VPJIconEdit.vue';
 
 
-const props = defineProps({
-    prev: {
-        type: Object,
-        default: () => ({})
-    },
-    next: {
-        type: Object,
-        default: () => ({})
-    }
-})
-
+const { next, prev } = useVPJData();
 const store = useVPJLayout();
 const {
-    articleFooterConfig: config,
-    contentConfig: content,
-    footerConfig: footer
+    articleFooterConfig,
+    contentConfig,
+    footerConfig
 } = storeToRefs(store);
 
 const computedMarginBottom = computed(() => {
-    const marginBottom = content.value.marginBottom || "0";
-    if (!(footer.value.message || footer.value.copyright)) {
-        return `min(${marginBottom}, 4.5rem)`
+    const marginBottom = contentConfig.value.marginBottom || "0";
+    if (!(footerConfig.value.message || footerConfig.value.copyright)) {
+        return `min(${marginBottom}, 4.5rem)`;
     };
-    return ".5rem"
-})
+    return ".5rem";
+});
 </script>
 
 
 <template>
     <div
-        v-if="config.editLink.link || prev.link || next.link || config.timeLabel"
+        v-if="articleFooterConfig.editLink.link || prev.link || next.link || articleFooterConfig.timeLabel"
         class="vpj-article-footer"
     >
         <nav
@@ -55,7 +46,7 @@ const computedMarginBottom = computed(() => {
             >
                 <VPJIconArrowLeft class="vpj-article-footer__navgation-icon"/>
                 <div class="vpj-article-footer__navgation-info">
-                    <div class="vpj-article-footer__navgation-label vpj-text">{{ config.prevLabel }}</div>
+                    <div class="vpj-article-footer__navgation-label vpj-text">{{ articleFooterConfig.prevLabel }}</div>
                     <div class="vpj-article-footer__navgation-text vpj-text">{{ prev.text }}</div>
                 </div>
             </a>
@@ -65,7 +56,7 @@ const computedMarginBottom = computed(() => {
                 class="vpj-article-footer__navgation-next"
             >
                 <div class="vpj-article-footer__navgation-info">
-                    <div class="vpj-article-footer__navgation-label vpj-text">{{ config.nextLabel }}</div>
+                    <div class="vpj-article-footer__navgation-label vpj-text">{{ articleFooterConfig.nextLabel }}</div>
                     <div class="vpj-article-footer__navgation-text vpj-text">{{ next.text }}</div>
                 </div>
                 <VPJIconArrowRight class="vpj-article-footer__navgation-icon"/>
@@ -73,26 +64,26 @@ const computedMarginBottom = computed(() => {
         </nav>
         <div class="vpj-article-footer__info">
             <a
-                v-if="config.editLink.link"
-                :href="config.editLink.link"
-                :title="config.editLink.text"
+                v-if="articleFooterConfig.editLink.link"
+                :href="articleFooterConfig.editLink.link"
+                :title="articleFooterConfig.editLink.text"
                 class="vpj-article-footer__edit-link"
                 target="_blank"
                 rel="noopener noreferrer"
             >
                 <VPJIconEdit class="vpj-article-footer__edit-link-icon"/>
                 <span
-                    v-if="config.editLink.text.length > 0"
+                    v-if="articleFooterConfig.editLink.text.length > 0"
                     class="vpj-article-footer__edit-link-text vpj-text"
                 >
-                    {{ config.editLink.text }}
+                    {{ articleFooterConfig.editLink.text }}
                 </span>
             </a>
             <span
-                v-if="config.timeLabel && isDesktop"
+                v-if="articleFooterConfig.timeLabel && isDesktop"
                 class="vpj-article-footer__time-label vpj-text"
             >
-                {{ config.timeLabel }}
+                {{ articleFooterConfig.timeLabel }}
             </span>
         </div>
     </div>
