@@ -112,7 +112,11 @@ export default defineConfigWithTheme<ThemeConfig>({
                     return `测试用书1 | 当前文章order：${(ctx.layoutConfig.order as number[]).join("/")}`
                 },
                 prev: "Previous",
-                next: "Next"
+                next: "Next",
+                treeTitle(data) {
+                    if (data.virtual) return `Virtual Node:${data.order.join("/")}`
+                    else return data.title;
+                },
             },
             "实分析": {
                 enableVirtual: true,

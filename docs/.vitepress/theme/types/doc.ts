@@ -1639,7 +1639,7 @@ export interface SpaceMetaData {
     inherit?: boolean;
     treeTitle?:
         | string
-        | ((data: VPJDocData) => string);
+        | ((data: VPJDocData) => string | undefined);
 
     timeLabel?:
         | string
