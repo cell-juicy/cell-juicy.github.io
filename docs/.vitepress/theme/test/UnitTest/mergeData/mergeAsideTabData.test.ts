@@ -79,14 +79,14 @@ describe("mergeAsideTabData 侧边栏标签合并", () => {
             undefined,
             undefined,
             {
-                series: {name: "系列", component: "VPJBlogAsideSeriesPage", order: 0},
-                tags: {name: "标签", component: "VPJBlogAsideTagsPage", order: 0},
+                series: {name: "系列", component: "VPJArticleAsideSeriesPage", order: 0},
+                tags: {name: "标签", component: "VPJArticleAsideTagsPage", order: 0},
             }
         );
 
         expect(result).toEqual({
-            series: { name: "系列", component: "VPJBlogAsideSeriesPage", order: 0 },
-            tags: { name: "标签", component: "VPJBlogAsideTagsPage", order: 0 },
+            series: { name: "系列", component: "VPJArticleAsideSeriesPage", order: 0 },
+            tags: { name: "标签", component: "VPJArticleAsideTagsPage", order: 0 },
         });
     });
 });

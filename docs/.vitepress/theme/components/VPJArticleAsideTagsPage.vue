@@ -24,8 +24,8 @@ const empty = computed(() => {
 <template>
     <VPJOverlayScrollArea
         overflow="y"
-        class="vpj-layout-blog__aside-tab-outer"
-        :inner-attrs="{ class: 'vpj-layout-blog__aside-tab-inner' }"
+        class="vpj-article-aside__aside-tab-outer"
+        :inner-attrs="{ class: 'vpj-article-aside__aside-tab-inner' }"
     >
         <div
             v-if="!tags || tags.length === 0"
@@ -35,7 +35,7 @@ const empty = computed(() => {
         </div>
         <div
             v-else
-            class="vpj-layout-blog__aside-blog-tags"
+            class="vpj-article-aside__aside-blog-tags"
         >
             <VPJTag
                 v-for="tag in tags"
@@ -48,19 +48,19 @@ const empty = computed(() => {
 
 
 <style scoped>
-    .vpj-layout-blog__aside-tab-outer {
+    .vpj-article-aside__aside-tab-outer {
         background-color: var(--vpj-color-bg-100);
         height: 100%;
         width: 100%;
     }
 
-    :deep(.vpj-layout-blog__aside-tab-inner) {
+    :deep(.vpj-article-aside__aside-tab-inner) {
         align-items: center;
         display: flex;
         flex-direction: column;
     }
 
-    .vpj-layout-blog__aside-blog-tags {
+    .vpj-article-aside__aside-blog-tags {
         align-content: flex-start;
         column-gap: .25rem;
         display: flex;

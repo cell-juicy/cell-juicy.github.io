@@ -23,23 +23,23 @@ const route = useRoute();
         :key="props.data.url"
         :href="props.data.url"
         :class="[
-            'vpj-layout-blog__aside-blog',
+            'vpj-article-aside__aside-blog',
             {'current': route.path === props.data.url}
         ]"
     >
-        <div class="vpj-layout-blog__aside-blog-cover">
-            <img v-if="props.data.cover" :src="props.data.cover" alt="Blog Cover" class="vpj-layout-blog__aside-blog-cover-image">
-            <VPJIconBlogPencil v-else class="vpj-layout-blog__aside-blog-cover-default" />
+        <div class="vpj-article-aside__aside-blog-cover">
+            <img v-if="props.data.cover" :src="props.data.cover" alt="Blog Cover" class="vpj-article-aside__aside-blog-cover-image">
+            <VPJIconBlogPencil v-else class="vpj-article-aside__aside-blog-cover-default" />
         </div>
-        <div class="vpj-layout-blog__aside-blog-info">
-            <div class="vpj-layout-blog__aside-blog-title vpj-text">
+        <div class="vpj-article-aside__aside-blog-info">
+            <div class="vpj-article-aside__aside-blog-title vpj-text">
                 {{ props.data.listTitle }}
             </div>
-            <div class="vpj-layout-blog__aside-blog-tagboxmask">
+            <div class="vpj-article-aside__aside-blog-tagboxmask">
                 <VPJOverlayScrollArea
                     overflow="x"
                     thumb-width=3
-                    :inner-attrs="{ class: 'vpj-layout-blog__aside-blog-taglist'}"
+                    :inner-attrs="{ class: 'vpj-article-aside__aside-blog-taglist'}"
                 >
                     <VPJTag v-for="tag in props.data.tags" :key="tag" :tag="tag"/>
                 </VPJOverlayScrollArea>
@@ -51,7 +51,7 @@ const route = useRoute();
 
 <style scoped>
     /* Blog item */
-    .vpj-layout-blog__aside-blog {
+    .vpj-article-aside__aside-blog {
         align-items: center;
         background-color: var(--vpj-color-bg-100);
         border-color: var(--vpj-color-border-200);
@@ -73,39 +73,39 @@ const route = useRoute();
             transform 0.3s ease;
     }
 
-    .vpj-layout-blog__aside-blog:hover {
+    .vpj-article-aside__aside-blog:hover {
         color: var(--vpj-color-text-500);
         transform: scale(1.02);
     }
 
-    .vpj-layout-blog__aside-blog:active {
+    .vpj-article-aside__aside-blog:active {
         color: var(--vpj-color-text-500);
         box-shadow: none;
         transform: none;
     }
 
     /* Current item */
-    .vpj-layout-blog__aside-blog.current {
+    .vpj-article-aside__aside-blog.current {
         color: var(--vpj-color-primary-400);
     }
 
-    .vpj-layout-blog__aside-blog.current:hover {
+    .vpj-article-aside__aside-blog.current:hover {
         color: var(--vpj-color-primary-500);
     }
 
-    .vpj-layout-blog__aside-blog.current:active {
+    .vpj-article-aside__aside-blog.current:active {
         color: var(--vpj-color-primary-300);
     }
 
     /* Cover */
-    .vpj-layout-blog__aside-blog-cover {
+    .vpj-article-aside__aside-blog-cover {
         flex-shrink: 0;
         height: 4rem;
         width: 4rem;
     }
 
     /* Cover(image input from data) */
-    .vpj-layout-blog__aside-blog-cover-image {
+    .vpj-article-aside__aside-blog-cover-image {
         border-radius: var(--vpj-border-radius-100);
         height: 100%;
         object-fit: cover;
@@ -114,42 +114,42 @@ const route = useRoute();
     }
 
     /* Cover(default icon) */
-    .vpj-layout-blog__aside-blog-cover-default {
+    .vpj-article-aside__aside-blog-cover-default {
         fill: var(--vpj-color-text-300);
         height: 50%;
         margin: 25%;
         width: 50%;
     }
 
-    .vpj-layout-blog__aside-blog:hover .vpj-layout-blog__aside-blog-cover-default {
+    .vpj-article-aside__aside-blog:hover .vpj-article-aside__aside-blog-cover-default {
         fill: var(--vpj-color-text-500);
     }
 
-    .vpj-layout-blog__aside-blog:active .vpj-layout-blog__aside-blog-cover-default {
+    .vpj-article-aside__aside-blog:active .vpj-article-aside__aside-blog-cover-default {
         fill: var(--vpj-color-text-500);
     }
 
     /* Current blog cover(default icon) */
-    .vpj-layout-blog__aside-blog.current .vpj-layout-blog__aside-blog-cover-default {
+    .vpj-article-aside__aside-blog.current .vpj-article-aside__aside-blog-cover-default {
         fill: var(--vpj-color-primary-400);
     }
 
-    .vpj-layout-blog__aside-blog.current:hover .vpj-layout-blog__aside-blog-cover-default {
+    .vpj-article-aside__aside-blog.current:hover .vpj-article-aside__aside-blog-cover-default {
         fill: var(--vpj-color-primary-500);
     }
 
-    .vpj-layout-blog__aside-blog.current:active .vpj-layout-blog__aside-blog-cover-default {
+    .vpj-article-aside__aside-blog.current:active .vpj-article-aside__aside-blog-cover-default {
         fill: var(--vpj-color-primary-300);
     }
 
-    .vpj-layout-blog__aside-blog-info {
+    .vpj-article-aside__aside-blog-info {
         display: flex;
         flex: 1;
         flex-direction: column;
         height: 4rem;
     }
 
-    .vpj-layout-blog__aside-blog-title {
+    .vpj-article-aside__aside-blog-title {
         flex-shrink: 0;
         font-size: 1rem;
         font-weight: bold;
@@ -160,7 +160,7 @@ const route = useRoute();
         padding-left: .25rem;
     }
 
-    .vpj-layout-blog__aside-blog-tagboxmask {
+    .vpj-article-aside__aside-blog-tagboxmask {
         display: flex;
         flex-shrink: 0;
         flex-wrap: nowrap;
@@ -174,7 +174,7 @@ const route = useRoute();
         );
     }
 
-    :deep(.vpj-layout-blog__aside-blog-taglist) {
+    :deep(.vpj-article-aside__aside-blog-taglist) {
         display: flex;
         flex-direction: row;
         flex-shrink: 0;

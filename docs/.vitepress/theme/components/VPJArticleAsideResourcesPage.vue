@@ -4,7 +4,7 @@ import { computed } from 'vue';
 import { useVPJData } from '../composables/useVPJData';
 import { useData } from 'vitepress';
 
-import VPJDocAsideResourcesItem from './VPJDocAsideResourcesItem.vue';
+import VPJArticleAsideResourcesItem from './VPJArticleAsideResourcesItem.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
 import { any2Number } from '../utils/common';
@@ -36,8 +36,8 @@ const empty = computed(() => {
 <template>
     <VPJOverlayScrollArea
         overflow="y"
-        class="vpj-layout-doc__aside-tab-outer"
-        :inner-attrs="{ class: 'vpj-layout-doc__aside-tab-inner' }"
+        class="vpj-article-aside__aside-tab-outer"
+        :inner-attrs="{ class: 'vpj-article-aside__aside-tab-inner' }"
     >
         <div
             v-if="resourcesData.length === 0"
@@ -47,9 +47,9 @@ const empty = computed(() => {
         </div>
         <div
             v-else
-            class="vpj-layout-doc__aside-resources-list"
+            class="vpj-article-aside__aside-resources-list"
         >
-            <VPJDocAsideResourcesItem
+            <VPJArticleAsideResourcesItem
                 v-for="resource in resourcesData"
                 :key="resource.key"
                 :data="resource"
@@ -60,19 +60,19 @@ const empty = computed(() => {
 
 
 <style scoped>
-    .vpj-layout-doc__aside-tab-outer {
+    .vpj-article-aside__aside-tab-outer {
         background-color: var(--vpj-color-bg-100);
         height: 100%;
         width: 100%;
     }
 
-    :deep(.vpj-layout-doc__aside-tab-inner) {
+    :deep(.vpj-article-aside__aside-tab-inner) {
         align-items: center;
         display: flex;
         flex-direction: column;
     }
 
-    .vpj-layout-doc__aside-resources-list {
+    .vpj-article-aside__aside-resources-list {
         display: flex;
         flex: 1;
         flex-direction: column;

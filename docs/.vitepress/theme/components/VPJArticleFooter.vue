@@ -15,7 +15,7 @@ import VPJIconEdit from '../components/icons/VPJIconEdit.vue';
 const { next, prev } = useVPJData();
 const store = useVPJLayout();
 const {
-    articleFooterConfig,
+    articleMetaConfig,
     contentConfig,
     footerConfig
 } = storeToRefs(store);
@@ -32,7 +32,7 @@ const computedMarginBottom = computed(() => {
 
 <template>
     <div
-        v-if="articleFooterConfig.editLink.link || prev.link || next.link || articleFooterConfig.timeLabel"
+        v-if="articleMetaConfig.editLink.link || prev.link || next.link || articleMetaConfig.timeLabel"
         class="vpj-article-footer"
     >
         <nav
@@ -46,7 +46,7 @@ const computedMarginBottom = computed(() => {
             >
                 <VPJIconArrowLeft class="vpj-article-footer__navgation-icon"/>
                 <div class="vpj-article-footer__navgation-info">
-                    <div class="vpj-article-footer__navgation-label vpj-text">{{ articleFooterConfig.prevLabel }}</div>
+                    <div class="vpj-article-footer__navgation-label vpj-text">{{ articleMetaConfig.prevLabel }}</div>
                     <div class="vpj-article-footer__navgation-text vpj-text">{{ prev.text }}</div>
                 </div>
             </a>
@@ -56,7 +56,7 @@ const computedMarginBottom = computed(() => {
                 class="vpj-article-footer__navgation-next"
             >
                 <div class="vpj-article-footer__navgation-info">
-                    <div class="vpj-article-footer__navgation-label vpj-text">{{ articleFooterConfig.nextLabel }}</div>
+                    <div class="vpj-article-footer__navgation-label vpj-text">{{ articleMetaConfig.nextLabel }}</div>
                     <div class="vpj-article-footer__navgation-text vpj-text">{{ next.text }}</div>
                 </div>
                 <VPJIconArrowRight class="vpj-article-footer__navgation-icon"/>
@@ -64,26 +64,26 @@ const computedMarginBottom = computed(() => {
         </nav>
         <div class="vpj-article-footer__info">
             <a
-                v-if="articleFooterConfig.editLink.link"
-                :href="articleFooterConfig.editLink.link"
-                :title="articleFooterConfig.editLink.text"
+                v-if="articleMetaConfig.editLink.link"
+                :href="articleMetaConfig.editLink.link"
+                :title="articleMetaConfig.editLink.text"
                 class="vpj-article-footer__edit-link"
                 target="_blank"
                 rel="noopener noreferrer"
             >
                 <VPJIconEdit class="vpj-article-footer__edit-link-icon"/>
                 <span
-                    v-if="articleFooterConfig.editLink.text.length > 0"
+                    v-if="articleMetaConfig.editLink.text.length > 0"
                     class="vpj-article-footer__edit-link-text vpj-text"
                 >
-                    {{ articleFooterConfig.editLink.text }}
+                    {{ articleMetaConfig.editLink.text }}
                 </span>
             </a>
             <span
-                v-if="articleFooterConfig.timeLabel && isDesktop"
+                v-if="articleMetaConfig.timeLabel && isDesktop"
                 class="vpj-article-footer__time-label vpj-text"
             >
-                {{ articleFooterConfig.timeLabel }}
+                {{ articleMetaConfig.timeLabel }}
             </span>
         </div>
     </div>

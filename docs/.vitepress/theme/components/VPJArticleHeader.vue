@@ -16,7 +16,7 @@ import { isMobile, isDesktop } from '../utils/deviceTypes';
 const store = useVPJLayout();
 const { asideToggle } = store;
 const {
-    articleFooterConfig,
+    articleMetaConfig,
     headerConfig,
 } = storeToRefs(store);
 
@@ -53,15 +53,15 @@ const toolbar = useTemplateRef("toolbar");
         </div>
         <slot name="header-between"/>
         <div
-            v-show="!isDesktop && (toolbar?.hasToolbar || articleFooterConfig?.timeLabel)"
+            v-show="!isDesktop && (toolbar?.hasToolbar || articleMetaConfig?.timeLabel)"
             class="vpj-article-header__actions"
         >
             <VPJArticleHeaderToolbar/>
             <span
-                v-if="articleFooterConfig?.timeLabel"
+                v-if="articleMetaConfig?.timeLabel"
                 class="vpj-article-header__time-label vpj-text"
             >
-                {{ articleFooterConfig.timeLabel }}
+                {{ articleMetaConfig.timeLabel }}
             </span>
         </div>
         <slot name="header-after"/>

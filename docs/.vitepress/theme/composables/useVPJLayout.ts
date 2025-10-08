@@ -80,8 +80,8 @@ const DEFAULT = {
             tooltip: "查看历史记录"
         },
         ASIDETABS: {
-            series: {name: "系列", component: "VPJBlogAsideSeriesPage", order: 0},
-            tags: {name: "标签", component: "VPJBlogAsideTagsPage", order: 0},
+            series: {name: "系列", component: "VPJArticleAsideSeriesPage", order: 0},
+            tags: {name: "标签", component: "VPJArticleAsideTagsPage", order: 0},
             outline: {name: "大纲", component: "VPJArticleAsideOutlinePage", order: 0},
         },
         COVERALT: undefined,
@@ -128,8 +128,8 @@ const DEFAULT = {
             tooltip: "查看历史记录"
         },
         ASIDETABS: {
-            tree: {name: "目录", component: "VPJDocAsideTreePage", order: 0},
-            resources: {name: "资源", component: "VPJDocAsideResourcesPage", order: 0},
+            tree: {name: "目录", component: "VPJArticleAsideTreePage", order: 0},
+            resources: {name: "资源", component: "VPJArticleAsideResourcesPage", order: 0},
             outline: {name: "大纲", component: "VPJArticleAsideOutlinePage", order: 0},
         },
         COVERALT: undefined,
@@ -497,7 +497,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         return undefined;
     });
     // Article footer config
-    const articleFooterConfig = computed(() => {
+    const articleMetaConfig = computed(() => {
         if (["blog", "doc"].includes(layout.value || "")) {
             // Calculate edit link
             const editLink = editLinkMerger(
@@ -642,7 +642,7 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
         headerConfig,
 
         footerConfig,
-        articleFooterConfig,
+        articleMetaConfig,
 
         notFoundContent
     };

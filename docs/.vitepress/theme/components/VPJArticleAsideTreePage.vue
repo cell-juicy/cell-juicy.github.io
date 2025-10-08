@@ -4,7 +4,7 @@ import { useData } from 'vitepress';
 
 import { useVPJData } from '../composables/useVPJData';
 
-import VPJDocAsideTreeItem from './VPJDocAsideTreeItem.vue';
+import VPJArticleAsideTreeItem from './VPJArticleAsideTreeItem.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
 
@@ -43,8 +43,8 @@ const empty = computed(() => {
 <template>
     <VPJOverlayScrollArea
         overflow="y"
-        class="vpj-layout-doc__aside-tab-outer"
-        :inner-attrs="{ class: 'vpj-layout-doc__aside-tab-inner' }"
+        class="vpj-article-aside__aside-tab-outer"
+        :inner-attrs="{ class: 'vpj-article-aside__aside-tab-inner' }"
     >
         <div
             v-if="!space"
@@ -60,9 +60,9 @@ const empty = computed(() => {
         </div>
         <div
             v-else
-            class="vpj-layout-doc__aside-doc-tree"
+            class="vpj-article-aside__aside-doc-tree"
         >
-            <VPJDocAsideTreeItem
+            <VPJArticleAsideTreeItem
                 v-for="docData in rootDocData"
                 :key="docData.id"
                 :data="docData"
@@ -73,19 +73,19 @@ const empty = computed(() => {
 
 
 <style scoped>
-    .vpj-layout-doc__aside-tab-outer {
+    .vpj-article-aside__aside-tab-outer {
         background-color: var(--vpj-color-bg-100);
         height: 100%;
         width: 100%;
     }
 
-    :deep(.vpj-layout-doc__aside-tab-inner) {
+    :deep(.vpj-article-aside__aside-tab-inner) {
         align-items: center;
         display: flex;
         flex-direction: column;
     }
 
-    .vpj-layout-doc__aside-doc-tree {
+    .vpj-article-aside__aside-doc-tree {
         display: flex;
         flex-direction: column;
         gap: .25rem;

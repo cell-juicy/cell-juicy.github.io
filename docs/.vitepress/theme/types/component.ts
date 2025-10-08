@@ -14,10 +14,10 @@
  * 
  * @see {@link ComponentFallbackConfig.aside} `VPJArticleAside`配置接口
  * @see {@link ComponentFallbackConfig.asideTabOutline} `VPJArticleAsideOutlinePage`配置接口
- * @see {@link ComponentFallbackConfig.asideTabTags} `VPJBlogAsideTagsPage`配置接口
- * @see {@link ComponentFallbackConfig.asideTabSeries} `VPJBlogAsideSeriesPage`配置接口
- * @see {@link ComponentFallbackConfig.asideTabTree} `VPJDocAsideTreePage`配置接口
- * @see {@link ComponentFallbackConfig.asideTabResources} `VPJDocAsideResourcesPage`配置接口
+ * @see {@link ComponentFallbackConfig.asideTabTags} `VPJArticleAsideTagsPage`配置接口
+ * @see {@link ComponentFallbackConfig.asideTabSeries} `VPJArticleAsideSeriesPage`配置接口
+ * @see {@link ComponentFallbackConfig.asideTabTree} `VPJArticleAsideTreePage`配置接口
+ * @see {@link ComponentFallbackConfig.asideTabResources} `VPJArticleAsideResourcesPage`配置接口
  * 
  * @example
  * 示例 1：一个简单的配置示例
@@ -205,7 +205,7 @@ export type ComponentFallbackConfig = {
     };
 
     /**
-     * `VPJBlogAsideTagsPage` 组件的默认提示配置
+     * `VPJArticleAsideTagsPage` 组件的默认提示配置
      *
      * @see {@link ComponentFallbackConfig.asideTabTags.empty} 未设置标签时的提示文本
      */
@@ -241,7 +241,7 @@ export type ComponentFallbackConfig = {
     };
 
     /**
-     * `VPJBlogAsideSeriesPage` 组件的默认提示配置
+     * `VPJArticleAsideSeriesPage` 组件的默认提示配置
      *
      * @see {@link ComponentFallbackConfig.asideTabSeries.empty} 当前系列没有其它文章时的提示文本
      * @see {@link ComponentFallbackConfig.asideTabSeries.noSeries} 当前页面未配置系列时的提示文本
@@ -400,7 +400,7 @@ export type ComponentFallbackConfig = {
     };
 
     /**
-     * `VPJDocAsideResourcesPage` 组件的默认提示配置
+     * `VPJArticleAsideResourcesPage` 组件的默认提示配置
      *
      * @see {@link ComponentFallbackConfig.asideTabResources.empty} 当前页面没有配置任何资源时的提示文本
      */
@@ -436,7 +436,7 @@ export type ComponentFallbackConfig = {
     };
 
     /**
-     * `VPJDocAsideTreePage` 组件的默认提示配置
+     * `VPJArticleAsideTreePage` 组件的默认提示配置
      *
      * @see {@link ComponentFallbackConfig.asideTabTree.empty} 空间中没有其它文档时的提示文本
      * @see {@link ComponentFallbackConfig.asideTabTree.noSpace}  当前页面未配置空间时的提示文本
