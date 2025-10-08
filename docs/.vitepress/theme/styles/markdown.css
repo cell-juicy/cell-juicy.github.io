@@ -225,6 +225,7 @@
 .vpj-markdown .custom-block > summary:first-child:focus { color: var(--vpj-color-text-400); }
 
 /* Code(Inline) */
+.vpj-markdown > code,
 .vpj-markdown :not(pre) > code,
 .vpj-markdown :not(pre) > tt {
     background-color: var(--vpj-color-bg-200);

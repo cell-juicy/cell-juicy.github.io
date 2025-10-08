@@ -1,13 +1,15 @@
 <script setup>
 import { useData } from 'vitepress';
 import { ref, computed, watch, onUnmounted } from 'vue';
+import { storeToRefs } from 'pinia';
 
-import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes';
+import { useVPJLayout } from '../composables/useVPJLayout';
+import { isMobile, isDesktop } from '../utils/deviceTypes';
 
-import VPJBlogAsideSeriesPage from './VPJBlogAsideSeriesPage.vue';
-import VPJBlogAsideTagsPage from './VPJBlogAsideTagsPage.vue';
-import VPJDocAsideTreePage from './VPJDocAsideTreePage.vue';
-import VPJDocAsideResourcesPage from './VPJDocAsideResourcesPage.vue';
+import VPJArticleAsideSeriesPage from './VPJArticleAsideSeriesPage.vue';
+import VPJArticleAsideTagsPage from './VPJArticleAsideTagsPage.vue';
+import VPJArticleAsideTreePage from './VPJArticleAsideTreePage.vue';
+import VPJArticleAsideResourcesPage from './VPJArticleAsideResourcesPage.vue';
 import VPJArticleAsideOutlinePage from './VPJArticleAsideOutlinePage.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
@@ -15,24 +17,12 @@ import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 import VPJIconCrossSmall from './icons/VPJIconCrossSmall.vue';
 
 
-const props = defineProps({
-    config: {
-        type: Object,
-        default: {
-            tabs: {}
-        }
-    },
-
-    state: {
-        type: Object,
-        default: {
-            collasped: true,
-            close() {},
-            open() {},
-            toggle() {}
-        }
-    }
-});
+const store = useVPJLayout();
+const { asideClose } = store;
+const {
+    asideCollapsed,
+    asideConfig
+} = storeToRefs(store);
 
 const DEFAULT = {
     NOTAB: "暂无可用的侧边栏标签页",
@@ -43,8 +33,8 @@ const { frontmatter, theme } = useData();
 const layout = computed(() => frontmatter.value.layout);
 
 const tabsData = computed(() => {
-    if (typeof props.config.tabs === 'object' && props.config.tabs !== null) {
-        return Object.entries(props.config.tabs).map(([key, value]) => {
+    if (typeof asideConfig.value.tabs === 'object' && asideConfig.value.tabs !== null) {
+        return Object.entries(asideConfig.value.tabs).map(([key, value]) => {
             return {
                 key,
                 order: value.order,
@@ -62,10 +52,10 @@ const activeTabComponent = computed(() => {
     if (Array.isArray(tabsData.value)) {
         const tab = tabsData.value.find((data) => data.key === activeTabKey.value);
         if (tab) {
-            if (tab.component === "VPJBlogAsideTagsPage" && layout.value === "blog") return VPJBlogAsideTagsPage;
-            if (tab.component === "VPJBlogAsideSeriesPage" && layout.value === "blog") return VPJBlogAsideSeriesPage;
-            if (tab.component === "VPJDocAsideTreePage" && layout.value === "doc") return VPJDocAsideTreePage;
-            if (tab.component === "VPJDocAsideResourcesPage" && layout.value === "doc") return VPJDocAsideResourcesPage;
+            if (tab.component === "VPJArticleAsideTagsPage" && layout.value === "blog") return VPJArticleAsideTagsPage;
+            if (tab.component === "VPJArticleAsideSeriesPage" && layout.value === "blog") return VPJArticleAsideSeriesPage;
+            if (tab.component === "VPJArticleAsideTreePage" && layout.value === "doc") return VPJArticleAsideTreePage;
+            if (tab.component === "VPJArticleAsideResourcesPage" && layout.value === "doc") return VPJArticleAsideResourcesPage;
             if (tab.component === "VPJArticleAsideOutlinePage") return VPJArticleAsideOutlinePage;
             return tab.component;
         };
@@ -80,7 +70,7 @@ const unknownTab = computed(() => {
     const message = theme.value.components?.aside?.unknownTab;
     return (typeof message === 'string') ? message : DEFAULT.UNKNOWNTAB;
 });
-const fallbackOpacity = computed(() => props.state.collapsed ? "0": "1");
+const fallbackOpacity = computed(() => asideCollapsed.value ? "0": "1");
 
 
 const stopWatcher = watch(tabsData, (newVal) => {
@@ -103,7 +93,7 @@ onUnmounted(() => {
         <aside
             :class="[
                 'vpj-article-aside',
-                { 'collapsed': props.state.collapsed }
+                { 'collapsed': asideCollapsed }
             ]"
         >
             <header class="vpj-article-aside__header">
@@ -123,7 +113,7 @@ onUnmounted(() => {
                     </button>
                 </VPJOverlayScrollArea>
                 <VPJDynamicIconBtn
-                    @click="props.state.close"
+                    @click="asideClose"
                     :icon="VPJIconCrossSmall"
                     class="vpj-article-aside__close"
                 />
@@ -140,8 +130,8 @@ onUnmounted(() => {
         </aside>
         <Transition>
             <div
-                v-if="!isDesktop && !props.state.collapsed"
-                @click="props.state.close"
+                v-if="!isDesktop && !asideCollapsed"
+                @click="asideClose"
                 class="vpj-article-aside__overlay"
             />
         </Transition>

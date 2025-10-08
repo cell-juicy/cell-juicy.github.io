@@ -370,7 +370,7 @@ export interface ThemeConfig {
      * @see {@link SpaceMetaData.nodeMeta} 用于为虚拟节点补全其他字段
      * @see {@link DocPageData.generateVirtualNodes} 虚拟节点生成逻辑方法
      */
-    enableVitrual?: boolean;
+    enableVirtual?: boolean;
 
     /**
      * 主题级自动生成上一页/下一页链接

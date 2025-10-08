@@ -5,7 +5,6 @@ import { ref, computed } from 'vue';
 import VPJDynamicIconBtn from '../components/VPJDynamicIconBtn.vue';
 import VPJDynamicIcon from '../components/VPJDynamicIcon.vue';
 
-import VPJIconCaretLeft from '../components/icons/VPJIconCaretLeft.vue';
 import VPJIconCaretDown from '../components/icons/VPJIconCaretDown.vue';
 
 
@@ -31,13 +30,13 @@ const collapsed = ref(false);
 
 
 <template>
-    <div class="vpj-layout-doc__aside-doc-node vpj-scroll-y">
-        <div class="vpj-layout-doc__aside-doc-node-wrapper">
+    <div class="vpj-article-aside__aside-doc-node vpj-scroll-y">
+        <div class="vpj-article-aside__aside-doc-node-wrapper">
             <a
                 v-if="typeof data.url === 'string'"
                 :href="data.url"
                 :class="[
-                    'vpj-layout-doc__aside-doc-node-link',
+                    'vpj-article-aside__aside-doc-node-link',
                     {'current': route.path === data.url}
                 ]"
             >
@@ -47,7 +46,7 @@ const collapsed = ref(false);
                     @click.stop.prevent="collapsed = !collapsed"
                     :icon="VPJIconCaretDown"
                     :class="[
-                        'vpj-layout-doc__aside-doc-node-toggle',
+                        'vpj-article-aside__aside-doc-node-toggle',
                         {'collapsed': collapsed}
                     ]"
                 />
@@ -55,14 +54,14 @@ const collapsed = ref(false);
             <button
                 v-else
                 @click.stop.prevent="collapsed = !collapsed"
-                class="vpj-layout-doc__aside-doc-node-link"
+                class="vpj-article-aside__aside-doc-node-link"
             >
                 <span class="vpj-text">{{ data.treeTitle }}</span>
                 <VPJDynamicIcon
                     v-if="children.length > 0"
                     :icon="VPJIconCaretDown"
                     :class="[
-                        'vpj-layout-doc__aside-doc-node-mark',
+                        'vpj-article-aside__aside-doc-node-mark',
                         {'collapsed': collapsed}
                     ]"
                 />
@@ -70,9 +69,9 @@ const collapsed = ref(false);
         </div>
         <div
             v-show="children.length > 0 && !collapsed"
-            class="vpj-layout-doc__aside-doc-node-children"
+            class="vpj-article-aside__aside-doc-node-children"
         >
-            <VPJDocAsideTreeItem
+            <VPJArticleAsideTreeItem
                 v-for="child in children"
                 :key="child.id"
                 :data="child"
@@ -84,21 +83,21 @@ const collapsed = ref(false);
 
 <style scoped>
     /* Main Layout */
-    .vpj-layout-doc__aside-doc-node {
+    .vpj-article-aside__aside-doc-node {
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
     }
 
     /* Warpper */
-    .vpj-layout-doc__aside-doc-node-wrapper {
+    .vpj-article-aside__aside-doc-node-wrapper {
         display: flex;
         flex-shrink: 0;
         height: 2.25rem;
         align-items: center;
     }
 
-    .vpj-layout-doc__aside-doc-node-link {
+    .vpj-article-aside__aside-doc-node-link {
         align-items: center;
         background-color: var(--vpj-color-bg-100);
         border-radius: var(--vpj-border-radius-100);
@@ -107,6 +106,7 @@ const collapsed = ref(false);
         display: flex;
         flex: 1;
         height: 100%;
+        line-height: 1.2;
         padding-bottom: .25rem;
         padding-left: .5rem;
         padding-right: .5rem;
@@ -114,14 +114,14 @@ const collapsed = ref(false);
         text-decoration: none;
     }
 
-    .vpj-layout-doc__aside-doc-node-link:hover,
-    .vpj-layout-doc__aside-doc-node-link:active,
-    .vpj-layout-doc__aside-doc-node-link.current {
+    .vpj-article-aside__aside-doc-node-link:hover,
+    .vpj-article-aside__aside-doc-node-link:active,
+    .vpj-article-aside__aside-doc-node-link.current {
         background-color: var(--vpj-color-bg-300);
         color: var(--vpj-color-text-400);
     }
 
-    .vpj-layout-doc__aside-doc-node-toggle {
+    .vpj-article-aside__aside-doc-node-toggle {
         align-items: center;
         background-color: transparent;
         border-radius: var(--vpj-border-radius-100);
@@ -130,14 +130,14 @@ const collapsed = ref(false);
         padding: 6px;
     }
 
-    .vpj-layout-doc__aside-doc-node-toggle :deep(.vpj-icon) {
+    .vpj-article-aside__aside-doc-node-toggle :deep(.vpj-icon) {
         fill: var(--vpj-color-text-300);
         height: 12px;
         transition: transform 0.2s ease-in-out;
         width: 12px;
     }
 
-    .vpj-layout-doc__aside-doc-node-mark {
+    .vpj-article-aside__aside-doc-node-mark {
         border-radius: var(--vpj-border-radius-100);
         fill: var(--vpj-color-text-300);
         height: 24px;
@@ -146,21 +146,21 @@ const collapsed = ref(false);
         width: 24px;
     }
 
-    .vpj-layout-doc__aside-doc-node-toggle:hover,
-    .vpj-layout-doc__aside-doc-node-toggle:active {
+    .vpj-article-aside__aside-doc-node-toggle:hover,
+    .vpj-article-aside__aside-doc-node-toggle:active {
         background-color: var(--vpj-color-bg-500);
     }
 
-    .vpj-layout-doc__aside-doc-node-toggle.collapsed :deep(.vpj-icon) {
+    .vpj-article-aside__aside-doc-node-toggle.collapsed :deep(.vpj-icon) {
         transform: rotate(90deg);
     }
 
-    .vpj-layout-doc__aside-doc-node-mark.collapsed {
+    .vpj-article-aside__aside-doc-node-mark.collapsed {
         transform: rotate(90deg);
     }
 
     /* Children */
-    .vpj-layout-doc__aside-doc-node-children {
+    .vpj-article-aside__aside-doc-node-children {
         border-left-width: var(--vpj-border-width-100);
         border-left-color: var(--vpj-color-border-200);
         display: flex;

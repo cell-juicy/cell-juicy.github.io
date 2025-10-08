@@ -2,9 +2,9 @@
 import { computed } from 'vue';
 import { useData } from 'vitepress';
 
-import { useDocData } from '../composables/useDocData';
+import { useVPJData } from '../composables/useVPJData';
 
-import VPJDocAsideTreeItem from './VPJDocAsideTreeItem.vue';
+import VPJArticleAsideTreeItem from './VPJArticleAsideTreeItem.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
 
@@ -13,14 +13,21 @@ const DEFAULT = {
     NOSPACE: "当前文档还没被收录进空间中",
 };
 
-const { filter, space } = useDocData();
+const { docFilter, space } = useVPJData();
 const { theme } = useData();
 
 const rootDocData = computed(() => {
     if (!space.value) {
         return [];
-    }
-    return filter((data) => data.space === space.value).filter((data) => !data.parent)
+    };
+    return docFilter((data) => data.space === space.value)
+        .filter((data) => !data.parent)
+        .sort((a, b) => {
+            for (let i = 0; i < Math.min(a.order.length, b.order.length); i++) {
+                if (a.order[i] !== b.order[i]) return a.order[i] - b.order[i];
+            };
+            return a.order.length - b.order.length;
+        });
 });
 const noSpace = computed(() => {
     const message = theme.value.components?.asideTabTree?.noSpace;
@@ -36,8 +43,8 @@ const empty = computed(() => {
 <template>
     <VPJOverlayScrollArea
         overflow="y"
-        class="vpj-layout-doc__aside-tab-outer"
-        :inner-attrs="{ class: 'vpj-layout-doc__aside-tab-inner' }"
+        class="vpj-article-aside__aside-tab-outer"
+        :inner-attrs="{ class: 'vpj-article-aside__aside-tab-inner' }"
     >
         <div
             v-if="!space"
@@ -53,9 +60,9 @@ const empty = computed(() => {
         </div>
         <div
             v-else
-            class="vpj-layout-doc__aside-doc-tree"
+            class="vpj-article-aside__aside-doc-tree"
         >
-            <VPJDocAsideTreeItem
+            <VPJArticleAsideTreeItem
                 v-for="docData in rootDocData"
                 :key="docData.id"
                 :data="docData"
@@ -66,19 +73,19 @@ const empty = computed(() => {
 
 
 <style scoped>
-    .vpj-layout-doc__aside-tab-outer {
+    .vpj-article-aside__aside-tab-outer {
         background-color: var(--vpj-color-bg-100);
         height: 100%;
         width: 100%;
     }
 
-    :deep(.vpj-layout-doc__aside-tab-inner) {
+    :deep(.vpj-article-aside__aside-tab-inner) {
         align-items: center;
         display: flex;
         flex-direction: column;
     }
 
-    .vpj-layout-doc__aside-doc-tree {
+    .vpj-article-aside__aside-doc-tree {
         display: flex;
         flex-direction: column;
         gap: .25rem;

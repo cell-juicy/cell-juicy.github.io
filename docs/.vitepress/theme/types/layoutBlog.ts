@@ -225,8 +225,8 @@ export interface VPJBlogLayoutConfig {
      * 侧边栏标签页配置
      * @optional
      * @default {
-     *   series: { name: "系列", component: "VPJBlogAsideSeriesPage", order: 0 },
-     *   tags: { name: "标签", component: "VPJBlogAsideTagsPage", order: 0 },
+     *   series: { name: "系列", component: "VPJArticleAsideSeriesPage", order: 0 },
+     *   tags: { name: "标签", component: "VPJArticleAsideTagsPage", order: 0 },
      *   outline: { name: "大纲", component: "VPJArticleAsideOutlinePage", order: 0 },
      * }
      * 
@@ -246,7 +246,7 @@ export interface VPJBlogLayoutConfig {
      * - 合并后不包含name属性的标签页数据会将component属性的值默认赋予给name属性。
      * - 合并后不包含order属性的标签页数据会将其默认值设置为0，order越小则在侧边栏标签栏中位序越靠前，（NaN的输入会被转变为0）。
      * - 如果你希望修改默认标签页的数据，你可以通过此项为tags属性或series属性赋值合法的输入来覆盖，例如tags: {order: 1}的输入将会覆盖tags页默认的order: 0。
-     * - `"VPJArticleAsideOutlinePage"`，`"VPJBlogAsideSeriesPage"`与`"VPJBlogAsideTagsPage"`是默认的组件名称，即使你已经在全局注册了组件也会被内置的标签页组件覆盖。
+     * - `"VPJArticleAsideOutlinePage"`，`"VPJArticleAsideSeriesPage"`与`"VPJArticleAsideTagsPage"`是默认的组件名称，即使你已经在全局注册了组件也会被内置的标签页组件覆盖。
      * 
      * @example
      * 示例1：替换默认目录组件

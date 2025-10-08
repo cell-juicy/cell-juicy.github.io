@@ -3,13 +3,9 @@ import VPJLayout from "./VPJLayout.vue";
 
 import type { EnhanceAppContext } from "vitepress";
 
-// Blog Data
-import { initVPJBlogData } from "./composables/useBlogData";
-import { VPJ_BLOG_DATA_SYMBOL } from "./utils/symbols";
-
-// Doc Data
-import { initVPJDocData } from "./composables/useDocData";
-import { VPJ_DOC_DATA_SYMBOL } from "./utils/symbols";
+// VPJ Data
+import { initVPJData } from "./composables/useVPJData";
+import { VPJ_DATA_SYMBOL } from "./utils/symbols";
 
 // Pinia
 import { createPinia } from "pinia";
@@ -40,15 +36,11 @@ export default {
             const portalRoot = document.createElement("div");
             portalRoot.className = "vpj-portals-root";
             document.body.appendChild(portalRoot);
-        }
+        };
 
         // Initialize and provide blog data
-        const blogData = initVPJBlogData(router.route, siteData);
-        app.provide(VPJ_BLOG_DATA_SYMBOL, blogData);
-
-        // Initialize and provide doc data
-        const docData = initVPJDocData(router.route, siteData);
-        app.provide(VPJ_DOC_DATA_SYMBOL, docData);
+        const data = initVPJData(router.route, siteData);
+        app.provide(VPJ_DATA_SYMBOL, data);
 
         // Add custom global components
         // @ts-ignore

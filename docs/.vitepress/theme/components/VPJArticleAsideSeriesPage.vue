@@ -2,9 +2,9 @@
 import { computed } from 'vue';
 import { useData } from 'vitepress';
 
-import { useBlogData } from '../composables/useBlogData';
+import { useVPJData } from '../composables/useVPJData';
 
-import VPJBlogAsideSeriesItem from './VPJBlogAsideSeriesItem.vue';
+import VPJArticleAsideSeriesItem from './VPJArticleAsideSeriesItem.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
 const DEFAULT = {
@@ -12,10 +12,10 @@ const DEFAULT = {
     NOSERIES: "当前博客还没被收录进任何系列",
 };
 
-const { series, filter } = useBlogData();
+const { series, blogFilter } = useVPJData();
 const { theme } = useData();
 
-const articles = computed(() => filter((data) => data.series === series.value).sort((a, b) => a.order - b.order));
+const articles = computed(() => blogFilter((data) => data.series === series.value).sort((a, b) => a.order - b.order));
 const noSeries = computed(() => {
     const message = theme.value.components?.asideTabSeries?.noSeries;
     return (typeof message === 'string') ? message : DEFAULT.NOSERIES;
@@ -30,9 +30,9 @@ const empty = computed(() => {
 <template>
     <VPJOverlayScrollArea
         overflow="y"
-        class="vpj-layout-blog__aside-tab-outer"
-        :area-attrs="{ class: 'vpj-layout-blog__aside-tab-area' }"
-        :inner-attrs="{ class: 'vpj-layout-blog__aside-tab-inner' }"
+        class="vpj-article-aside__aside-tab-outer"
+        :area-attrs="{ class: 'vpj-article-aside__aside-tab-area' }"
+        :inner-attrs="{ class: 'vpj-article-aside__aside-tab-inner' }"
     >
         <div
             v-if="!series"
@@ -48,9 +48,9 @@ const empty = computed(() => {
         </div>
         <div
             v-else
-            class="vpj-layout-blog__aside-blog-series"
+            class="vpj-article-aside__aside-blog-series"
         >
-            <VPJBlogAsideSeriesItem
+            <VPJArticleAsideSeriesItem
                 v-for="article in articles"
                 :key="article.url"
                 :data="article"
@@ -61,20 +61,20 @@ const empty = computed(() => {
 
 
 <style scoped>
-    .vpj-layout-blog__aside-tab-outer {
+    .vpj-article-aside__aside-tab-outer {
         background-color: var(--vpj-color-bg-100);
         height: 100%;
         width: 100%;
     }
 
-    :deep(.vpj-layout-blog__aside-tab-inner) {
+    :deep(.vpj-article-aside__aside-tab-inner) {
         align-items: center;
         display: flex;
         flex-direction: column;
         width: 100%
     }
 
-    .vpj-layout-blog__aside-blog-series {
+    .vpj-article-aside__aside-blog-series {
         align-content: flex-start;
         background-color: var(--vpj-color-bg-100);
         display: flex;

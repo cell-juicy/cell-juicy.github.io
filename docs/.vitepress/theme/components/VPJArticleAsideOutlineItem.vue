@@ -18,28 +18,10 @@ const props = defineProps({
 });
 
 const collapsed = ref(true);
-const title = useTemplateRef("title");
 const paddingLeft = computed(() => {
     const correction = props.data?.children?.length === 0 ? 20 : 0;
     return 6 + correction + props.depth * 16 + "px"
 });
-
-
-onMounted(() => {
-    if (title.value) {
-        for (const part of props.data.title) {
-            if (part.type === "math") {
-                const temp = document.createElement("template");
-                temp.innerHTML = part.text;
-                for (const el of temp.content.childNodes) {
-                    title.value.appendChild(el.cloneNode(true));
-                };
-            } else if (part.type === "text") {
-                title.value.appendChild(document.createTextNode(part.text));
-            };
-        };
-    };
-})
 </script>
 
 
@@ -64,7 +46,7 @@ onMounted(() => {
                     class="vpj-article-aside__outline-toggle-icon"
                 />
             </button>
-            <span ref="title" class="vpj-article-aside__outline-title"/>
+            <span class="vpj-article-aside__outline-title vpj-markdown" v-html="props.data.title"/>
         </a>
         <ul
             v-show="props.data?.children?.length > 0 && !collapsed"
@@ -81,7 +63,7 @@ onMounted(() => {
 </template>
 
 
-<style>
+<style scoped>
     /* Child List */
     .vpj-article-aside__outline-list {
         align-items: flex-start;
@@ -145,9 +127,8 @@ onMounted(() => {
 
     /* Title */
     .vpj-article-aside__outline-title {
-        color: var(--vpj-color-text-400);
+        display: inline;
         font-size: .875rem;
-        line-height: 1.5;
     }
 
     .vpj-article-aside__outline-title:hover {

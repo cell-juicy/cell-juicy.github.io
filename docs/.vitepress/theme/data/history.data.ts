@@ -50,18 +50,18 @@ interface HistoryEntry {
     history: CommitInfo[]
 }
 
-declare const data: Record<string, HistoryEntry>
-export { data }
+declare const data: Record<string, HistoryEntry>;
+export { data };
+
+const config: SiteConfig = (global as any).VITEPRESS_CONFIG
+if (!config) {
+    throw new Error("content loader invoked without an active vitepress process, or before vitepress config is resolved.")
+};
 
 export default {
-    watch: ["**/*.md"],
+    watch: [normalizePath(path.join(config.srcDir, "**/*.md"))],
 
     load(watchFiles: string[]) {
-        const config: SiteConfig = (global as any).VITEPRESS_CONFIG
-        if (!config) {
-            throw new Error("content loader invoked without an active vitepress process, or before vitepress config is resolved.")
-        };
-
         const result: Record<string, HistoryEntry> = {};
 
         if (!config.lastUpdated) return result;
