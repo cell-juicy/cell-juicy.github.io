@@ -1,6 +1,10 @@
 <script setup>
 import { useRoute } from 'vitepress';
 import { nextTick, watch, onMounted, onUnmounted } from 'vue';
+import { storeToRefs } from 'pinia';
+
+import { useVPJLayout } from './composables/useVPJLayout';
+import { useVPJSidebar } from './composables/useVPJSidebar';
 
 import VPJSidebar from './components/VPJSidebar.vue';
 import VPJMobileNavbar from './components/VPJMobileNavbar.vue';
@@ -10,21 +14,30 @@ import VPJContent from './layouts/VPJContent.vue';
 
 
 function scrollToAnchor() {
-    if (window) {
-        const hash = window.location.hash;
-        if (hash !== "") {
-            nextTick(() => {
-                const target = document.getElementById(decodeURIComponent(hash.substring(1)));
-                if (target) target.scrollIntoView({ behavior: "smooth" });
-            });
-        };
+    if (!window) return;
+    const hash = window.location.hash;
+    if (hash !== "") {
+        nextTick(() => {
+            const target = document.getElementById(decodeURIComponent(hash.substring(1)));
+            if (target) target.scrollIntoView({ behavior: "smooth" });
+        });
     };
 };
 
 
 const route = useRoute();
-const stopAnchorWatcher = watch(route, scrollToAnchor);
+const layoutStore = useVPJLayout();
+const sidebarStore = useVPJSidebar();
+const { panelCollapsed } = storeToRefs(layoutStore);
+const { collapsed: sidebarCollapsed } = storeToRefs(sidebarStore);
 
+const stopAnchorWatcher = watch(route, scrollToAnchor);
+const stopPanelWatcher = watch(panelCollapsed, (newState) => {
+    if (!newState && !sidebarCollapsed.value) sidebarStore.close();
+});
+const stopSidebarWatcher = watch(sidebarCollapsed, (newState) => {
+    if (!newState && !panelCollapsed.value) layoutStore.panelClose();
+});
 
 onMounted(() => {
     setTimeout(scrollToAnchor, 200)
@@ -34,6 +47,8 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener("hashchange", scrollToAnchor)
     stopAnchorWatcher();
+    stopPanelWatcher();
+    stopSidebarWatcher();
 });
 </script>
 
