@@ -3,7 +3,7 @@ import type { Ref } from 'vue';
 
 interface HeaderData {
     element: Element;
-    title: { type: string; text: string }[];
+    title: string;
     link: string;
     level: number;
     children: HeaderData[];
@@ -173,28 +173,6 @@ function resolveRange(range: number | [number, number] | "deep" | undefined): [n
     return [1, 6];
 }
 
-function serializeHeader(h: Element, ignoreRE: RegExp | string) {
-    let ret = "";
-    const pattern = (typeof ignoreRE === 'string') ? new RegExp(ignoreRE) : ignoreRE;
-    const result: HeaderData["title"] = [];
-    for (const node of h.childNodes) {
-        if (node.nodeType === 1) {
-            if (pattern.test((node as Element).className)) continue;
-            if (isLaTex((node as Element))) {
-                result.push({ type: "text", text: ret });
-                ret = "";
-                result.push({ type: "math", text: (node as HTMLElement).outerHTML });
-            } else {
-                ret += node.textContent || "";
-            }
-        } else if (node.nodeType === 3) {
-            ret += node.textContent || "";
-        };
-    };
-    if (ret.length > 0) result.push({ type: "text", text: ret });
-    return result;
-}
-
 function getAbsoluteTop(el: Element, root: Element): number {
     let offsetTop: number = 0;
     let curr: Element | null = el;
@@ -215,4 +193,46 @@ function isLaTex(el: Element) {
         el.getAttribute("jax") === "SVG" &&
         el.getAttribute("display") !== "true"
     );
+}
+
+function escapeHTML(s: string): string {
+    return s.replace(/[&<>"]/g, c =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]!)
+    );
+}
+
+export function serializeHeader(
+    el: Element,
+    ignoreRE: RegExp | string
+): string {
+    const pattern = (typeof ignoreRE === 'string') ? new RegExp(ignoreRE) : ignoreRE;
+    return serializeHeaderRecursive(el, pattern);
+}
+
+export function serializeHeaderRecursive(
+    el: Element,
+    pattern: RegExp
+): string {
+    let ret = "";
+    for (const node of Array.from(el.childNodes)) {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+            const el = node as Element;
+
+            if (pattern.test(el.className)) continue;
+            if (el.tagName === "SCRIPT" || el.tagName === "IMG") continue;
+            if (isLaTex(el)) {
+                ret += el.outerHTML;
+                continue;
+            };
+            if (el.tagName === "CODE") {
+                const codeText = el.textContent || "";
+                ret += `<code>${escapeHTML(codeText)}</code>`;
+                continue;
+            };
+            ret += serializeHeaderRecursive(el, pattern);
+        } else if (node.nodeType === Node.TEXT_NODE) {
+            ret += (node as Text).data;
+        };
+    };
+    return ret.trim();
 }
