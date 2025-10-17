@@ -8,19 +8,22 @@ import { useVPJSidebar } from '../composables/useVPJSidebar';
 import { isMobile } from '../utils/deviceTypes';
 
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
+
 import VPJIconAngleSmallLeft from './icons/VPJIconAngleSmallLeft.vue';
 import VPJIconAngleSmallRight from './icons/VPJIconAngleSmallRight.vue';
+import VPJIconSearch from './icons/VPJIconSearch.vue';
 
 
 const store = useVPJSidebar();
 const { collapsed, enabled, headerConfig } = storeToRefs(store);
 const { toggle } = store;
-const { theme } = useData();
+const { theme, isDark } = useData();
 
 // enable nav
 const enable = computed(() => {
-    const configEnable = theme.value.mobileNav?.enable ?? true;
-    return configEnable && isMobile.value
+    // const configEnable = theme.value.mobileNav?.enable ?? true;
+    // return configEnable && isMobile.value
+    return true;
 });
 
 // initialize title
@@ -51,6 +54,12 @@ const computedTitle = computed(() => {
             </span>
             <component v-else :is="computedTitle.component"/>
         </slot>
+        <VPJDynamicIconBtn
+            v-if="enabled"
+            @click="isDark = !isDark"
+            :icon="VPJIconSearch"
+            class="vpj-mobile-nav__btn"
+        />
     </nav>
 </template>
 

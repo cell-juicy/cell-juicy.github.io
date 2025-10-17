@@ -15,17 +15,14 @@ const tooltipOffset = {x: 6, y: 0};
 const tooltipAttrs = {
     style: {
         alignItems: "center",
-        background: "var(--vpj-color-text-500)",
-        borderRadius: "var(--vpj-border-radius-100)",
-        color: "var(--vpj-color-bg-100)",
+        background: "var(--vpj-sidebar-btn-tooltip-bg)",
+        borderRadius: "var(--vpj-sidebar-btn-tooltip-radius)",
+        color: "var(--vpj-sidebar-btn-tooltip-text)",
         display: "flex",
-        fontSize: ".875rem",
-        maxWidth: "200px",
-        paddingTop: ".375rem",
-        paddingBottom: ".375rem",
-        paddingLeft: ".5rem",
-        paddingRight: ".5rem",
-        zIndex: 102
+        fontSize: "var(--vpj-sidebar-btn-tooltip-font-size)",
+        maxWidth: "var(--vpj-sidebar-btn-tooltip-max-width)",
+        padding: "var(--vpj-sidebar-btn-tooltip-padding)",
+        zIndex: "var(--vpj-sidebar-btn-tooltip-z-index)"
     },
     class: [
         "vpj-text"
@@ -56,8 +53,13 @@ const hasChildren = computed(() => {
 const hasIcon = computed(() => !!props.data?.icon);
 
 // Css
-const gap = computed(() => collapsed.value ? ".625rem" : ".125rem");
-const paddingLeft = computed(() => `${(collapsed.value ? 0 : Number(props.data.depth * .75)) + .375}rem`)
+const gap = computed(() => collapsed.value ? "var(--vpj-sidebar-nav-list-gap-collapsed)" : "var(--vpj-sidebar-nav-list-gap)");
+const paddingLeft = computed(() => {
+    if (collapsed.value) return "calc((var(--vpj-sidebar-width-collapsed) - max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-nav-list-item-toggle-btn-size))) / 2 - var(--vpj-sidebar-padding-x))"
+
+    const base = "(var(--vpj-sidebar-btn-height) - max(var(--vpj-sidebar-nav-list-item-toggle-btn-size), var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-btn-text-size))) / 2";
+    return `calc(${base} + ${Number(props.data.depth)} * var(--vpj-sidebar-nav-list-indent-unit))`
+});
 const textOpacity = computed(() => collapsed.value ? "0" : "1");
 const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" : "none");
 </script>
@@ -66,7 +68,10 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
 <template>
     <li
         v-if="!collapsed || (hasIcon) || (hasChildren)"
-        class="vpj-sidebar__nav-item"
+        :class="[
+            'vpj-sidebar__nav-item',
+            { 'collapsed': collapsed }
+        ]"
     >
         <VPJTooltipBtn
             @click="() => {
@@ -133,7 +138,7 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
         flex-direction: column;
         gap: v-bind(gap);
         list-style: none;
-        transition: gap .2s ease-in-out;
+        transition: gap var(--vpj-sidebar-transition);
         width: 100%;
     }
 
@@ -141,27 +146,27 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
     .vpj-sidebar__nav-item-link,
     .vpj-sidebar__nav-item-link:visited {
         align-items: center;
-        background-color: var(--vpj-color-bg-300);
-        border: 0;
-        border-radius: var(--vpj-border-radius-100);
+        background-color: var(--vpj-sidebar-btn-bg);
+        border: var(--vpj-sidebar-btn-border);
+        border-radius: var(--vpj-sidebar-btn-radius);
         display: flex;
         flex: 1;
         flex-direction: row;
-        gap: .25rem;
-        height: 2rem;
+        gap: var(--vpj-sidebar-btn-gap);
+        height: var(--vpj-sidebar-btn-height);
         min-width: 0;
-        padding: .375rem;
+        padding: calc((var(--vpj-sidebar-btn-height) - max(var(--vpj-sidebar-header-profile-btn-icon-size), var(--vpj-sidebar-btn-text-size))) / 2);
         padding-left: v-bind(paddingLeft);
         text-decoration: none;
         transition:
-            padding .2s ease-in-out,
-            width .2s ease-in-out;
+            padding var(--vpj-sidebar-transition),
+            width var(--vpj-sidebar-transition);
         width: 100%;
     }
 
     .vpj-sidebar__nav-item-link:hover,
     .vpj-sidebar__nav-item-link:active {
-        background-color: var(--vpj-color-bg-500);
+        background-color: var(--vpj-sidebar-btn-bg-hover);
     }
 
     /* Nav link icon wrapper */
@@ -169,71 +174,74 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
         align-items: center;
         display: flex;
         flex-shrink: 0;
-        height: 1.25rem;
-        width: 1.25rem;
+        height: max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-nav-list-item-toggle-btn-size));
+        margin-left: calc((max(var(--vpj-sidebar-nav-list-item-toggle-btn-size), var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-btn-text-size)) - max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-nav-list-item-toggle-btn-size))) / 2);
+        width: max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-nav-list-item-toggle-btn-size));
     }
 
     /* Nav toggle btn */
     .vpj-sidebar__nav-item-toggle {
         align-items: center;
-        background-color: var(--vpj-color-bg-300);
+        background-color: transparent;
         border-radius: var(--vpj-border-radius-100);
         display: flex;
-        height: 100%;
-        padding: .25rem;
-        width: 100%;
+        height: var(--vpj-sidebar-nav-list-item-toggle-btn-size);
+        padding: calc((var(--vpj-sidebar-nav-list-item-toggle-btn-size) - var(--vpj-sidebar-nav-list-item-toggle-icon-size)) / 2);
+        margin: calc((max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-nav-list-item-toggle-btn-size)) - var(--vpj-sidebar-nav-list-item-toggle-btn-size)) / 2);
+        width: var(--vpj-sidebar-nav-list-item-toggle-btn-size);
     }
 
     .vpj-sidebar__nav-item-toggle:hover,
     .vpj-sidebar__nav-item-toggle:active {
-        background-color: var(--vpj-color-bg-100);
+        background-color: var(--vpj-sidebar-nav-list-item-toggle-btn-bg);
     }
 
     .vpj-sidebar__nav-item-toggle > .vpj-icon {
-        height: .75rem;
-        fill: var(--vpj-color-text-300);
-        transition: transform .2s ease-in-out;
+        height: var(--vpj-sidebar-nav-list-item-toggle-icon-size);
+        fill: var(--vpj-sidebar-btn-icon-color);
+        transition: transform var(--vpj-sidebar-transition);
         transform: v-bind(toggleTransition);
-        width: .75rem;
+        width: var(--vpj-sidebar-nav-list-item-toggle-icon-size);
     }
 
     .vpj-sidebar__nav-item-toggle:hover > .vpj-icon,
     .vpj-sidebar__nav-item-toggle:active > .vpj-icon {
-        fill: var(--vpj-color-text-400);
+        fill: var(--vpj-sidebar-btn-icon-color-hover);
     }
 
     /* Nav link icon */
     .vpj-sidebar__nav-item-wrapper > .vpj-icon {
-        fill: var(--vpj-color-text-300);
-        height: 1rem;
-        margin: .125rem;
-        width: 1rem;
+        fill: var(--vpj-sidebar-btn-icon-color);
+        height: var(--vpj-sidebar-btn-icon-size);
+        margin: calc((max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-nav-list-item-toggle-btn-size)) - var(--vpj-sidebar-btn-icon-size)) / 2);
+        width: var(--vpj-sidebar-btn-icon-size);
     }
 
     .vpj-sidebar__nav-item-wrapper:hover > .vpj-icon,
     .vpj-sidebar__nav-item-wrapper:active > .vpj-icon {
-        fill: var(--vpj-color-text-400);
+        fill: var(--vpj-sidebar-btn-icon-color-hover);
     }
 
     /* Nav link text */
     .vpj-sidebar__nav-item-link > .vpj-text {
-        color: var(--vpj-color-text-400);
-        font-size: .875rem;
+        color: var(--vpj-sidebar-btn-text-color);
+        font-size: var(--vpj-sidebar-btn-text-size);
+        margin-right: calc((max(var(--vpj-sidebar-nav-list-item-toggle-btn-size), var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-btn-text-size)) - var(--vpj-sidebar-btn-text-size)) / 2);;
         opacity: v-bind(textOpacity);
-        transition: opacity .2s ease-in-out;
+        transition: opacity var(--vpj-sidebar-transition);
     }
 
     /* Highlight link */
     .vpj-sidebar__nav-item-link.highlight .vpj-sidebar__nav-item-wrapper > .vpj-icon {
-        fill: var(--vpj-highlight-normal, var(--vpj-color-primary-400));
+        fill: var(--vpj-highlight-normal, var(--vpj-sidebar-item-highlight-normal));
     }
 
     .vpj-sidebar__nav-item-link.highlight:hover .vpj-sidebar__nav-item-wrapper > .vpj-icon {
-        fill: var(--vpj-highlight-hover, var(--vpj-color-primary-500));
+        fill: var(--vpj-highlight-hover, var(--vpj-sidebar-item-highlight-hover));
     }
 
     .vpj-sidebar__nav-item-link.highlight:active .vpj-sidebar__nav-item-wrapper > .vpj-icon {
-        fill: var(--vpj-highlight-active, var(--vpj-color-primary-300));
+        fill: var(--vpj-highlight-active, var(--vpj-sidebar-item-highlight-active));
     }
 
     /* Sub Items */
@@ -246,7 +254,16 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
         list-style-type: none;
         margin: 0;
         padding: 0;
-        transition: gap .2s ease-in-out;
+        transition: gap var(--vpj-sidebar-transition);
         width: 100%;
+    }
+
+    /* Style Sheet for collapsed state */
+    .vpj-sidebar__nav-item.collapsed .vpj-sidebar__nav-item-link {
+        width: calc(var(--vpj-sidebar-width-collapsed) - 2 * var(--vpj-sidebar-padding-x));
+    }
+
+    .vpj-sidebar__nav-item.collapsed .vpj-sidebar__nav-item-wrapper {
+        margin-left: 0;
     }
 </style>

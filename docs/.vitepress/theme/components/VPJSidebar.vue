@@ -58,27 +58,25 @@ provide(VPJ_SIDEBAR_SYMBOL, {
 <style scoped>
     /* Sidebar layout */
     .vpj-sidebar {
-        background-color: var(--vpj-color-bg-300);
-        border-right: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+        background: var(--vpj-sidebar-bg);
+        border-right: var(--vpj-sidebar-border);
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
         height: 100%;
         min-height: 0;
-        padding-bottom: .5rem;
-        padding-top: 1rem;
+        padding-bottom: var(--vpj-sidebar-padding-y);
+        padding-top: var(--vpj-sidebar-padding-y);
         transition:
-            padding-bottom 0.2s ease-in-out,
-            width 0.2s ease-in-out,
-            transform 0.2s ease-in-out;
-        width: min(16.5rem, 35vw);
-        z-index: 0;
+            width var(--vpj-sidebar-transition),
+            transform var(--vpj-sidebar-transition);
+        width: var(--vpj-sidebar-width);
+        z-index: var(--vpj-sidebar-z-index);
     }
 
     /* StyleSheet for collapsed state */
     .vpj-sidebar.collapsed {
-        padding-bottom: 1rem;
-        width: 3.5rem;
+        width: var(--vpj-sidebar-width-collapsed);
     }
 
     /* StyleSheet for overlay(only show on mobile screen) */
@@ -90,10 +88,9 @@ provide(VPJ_SIDEBAR_SYMBOL, {
     @media screen and (max-width: 768px) {
         /* Sidebar */
         .vpj-sidebar {
-            width: min(20rem, 50vw);
+            width: var(--vpj-sidebar-width-mobile, var(--vpj-sidebar-width));
             position: fixed;
             left: 0;
-            z-index: 101;
         }
 
         /* Collapsed */
@@ -103,14 +100,14 @@ provide(VPJ_SIDEBAR_SYMBOL, {
 
         /* Overlay */
         .vpj-sidebar__overlay {
-            background-color: var(--vpj-overlay-400);
+            background-color: var(--vpj-sidebar-overlay);
             display: block;
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             top: 0;
-            z-index: 100;
+            z-index: var(--vpj-sidebar-overlay-z-index);
         }
     }
 
@@ -127,6 +124,6 @@ provide(VPJ_SIDEBAR_SYMBOL, {
 
     .v-enter-active,
     .v-leave-active {
-        transition: opacity 0.2s ease-in-out;
+        transition: opacity var(--vpj-sidebar-transition);
     }
 </style>

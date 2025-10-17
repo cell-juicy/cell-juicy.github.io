@@ -1,9 +1,10 @@
 /* 通用样式 */
 html {
     box-sizing: border-box;
-    margin: var(--vpj-margin-100);
-    padding: var(--vpj-padding-100);
-    font-size: var(--vpj-font-size-200);
+    margin: 0;
+    padding: 0;
+    font-size: var(--vpj-font-size);
+    font-weight: var(--vpj-font-weight-normal);
 }
 
 body {
