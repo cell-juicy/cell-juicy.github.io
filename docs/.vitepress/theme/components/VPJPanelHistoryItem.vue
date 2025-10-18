@@ -59,10 +59,10 @@ const message = computed(() => {
         :rel="props.repository ? 'noopener' : undefined"
         class="vpj-panel__history-item"
     >
-        <div class="vpj-panel__history-item-message">
+        <div class="vpj-panel__history-item-title">
             <strong>{{ props.commit.author }}</strong> {{ message }}
         </div>
-        <div class="vpj-panel__history-item-commit">
+        <div class="vpj-panel__history-item-description">
             在提交 <code>{{ props.commit.hash }}</code> 中：{{ props.commit.message }}
         </div>
     </component>
@@ -71,34 +71,34 @@ const message = computed(() => {
 
 <style scoped>
     .vpj-panel__history-item {
-        background-color: transparent;
+        background: var(--vpj-panel-history-item-bg);
         border-radius: var(--vpj-border-radius-200);
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
-        padding: 0.5rem;
+        gap: var(--vpj-panel-history-item-gap);
+        padding: var(--vpj-panel-history-item-padding);
         text-decoration: none;
     }
 
     .vpj-panel__history-item:hover,
     .vpj-panel__history-item:active {
-        background-color: var(--vpj-color-bg-300);
+        background: var(--vpj-panel-history-item-bg-hover);
     }
 
-    .vpj-panel__history-item-message {
-        font-size: .875rem;
-        color: var(--vpj-color-text-400);
+    .vpj-panel__history-item-title {
+        color: var(--vpj-panel-history-item-title-color);
+        font-size: var(--vpj-panel-history-item-title-size);
     }
 
-    .vpj-panel__history-item-commit {
-        font-size: 0.75rem;
-        color: var(--vpj-color-text-200);
+    .vpj-panel__history-item-description {
+        color: var(--vpj-panel-history-item-desc-color);
+        font-size: var(--vpj-panel-history-item-desc-size);
     }
 
-    .vpj-panel__history-item-commit > code {
+    .vpj-panel__history-item-description > code {
         background-color: var(--vpj-color-bg-500);
         border-radius: var(--vpj-border-radius-100);
-        color: var(--vpj-color-text-400);
+        color: var(--vpj-panel-history-item-desc-color);
         padding: .125rem .25rem .125rem .25rem;
     }
 </style>

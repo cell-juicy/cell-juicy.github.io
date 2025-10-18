@@ -129,8 +129,7 @@ onMounted(() => {
         flex-direction: column;
         gap: var(--vpj-sidebar-header-gap);
         padding-bottom: var(--vpj-sidebar-header-nav-gap);
-        padding-left: var(--vpj-sidebar-padding-x);
-        padding-right: var(--vpj-sidebar-padding-x);
+        padding-inline: var(--vpj-sidebar-padding-x);
         transition: gap var(--vpj-sidebar-transition);
     }
 

@@ -65,8 +65,7 @@ provide(VPJ_SIDEBAR_SYMBOL, {
         flex-shrink: 0;
         height: 100%;
         min-height: 0;
-        padding-bottom: var(--vpj-sidebar-padding-y);
-        padding-top: var(--vpj-sidebar-padding-y);
+        padding-block: var(--vpj-sidebar-padding-y);
         transition:
             width var(--vpj-sidebar-transition),
             transform var(--vpj-sidebar-transition);

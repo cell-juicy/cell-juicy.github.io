@@ -70,7 +70,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
 <style scoped>
     /* Main layout */
     .vpj-layout-page {
-        background-color: var(--vpj-color-bg-100);
+        background-color: var(--vpj-layout-page-bg);
         height: 100%;
         width: 100%;
     }

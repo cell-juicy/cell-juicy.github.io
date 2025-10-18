@@ -119,7 +119,7 @@ const {
         gap: var(--vpj-sidebar-footer-links-gap);
         list-style-type: none;
         margin: 0;
-        padding: 0 var(--vpj-sidebar-padding-x);
+        padding-inline: var(--vpj-sidebar-padding-x);
         position: relative;
         width: 100%;
     }
@@ -190,7 +190,7 @@ const {
         gap: var(--vpj-sidebar-footer-social-links-gap);
         height: var(--vpj-sidebar-btn-height);
         margin-bottom: 4px;
-        padding: 0 var(--vpj-sidebar-footer-social-links-padding-x);
+        padding-inline: var(--vpj-sidebar-footer-social-links-padding-x);
         width: 100%;
     }
 
@@ -237,7 +237,7 @@ const {
     /* Footer links */
     .vpj-sidebar__footer.collapsed .vpj-sidebar__footer-item-link {
         width: calc(var(--vpj-sidebar-width-collapsed) - 2 * var(--vpj-sidebar-padding-x));
-        padding-left: calc((var(--vpj-sidebar-width-collapsed) - var(--vpj-sidebar-btn-icon-size))/2 - var(--vpj-sidebar-padding-x));
+        padding-left: calc((var(--vpj-sidebar-width-collapsed) - var(--vpj-sidebar-btn-icon-size)) / 2 - var(--vpj-sidebar-padding-x));
     }
 
     .vpj-sidebar__footer.collapsed .vpj-sidebar__footer-item-link :deep(.vpj-icon) {

@@ -56,7 +56,8 @@ const {
         flex-shrink: 0;
         gap: var(--vpj-sidebar-nav-list-gap);
         margin: 0;
-        padding: var(--vpj-sidebar-nav-list-padding-y) var(--vpj-sidebar-padding-x);
+        padding-block: var(--vpj-sidebar-nav-list-padding-y);
+        padding-inline: var(--vpj-sidebar-padding-x);
         transition: gap var(--vpj-sidebar-transition);
         width: 100%;
     }

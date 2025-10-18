@@ -57,7 +57,7 @@ useHead(headConfig);
     /* Main layout */
     .vpj-layout-notfound {
         align-items: center;
-        background-color: var(--vpj-color-bg-100);
+        background: var(--vpj-layout-notfound-bg);
         display: flex;
         flex: 1;
         height: 100%;
@@ -74,78 +74,80 @@ useHead(headConfig);
         display: flex;
         flex: 1;
         flex-direction: column;
-        gap: .5rem;
+        gap: var(--vpj-layout-notfound-content-gap);
         height: 100%;
         justify-content: center;
         margin-left: auto;
         margin-right: auto;
         min-height: 0;
         min-width: 0;
-        max-width: 32rem;
-        padding: 2rem;
+        max-width: var(--vpj-layout-notfound-content-max-width);
+        padding: var(--vpj-layout-notfound-content-padding);
         text-align: center;
     }
 
     /* Icon */
     .vpj-layout-notfound__content-icon {
-        fill: var(--vpj-color-danger-300);
-        height: 1.5rem;
-        margin-bottom: .5rem;
-        width: 1.5rem;
+        fill: var(--vpj-layout-notfound-icon-color);
+        height: var(--vpj-layout-notfound-icon-size);
+        margin-bottom: var(--vpj-layout-notfound-icon-margin-bottom);
+        width: var(--vpj-layout-notfound-icon-size);
     }
 
     /* Title */
     .vpj-layout-notfound__content-title {
-        color: var(--vpj-color-text-500);
-        font-size: 1rem;
-        font-weight: var(--vpj-font-weight-600);
+        color: var(--vpj-layout-notfound-title-color);
+        font-size: var(--vpj-layout-notfound-title-size);
+        font-weight: var(--vpj-layout-notfound-title-weight);
         letter-spacing: 0;
-        line-height: 1.4;
+        line-height: var(--vpj-layout-notfound-title-line-height);
+        user-select: none;
     }
 
     /* Text */
     .vpj-layout-notfound__content-text {
-        color: var(--vpj-color-text-300);
-        line-height: 1.4;
-        margin-top: .2rem;
-        margin-bottom: .5rem;
+        color: var(--vpj-layout-notfound-text-color);
+        font-size: var(--vpj-layout-notfound-text-size);
+        font-weight: var(--vpj-layout-notfound-text-weight);
+        line-height: var(--vpj-layout-notfound-text-line-height);
+        margin-bottom: var(--vpj-layout-notfound-text-margin-bottom);
         text-wrap: balance;
+        user-select: none;
     }
 
     /* Link */
     .vpj-layout-notfound__content-link,
     .vpj-layout-notfound__content-link:visited {
         align-items: center;
-        background-color: var(--vpj-color-bg-100);
-        border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
-        border-radius: var(--vpj-border-radius-200);
-        box-shadow: var(--vpj-shadow-200);
-        color: var(--vpj-color-text-300);
+        background: var(--vpj-layout-notfound-link-bg);
+        border: var(--vpj-layout-notfound-link-border);
+        border-radius: var(--vpj-layout-notfound-link-radius);
+        box-shadow: var(--vpj-layout-notfound-link-shadow);
+        color: var(--vpj-layout-notfound-link-color);
         display: flex;
-        height: 2.2rem;
+        height: var(--vpj-layout-notfound-link-height);
         justify-content: center;
-        padding-inline: .8rem;
+        padding: var(--vpj-layout-notfound-link-padding);
         text-decoration: none;
         transition:
-            background-color 0.3s ease,
-            box-shadow 0.3s ease,
-            color 0.3s ease,
-            transform 0.2s ease;
+            background var(--vpj-layout-notfound-transition),
+            box-shadow var(--vpj-layout-notfound-transition),
+            color var(--vpj-layout-notfound-transition),
+            transform var(--vpj-layout-notfound-transition);
+    }
+
+    .vpj-layout-notfound__content-link .vpj-text {
+        font-size: var(--vpj-layout-notfound-link-size);
+        user-select: none;
     }
 
     .vpj-layout-notfound__content-link:hover {
-        background-color: var(--vpj-color-bg-200);
-        color: var(--vpj-color-text-400);
+        background: var(--vpj-layout-notfound-link-bg-hover);
+        color: var(--vpj-layout-notfound-link-color-hover);
     }
 
     .vpj-layout-notfound__content-link:active {
         box-shadow: none;
-        transform: scale(0.98);
-    }
-
-    /* 添加active动态效果 */
-    .vpj-layout-notfound__content-link:active {
-        background-color: var(--vpj-color-bg-300);
-        transition: transform 0.1s, background-color 0.1s;
+        transform: var(--vpj-layout-notfound-link-transform-active);
     }
 </style>

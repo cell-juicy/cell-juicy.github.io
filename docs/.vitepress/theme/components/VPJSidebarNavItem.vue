@@ -217,8 +217,8 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
         width: var(--vpj-sidebar-btn-icon-size);
     }
 
-    .vpj-sidebar__nav-item-wrapper:hover > .vpj-icon,
-    .vpj-sidebar__nav-item-wrapper:active > .vpj-icon {
+    .vpj-sidebar__nav-item-link:hover .vpj-sidebar__nav-item-wrapper > .vpj-icon,
+    .vpj-sidebar__nav-item-link:active .vpj-sidebar__nav-item-wrapper > .vpj-icon {
         fill: var(--vpj-sidebar-btn-icon-color-hover);
     }
 
