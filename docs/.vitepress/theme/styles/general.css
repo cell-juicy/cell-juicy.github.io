@@ -25,6 +25,7 @@ body {
     border-width: 0px;
     min-height: 0;
     min-width: 0;
+    z-index: var(--vpj-z-index-1);
 }
 
 .vpj-btn {
@@ -46,7 +47,6 @@ body {
     line-height: 1.2;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: start;
     vertical-align: middle;
     white-space: nowrap;
 }
@@ -54,7 +54,7 @@ body {
 .vpj-teleport {
     pointer-events: none;
     position: fixed;
-    z-index: 100;
+    user-select: none;
 }
 
 /* 自定义滚动条组件 */

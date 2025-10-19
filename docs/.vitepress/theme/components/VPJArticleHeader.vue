@@ -10,7 +10,7 @@ import VPJArticleHeaderToolbar from './VPJArticleHeaderToolbar.vue';
 
 import VPJIconMenuBurger from './icons/VPJIconMenuBurger.vue';
 
-import { isMobile, isDesktop } from '../utils/deviceTypes';
+import { isDesktop } from '../utils/deviceTypes';
 
 
 const store = useVPJLayout();
@@ -34,18 +34,13 @@ const toolbar = useTemplateRef("toolbar");
                 :icon="VPJIconMenuBurger"
                 class="vpj-article-header__button"
             />
-            <div
-                class="vpj-article-header__series"
-                :style="{
-                    paddingLeft: isMobile ? '.75rem' : '.5rem'
-                }"
-            >
+            <div class="vpj-article-header__brand">
                 <VPJDynamicIcon
                     v-if="headerConfig.headerIcon"
                     :icon="headerConfig.headerIcon"
-                    class="vpj-article-header__series-icon"
+                    class="vpj-article-header__brand-icon"
                 />
-                <span v-if="headerConfig.headerTitle" class="vpj-article-header__series-name">
+                <span v-if="headerConfig.headerTitle" class="vpj-article-header__brand-title vpj-text">
                     {{ headerConfig.headerTitle }}
                 </span>
             </div>
@@ -72,6 +67,7 @@ const toolbar = useTemplateRef("toolbar");
 <style scoped>
     /* Main Layout */
     .vpj-article-header {
+        background: var(--vpj-article-header-bg);
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
@@ -80,117 +76,107 @@ const toolbar = useTemplateRef("toolbar");
 
     .vpj-article-header__info {
         align-items: center;
-        background-color: var(--vpj-color-bg-100);
-        border-bottom-width: var(--vpj-border-width-200);
+        border-bottom: var(--vpj-article-header-border);
         display: flex;
         flex-shrink: 0;
-        height: 60px;
+        height: var(--vpj-article-header-info-height);
         overflow: hidden;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
+        padding-inline: var(--vpj-article-header-info-padding-x);
         width: 100%;
     }
 
     .vpj-article-header__actions {
         align-items: center;
-        background-color: var(--vpj-color-bg-100);
-        border-bottom-width: var(--vpj-border-width-200);
+        border-bottom: var(--vpj-article-header-border);
         display: flex;
         flex-shrink: 0;
-        height: 48px;
+        height: var(--vpj-article-header-actions-height);
         overflow: hidden;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
+        padding-inline: var(--vpj-article-header-actions-padding-x);
         width: 100%;
     }
 
-    /* Button */
-    .vpj-article-header__button {
-        align-items: center;
-        background-color: var(--vpj-color-bg-100);
-        border-radius: var(--vpj-border-radius-100);
-        height: 32px;
-        padding-left: 8px;
-        padding-right: 8px;
-        text-decoration: none;
-    }
-
-    .vpj-article-header__button :deep(.vpj-icon) {
-        fill: var(--vpj-color-text-300);
-        height: 16px;
-        width: 16px;
-    }
-
-    .vpj-article-header__button:hover,
-    .vpj-article-header__button:active {
-        background-color: var(--vpj-color-bg-300);
-    }
-
-    .vpj-article-header__button:hover :deep(.vpj-icon),
-    .vpj-article-header__button:active :deep(.vpj-icon) {
-        fill: var(--vpj-color-text-400);
-    }
-
     /* Series */
-    .vpj-article-header__series {
+    .vpj-article-header__brand {
         align-items: center;
         display: flex;
         flex-shrink: 0;
-        gap: .75rem;
+        gap: var(--vpj-article-header-brand-gap);
         height: 100%;
-        padding-right: .75rem;
+        padding-inline: var(--vpj-article-header-brand-padding-x);
     }
 
-    .vpj-article-header__series-icon {
-        border-radius: var(--vpj-border-radius-100);
-        height: 28px;
-        width: 28px;
+    .vpj-article-header__brand-icon {
+        border-radius: var(--vpj-article-header-brand-icon-radius);
+        height: var(--vpj-article-header-brand-icon-size);
+        width: var(--vpj-article-header-brand-icon-size);
         object-fit: cover;
         object-position: center;
     }
 
-    .vpj-article-header__series-name {
-        color: var(--vpj-color-text-500);
-        font-size: 24px;
-        font-weight: bold;
+    .vpj-article-header__brand-title {
+        color: var(--vpj-article-header-brand-title-color);
+        font-size: var(--vpj-article-header-brand-title-size);
+        font-weight: var(--vpj-article-header-brand-title-weight);
         line-height: 1;
-    }
-
-    /* Toolbar Divider */
-    .vpj-article-header__divider {
-        background-color: var(--vpj-color-border-400);
-        height: 24px;
-        width: 1px;
-        margin-left: .25rem;
-        margin-right: .25rem;
     }
 
     /* Time Label */
     .vpj-article-header__time-label {
-        color: var(--vpj-color-text-200);
-        height: 1rem;
-        line-height: 1rem;
-        margin-left: 1rem;
+        color: var(--vpj-article-header-time-label-color);
+        font-size: var(--vpj-article-header-time-label-size);
+        font-weight: var(--vpj-article-header-time-label-weight);
+        margin-left: var(--vpj-article-header-time-label-margin-left);
         text-align: right;
     }
 
     /* Tablet and Mobile style sheet */
     @media screen and (max-width: 1024px) {
         /* Series */
-        .vpj-article-header__series {
-            gap: .5rem;
+        .vpj-article-header__brand {
+            gap: var(--vpj-article-header-brand-gap-tablet);
+            padding-inline: var(--vpj-article-header-brand-padding-x-tablet);
         }
     }
     
     /* Mobile style sheet */
     @media screen and (max-width: 768px) {
-        .vpj-article-header__series-icon {
-            height: 24px;
-            width: 24px;
+        .vpj-article-header__brand-icon {
+            height: var(--vpj-article-header-brand-icon-size-mobile);
+            width: var(--vpj-article-header-brand-icon-size-mobile);
         }
 
-        .vpj-article-header__series-name {
-            font-size: 20px;
+        .vpj-article-header__brand-title {
+            font-size: var(--vpj-article-header-brand-title-size-mobile);
         }
+    }
+</style>
+
+<style>
+    /* Button */
+    .vpj-article-header__button {
+        align-items: center;
+        background: var(--vpj-article-header-btn-bg);
+        border: var(--vpj-article-header-btn-border);
+        border-radius: var(--vpj-article-header-btn-radius);
+        height: var(--vpj-article-header-btn-size);
+        padding: calc((var(--vpj-article-header-btn-size) - var(--vpj-article-header-btn-icon-size)) / 2);
+        text-decoration: none;
+    }
+
+    .vpj-article-header__button .vpj-icon {
+        fill: var(--vpj-article-header-btn-icon-color);
+        height: var(--vpj-article-header-btn-icon-size);
+        width: var(--vpj-article-header-btn-icon-size);
+    }
+
+    .vpj-article-header__button:hover,
+    .vpj-article-header__button:active {
+        background: var(--vpj-article-header-btn-bg-hover);
+    }
+
+    .vpj-article-header__button:hover .vpj-icon,
+    .vpj-article-header__button:active .vpj-icon {
+        fill: var(--vpj-article-header-btn-icon-color-hover);
     }
 </style>

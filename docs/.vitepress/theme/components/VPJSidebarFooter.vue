@@ -15,7 +15,7 @@ const tooltipAttrs = {
         alignItems: "center",
         background: "var(--vpj-sidebar-btn-tooltip-bg)",
         borderRadius: "var(--vpj-sidebar-btn-tooltip-radius)",
-        color: "var(--vpj-sidebar-btn-tooltip-text)",
+        color: "var(--vpj-sidebar-btn-tooltip-color)",
         display: "flex",
         fontSize: "var(--vpj-sidebar-btn-tooltip-font-size)",
         maxWidth: "var(--vpj-sidebar-btn-tooltip-max-width)",

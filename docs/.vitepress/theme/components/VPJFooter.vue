@@ -23,23 +23,47 @@ const {
 
 <style scoped>
     .vpj-footer {
-        border-top: var(--vpj-border-width-100) solid var(--vpj-color-border-300);
+        background: var(--vpj-footer-bg);
+        border-top: var(--vpj-footer-border);
         flex-shrink: 0;
-        padding: 2rem;
+        padding: var(--vpj-footer-padding);
         width: 100%;
     }
 
     .vpj-footer__container {
         align-items: center;
-        color: var(--vpj-color-text-300);
+        color: var(--vpj-footer-text-color);
         display: flex;
         flex-direction: column;
-        font-size: .875rem;
-        line-height: 1.5rem;
+        font-size: var(--vpj-footer-text-size);
+        font-weight: var(--vpj-footer-text-weight);
+        gap: var(--vpj-footer-container-gap);
+        line-height: var(--vpj-footer-text-line-height);
+        margin: 0 auto;
+        max-width: var(--vpj-footer-container-max-width);
     }
 
     .vpj-footer__message,
     .vpj-footer__copyright {
         margin: 0;
+    }
+
+    .vpj-footer__message :deep(a),
+    .vpj-footer__copyright :deep(a) {
+        text-decoration-line: var(--vpj-footer-link-decoration);
+        text-underline-offset: var(--vpj-footer-link-underline-offset);
+        color: var(--vpj-footer-link-color);
+        transition: color var(--vpj-footer-link-transition);
+    }
+
+    .vpj-footer__message :deep(a:hover),
+    .vpj-footer__copyright :deep(a:hover) {
+        color: var(--vpj-footer-link-color-hover);
+    }
+
+    @media (min-width: 768px) {
+        .vpj-footer {
+            padding: var(--vpj-footer-padding);
+        }
     }
 </style>

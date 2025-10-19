@@ -109,7 +109,7 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
 
 <style scoped>
     .vpj-layout-article {
-        background-color: var(--vpj-color-bg-100);
+        background: var(--vpj-layout-article-bg);
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -125,6 +125,7 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
     }
 
     .vpj-layout-article__wrapper-outer {
+        background: var(--vpj-layout-article-wrapper-bg);
         flex: 1;
         height: 100%;
     }
@@ -144,15 +145,17 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
     }
 
     .vpj-layout-article__aside-controler {
+        align-items: center;
         background-color: transparent;
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
+        gap: var(--vpj-layout-article-controller-gap);
         min-height: max-content;
         opacity: 0;
-        padding-bottom: auto;
-        transition: opacity 0.2s ease-in-out;
-        width: 48px;
+        padding-top: var(--vpj-layout-article-controller-padding-top);
+        transition: opacity var(--vpj-layout-article-transition);
+        width: var(--vpj-layout-article-controller-width);
     }
 
     .vpj-layout-article__aside-controler:hover {
@@ -161,30 +164,30 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
 
     .vpj-layout-article__aside-toggle {
         align-items: center;
-        background-color: var(--vpj-color-bg-100);
-        border-radius: var(--vpj-border-radius-100);
-        height: 32px;
-        margin: 8px;
-        padding: 8px;
+        background: var(--vpj-layout-article-controller-btn-bg);
+        border: var(--vpj-layout-article-controller-btn-border);
+        border-radius: var(--vpj-layout-article-controller-btn-radius);
+        height: var(--vpj-layout-article-controller-btn-size);
+        padding: calc((var(--vpj-layout-article-controller-btn-size) - var(--vpj-layout-article-controller-btn-icon-size)) / 2);
         position: sticky;
-        top: 8px;
-        width: 32px;
+        top: var(--vpj-layout-article-controller-padding-top);
+        width: var(--vpj-layout-article-controller-btn-size);
     }
 
     .vpj-layout-article__aside-toggle :deep(.vpj-icon) {
-        fill: var(--vpj-color-text-300);
-        height: 16px;
-        width: 16px;
+        fill: var(--vpj-layout-article-controller-btn-icon-color);
+        height: var(--vpj-layout-article-controller-btn-icon-size);
+        width: var(--vpj-layout-article-controller-btn-icon-size);
     }
 
     .vpj-layout-article__aside-toggle:hover,
     .vpj-layout-article__aside-toggle:active {
-        background-color: var(--vpj-color-bg-300);
+        background-color: var(--vpj-layout-article-controller-btn-bg-hover);
     }
 
     .vpj-layout-article__aside-toggle:hover :deep(.vpj-icon),
     .vpj-layout-article__aside-toggle:active :deep(.vpj-icon) {
-        fill: var(--vpj-color-text-400);
+        fill: var(--vpj-layout-article-controller-btn-icon-color-hover);
     }
 
     .vpj-layout-article__article {
@@ -193,7 +196,7 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         flex: 1;
         flex-direction: column;
         justify-content: space-between;
-        padding-right: 48px;
+        padding-right: var(--vpj-layout-article-controller-width);
     }
 
     .vpj-layout-article__grid-layout {
