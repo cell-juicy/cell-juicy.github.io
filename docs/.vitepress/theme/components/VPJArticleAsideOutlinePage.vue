@@ -87,7 +87,6 @@ useActiveAnchor(outline, scrollArea);
 
 <style scoped>
     .vpj-article-aside__aside-tab-outer {
-        background-color: var(--vpj-color-bg-100);
         height: 100%;
         width: 100%;
     }
@@ -100,16 +99,21 @@ useActiveAnchor(outline, scrollArea);
     }
 
     .vpj-article-aside__outline {
+        background: var(--vpj-article-aside-tab-outline-bg);
+        display: flex;
+        flex: 1;
+        flex-direction: column;
         width: 100%;
     }
 
     .vpj-article-aside__outline-list {
-        align-items: flex-start;
         display: flex;
         flex: 1;
         flex-direction: column;
+        gap: var(--vpj-article-aside-tab-outline-gap);
         margin: 0;
-        padding: 0;
+        padding-block: var(--vpj-article-aside-tab-outline-padding-y);
+        padding-inline: 0;
         width: 100%;
     }
 </style>

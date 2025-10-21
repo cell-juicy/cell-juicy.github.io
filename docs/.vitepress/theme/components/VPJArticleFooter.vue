@@ -243,6 +243,7 @@ const computedMarginBottom = computed(() => {
         .vpj-article-footer__navgation-prev,
         .vpj-article-footer__navgation-next {
             width: 100%;
+            flex: none;
         }
     }
 </style>

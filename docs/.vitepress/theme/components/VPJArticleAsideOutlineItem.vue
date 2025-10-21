@@ -18,9 +18,8 @@ const props = defineProps({
 });
 
 const collapsed = ref(true);
-const paddingLeft = computed(() => {
-    const correction = props.data?.children?.length === 0 ? 20 : 0;
-    return 6 + correction + props.depth * 16 + "px"
+const indent = computed(() => {
+    return `calc(${Number(props.depth) || 0} * var(--vpj-article-aside-tab-outline-item-indent-unit))`
 });
 </script>
 
@@ -36,16 +35,18 @@ const paddingLeft = computed(() => {
                 { 'collapsed': !collapsed }
             ]"
         >
-            <button
-                v-if="props.data?.children?.length > 0"
-                @click.stop.prevent="collapsed = !collapsed"
-                class="vpj-article-aside__outline-toggle"
-            >
-                <VPJDynamicIcon
-                    :icon="VPJIconAngleSmallRight"
-                    class="vpj-article-aside__outline-toggle-icon"
-                />
-            </button>
+            <div class="vpj-article-aside__outline-toggle-wrapper">
+                <button
+                    v-if="props.data?.children?.length > 0"
+                    @click.stop.prevent="collapsed = !collapsed"
+                    class="vpj-article-aside__outline-toggle"
+                >
+                    <VPJDynamicIcon
+                        :icon="VPJIconAngleSmallRight"
+                        class="vpj-article-aside__outline-toggle-icon"
+                    />
+                </button>
+            </div>
             <span class="vpj-article-aside__outline-title vpj-markdown" v-html="props.data.title"/>
         </a>
         <ul
@@ -85,58 +86,76 @@ const paddingLeft = computed(() => {
     .vpj-article-aside__outline-link {
         align-items: center;
         display: flex;
-        gap: 4px;
-        padding-bottom: .375rem;
-        padding-left: v-bind(paddingLeft);
-        padding-right: 4px;
-        padding-top: .375rem;
+        gap: var(--vpj-article-aside-tab-outline-item-gap);
+        padding-block: var(--vpj-article-aside-tab-outline-item-padding-y);
+        padding-inline: var(--vpj-article-aside-tab-outline-item-padding-x);
         text-decoration: none;
         width: 100%;
     }
 
     .vpj-article-aside__outline-link:hover,
     .vpj-article-aside__outline-link:active {
-        background-color: var(--vpj-color-bg-400);
+        background: var(--vpj-article-aside-tab-outline-item-bg-hover);
     }
 
     /* Toggle */
+    .vpj-article-aside__outline-toggle-wrapper {
+        flex-shrink: 0;
+        height: var(--vpj-article-aside-tab-outline-toggle-size);
+        margin-left: v-bind(indent);
+        width: var(--vpj-article-aside-tab-outline-toggle-size);
+    }
+
     .vpj-article-aside__outline-toggle {
         align-items: center;
-        background-color: transparent;
-        border-radius: 8px;
+        background: var(--vpj-article-aside-tab-outline-toggle-bg);
+        border-radius: var(--vpj-article-aside-tab-outline-toggle-radius);
         display: flex;
-        flex-shrink: 0;
-        height: 16px;
-        justify-content: center;
-        padding: 2px;
-        width: 16px;
+        height: 100%;
+        padding: calc((var(--vpj-article-aside-tab-outline-toggle-size) - var(--vpj-article-aside-tab-outline-toggle-icon-size)) / 2);
+        width: 100%;
+    }
+
+    .vpj-article-aside__outline-toggle:hover,
+    .vpj-article-aside__outline-toggle:active {
+        background: var(--vpj-article-aside-tab-outline-toggle-bg-hover);
     }
 
     /* Toggle Icon */
     .vpj-article-aside__outline-toggle-icon {
-        height: 12px;
-        fill: var(--vpj-color-text-300);
-        transition: transform 0.2s ease-in-out;
-        width: 12px;
+        height: var(--vpj-article-aside-tab-outline-toggle-icon-size);
+        fill: var(--vpj-article-aside-tab-outline-toggle-icon-color);
+        transition: transform var(--vpj-article-aside-tab-outline-transition);
+        width: var(--vpj-article-aside-tab-outline-toggle-icon-size);
     }
 
     .vpj-article-aside__outline-toggle:hover .vpj-article-aside__outline-toggle-icon,
     .vpj-article-aside__outline-toggle:active .vpj-article-aside__outline-toggle-icon {
-        fill: var(--vpj-color-text-400);
+        fill: var(--vpj-article-aside-tab-outline-toggle-icon-color-hover);
     }
 
     /* Title */
     .vpj-article-aside__outline-title {
+        color: var(--vpj-private-c-c, var(--vpj-private-c-h, var(--vpj-article-aside-tab-outline-title-color)));
         display: inline;
-        font-size: .875rem;
+        flex: 1;
+        font-size: var(--vpj-private-s-c, var(--vpj-private-s-h, var(--vpj-article-aside-tab-outline-title-size)));
+        font-weight: var(--vpj-private-w-c, var(--vpj-private-w-h, var(--vpj-article-aside-tab-outline-title-weight)));
+        text-decoration: var(--vpj-private-d-c, var(--vpj-private-d-h, none));
     }
 
     .vpj-article-aside__outline-title:hover {
-        text-decoration: underline;
+        --vpj-private-c-h: var(--vpj-article-aside-tab-outline-title-color-hover);
+        --vpj-private-s-h: var(--vpj-article-aside-tab-outline-title-size-hover);
+        --vpj-private-w-h: var(--vpj-article-aside-tab-outline-title-weight-hover);
+        --vpj-private-d-h: var(--vpj-article-aside-tab-outline-title-decoration-hover);
     }
 
-    .vpj-article-aside__outline-link.active {
-        font-weight: var(--vpj-font-weight-700);
+    .vpj-article-aside__outline-link.current .vpj-article-aside__outline-title {
+        --vpj-private-c-c: var(--vpj-article-aside-tab-outline-title-color-current);
+        --vpj-private-s-c: var(--vpj-article-aside-tab-outline-title-size-current);
+        --vpj-private-w-c: var(--vpj-article-aside-tab-outline-title-weight-current);
+        --vpj-private-d-c: var(--vpj-article-aside-tab-outline-title-decoration-current);
     }
 
     /* Collapsed */

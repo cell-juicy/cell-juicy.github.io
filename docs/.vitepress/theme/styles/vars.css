@@ -363,6 +363,7 @@
     --vpj-panel-overlay-bg: var(--vpj-overlay);
     --vpj-panel-overlay-z-index: var(--vpj-z-index-2);
 
+    --vpj-panel-fallback-bg: transparent;
     --vpj-panel-fallback-color: var(--vpj-c-text-3);
     --vpj-panel-fallback-font-size: 1.25rem;
     --vpj-panel-fallback-font-weight: var(--vpj-font-weight-normal);
@@ -598,4 +599,237 @@
     --vpj-footer-link-underline-offset: 2px;
     --vpj-footer-link-color: var(--vpj-c-text-2);
     --vpj-footer-link-color-hover: var(--vpj-c-text-1);
+}
+
+/* ---------------------------------------------------------
+   Component: Article Aside
+*/
+:root {
+    --vpj-article-aside-bg: var(--vpj-c-bg);
+    --vpj-article-aside-border: var(--vpj-border);
+    --vpj-article-aside-width: min(55vw, 20.25rem);
+    --vpj-article-aside-width-mobile: min(85vw, 21.75rem);
+    --vpj-article-aside-transition: var(--vpj-transition);
+    --vpj-article-aside-z-index: var(--vpj-z-index-3);
+    
+    --vpj-article-aside-header-bg: var(--vpj-c-bg);
+    --vpj-article-aside-header-border: var(--vpj-border);
+    --vpj-article-aside-header-height: 2.5rem;
+    --vpj-article-aside-header-tabbox-mask-gradient: linear-gradient(
+        to right,
+        transparent,
+        black .5rem,
+        black calc(100% - .5rem),
+        transparent
+    );
+    --vpj-article-aside-header-tablist-padding-x: .75rem;
+    --vpj-article-aside-header-tablist-gap: .5rem;
+    
+    --vpj-article-aside-tab-bg: transparent;
+    --vpj-article-aside-tab-bg-hover: var(--vpj-c-bg-soft);
+    --vpj-article-aside-tab-color: var(--vpj-c-text-2);
+    --vpj-article-aside-tab-color-hover: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-height: 1.5rem;
+    --vpj-article-aside-tab-padding-x: .5rem;
+    --vpj-article-aside-tab-radius: var(--vpj-border-radius-1);
+    --vpj-article-aside-tab-font-size: .875rem;
+    --vpj-article-aside-tab-border-active: var(--vpj-border);
+    
+    --vpj-article-aside-close-bg: var(--vpj-c-bg);
+    --vpj-article-aside-close-bg-hover: var(--vpj-c-bg-soft);
+    --vpj-article-aside-close-border: 0;
+    --vpj-article-aside-close-size: 1.6rem;
+    --vpj-article-aside-close-radius: var(--vpj-border-radius-1);
+    --vpj-article-aside-close-icon-color: var(--vpj-c-text-2);
+    --vpj-article-aside-close-icon-color-hover: var(--vpj-c-text-1);
+    --vpj-article-aside-close-icon-size: 1rem;
+    --vpj-article-aside-close-margin-x: .3125rem;
+    
+    --vpj-article-aside-fallback-bg: transparent;
+    --vpj-article-aside-fallback-color: var(--vpj-c-text-3);
+    --vpj-article-aside-fallback-font-size: 1.25rem;
+    --vpj-article-aside-fallback-font-weight: var(--vpj-font-weight-normal);
+    --vpj-article-aside-fallback-line-height: 1.5;
+    --vpj-article-aside-fallback-padding-x: 1.2rem;
+    
+    --vpj-article-aside-overlay-bg: transparent;
+    --vpj-article-aside-overlay-bg-mobile: var(--vpj-overlay);
+    --vpj-article-aside-overlay-z-index: var(--vpj-z-index-2);
+}
+
+/* ---------------------------------------------------------
+   Component: Article Aside Tab Outline
+*/
+:root {
+    --vpj-article-aside-tab-outline-bg: transparent;
+    --vpj-article-aside-tab-outline-gap: 0;
+    --vpj-article-aside-tab-outline-padding-y: .375rem 1.375rem;
+    --vpj-article-aside-tab-outline-transition: var(--vpj-transition);
+    
+    --vpj-article-aside-tab-outline-item-bg: transparent;
+    --vpj-article-aside-tab-outline-item-bg-hover: var(--vpj-c-bg-soft);
+    --vpj-article-aside-tab-outline-item-padding-y: .375rem;
+    --vpj-article-aside-tab-outline-item-padding-x: .25rem;
+    --vpj-article-aside-tab-outline-item-gap: .25rem;
+    --vpj-article-aside-tab-outline-item-indent-unit: 1rem;
+
+    --vpj-article-aside-tab-outline-toggle-bg: transparent;
+    --vpj-article-aside-tab-outline-toggle-bg-hover: transparent;
+    --vpj-article-aside-tab-outline-toggle-icon-size: .75rem;
+    --vpj-article-aside-tab-outline-toggle-icon-color: var(--vpj-c-text-2);
+    --vpj-article-aside-tab-outline-toggle-icon-color-hover: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-outline-toggle-radius: .5rem;
+    --vpj-article-aside-tab-outline-toggle-size: 1rem;
+
+    --vpj-article-aside-tab-outline-title-color: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-outline-title-size: .875rem;
+    --vpj-article-aside-tab-outline-title-weight: var(--vpj-font-weight-normal);
+
+    --vpj-article-aside-tab-outline-title-color-hover: revert;
+    --vpj-article-aside-tab-outline-title-decoration-hover: underline;
+    --vpj-article-aside-tab-outline-title-size-hover: revert;
+    --vpj-article-aside-tab-outline-title-weight-hover: revert;
+
+    --vpj-article-aside-tab-outline-title-color-current: revert;
+    --vpj-article-aside-tab-outline-title-decoration-current: revert;
+    --vpj-article-aside-tab-outline-title-size-current: revert;
+    --vpj-article-aside-tab-outline-title-weight-current: var(--vpj-font-weight-bold);
+}
+
+/* ---------------------------------------------------------
+   Component: Article Aside Tab Resources
+*/
+:root {
+    --vpj-article-aside-tab-resources-bg: transparent;
+    --vpj-article-aside-tab-resources-transition: var(--vpj-transition);
+
+    --vpj-article-aside-tab-resources-list-gap: .5rem;
+    --vpj-article-aside-tab-resources-list-padding: .75rem .5rem;
+
+    --vpj-article-aside-tab-resources-item-bg: var(--vpj-c-bg);
+    --vpj-article-aside-tab-resources-item-bg-hover: var(--vpj-c-bg-soft);
+    --vpj-article-aside-tab-resources-item-border: var(--vpj-c-divider) solid var(--vpj-border-width-1);
+    --vpj-article-aside-tab-resources-item-border-hover: var(--vpj-border);
+    --vpj-article-aside-tab-resources-item-radius: var(--vpj-border-radius-1);
+    --vpj-article-aside-tab-resources-item-shadow: var(--vpj-shadow-1);
+    --vpj-article-aside-tab-resources-item-shadow-hover: var(--vpj-shadow-2);
+    --vpj-article-aside-tab-resources-item-shadow-active: none;
+    --vpj-article-aside-tab-resources-item-height: 3.2rem;
+    --vpj-article-aside-tab-resources-item-transform-hover: scale(1.02);
+    --vpj-article-aside-tab-resources-item-transform-active: scale(.98);
+
+    --vpj-article-aside-tab-resources-item-icon-color: var(--vpj-c-text-2);
+    --vpj-article-aside-tab-resources-item-icon-color-hover: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-resources-item-icon-default-size: 1rem;
+    --vpj-article-aside-tab-resources-item-icon-wrapper-width: 3rem;
+    
+    --vpj-article-aside-tab-resources-item-label-color: var(--vpj-c-text-2);
+    --vpj-article-aside-tab-resources-item-label-color-hover: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-resources-item-label-padding-x: .6rem;
+    --vpj-article-aside-tab-resources-item-label-size: .875rem;
+    --vpj-article-aside-tab-resources-item-label-weight: var(--vpj-font-weight-normal);
+}
+
+/* ---------------------------------------------------------
+   Component: Article Aside Tab Series
+*/
+:root {
+    --vpj-article-aside-tab-series-bg: transparent;
+    --vpj-article-aside-tab-series-transition: var(--vpj-transition);
+
+    --vpj-article-aside-tab-series-list-padding: .75rem;
+    --vpj-article-aside-tab-series-list-gap: .5rem;
+
+    --vpj-article-aside-tab-series-item-bg: var(--vpj-c-bg);
+    --vpj-article-aside-tab-series-item-bg-hover: var(--vpj-c-bg);
+    --vpj-article-aside-tab-series-item-border: var(--vpj-border);
+    --vpj-article-aside-tab-series-item-border-hover: var(--vpj-border);
+    --vpj-article-aside-tab-series-item-border-current: var(--vpj-border-width-1) solid var(--vpj-c-indigo-3);
+    --vpj-article-aside-tab-series-item-radius: var(--vpj-border-radius-2);
+    --vpj-article-aside-tab-series-item-shadow: var(--vpj-shadow-1);
+    --vpj-article-aside-tab-series-item-shadow-hover: var(--vpj-shadow-2);
+    --vpj-article-aside-tab-series-item-shadow-active: none;
+    --vpj-article-aside-tab-series-item-height: 5rem;
+    --vpj-article-aside-tab-series-item-gap: .5rem;
+    --vpj-article-aside-tab-series-item-padding-x: .5rem;
+    --vpj-article-aside-tab-series-item-transform-hover: scale(1.02);
+    --vpj-article-aside-tab-series-item-transform-active: scale(.98);
+
+    --vpj-article-aside-tab-series-item-color: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-series-item-color-hover: var(--vpj-c-text-3);
+    --vpj-article-aside-tab-series-item-color-current: var(--vpj-c-indigo-1);
+    --vpj-article-aside-tab-series-item-color-current-hover: var(--vpj-c-indigo-3);
+
+    --vpj-article-aside-tab-series-item-cover-border: 0;
+    --vpj-article-aside-tab-series-item-cover-border-current: 0;
+    --vpj-article-aside-tab-series-item-cover-height: 4rem;
+    --vpj-article-aside-tab-series-item-cover-width: 5.5rem;
+    --vpj-article-aside-tab-series-item-cover-radius: var(--vpj-border-radius-1);
+    
+    --vpj-article-aside-tab-series-item-cover-icon-size: 1.75rem;
+
+    --vpj-article-aside-tab-series-item-title-size: 1rem;
+    --vpj-article-aside-tab-series-item-title-weight: var(--vpj-font-weight-semibold);
+    --vpj-article-aside-tab-series-item-title-line-height: 1.75rem;
+    --vpj-article-aside-tab-series-item-title-padding: .25rem;
+
+    --vpj-article-aside-tab-series-item-tagbox-margin-x: .25rem;
+    --vpj-article-aside-tab-series-item-tagbox-mask: linear-gradient(
+        to right,
+        transparent,
+        black .3rem,
+        black calc(100% - .3rem),
+        transparent
+    );
+    --vpj-article-aside-tab-series-item-taglist-gap: .25rem;
+    --vpj-article-aside-tab-series-item-taglist-padding: .25rem .4rem .35rem;
+}
+
+/* ---------------------------------------------------------
+   Component: Article Aside Tab Tree
+*/
+:root {
+    --vpj-article-aside-tab-tree-bg: transparent;
+    --vpj-article-aside-tab-tree-transition: var(--vpj-transition);
+
+    --vpj-article-aside-tab-tree-list-padding: 1rem 0 1rem .75rem;
+    --vpj-article-aside-tab-tree-list-gap: .25rem;
+
+    --vpj-article-aside-tab-tree-node-bg: var(--vpj-c-bg);
+    --vpj-article-aside-tab-tree-node-bg-hover: var(--vpj-c-bg-soft);
+    --vpj-article-aside-tab-tree-node-bg-current: var(--vpj-c-bg-soft);
+    --vpj-article-aside-tab-tree-node-color: var(--vpj-c-text-2);
+    --vpj-article-aside-tab-tree-node-color-hover: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-tree-node-color-current: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-tree-node-weight: var(--vpj-font-weight-normal);
+    --vpj-article-aside-tab-tree-node-weight-hover: revert;
+    --vpj-article-aside-tab-tree-node-weight-current: revert;
+    --vpj-article-aside-tab-tree-node-height: 2.25rem;
+    --vpj-article-aside-tab-tree-node-radius: var(--vpj-border-radius-1);
+    --vpj-article-aside-tab-tree-node-padding-x: .75rem .375rem;
+    --vpj-article-aside-tab-tree-node-font-size: .875rem;
+    
+    --vpj-article-aside-tab-tree-node-toggle-bg: transparent;
+    --vpj-article-aside-tab-tree-node-toggle-bg-hover: var(--vpj-c-bg);
+    --vpj-article-aside-tab-tree-node-toggle-size: 1.5rem;
+    --vpj-article-aside-tab-tree-node-toggle-radius: var(--vpj-border-radius-1);
+    --vpj-article-aside-tab-tree-node-toggle-icon-color: var(--vpj-c-text-2);
+    --vpj-article-aside-tab-tree-node-toggle-icon-color-hover: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-tree-node-toggle-icon-size: 0.75rem;
+
+    --vpj-article-aside-tab-tree-node-children-border-left: var(--vpj-border-width-1) solid var(--vpj-c-divider);
+    --vpj-article-aside-tab-tree-node-children-gap: .25rem;
+    --vpj-article-aside-tab-tree-node-children-margin: .25rem 0 0 .875rem;
+    --vpj-article-aside-tab-tree-node-children-padding: 0 0 0 .25rem;
+}
+
+/* ---------------------------------------------------------
+   Component: Article Aside Tab Tags
+*/
+:root {
+    --vpj-article-aside-tab-tags-bg: transparent;
+
+    --vpj-article-aside-tab-tags-list-padding: 0.75rem 0.5rem;
+    --vpj-article-aside-tab-tags-list-gap-row: 0.5rem;
+    --vpj-article-aside-tab-tags-list-gap-col: 0.35rem;
 }

@@ -220,6 +220,7 @@ onMounted(() => {
 
     [data-action="profile"] :deep(.vpj-text) {
         font-weight: var(--vpj-sidebar-header-profile-btn-text-weight);
+        text-align: start;
     }
 
     [data-action="profile"] :deep(.vpj-icon) {
@@ -238,8 +239,8 @@ onMounted(() => {
     /* Toggle button */
     [data-action="toggle"] {
         flex: 0 0 auto;
-        width: calc(var(--vpj-sidebar-width-collapsed) - 2 * var(--vpj-sidebar-padding-x));
         padding-left: calc((var(--vpj-sidebar-width-collapsed) - var(--vpj-sidebar-btn-icon-size))/2 - var(--vpj-sidebar-padding-x));
+        width: calc(var(--vpj-sidebar-width-collapsed) - 2 * var(--vpj-sidebar-padding-x));
     }
 
     [data-action="toggle"] :deep(.vpj-icon) {

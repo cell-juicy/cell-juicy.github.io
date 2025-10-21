@@ -125,7 +125,7 @@ export function useActiveAnchor(outline: Ref<Element | null>, scrollArea: Ref<El
         if (!outline.value) return;
 
         if (prevActiveLink) {
-            prevActiveLink.classList.remove("active");
+            prevActiveLink.classList.remove("current");
         };
 
         if (hash === null) {
@@ -136,7 +136,7 @@ export function useActiveAnchor(outline: Ref<Element | null>, scrollArea: Ref<El
 
         const activeLink = prevActiveLink;
         if (activeLink) {
-            activeLink.classList.add("active");
+            activeLink.classList.add("current");
         };
     }
 }
