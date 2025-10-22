@@ -171,9 +171,11 @@
 :root {
     --vpj-font-weight-thin: 100;
     --vpj-font-weight-light: 300;
-    --vpj-font-weight-normal: 400;
+    --vpj-font-weight-medium: 400;
     --vpj-font-weight-semibold: 600;
     --vpj-font-weight-bold: 700;
+
+    --vpj-font-weight-normal: var(--vpj-font-weight-medium);
 }
 
 /* ---------------------------------------------------------
@@ -264,6 +266,7 @@
     --vpj-sidebar-profile-font-weight: var(--vpj-font-weight-semibold);
     --vpj-sidebar-profile-title-font-size: 1rem;
     --vpj-sidebar-profile-title-gap: 1rem;
+    --vpj-sidebar-profile-title-icon-radius: var(--vpj-border-radius-1);
     --vpj-sidebar-profile-title-icon-size: 1.6rem;
     --vpj-sidebar-profile-title-padding: .4rem 1rem .75rem;
 
@@ -284,6 +287,7 @@
     --vpj-sidebar-nav-list-gap-collapsed: .625rem;
     --vpj-sidebar-nav-list-indent-unit: .625rem;
     --vpj-sidebar-nav-list-item-toggle-btn-bg: var(--vpj-c-bg-soft);
+    --vpj-sidebar-nav-list-item-toggle-btn-radius: var(--vpj-border-radius-1);
     --vpj-sidebar-nav-list-item-toggle-btn-size: 1.2rem;
     --vpj-sidebar-nav-list-item-toggle-icon-size: .8rem; 
     --vpj-sidebar-nav-list-padding-y: .5rem;

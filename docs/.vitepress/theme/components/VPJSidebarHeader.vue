@@ -278,7 +278,7 @@ onMounted(() => {
     }
 
     .vpj-sidebar__profile-logo {
-        border-radius: var(--vpj-border-radius-100);
+        border-radius: var(--vpj-sidebar-profile-title-icon-radius);
         height: var(--vpj-sidebar-profile-title-icon-size);
         flex-shrink: 0;
         width: var(--vpj-sidebar-profile-title-icon-size);

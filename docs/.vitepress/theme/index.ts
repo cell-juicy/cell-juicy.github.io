@@ -14,7 +14,6 @@ import { createPinia } from "pinia";
 import { createHead } from "@unhead/vue/client";
 
 // Global stylesheet
-import "./styles/var.css";
 import "./styles/vars.css";
 import "./styles/general.css";
 import "./styles/markdown.css";

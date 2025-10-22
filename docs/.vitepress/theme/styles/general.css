@@ -20,7 +20,7 @@ body {
 }
 
 [class^="vpj-"] {
-    border-color: var(--vpj-color-border-300);
+    border-color: var(--vpj-c-border);
     border-style: solid;
     border-width: 0px;
     min-height: 0;

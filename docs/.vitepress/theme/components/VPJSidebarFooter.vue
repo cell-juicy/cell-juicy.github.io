@@ -129,7 +129,7 @@ const {
     .vpj-sidebar__footer-item-link:visited {
         background: var(--vpj-sidebar-btn-bg);
         border: var(--vpj-sidebar-btn-border);
-        border-radius: var(--vpj-border-radius-100);
+        border-radius: var(--vpj-sidebar-btn-radius);
         flex: 1;
         gap: var(--vpj-sidebar-btn-gap);
         height: var(--vpj-sidebar-btn-height);

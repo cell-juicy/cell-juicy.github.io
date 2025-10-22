@@ -21,9 +21,8 @@ const { theme, isDark } = useData();
 
 // enable nav
 const enable = computed(() => {
-    // const configEnable = theme.value.mobileNav?.enable ?? true;
-    // return configEnable && isMobile.value
-    return true;
+    const configEnable = theme.value.mobileNav?.enable ?? true;
+    return configEnable && isMobile.value;
 });
 
 // initialize title
@@ -54,12 +53,6 @@ const computedTitle = computed(() => {
             </span>
             <component v-else :is="computedTitle.component"/>
         </slot>
-        <VPJDynamicIconBtn
-            v-if="enabled"
-            @click="isDark = !isDark"
-            :icon="VPJIconSearch"
-            class="vpj-mobile-nav__btn"
-        />
     </nav>
 </template>
 

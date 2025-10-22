@@ -182,8 +182,8 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
     /* Nav toggle btn */
     .vpj-sidebar__nav-item-toggle {
         align-items: center;
-        background-color: transparent;
-        border-radius: var(--vpj-border-radius-100);
+        background: transparent;
+        border-radius: var(--vpj-sidebar-nav-list-item-toggle-btn-radius);
         display: flex;
         height: var(--vpj-sidebar-nav-list-item-toggle-btn-size);
         padding: calc((var(--vpj-sidebar-nav-list-item-toggle-btn-size) - var(--vpj-sidebar-nav-list-item-toggle-icon-size)) / 2);
@@ -193,7 +193,7 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
 
     .vpj-sidebar__nav-item-toggle:hover,
     .vpj-sidebar__nav-item-toggle:active {
-        background-color: var(--vpj-sidebar-nav-list-item-toggle-btn-bg);
+        background: var(--vpj-sidebar-nav-list-item-toggle-btn-bg);
     }
 
     .vpj-sidebar__nav-item-toggle > .vpj-icon {

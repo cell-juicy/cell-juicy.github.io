@@ -72,7 +72,7 @@ const message = computed(() => {
 <style scoped>
     .vpj-panel__history-item {
         background: var(--vpj-panel-history-item-bg);
-        border-radius: var(--vpj-border-radius-200);
+        border-radius: var(--vpj-panel-history-item-radius);
         display: flex;
         flex-direction: column;
         gap: var(--vpj-panel-history-item-gap);
@@ -96,8 +96,8 @@ const message = computed(() => {
     }
 
     .vpj-panel__history-item-description > code {
-        background-color: var(--vpj-color-bg-500);
-        border-radius: var(--vpj-border-radius-100);
+        background: var(--vpj-c-bg);
+        border-radius: var(--vpj-border-radius-1);
         color: var(--vpj-panel-history-item-desc-color);
         padding: .125rem .25rem .125rem .25rem;
     }

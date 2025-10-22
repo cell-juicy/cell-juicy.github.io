@@ -26,11 +26,11 @@ const { panelToggle } = store;
     .button,
     .button:visited {
         align-items: center;
-        background-color: var(--vpj-color-bg-100);
+        background-color: var(--vpj-c-bg);
         border: none;
         border-radius: 5px;
-        box-shadow: var(--vpj-shadow-200);
-        color: var(--vpj-color-text-500);
+        box-shadow: var(--vpj-shadow-2);
+        color: var(--vpj-c-text-2);
         display: flex;
         justify-content: center;
         height: 40px;
@@ -40,7 +40,7 @@ const { panelToggle } = store;
     }
 
     .button:hover {
-        background-color: var(--vpj-color-bg-300);
+        background-color: var(--vpj-c-bg-alt);
     }
 </style>
 
