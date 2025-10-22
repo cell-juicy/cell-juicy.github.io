@@ -20,7 +20,7 @@
 :root {
     --vpj-c-gray-1: #dddde3;
     --vpj-c-gray-2: #e4e4e9;
-    --vpj-c-gray-3: #ebebef;
+    --vpj-c-text-3: #ebebef;
     --vpj-c-gray-soft: rgba(142, 150, 170, .14);
 
     --vpj-c-indigo-1: #3451b2;
@@ -815,7 +815,7 @@
     --vpj-article-aside-tab-tree-node-toggle-radius: var(--vpj-border-radius-1);
     --vpj-article-aside-tab-tree-node-toggle-icon-color: var(--vpj-c-text-2);
     --vpj-article-aside-tab-tree-node-toggle-icon-color-hover: var(--vpj-c-text-1);
-    --vpj-article-aside-tab-tree-node-toggle-icon-size: 0.75rem;
+    --vpj-article-aside-tab-tree-node-toggle-icon-size: .75rem;
 
     --vpj-article-aside-tab-tree-node-children-border-left: var(--vpj-border-width-1) solid var(--vpj-c-divider);
     --vpj-article-aside-tab-tree-node-children-gap: .25rem;
@@ -829,7 +829,124 @@
 :root {
     --vpj-article-aside-tab-tags-bg: transparent;
 
-    --vpj-article-aside-tab-tags-list-padding: 0.75rem 0.5rem;
-    --vpj-article-aside-tab-tags-list-gap-row: 0.5rem;
-    --vpj-article-aside-tab-tags-list-gap-col: 0.35rem;
+    --vpj-article-aside-tab-tags-list-padding: .75rem .5rem;
+    --vpj-article-aside-tab-tags-list-gap-row: .5rem;
+    --vpj-article-aside-tab-tags-list-gap-col: .35rem;
+}
+
+/* ---------------------------------------------------------
+   Component: Overlay Scroll Area
+*/
+:root {
+    --vpj-overlay-scroll-area-transition: var(--vpj-transition);
+    --vpj-overlay-scroll-area-opacity-visible: .8;
+
+    --vpj-overlay-scroll-area-thumb-bg: var(--vpj-c-text-2);
+    --vpj-overlay-scroll-area-thumb-bg-hover: var(--vpj-c-text-3);
+    --vpj-overlay-scroll-area-thumb-bg-active: var(--vpj-c-text-3);
+    --vpj-overlay-scroll-area-track-bg: transparent;
+    --vpj-overlay-scroll-area-track-bg-hover: transparent;
+    --vpj-overlay-scroll-area-track-bg-active: transparent;
+}
+
+/* ---------------------------------------------------------
+   Component: Tag
+*/
+:root {
+    --vpj-tag-bg: var(--vpj-c-indigo-3);
+    --vpj-tag-bg-hover: var(--vpj-c-indigo-3);
+    --vpj-tag-bg-active: var(--vpj-c-indigo-3);
+    --vpj-tag-height: 1.5rem;
+    --vpj-tag-radius: calc(var(--vpj-tag-height) / 2);
+    --vpj-tag-padding-x: calc(var(--vpj-tag-height) / 2);
+    --vpj-tag-cursor: pointer;
+    --vpj-tag-transition: var(--vpj-transition);
+    
+    --vpj-tag-text-color: var(--vpj-c-indigo-1);
+    --vpj-tag-text-color-hover: var(--vpj-c-indigo-1);
+    --vpj-tag-text-color-active: var(--vpj-c-indigo-1);
+    --vpj-tag-text-size: .75rem;
+    --vpj-tag-text-weight: var(--vpj-font-weight-normal);
+}
+
+/* ---------------------------------------------------------
+   Markdown
+*/
+:lang(es),
+:lang(pt) {
+  --vpj-code-copy-copied-text-content: 'Copiado';
+}
+:lang(fa) {
+  --vpj-code-copy-copied-text-content: 'کپی شد';
+}
+:lang(ko) {
+  --vpj-code-copy-copied-text-content: '복사됨';
+}
+:lang(ru) {
+  --vpj-code-copy-copied-text-content: 'Скопировано';
+}
+:lang(zh) {
+  --vpj-code-copy-copied-text-content: '已复制';
+}
+
+:root {
+    --vpj-markdown-color: var(--vpj-c-text-1);
+    --vpj-markdown-line-height: 1.6;
+    --vpj-markdown-size: 16px;
+    --vpj-markdown-transition: var(--vpj-transition);
+    
+    --vpj-markdown-heading-border: var(--vpj-border-width-1) solid var(--vpj-c-gray-2);
+    --vpj-markdown-heading-font-weight: var(--vpj-font-weight-bold);
+    --vpj-markdown-h1-font-size: 2.25em;
+    --vpj-markdown-h2-font-size: 1.75em;
+    --vpj-markdown-h3-font-size: 1.5em;
+    --vpj-markdown-h4-font-size: 1.25em;
+    --vpj-markdown-h5-font-size: 1em;
+    --vpj-markdown-h6-font-size: 1em;
+    
+    --vpj-markdown-header-anchor-color: var(--vpj-c-indigo-1);
+    --vpj-markdown-header-anchor-color-hover: var(--vpj-c-indigo-2);
+    --vpj-markdown-header-anchor-symbol: "#";
+
+    --vpj-markdown-link-color: var(--vpj-c-indigo-1);
+    --vpj-markdown-link-color-hover: var(--vpj-c-indigo-2);
+    
+    --vpj-markdown-blockquote-bg: var(--vpj-c-gray-soft);
+    --vpj-markdown-blockquote-border: var(--vpj-border-width-3) solid var(--vpj-c-divider);
+    --vpj-markdown-blockquote-color: var(--vpj-c-text-2);
+    --vpj-markdown-blockquote-padding: 0 15px;
+
+    --vpj-markdown-table-cell-border: var(--vpj-border-width-1) solid var(--vpj-c-divider);
+    --vpj-markdown-table-cell-padding: 0.375em 0.75em;
+    --vpj-markdown-table-tr-bg: var(--vpj-c-bg);
+    --vpj-markdown-table-tr-even-bg: var(--vpj-c-bg-soft);
+    --vpj-markdown-table-tr-hover-bg: var(--vpj-c-bg-alt);
+    
+    --vpj-markdown-custom-block-radius: var(--vpj-border-radius-2);
+    --vpj-markdown-custom-block-info-bg: var(--vpj-c-bg-soft);
+    --vpj-markdown-custom-block-tip-bg: var(--vpj-c-indigo-soft);
+    --vpj-markdown-custom-block-warning-bg: var(--vpj-c-yellow-soft);
+    --vpj-markdown-custom-block-danger-bg: var(--vpj-c-red-soft);
+    --vpj-markdown-custom-block-details-bg: var(--vpj-c-bg-soft);
+    --vpj-markdown-custom-block-info-code-bg: var(--vpj-c-bg-3);
+    --vpj-markdown-custom-block-tip-code-bg: var(--vpj-c-indigo-3);
+    --vpj-markdown-custom-block-warning-code-bg: var(--vpj-c-yellow-3);
+    --vpj-markdown-custom-block-danger-code-bg: var(--vpj-c-red-3);
+    --vpj-markdown-custom-block-details-code-bg: var(--vpj-c-bg-3);
+    
+    --vpj-markdown-code-inline-bg: var(--vpj-c-bg-alt);
+    --vpj-markdown-code-inline-border: var(--vpj-border-width-1) solid var(--vpj-c-divider);
+    --vpj-markdown-code-block-bg: var(--vpj-c-bg-alt);
+    --vpj-markdown-code-block-radius: var(--vpj-border-radius-2);
+    --vpj-markdown-code-color: var(--vpj-c-text-2);
+    --vpj-markdown-code-copy-bg: var(--vpj-c-bg-alt);
+    --vpj-markdown-code-copy-bg-hover: var(--vpj-c-bg);
+    --vpj-markdown-code-copy-border: var(--vpj-border-width-1) solid var(--vpj-c-divider);
+    --vpj-markdown-code-copy-radius: var(--vpj-border-radius-1);
+    
+    --vpj-markdown-code-copy-icon: url('data:image/svg+xml;utf8,<svg id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" fill="rgba(128, 128, 128, 1)"><path d="m20 20h-20v-17a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3zm-18-2h16v-15a1 1 0 0 0 -1-1h-14a1 1 0 0 0 -1 1zm20-13.816v17.816h-18v2h20v-17a3 3 0 0 0 -2-2.816z"/></svg>');
+    --vpj-markdown-code-copy-copied-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(128, 128, 128, 1)"><g id="_01_align_center" data-name="01 align center"><path d="M7.8,20.53a2.99,2.99,0,0,1-2.121-.877L.086,14.061,1.5,12.646l5.593,5.593a1,1,0,0,0,1.414,0L22.5,4.246,23.914,5.66,9.921,19.653A2.99,2.99,0,0,1,7.8,20.53Z"/></g></svg>');
+
+    --vpj-markdown-hr-bg: var(--vpj-c-divider);
+    --vpj-markdown-hr-height: var(--vpj-border-width-2);
 }

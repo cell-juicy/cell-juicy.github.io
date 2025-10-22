@@ -36,15 +36,12 @@ body {
 .vpj-icon {
     display: inline-block;
     flex-shrink: 0;
-    height: 1rem;
     object-fit: cover;
     object-position: center center;
-    width: 1rem;
 }
 
 .vpj-text {
     flex: 1;
-    line-height: 1.2;
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: middle;
@@ -97,26 +94,39 @@ body {
 .vpj-scroll-x::-webkit-scrollbar-track,
 .vpj-scroll-y::-webkit-scrollbar-track,
 .vpj-scroll-xy::-webkit-scrollbar-track {
-    background-color: transparent;
+    background: var(--vpj-overlay-scroll-area-track-bg);
+}
+
+.vpj-scroll-x::-webkit-scrollbar-track:hover,
+.vpj-scroll-y::-webkit-scrollbar-track:hover,
+.vpj-scroll-xy::-webkit-scrollbar-track:hover {
+    background: var(--vpj-overlay-scroll-area-track-bg-hover);
+}
+
+.vpj-scroll-x::-webkit-scrollbar-track:active,
+.vpj-scroll-y::-webkit-scrollbar-track:active,
+.vpj-scroll-xy::-webkit-scrollbar-track:active {
+    background: var(--vpj-overlay-scroll-area-track-bg-active);
 }
 
 /* 自定义滚动条滑块 */
 .vpj-scroll-x::-webkit-scrollbar-thumb,
 .vpj-scroll-y::-webkit-scrollbar-thumb,
 .vpj-scroll-xy::-webkit-scrollbar-thumb {
-    background-color: var(--vpj-color-text-100);
+    background: var(--vpj-overlay-scroll-area-thumb-bg);
     border-radius: 2px;
+    opacity: var(--vpj-overlay-scroll-area-opacity-visible);
 }
 
 /* 自定义滚动条滑块的:hover与:active伪类 */
 .vpj-scroll-x::-webkit-scrollbar-thumb:hover,
 .vpj-scroll-y::-webkit-scrollbar-thumb:hover,
 .vpj-scroll-xy::-webkit-scrollbar-thumb:hover {
-    background-color: var(--vpj-color-text-200);
+    background: var(--vpj-overlay-scroll-area-thumb-bg-hover);
 }
 
 .vpj-scroll-x::-webkit-scrollbar-thumb:active,
 .vpj-scroll-y::-webkit-scrollbar-thumb:active,
 .vpj-scroll-xy::-webkit-scrollbar-thumb:active {
-    background-color: var(--vpj-color-text-300);
+    background: var(--vpj-overlay-scroll-area-thumb-bg-active);
 }

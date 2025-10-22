@@ -65,32 +65,32 @@ const text = computed(() => {
 <style scoped>
     .vpj-blog-tag {
         align-items: center;
-        background-color: var(--vpj-color-primary-100);
-        border-radius: .75rem;
+        background: var(--vpj-tag-bg);
+        border-radius: var(--vpj-tag-radius);
         display: inline-flex;
         flex-shrink: 0;
-        height: 1.5rem;
-        padding-left: .75rem;
-        padding-right: .75rem;
+        height: var(--vpj-tag-height);
+        padding-inline: var(--vpj-tag-padding-x);
         vertical-align: middle;
         width: auto;
     }
 
     .vpj-blog-tag:hover {
-        background-color: var(--vpj-color-primary-200);
+        background: var(--vpj-tag-bg-hover);
     }
 
     .vpj-blog-tag:active {
-        background-color: var(--vpj-color-primary-300);
+        background: var(--vpj-tag-bg-active);
     }
 
     .vpj-blog-tag .vpj-text {
-        color: var(--vpj-color-primary-500);
-        font-size: .75rem;
+        color: var(--vpj-tag-text-color);
+        font-size:var(--vpj-tag-text-size);
+        font-weight: var(--vpj-tag-text-weight);
     }
 
     .vpj-blog-tag:hover .vpj-text,
     .vpj-blog-tag:active .vpj-text{
-        color: var(--vpj-color-primary-600);
+        color: var(--vpj-tag-text-color-hover);
     }
 </style>

@@ -80,6 +80,11 @@ const icon = computed(() => {
         flex-shrink: 0;
         height: var(--vpj-article-aside-tab-resources-item-height);
         text-decoration: none;
+        transition:
+            background var(--vpj-article-aside-tab-resources-transition),
+            border var(--vpj-article-aside-tab-resources-transition),
+            box-shadow var(--vpj-article-aside-tab-resources-transition),
+            transform var(--vpj-article-aside-tab-resources-transition);
     }
 
     .vpj-article-aside__aside-resource:hover,
