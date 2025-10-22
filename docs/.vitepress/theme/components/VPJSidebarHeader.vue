@@ -325,7 +325,7 @@ onMounted(() => {
             bottom: auto;
             left: var(--vpj-sidebar-padding-x);
             right: var(--vpj-sidebar-padding-x);
-            top: var(--vpj-sidebar-padding-y);
+            top: var(--vpj-sidebar-padding-top);
             min-width: none;
             max-width: none;
         }

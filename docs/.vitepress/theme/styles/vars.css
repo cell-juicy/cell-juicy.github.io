@@ -20,7 +20,7 @@
 :root {
     --vpj-c-gray-1: #dddde3;
     --vpj-c-gray-2: #e4e4e9;
-    --vpj-c-text-3: #ebebef;
+    --vpj-c-gray-3: #ebebef;
     --vpj-c-gray-soft: rgba(142, 150, 170, .14);
 
     --vpj-c-indigo-1: #3451b2;
@@ -162,6 +162,23 @@
 
 */
 :root {
+    --vpj-font-family-base: "Inter", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --vpj-font-family-mono: "JetBrains Mono", ui-monospace, "Menlo",
+        "Monaco", "Consolas", "Courier New", monospace;
+    font-optical-sizing: auto;
+}
+
+:root:where(:lang(zh)) {
+    --vpj-font-family-base: "Punctuation SC", "Inter", ui-sans-serif, system-ui,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+/* ---------------------------------------------------------
+
+*/
+:root {
     --vpj-font-size: 16px;
 }
 
@@ -171,11 +188,9 @@
 :root {
     --vpj-font-weight-thin: 100;
     --vpj-font-weight-light: 300;
-    --vpj-font-weight-medium: 400;
+    --vpj-font-weight-normal: 400;
     --vpj-font-weight-semibold: 600;
     --vpj-font-weight-bold: 700;
-
-    --vpj-font-weight-normal: var(--vpj-font-weight-medium);
 }
 
 /* ---------------------------------------------------------
@@ -221,7 +236,8 @@
     --vpj-sidebar-overlay: var(--vpj-overlay);
     --vpj-sidebar-overlay-z-index: var(--vpj-z-index-2);
     --vpj-sidebar-padding-x: .75rem;
-    --vpj-sidebar-padding-y: .75rem .5rem;
+    --vpj-sidebar-padding-bottom: .5rem;
+    --vpj-sidebar-padding-top: .75rem;
     --vpj-sidebar-transition: var(--vpj-transition);
     --vpj-sidebar-width: min(16.5rem, 35vw);
     --vpj-sidebar-width-collapsed: 3.5rem;
@@ -896,7 +912,7 @@
 :root {
     --vpj-markdown-color: var(--vpj-c-text-1);
     --vpj-markdown-line-height: 1.6;
-    --vpj-markdown-size: 16px;
+    --vpj-markdown-size: var(--vpj-font-size);
     --vpj-markdown-transition: var(--vpj-transition);
     
     --vpj-markdown-heading-border: var(--vpj-border-width-1) solid var(--vpj-c-gray-2);

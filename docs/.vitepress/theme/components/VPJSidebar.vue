@@ -65,7 +65,8 @@ provide(VPJ_SIDEBAR_SYMBOL, {
         flex-shrink: 0;
         height: 100%;
         min-height: 0;
-        padding-block: var(--vpj-sidebar-padding-y);
+        padding-bottom: var(--vpj-sidebar-padding-bottom);
+        padding-top: var(--vpj-sidebar-padding-top);
         transition:
             width var(--vpj-sidebar-transition),
             transform var(--vpj-sidebar-transition);
@@ -99,7 +100,7 @@ provide(VPJ_SIDEBAR_SYMBOL, {
 
         /* Overlay */
         .vpj-sidebar__overlay {
-            background-color: var(--vpj-sidebar-overlay);
+            background: var(--vpj-sidebar-overlay);
             display: block;
             position: fixed;
             bottom: 0;

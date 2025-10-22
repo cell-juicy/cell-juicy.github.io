@@ -280,6 +280,7 @@
     background-color: var(--vpj-markdown-code-inline-bg);
     border: var(--vpj-markdown-code-inline-border);
     border-radius: var(--vpj-border-radius-1);
+    font-family: var(--vpj-font-family-mono);
     font-size: 0.9em;
     padding: 0;
     padding: .125em .25em .125em .25em;
@@ -379,6 +380,7 @@
 .vpj-markdown div[class*=language-] pre {
     background: transparent;
     background-color: var(--shiki-light-bg, inherit);
+    font-family: var(--vpj-font-family-mono);
     margin: 0;
     overflow-x: auto;
     padding: 1.25em 0;
@@ -393,6 +395,7 @@
 .vpj-markdown div[class*=language-] code {
     color: var(--vpj-c-text-3);
     display: block;
+    font-family: var(--vpj-font-family-mono);
     font-size: .875em;
     line-height: 1.6;
     min-width: 100%;
@@ -451,24 +454,35 @@
 }
 
 .vpj-markdown div[class*=language-]:hover .has-focused-lines span.line:not(.has-focus) {
-    filter: blur();
+    filter: blur(0);
     opacity: 1;
 }
 
 /* Code Diff(Add/Remove) */
-.vpj-markdown div[class*=language-] span.line.diff {
+.vpj-markdown div[class*=language-] code span.line.diff {
     display: inline-block;
     margin: 0 -1.5em;
     padding: 0 1.5em;
     width: calc(100% + 3em);
 }
 
-.vpj-markdown div[class*=language-] span.line.diff.add {
+.vpj-markdown div[class*=language-] code span.line.diff.add {
     background-color: var(--vpj-c-green-soft);
 }
 
-.vpj-markdown div[class*=language-] span.line.diff.remove {
+.vpj-markdown div[class*=language-] code span.line.diff.add::before {
+    content: '+';
+    color: var(--vpj-c-green-3);
+}
+
+.vpj-markdown div[class*=language-] code span.line.diff.remove {
     background-color: var(--vpj-c-red-soft);
+    opacity: 0.7;
+}
+
+.vpj-markdown div[class*=language-] code span.line.diff.remove::before {
+    content: '-';
+    color: var(--vpj-c-red-3);
 }
 
 /* Code Line Number */
