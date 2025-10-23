@@ -169,8 +169,8 @@ export default defineConfigWithTheme<ThemeConfig>({
                     "18": {treeTitle: "第18章 勒贝格测度"},
                     "19": {treeTitle: "第19章 勒贝格积分"}
                 },
-                next: "上一节",
-                prev: "下一节",
+                next: "下一节",
+                prev: "上一节",
                 editLink: {
                     text: "发现错误？在Github上与我们交流"
                 },

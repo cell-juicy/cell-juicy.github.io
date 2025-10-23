@@ -149,8 +149,8 @@ const DEFAULT = {
         },
         FOOTER: undefined,
         EDITLINK: undefined,
-        NEXT: "下一页",
-        PREV: "上一页",
+        NEXT: "Next",
+        PREV: "Previous",
         TIMELABEL: undefined,
     },
 };
@@ -185,7 +185,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             : undefined
     });
     const defaultConfig = computed(() => {
-        if (layout.value) return DEFAULT[layout.value.toUpperCase()]
+        // @ts-ignore
+        if (layout.value) return DEFAULT[layout.value.toUpperCase()];
         return {};
     });
     const layoutConfig: ComputedRef<VPJBlogLayoutConfig|VPJDocLayoutConfig|VPJPageLayoutConfig> = computed(() => {
