@@ -546,7 +546,7 @@
     
     --vpj-article-header-time-label-color: var(--vpj-c-text-2);
     --vpj-article-header-time-label-margin-left: 1rem;
-    --vpj-article-header-time-label-size: 1rem;
+    --vpj-article-header-time-label-size: .875rem;
     --vpj-article-header-time-label-weight: var(--vpj-font-weight-normal);
 }
 
@@ -593,7 +593,7 @@
     --vpj-article-footer-edit-link-text-weight: var(--vpj-font-weight-normal);
     
     --vpj-article-footer-time-color: var(--vpj-c-text-2);
-    --vpj-article-footer-time-size: 1rem;
+    --vpj-article-footer-time-size: .875rem;
     --vpj-article-footer-time-weight: var(--vpj-font-weight-normal);
 }
 
@@ -894,19 +894,19 @@
 */
 :lang(es),
 :lang(pt) {
-  --vpj-code-copy-copied-text-content: 'Copiado';
+  --vpj-code-copy-copied-text-content: "Copiado";
 }
 :lang(fa) {
-  --vpj-code-copy-copied-text-content: 'کپی شد';
+  --vpj-code-copy-copied-text-content: "کپی شد";
 }
 :lang(ko) {
-  --vpj-code-copy-copied-text-content: '복사됨';
+  --vpj-code-copy-copied-text-content: "복사됨";
 }
 :lang(ru) {
-  --vpj-code-copy-copied-text-content: 'Скопировано';
+  --vpj-code-copy-copied-text-content: "Скопировано";
 }
 :lang(zh) {
-  --vpj-code-copy-copied-text-content: '已复制';
+  --vpj-code-copy-copied-text-content: "已复制";
 }
 
 :root {
