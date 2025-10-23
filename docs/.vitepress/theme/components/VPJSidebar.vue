@@ -1,9 +1,7 @@
 <script setup>
-import { provide } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useVPJSidebar } from '../composables/useVPJSidebar';
-import { VPJ_SIDEBAR_SYMBOL } from '../utils/symbols';
 
 import VPJSidebarHeader from './VPJSidebarHeader.vue';
 import VPJSidebarNav from './VPJSidebarNav.vue';
@@ -13,14 +11,9 @@ import VPJSidebarFooter from './VPJSidebarFooter.vue';
 const store = useVPJSidebar();
 const {
     collapsed,
-    highlight,
     enabled,
 } = storeToRefs(store);
 const { close } = store;
-
-provide(VPJ_SIDEBAR_SYMBOL, {
-    highlight,
-});
 </script>
 
 

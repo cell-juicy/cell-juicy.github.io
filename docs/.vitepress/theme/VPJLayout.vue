@@ -3,6 +3,7 @@ import { useRoute } from 'vitepress';
 import { nextTick, watch, onMounted, onUnmounted } from 'vue';
 import { storeToRefs } from 'pinia';
 
+import { useVPJData } from './composables/useVPJData';
 import { useVPJLayout } from './composables/useVPJLayout';
 import { useVPJSidebar } from './composables/useVPJSidebar';
 
@@ -26,6 +27,7 @@ function scrollToAnchor() {
 
 
 const route = useRoute();
+const { subTheme } = useVPJData();
 const layoutStore = useVPJLayout();
 const sidebarStore = useVPJSidebar();
 const { panelCollapsed } = storeToRefs(layoutStore);
@@ -38,6 +40,9 @@ const stopPanelWatcher = watch(panelCollapsed, (newState) => {
 const stopSidebarWatcher = watch(sidebarCollapsed, (newState) => {
     if (!newState && !panelCollapsed.value) layoutStore.panelClose();
 });
+const stopSubthemeWatcher = watch(subTheme, (newThemeName) => {
+    if (typeof document !== undefined) document.documentElement.setAttribute("data-vpj-subtheme", newThemeName)
+}, { immediate: true });
 
 onMounted(() => {
     setTimeout(scrollToAnchor, 200)
@@ -45,10 +50,11 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    window.removeEventListener("hashchange", scrollToAnchor)
+    window.removeEventListener("hashchange", scrollToAnchor);
     stopAnchorWatcher();
     stopPanelWatcher();
     stopSidebarWatcher();
+    stopSubthemeWatcher();
 });
 </script>
 
