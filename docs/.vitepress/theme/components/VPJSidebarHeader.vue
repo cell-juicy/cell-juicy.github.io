@@ -4,6 +4,8 @@ import { storeToRefs } from 'pinia';
 
 import { useVPJSidebar } from '../composables/useVPJSidebar';
 
+import VPJSidebarSwitch from './VPJSidebarSwitch.vue';
+
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 import VPJDynamicIcon from './VPJDynamicIcon.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
@@ -71,17 +73,18 @@ onMounted(() => {
                 :icon="config.profile.logo"
                 :text="config.profile.title"
                 ref="profileBtn"
-                class="vpj-sidebar__header-btn"
+                class="vpj-sidebar__btn"
                 data-action="profile"
                 :disabled="!config.profile.enabled"
             />
             <VPJDynamicIconBtn
                 @click="toggle" 
                 :icon="toggleBtnIcon" 
-                class="vpj-sidebar__header-btn" 
+                class="vpj-sidebar__btn collapsed" 
                 data-action="toggle"
             />
         </div>
+        <VPJSidebarSwitch class="vpj-sidebar__header-container"/>
         <slot name="sidebar-header-bottom"/>
     </header>
     <Teleport to=".vpj-portals-root">
@@ -136,52 +139,11 @@ onMounted(() => {
     /* Row Container */
     .vpj-sidebar__header-container {
         display: flex;
-        flex: 1;
+        flex-shrink: 0;
         flex-direction: row;
         gap: var(--vpj-sidebar-header-gap);
         width: 100%;
         transition: gap var(--vpj-sidebar-transition);
-    }
-
-    /* Button style */
-    .vpj-sidebar__header-btn {
-        background: var(--vpj-sidebar-btn-bg);
-        border: var(--vpj-sidebar-btn-border);
-        border-radius: var(--vpj-sidebar-btn-radius);
-        flex: 1;
-        gap: var(--vpj-sidebar-btn-gap);
-        height: var(--vpj-sidebar-btn-height);
-        min-width: 0;
-        padding: calc((var(--vpj-sidebar-btn-height) - max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-btn-text-size))) / 2);
-        transition: padding var(--vpj-sidebar-transition);
-    }
-
-    .vpj-sidebar__header-btn:hover,
-    .vpj-sidebar__header-btn:active {
-        background: var(--vpj-sidebar-btn-bg-hover);
-    }
-
-    /* Button Icon style */
-    .vpj-sidebar__header-btn :deep(.vpj-icon) {
-        height: var(--vpj-sidebar-btn-icon-size);
-        fill: var(--vpj-sidebar-btn-icon-color);
-        margin-left: calc((max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-btn-text-size)) - var(--vpj-sidebar-btn-icon-size)) / 2);
-        width: var(--vpj-sidebar-btn-icon-size);
-    }
-
-    .vpj-sidebar__header-btn:hover :deep(.vpj-icon),
-    .vpj-sidebar__header-btn:active :deep(.vpj-icon) {
-        fill: var(--vpj-sidebar-btn-icon-color-hover);
-    }
-
-    /* Button Text style */
-    .vpj-sidebar__header-btn :deep(.vpj-text) {
-        color: var(--vpj-sidebar-btn-text-color);
-        font-size: var(--vpj-sidebar-btn-text-size);
-        font-weight: var(--vpj-sidebar-btn-text-weight);
-        margin-right: calc((max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-btn-text-size)) - var(--vpj-sidebar-btn-text-size)) / 2);
-        opacity: 1;
-        transition: opacity var(--vpj-sidebar-transition);
     }
 
     .vpj-sidebar__header-profile-overlay {
@@ -214,37 +176,24 @@ onMounted(() => {
 
     /* Profile button */
     [data-action="profile"] {
-        padding: calc((var(--vpj-sidebar-btn-height) - max(var(--vpj-sidebar-header-profile-btn-icon-size), var(--vpj-sidebar-btn-text-size))) / 2);
-        transition: width var(--vpj-sidebar-transition);
+        --vpj-sidebar-header-profile-content-size: max(var(--vpj-sidebar-header-profile-btn-icon-size), var(--vpj-sidebar-btn-text-size));
+
+        padding: calc((var(--vpj-sidebar-btn-height) - var(--vpj-sidebar-header-profile-content-size)) / 2);
     }
 
     [data-action="profile"] :deep(.vpj-text) {
         font-weight: var(--vpj-sidebar-header-profile-btn-text-weight);
-        text-align: start;
     }
 
     [data-action="profile"] :deep(.vpj-icon) {
         border-radius: var(--vpj-sidebar-header-profile-btn-icon-radius);
         height: var(--vpj-sidebar-header-profile-btn-icon-size);
-        margin-left: calc((max(var(--vpj-sidebar-header-profile-btn-icon-size), var(--vpj-sidebar-btn-text-size)) - var(--vpj-sidebar-header-profile-btn-icon-size)) / 2);
+        margin-left: calc((var(--vpj-sidebar-header-profile-content-size) - var(--vpj-sidebar-header-profile-btn-icon-size)) / 2);
         width: var(--vpj-sidebar-header-profile-btn-icon-size);
     }
 
-    .vpj-sidebar__header.collapsed [data-action="profile"] {
-        width: calc(var(--vpj-sidebar-width-collapsed) - 2 * var(--vpj-sidebar-padding-x));
-        margin-left: 0;
-        padding-left: calc((var(--vpj-sidebar-width-collapsed) - var(--vpj-sidebar-header-profile-btn-icon-size))/2 - var(--vpj-sidebar-padding-x));
-    }
-
-    /* Toggle button */
-    [data-action="toggle"] {
-        flex: 0 0 auto;
-        padding-left: calc((var(--vpj-sidebar-width-collapsed) - var(--vpj-sidebar-btn-icon-size))/2 - var(--vpj-sidebar-padding-x));
-        width: calc(var(--vpj-sidebar-width-collapsed) - 2 * var(--vpj-sidebar-padding-x));
-    }
-
-    [data-action="toggle"] :deep(.vpj-icon) {
-        margin-left: 0;
+    .collapsed [data-action="profile"] {
+        padding-left: calc((var(--vpj-sidebar-width-collapsed) - var(--vpj-sidebar-header-profile-btn-icon-size)) / 2 - var(--vpj-sidebar-padding-x));
     }
 
     /* Profile Card */

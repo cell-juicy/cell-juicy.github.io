@@ -290,7 +290,7 @@
     --vpj-sidebar-item-highlight-hover: var(--vpj-c-indigo-2);
     --vpj-sidebar-item-highlight-active: var(--vpj-c-indigo-1);
 
-    --vpj-sidebar-header-gap: .25rem;
+    --vpj-sidebar-header-gap: .375rem;
     --vpj-sidebar-header-gap-collapsed: .625rem;
     --vpj-sidebar-header-profile-btn-gap: .4rem;
     --vpj-sidebar-header-profile-btn-icon-size: 1.4rem;
@@ -319,14 +319,14 @@
     --vpj-sidebar-footer-links-gap: .2rem;
     --vpj-sidebar-footer-links-gap-collapsed: .375rem;
     --vpj-sidebar-footer-social-links-gap: .1rem;
-    --vpj-sidebar-footer-social-links-margin-top: .375rem;
+    --vpj-sidebar-footer-social-links-margin-bottom: .375rem;
     --vpj-sidebar-footer-social-links-mask: linear-gradient(to right,
         transparent 0,
         black var(--vpj-sidebar-footer-social-links-padding-x),
         black calc(100% - var(--vpj-sidebar-footer-social-links-padding-x)),
         transparent 100%
     );
-    --vpj-sidebar-footer-social-links-padding-x: .5rem;
+    --vpj-sidebar-footer-social-links-padding-x: .75rem;
 }
 
 /* ---------------------------------------------------------
