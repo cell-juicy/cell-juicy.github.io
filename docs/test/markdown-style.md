@@ -38,6 +38,23 @@ layout: page
 [ref]: https://github.com/vuejs
 
 ## 代码块
+
+孩子们，溢出并不好笑：
+
+```js
+// 这是一个正常的代码行
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+// 下面这行特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别特别长
+const superLongVariableNameThatIsIntentionallyExcessivelyLongToTestHorizontalScrollingOrWrappingBehaviorInCodeBlocks = "this-is-a-very-long-string-used-for-testing-purposes-only";
+
+// 回到正常代码
+export default greet;
+
+```
+
 ### 一般语法
 
 ```js
