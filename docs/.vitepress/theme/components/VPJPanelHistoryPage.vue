@@ -21,7 +21,7 @@ const route = useRoute();
 
 const fileData = computed(() => {
     if (data[route.path]) return data[route.path];
-    return { history: []};
+    return { history: [] };
 });
 
 // Fetch user config

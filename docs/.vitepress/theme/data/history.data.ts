@@ -3,46 +3,7 @@ import path from 'node:path'
 import { execFileSync } from 'node:child_process'
 
 import type { SiteConfig } from 'vitepress';
-
-
-type FileInfo = 
-    | {
-        status: "A" | "M" | "D" | "T" | "U" | "X",
-        path: string,
-    }
-    | {
-        status: "R" | "C",
-        from: string,
-        to: string,
-        similarity: number
-    }
-
-type CommitInfo = 
-    | {
-        time: number,
-        hash: string,
-        author: string,
-        message: string,
-        status: "A" | "M" | "D" | "T" | "U" | "X"
-    }
-    | {
-        time: number,
-        hash: string,
-        author: string,
-        message: string,
-        status: "R" | "C",
-        similarity: number,
-        from: string,
-    }
-    | {
-        time: number,
-        hash: string,
-        author: string,
-        message: string,
-        status: "R" | "C",
-        similarity: number,
-        to: string,
-    }
+import type { FileInfo, CommitInfo } from '../types/common';
 
 interface HistoryEntry {
     path: string,
@@ -73,7 +34,7 @@ export default {
                 ["log", "--name-status", "-z", "--format=%n%x00%x00%x00%ct%x00%x00%h%x00%x00%an%x00%x00%s%x00%x00%n", "--", "*.md"],
                 { encoding: "utf-8" }
             );
-        } catch (e) {
+        } catch (e: any) {
             if (e.code === "ENOENT") {
                 console.warn("[Juicy Theme] Error: Git is not installed or not available in PATH. Please install Git to use this feature.");
                 return result;
