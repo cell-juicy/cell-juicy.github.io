@@ -232,11 +232,12 @@
 */
 :root {
     --vpj-sidebar-bg: var(--vpj-c-gray-3);
+    --vpj-sidebar-bg-collapsed: var(--vpj-c-gray-3);
     --vpj-sidebar-border: var(--vpj-border);
     --vpj-sidebar-overlay: var(--vpj-overlay);
     --vpj-sidebar-overlay-z-index: var(--vpj-z-index-2);
     --vpj-sidebar-padding-x: .75rem;
-    --vpj-sidebar-padding-bottom: .5rem;
+    --vpj-sidebar-padding-bottom: 1.25rem;
     --vpj-sidebar-padding-top: .75rem;
     --vpj-sidebar-transition: var(--vpj-transition);
     --vpj-sidebar-width: min(16.5rem, 35vw);
@@ -254,7 +255,7 @@
     --vpj-sidebar-btn-icon-size: 1rem;
     --vpj-sidebar-btn-radius: var(--vpj-border-radius-1);
     --vpj-sidebar-btn-text-color: var(--vpj-c-text-1);
-    --vpj-sidebar-btn-text-color-hover: var(--vpj-c-text-1);
+    --vpj-sidebar-btn-text-color-hover: var(--vpj-c-text-2);
     --vpj-sidebar-btn-text-weight: var(--vpj-font-weight-normal);
     --vpj-sidebar-btn-text-size: .875rem;
 
@@ -296,6 +297,35 @@
     --vpj-sidebar-header-profile-btn-icon-size: 1.4rem;
     --vpj-sidebar-header-profile-btn-icon-radius: var(--vpj-border-radius-1);
     --vpj-sidebar-header-profile-btn-text-weight: var(--vpj-font-weight-semibold);
+
+    --vpj-sidebar-header-switch-gap: var(--vpj-sidebar-btn-gap);
+    --vpj-sidebar-header-switch-brightness-bg: var(--vpj-c-gray-2);
+    --vpj-sidebar-header-switch-brightness-border: var(--vpj-c-border);
+    --vpj-sidebar-header-switch-brightness-border-hover: var(--vpj-c-indigo-1);
+    --vpj-sidebar-header-switch-brightness-toggle-bg: var(--vpj-c-bg);
+    --vpj-sidebar-header-switch-brightness-height: 1.5rem;
+    --vpj-sidebar-header-switch-label-color: var(--vpj-c-text-1);
+    --vpj-sidebar-header-switch-label-weight: var(--vpj-font-weight-semibold);
+    --vpj-sidebar-header-switch-marker-color: var(--vpj-sidebar-btn-icon-color);
+    --vpj-sidebar-header-switch-marker-color-hover: var(--vpj-sidebar-btn-icon-color-hover);
+    --vpj-sidebar-header-switch-marker-size: .75rem;
+    --vpj-sidebar-header-switch-menu-bg: var(--vpj-c-bg);
+    --vpj-sidebar-header-switch-menu-border: var(--vpj-border-width-1) solid var(--vpj-c-border);
+    --vpj-sidebar-header-switch-menu-radius: var(--vpj-border-radius-2);
+    --vpj-sidebar-header-switch-menu-shadow: var(--vpj-shadow-2);
+    --vpj-sidebar-header-switch-menu-padding: .5rem;
+    --vpj-sidebar-header-switch-menu-z-index: var(--vpj-z-index-4);
+    --vpj-sidebar-header-switch-menu-gap: .25rem;
+    --vpj-sidebar-header-switch-option-bg: transparent;
+    --vpj-sidebar-header-switch-option-bg-hover: var(--vpj-sidebar-btn-bg-hover);
+    --vpj-sidebar-header-switch-option-font-color: var(--vpj-c-text-1);
+    --vpj-sidebar-header-switch-option-font-size: .9rem;
+    --vpj-sidebar-header-switch-option-font-weight: var(--vpj-font-weight-normal);
+    --vpj-sidebar-header-switch-option-selected-font-color: var(--vpj-c-indigo-1);
+    --vpj-sidebar-header-switch-option-selected-font-size: .9rem;
+    --vpj-sidebar-header-switch-option-selected-font-weight: var(--vpj-font-weight-semibold);
+    --vpj-sidebar-header-switch-option-padding: .35rem 1.75rem;
+    --vpj-sidebar-header-switch-option-radius: var(--vpj-border-radius-1);
 
     --vpj-sidebar-header-nav-gap: .75rem;
 

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref, useTemplateRef } from 'vue';
+import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useVPJSidebar } from '../composables/useVPJSidebar';
@@ -21,42 +21,34 @@ const {
 } = storeToRefs(store);
 const { toggle } = store;
 
-// Toggle button
 const toggleBtnIcon = computed(() => collapsed.value ? VPJIconAngleSqureRight : VPJIconAngleSquareLeft);
 
-// Profile button
-const profileBtn = useTemplateRef('profileBtn');
+const profileBtn = useTemplateRef("profileBtn");
 const profileVisible = ref(false);
 const profileProsition = ref({
-    bottom: 'auto',
-    left: 'auto',
-    right: 'auto',
-    top: 'auto'
-})
-
-
-onMounted(() => {
-    if (profileBtn.value) {
-        if (config.value.profile?.enabled) {
-            // add EventListener to profile button
-            profileBtn.value.elementSelf.addEventListener('click', () => {
-                const rect = profileBtn.value.elementSelf.getBoundingClientRect();
-                if (rect.bottom + 355 < window.innerHeight) {
-                    profileProsition.value.bottom = 'auto';
-                    profileProsition.value.left = rect.left + 'px';
-                    profileProsition.value.right = 'auto';
-                    profileProsition.value.top = rect.bottom + 4 + 'px';
-                } else {
-                    profileProsition.value.bottom = window.innerHeight - rect.top + 4 + 'px';
-                    profileProsition.value.left = rect.left + 'px';
-                    profileProsition.value.right = 'auto';
-                    profileProsition.value.top = 'auto';
-                }
-                profileVisible.value = !profileVisible.value;
-            });
-        };
-    };
+    bottom: "auto",
+    left: "auto",
+    right: "auto",
+    top: "auto"
 });
+
+
+function toggleProfileCard() {
+    if (!profileBtn.value) return;
+
+    const rect = profileBtn.value.elementSelf.getBoundingClientRect();
+    if (rect.bottom + 355 < window.innerHeight) {
+        profileProsition.value.bottom = "auto";
+        profileProsition.value.top = `calc(${rect.bottom}px + var(--vpj-sidebar-header-gap))`;
+    } else {
+        profileProsition.value.bottom = `calc(${window.innerHeight - rect.top}px + var(--vpj-sidebar-header-gap))`;
+        profileProsition.value.top = "auto";
+    };
+    profileProsition.value.left = rect.left + "px";
+    profileProsition.value.right = "auto";
+
+    profileVisible.value = !profileVisible.value;
+};
 </script>
 
 
@@ -70,6 +62,7 @@ onMounted(() => {
         <slot name="sidebar-header-top"/>
         <div class="vpj-sidebar__header-container">
             <VPJDynamicIconBtn
+                @click="toggleProfileCard"
                 :icon="config.profile.logo"
                 :text="config.profile.title"
                 ref="profileBtn"

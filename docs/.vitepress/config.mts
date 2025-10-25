@@ -199,5 +199,8 @@ export default defineConfigWithTheme<ThemeConfig>({
         asideCollapsed: {
             desktop: false,
         },
+        subThemes: {
+            default: "默认主题",
+        },
     },
 })

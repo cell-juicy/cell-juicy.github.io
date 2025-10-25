@@ -397,4 +397,6 @@ export interface ThemeConfig {
     timeLabel?:
         | string
         | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
+
+    subThemes?: Record<string, string>;
 }

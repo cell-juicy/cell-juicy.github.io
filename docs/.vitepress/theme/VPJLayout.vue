@@ -24,6 +24,10 @@ function scrollToAnchor() {
         });
     };
 };
+function updateSubTheme(subThemeName) {
+    if (!document) return;
+    document.documentElement.setAttribute("data-vpj-subtheme", subThemeName);
+}
 
 
 const route = useRoute();
@@ -40,12 +44,12 @@ const stopPanelWatcher = watch(panelCollapsed, (newState) => {
 const stopSidebarWatcher = watch(sidebarCollapsed, (newState) => {
     if (!newState && !panelCollapsed.value) layoutStore.panelClose();
 });
-const stopSubthemeWatcher = watch(subTheme, (newThemeName) => {
-    if (typeof document !== undefined) document.documentElement.setAttribute("data-vpj-subtheme", newThemeName)
-}, { immediate: true });
+const stopSubthemeWatcher = watch(subTheme, updateSubTheme);
+
 
 onMounted(() => {
-    setTimeout(scrollToAnchor, 200)
+    updateSubTheme(subTheme.value);
+    setTimeout(scrollToAnchor, 200);
     window.addEventListener("hashchange", scrollToAnchor)
 });
 

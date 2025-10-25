@@ -504,4 +504,8 @@ export type ComponentFallbackConfig = {
         component?: string;
         empty?: string;
     }
+
+    switch?: {
+        invalidSubThemeLabel?: string;
+    };
 };
