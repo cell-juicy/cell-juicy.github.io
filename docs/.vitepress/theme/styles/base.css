@@ -1,5 +1,6 @@
 /* 通用样式 */
 html {
+    background: var(--vpj-c-neutral-inverse);
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -9,6 +10,10 @@ html {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark {
+    color-scheme: dark;
 }
 
 body {

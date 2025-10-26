@@ -69,7 +69,7 @@ const { close } = store;
 
     /* StyleSheet for collapsed state */
     .vpj-sidebar.collapsed {
-        background: var(--vpj-sidebar-bg-collapsed);
+        background: var(--vpj-sidebar-bg-collapsed, var(--vpj-sidebar-bg));
         width: var(--vpj-sidebar-width-collapsed);
     }
 

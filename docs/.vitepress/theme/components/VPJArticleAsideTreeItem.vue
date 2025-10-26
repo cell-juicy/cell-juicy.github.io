@@ -153,7 +153,17 @@ const collapsed = ref(false);
 
     .vpj-article-aside__aside-doc-node-toggle:hover,
     .vpj-article-aside__aside-doc-node-toggle:active {
-        background-color: var(--vpj-article-aside-tab-tree-node-toggle-bg-hover);
+        background: var(--vpj-article-aside-tab-tree-node-toggle-bg-hover);
+    }
+
+    .vpj-article-aside__aside-doc-node-toggle:hover :deep(.vpj-icon),
+    .vpj-article-aside__aside-doc-node-toggle:active :deep(.vpj-icon) {
+        fill: var(--vpj-article-aside-tab-tree-node-toggle-icon-color-hover);
+    }
+
+    .vpj-article-aside__aside-doc-node-link:hover .vpj-article-aside__aside-doc-node-mark,
+    .vpj-article-aside__aside-doc-node-link:active .vpj-article-aside__aside-doc-node-mark {
+        fill: var(--vpj-article-aside-tab-tree-node-toggle-icon-color-hover);
     }
 
     .vpj-article-aside__aside-doc-node-toggle.collapsed :deep(.vpj-icon) {

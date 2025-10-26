@@ -15,7 +15,7 @@ import { createHead } from "@unhead/vue/client";
 
 // Global stylesheet
 import "./styles/vars.css";
-import "./styles/general.css";
+import "./styles/base.css";
 import "./styles/markdown.css";
 
 

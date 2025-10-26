@@ -50,14 +50,14 @@ const {
 
     .vpj-footer__message :deep(a),
     .vpj-footer__copyright :deep(a) {
-        text-decoration-line: var(--vpj-footer-link-decoration);
-        text-underline-offset: var(--vpj-footer-link-underline-offset);
+        text-decoration: underline;
+        text-underline-offset: 2px;
         color: var(--vpj-footer-link-color);
         transition: color var(--vpj-footer-link-transition);
     }
 
-    .vpj-footer__message :deep(a:hover),
-    .vpj-footer__copyright :deep(a:hover) {
+    .vpj-footer__message :deep(a:hover), .vpj-footer__message :deep(a:active),
+    .vpj-footer__copyright :deep(a:hover), .vpj-footer__copyright :deep(a:active) {
         color: var(--vpj-footer-link-color-hover);
     }
 

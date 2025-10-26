@@ -147,7 +147,7 @@ function toggleProfileCard() {
         left: 0;
         right: 0;
         top: 0;
-        z-index: var(--vpj-sidebar-profile-overlay-z-index);
+        z-index: var(--vpj-sidebar-profile-z-index);
     }
 
     /* StyleSheet for collapsed state */
@@ -206,7 +206,6 @@ function toggleProfileCard() {
         top: v-bind("profileProsition.top");
         max-width: var(--vpj-sidebar-profile-width);
         max-height: 355px;
-        z-index: var(--vpj-sidebar-profile-z-index);
     }
 
     /* Header */

@@ -55,6 +55,21 @@ export default greet;
 
 ```
 
+横向溢出眉目了：
+
+$$
+\displaystyle
+\sum_{n=1}^{N}\frac{(-1)^n}{n!}\int_{0}^{\infty}\left(\prod_{k=1}^{n}\frac{\Gamma!\left(\frac{k}{n}+a_k\right)}{\Gamma!\left(1+\frac{k}{n}-b_k\right)}\right)
+\exp!\Bigg(-\alpha\sum_{j=1}^{n}\sqrt{j^2+\beta_j^2}\Bigg)
+\cos!\Bigg(\omega\sum_{m=1}^{n}\frac{m^3}{m+1}\sin\frac{\pi m}{2N}\Bigg)
+\frac{1}{(1+x)^{\gamma_n}}\Bigg|*{x=\tan\left(\frac{\pi n}{2N}\right)},
+\mathrm{d}x
++\prod*{\substack{p\ \text{prime}\ p\le P}}\left(1-p^{-s}\right)^{-1}
+\cdot\frac{\mathrm{d}}{\mathrm{d}s}\Bigg[\prod_{r=1}^{R}\left(\sum_{t=0}^{T_r}\frac{(-1)^t}{(t+\lambda_r)^{\mu_r}}\right)\Bigg]*{s=1+\varepsilon}
++\lim*{M\to\infty}\frac{1}{M}\sum_{q=1}^{M}\left(\int_{-M}^{M}\frac{\sin(x^2+q)}{x+q},\mathrm{d}x\right)
+$$
+
+
 ### 一般语法
 
 ```js
@@ -190,6 +205,7 @@ const line4 = 'This is line 4'
 
 ## 扩展语法
 ### 自定义容器
+
 ::: info
 总之是个容器（通常为灰色）`C++`
 :::
@@ -209,6 +225,27 @@ const line4 = 'This is line 4'
 ::: details
 可伸缩容器`Go`
 :::
+
+::: raw
+Wraps in a `<div class="vp-raw">`
+:::
+
+#### Github风格的容器
+
+> [!NOTE]
+> 强调用户在快速浏览文档时也不应忽略的重要信息。
+
+> [!TIP]
+> 有助于用户更顺利达成目标的建议性信息。
+
+> [!IMPORTANT]
+> 对用户达成目标至关重要的信息。
+
+> [!WARNING]
+> 因为可能存在风险，所以需要用户立即关注的关键内容。
+
+> [!CAUTION]
+> 行为可能带来的负面影响。
 
 ### 行内公式
 勾股定理：$a^2 + b^2 = c^2$  

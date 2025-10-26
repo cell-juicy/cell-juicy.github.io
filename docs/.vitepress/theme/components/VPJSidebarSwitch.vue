@@ -10,7 +10,7 @@ import { isObject } from '../utils/common';
 
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
-import VPJIconCaretDown from './icons/VPJIconCaretDown.vue';
+import VPJIconAngleSmallDown from './icons/VPJIconAngleSmallDown.vue';
 import VPJIconSun from './icons/VPJIconSun.vue';
 import VPJIconMoon from './icons/VPJIconMoon.vue';
 
@@ -130,7 +130,7 @@ function toggleSubThemeMenu() {
             >
                 {{ currentSubThemeLabel }}
             </span>
-            <VPJIconCaretDown class="vpj-sidebar__header-switch-marker"/>
+            <VPJIconAngleSmallDown class="vpj-sidebar__header-switch-marker"/>
         </button>
         <Teleport to=".vpj-portals-root">
             <div
@@ -151,10 +151,7 @@ function toggleSubThemeMenu() {
                         :key="name"
                         @click.stop.prevent="() => selectSubTheme(name)"
                         :disabled="name === subTheme"
-                        :class="[
-                            'vpj-sidebar__header-switch-sub-theme-option',
-                            { 'selected': name === subTheme }
-                        ]"
+                        class="vpj-sidebar__header-switch-sub-theme-option"
                     >
                         <span class="vpj-text">{{ label.length ? label : name }}</span>
                     </button>

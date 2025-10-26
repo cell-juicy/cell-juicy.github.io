@@ -89,8 +89,11 @@ const text = computed(() => {
         font-weight: var(--vpj-tag-text-weight);
     }
 
-    .vpj-blog-tag:hover .vpj-text,
-    .vpj-blog-tag:active .vpj-text{
+    .vpj-blog-tag:hover .vpj-text {
         color: var(--vpj-tag-text-color-hover);
+    }
+
+    .vpj-blog-tag:active .vpj-text {
+        color: var(--vpj-tag-text-color-active);
     }
 </style>
