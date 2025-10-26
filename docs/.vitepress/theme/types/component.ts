@@ -525,5 +525,13 @@ export type ComponentFallbackConfig = {
 
     switch?: {
         invalidSubThemeLabel?: string;
+        lightModeSwitchTitle?: string;
+        darkModeSwitchTitle?: string;
+        darkModeSwitchLabel?:
+            | string
+            | {
+                light?: string;
+                dark?: string;
+            };
     };
 };

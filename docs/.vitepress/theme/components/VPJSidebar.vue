@@ -139,6 +139,7 @@ const { close } = store;
         padding: calc((var(--vpj-sidebar-btn-height) - max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-btn-text-size))) / 2);
         text-decoration: none;
         transition:
+            background var(--vpj-sidebar-transition),
             gap var(--vpj-sidebar-transition),
             padding var(--vpj-sidebar-transition),
             width var(--vpj-sidebar-transition);

@@ -1,12 +1,12 @@
 <script setup>
-import { computed, inject, onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
+import { computed, inject, ref, useTemplateRef } from 'vue';
 import { useData } from 'vitepress';
 import { storeToRefs } from 'pinia';
 
 import { useVPJData } from '../composables/useVPJData';
 import { useVPJSidebar } from '../composables/useVPJSidebar';
 
-import { isObject } from '../utils/common';
+import { isObject, isString } from '../utils/common';
 
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
@@ -17,6 +17,10 @@ import VPJIconMoon from './icons/VPJIconMoon.vue';
 
 const DEFAULT = {
     INVALID: "未定义子主题",
+    LIGHTLABEL: "light",
+    DARKLABEL: "dark",
+    LIGHTTITLE: "Switch to dark mode",
+    DARKTITLE: "Switch to light mode",
     SOURCE: {
         default: "Default"
     },
@@ -26,10 +30,10 @@ const DEFAULT = {
 const { isDark, theme } = useData();
 const { subTheme } = useVPJData();
 const store = useVPJSidebar();
-const { collapsed } = storeToRefs(store);
+const { collapsed, headerConfig } = storeToRefs(store);
 
 const menuVisible = ref(false);
-const labelElement = useTemplateRef("subThemeLabel");
+const labelElement = useTemplateRef("label");
 
 const toggleAppearance = inject('toggle-appearance', () => {
     isDark.value = !isDark.value;
@@ -39,15 +43,39 @@ const subThemeSources = computed(() => ({
 }));
 const invalidLabel = computed(() => {
     const message = theme.value.components?.switch?.invalidSubThemeLabel;
-    return (typeof message === 'string') ? message : DEFAULT.INVALID;
+    return isString(message) ? message : DEFAULT.INVALID;
+});
+const appearanceLabel = computed(() => {
+    const config = theme.value.components?.switch?.darkModeSwitchLabel;
+    if (isString(config)) {
+        return config;
+    };
+    let lightLabel, darkLabel;
+    if (isObject(config)) {
+        lightLabel = isString(config.light) ? config.light : undefined;
+        darkLabel = isString(config.dark) ? config.dark : undefined;
+    };
+    return isDark.value ? (darkLabel || DEFAULT.DARKLABEL) : (lightLabel || DEFAULT.LIGHTLABEL);
+});
+const appearanceTitle = computed(() => {
+    const dark = theme.value.components?.switch?.darkModeSwitchTitle;
+    const light = theme.value.components?.switch?.lightModeSwitchTitle;
+    return isDark.value
+        ? isString(dark) ? dark : DEFAULT.DARKTITLE
+        : isString(light) ? light : DEFAULT.LIGHTTITLE;
 });
 
 const subThemeList = computed(() => {
     return Object.entries(subThemeSources.value).filter(([_, v]) => typeof v === 'string');
 });
-const currentSubThemeLabel = computed(() => {
-    const label = subThemeSources.value[subTheme.value];
-    return typeof label === 'string' ? (label.length ? label : subTheme.value) : invalidLabel.value;
+const currentLabel = computed(() => {
+    if (headerConfig.value.switch.subTheme) {
+        const label = subThemeSources.value[subTheme.value];
+        return typeof label === 'string' ? (label.length ? label : subTheme.value) : invalidLabel.value;
+    } else if (headerConfig.value.switch.appearance) {
+        return appearanceLabel.value;
+    };
+    return "";
 });
 const translateX = computed(() => 
     isDark.value
@@ -86,10 +114,11 @@ function toggleSubThemeMenu() {
 
 
 <template>
-    <div>
+    <div v-if="headerConfig.switch.enabled && (headerConfig.switch.appearance || (headerConfig.switch.subTheme && !collapsed))">
         <button
-            v-if="collapsed"
+            v-if="collapsed && headerConfig.switch.appearance"
             @click="toggleAppearance"
+            :title="appearanceTitle"
             class="vpj-sidebar__btn collapsed"
         >
             <VPJIconMoon
@@ -102,14 +131,19 @@ function toggleSubThemeMenu() {
             />
         </button>
         <button
-            v-else
+            v-if="!collapsed && (headerConfig.switch.appearance || headerConfig.switch.subTheme)"
             @click.stop.prevent="toggleSubThemeMenu"
+            :disabled="!headerConfig.switch.subTheme"
             class="vpj-sidebar__btn"
             data-action="switch-sub-theme"
         >
-            <div class="vpj-sidebar__header-switch-wrapper">
+            <div
+                v-if="headerConfig.switch.appearance"
+                class="vpj-sidebar__header-switch-wrapper"
+            >
                 <button
                     @click.stop.prevent="toggleAppearance"
+                    :title="appearanceTitle"
                     class="vpj-sidebar__header-switch-brightness"
                 >
                     <span class="vpj-sidebar__header-switch-brightness-toggler">
@@ -125,16 +159,19 @@ function toggleSubThemeMenu() {
                 </button>
             </div>
             <span
-                ref="subThemeLabel"
+                ref="label"
                 class="vpj-text"
             >
-                {{ currentSubThemeLabel }}
+                {{ currentLabel }}
             </span>
-            <VPJIconAngleSmallDown class="vpj-sidebar__header-switch-marker"/>
+            <VPJIconAngleSmallDown
+                v-if="headerConfig.switch.subTheme"
+                class="vpj-sidebar__header-switch-marker"
+            />
         </button>
         <Teleport to=".vpj-portals-root">
             <div
-                v-if="menuVisible"
+                v-if="menuVisible && headerConfig.switch.subTheme && headerConfig.switch.enabled"
                 @click="menuVisible = false"
                 class="vpj-sidebar__header-switch-menu-overlay"
             >
@@ -169,6 +206,10 @@ function toggleSubThemeMenu() {
         padding-left: calc((var(--vpj-sidebar-btn-height) - var(--vpj-sidebar-header-switch-brightness-height)) / 2);
         padding-right: calc((var(--vpj-sidebar-btn-height) - var(--vpj-sidebar-header-switch-marker-size)) / 2);
         padding-top: 0;
+    }
+
+    [data-action="switch-sub-theme"]:disabled {
+        background: initial;
     }
 
     /* Brightness Switcher */

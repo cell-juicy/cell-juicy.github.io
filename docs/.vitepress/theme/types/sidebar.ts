@@ -507,6 +507,12 @@ interface SidebarProfile {
         | { component?: string };
 }
 
+interface SidebarSwitch {
+    enabled?: boolean;
+    appearanceEnabled?: boolean;
+    subThemeEnabled?: boolean;
+}
+
 /**
  * 社交媒体链接配置接口
  * 
@@ -698,6 +704,8 @@ export interface SidebarConfig {
      * @see {@link SidebarProfile}
      */
     profile?: SidebarProfile;
+
+    switch?: SidebarSwitch;
 
     /**
      * 自定义侧边栏高亮项匹配规则

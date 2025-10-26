@@ -174,12 +174,23 @@ function toggleProfileCard() {
         padding: calc((var(--vpj-sidebar-btn-height) - var(--vpj-sidebar-header-profile-content-size)) / 2);
     }
 
+    [data-action="profile"]:disabled {
+        background: initial;
+    }
+
+    [data-action="profile"]:disabled :deep(.vpj-text) {
+        color: initial;
+    }
+
     [data-action="profile"] :deep(.vpj-text) {
         font-weight: var(--vpj-sidebar-header-profile-btn-text-weight);
     }
 
-    [data-action="profile"] :deep(.vpj-icon) {
+    [data-action="profile"] :deep(.vpj-icon),
+    [data-action="profile"]:hover :deep(.vpj-icon),
+    [data-action="profile"]:active :deep(.vpj-icon) {
         border-radius: var(--vpj-sidebar-header-profile-btn-icon-radius);
+        fill: none;
         height: var(--vpj-sidebar-header-profile-btn-icon-size);
         margin-left: calc((var(--vpj-sidebar-header-profile-content-size) - var(--vpj-sidebar-header-profile-btn-icon-size)) / 2);
         width: var(--vpj-sidebar-header-profile-btn-icon-size);

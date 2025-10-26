@@ -186,6 +186,14 @@ export default defineConfigWithTheme<ThemeConfig>({
                 intervalFormat(date) {
                     return `${date.getFullYear()}年${date.getMonth() + 1}月`
                 },
+            },
+            switch: {
+                darkModeSwitchLabel: {
+                    light: "亮色模式",
+                    dark: "暗色模式"
+                },
+                lightModeSwitchTitle: "切换至亮色模式",
+                darkModeSwitchTitle: "切换至暗色模式",
             }
         },
         editLink: {
