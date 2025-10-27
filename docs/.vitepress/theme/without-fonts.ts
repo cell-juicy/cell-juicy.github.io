@@ -1,0 +1,66 @@
+// https://vitepress.dev/guide/custom-theme
+import VPJLayout from "./VPJLayout.vue";
+
+import type { EnhanceAppContext } from "vitepress";
+
+// VPJ Data
+import { initVPJData } from "./composables/useVPJData";
+import { VPJ_DATA_SYMBOL } from "./utils/symbols";
+
+// Pinia
+import { createPinia } from "pinia";
+
+// Unhead
+import { createHead } from "@unhead/vue/client";
+
+// Global stylesheet
+import "./styles/vars.css";
+import "./styles/base.css";
+import "./styles/markdown.css";
+
+
+/** @type {import('vitepress').Theme} */
+export default {
+    Layout: VPJLayout,
+    enhanceApp: async ({ app, router, siteData }: EnhanceAppContext) => {
+        // Pinia support
+        const pinia = createPinia();
+        app.use(pinia);
+
+        // Unhead support
+        const head = createHead();
+        app.use(head);
+
+        // Add portal root element for VuePortals
+        if (typeof document !== "undefined") {
+            const portalRoot = document.createElement("div");
+            portalRoot.className = "vpj-portals-root";
+            document.body.appendChild(portalRoot);
+        };
+
+        // Initialize and provide blog data
+        const data = initVPJData(router.route, siteData);
+        app.provide(VPJ_DATA_SYMBOL, data);
+
+        // Add custom global components
+        // @ts-ignore
+        const icons = import.meta.glob('./components/icons/*.vue');
+        const iconPromises = Object.entries(icons).map(async ([path, loader]) => {
+            // @ts-ignore
+            const name = path.split('/').pop().replace('.vue', '');
+            // @ts-ignore
+            const module = await loader();
+            app.component(name, module.default || module);
+        });
+        await Promise.all(iconPromises);
+
+        // custom component(page-layout)
+        const VPJHeroImageModule = await import('./components/VPJHeroImage.vue');
+        app.component('VPJHeroImage', VPJHeroImageModule.default);
+
+        // custom component(blog-layout)
+        const VPJTagModule = await import('./components/VPJTag.vue');
+        app.component('VPJTag', VPJTagModule.default);
+    }
+}
+

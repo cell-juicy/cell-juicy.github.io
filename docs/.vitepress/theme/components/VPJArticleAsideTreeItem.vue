@@ -30,7 +30,7 @@ const collapsed = ref(false);
 
 
 <template>
-    <div class="vpj-article-aside__aside-doc-node vpj-scroll-y">
+    <div class="vpj-article-aside__aside-doc-node">
         <div class="vpj-article-aside__aside-doc-node-wrapper">
             <a
                 v-if="typeof data.url === 'string'"
@@ -91,64 +91,96 @@ const collapsed = ref(false);
 
     /* Warpper */
     .vpj-article-aside__aside-doc-node-wrapper {
+        align-items: center;
         display: flex;
         flex-shrink: 0;
-        height: 2.25rem;
-        align-items: center;
+        height: var(--vpj-article-aside-tab-tree-node-height);
     }
 
     .vpj-article-aside__aside-doc-node-link {
         align-items: center;
-        background-color: var(--vpj-color-bg-100);
-        border-radius: var(--vpj-border-radius-100);
-        color: var(--vpj-color-text-300);
-        font-size: .875rem;
+        backdrop-filter: var(--vpj-private-bf-c, var(--vpj-private-bf-h, var(--vpj-article-aside-tab-tree-node-backdrop-filter)));;
+        background: var(--vpj-private-b-c, var(--vpj-private-b-h, var(--vpj-article-aside-tab-tree-node-bg)));;
+        border-radius: var(--vpj-article-aside-tab-tree-node-radius);
+        color: var(--vpj-private-c-c, var(--vpj-private-c-h, var(--vpj-article-aside-tab-tree-node-color)));
         display: flex;
         flex: 1;
+        font-size: var(--vpj-article-aside-tab-tree-node-font-size);
+        font-weight: var(--vpj-private-w-c, var(--vpj-private-w-h, var(--vpj-article-aside-tab-tree-node-weight)));
         height: 100%;
-        line-height: 1.2;
-        padding-bottom: .25rem;
-        padding-left: .5rem;
-        padding-right: .5rem;
-        padding-top: .25rem;
+        padding-inline: var(--vpj-article-aside-tab-tree-node-padding-x);
+        text-align: start;
         text-decoration: none;
+        transition:
+            backdrop-filter var(--vpj-article-aside-tab-tree-transition),
+            background var(--vpj-article-aside-tab-tree-transition),
+            color var(--vpj-article-aside-tab-tree-transition),
+            font-weight var(--vpj-article-aside-tab-tree-transition);
     }
 
     .vpj-article-aside__aside-doc-node-link:hover,
-    .vpj-article-aside__aside-doc-node-link:active,
+    .vpj-article-aside__aside-doc-node-link:active {
+        --vpj-private-bf-h: var(--vpj-article-aside-tab-tree-node-backdrop-filter-hover);
+        --vpj-private-b-h: var(--vpj-article-aside-tab-tree-node-bg-hover);
+        --vpj-private-c-h: var(--vpj-article-aside-tab-tree-node-color-hover);
+        --vpj-private-w-h: var(--vpj-article-aside-tab-tree-node-weight-hover);
+    }
+
     .vpj-article-aside__aside-doc-node-link.current {
-        background-color: var(--vpj-color-bg-300);
-        color: var(--vpj-color-text-400);
+        --vpj-private-bf-c: var(--vpj-article-aside-tab-tree-node-backdrop-filter-current);
+        --vpj-private-b-c: var(--vpj-article-aside-tab-tree-node-bg-current);
+        --vpj-private-c-c: var(--vpj-article-aside-tab-tree-node-color-current);
+        --vpj-private-w-c: var(--vpj-article-aside-tab-tree-node-weight-current);
     }
 
     .vpj-article-aside__aside-doc-node-toggle {
         align-items: center;
-        background-color: transparent;
-        border-radius: var(--vpj-border-radius-100);
-        height: 24px;
-        width: 24px;
-        padding: 6px;
+        backdrop-filter: var(--vpj-article-aside-tab-tree-node-toggle-backdrop-filter);
+        background: var(--vpj-article-aside-tab-tree-node-toggle-bg);
+        border-radius: var(--vpj-article-aside-tab-tree-node-toggle-radius);
+        height: var(--vpj-article-aside-tab-tree-node-toggle-size);
+        padding: calc((var(--vpj-article-aside-tab-tree-node-toggle-size) - var(--vpj-article-aside-tab-tree-node-toggle-icon-size)) / 2);
+        transition:
+            backdrop-filter var(--vpj-article-aside-tab-tree-transition),
+            background var(--vpj-article-aside-tab-tree-transition);
+        width: var(--vpj-article-aside-tab-tree-node-toggle-size);
     }
 
     .vpj-article-aside__aside-doc-node-toggle :deep(.vpj-icon) {
-        fill: var(--vpj-color-text-300);
-        height: 12px;
-        transition: transform 0.2s ease-in-out;
-        width: 12px;
+        fill: var(--vpj-article-aside-tab-tree-node-toggle-icon-color);
+        height: var(--vpj-article-aside-tab-tree-node-toggle-icon-size);
+        transition:
+            fill var(--vpj-article-aside-tab-tree-transition),
+            transform var(--vpj-article-aside-tab-tree-transition);
+        width: var(--vpj-article-aside-tab-tree-node-toggle-icon-size);
     }
 
     .vpj-article-aside__aside-doc-node-mark {
-        border-radius: var(--vpj-border-radius-100);
-        fill: var(--vpj-color-text-300);
-        height: 24px;
-        padding: 6px;
-        transition: transform 0.2s ease-in-out;
-        width: 24px;
+        background: var(--vpj-article-aside-tab-tree-node-toggle-bg);
+        border-radius: var(--vpj-article-aside-tab-tree-node-toggle-radius);
+        fill: var(--vpj-article-aside-tab-tree-node-toggle-icon-color);
+        height: var(--vpj-article-aside-tab-tree-node-toggle-size);
+        padding: calc((var(--vpj-article-aside-tab-tree-node-toggle-size) - var(--vpj-article-aside-tab-tree-node-toggle-icon-size)) / 2);
+        transition:
+            fill var(--vpj-article-aside-tab-tree-transition),
+            transform var(--vpj-article-aside-tab-tree-transition);
+        width: var(--vpj-article-aside-tab-tree-node-toggle-size);
     }
 
     .vpj-article-aside__aside-doc-node-toggle:hover,
     .vpj-article-aside__aside-doc-node-toggle:active {
-        background-color: var(--vpj-color-bg-500);
+        backdrop-filter: var(--vpj-article-aside-tab-tree-node-toggle-backdrop-filter-hover);
+        background: var(--vpj-article-aside-tab-tree-node-toggle-bg-hover);
+    }
+
+    .vpj-article-aside__aside-doc-node-toggle:hover :deep(.vpj-icon),
+    .vpj-article-aside__aside-doc-node-toggle:active :deep(.vpj-icon) {
+        fill: var(--vpj-article-aside-tab-tree-node-toggle-icon-color-hover);
+    }
+
+    .vpj-article-aside__aside-doc-node-link:hover .vpj-article-aside__aside-doc-node-mark,
+    .vpj-article-aside__aside-doc-node-link:active .vpj-article-aside__aside-doc-node-mark {
+        fill: var(--vpj-article-aside-tab-tree-node-toggle-icon-color-hover);
     }
 
     .vpj-article-aside__aside-doc-node-toggle.collapsed :deep(.vpj-icon) {
@@ -161,13 +193,12 @@ const collapsed = ref(false);
 
     /* Children */
     .vpj-article-aside__aside-doc-node-children {
-        border-left-width: var(--vpj-border-width-100);
-        border-left-color: var(--vpj-color-border-200);
+        border-left: var(--vpj-article-aside-tab-tree-node-children-border-left);
         display: flex;
         flex: 1;
         flex-direction: column;
-        margin-left: 1rem;
-        margin-top: .5rem;
-        gap: .25rem;
+        gap: var(--vpj-article-aside-tab-tree-node-children-gap);
+        margin: var(--vpj-article-aside-tab-tree-node-children-margin);
+        padding: var(--vpj-article-aside-tab-tree-node-children-padding);
     }
 </style>

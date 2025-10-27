@@ -49,7 +49,6 @@ const empty = computed(() => {
 
 <style scoped>
     .vpj-article-aside__aside-tab-outer {
-        background-color: var(--vpj-color-bg-100);
         height: 100%;
         width: 100%;
     }
@@ -61,12 +60,15 @@ const empty = computed(() => {
     }
 
     .vpj-article-aside__aside-blog-tags {
+        backdrop-filter: var(--vpj-article-aside-tab-tags-backdrop-filter);
+        background: var(--vpj-article-aside-tab-tags-bg);
         align-content: flex-start;
-        column-gap: .25rem;
+        column-gap: var(--vpj-article-aside-tab-tags-list-gap-col);
         display: flex;
+        flex: 1;
         flex-wrap: wrap;
-        padding: .75rem .5rem;
-        row-gap: .5rem;
+        padding: var(--vpj-article-aside-tab-tags-list-padding);
+        row-gap: var(--vpj-article-aside-tab-tags-list-gap-row);
         width: 100%;
     }
 </style>

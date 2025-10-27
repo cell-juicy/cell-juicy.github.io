@@ -30,6 +30,7 @@
     "@unhead/vue": "^2.0.12",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vitest/ui": "^3.2.0",
+    "@vueuse/core": "^13.9.0",
     "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",
     "lodash-es": "4.17",

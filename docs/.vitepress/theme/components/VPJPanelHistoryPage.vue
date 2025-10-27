@@ -21,7 +21,7 @@ const route = useRoute();
 
 const fileData = computed(() => {
     if (data[route.path]) return data[route.path];
-    return { history: []};
+    return { history: [] };
 });
 
 // Fetch user config
@@ -159,7 +159,6 @@ const groupedHistory = computed(() => {
 
 <style scoped>
     .vpj-panel__tab-outer {
-        background-color: var(--vpj-color-bg-100);
         height: 100%;
         width: 100%;
     }
@@ -172,26 +171,29 @@ const groupedHistory = computed(() => {
     }
 
     .vpj-panel__history {
+        backdrop-filter: var(--vpj-panel-history-backdrop-filter);
+        background: var(--vpj-panel-history-bg);
         display: flex;
+        flex: 1;
         flex-direction: column;
-        gap: .5rem;
+        gap: var(--vpj-panel-history-gap);
         width: 100%;
-        padding: .5rem;
+        padding: var(--vpj-panel-history-padding);
     }
 
     /* Time Label */
     .vpj-panel__hitory-time-label {
-        color: var(--vpj-color-text-400);
-        font-size: 1rem;
-        font-weight: var(--vpj-font-weight-600);
-        margin: .25rem 0;
+        color: var(--vpj-panel-history-time-label-color);
+        font-size: var(--vpj-panel-history-time-label-size);
+        font-weight: var(--vpj-panel-history-time-label-weight);
+        margin: var(--vpj-panel-history-time-label-margin);
     }
 
     /* History List */
     .vpj-panel__history-list {
         display: flex;
         flex-direction: column;
-        gap: .5rem;
+        gap: var(--vpj-panel-history-gap);
         margin: 0;
         padding: 0;
         width: 100%;

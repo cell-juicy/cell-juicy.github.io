@@ -62,7 +62,6 @@ const empty = computed(() => {
 
 <style scoped>
     .vpj-article-aside__aside-tab-outer {
-        background-color: var(--vpj-color-bg-100);
         height: 100%;
         width: 100%;
     }
@@ -75,12 +74,13 @@ const empty = computed(() => {
     }
 
     .vpj-article-aside__aside-blog-series {
-        align-content: flex-start;
-        background-color: var(--vpj-color-bg-100);
+        backdrop-filter: var(--vpj-article-aside-tab-series-backdrop-filter);
+        background: var(--vpj-article-aside-tab-series-bg);
         display: flex;
+        flex: 1;
         flex-direction: column;
-        padding: .75rem .5rem;
-        row-gap: .5rem;
+        gap: var(--vpj-article-aside-tab-series-list-gap);
+        padding: var(--vpj-article-aside-tab-series-list-padding);
         width: 100%;
     }
 </style>

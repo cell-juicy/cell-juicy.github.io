@@ -1,4 +1,6 @@
 import { computed, inject } from 'vue';
+import { useStorage } from '@vueuse/core';
+
 import { data } from '../data/page.data';
 import { VPJDataStore } from '../data/pageData';
 import { VPJ_DATA_SYMBOL } from '../utils/symbols';
@@ -14,6 +16,7 @@ import type { VPJPageData, VPJBlogData, VPJDocData } from '../data/pageData';
 export type VPJDataItem = VPJPageData | VPJBlogData | VPJDocData;
 export type VPJData = {
     store: Ref<VPJDataStore>;
+    subTheme: Ref<string>;
     data: Ref<VPJDataItem | undefined>;
     title: Ref<string | undefined>;
     lastUpdated: Ref<Date | undefined>;
@@ -43,6 +46,8 @@ export function initVPJData(route: Route, siteData: Ref<SiteData>) {
     const currentData = computed(() => {
         return store.value.getDataByUrl(route.path);
     });
+
+    const subTheme = useStorage("vpj-sub-theme", "default");
 
     // page
     const title = computed(() => {
@@ -157,6 +162,7 @@ export function initVPJData(route: Route, siteData: Ref<SiteData>) {
 
     return {
         store,
+        subTheme,
         data: currentData,
         title,
         lastUpdated,

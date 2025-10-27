@@ -2,6 +2,7 @@ import { useData, useRoute } from 'vitepress';
 import { computed, ref, watch } from 'vue';
 import { defineStore } from 'pinia';
 
+import { isBoolean, isObject } from '../utils/common';
 import { getDeviceSpecificData } from '../utils/deviceTypes';
 import { simpleMerger, deviceSpecificBNormalizer } from '../utils/mergeData';
 
@@ -55,10 +56,13 @@ const DEFAULT = {
             .filter(link => path.startsWith(link))
             .sort((a, b) => b.length - a.length)[0];
     },
+    ENABLESWITCH: true,
+    ENABLEAPPEARANCE: true,
+    ENABLESUBTHEME: true,
 };
 
 
-function imageValidator(input: any): boolean {
+function imageValidator(input: any): input is ImageData | {component: string} {
     return (typeof input === 'string') ||
         (typeof input === 'object' && input  && typeof input.src === 'string') ||
         (typeof input === 'object' && input  && typeof input.component === 'string');
@@ -151,31 +155,22 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
 
     // state
     const sidebarCConfig = getDeviceSpecificData(deviceSpecificBNormalizer(theme.value.sidebarCollapsed));
-    const collapsed: Ref<boolean> = ref(typeof sidebarCConfig === 'boolean' ? sidebarCConfig : true);
+    const collapsed: Ref<boolean> = ref(isBoolean(sidebarCConfig) ? sidebarCConfig : true);
     function toggle(): void { collapsed.value = !collapsed.value; };
     function close(): void { collapsed.value = true; };
     function open(): void { collapsed.value = false; };
 
     // Enable Sidebar?
-    const enabled: Ref<boolean> = computed(() => typeof sidebarConfig.value.enabled === 'boolean'
+    const enabled: Ref<boolean> = computed(() => isBoolean(sidebarConfig.value.enabled)
         ? sidebarConfig.value.enabled
         : DEFAULT.ENABLED
     );
 
     // Header Config
     const headerConfig = computed(() => {
-        const imageValidator = (input: any): input is ImageData | {component: string} => (typeof input === 'string') ||
-            (typeof input === 'object' && input  && typeof input.src === 'string') ||
-            (typeof input === 'object' && input  && typeof input.component === 'string');
-
         // Calculate profile
-        const profileConfig = (typeof sidebarConfig.value.profile === 'object' && sidebarConfig.value.profile !== null)
-            ? sidebarConfig.value.profile
-            : {};
-        const enabled = simpleMerger((input: any) => typeof input === 'boolean', undefined,
-            profileConfig.enabled,
-            DEFAULT.ENABLEPROFILE
-        );
+        const profileConfig = isObject(sidebarConfig.value.profile) ? sidebarConfig.value.profile : {};
+        const profileEnabled = isBoolean(profileConfig.enabled) ? profileConfig.enabled : DEFAULT.ENABLEPROFILE;
         const title = simpleMerger(
             (input: any) => typeof input === 'string', undefined,
             profileConfig.title,
@@ -198,10 +193,21 @@ export const useVPJSidebar = defineStore('vpj-sidebar', () => {
         );
         const cardTitle = typeof profileConfig.cardTitle === 'string' ? profileConfig.cardTitle : title;
         const cardLogo = imageValidator(profileConfig.cardLogo) ? profileConfig.cardLogo : logo;
-        const profile = { enabled, title, logo, cardTitle, cardLogo, description };
+        const profileReturn = { enabled: profileEnabled, title, logo, cardTitle, cardLogo, description };
 
+        // Caculate switch
+        const switchConfig = isObject(sidebarConfig.value.switch) ? sidebarConfig.value.switch : {};
+        const switchEnabled = isBoolean(switchConfig.enabled) ? switchConfig.enabled : DEFAULT.ENABLESWITCH;
+        const appearanceEnabled = isBoolean(switchConfig.appearanceEnabled)
+            ? switchConfig.appearanceEnabled
+            : DEFAULT.ENABLEAPPEARANCE;
+        const subThemeEnabled = isBoolean(switchConfig.subThemeEnabled)
+            ? switchConfig.subThemeEnabled
+            : DEFAULT.ENABLESUBTHEME;
+        const switchReturn = { enabled: switchEnabled, appearance: appearanceEnabled, subTheme: subThemeEnabled };
         return {
-            profile
+            profile: profileReturn,
+            switch: switchReturn
         };
     });
 

@@ -42,12 +42,7 @@ const {
         display: flex;
         flex: 1;
         flex-direction: column;
-        mask-image: linear-gradient(to bottom,
-            transparent 0,
-            black .5rem,
-            black calc(100% - .5rem),
-            transparent 100%
-        );
+        mask-image: var(--vpj-sidebar-nav-mask);
         min-height: 0;
         padding: 0;
         width: 100%;
@@ -59,15 +54,16 @@ const {
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
-        gap: .125rem;
+        gap: var(--vpj-sidebar-nav-list-gap);
         margin: 0;
-        padding: .5rem .75rem;
-        transition: gap .2s ease-in-out;
+        padding-block: var(--vpj-sidebar-nav-list-padding-y);
+        padding-inline: var(--vpj-sidebar-padding-x);
+        transition: gap var(--vpj-sidebar-transition);
         width: 100%;
     }
 
     /* StyleSheet for collapsed state */
     .vpj-sidebar__nav.collapsed .vpj-sidebar__nav-link-list {
-        gap: .625rem;
+        gap: var(--vpj-sidebar-nav-list-gap-collapsed);
     }
 </style>

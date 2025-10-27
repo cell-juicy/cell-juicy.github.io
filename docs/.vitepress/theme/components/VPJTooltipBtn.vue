@@ -232,6 +232,6 @@ defineExpose({
 
     .v-enter-active,
     .v-leave-active {
-        transition: opacity 0.2s ease-in-out;
+        transition: opacity var(--vpj-transition-tooltip);
     }
 </style>

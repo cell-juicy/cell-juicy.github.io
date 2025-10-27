@@ -35,7 +35,7 @@ const click = computed(() => {
     if (props.tag && typeof props.tag === 'string') {
         return () => resolvedClick.value(props.tag);
     }
-    return () => {}
+    return () => {};
 });
 
 const text = computed(() => {
@@ -65,32 +65,43 @@ const text = computed(() => {
 <style scoped>
     .vpj-blog-tag {
         align-items: center;
-        background-color: var(--vpj-color-primary-100);
-        border-radius: .75rem;
+        backdrop-filter: var(--vpj-tag-backdrop-filter);
+        background: var(--vpj-tag-bg);
+        border-radius: var(--vpj-tag-radius);
+        cursor: var(--vpj-tag-cursor);
         display: inline-flex;
         flex-shrink: 0;
-        height: 1.5rem;
-        padding-left: .75rem;
-        padding-right: .75rem;
+        height: var(--vpj-tag-height);
+        padding-inline: var(--vpj-tag-padding-x);
+        transition:
+            backdrop-filter var(--vpj-tag-transition),
+            background var(--vpj-tag-transition);
         vertical-align: middle;
         width: auto;
     }
 
     .vpj-blog-tag:hover {
-        background-color: var(--vpj-color-primary-200);
+        backdrop-filter: var(--vpj-tag-backdrop-filter-hover);
+        background: var(--vpj-tag-bg-hover);
     }
 
     .vpj-blog-tag:active {
-        background-color: var(--vpj-color-primary-300);
+        backdrop-filter: var(--vpj-tag-backdrop-filter-active);
+        background: var(--vpj-tag-bg-active);
     }
 
     .vpj-blog-tag .vpj-text {
-        color: var(--vpj-color-primary-500);
-        font-size: .75rem;
+        color: var(--vpj-tag-text-color);
+        font-size:var(--vpj-tag-text-size);
+        font-weight: var(--vpj-tag-text-weight);
+        transition: color var(--vpj-tag-transition);
     }
 
-    .vpj-blog-tag:hover .vpj-text,
-    .vpj-blog-tag:active .vpj-text{
-        color: var(--vpj-color-primary-600);
+    .vpj-blog-tag:hover .vpj-text {
+        color: var(--vpj-tag-text-color-hover);
+    }
+
+    .vpj-blog-tag:active .vpj-text {
+        color: var(--vpj-tag-text-color-active);
     }
 </style>

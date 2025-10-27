@@ -1,3 +1,7 @@
+import type { VNode } from 'vue';
+
+import type { CommitInfo } from './common';
+
 /**
  * 主题内置组件回退值配置
  * 
@@ -499,9 +503,35 @@ export type ComponentFallbackConfig = {
 
     panelTabHistory?: {
         interval?: "year" | "month" | "week" | "day" | "hour" | "minute" | "second";
-        intervalFormat?: string | ((date: Date) => string);
+        intervalFormat?:
+            | string
+            | ((date: Date) => string);
         repository?: string;
         component?: string;
         empty?: string;
-    }
+        title?: ((params: {
+            commit: CommitInfo
+            path?: string
+            url?: string
+            repository?: string
+        }, h: typeof import("vue").h) => VNode);
+        description?: ((params: {
+            commit: CommitInfo
+            path?: string
+            url?: string
+            repository?: string
+        }, h: typeof import("vue").h) => VNode);
+    };
+
+    switch?: {
+        invalidSubThemeLabel?: string;
+        lightModeSwitchTitle?: string;
+        darkModeSwitchTitle?: string;
+        darkModeSwitchLabel?:
+            | string
+            | {
+                light?: string;
+                dark?: string;
+            };
+    };
 };

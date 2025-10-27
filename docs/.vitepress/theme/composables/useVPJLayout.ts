@@ -50,8 +50,8 @@ const DEFAULT = {
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "61.25rem",
         CONTENTPADDING: {
-            mobile: "1.5rem",
-            tablet: "1.5rem",
+            mobile: "2.2rem",
+            tablet: "2.2rem",
             desktop: "4rem"
         },
         FOOTER: undefined,
@@ -95,8 +95,8 @@ const DEFAULT = {
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "760px",
         CONTENTPADDING: {
-            mobile: "1rem",
-            tablet: "2rem",
+            mobile: "2.2rem",
+            tablet: "2.2rem",
             desktop: "4rem"
         },
         FOOTER: undefined,
@@ -143,14 +143,14 @@ const DEFAULT = {
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "820px",
         CONTENTPADDING: {
-            mobile: "1rem",
-            tablet: "2rem",
+            mobile: "2.2rem",
+            tablet: "2.2rem",
             desktop: "4rem"
         },
         FOOTER: undefined,
         EDITLINK: undefined,
-        NEXT: "下一页",
-        PREV: "上一页",
+        NEXT: "Next",
+        PREV: "Previous",
         TIMELABEL: undefined,
     },
 };
@@ -185,7 +185,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
             : undefined
     });
     const defaultConfig = computed(() => {
-        if (layout.value) return DEFAULT[layout.value.toUpperCase()]
+        // @ts-ignore
+        if (layout.value) return DEFAULT[layout.value.toUpperCase()];
         return {};
     });
     const layoutConfig: ComputedRef<VPJBlogLayoutConfig|VPJDocLayoutConfig|VPJPageLayoutConfig> = computed(() => {

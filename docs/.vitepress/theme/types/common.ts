@@ -16,6 +16,45 @@ export type PageContext = {
         | { layout: "doc"; space?: string; order: number[]; title?: string };
 }
 
+export type FileInfo = 
+    | {
+        status: "A" | "M" | "D" | "T" | "U" | "X",
+        path: string,
+    }
+    | {
+        status: "R" | "C",
+        from: string,
+        to: string,
+        similarity: number
+    };
+
+export type CommitInfo = 
+    | {
+        time: number,
+        hash: string,
+        author: string,
+        message: string,
+        status: "A" | "M" | "D" | "T" | "U" | "X"
+    }
+    | {
+        time: number,
+        hash: string,
+        author: string,
+        message: string,
+        status: "R" | "C",
+        similarity: number,
+        from: string,
+    }
+    | {
+        time: number,
+        hash: string,
+        author: string,
+        message: string,
+        status: "R" | "C",
+        similarity: number,
+        to: string,
+    };
+
 
 export type RawBaseData = {
     title?: string;

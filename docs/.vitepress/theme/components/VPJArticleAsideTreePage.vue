@@ -74,7 +74,6 @@ const empty = computed(() => {
 
 <style scoped>
     .vpj-article-aside__aside-tab-outer {
-        background-color: var(--vpj-color-bg-100);
         height: 100%;
         width: 100%;
     }
@@ -86,13 +85,13 @@ const empty = computed(() => {
     }
 
     .vpj-article-aside__aside-doc-tree {
+        backdrop-filter: var(--vpj-article-aside-tab-tree-backdrop-filter);
+        background: var(--vpj-article-aside-tab-tree-bg);
         display: flex;
+        flex: 1;
         flex-direction: column;
-        gap: .25rem;
-        min-height: min-content;
-        padding-bottom: 1rem;
-        padding-left: 1.25rem;
-        padding-top: 1rem;
+        gap: var(--vpj-article-aside-tab-tree-list-gap);
+        padding: var(--vpj-article-aside-tab-tree-list-padding);
         width: 100%;
     }
 </style>

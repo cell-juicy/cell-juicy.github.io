@@ -169,8 +169,8 @@ export default defineConfigWithTheme<ThemeConfig>({
                     "18": {treeTitle: "第18章 勒贝格测度"},
                     "19": {treeTitle: "第19章 勒贝格积分"}
                 },
-                next: "上一节",
-                prev: "下一节",
+                next: "下一节",
+                prev: "上一节",
                 editLink: {
                     text: "发现错误？在Github上与我们交流"
                 },
@@ -186,6 +186,14 @@ export default defineConfigWithTheme<ThemeConfig>({
                 intervalFormat(date) {
                     return `${date.getFullYear()}年${date.getMonth() + 1}月`
                 },
+            },
+            switch: {
+                darkModeSwitchLabel: {
+                    light: "亮色模式",
+                    dark: "暗色模式"
+                },
+                lightModeSwitchTitle: "切换至亮色模式",
+                darkModeSwitchTitle: "切换至暗色模式",
             }
         },
         editLink: {
@@ -198,6 +206,9 @@ export default defineConfigWithTheme<ThemeConfig>({
         timeLabel: "上次更新于：:lYY/:lMM/:lDD",
         asideCollapsed: {
             desktop: false,
+        },
+        subThemes: {
+            default: "默认主题",
         },
     },
 })

@@ -8,6 +8,7 @@ import { useVPJSidebar } from '../composables/useVPJSidebar';
 import { isMobile } from '../utils/deviceTypes';
 
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
+
 import VPJIconAngleSmallLeft from './icons/VPJIconAngleSmallLeft.vue';
 import VPJIconAngleSmallRight from './icons/VPJIconAngleSmallRight.vue';
 
@@ -20,18 +21,18 @@ const { theme } = useData();
 // enable nav
 const enable = computed(() => {
     const configEnable = theme.value.mobileNav?.enable ?? true;
-    return configEnable && isMobile.value
+    return configEnable && isMobile.value;
 });
 
 // initialize title
 const computedTitle = computed(() => {
     const mobileNavTitle = theme.value.mobileNav?.title ?? headerConfig.value.title;
     if (typeof mobileNavTitle === 'object' && typeof mobileNavTitle.component === 'string') {
-        return { component: mobileNavTitle.component }
+        return { component: mobileNavTitle.component };
     } else if (typeof mobileNavTitle === 'string') {
-        return { text: mobileNavTitle }
+        return { text: mobileNavTitle };
     } else {
-        return { text: headerConfig.value.profile.title }
+        return { text: headerConfig.value.profile.title };
     }
 });
 </script>
@@ -59,47 +60,56 @@ const computedTitle = computed(() => {
     /* Mobile Navigation */
     .vpj-mobile-nav {
         align-items: center;
-        background-color: var(--vpj-color-bg-300);
-        border-bottom: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+        background: var(--vpj-mobile-nav-bg);
+        border-bottom: var(--vpj-mobile-nav-border);
         display: flex;
         flex-direction: row;
         flex-shrink: 0;
-        height: 2.75rem;
+        height: var(--vpj-mobile-nav-height);
         min-width: 0;
-        padding-left: .625rem;
-        padding-right: .625rem;
+        padding-inline: var(--vpj-mobile-nav-padding-x);
     }
 
     /* Title */
     .vpj-mobile-nav__title {
+        color: var(--vpj-mobile-nav-title-color);
         flex: 1;
-        font-size: .875rem;
-        font-weight: var(--vpj-font-weight-600);
-        margin-left: .5rem;
+        font-size: var(--vpj-mobile-nav-title-size);
+        font-weight: var(--vpj-mobile-nav-title-weight);
+        margin-left: var(--vpj-mobile-nav-title-gap);
     }
 
     /* Button */
     .vpj-mobile-nav__btn {
-        background-color: var(--vpj-color-bg-300);
-        border: 0;
-        border-radius: var(--vpj-border-radius-100);
+        align-items: center;
+        backdrop-filter: var(--vpj-mobile-nav-btn-backdrop-filter);
+        background: var(--vpj-mobile-nav-btn-bg);
+        border: var(--vpj-mobile-nav-btn-border);
+        border-radius: var(--vpj-mobile-nav-btn-radius);
         flex-shrink: 0;
-        height: 1.5rem;
-        width: 1.5rem;
-        padding: .25rem;
+        height: var(--vpj-mobile-nav-btn-size);
+        justify-content: center;
+        width: var(--vpj-mobile-nav-btn-size);
+        transition:
+            backdrop-filter var(--vpj-mobile-nav-transition),
+            background var(--vpj-mobile-nav-transition);
     }
 
     .vpj-mobile-nav__btn:hover,
     .vpj-mobile-nav__btn:active {
-        background-color: var(--vpj-color-bg-500);
+        backdrop-filter: var(--vpj-mobile-nav-btn-backdrop-filter-hover);
+        background: var(--vpj-mobile-nav-btn-bg-hover);
     }
 
     .vpj-mobile-nav__btn :deep(.vpj-icon) {
-        fill: var(--vpj-color-text-300);
+        fill: var(--vpj-mobile-nav-btn-icon-color);
+        height: var(--vpj-mobile-nav-btn-icon-size);
+        transition: fill var(--vpj-mobile-nav-transition);
+        width: var(--vpj-mobile-nav-btn-icon-size);
     }
 
     .vpj-mobile-nav__btn:hover :deep(.vpj-icon),
     .vpj-mobile-nav__btn:active :deep(.vpj-icon) {
-        fill: var(--vpj-color-text-400);
+        fill: var(--vpj-mobile-nav-btn-icon-color-hover);
     }
 </style>

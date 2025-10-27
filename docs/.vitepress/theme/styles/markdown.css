@@ -1,26 +1,25 @@
 .vpj-markdown {
-    color: var(--vpj-color-text-500);
+    color: var(--vpj-markdown-color);
     display: flex;
     flex-direction: column;
-    line-height: 1.6;
+    font-size: var(--vpj-markdown-size);
+    line-height: var(--vpj-markdown-line-height);
     overflow: visible;
     overflow-wrap: break-word;
     white-space: normal;
-    word-break: break-all;
-
-    --vpj-code-copy-icon: url('data:image/svg+xml;utf8,<svg id="Layer_1" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" fill="rgb(78, 89, 105)"><path d="m20 20h-20v-17a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3zm-18-2h16v-15a1 1 0 0 0 -1-1h-14a1 1 0 0 0 -1 1zm20-13.816v17.816h-18v2h20v-17a3 3 0 0 0 -2-2.816z"/></svg>');
-    --vpj-code-copy-copied-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512" fill="rgb(78, 89, 105)"><g id="_01_align_center" data-name="01 align center"><path d="M7.8,20.53a2.99,2.99,0,0,1-2.121-.877L.086,14.061,1.5,12.646l5.593,5.593a1,1,0,0,0,1.414,0L22.5,4.246,23.914,5.66,9.921,19.653A2.99,2.99,0,0,1,7.8,20.53Z"/></g></svg>');
-    --vpj-code-copy-copied-text-content: "已复制";
+    word-break: break-all; 
 }
 
 /* Link */
 .vpj-markdown a {
-    color: var(--vpj-color-primary-400);
+    color: var(--vpj-markdown-link-color);
+    text-underline-offset: 2px;
 }
 
 .vpj-markdown a:hover,
+.vpj-markdown a:active,
 .vpj-markdown a:focus {
-    color: var(--vpj-color-primary-300);
+    color: var(--vpj-markdown-link-color-hover);
 }
 
 /* Heading */
@@ -31,9 +30,8 @@
 .vpj-markdown h5,
 .vpj-markdown h6 {
     position: relative;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
+    margin-block: 1em;
+    font-weight: var(--vpj-markdown-heading-font-weight);
     line-height: 1.4;
     cursor: text;
 }
@@ -63,27 +61,61 @@
 }
 
 .vpj-markdown h1 {
-    font-size: 2.25em;
+    font-size: var(--vpj-markdown-h1-font-size);
     line-height: 1.2;
-    border-bottom: 1px solid var(--vpj-color-border-300);
+    border-bottom: var(--vpj-markdown-heading-border);
 }
 
 .vpj-markdown h2 {
-    font-size: 1.75em;
+    font-size: var(--vpj-markdown-h2-font-size);
     line-height: 1.225;
-    border-bottom: 1px solid var(--vpj-color-border-300);
+    border-bottom: var(--vpj-markdown-heading-border);
 }
 
 .vpj-markdown h3 {
-    font-size: 1.5em;
+    font-size: var(--vpj-markdown-h3-font-size);
     line-height: 1.43;
 }
 
-.vpj-markdown h4 {font-size: 1.25em;}
-.vpj-markdown h5 {font-size: 1em;}
+.vpj-markdown h4 {font-size: var(--vpj-markdown-h4-font-size);}
+.vpj-markdown h5 {font-size: var(--vpj-markdown-h5-font-size);}
 .vpj-markdown h6 {
-    font-size: 1em;
-    color: var(--vpj-color-text-200);
+    font-size: var(--vpj-markdown-h6-font-size);
+    color: var(--vpj-c-text-3);
+}
+
+/* Header Anchor */
+.vpj-markdown .header-anchor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: -0.87em;
+    font-weight: inherit;
+    user-select: none;
+    opacity: 0;
+    text-decoration: none;
+    transition:
+        color var(--vpj-markdown-transition),
+        opacity var(--vpj-markdown-transition);
+}
+
+.vpj-markdown .header-anchor:before {
+    content: var(--vpj-markdown-header-anchor-symbol);
+}
+
+.vpj-markdown h1:hover .header-anchor,
+.vpj-markdown h1 .header-anchor:focus,
+.vpj-markdown h2:hover .header-anchor,
+.vpj-markdown h2 .header-anchor:focus,
+.vpj-markdown h3:hover .header-anchor,
+.vpj-markdown h3 .header-anchor:focus,
+.vpj-markdown h4:hover .header-anchor,
+.vpj-markdown h4 .header-anchor:focus,
+.vpj-markdown h5:hover .header-anchor,
+.vpj-markdown h5 .header-anchor:focus,
+.vpj-markdown h6:hover .header-anchor,
+.vpj-markdown h6 .header-anchor:focus {
+    opacity: 1;
 }
 
 /* Common */
@@ -96,12 +128,16 @@
     margin: 0.8em 0;
 }
 
+.vpj-markdown strong {
+    font-weight: var(--vpj-font-weight-bold);
+}
+
 /* Horizontal Rule */
 .vpj-markdown hr {
-    height: var(--vpj-border-width-300);
+    height: var(--vpj-markdown-hr-height);
     padding: 0;
     margin: 1rem 0;
-    background-color: var(--vpj-color-border-300);
+    background: var(--vpj-markdown-hr-bg);
     border: 0 none;
     overflow: hidden;
     box-sizing: content-box;
@@ -110,7 +146,7 @@
 /* List */
 .vpj-markdown > ul:first-child,
 .vpj-markdown > ol:first-child{
-    margin-top: 1.875rem;
+    margin-top: 1.875em;
 }
 
 .vpj-markdown li > ol,
@@ -120,7 +156,7 @@
 
 .vpj-markdown ul,
 .vpj-markdown ol {
-    padding-left: 1.875rem;
+    padding-left: 1.875em;
 }
 
 .vpj-markdown ul:first-child,
@@ -135,9 +171,10 @@
 
 /* Blockquote */
 .vpj-markdown blockquote {
-    border-left: var(--vpj-border-width-400) solid var(--vpj-color-border-400);
-    padding: 0 15px;
-    color: var(--vpj-color-text-200);
+    background: var(--vpj-markdown-blockquote-bg);
+    border-left: var(--vpj-markdown-blockquote-border);
+    padding: var(--vpj-markdown-blockquote-padding);
+    color: var(--vpj-markdown-blockquote-color);
 }
 
 .vpj-markdown blockquote blockquote {
@@ -154,108 +191,296 @@
 
 /* Table Row And Table Header*/
 .vpj-markdown table tr {
-    background-color: var(--vpj-color-bg-100);
+    background: var(--vpj-markdown-table-tr-bg);
     margin: 0;
     padding: 0;
 }
 
 .vpj-markdown table tr:nth-child(2n),
 .vpj-markdown thead tr {
-    background-color: var(--vpj-color-bg-300);
+    background: var(--vpj-markdown-table-tr-even-bg);
 }
 
 .vpj-markdown table tr:hover {
-    background-color: var(--vpj-color-bg-200);
+    background: var(--vpj-markdown-table-tr-hover-bg);
 }
 
 .vpj-markdown table th {
     font-weight: bold;
-    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+    border: var(--vpj-markdown-table-cell-border);
     margin: 0;
     overflow-wrap: break-word;
-    padding: .375rem .75rem;
+    padding: var(--vpj-markdown-table-cell-padding);
     white-space: normal;
     word-break: break-all;
 }
 
 /* Table Cell */
 .vpj-markdown table td {
-    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
+    border: var(--vpj-markdown-table-cell-border);
     margin: 0;
     overflow-wrap: break-word;
-    padding: .375rem .75rem;
+    padding: var(--vpj-markdown-table-cell-padding);
     white-space: normal;
     word-break: break-all;
 }
 
 /* Custom Container */
 .vpj-markdown .custom-block {
-    border-radius: var(--vpj-border-radius-200);
+    border-radius: var(--vpj-markdown-custom-block-radius);
     font-size: .875rem;
     margin: 1rem 0;
     padding: 1rem 1rem .5rem;
 }
 
-.vpj-markdown .custom-block.info { background-color: var(--vpj-color-bg-400); }
-.vpj-markdown .custom-block.tip { background-color: var(--vpj-color-tip-100); }
-.vpj-markdown .custom-block.warning { background-color: var(--vpj-color-warning-100); }
-.vpj-markdown .custom-block.danger { background-color: var(--vpj-color-danger-100); }
-.vpj-markdown .custom-block.details { background-color: var(--vpj-color-bg-400); }
+.vpj-markdown .custom-block.info,
+.vpj-markdown .custom-block.details,
+.vpj-markdown .custom-block.note {
+    background: var(--vpj-c-default-soft);
+}
 
-.vpj-markdown .custom-block.info :not(pre) code { background-color: var(--vpj-color-bg-500); }
-.vpj-markdown .custom-block.tip :not(pre) code { background-color: var(--vpj-color-tip-300); }
-.vpj-markdown .custom-block.warning :not(pre) code { background-color: var(--vpj-color-warning-300); }
-.vpj-markdown .custom-block.danger :not(pre) code { background-color: var(--vpj-color-danger-300); }
-.vpj-markdown .custom-block.details :not(pre) code { background-color: var(--vpj-color-bg-500); }
+.vpj-markdown .custom-block.info {
+    border: var(--vpj-markdown-custom-block-info-border);
+    color: var(--vpj-markdown-custom-block-info-text-color);
+}
+.vpj-markdown .custom-block.details {
+    border: var(--vpj-markdown-custom-block-details-border);
+    color: var(--vpj-markdown-custom-block-details-text-color);
+}
+.vpj-markdown .custom-block.note {
+    border: var(--vpj-markdown-custom-block-note-border);
+    color: var(--vpj-markdown-custom-block-note-text-color);
+}
+.vpj-markdown .custom-block.tip {
+    border: var(--vpj-markdown-custom-block-tip-border);
+    color: var(--vpj-markdown-custom-block-tip-text-color);
+    background: var(--vpj-c-tip-soft);
+}
+.vpj-markdown .custom-block.warning {
+    border: var(--vpj-markdown-custom-block-warning-border);
+    color: var(--vpj-markdown-custom-block-warning-text-color);
+    background: var(--vpj-c-warning-soft);
+}
+.vpj-markdown .custom-block.danger {
+    border: var(--vpj-markdown-custom-block-danger-border);
+    color: var(--vpj-markdown-custom-block-danger-text-color);
+    background: var(--vpj-c-danger-soft);
+}
+.vpj-markdown .custom-block.important {
+    border: var(--vpj-markdown-custom-block-important-border);
+    color: var(--vpj-markdown-custom-block-important-text-color);
+    background: var(--vpj-c-important-soft);
+}
+.vpj-markdown .custom-block.caution {
+    border: var(--vpj-markdown-custom-block-caution-border);
+    color: var(--vpj-markdown-custom-block-caution-text-color);
+    background: var(--vpj-c-caution-soft);
+}
+
+.vpj-markdown .custom-block :not(pre) code {
+    border: 0;
+}
+
+.vpj-markdown .custom-block.info :not(pre) code,
+.vpj-markdown .custom-block.details :not(pre) code,
+.vpj-markdown .custom-block.note :not(pre) code {
+    background: var(--vpj-c-default-4);
+    color: var(--vpj-c-text-1);
+}
+.vpj-markdown .custom-block.tip :not(pre) code {
+    background: var(--vpj-c-tip-4);
+    color: var(--vpj-c-tip-1);
+}
+.vpj-markdown .custom-block.warning :not(pre) code {
+    background: var(--vpj-c-warning-4);
+    color: var(--vpj-c-warning-1);
+}
+.vpj-markdown .custom-block.danger :not(pre) code {
+    background: var(--vpj-c-danger-4);
+    color: var(--vpj-c-danger-1);
+}
+.vpj-markdown .custom-block.important :not(pre) code {
+    background: var(--vpj-c-important-4);
+    color: var(--vpj-c-important-1);
+}
+.vpj-markdown .custom-block.caution :not(pre) code {
+    background: var(--vpj-c-caution-4);
+    color: var(--vpj-c-caution-1);
+}
+
+.vpj-markdown .custom-block.note a,
+.vpj-markdown .custom-block.note a code {
+    color: var(--vpj-c-brand-1);
+}
+.vpj-markdown .custom-block.note a:hover,
+.vpj-markdown .custom-block.note a:hover > code {
+    color: var(--vpj-c-brand-2);
+}
+
+.vpj-markdown .custom-block.tip a,
+.vpj-markdown .custom-block.tip a code {
+    color: var(--vpj-c-tip-1);
+}
+.vpj-markdown .custom-block.tip a:hover,
+.vpj-markdown .custom-block.tip a:hover > code {
+    color: var(--vpj-c-tip-2);
+}
+
+.vpj-markdown .custom-block.important a,
+.vpj-markdown .custom-block.important a code {
+    color: var(--vpj-c-important-1);
+}
+.vpj-markdown .custom-block.important a:hover,
+.vpj-markdown .custom-block.important a:hover > code {
+    color: var(--vpj-c-important-2);
+}
+
+.vpj-markdown .custom-block.warning a,
+.vpj-markdown .custom-block.warning a code {
+    color: var(--vpj-c-warning-1);
+}
+.vpj-markdown .custom-block.warning a:hover,
+.vpj-markdown .custom-block.warning a:hover > code {
+    color: var(--vpj-c-warning-2);
+}
 
 .vpj-markdown .custom-block > p.custom-block-title:first-child {
-    font-weight: var(--vpj-font-weight-600);
+    font-weight: var(--vpj-font-weight-semibold);
     line-height: 1.5;
     margin: 0;
+    color: var(--vpj-markdown-custom-block-info-title-color); /* 默认 */
 }
+.vpj-markdown .custom-block.info > p.custom-block-title:first-child { color: var(--vpj-markdown-custom-block-info-title-color); }
+.vpj-markdown .custom-block.tip > p.custom-block-title:first-child { color: var(--vpj-markdown-custom-block-tip-title-color); }
+.vpj-markdown .custom-block.warning > p.custom-block-title:first-child { color: var(--vpj-markdown-custom-block-warning-title-color); }
+.vpj-markdown .custom-block.danger > p.custom-block-title:first-child { color: var(--vpj-markdown-custom-block-danger-title-color); }
+.vpj-markdown .custom-block.note > p.custom-block-title:first-child { color: var(--vpj-markdown-custom-block-note-title-color); }
+.vpj-markdown .custom-block.important > p.custom-block-title:first-child { color: var(--vpj-markdown-custom-block-important-title-color); }
+.vpj-markdown .custom-block.caution > p.custom-block-title:first-child { color: var(--vpj-markdown-custom-block-caution-title-color); }
 
-.vpj-markdown .custom-block > summary:first-child {
+
+.vpj-markdown .custom-block.details > summary:first-child {
     cursor: pointer;
-    font-weight: var(--vpj-font-weight-600);
+    font-weight: var(--vpj-font-weight-semibold);
     line-height: 1.5;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.5rem;
+    user-select: none;
+    color: var(--vpj-markdown-custom-block-details-title-color);
 }
 
-.vpj-markdown .custom-block > summary:first-child:hover { color: var(--vpj-color-text-300); }
-.vpj-markdown .custom-block > summary:first-child:focus { color: var(--vpj-color-text-400); }
+.vpj-markdown .custom-block p + p {
+    margin: 0.5rem 0;
+}
+
+.vpj-markdown .custom-block a {
+    color: inherit;
+    font-weight: var(--vpj-font-weight-semibold);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity var(--vpj-transition);
+}
+
+.vpj-markdown .custom-block a:hover {
+    opacity: 0.75;
+}
+
+.vpj-markdown .custom-block.info a,
+.vpj-markdown .custom-block.info a code,
+.vpj-markdown .custom-block.note a,
+.vpj-markdown .custom-block.note a code,
+.vpj-markdown .custom-block.details a,
+.vpj-markdown .custom-block.details a code {
+    color: var(--vpj-c-brand-1);
+}
+.vpj-markdown .custom-block.info a:hover,
+.vpj-markdown .custom-block.info a:hover > code,
+.vpj-markdown .custom-block.note a:hover,
+.vpj-markdown .custom-block.note a:hover > code,
+.vpj-markdown .custom-block.details a:hover,
+.vpj-markdown .custom-block.details a:hover > code {
+    color: var(--vpj-c-brand-2);
+}
+
+.vpj-markdown .custom-block.tip a,
+.vpj-markdown .custom-block.tip a code {
+    color: var(--vpj-c-tip-1);
+}
+.vpj-markdown .custom-block.tip a:hover,
+.vpj-markdown .custom-block.tip a:hover > code {
+    color: var(--vpj-c-tip-2);
+}
+
+.vpj-markdown .custom-block.important a,
+.vpj-markdown .custom-block.important a code {
+    color: var(--vpj-c-important-1);
+}
+.vpj-markdown .custom-block.important a:hover,
+.vpj-markdown .custom-block.important a:hover > code {
+    color: var(--vpj-c-important-2);
+}
+
+.vpj-markdown .custom-block.warning a,
+.vpj-markdown .custom-block.warning a code {
+    color: var(--vpj-c-warning-1);
+}
+.vpj-markdown .custom-block.warning a:hover,
+.vpj-markdown .custom-block.warning a:hover > code {
+    color: var(--vpj-c-warning-2);
+}
+
+.vpj-markdown .custom-block.danger a,
+.vpj-markdown .custom-block.danger a code {
+    color: var(--vpj-c-danger-1);
+}
+.vpj-markdown .custom-block.danger a:hover,
+.vpj-markdown .custom-block.danger a:hover > code {
+    color: var(--vpj-c-danger-2);
+}
+
+.vpj-markdown .custom-block.caution a,
+.vpj-markdown .custom-block.caution a code {
+    color: var(--vpj-c-caution-1);
+}
+.vpj-markdown .custom-block.caution a:hover,
+.vpj-markdown .custom-block.caution a:hover > code {
+    color: var(--vpj-c-caution-2);
+}
 
 /* Code(Inline) */
 .vpj-markdown > code,
 .vpj-markdown :not(pre) > code,
 .vpj-markdown :not(pre) > tt {
-    background-color: var(--vpj-color-bg-200);
-    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
-    border-radius: 3px;
+    background-color: var(--vpj-markdown-code-inline-bg);
+    border: var(--vpj-markdown-code-inline-border);
+    border-radius: var(--vpj-border-radius-1);
+    font-family: var(--vpj-font-family-mono);
     font-size: 0.9em;
     padding: 0;
-    padding: .125rem .25rem .125rem .25rem;
+    padding: .125em .25em .125em .25em;
 }
 
 /* Code(Block) */
 .vpj-markdown div[class*=language-] {
-    background-color: var(--vpj-color-bg-300);
-    border-radius: var(--vpj-border-radius-200);
-    margin-bottom: .75rem;
-    margin-top: .75rem;
+    background: var(--vpj-markdown-code-block-bg);
+    border-radius: var(--vpj-markdown-code-block-radius);
+    margin-bottom: .75em;
+    margin-top: .75em;
     position: relative;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+    padding-top: .5em;
+    padding-bottom: .5em;
 }
 
 /* Code Language */
 .vpj-markdown div[class*=language-] > span.lang {
-    color: var(--vpj-color-text-200);
-    font-size: .75rem;
+    color: var(--vpj-c-text-3);
+    font-size: .75em;
     position: absolute;
-    right: 8px;
-    transition: color .4s, opacity .4s;
-    top: 2px;
-    user-select: none; 
+    right: .5em;
+    transition:
+        color var(--vpj-markdown-transition),
+        opacity var(--vpj-markdown-transition);
+    top: .125em;
+    user-select: none;
     z-index: 2;
 }
 
@@ -267,28 +492,31 @@
 /* Code Copy Button */
 .vpj-markdown div[class*=language-] > button.copy {
     align-items: center;
-    background-color: var(--vpj-color-bg-300);
-    background-image: var(--vpj-code-copy-icon);
+    background-color: var(--vpj-markdown-code-copy-bg);
+    background-image: var(--vpj-markdown-code-copy-icon);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 16px 16px;
-    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
-    border-radius: var(--vpj-border-radius-100);
+    background-size: 1em 1em;
+    border: var(--vpj-markdown-code-copy-border);
+    border-radius: var(--vpj-markdown-code-copy-radius);
+    color: var(--vpj-markdown-code-color);
     cursor: pointer;
     display: flex;
-    height: 40px;
+    height: 2.5em;
     justify-content: center;
     opacity: 0;
     position: absolute;
-    right: 12px;
-    transition: color .4s, opacity .4s;
-    top: 12px;
-    width: 40px;
+    right: .75em;
+    transition:
+        color var(--vpj-markdown-transition),
+        opacity var(--vpj-markdown-transition);
+    top: .75em;
+    width: 2.5em;
     z-index: 3;
 }
 
 .vpj-markdown div[class*=language-] > button.copy:hover {
-    background-color: var(--vpj-color-bg-100);
+    background-color: var(--vpj-markdown-code-copy-bg-hover);
 }
 
 .vpj-markdown div[class*=language-]:hover > button.copy {
@@ -297,27 +525,26 @@
 
 /* Code Copy Button: Copied */
 .vpj-markdown div[class*=language-] > button.copy.copied {
-    background-color: var(--vpj-color-bg-100);
-    background-image: var(--vpj-code-copy-copied-icon);
-    border-radius: 0 var(--vpj-border-radius-100) var(--vpj-border-radius-100) 0;
+    background-color: var(--vpj-markdown-code-copy-bg-hover);
+    background-image: var(--vpj-markdown-code-copy-copied-icon);
+    border-radius: 0 var(--vpj-markdown-code-copy-radius) var(--vpj-markdown-code-copy-radius) 0;
+    color: var(--vpj-markdown-code-color);
     opacity: 1;
 }
 
 .vpj-markdown div[class*=language-] > button.copy.copied::before {
     align-items: center;
-    background-color: var(--vpj-color-bg-100);
-    border: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
-    border-radius: var(--vpj-border-radius-100) 0 0 var(--vpj-border-radius-100);
+    background: var(--vpj-markdown-code-copy-bg-hover);
+    border: var(--vpj-markdown-code-copy-border);
+    border-radius: var(--vpj-markdown-code-copy-radius) 0 0 var(--vpj-markdown-code-copy-radius);
     border-right: 0;
-    color: var(--vpj-color-text-300);
     content: var(--vpj-code-copy-copied-text-content);
     display: flex;
-    font-size: 12px;
-    height: 40px;
-    padding: 0 10px;
+    height: 2.5em;
+    padding: .5em .625em;
     position: relative;
     text-align: center;
-    transform: translate(calc(-50% - 20px));
+    transform: translate(calc(-50% - 1.25em));
     white-space: nowrap;
     width: fit-content;
 }
@@ -326,21 +553,27 @@
 .vpj-markdown div[class*=language-] pre {
     background: transparent;
     background-color: var(--shiki-light-bg, inherit);
+    font-family: var(--vpj-font-family-mono);
     margin: 0;
     overflow-x: auto;
-    padding: 20px 0;
+    padding: 1.25em 0;
     position: relative;
     z-index: 1;
 }
 
+.dark .vpj-markdown div[class*=language-] pre {
+    background-color: var(--shiki-dark-bg, inherit);
+}
+
 .vpj-markdown div[class*=language-] code {
-    color: var(--vpj-color-text-300);
+    color: var(--vpj-c-text-3);
     display: block;
-    font-size: .875rem;
+    font-family: var(--vpj-font-family-mono);
+    font-size: .875em;
     line-height: 1.6;
     min-width: 100%;
-    padding: 0 24px;
-    transition: color .5s;
+    padding: 0 1.5em;
+    transition: color var(--vpj-markdown-transition);
     width: fit-content;
 }
 
@@ -356,74 +589,90 @@
     word-wrap: normal;
 }
 
-
-.vpj-markdown div[class*=language-] span:not(.line) {
+.vpj-markdown div[class*=language-] pre span:not(.line) {
     color: var(--shiki-light);
+}
+
+.dark .vpj-markdown div[class*=language-] pre span:not(.line) {
+    color: var(--shiki-dark);
 }
 
 .vpj-markdown div[class*=language-] span.line {
     display: inline-block;
-    margin: 0 -24px;
-    padding: 0 24px;
-    width: calc(100% + 48px);
+    margin: 0 -1.5em;
+    padding: 0 1.5em;
+    width: calc(100% + 3em);
 }
 
 /* Code Highlight/Error/Warning */
 .vpj-markdown div[class*=language-] span.line.highlighted {
-    background-color: var(--vpj-color-bg-500);
+    background-color: var(--vpj-c-bg);
 }
 
 .vpj-markdown div[class*=language-] span.line.highlighted.error {
-    background-color: var(--vpj-color-danger-100);
+    background-color: var(--vpj-c-red-soft);
 }
 
 .vpj-markdown div[class*=language-] span.line.highlighted.warning {
-    background-color: var(--vpj-color-warning-100);
+    background-color: var(--vpj-c-yellow-soft);
 }
 
 /* Code Focus */
 .vpj-markdown div[class*=language-] .has-focused-lines span.line:not(.has-focus) {
     filter: blur(.1rem);
     opacity: .7;
-    transition: filter .35s, opacity .35s;
+    transition:
+        filter var(--vpj-markdown-transition),
+        opacity var(--vpj-markdown-transition);
 }
 
 .vpj-markdown div[class*=language-]:hover .has-focused-lines span.line:not(.has-focus) {
-    filter: blur();
+    filter: blur(0);
     opacity: 1;
 }
 
 /* Code Diff(Add/Remove) */
-.vpj-markdown div[class*=language-] span.line.diff {
+.vpj-markdown div[class*=language-] code span.line.diff {
     display: inline-block;
-    margin: 0 -24px;
-    padding: 0 24px;
-    width: calc(100% + 48px);
+    margin: 0 -1.5em;
+    padding: 0 1.5em;
+    width: calc(100% + 3em);
 }
 
-.vpj-markdown div[class*=language-] span.line.diff.add {
-    background-color: var(--vpj-color-success-100);
+.vpj-markdown div[class*=language-] code span.line.diff.add {
+    background-color: var(--vpj-c-green-soft);
 }
 
-.vpj-markdown div[class*=language-] span.line.diff.remove {
-    background-color: var(--vpj-color-danger-100);
+.vpj-markdown div[class*=language-] code span.line.diff.add::before {
+    content: "+";
+    color: var(--vpj-c-green-3);
+}
+
+.vpj-markdown div[class*=language-] code span.line.diff.remove {
+    background-color: var(--vpj-c-red-soft);
+    opacity: 0.7;
+}
+
+.vpj-markdown div[class*=language-] code span.line.diff.remove::before {
+    content: "-";
+    color: var(--vpj-c-red-3);
 }
 
 /* Code Line Number */
 .vpj-markdown div[class*=language-].line-numbers-mode  {
-    padding-left: 32px;
+    padding-left: 2em;
 }
 
 .vpj-markdown div[class*=language-].line-numbers-mode > div.line-numbers-wrapper {
-    border-right: var(--vpj-border-width-200) solid var(--vpj-color-border-300);
-    color: var(--vpj-color-text-400);
-    font-size: .875rem;
+    border-right: var(--vpj-markdown-code-copy-border);
+    color: var(--vpj-c-text-2);
+    font-size: .875em;
     left: 0;
-    padding: calc(20px + .5rem) 0;
+    padding: calc(20px + .5em) 0;
     position: absolute;
     text-align: center;
     top: 0;
-    width: 32px;
+    width: 2em;
     z-index: 1;
 }
 
@@ -431,30 +680,6 @@
     max-width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-bottom: 6px;
-    padding-top: 6px;
-    scrollbar-width: unset;
-    scrollbar-color: unset;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
-
-.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar {
-    height: 4px;
-}
-
-.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-thumb {
-    background-color: var(--vpj-color-text-100);
-    border-radius: 2px;
-}
-
-.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-thumb:hover {
-    background-color: var(--vpj-color-text-200);
-}
-
-.vpj-markdown .MathJax[display="true"]::-webkit-scrollbar-thumb:active {
-    background-color: var(--vpj-color-text-300);
-}
-

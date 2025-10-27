@@ -9,21 +9,17 @@ const props = defineProps({
     isLink: {
         type: Boolean
     },
-
     icon: {
         type: [String, Object],
         required: true
     },
-
     iconAttrs: {
         type: Object,
         default: () => ({})
     },
-
     text: {
         type: String
     },
-
     textAttrs: {
         type: Object,
         default: () => ({})
@@ -37,7 +33,7 @@ defineExpose({
 
 
 <template>
-    <component :is="props.isLink ? 'a' : 'button'" ref="elementSelf" class="vpj-icon-btn">
+    <component :is="props.isLink ? 'a' : 'button'" ref="elementSelf" class="vpj-btn">
         <slot name="icon">
             <VPJDynamicIcon :icon="props.icon" class="vpj-icon" v-bind="props.iconAttrs"/>
         </slot>
@@ -46,12 +42,3 @@ defineExpose({
         </slot>
     </component>
 </template>
-
-
-<style scoped>
-    .vpj-icon-btn {
-        align-items: center;
-        display: flex;
-        flex-direction: row;
-    }
-</style>

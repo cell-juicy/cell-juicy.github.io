@@ -26,21 +26,16 @@ const tooltipOffset = {x: 0, y: 6}
 const tooltipSafeMargin = 16
 const tooltipAttrs = {
     style: {
-        alignItems: "center",
-        background: "var(--vpj-color-text-500)",
-        borderRadius: "var(--vpj-border-radius-100)",
-        color: "var(--vpj-color-bg-100)",
-        display: "flex",
-        fontSize: ".875rem",
-        maxWidth: "240px",
-        maxHeight: "200px",
-        lineClamp: "4",
+        backdropFilter: "var(--vpj-article-header-toolbar-btn-tooltip-backdrop-filter)",
+        background: "var(--vpj-article-header-toolbar-btn-tooltip-bg)",
+        borderRadius: "var(--vpj-article-header-toolbar-btn-tooltip-radius)",
+        color: "var(--vpj-article-header-toolbar-btn-tooltip-color)",
+        fontSize: "var(--vpj-article-header-toolbar-btn-tooltip-font-size)",
+        maxWidth: "var(--vpj-article-header-toolbar-btn-tooltip-max-width)",
         overflow: "hidden",
-        paddingTop: ".375rem",
-        paddingBottom: ".375rem",
-        paddingLeft: ".5rem",
-        paddingRight: ".5rem",
-        zIndex: "102"
+        padding: "var(--vpj-article-header-toolbar-btn-tooltip-padding)",
+        wordBreak: "break-all",
+        zIndex: "var(--vpj-article-header-toolbar-btn-tooltip-z-index)",
     }
 }
 
@@ -124,7 +119,7 @@ defineExpose({ hasToolbar });
             :tooltipAttrs="tooltipAttrs"
             :offset="tooltipOffset"
             :safeMargin="tooltipSafeMargin"
-            class="vpj-article-header__toolbar-btn"
+            class="vpj-article-header__button"
         />
         <div
             v-if="features.length > 0 && (downloads.length > 0 || tools.length > 0)"
@@ -141,7 +136,7 @@ defineExpose({ hasToolbar });
             :tooltipAttrs="tooltipAttrs"
             :offset="tooltipOffset"
             :safeMargin="tooltipSafeMargin"
-            class="vpj-article-header__toolbar-btn"
+            class="vpj-article-header__button"
             :href="download.url"
             :download="download.download"
         />
@@ -161,7 +156,7 @@ defineExpose({ hasToolbar });
             :tooltipAttrs="tooltipAttrs"
             :offset="tooltipOffset"
             :safeMargin="tooltipSafeMargin"
-            class="vpj-article-header__toolbar-btn"
+            class="vpj-article-header__button"
         />
     </div>
 </template>
@@ -173,44 +168,17 @@ defineExpose({ hasToolbar });
         align-items: center;
         display: flex;
         flex-shrink: 0;
-        gap: .25rem;
+        gap: var(--vpj-article-header-toolbar-gap);
         height: 100%;
         margin-left: auto;
     }
 
-    .vpj-article-header__toolbar-btn {
-        align-items: center;
-        background-color: var(--vpj-color-bg-100);
-        border-radius: var(--vpj-border-radius-100);
-        height: 32px;
-        padding-left: 8px;
-        padding-right: 8px;
-        text-decoration: none;
-    }
-
-    .vpj-article-header__toolbar-btn :deep(.vpj-icon) {
-        fill: var(--vpj-color-text-300);
-        height: 16px;
-        width: 16px;
-    }
-
-    .vpj-article-header__toolbar-btn:hover,
-    .vpj-article-header__toolbar-btn:active {
-        background-color: var(--vpj-color-bg-300);
-    }
-
-    .vpj-article-header__toolbar-btn:hover :deep(.vpj-icon),
-    .vpj-article-header__toolbar-btn:active :deep(.vpj-icon) {
-        fill: var(--vpj-color-text-400);
-    }
-
-
     /* Toolbar Divider */
     .vpj-article-header__divider {
-        background-color: var(--vpj-color-border-400);
-        height: 24px;
-        width: 1px;
-        margin-left: .25rem;
-        margin-right: .25rem;
+        background: var(--vpj-article-header-toolbar-divider-bg);
+        height: var(--vpj-article-header-toolbar-divider-height);
+        width: var(--vpj-article-header-toolbar-divider-width);
+        margin-left: var(--vpj-article-header-toolbar-divider-gap);
+        margin-right: var(--vpj-article-header-toolbar-divider-gap);
     }
 </style>

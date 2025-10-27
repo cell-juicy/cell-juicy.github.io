@@ -21,7 +21,6 @@ const props = defineProps({
     },
     trackColor: {
         type: [String, Object],
-        default: "transparent"
     },
     trackXAttrs: {
         type: Object,
@@ -37,11 +36,6 @@ const props = defineProps({
     },
     thumbColor: {
         type: [String, Object],
-        default: {
-            base: "var(--vpj-color-text-100)",
-            hover: "var(--vpj-color-text-200)",
-            active: "var(--vpj-color-text-200)"
-        }
     },
     thumbXAttrs: {
         type: Object,
@@ -82,9 +76,9 @@ const thumbColor = computed(() => {
         }
     }
     return {
-        base: props.thumbColor?.base || "var(--vpj-color-text-200)",
-        hover: props.thumbColor?.hover || props.thumbColor?.base || "var(--vpj-color-text-300)",
-        active: props.thumbColor?.active || props.thumbColor?.hover || props.thumbColor?.base || "var(--vpj-color-text-300)",
+        base: props.thumbColor?.base || "var(--vpj-overlay-scroll-area-thumb-bg)",
+        hover: props.thumbColor?.hover || props.thumbColor?.base || "var(--vpj-overlay-scroll-area-thumb-bg-hover)",
+        active: props.thumbColor?.active || props.thumbColor?.hover || props.thumbColor?.base || "var(--vpj-overlay-scroll-area-thumb-bg-active)",
     }
 });
 
@@ -97,9 +91,9 @@ const trackColor = computed(() => {
         }
     }
     return {
-        base: props.trackColor?.base || "var(--vpj-color-text-200)",
-        hover: props.trackColor?.hover || props.trackColor?.base || "var(--vpj-color-text-300)",
-        active: props.trackColor?.active || props.trackColor?.hover || props.trackColor?.base || "var(--vpj-color-text-300)",
+        base: props.trackColor?.base || "var(--vpj-overlay-scroll-area-track-bg)",
+        hover: props.trackColor?.hover || props.trackColor?.base || "var(--vpj-overlay-scroll-area-track-bg-hover)",
+        active: props.trackColor?.active || props.trackColor?.hover || props.trackColor?.base || "var(--vpj-overlay-scroll-area-track-bg-active)",
     }
 })
 
@@ -165,7 +159,7 @@ function stopDragX(e) {
 function startDragY(e) {
     draggingY.value = true;
     mouseStartY.value = e.clientY;
-    scrollStartY.value = area.value.scrollTop; // 修复：使用 scrollTop
+    scrollStartY.value = area.value.scrollTop;
     document.addEventListener("mousemove", dragY);
     document.addEventListener("mouseup", stopDragY);
 };
@@ -333,22 +327,24 @@ defineExpose({
     /* Track */
     .vpj-overlay-scroll__track-x,
     .vpj-overlay-scroll__track-y {
-        background-color: v-bind("trackColor.base");
+        background: v-bind("trackColor.base");
         border-radius: v-bind("`${Number(props.thumbWidth) / 2}px`");
         opacity: 0;
         pointer-events: none;
         position: absolute;
-        transition: opacity 0.3s ease;
+        transition:
+            opacity var(--vpj-overlay-scroll-area-transition),
+            background var(--vpj-overlay-scroll-area-transition);
     }
 
     .vpj-overlay-scroll__track-x:hover,
     .vpj-overlay-scroll__track-y:hover {
-        background-color: v-bind("trackColor.hover");
+        background: v-bind("trackColor.hover");
     }
 
     .vpj-overlay-scroll__thumb-x:active,
     .vpj-overlay-scroll__thumb-y:active {
-        background-color: v-bind("trackColor.active");
+        background: v-bind("trackColor.active");
     }
 
     .vpj-overlay-scroll:hover > .vpj-overlay-scroll__track-x,
@@ -357,7 +353,7 @@ defineExpose({
     .vpj-overlay-scroll:focus > .vpj-overlay-scroll__track-y,
     .vpj-overlay-scroll__track-x.dragging,
     .vpj-overlay-scroll__track-y.dragging {
-        opacity: 1;
+        opacity: var(--vpj-overlay-scroll-area-opacity-visible);
         pointer-events: auto;
     }
 
@@ -385,12 +381,12 @@ defineExpose({
         left: 0;
         position: absolute;
         top: 0;
-        background-color: v-bind("thumbColor.base");
+        background: v-bind("thumbColor.base");
     }
 
     .vpj-overlay-scroll__thumb-x:hover,
     .vpj-overlay-scroll__thumb-y:hover {
-        background-color: v-bind("thumbColor.hover");
+        background: v-bind("thumbColor.hover");
     }
 
     .vpj-overlay-scroll__thumb-x:active,
@@ -399,20 +395,22 @@ defineExpose({
     .vpj-overlay-scroll__thumb-y:focus,
     .vpj-overlay-scroll__track-x.dragging .vpj-overlay-scroll__thumb-x,
     .vpj-overlay-scroll__track-y.dragging .vpj-overlay-scroll__thumb-y {
-        background-color: v-bind("thumbColor.active");
+        background: v-bind("thumbColor.active");
     }
 
     .vpj-overlay-scroll__thumb-x {
         height: 100%;
-        transition: 
-            opacity 0.3s ease,
-            width 0.2s ease;
+        transition:
+            background var(--vpj-overlay-scroll-area-transition),
+            opacity var(--vpj-overlay-scroll-area-transition),
+            width var(--vpj-overlay-scroll-area-transition);
     }
 
     .vpj-overlay-scroll__thumb-y {
         width: 100%;
-        transition: 
-            opacity 0.3s ease,
-            height 0.2s ease;
+        transition:
+            background var(--vpj-overlay-scroll-area-transition),
+            opacity var(--vpj-overlay-scroll-area-transition),
+            height var(--vpj-overlay-scroll-area-transition);
     }
 </style>
