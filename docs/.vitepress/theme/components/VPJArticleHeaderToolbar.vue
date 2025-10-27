@@ -26,6 +26,7 @@ const tooltipOffset = {x: 0, y: 6}
 const tooltipSafeMargin = 16
 const tooltipAttrs = {
     style: {
+        backdropFilter: "var(--vpj-article-header-toolbar-btn-tooltip-backdrop-filter)",
         background: "var(--vpj-article-header-toolbar-btn-tooltip-bg)",
         borderRadius: "var(--vpj-article-header-toolbar-btn-tooltip-radius)",
         color: "var(--vpj-article-header-toolbar-btn-tooltip-color)",

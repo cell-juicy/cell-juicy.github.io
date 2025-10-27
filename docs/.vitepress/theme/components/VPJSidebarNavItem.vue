@@ -15,6 +15,7 @@ const tooltipOffset = {x: 6, y: 0};
 const tooltipAttrs = {
     style: {
         alignItems: "center",
+        backdropFilter: "var(--vpj-sidebar-btn-tooltip-backdrop-filter)",
         background: "var(--vpj-sidebar-btn-tooltip-bg)",
         borderRadius: "var(--vpj-sidebar-btn-tooltip-radius)",
         color: "var(--vpj-sidebar-btn-tooltip-color)",
@@ -180,7 +181,9 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
     .vpj-sidebar__nav-item-toggle > .vpj-icon {
         height: var(--vpj-sidebar-nav-list-item-toggle-icon-size);
         fill: var(--vpj-sidebar-btn-icon-color);
-        transition: transform var(--vpj-sidebar-transition);
+        transition:
+            fill var(--vpj-sidebar-transition),
+            transform var(--vpj-sidebar-transition);
         transform: v-bind(toggleTransition);
         width: var(--vpj-sidebar-nav-list-item-toggle-icon-size);
     }
@@ -194,6 +197,7 @@ const toggleTransition = computed(() => itemsCollapsed.value ? "rotate(-90deg)" 
     .vpj-sidebar__nav-item-wrapper > .vpj-icon {
         fill: var(--vpj-sidebar-btn-icon-color);
         height: var(--vpj-sidebar-btn-icon-size);
+        transition: fill var(--vpj-sidebar-transition);
         width: var(--vpj-sidebar-btn-icon-size);
     }
 

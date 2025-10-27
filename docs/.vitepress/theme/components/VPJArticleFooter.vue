@@ -122,6 +122,8 @@ const computedMarginBottom = computed(() => {
         padding-inline: var(--vpj-article-footer-nav-padding-x);
         text-decoration: none;
         transition:
+            backdrop-filter var(--vpj-article-footer-transition),
+            background var(--vpj-article-footer-transition),
             border-color var(--vpj-article-footer-transition),
             box-shadow var(--vpj-article-footer-transition),
             transform var(--vpj-article-footer-transition);
@@ -129,6 +131,7 @@ const computedMarginBottom = computed(() => {
 
     .vpj-article-footer__navgation-prev:hover,
     .vpj-article-footer__navgation-next:hover {
+        backdrop-filter: var(--vpj-article-footer-nav-backdrop-filter-hover);
         background: var(--vpj-article-footer-nav-bg-hover);
         transform: var(--vpj-article-footer-nav-transform-hover);
         box-shadow: var(--vpj-article-footer-nav-shadow-hover);
@@ -136,6 +139,7 @@ const computedMarginBottom = computed(() => {
 
     .vpj-article-footer__navgation-prev:active,
     .vpj-article-footer__navgation-next:active {
+        backdrop-filter: var(--vpj-article-footer-nav-backdrop-filter-hover);
         background: var(--vpj-article-footer-nav-bg-hover);
         border: var(--vpj-article-footer-nav-border-active);
     }
@@ -206,6 +210,7 @@ const computedMarginBottom = computed(() => {
         fill: var(--vpj-article-footer-edit-link-color);
         flex-shrink: 0;
         height: var(--vpj-article-footer-edit-link-icon-size);
+        transition: fill var(--vpj-article-footer-transition);
         width: var(--vpj-article-footer-edit-link-icon-size);
     }
 
@@ -218,6 +223,7 @@ const computedMarginBottom = computed(() => {
         color: var(--vpj-article-footer-edit-link-color);
         font-size: var(--vpj-article-footer-edit-link-text-size);
         font-weight: var(--vpj-article-footer-edit-link-text-weight);
+        transition: color var(--vpj-article-footer-transition);
     }
 
     .vpj-article-footer__edit-link:hover .vpj-article-footer__edit-link-text,

@@ -39,6 +39,7 @@ const { page, frontmatter } = useData();
 
 <style scoped>
     .vpj-layout-content {
+        background: var(--vpj-content-bg);
         height: 100%;
         width: 100%;
     }

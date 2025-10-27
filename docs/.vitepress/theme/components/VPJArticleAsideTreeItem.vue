@@ -99,6 +99,7 @@ const collapsed = ref(false);
 
     .vpj-article-aside__aside-doc-node-link {
         align-items: center;
+        backdrop-filter: var(--vpj-private-bf-c, var(--vpj-private-bf-h, var(--vpj-article-aside-tab-tree-node-backdrop-filter)));;
         background: var(--vpj-private-b-c, var(--vpj-private-b-h, var(--vpj-article-aside-tab-tree-node-bg)));;
         border-radius: var(--vpj-article-aside-tab-tree-node-radius);
         color: var(--vpj-private-c-c, var(--vpj-private-c-h, var(--vpj-article-aside-tab-tree-node-color)));
@@ -110,16 +111,23 @@ const collapsed = ref(false);
         padding-inline: var(--vpj-article-aside-tab-tree-node-padding-x);
         text-align: start;
         text-decoration: none;
+        transition:
+            backdrop-filter var(--vpj-article-aside-tab-tree-transition),
+            background var(--vpj-article-aside-tab-tree-transition),
+            color var(--vpj-article-aside-tab-tree-transition),
+            font-weight var(--vpj-article-aside-tab-tree-transition);
     }
 
     .vpj-article-aside__aside-doc-node-link:hover,
     .vpj-article-aside__aside-doc-node-link:active {
+        --vpj-private-bf-h: var(--vpj-article-aside-tab-tree-node-backdrop-filter-hover);
         --vpj-private-b-h: var(--vpj-article-aside-tab-tree-node-bg-hover);
         --vpj-private-c-h: var(--vpj-article-aside-tab-tree-node-color-hover);
         --vpj-private-w-h: var(--vpj-article-aside-tab-tree-node-weight-hover);
     }
 
     .vpj-article-aside__aside-doc-node-link.current {
+        --vpj-private-bf-c: var(--vpj-article-aside-tab-tree-node-backdrop-filter-current);
         --vpj-private-b-c: var(--vpj-article-aside-tab-tree-node-bg-current);
         --vpj-private-c-c: var(--vpj-article-aside-tab-tree-node-color-current);
         --vpj-private-w-c: var(--vpj-article-aside-tab-tree-node-weight-current);
@@ -127,17 +135,23 @@ const collapsed = ref(false);
 
     .vpj-article-aside__aside-doc-node-toggle {
         align-items: center;
+        backdrop-filter: var(--vpj-article-aside-tab-tree-node-toggle-backdrop-filter);
         background: var(--vpj-article-aside-tab-tree-node-toggle-bg);
         border-radius: var(--vpj-article-aside-tab-tree-node-toggle-radius);
         height: var(--vpj-article-aside-tab-tree-node-toggle-size);
-        width: var(--vpj-article-aside-tab-tree-node-toggle-size);
         padding: calc((var(--vpj-article-aside-tab-tree-node-toggle-size) - var(--vpj-article-aside-tab-tree-node-toggle-icon-size)) / 2);
+        transition:
+            backdrop-filter var(--vpj-article-aside-tab-tree-transition),
+            background var(--vpj-article-aside-tab-tree-transition);
+        width: var(--vpj-article-aside-tab-tree-node-toggle-size);
     }
 
     .vpj-article-aside__aside-doc-node-toggle :deep(.vpj-icon) {
         fill: var(--vpj-article-aside-tab-tree-node-toggle-icon-color);
         height: var(--vpj-article-aside-tab-tree-node-toggle-icon-size);
-        transition: transform var(--vpj-article-aside-tab-tree-transition);
+        transition:
+            fill var(--vpj-article-aside-tab-tree-transition),
+            transform var(--vpj-article-aside-tab-tree-transition);
         width: var(--vpj-article-aside-tab-tree-node-toggle-icon-size);
     }
 
@@ -147,12 +161,15 @@ const collapsed = ref(false);
         fill: var(--vpj-article-aside-tab-tree-node-toggle-icon-color);
         height: var(--vpj-article-aside-tab-tree-node-toggle-size);
         padding: calc((var(--vpj-article-aside-tab-tree-node-toggle-size) - var(--vpj-article-aside-tab-tree-node-toggle-icon-size)) / 2);
-        transition: transform var(--vpj-article-aside-tab-tree-transition);
+        transition:
+            fill var(--vpj-article-aside-tab-tree-transition),
+            transform var(--vpj-article-aside-tab-tree-transition);
         width: var(--vpj-article-aside-tab-tree-node-toggle-size);
     }
 
     .vpj-article-aside__aside-doc-node-toggle:hover,
     .vpj-article-aside__aside-doc-node-toggle:active {
+        backdrop-filter: var(--vpj-article-aside-tab-tree-node-toggle-backdrop-filter-hover);
         background: var(--vpj-article-aside-tab-tree-node-toggle-bg-hover);
     }
 

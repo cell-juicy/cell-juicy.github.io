@@ -11,13 +11,12 @@ import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 
 import VPJIconAngleSmallLeft from './icons/VPJIconAngleSmallLeft.vue';
 import VPJIconAngleSmallRight from './icons/VPJIconAngleSmallRight.vue';
-import VPJIconSearch from './icons/VPJIconSearch.vue';
 
 
 const store = useVPJSidebar();
 const { collapsed, enabled, headerConfig } = storeToRefs(store);
 const { toggle } = store;
-const { theme, isDark } = useData();
+const { theme } = useData();
 
 // enable nav
 const enable = computed(() => {
@@ -29,11 +28,11 @@ const enable = computed(() => {
 const computedTitle = computed(() => {
     const mobileNavTitle = theme.value.mobileNav?.title ?? headerConfig.value.title;
     if (typeof mobileNavTitle === 'object' && typeof mobileNavTitle.component === 'string') {
-        return { component: mobileNavTitle.component }
+        return { component: mobileNavTitle.component };
     } else if (typeof mobileNavTitle === 'string') {
-        return { text: mobileNavTitle }
+        return { text: mobileNavTitle };
     } else {
-        return { text: headerConfig.value.profile.title }
+        return { text: headerConfig.value.profile.title };
     }
 });
 </script>
@@ -83,23 +82,29 @@ const computedTitle = computed(() => {
     /* Button */
     .vpj-mobile-nav__btn {
         align-items: center;
-        background-color: var(--vpj-mobile-nav-btn-bg);
+        backdrop-filter: var(--vpj-mobile-nav-btn-backdrop-filter);
+        background: var(--vpj-mobile-nav-btn-bg);
         border: var(--vpj-mobile-nav-btn-border);
         border-radius: var(--vpj-mobile-nav-btn-radius);
         flex-shrink: 0;
         height: var(--vpj-mobile-nav-btn-size);
         justify-content: center;
         width: var(--vpj-mobile-nav-btn-size);
+        transition:
+            backdrop-filter var(--vpj-mobile-nav-transition),
+            background var(--vpj-mobile-nav-transition);
     }
 
     .vpj-mobile-nav__btn:hover,
     .vpj-mobile-nav__btn:active {
+        backdrop-filter: var(--vpj-mobile-nav-btn-backdrop-filter-hover);
         background: var(--vpj-mobile-nav-btn-bg-hover);
     }
 
     .vpj-mobile-nav__btn :deep(.vpj-icon) {
         fill: var(--vpj-mobile-nav-btn-icon-color);
         height: var(--vpj-mobile-nav-btn-icon-size);
+        transition: fill var(--vpj-mobile-nav-transition);
         width: var(--vpj-mobile-nav-btn-icon-size);
     }
 

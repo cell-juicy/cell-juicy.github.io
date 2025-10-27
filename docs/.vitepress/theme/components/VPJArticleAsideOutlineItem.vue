@@ -85,16 +85,21 @@ const indent = computed(() => {
     /* Link */
     .vpj-article-aside__outline-link {
         align-items: center;
+        backdrop-filter: var(--vpj-article-aside-tab-outline-item-backdrop-filter);
+        background: var(--vpj-article-aside-tab-outline-item-bg);
         display: flex;
         gap: var(--vpj-article-aside-tab-outline-item-gap);
-        padding-block: var(--vpj-article-aside-tab-outline-item-padding-y);
-        padding-inline: var(--vpj-article-aside-tab-outline-item-padding-x);
+        padding: var(--vpj-article-aside-tab-outline-item-padding);
         text-decoration: none;
+        transition:
+            backdrop-filter var(--vpj-article-aside-tab-outline-transition),
+            background var(--vpj-article-aside-tab-outline-transition);
         width: 100%;
     }
 
     .vpj-article-aside__outline-link:hover,
     .vpj-article-aside__outline-link:active {
+        backdrop-filter: var(--vpj-article-aside-tab-outline-item-backdrop-filter-hover);
         background: var(--vpj-article-aside-tab-outline-item-bg-hover);
     }
 
@@ -108,16 +113,21 @@ const indent = computed(() => {
 
     .vpj-article-aside__outline-toggle {
         align-items: center;
+        backdrop-filter: var(--vpj-article-aside-tab-outline-toggle-backdrop-filter);
         background: var(--vpj-article-aside-tab-outline-toggle-bg);
         border-radius: var(--vpj-article-aside-tab-outline-toggle-radius);
         display: flex;
         height: 100%;
         padding: calc((var(--vpj-article-aside-tab-outline-toggle-size) - var(--vpj-article-aside-tab-outline-toggle-icon-size)) / 2);
+        transition:
+            backdrop-filter var(--vpj-article-aside-tab-outline-transition),
+            background var(--vpj-article-aside-tab-outline-transition);
         width: 100%;
     }
 
     .vpj-article-aside__outline-toggle:hover,
     .vpj-article-aside__outline-toggle:active {
+        backdrop-filter: var(--vpj-article-aside-tab-outline-toggle-backdrop-filter-hover);
         background: var(--vpj-article-aside-tab-outline-toggle-bg-hover);
     }
 
@@ -125,7 +135,9 @@ const indent = computed(() => {
     .vpj-article-aside__outline-toggle-icon {
         height: var(--vpj-article-aside-tab-outline-toggle-icon-size);
         fill: var(--vpj-article-aside-tab-outline-toggle-icon-color);
-        transition: transform var(--vpj-article-aside-tab-outline-transition);
+        transition:
+            fill var(--vpj-article-aside-tab-outline-transition),
+            transform var(--vpj-article-aside-tab-outline-transition);
         width: var(--vpj-article-aside-tab-outline-toggle-icon-size);
     }
 
@@ -142,6 +154,12 @@ const indent = computed(() => {
         font-size: var(--vpj-private-s-c, var(--vpj-private-s-h, var(--vpj-article-aside-tab-outline-title-size)));
         font-weight: var(--vpj-private-w-c, var(--vpj-private-w-h, var(--vpj-article-aside-tab-outline-title-weight)));
         text-decoration: var(--vpj-private-d-c, var(--vpj-private-d-h, none));
+        text-underline-offset: 2px;
+        transition:
+            color var(--vpj-article-aside-tab-outline-transition),
+            font-size var(--vpj-article-aside-tab-outline-transition),
+            font-weight var(--vpj-article-aside-tab-outline-transition),
+            text-decoration var(--vpj-article-aside-tab-outline-transition);
     }
 
     .vpj-article-aside__outline-title:hover {

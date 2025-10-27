@@ -159,7 +159,6 @@ const groupedHistory = computed(() => {
 
 <style scoped>
     .vpj-panel__tab-outer {
-        background: var(--vpj-panel-history-bg);
         height: 100%;
         width: 100%;
     }
@@ -172,7 +171,10 @@ const groupedHistory = computed(() => {
     }
 
     .vpj-panel__history {
+        backdrop-filter: var(--vpj-panel-history-backdrop-filter);
+        background: var(--vpj-panel-history-bg);
         display: flex;
+        flex: 1;
         flex-direction: column;
         gap: var(--vpj-panel-history-gap);
         width: 100%;

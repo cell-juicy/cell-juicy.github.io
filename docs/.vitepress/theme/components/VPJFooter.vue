@@ -23,6 +23,7 @@ const {
 
 <style scoped>
     .vpj-footer {
+        backdrop-filter: var(--vpj-footer-backdrop-filter);
         background: var(--vpj-footer-bg);
         border-top: var(--vpj-footer-border);
         flex-shrink: 0;
@@ -53,7 +54,7 @@ const {
         text-decoration: underline;
         text-underline-offset: 2px;
         color: var(--vpj-footer-link-color);
-        transition: color var(--vpj-footer-link-transition);
+        transition: color var(--vpj-footer-transition);
     }
 
     .vpj-footer__message :deep(a:hover), .vpj-footer__message :deep(a:active),

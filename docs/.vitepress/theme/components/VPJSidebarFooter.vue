@@ -13,6 +13,7 @@ const tooltipOffset = {x: 6, y: 0};
 const tooltipAttrs = {
     style: {
         alignItems: "center",
+        backdropFilter: "var(--vpj-sidebar-btn-tooltip-backdrop-filter)",
         background: "var(--vpj-sidebar-btn-tooltip-bg)",
         borderRadius: "var(--vpj-sidebar-btn-tooltip-radius)",
         color: "var(--vpj-sidebar-btn-tooltip-color)",

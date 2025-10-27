@@ -85,6 +85,7 @@ const empty = computed(() => {
     }
 
     .vpj-article-aside__aside-doc-tree {
+        backdrop-filter: var(--vpj-article-aside-tab-tree-backdrop-filter);
         background: var(--vpj-article-aside-tab-tree-bg);
         display: flex;
         flex: 1;

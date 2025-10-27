@@ -50,8 +50,8 @@ const DEFAULT = {
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "61.25rem",
         CONTENTPADDING: {
-            mobile: "1.5rem",
-            tablet: "1.5rem",
+            mobile: "2.2rem",
+            tablet: "2.2rem",
             desktop: "4rem"
         },
         FOOTER: undefined,
@@ -95,8 +95,8 @@ const DEFAULT = {
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "760px",
         CONTENTPADDING: {
-            mobile: "1rem",
-            tablet: "2rem",
+            mobile: "2.2rem",
+            tablet: "2.2rem",
             desktop: "4rem"
         },
         FOOTER: undefined,
@@ -143,8 +143,8 @@ const DEFAULT = {
         CONTENTMARGINTOP: "1.5rem",
         CONTENTMAXWIDTH: "820px",
         CONTENTPADDING: {
-            mobile: "1rem",
-            tablet: "2rem",
+            mobile: "2.2rem",
+            tablet: "2.2rem",
             desktop: "4rem"
         },
         FOOTER: undefined,

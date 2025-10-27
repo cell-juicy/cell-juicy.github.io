@@ -99,6 +99,7 @@ useActiveAnchor(outline, scrollArea);
     }
 
     .vpj-article-aside__outline {
+        backdrop-filter: var(--vpj-article-aside-tab-outline-backdrop-filter);
         background: var(--vpj-article-aside-tab-outline-bg);
         display: flex;
         flex: 1;

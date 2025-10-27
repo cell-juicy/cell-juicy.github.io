@@ -94,6 +94,7 @@ const { close } = store;
 
         /* Overlay */
         .vpj-sidebar__overlay {
+            backdrop-filter: var(--vpj-sidebar-overlay-backdrop-filter);
             background: var(--vpj-sidebar-overlay);
             display: block;
             position: fixed;
@@ -126,6 +127,7 @@ const { close } = store;
     .vpj-sidebar__btn,
     .vpj-sidebar__btn:visited {
         align-items: center;
+        backdrop-filter: var(--vpj-sidebar-btn-backdrop-filter);
         background: var(--vpj-sidebar-btn-bg);
         border: var(--vpj-sidebar-btn-border);
         border-radius: var(--vpj-sidebar-btn-radius);
@@ -139,6 +141,7 @@ const { close } = store;
         padding: calc((var(--vpj-sidebar-btn-height) - max(var(--vpj-sidebar-btn-icon-size), var(--vpj-sidebar-btn-text-size))) / 2);
         text-decoration: none;
         transition:
+            backdrop-filter var(--vpj-sidebar-transition),
             background var(--vpj-sidebar-transition),
             gap var(--vpj-sidebar-transition),
             padding var(--vpj-sidebar-transition),
@@ -147,7 +150,9 @@ const { close } = store;
 
     .vpj-sidebar__btn:hover,
     .vpj-sidebar__btn:active {
+        backdrop-filter: var(--vpj-sidebar-btn-backdrop-filter-hover);
         background: var(--vpj-sidebar-btn-bg-hover);
+        transition: fill var(--vpj-sidebar-transition);
     }
 
     .vpj-sidebar__btn > .vpj-icon {

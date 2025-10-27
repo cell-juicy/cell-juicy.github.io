@@ -60,7 +60,8 @@ const empty = computed(() => {
     }
 
     .vpj-article-aside__aside-blog-tags {
-        background-color: var(--vpj-article-aside-tab-tags-bg);
+        backdrop-filter: var(--vpj-article-aside-tab-tags-backdrop-filter);
+        background: var(--vpj-article-aside-tab-tags-bg);
         align-content: flex-start;
         column-gap: var(--vpj-article-aside-tab-tags-list-gap-col);
         display: flex;

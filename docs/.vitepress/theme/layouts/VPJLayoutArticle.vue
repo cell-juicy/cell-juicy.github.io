@@ -109,6 +109,7 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
 
 <style scoped>
     .vpj-layout-article {
+        backdrop-filter: var(--vpj-layout-article-backdrop-filter);
         background: var(--vpj-layout-article-bg);
         display: flex;
         flex-direction: column;
@@ -164,6 +165,7 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
 
     .vpj-layout-article__aside-toggle {
         align-items: center;
+        backdrop-filter: var(--vpj-layout-article-controller-btn-backdrop-filter);
         background: var(--vpj-layout-article-controller-btn-bg);
         border: var(--vpj-layout-article-controller-btn-border);
         border-radius: var(--vpj-layout-article-controller-btn-radius);
@@ -171,6 +173,9 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         padding: calc((var(--vpj-layout-article-controller-btn-size) - var(--vpj-layout-article-controller-btn-icon-size)) / 2);
         position: sticky;
         top: var(--vpj-layout-article-controller-padding-top);
+        transition:
+            backdrop-filter var(--vpj-layout-article-transition),
+            background var(--vpj-layout-article-transition);
         width: var(--vpj-layout-article-controller-btn-size);
     }
 
@@ -178,11 +183,13 @@ provide(VPJ_ARTICLE_LAYOUT_SYMBOL, {
         fill: var(--vpj-layout-article-controller-btn-icon-color);
         height: var(--vpj-layout-article-controller-btn-icon-size);
         width: var(--vpj-layout-article-controller-btn-icon-size);
+        transition: fill var(--vpj-layout-article-transition);
     }
 
     .vpj-layout-article__aside-toggle:hover,
     .vpj-layout-article__aside-toggle:active {
-        background-color: var(--vpj-layout-article-controller-btn-bg-hover);
+        backdrop-filter: var(--vpj-layout-article-controller-btn-backdrop-filter-hover);
+        background: var(--vpj-layout-article-controller-btn-bg-hover);
     }
 
     .vpj-layout-article__aside-toggle:hover :deep(.vpj-icon),

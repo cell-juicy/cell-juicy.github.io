@@ -309,11 +309,13 @@
     Component: Sidebar
 */
 :root {
+    --vpj-sidebar-overlay: var(--vpj-overlay);
+    --vpj-sidebar-overlay-backdrop-filter: none;
+    --vpj-sidebar-overlay-z-index: var(--vpj-z-index-4);
+
     --vpj-sidebar-bg: var(--vpj-c-bg-alt);
     --vpj-sidebar-bg-collapsed: var(--vpj-c-bg-alt);
     --vpj-sidebar-border: var(--vpj-gutter);
-    --vpj-sidebar-overlay: var(--vpj-overlay);
-    --vpj-sidebar-overlay-z-index: var(--vpj-z-index-4);
     --vpj-sidebar-padding-x: .75rem;
     --vpj-sidebar-padding-bottom: 1.25rem;
     --vpj-sidebar-padding-top: .75rem;
@@ -323,9 +325,11 @@
     --vpj-sidebar-width-mobile: min(20rem, 50vw);
     --vpj-sidebar-z-index: var(--vpj-z-index-5);
 
-    --vpj-sidebar-btn-border: 0;
+    --vpj-sidebar-btn-backdrop-filter: none;
+    --vpj-sidebar-btn-backdrop-filter-hover: none;
     --vpj-sidebar-btn-bg: transparent;
     --vpj-sidebar-btn-bg-hover: var(--vpj-c-default-soft);
+    --vpj-sidebar-btn-border: 0;
     --vpj-sidebar-btn-gap: .5rem;
     --vpj-sidebar-btn-height: 2rem;
     --vpj-sidebar-btn-icon-color: var(--vpj-c-text-2);
@@ -337,6 +341,7 @@
     --vpj-sidebar-btn-text-weight: var(--vpj-font-weight-normal);
     --vpj-sidebar-btn-text-size: .875rem;
 
+    --vpj-sidebar-btn-tooltip-backdrop-filter: none;
     --vpj-sidebar-btn-tooltip-bg: var(--vpj-c-text-1);
     --vpj-sidebar-btn-tooltip-font-size: .875rem;
     --vpj-sidebar-btn-tooltip-max-width: 200px;
@@ -346,7 +351,9 @@
     --vpj-sidebar-btn-tooltip-z-index: var(--vpj-z-index-5);
 
     --vpj-sidebar-profile-overlay: transparent;
+    --vpj-sidebar-profile-overlay-backdrop-filter: none;
 
+    --vpj-sidebar-profile-backdrop-filter: none;
     --vpj-sidebar-profile-bg: var(--vpj-c-bg-elv);
     --vpj-sidebar-profile-border: var(--vpj-border);
     --vpj-sidebar-profile-border-radius: var(--vpj-border-radius-2);
@@ -376,16 +383,24 @@
     --vpj-sidebar-header-profile-btn-text-weight: var(--vpj-font-weight-semibold);
 
     --vpj-sidebar-header-switch-gap: var(--vpj-sidebar-btn-gap);
+
     --vpj-sidebar-header-switch-brightness-bg: var(--vpj-c-bg);
     --vpj-sidebar-header-switch-brightness-border: var(--vpj-c-divider);
     --vpj-sidebar-header-switch-brightness-border-hover: var(--vpj-c-brand-2);
     --vpj-sidebar-header-switch-brightness-toggle-bg: var(--vpj-c-neutral-inverse);
     --vpj-sidebar-header-switch-brightness-height: 1.5rem;
+
     --vpj-sidebar-header-switch-label-color: var(--vpj-c-text-1);
     --vpj-sidebar-header-switch-label-weight: var(--vpj-font-weight-semibold);
+
     --vpj-sidebar-header-switch-marker-color: var(--vpj-sidebar-btn-icon-color);
     --vpj-sidebar-header-switch-marker-color-hover: var(--vpj-sidebar-btn-icon-color-hover);
     --vpj-sidebar-header-switch-marker-size: .75rem;
+
+    --vpj-sidebar-header-switch-menu-overlay: transparent;
+    --vpj-sidebar-header-switch-menu-overlay-backdrop-filter: none;
+
+    --vpj-sidebar-header-switch-menu-backdrop-filter: none;
     --vpj-sidebar-header-switch-menu-bg: var(--vpj-c-bg-elv);
     --vpj-sidebar-header-switch-menu-border: var(--vpj-border);
     --vpj-sidebar-header-switch-menu-radius: var(--vpj-border-radius-2);
@@ -393,6 +408,9 @@
     --vpj-sidebar-header-switch-menu-padding: .5rem;
     --vpj-sidebar-header-switch-menu-z-index: var(--vpj-z-index-5);
     --vpj-sidebar-header-switch-menu-gap: .25rem;
+    
+    --vpj-sidebar-header-switch-option-backdrop-filter: none;
+    --vpj-sidebar-header-switch-option-backdrop-filter-hover: none;
     --vpj-sidebar-header-switch-option-bg: var(--vpj-sidebar-btn-bg);
     --vpj-sidebar-header-switch-option-bg-hover: var(--vpj-sidebar-btn-bg-hover);
     --vpj-sidebar-header-switch-option-font-color: var(--vpj-c-text-1);
@@ -444,7 +462,10 @@
     --vpj-mobile-nav-border: var(--vpj-gutter);
     --vpj-mobile-nav-height: 2.75rem;
     --vpj-mobile-nav-padding-x: .625rem;
+    --vpj-mobile-nav-transition: var(--vpj-transition);
     
+    --vpj-mobile-nav-btn-backdrop-filter: none;
+    --vpj-mobile-nav-btn-backdrop-filter-hover: none;
     --vpj-mobile-nav-btn-bg: transparent;
     --vpj-mobile-nav-btn-bg-hover: var(--vpj-c-default-soft);
     --vpj-mobile-nav-btn-border: 0;
@@ -464,6 +485,7 @@
    Component: Panel
 */
 :root {
+    --vpj-panel-overlay-backdrop-filter: none;
     --vpj-panel-overlay-bg: var(--vpj-overlay);
     --vpj-panel-overlay-z-index: var(--vpj-z-index-4);
 
@@ -474,6 +496,8 @@
     --vpj-panel-transition: var(--vpj-transition);
     --vpj-panel-z-index: var(--vpj-z-index-5);
     
+    --vpj-panel-header-backdrop-filter: none;
+    --vpj-panel-header-bg: transparent;
     --vpj-panel-header-height: 2.75rem;
     --vpj-panel-header-padding-x: .875rem .5rem;
     
@@ -481,6 +505,8 @@
     --vpj-panel-title-size: 1rem;
     --vpj-panel-title-weight: var(--vpj-font-weight-semibold);
     
+    --vpj-panel-close-btn-backdrop-filter: none;
+    --vpj-panel-close-btn-backdrop-filter-hover: none;
     --vpj-panel-close-btn-bg: transparent;
     --vpj-panel-close-btn-bg-hover: var(--vpj-c-default-soft);
     --vpj-panel-close-btn-border: 0;
@@ -490,6 +516,7 @@
     --vpj-panel-close-btn-icon-color-hover: var(--vpj-c-text-1);
     --vpj-panel-close-btn-icon-size: 1rem;
 
+    --vpj-panel-fallback-backdrop-filter: none;
     --vpj-panel-fallback-bg: var(--vpj-c-bg);
     --vpj-panel-fallback-color: var(--vpj-c-text-4);
     --vpj-panel-fallback-font-size: 1.25rem;
@@ -502,15 +529,19 @@
    Component: Panel History Page
 */
 :root {
+    --vpj-panel-history-backdrop-filter: none;
     --vpj-panel-history-bg: var(--vpj-c-bg);
-    --vpj-panel-history-padding: .5rem;
     --vpj-panel-history-gap: .5rem;
+    --vpj-panel-history-padding: .5rem;
+    --vpj-panel-history-transition: var(--vpj-transition);
 
     --vpj-panel-history-time-label-color: var(--vpj-c-text-1);
     --vpj-panel-history-time-label-size: 1rem;
     --vpj-panel-history-time-label-weight: var(--vpj-font-weight-semibold);
     --vpj-panel-history-time-label-margin: .25rem 0;
 
+    --vpj-panel-history-item-backdrop-filter: none;
+    --vpj-panel-history-item-backdrop-filter-hover: none;
     --vpj-panel-history-item-bg: transparent;
     --vpj-panel-history-item-bg-hover: var(--vpj-c-default-soft);
     --vpj-panel-history-item-radius: var(--vpj-border-radius-2);
@@ -525,9 +556,17 @@
 }
 
 /* ---------------------------------------------------------
+   Component: VPJContent
+*/
+:root {
+    --vpj-content-bg: transparent;
+}
+
+/* ---------------------------------------------------------
    Component: Layout Page
 */
 :root {
+    --vpj-layout-page-backdrop-filter: none;
     --vpj-layout-page-bg: var(--vpj-c-bg);
 }
 
@@ -535,7 +574,8 @@
    Component: Footer
 */
 :root {
-    --vpj-footer-bg: var(--vpj-c-bg);
+    --vpj-footer-backdrop-filter: none;
+    --vpj-footer-bg: transparent;
     --vpj-footer-border: var(--vpj-border);
     --vpj-footer-padding: 2rem;
     --vpj-footer-padding-mobile: 1.5rem 1.25rem;
@@ -557,6 +597,7 @@
    Component: Layout NotFound
 */
 :root {
+    --vpj-layout-notfound-backdrop-filter: none;
     --vpj-layout-notfound-bg: var(--vpj-c-bg);
     --vpj-layout-notfound-transition: var(--vpj-transition);
     
@@ -580,15 +621,17 @@
     --vpj-layout-notfound-text-size: 1rem;
     --vpj-layout-notfound-text-weight: var(--vpj-font-weight-normal);
     
+    --vpj-layout-notfound-link-backdrop-filter: none;
+    --vpj-layout-notfound-link-backdrop-filter-hover: none;
     --vpj-layout-notfound-link-bg: var(--vpj-c-bg);
     --vpj-layout-notfound-link-bg-hover: var(--vpj-c-default-soft);
     --vpj-layout-notfound-link-border: var(--vpj-divider);
     --vpj-layout-notfound-link-color: var(--vpj-c-text-2);
     --vpj-layout-notfound-link-color-hover: var(--vpj-c-text-1);
+    --vpj-layout-notfound-link-font-size: 1rem;
+    --vpj-layout-notfound-link-padding: .6rem .8rem;
     --vpj-layout-notfound-link-radius: var(--vpj-border-radius-2);
     --vpj-layout-notfound-link-shadow: var(--vpj-shadow-2);
-    --vpj-layout-notfound-link-size: 1rem;
-    --vpj-layout-notfound-link-padding: .6rem .8rem;
     --vpj-layout-notfound-link-transform-active: scale(.98);
 }
 
@@ -596,11 +639,14 @@
    Component: Layout Article
 */
 :root {
+    --vpj-layout-article-backdrop-filter: none;
     --vpj-layout-article-bg: var(--vpj-c-bg);
     --vpj-layout-article-border: var(--vpj-gutter);
     --vpj-layout-article-transition: var(--vpj-transition);
     --vpj-layout-article-wrapper-bg: transparent;
     
+    --vpj-layout-article-btn-backdrop-filter: none;
+    --vpj-layout-article-btn-backdrop-filter-hover: none;
     --vpj-layout-article-btn-bg: var(--vpj-c-bg);
     --vpj-layout-article-btn-bg-hover: var(--vpj-c-default-soft);
     --vpj-layout-article-btn-border: 0;
@@ -614,6 +660,8 @@
     --vpj-layout-article-controller-padding-top: .5rem;
     --vpj-layout-article-controller-width: 3rem;
     
+    --vpj-layout-article-controller-btn-backdrop-filter: var(--vpj-layout-article-btn-backdrop-filter);
+    --vpj-layout-article-controller-btn-backdrop-filter-hover: var(--vpj-layout-article-btn-backdrop-filter-hover);
     --vpj-layout-article-controller-btn-bg: var(--vpj-layout-article-btn-bg);
     --vpj-layout-article-controller-btn-bg-hover: var(--vpj-layout-article-btn-bg-hover);
     --vpj-layout-article-controller-btn-border: var(--vpj-layout-article-btn-border);
@@ -637,6 +685,8 @@
     --vpj-article-header-actions-height: 3rem;
     --vpj-article-header-actions-padding-x: 1.25rem;
     
+    --vpj-article-header-btn-backdrop-filter: var(--vpj-layout-article-btn-backdrop-filter);
+    --vpj-article-header-btn-backdrop-filter-hover: var(--vpj-layout-article-btn-backdrop-filter-hover);
     --vpj-article-header-btn-bg: var(--vpj-layout-article-btn-bg);
     --vpj-article-header-btn-bg-hover: var(--vpj-layout-article-btn-bg-hover);
     --vpj-article-header-btn-border: var(--vpj-layout-article-btn-border);
@@ -665,6 +715,7 @@
     --vpj-article-header-toolbar-divider-width: var(--vpj-border-width-1);
     --vpj-article-header-toolbar-divider-gap: .25rem;
 
+    --vpj-article-header-toolbar-btn-tooltip-backdrop-filter: none;
     --vpj-article-header-toolbar-btn-tooltip-bg: var(--vpj-c-text-1);
     --vpj-article-header-toolbar-btn-tooltip-font-size: .875rem;
     --vpj-article-header-toolbar-btn-tooltip-max-width: 200px;
@@ -687,6 +738,8 @@
     --vpj-article-footer-margin-bottom: .5rem;
     --vpj-article-footer-transition: var(--vpj-transition);
 
+    --vpj-article-footer-nav-backdrop-filter: none;
+    --vpj-article-footer-nav-backdrop-filter-hover: none;
     --vpj-article-footer-nav-bg: var(--vpj-c-bg);
     --vpj-article-footer-nav-bg-hover: var(--vpj-c-bg);
     --vpj-article-footer-nav-gap: 1rem;
@@ -730,6 +783,7 @@
    Component: Article Aside
 */
 :root {
+    --vpj-article-aside-backdrop-filter: none;
     --vpj-article-aside-bg: var(--vpj-c-bg);
     --vpj-article-aside-border: var(--vpj-gutter);
     --vpj-article-aside-width: min(55vw, 20.25rem);
@@ -737,6 +791,7 @@
     --vpj-article-aside-transition: var(--vpj-transition);
     --vpj-article-aside-z-index: var(--vpj-z-index-3);
     
+    --vpj-article-aside-header-backdrop-filter: none;
     --vpj-article-aside-header-bg: var(--vpj-c-bg);
     --vpj-article-aside-header-height: 2.5rem;
     --vpj-article-aside-header-tabbox-mask-gradient: linear-gradient(
@@ -749,16 +804,21 @@
     --vpj-article-aside-header-tablist-padding-x: .75rem;
     --vpj-article-aside-header-tablist-gap: .5rem;
     
+    --vpj-article-aside-tab-backdrop-filter: none;
+    --vpj-article-aside-tab-backdrop-filter-hover: none;
     --vpj-article-aside-tab-bg: transparent;
     --vpj-article-aside-tab-bg-hover: var(--vpj-c-bg-alt);
+    --vpj-article-aside-tab-border: transparent solid var(--vpj-border-width-1);
+    --vpj-article-aside-tab-border-active: var(--vpj-border);
     --vpj-article-aside-tab-color: var(--vpj-c-text-2);
     --vpj-article-aside-tab-color-hover: var(--vpj-c-text-1);
     --vpj-article-aside-tab-height: 1.5rem;
     --vpj-article-aside-tab-padding-x: .5rem;
     --vpj-article-aside-tab-radius: var(--vpj-border-radius-1);
     --vpj-article-aside-tab-font-size: .875rem;
-    --vpj-article-aside-tab-border-active: var(--vpj-border);
     
+    --vpj-article-aside-close-backdrop-filter: none;
+    --vpj-article-aside-close-backdrop-filter-hover: none;
     --vpj-article-aside-close-bg: transparent;
     --vpj-article-aside-close-bg-hover: var(--vpj-c-default-soft);
     --vpj-article-aside-close-border: 0;
@@ -769,6 +829,7 @@
     --vpj-article-aside-close-icon-size: 1rem;
     --vpj-article-aside-close-margin-x: .3125rem;
     
+    --vpj-article-aside-fallback-backdrop-filter: none;
     --vpj-article-aside-fallback-bg: transparent;
     --vpj-article-aside-fallback-color: var(--vpj-c-text-4);
     --vpj-article-aside-fallback-font-size: 1.25rem;
@@ -776,8 +837,8 @@
     --vpj-article-aside-fallback-line-height: 1.5;
     --vpj-article-aside-fallback-padding-x: 1.2rem;
     
-    --vpj-article-aside-overlay-bg: transparent;
-    --vpj-article-aside-overlay-bg-mobile: var(--vpj-overlay);
+    --vpj-article-aside-overlay-backdrop-filter: none;
+    --vpj-article-aside-overlay-bg: var(--vpj-overlay);
     --vpj-article-aside-overlay-z-index: var(--vpj-z-index-2);
 }
 
@@ -785,23 +846,27 @@
    Component: Article Aside Tab Outline
 */
 :root {
+    --vpj-article-aside-tab-outline-backdrop-filter: none;
     --vpj-article-aside-tab-outline-bg: transparent;
     --vpj-article-aside-tab-outline-gap: 0;
     --vpj-article-aside-tab-outline-padding-y: .375rem 1.375rem;
     --vpj-article-aside-tab-outline-transition: var(--vpj-transition);
     
+    --vpj-article-aside-tab-outline-item-backdrop-filter: none;
+    --vpj-article-aside-tab-outline-item-backdrop-filter-hover: none;
     --vpj-article-aside-tab-outline-item-bg: transparent;
     --vpj-article-aside-tab-outline-item-bg-hover: var(--vpj-c-bg-alt);
-    --vpj-article-aside-tab-outline-item-padding-y: .375rem;
-    --vpj-article-aside-tab-outline-item-padding-x: .25rem;
+    --vpj-article-aside-tab-outline-item-padding: .375rem .25rem;
     --vpj-article-aside-tab-outline-item-gap: .25rem;
     --vpj-article-aside-tab-outline-item-indent-unit: 1rem;
 
+    --vpj-article-aside-tab-outline-toggle-backdrop-filter: none;
+    --vpj-article-aside-tab-outline-toggle-backdrop-filter-hover: none;
     --vpj-article-aside-tab-outline-toggle-bg: transparent;
     --vpj-article-aside-tab-outline-toggle-bg-hover: transparent;
     --vpj-article-aside-tab-outline-toggle-icon-size: .75rem;
-    --vpj-article-aside-tab-outline-toggle-icon-color: var(--vpj-c-text-2);
-    --vpj-article-aside-tab-outline-toggle-icon-color-hover: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-outline-toggle-icon-color: var(--vpj-c-text-1);
+    --vpj-article-aside-tab-outline-toggle-icon-color-hover: var(--vpj-c-text-2);
     --vpj-article-aside-tab-outline-toggle-radius: .5rem;
     --vpj-article-aside-tab-outline-toggle-size: 1rem;
 
@@ -824,12 +889,15 @@
    Component: Article Aside Tab Resources
 */
 :root {
+    --vpj-article-aside-tab-resources-backdrop-filter: none;
     --vpj-article-aside-tab-resources-bg: transparent;
     --vpj-article-aside-tab-resources-transition: var(--vpj-transition);
 
     --vpj-article-aside-tab-resources-list-gap: .5rem;
     --vpj-article-aside-tab-resources-list-padding: .75rem .5rem;
 
+    --vpj-article-aside-tab-resources-item-backdrop-filter: none;
+    --vpj-article-aside-tab-resources-item-backdrop-filter-hover: none;
     --vpj-article-aside-tab-resources-item-bg: var(--vpj-c-bg);
     --vpj-article-aside-tab-resources-item-bg-hover: var(--vpj-c-bg-alt);
     --vpj-article-aside-tab-resources-item-border: var(--vpj-border);
@@ -858,12 +926,15 @@
    Component: Article Aside Tab Series
 */
 :root {
+    --vpj-article-aside-tab-series-backdrop-filter: none;
     --vpj-article-aside-tab-series-bg: transparent;
     --vpj-article-aside-tab-series-transition: var(--vpj-transition);
 
     --vpj-article-aside-tab-series-list-padding: .75rem;
     --vpj-article-aside-tab-series-list-gap: .5rem;
 
+    --vpj-article-aside-tab-series-item-backdrop-filter: none;
+    --vpj-article-aside-tab-series-item-backdrop-filter-hover: none;
     --vpj-article-aside-tab-series-item-bg: var(--vpj-c-bg);
     --vpj-article-aside-tab-series-item-bg-hover: var(--vpj-c-bg);
     --vpj-article-aside-tab-series-item-border: var(--vpj-border);
@@ -913,12 +984,16 @@
    Component: Article Aside Tab Tree
 */
 :root {
+    --vpj-article-aside-tab-tree-backdrop-filter: none;
     --vpj-article-aside-tab-tree-bg: transparent;
     --vpj-article-aside-tab-tree-transition: var(--vpj-transition);
 
     --vpj-article-aside-tab-tree-list-padding: 1rem 4px 1rem .75rem;
     --vpj-article-aside-tab-tree-list-gap: .25rem;
 
+    --vpj-article-aside-tab-tree-node-backdrop-filter: none;
+    --vpj-article-aside-tab-tree-node-backdrop-filter-hover: none;
+    --vpj-article-aside-tab-tree-node-backdrop-filter-current: none;
     --vpj-article-aside-tab-tree-node-bg: var(--vpj-c-bg);
     --vpj-article-aside-tab-tree-node-bg-hover: var(--vpj-c-bg-alt);
     --vpj-article-aside-tab-tree-node-bg-current: var(--vpj-c-bg-alt);
@@ -933,6 +1008,8 @@
     --vpj-article-aside-tab-tree-node-padding-x: .75rem .375rem;
     --vpj-article-aside-tab-tree-node-font-size: .875rem;
     
+    --vpj-article-aside-tab-tree-node-toggle-backdrop-filter: none;
+    --vpj-article-aside-tab-tree-node-toggle-backdrop-filter-hover: none;
     --vpj-article-aside-tab-tree-node-toggle-bg: transparent;
     --vpj-article-aside-tab-tree-node-toggle-bg-hover: var(--vpj-c-default-soft);
     --vpj-article-aside-tab-tree-node-toggle-size: 1.5rem;
@@ -951,6 +1028,7 @@
    Component: Article Aside Tab Tags
 */
 :root {
+    --vpj-article-aside-tab-tags-backdrop-filter: none;
     --vpj-article-aside-tab-tags-bg: transparent;
 
     --vpj-article-aside-tab-tags-list-padding: .75rem .5rem;
@@ -977,6 +1055,9 @@
    Component: Tag
 */
 :root {
+    --vpj-tag-backdrop-filter: none;
+    --vpj-tag-backdrop-filter-hover: none;
+    --vpj-tag-backdrop-filter-active: none;
     --vpj-tag-bg: var(--vpj-c-brand-soft);
     --vpj-tag-bg-hover: var(--vpj-c-brand-4);
     --vpj-tag-bg-active: var(--vpj-c-brand-4);

@@ -1,10 +1,10 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useVPJLayout } from '../composables/useVPJLayout';
 
-import { isMobile, isTablet, isDesktop } from '../utils/deviceTypes';
+import { isMobile, isDesktop } from '../utils/deviceTypes';
 
 import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 import VPJPanelHistoryPage from './VPJPanelHistoryPage.vue';
@@ -89,6 +89,8 @@ const title = computed(() => {
 
     .vpj-panel__header {
         align-items: center;
+        backdrop-filter: var(--vpj-panel-header-backdrop-filter);
+        background: var(--vpj-panel-header-bg);
         border-bottom: var(--vpj-panel-border);
         display: flex;
         flex-shrink: 0;
@@ -115,6 +117,7 @@ const title = computed(() => {
     /* Close Button */
     .vpj-panel__close {
         align-items: center;
+        backdrop-filter: var(--vpj-panel-close-btn-backdrop-filter);
         background: var(--vpj-panel-close-btn-bg);
         border: var(--vpj-panel-close-btn-border);
         border-radius: var(--vpj-panel-close-btn-radius);
@@ -122,17 +125,22 @@ const title = computed(() => {
         height: var(--vpj-panel-close-btn-size);
         padding: calc((var(--vpj-panel-close-btn-size) - var(--vpj-panel-close-btn-icon-size)) / 2);
         text-decoration: none;
+        transition:
+            backdrop-filter var(--vpj-panel-transition),
+            background var(--vpj-panel-transition);
         width: var(--vpj-panel-close-btn-size);
     }
 
     .vpj-panel__close :deep(.vpj-icon) {
         fill: var(--vpj-panel-close-btn-icon-color);
         height: var(--vpj-panel-close-btn-icon-size);
+        transition: fill var(--vpj-panel-transition);
         width: var(--vpj-panel-close-btn-icon-size);
     }
 
     .vpj-panel__close:hover,
     .vpj-panel__close:active {
+        backdrop-filter: var(--vpj-panel-close-btn-backdrop-filter-hover);
         background: var(--vpj-panel-close-btn-bg-hover);
     }
 
@@ -143,8 +151,10 @@ const title = computed(() => {
 
     /* Overlay */
     .vpj-panel__overlay {
-        display: block;
+        backdrop-filter: var(--vpj-panel-overlay-backdrop-filter);
+        background: var(--vpj-panel-overlay-bg);
         bottom: 0;
+        display: block;
         left: 0;
         right: 0;
         top: 0;
@@ -169,7 +179,6 @@ const title = computed(() => {
 
         /* Overlay */
         .vpj-panel__overlay {
-            background: var(--vpj-panel-overlay-bg);
             position: fixed;
             z-index: var(--vpj-panel-overlay-z-index);
         }
@@ -195,6 +204,7 @@ const title = computed(() => {
     /* Fallback */
     .vpj-panel__fallback {
         align-items: center;
+        backdrop-filter: var(--vpj-panel-fallback-backdrop-filter);
         background: var(--vpj-panel-fallback-bg);
         color: var(--vpj-panel-fallback-color);
         display: flex;

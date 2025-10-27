@@ -124,6 +124,7 @@ const description = computed(() => {
 
 <style scoped>
     .vpj-panel__history-item {
+        backdrop-filter: var(--vpj-panel-history-item-backdrop-filter);
         background: var(--vpj-panel-history-item-bg);
         border-radius: var(--vpj-panel-history-item-radius);
         display: flex;
@@ -131,10 +132,14 @@ const description = computed(() => {
         gap: var(--vpj-panel-history-item-gap);
         padding: var(--vpj-panel-history-item-padding);
         text-decoration: none;
+        transition:
+            backdrop-filter var(--vpj-panel-history-transition),
+            background var(--vpj-panel-history-transition);
     }
 
     .vpj-panel__history-item:hover,
     .vpj-panel__history-item:active {
+        backdrop-filter: var(--vpj-panel-history-item-backdrop-filter-hover);
         background: var(--vpj-panel-history-item-bg-hover);
     }
 

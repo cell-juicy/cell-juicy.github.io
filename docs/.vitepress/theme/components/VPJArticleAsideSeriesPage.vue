@@ -74,7 +74,8 @@ const empty = computed(() => {
     }
 
     .vpj-article-aside__aside-blog-series {
-        background-color: var(--vpj-article-aside-tab-series-bg);
+        backdrop-filter: var(--vpj-article-aside-tab-series-backdrop-filter);
+        background: var(--vpj-article-aside-tab-series-bg);
         display: flex;
         flex: 1;
         flex-direction: column;

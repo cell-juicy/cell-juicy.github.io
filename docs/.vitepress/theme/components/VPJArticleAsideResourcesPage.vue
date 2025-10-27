@@ -72,6 +72,7 @@ const empty = computed(() => {
     }
 
     .vpj-article-aside__aside-resources-list {
+        backdrop-filter: var(--vpj-article-aside-tab-resources-backdrop-filter);
         background: var(--vpj-article-aside-tab-resources-bg);
         display: flex;
         flex: 1;

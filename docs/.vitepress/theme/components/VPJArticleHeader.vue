@@ -156,22 +156,28 @@ const toolbar = useTemplateRef("toolbar");
     /* Button */
     .vpj-article-header__button {
         align-items: center;
+        backdrop-filter: var(--vpj-article-header-btn-backdrop-filter);
         background: var(--vpj-article-header-btn-bg);
         border: var(--vpj-article-header-btn-border);
         border-radius: var(--vpj-article-header-btn-radius);
         height: var(--vpj-article-header-btn-size);
         padding: calc((var(--vpj-article-header-btn-size) - var(--vpj-article-header-btn-icon-size)) / 2);
         text-decoration: none;
+        transition:
+            backdrop-filter var(--vpj-layout-article-transition),
+            background var(--vpj-layout-article-transition);
     }
 
     .vpj-article-header__button .vpj-icon {
         fill: var(--vpj-article-header-btn-icon-color);
         height: var(--vpj-article-header-btn-icon-size);
+        transition: fill var(--vpj-layout-article-transition);
         width: var(--vpj-article-header-btn-icon-size);
     }
 
     .vpj-article-header__button:hover,
     .vpj-article-header__button:active {
+        backdrop-filter: var(--vpj-article-header-btn-backdrop-filter-hover);
         background: var(--vpj-article-header-btn-bg-hover);
     }
 

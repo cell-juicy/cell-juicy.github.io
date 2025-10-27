@@ -43,7 +43,7 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
     <VPJOverlayScrollArea
         overflow="xy"
         thumb-width="5"
-        class="vpj-layout-page"
+        class="vpj-layout-page__outer"
         :inner-attrs="{ class: 'vpj-layout-page__inner' }"
     >
         <div class="vpj-layout-page__hero-iamge"/>
@@ -69,14 +69,16 @@ provide(VPJ_PAGE_LAYOUT_SYMBOL, {
 
 <style scoped>
     /* Main layout */
-    .vpj-layout-page {
-        background-color: var(--vpj-layout-page-bg);
+    .vpj-layout-page__outer {
         height: 100%;
         width: 100%;
     }
 
     :deep(.vpj-layout-page__inner) {
+        backdrop-filter: var(--vpj-layout-page-backdrop-filter);
+        background: var(--vpj-layout-page-bg);
         display: flex;
+        flex: 1;
         flex-direction: column;
     }
 

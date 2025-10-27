@@ -140,7 +140,8 @@ function toggleProfileCard() {
     }
 
     .vpj-sidebar__header-profile-overlay {
-        background-color: var(--vpj-sidebar-profile-overlay);
+        backdrop-filter: var(--vpj-sidebar-profile-overlay-backdrop-filter);
+        background: var(--vpj-sidebar-profile-overlay);
         display: block;
         position: fixed;
         bottom: 0;
@@ -175,6 +176,7 @@ function toggleProfileCard() {
     }
 
     [data-action="profile"]:disabled {
+        backdrop-filter: initial;
         background: initial;
     }
 
@@ -202,6 +204,7 @@ function toggleProfileCard() {
 
     /* Profile Card */
     .vpj-sidebar__profile {
+        backdrop-filter: var(--vpj-sidebar-profile-backdrop-filter);
         background: var(--vpj-sidebar-profile-bg);
         border: var(--vpj-sidebar-profile-border);
         border-radius: var(--vpj-sidebar-profile-border-radius);

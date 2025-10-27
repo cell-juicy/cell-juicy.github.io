@@ -57,6 +57,7 @@ useHead(headConfig);
     /* Main layout */
     .vpj-layout-notfound {
         align-items: center;
+        backdrop-filter: var(--vpj-layout-notfound-backdrop-filter);
         background: var(--vpj-layout-notfound-bg);
         display: flex;
         flex: 1;
@@ -119,13 +120,13 @@ useHead(headConfig);
     .vpj-layout-notfound__content-link,
     .vpj-layout-notfound__content-link:visited {
         align-items: center;
+        backdrop-filter: var(--vpj-layout-notfound-link-backdrop-filter);
         background: var(--vpj-layout-notfound-link-bg);
         border: var(--vpj-layout-notfound-link-border);
         border-radius: var(--vpj-layout-notfound-link-radius);
         box-shadow: var(--vpj-layout-notfound-link-shadow);
         color: var(--vpj-layout-notfound-link-color);
         display: flex;
-        height: var(--vpj-layout-notfound-link-height);
         justify-content: center;
         padding: var(--vpj-layout-notfound-link-padding);
         text-decoration: none;
@@ -137,11 +138,13 @@ useHead(headConfig);
     }
 
     .vpj-layout-notfound__content-link .vpj-text {
-        font-size: var(--vpj-layout-notfound-link-size);
+        font-size: var(--vpj-layout-notfound-link-font-size);
         user-select: none;
     }
 
-    .vpj-layout-notfound__content-link:hover {
+    .vpj-layout-notfound__content-link:hover,
+    .vpj-layout-notfound__content-link:active {
+        backdrop-filter: var(--vpj-layout-notfound-link-backdrop-filter-hover);
         background: var(--vpj-layout-notfound-link-bg-hover);
         color: var(--vpj-layout-notfound-link-color-hover);
     }
