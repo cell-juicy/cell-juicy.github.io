@@ -169,6 +169,40 @@
     margin-bottom: 0;
 }
 
+/* TOC */
+.vpj-markdown nav.table-of-contents {
+    height: auto;
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+}
+
+.vpj-markdown nav.table-of-contents ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.vpj-markdown nav.table-of-contents ul > li {
+    margin-left: 2em;
+}
+
+.vpj-markdown nav.table-of-contents > ul > li {
+    margin-left: 0;
+}
+
+.vpj-markdown nav.table-of-contents li > a {
+    text-decoration: none;
+}
+
+.vpj-markdown nav.table-of-contents li > a:hover {
+    text-decoration: underline;
+}
+
+.vpj-markdown nav.table-of-contents > ul > li > a {
+    font-weight: var(--vpj-font-weight-bold);
+}
+
+
 /* Blockquote */
 .vpj-markdown blockquote {
     background: var(--vpj-markdown-blockquote-bg);
