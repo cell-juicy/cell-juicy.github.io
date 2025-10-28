@@ -225,6 +225,17 @@
     word-break: break-all;
 }
 
+/* Image */
+.vpj-markdown img {
+    height: auto;
+    max-width: 100%;
+    margin: .15em auto;
+}
+
+.vpj-markdown p > img:only-child {
+    display: block;
+}
+
 /* Code(Inline) */
 .vpj-markdown > code,
 .vpj-markdown :not(pre) > code,
