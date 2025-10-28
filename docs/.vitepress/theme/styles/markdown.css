@@ -606,7 +606,7 @@
 
 /* Code Highlight/Error/Warning */
 .vpj-markdown div[class*=language-] span.line.highlighted {
-    background-color: var(--vpj-c-bg);
+    background-color: var(--vpj-c-default-soft);
 }
 
 .vpj-markdown div[class*=language-] span.line.highlighted.error {
