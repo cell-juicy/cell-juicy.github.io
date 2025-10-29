@@ -341,9 +341,12 @@
     color: var(--vpj-markdown-code-color);
     cursor: pointer;
     display: flex;
+    font-size: inherit;
     height: 2.5em;
     justify-content: center;
+    margin: 0;
     opacity: 0;
+    padding: 0;
     position: absolute;
     right: .75em;
     transition:
@@ -380,12 +383,13 @@
     content: var(--vpj-code-copy-copied-text-content);
     display: flex;
     height: 2.5em;
-    padding: .5em .625em;
+    padding: 0 .625em;
     position: relative;
     text-align: center;
     transform: translate(calc(-50% - 1.25em));
     white-space: nowrap;
     width: fit-content;
+    z-index: 4;
 }
 
 /* Code Pre */
