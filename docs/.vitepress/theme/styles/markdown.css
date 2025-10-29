@@ -408,7 +408,7 @@
     font-size: .875em;
     line-height: 1.6;
     min-width: 100%;
-    padding: 0 1.5em;
+    padding: 0;
     transition: color var(--vpj-markdown-transition);
     width: fit-content;
 }
@@ -434,10 +434,10 @@
 }
 
 .vpj-markdown div[class*="language-"] span.line {
+    box-sizing: border-box;
     display: inline-block;
-    margin: 0 -1.5em;
     padding: 0 1.5em;
-    width: calc(100% + 3em);
+    min-width: 100%;
 }
 
 /* Code Highlight/Error/Warning */
@@ -455,7 +455,7 @@
 
 /* Code Focus */
 .vpj-markdown div[class*="language-"] .has-focused-lines span.line:not(.has-focus) {
-    filter: blur(.1rem);
+    filter: blur(.1em);
     opacity: .7;
     transition:
         filter var(--vpj-markdown-transition),
@@ -470,9 +470,7 @@
 /* Code Diff(Add/Remove) */
 .vpj-markdown div[class*="language-"] code span.line.diff {
     display: inline-block;
-    margin: 0 -1.5em;
     padding: 0 1.5em;
-    width: calc(100% + 3em);
 }
 
 .vpj-markdown div[class*="language-"] code span.line.diff.add {
