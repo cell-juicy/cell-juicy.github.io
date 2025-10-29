@@ -496,7 +496,7 @@ const line3 = 'This is line 3'
 const line4 = 'This is line 4'
 ```
 
-### VitePress 代码组示例（自定义案例）
+### VitePress 代码组
 
 可以用代码组展示相同功能在不同语言或不同配置下的实现。
 
