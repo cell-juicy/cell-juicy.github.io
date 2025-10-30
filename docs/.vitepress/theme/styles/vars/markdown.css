@@ -201,13 +201,13 @@
     --vpj-markdown-custom-block-info-text: var(--vpj-c-text-1);
     --vpj-markdown-custom-block-info-bg: var(--vpj-c-default-soft);
     --vpj-markdown-custom-block-info-code-bg: var(--vpj-c-default-4);
-    --vpj-markdown-custom-block-info-title: var(--vpj-c-brand-1);
+    --vpj-markdown-custom-block-info-title: var(--vpj-c-text-1);
 
     --vpj-markdown-custom-block-note-border: none;
     --vpj-markdown-custom-block-note-text: var(--vpj-c-text-1);
     --vpj-markdown-custom-block-note-bg: var(--vpj-c-default-soft);
     --vpj-markdown-custom-block-note-code-bg: var(--vpj-c-default-4);
-    --vpj-markdown-custom-block-note-title: var(--vpj-c-brand-1);
+    --vpj-markdown-custom-block-note-title: var(--vpj-c-text-1);
 
     --vpj-markdown-custom-block-details-border: none;
     --vpj-markdown-custom-block-details-text: var(--vpj-c-text-1);
@@ -217,32 +217,32 @@
     --vpj-markdown-custom-block-details-title-hover: var(--vpj-c-text-2);
 
     --vpj-markdown-custom-block-tip-border: none;
-    --vpj-markdown-custom-block-tip-text: var(--vpj-c-tip-1);
+    --vpj-markdown-custom-block-tip-text: var(--vpj-c-text-1);
     --vpj-markdown-custom-block-tip-bg: var(--vpj-c-tip-soft);
     --vpj-markdown-custom-block-tip-code-bg: var(--vpj-c-tip-4);
-    --vpj-markdown-custom-block-tip-title: var(--vpj-c-tip-1);
+    --vpj-markdown-custom-block-tip-title: var(--vpj-c-text-1);
 
     --vpj-markdown-custom-block-important-border: none;
-    --vpj-markdown-custom-block-important-text: var(--vpj-c-important-1);
+    --vpj-markdown-custom-block-important-text: var(--vpj-c-text-1);
     --vpj-markdown-custom-block-important-bg: var(--vpj-c-important-soft);
     --vpj-markdown-custom-block-important-code-bg: var(--vpj-c-important-4);
-    --vpj-markdown-custom-block-important-title: var(--vpj-c-important-1);
+    --vpj-markdown-custom-block-important-title: var(--vpj-c-text-1);
 
     --vpj-markdown-custom-block-warning-border: none;
-    --vpj-markdown-custom-block-warning-text: var(--vpj-c-warning-1);
+    --vpj-markdown-custom-block-warning-text: var(--vpj-c-text-1);
     --vpj-markdown-custom-block-warning-bg: var(--vpj-c-warning-soft);
     --vpj-markdown-custom-block-warning-code-bg: var(--vpj-c-warning-4);
-    --vpj-markdown-custom-block-warning-title: var(--vpj-c-warning-1);
+    --vpj-markdown-custom-block-warning-title: var(--vpj-c-text-1);
 
     --vpj-markdown-custom-block-danger-border: none;
-    --vpj-markdown-custom-block-danger-text: var(--vpj-c-danger-1);
+    --vpj-markdown-custom-block-danger-text: var(--vpj-c-text-1);
     --vpj-markdown-custom-block-danger-bg: var(--vpj-c-danger-soft);
     --vpj-markdown-custom-block-danger-code-bg: var(--vpj-c-danger-4);
-    --vpj-markdown-custom-block-danger-title: var(--vpj-c-danger-1);
+    --vpj-markdown-custom-block-danger-title: var(--vpj-c-text-1);
 
     --vpj-markdown-custom-block-caution-border: none;
-    --vpj-markdown-custom-block-caution-text: var(--vpj-c-caution-1);
+    --vpj-markdown-custom-block-caution-text: var(--vpj-c-text-1);
     --vpj-markdown-custom-block-caution-bg: var(--vpj-c-caution-soft);
     --vpj-markdown-custom-block-caution-code-bg: var(--vpj-c-caution-4);
-    --vpj-markdown-custom-block-caution-title: var(--vpj-c-caution-1);
+    --vpj-markdown-custom-block-caution-title: var(--vpj-c-text-1);
 }

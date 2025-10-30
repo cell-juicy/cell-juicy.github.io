@@ -235,6 +235,7 @@
     background: var(--vpj-markdown-table-tr-bg);
     margin: 0;
     padding: 0;
+    transition: background var(--vpj-markdown-transition);
 }
 
 .vpj-markdown table tr:nth-child(2n),
@@ -748,6 +749,7 @@
     font-weight: var(--vpj-font-weight-semibold);
     line-height: 1.5;
     margin: 0 0 .5em;
+    transition: color var(--vpj-markdown-transition);
     user-select: none;
 }
 
