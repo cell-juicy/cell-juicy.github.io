@@ -383,7 +383,6 @@ This is a details block.
 ```js
 console.log('Hello, VitePress!')
 ```
-
 :::
 
 raw 容器（防止样式或路由冲突）：
