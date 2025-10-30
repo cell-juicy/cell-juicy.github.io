@@ -1,0 +1,248 @@
+/* ---------------------------------------------------------
+   Markdown: Global
+*/
+:root {
+    --vpj-markdown-color: var(--vpj-c-text-1);
+    --vpj-markdown-font-size: var(--vpj-font-size);
+    --vpj-markdown-line-height: 1.6;
+    --vpj-markdown-transition: var(--vpj-transition);
+}
+
+/* ---------------------------------------------------------
+   Markdown: Link
+*/
+:root {
+    --vpj-markdown-link-color: var(--vpj-c-brand-1);
+    --vpj-markdown-link-color-hover: var(--vpj-c-brand-2);
+}
+
+/* ---------------------------------------------------------
+   Markdown: Heading
+*/
+:root {
+    --vpj-markdown-heading-font-weight: var(--vpj-font-weight-bold);
+    --vpj-markdown-heading-line-height: 1.3;
+    --vpj-markdown-h1-font-size: 1.875em;
+    --vpj-markdown-h2-font-size: 1.5em;
+    --vpj-markdown-h3-font-size: 1.25em;
+    --vpj-markdown-h4-font-size: 1.125em;
+    --vpj-markdown-h5-font-size: 1.1em;
+    --vpj-markdown-h6-font-size: 1.1em;
+    --vpj-markdown-heading-border: var(--vpj-divider);
+    --vpj-markdown-h1-padding-bottom: 0.3em;
+    --vpj-markdown-h2-padding-bottom: 0.3em;
+}
+
+/* ---------------------------------------------------------
+   Markdown: Header Anchor
+*/
+:root {
+    --vpj-markdown-header-anchor-symbol: "#";
+    --vpj-markdown-header-anchor-color: var(--vpj-c-brand-1);
+    --vpj-markdown-header-anchor-color-hover: var(--vpj-c-brand-2);
+    --vpj-markdown-header-anchor-offset: 0.87em;
+}
+
+/* ---------------------------------------------------------
+   Markdown: Common
+*/
+:root {
+    --vpj-markdown-block-margin: 0.8em;
+}
+
+/* ---------------------------------------------------------
+   Markdown: Horizontal Rule
+*/
+:root {
+    --vpj-markdown-hr-bg: var(--vpj-c-divider);
+    --vpj-markdown-hr-height: 1px;
+    --vpj-markdown-hr-margin-block: 1em;
+}
+
+/* ---------------------------------------------------------
+   Markdown: List
+*/
+:root {
+    --vpj-markdown-list-padding-inline-start: 1.875em;
+}
+
+/* ---------------------------------------------------------
+   Markdown: Table of Contents
+*/
+:root {
+    --vpj-markdown-toc-nested-indent: 1.75em;
+    --vpj-markdown-toc-line-height: 1.4;
+    --vpj-markdown-toc-link-font-size: 0.875em;
+}
+
+/* ---------------------------------------------------------
+   Markdown: Blockquote
+*/
+:root {
+    --vpj-markdown-blockquote-bg: var(--vpj-c-bg-elv);
+    --vpj-markdown-blockquote-border: var(--vpj-border-width-3) solid var(--vpj-c-default-soft);
+    --vpj-markdown-blockquote-padding: 1em 1.25em;
+    --vpj-markdown-blockquote-color: var(--vpj-c-text-2);
+}
+
+/* ---------------------------------------------------------
+   Markdown: Table
+*/
+:root {
+    --vpj-markdown-table-cell-border: var(--vpj-divider);
+    --vpj-markdown-table-cell-padding: 0.75em 1em;
+    --vpj-markdown-table-tr-bg: transparent;
+    --vpj-markdown-table-tr-even-bg: var(--vpj-c-bg-elv);
+    --vpj-markdown-table-tr-hover-bg: var(--vpj-c-bg-soft);
+}
+
+/* ---------------------------------------------------------
+   Markdown: Image
+*/
+:root {
+    --vpj-markdown-image-margin-block: 0.15em;
+}
+
+/* ---------------------------------------------------------
+   Markdown: Code (Inline)
+*/
+:root {
+    --vpj-markdown-code-inline-bg: var(--vpj-c-bg-elv);
+    --vpj-markdown-code-inline-border: var(--vpj-divider);
+    --vpj-markdown-code-inline-border-radius: var(--vpj-border-radius-1);
+    --vpj-markdown-code-inline-font-size: 0.9em;
+    --vpj-markdown-code-inline-padding: 0.125em 0.25em;
+}
+
+/* ---------------------------------------------------------
+   Markdown: Code (Block)
+*/
+:root {
+    --vpj-markdown-code-block-bg: var(--vpj-c-bg-alt);
+    --vpj-markdown-code-block-border: none;
+    --vpj-markdown-code-block-border-radius: var(--vpj-border-radius-2);
+    --vpj-markdown-code-block-margin-block: 0.75em;
+    --vpj-markdown-code-block-padding-block: 0.5em;
+
+    --vpj-markdown-code-pre-padding-block: 1.25em;
+
+    --vpj-markdown-code-copy-bg-color: var(--vpj-c-bg-alt);
+    --vpj-markdown-code-copy-bg-color-hover: var(--vpj-c-bg-elv);
+    --vpj-markdown-code-copy-border: var(--vpj-border);
+    --vpj-markdown-code-copy-border-radius: var(--vpj-border-radius-1);
+    --vpj-markdown-code-copy-size: 2.5em;
+    --vpj-markdown-code-copy-icon-size: 1em;
+    --vpj-markdown-code-copy-icon: url('data:image/svg+xml;utf8,<svg id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" fill="rgba(128, 128, 128, 1)"><path d="m20 20h-20v-17a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3zm-18-2h16v-15a1 1 0 0 0 -1-1h-14a1 1 0 0 0 -1 1zm20-13.816v17.816h-18v2h20v-17a3 3 0 0 0 -2-2.816z"/></svg>');
+    --vpj-markdown-code-copy-copied-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(128, 128, 128, 1)"><g id="_01_align_center" data-name="01 align center"><path d="M7.8,20.53a2.99,2.99,0,0,1-2.121-.877L.086,14.061,1.5,12.646l5.593,5.593a1,1,0,0,0,1.414,0L22.5,4.246,23.914,5.66,9.921,19.653A2.99,2.99,0,0,1,7.8,20.53Z"/></g></svg>');
+
+    --vpj-markdown-code-font-size: 0.875em;
+    --vpj-markdown-code-line-height: 1.6;
+
+    --vpj-markdown-code-linenumbers-border: var(--vpj-divider);
+    --vpj-markdown-code-linenumbers-width: 2em;
+
+    --vpj-markdown-code-highlight-bg: var(--vpj-c-default-soft);
+    --vpj-markdown-code-highlight-error-bg: var(--vpj-c-red-soft);
+    --vpj-markdown-code-highlight-warning-bg: var(--vpj-c-yellow-soft);
+
+    --vpj-markdown-code-diff-add-bg: var(--vpj-c-green-soft);
+    --vpj-markdown-code-diff-add-symbol: "+";
+    --vpj-markdown-code-diff-remove-bg: var(--vpj-c-red-soft);
+    --vpj-markdown-code-diff-remove-symbol: "-";
+
+    --vpj-markdown-code-group-tabs-bg: var(--vpj-markdown-code-block-bg);
+    --vpj-markdown-code-group-tabs-border: var(--vpj-border);
+    --vpj-markdown-code-group-tabs-height: 3em;
+    --vpj-markdown-code-group-tabs-padding-inline: 0.75em;
+
+    --vpj-markdown-code-group-tab-padding-inline: 0.75em;
+    --vpj-markdown-code-group-tab-font-size: 0.875em;
+    --vpj-markdown-code-group-tab-font-weight: var(--vpj-font-weight-semibold);
+    --vpj-markdown-code-group-tab-color: var(--vpj-c-text-1);
+    --vpj-markdown-code-group-tab-color-hover: var(--vpj-c-text-2);
+    --vpj-markdown-code-group-tab-active-color: var(--vpj-c-brand-1);
+    --vpj-markdown-code-group-tab-active-color-hover: var(--vpj-c-brand-2);
+    --vpj-markdown-code-group-tab-active-border-color: var(--vpj-c-brand-1);
+}
+
+:lang(es),
+:lang(pt) {
+    --vpj-code-copy-copied-text-content: "Copiado";
+}
+:lang(fa) {
+    --vpj-code-copy-copied-text-content: "کپی شد";
+}
+:lang(ko) {
+    --vpj-code-copy-copied-text-content: "복사됨";
+}
+:lang(ru) {
+    --vpj-code-copy-copied-text-content: "Скопировано";
+}
+:lang(zh) {
+    --vpj-code-copy-copied-text-content: "已复制";
+}
+
+/* ---------------------------------------------------------
+   Markdown: MathJax
+*/
+:root {
+    --vpj-markdown-math-padding-block: 0.3em;
+}
+
+/* ---------------------------------------------------------
+   Markdown: Custom Container
+*/
+:root {
+    --vpj-markdown-custom-block-font-size: 0.875em;
+    --vpj-markdown-custom-block-code-font-size: 0.875em;
+    --vpj-markdown-custom-block-radius: var(--vpj-border-radius-2);
+
+    --vpj-markdown-custom-block-info-border: none;
+    --vpj-markdown-custom-block-info-text: var(--vpj-c-text-1);
+    --vpj-markdown-custom-block-info-bg: var(--vpj-c-default-soft);
+    --vpj-markdown-custom-block-info-code-bg: var(--vpj-c-default-4);
+    --vpj-markdown-custom-block-info-title: var(--vpj-c-brand-1);
+
+    --vpj-markdown-custom-block-note-border: none;
+    --vpj-markdown-custom-block-note-text: var(--vpj-c-text-1);
+    --vpj-markdown-custom-block-note-bg: var(--vpj-c-default-soft);
+    --vpj-markdown-custom-block-note-code-bg: var(--vpj-c-default-4);
+    --vpj-markdown-custom-block-note-title: var(--vpj-c-brand-1);
+
+    --vpj-markdown-custom-block-details-border: none;
+    --vpj-markdown-custom-block-details-text: var(--vpj-c-text-1);
+    --vpj-markdown-custom-block-details-bg: var(--vpj-c-default-soft);
+    --vpj-markdown-custom-block-details-code-bg: var(--vpj-c-default-4);
+    --vpj-markdown-custom-block-details-title: var(--vpj-c-text-1);
+    --vpj-markdown-custom-block-details-title-hover: var(--vpj-c-text-2);
+
+    --vpj-markdown-custom-block-tip-border: none;
+    --vpj-markdown-custom-block-tip-text: var(--vpj-c-tip-1);
+    --vpj-markdown-custom-block-tip-bg: var(--vpj-c-tip-soft);
+    --vpj-markdown-custom-block-tip-code-bg: var(--vpj-c-tip-4);
+    --vpj-markdown-custom-block-tip-title: var(--vpj-c-tip-1);
+
+    --vpj-markdown-custom-block-important-border: none;
+    --vpj-markdown-custom-block-important-text: var(--vpj-c-important-1);
+    --vpj-markdown-custom-block-important-bg: var(--vpj-c-important-soft);
+    --vpj-markdown-custom-block-important-code-bg: var(--vpj-c-important-4);
+    --vpj-markdown-custom-block-important-title: var(--vpj-c-important-1);
+
+    --vpj-markdown-custom-block-warning-border: none;
+    --vpj-markdown-custom-block-warning-text: var(--vpj-c-warning-1);
+    --vpj-markdown-custom-block-warning-bg: var(--vpj-c-warning-soft);
+    --vpj-markdown-custom-block-warning-code-bg: var(--vpj-c-warning-4);
+    --vpj-markdown-custom-block-warning-title: var(--vpj-c-warning-1);
+
+    --vpj-markdown-custom-block-danger-border: none;
+    --vpj-markdown-custom-block-danger-text: var(--vpj-c-danger-1);
+    --vpj-markdown-custom-block-danger-bg: var(--vpj-c-danger-soft);
+    --vpj-markdown-custom-block-danger-code-bg: var(--vpj-c-danger-4);
+    --vpj-markdown-custom-block-danger-title: var(--vpj-c-danger-1);
+
+    --vpj-markdown-custom-block-caution-border: none;
+    --vpj-markdown-custom-block-caution-text: var(--vpj-c-caution-1);
+    --vpj-markdown-custom-block-caution-bg: var(--vpj-c-caution-soft);
+    --vpj-markdown-custom-block-caution-code-bg: var(--vpj-c-caution-4);
+    --vpj-markdown-custom-block-caution-title: var(--vpj-c-caution-1);
+}
