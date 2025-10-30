@@ -24,6 +24,9 @@ export default defineConfigWithTheme<ThemeConfig>({
             // @ts-ignore
             vueDevTools()
         ],
+        define: {
+            __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: "true"
+        }
         // build: {
         //     rollupOptions: {
         //         plugins: [
