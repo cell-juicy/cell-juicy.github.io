@@ -1,12 +1,13 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
+import { computed, ref, useTemplateRef } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useVPJSidebar } from '../composables/useVPJSidebar';
 
+import { isMobile } from '../utils/deviceTypes';
+
 import VPJSidebarSwitch from './VPJSidebarSwitch.vue';
 
-import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 import VPJDynamicIcon from './VPJDynamicIcon.vue';
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
@@ -34,18 +35,27 @@ const profileProsition = ref({
 
 
 function toggleProfileCard() {
-    if (!profileBtn.value) return;
-
-    const rect = profileBtn.value.elementSelf.getBoundingClientRect();
-    if (rect.bottom + 355 < window.innerHeight) {
+    if (isMobile.value) {
+        profileProsition.value.left = "var(--vpj-sidebar-padding-x)";
+        profileProsition.value.right = "var(--vpj-sidebar-padding-x)";
+        profileProsition.value.top = "var(--vpj-sidebar-padding-top)";
         profileProsition.value.bottom = "auto";
-        profileProsition.value.top = `calc(${rect.bottom}px + var(--vpj-sidebar-header-gap))`;
     } else {
-        profileProsition.value.bottom = `calc(${window.innerHeight - rect.top}px + var(--vpj-sidebar-header-gap))`;
-        profileProsition.value.top = "auto";
+        if (!profileBtn.value) return;
+
+        const rect = profileBtn.value.getBoundingClientRect();
+
+        if (rect.bottom + 355 < window.innerHeight) {
+            profileProsition.value.bottom = "auto";
+            profileProsition.value.top = `calc(${rect.bottom}px + var(--vpj-sidebar-header-gap))`;
+        } else {
+            profileProsition.value.bottom = `calc(${window.innerHeight - rect.top}px + var(--vpj-sidebar-header-gap))`;
+            profileProsition.value.top = "auto";
+        };
+        
+        profileProsition.value.left = rect.left + "px";
+        profileProsition.value.right = "auto";
     };
-    profileProsition.value.left = rect.left + "px";
-    profileProsition.value.right = "auto";
 
     profileVisible.value = !profileVisible.value;
 };
@@ -61,60 +71,81 @@ function toggleProfileCard() {
     >
         <slot name="sidebar-header-top"/>
         <div class="vpj-sidebar__header-container">
-            <VPJDynamicIconBtn
+            <button
                 @click="toggleProfileCard"
-                :icon="config.profile.logo"
-                :text="config.profile.title"
+                :disabled="!config.profile.enabled"
                 ref="profileBtn"
                 class="vpj-sidebar__btn"
                 data-action="profile"
-                :disabled="!config.profile.enabled"
-            />
-            <VPJDynamicIconBtn
+            >
+                <VPJDynamicIcon
+                    :icon="config.profile.logo"
+                    class="vpj-icon"
+                />
+                <span class="vpj-text">
+                    {{ config.profile.title }}
+                </span>
+            </button>
+            <button
                 @click="toggle" 
-                :icon="toggleBtnIcon" 
                 class="vpj-sidebar__btn collapsed" 
                 data-action="toggle"
-            />
+            >
+                <VPJDynamicIcon
+                    :icon="toggleBtnIcon"
+                    class="vpj-icon"
+                />
+            </button>
         </div>
         <VPJSidebarSwitch class="vpj-sidebar__header-container"/>
         <slot name="sidebar-header-bottom"/>
     </header>
-    <Teleport to=".vpj-portals-root">
-        <!-- <Transition> -->
-            <div
-                v-if="profileVisible"
-                @click="profileVisible = false"
-                class="vpj-sidebar__header-profile-overlay"
-            >
-                <div @click.stop class="vpj-sidebar__profile">
-                    <header class="vpj-sidebar__profile-header">
-                        <VPJDynamicIcon
-                            :icon="config.profile.cardLogo"
-                            class="vpj-sidebar__profile-logo"
-                        />
-                        <span class="vpj-sidebar__profile-title vpj-text">
-                            {{ config.profile.cardTitle }}
-                        </span>
-                    </header>
-                    <div class="vpj-sidebar__profile-main">
-                        <component
-                            v-if="config.profile.description.component"
-                            :is="config.profile.description.component"
-                        />
-                        <VPJOverlayScrollArea
-                            v-else
-                            overflow="y"
-                            :inner-attrs="{ class: 'vpj-sidebar__profile-description-inner' }"
-                            class="vpj-sidebar__profile-description-outer"
-                        >
-                            {{ config.profile.description }}
-                        </VPJOverlayScrollArea>
+    <ClientOnly>
+        <Teleport to=".vpj-portals-root">
+            <Transition>
+                <div
+                    v-if="profileVisible"
+                    @click="profileVisible = false"
+                    class="vpj-sidebar__header-profile-overlay"
+                >
+                    <div
+                        @click.stop.prevent
+                        :style="{
+                            bottom: profileProsition.bottom,
+                            left: profileProsition.left,
+                            right: profileProsition.right,
+                            top: profileProsition.top,
+                        }"
+                        class="vpj-sidebar__profile"
+                    >
+                        <header class="vpj-sidebar__profile-header">
+                            <VPJDynamicIcon
+                                :icon="config.profile.cardLogo"
+                                class="vpj-sidebar__profile-logo"
+                            />
+                            <span class="vpj-sidebar__profile-title vpj-text">
+                                {{ config.profile.cardTitle }}
+                            </span>
+                        </header>
+                        <div class="vpj-sidebar__profile-main">
+                            <component
+                                v-if="config.profile.description.component"
+                                :is="config.profile.description.component"
+                            />
+                            <VPJOverlayScrollArea
+                                v-else
+                                overflow="y"
+                                :inner-attrs="{ class: 'vpj-sidebar__profile-description-inner' }"
+                                class="vpj-sidebar__profile-description-outer"
+                            >
+                                {{ config.profile.description }}
+                            </VPJOverlayScrollArea>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <!-- </Transition> -->
-    </Teleport>
+            </Transition>
+        </Teleport>
+    </ClientOnly>
 </template>
 
 
@@ -211,15 +242,11 @@ function toggleProfileCard() {
         box-shadow: var(--vpj-sidebar-profile-shadow);
         display: flex;
         flex-direction: column;
-        position: fixed;
-        padding-top: var(--vpj-sidebar-profile-border-radius);
-        padding-bottom: var(--vpj-sidebar-profile-border-radius);
-        bottom: v-bind("profileProsition.bottom");
-        left: v-bind("profileProsition.left");
-        right: v-bind("profileProsition.right");
-        top: v-bind("profileProsition.top");
         max-width: var(--vpj-sidebar-profile-width);
         max-height: 355px;
+        padding-top: var(--vpj-sidebar-profile-border-radius);
+        padding-bottom: var(--vpj-sidebar-profile-border-radius);
+        position: fixed;
     }
 
     /* Header */
@@ -278,9 +305,6 @@ function toggleProfileCard() {
     @media screen and (max-width: 768px) {
         .vpj-sidebar__profile {
             bottom: auto;
-            left: var(--vpj-sidebar-padding-x);
-            right: var(--vpj-sidebar-padding-x);
-            top: var(--vpj-sidebar-padding-top);
             min-width: none;
             max-width: none;
         }

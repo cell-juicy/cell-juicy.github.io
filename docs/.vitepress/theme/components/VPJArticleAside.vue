@@ -86,56 +86,58 @@ onUnmounted(() => {
 
 
 <template>
-    <Teleport
-        to=".vpj-portals-root"
-        :disabled="!isMobile"
-    >
-        <aside
-            :class="[
-                'vpj-article-aside',
-                { 'collapsed': asideCollapsed }
-            ]"
+    <ClientOnly>
+        <Teleport
+            to=".vpj-portals-root"
+            :disabled="!isMobile"
         >
-            <header class="vpj-article-aside__header">
-                <VPJOverlayScrollArea
-                    overflow="x"
-                    thumb-width=3
-                    :inner-attrs="{ class: 'vpj-article-aside__tablist' }"
-                    class="vpj-article-aside__tabboxmask"
-                >
-                    <button
-                        v-for="data in tabsData"
-                        :key="data.key"
-                        @click="activeTabKey = data.key"
-                        :class="['vpj-article-aside__tab', { 'current': activeTabKey === data.key }]"
+            <aside
+                :class="[
+                    'vpj-article-aside',
+                    { 'collapsed': asideCollapsed }
+                ]"
+            >
+                <header class="vpj-article-aside__header">
+                    <VPJOverlayScrollArea
+                        overflow="x"
+                        thumb-width=3
+                        :inner-attrs="{ class: 'vpj-article-aside__tablist' }"
+                        class="vpj-article-aside__tabboxmask"
                     >
-                        {{ data.name }}
-                    </button>
-                </VPJOverlayScrollArea>
-                <VPJDynamicIconBtn
-                    @click="asideClose"
-                    :icon="VPJIconCrossSmall"
-                    class="vpj-article-aside__close"
-                />
-            </header>
-            <div v-if="tabsData.length === 0" class="vpj-article-aside__fallback">
-                {{ noTab }}
-            </div>
-            <div v-else class="vpj-article-aside__content">
-                <component v-if="activeTabComponent" :is="activeTabComponent"/>
-                <div v-else class="vpj-article-aside__fallback">
-                    {{ unknownTab }}
+                        <button
+                            v-for="data in tabsData"
+                            :key="data.key"
+                            @click="activeTabKey = data.key"
+                            :class="['vpj-article-aside__tab', { 'current': activeTabKey === data.key }]"
+                        >
+                            {{ data.name }}
+                        </button>
+                    </VPJOverlayScrollArea>
+                    <VPJDynamicIconBtn
+                        @click="asideClose"
+                        :icon="VPJIconCrossSmall"
+                        class="vpj-article-aside__close"
+                    />
+                </header>
+                <div v-if="tabsData.length === 0" class="vpj-article-aside__fallback">
+                    {{ noTab }}
                 </div>
-            </div>
-        </aside>
-        <Transition>
-            <div
-                v-if="!isDesktop && !asideCollapsed"
-                @click="asideClose"
-                class="vpj-article-aside__overlay"
-            />
-        </Transition>
-    </Teleport>
+                <div v-else class="vpj-article-aside__content">
+                    <component v-if="activeTabComponent" :is="activeTabComponent"/>
+                    <div v-else class="vpj-article-aside__fallback">
+                        {{ unknownTab }}
+                    </div>
+                </div>
+            </aside>
+            <Transition>
+                <div
+                    v-if="!isDesktop && !asideCollapsed"
+                    @click="asideClose"
+                    class="vpj-article-aside__overlay"
+                />
+            </Transition>
+        </Teleport>
+    </ClientOnly>
 </template>
 
 

@@ -51,9 +51,9 @@ const props = defineProps({
 })
 
 const tooltipVisible = ref(false);
-const tooltipCss = ref({left: '0px', top: '0px', transform: undefined})
-const button = useTemplateRef('buttonRef');
-const tooltip = useTemplateRef('tooltipRef');
+const tooltipCss = ref({ left: "0px", top: "0px", transform: undefined });
+const button = useTemplateRef("buttonRef");
+const tooltip = useTemplateRef("tooltipRef");
 
 
 function updateTooltipPosition() {
@@ -95,7 +95,7 @@ function updateTooltipPosition() {
         if (typeof props.offset === 'object') {
             left += Number(props.offset.x) || 0;
             top += Number(props.offset.y) || 0;
-        }
+        };
 
         if (typeof props.boundary === 'string') {
             const boundary = document.querySelector(props.boundary);
@@ -109,7 +109,7 @@ function updateTooltipPosition() {
                 } else if (left + (transform.x + 1) * tooltipRect.width > boundaryRect.right - Number(props.safeMargin)) {
                     left = boundaryRect.right - tooltipRect.width - Number(props.safeMargin);
                     transform.x = 0;
-                }
+                };
 
                 if (top + transform.y * tooltipRect.height < boundaryRect.top + Number(props.safeMargin)) {
                     top = boundaryRect.top + Number(props.safeMargin);
@@ -117,16 +117,16 @@ function updateTooltipPosition() {
                 } else if (top + (transform.y + 1) * tooltipRect.height > boundaryRect.bottom - Number(props.safeMargin)) {
                     top = boundaryRect.bottom - tooltipRect.height - Number(props.safeMargin);
                     transform.y = 0;
-                }
-            }
-        }
+                };
+            };
+        };
 
         tooltipCss.value = {
             left: `${left}px`,
             top: `${top}px`,
             transform: `translate(${transform.x * 100}%, ${transform.y * 100}%)`
-        }
-    }
+        };
+    };
 }
 
 
@@ -145,8 +145,8 @@ if (props.tooltip) {
             if (newBoundary) {
                 observer.observe(newBoundary);
                 currentBoundary = newBoundary;
-            }
-        }
+            };
+        };
     });
 
     onMounted(() => {
@@ -169,11 +169,7 @@ if (props.tooltip) {
         stopTooltipWatcher();
         stopObserverWatcher();
     })
-}
-
-defineExpose({
-    elementSelf: button
-})
+};
 </script>
 
 
@@ -201,19 +197,21 @@ defineExpose({
                 {{ props.text }}
             </span>
         </slot>
-        <Teleport to=".vpj-portals-root">
-            <Transition>
-                <div 
-                    v-if="props.tooltip && tooltipVisible"
-                    v-bind="props.tooltipAttrs"
-                    ref="tooltipRef"
-                    class="vpj-teleport"
-                    :style="tooltipCss"
-                >
-                    {{ props.tooltip }}
-                </div>
-            </Transition>
-        </Teleport>
+        <ClientOnly>
+            <Teleport to=".vpj-portals-root">
+                <Transition>
+                    <div 
+                        v-if="props.tooltip && tooltipVisible"
+                        v-bind="props.tooltipAttrs"
+                        ref="tooltipRef"
+                        class="vpj-teleport"
+                        :style="tooltipCss"
+                    >
+                        {{ props.tooltip }}
+                    </div>
+                </Transition>
+            </Teleport>
+        </ClientOnly>
     </component>
 </template>
 

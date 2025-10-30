@@ -169,32 +169,42 @@ function toggleSubThemeMenu() {
                 class="vpj-sidebar__header-switch-marker"
             />
         </button>
-        <Teleport to=".vpj-portals-root">
-            <div
-                v-if="menuVisible && headerConfig.switch.subTheme && headerConfig.switch.enabled"
-                @click="menuVisible = false"
-                class="vpj-sidebar__header-switch-menu-overlay"
-            >
-                <VPJOverlayScrollArea
-                    @click.stop.prevent
-                    overflow="y"
-                    :inner-attrs="{
-                        class: 'vpj-sidebar__header-switch-menu-inner'
-                    }"
-                    class="vpj-sidebar__header-switch-menu-outer"
-                >
-                    <button
-                        v-for="[name, label] in subThemeList"
-                        :key="name"
-                        @click.stop.prevent="() => selectSubTheme(name)"
-                        :disabled="name === subTheme"
-                        class="vpj-sidebar__header-switch-sub-theme-option"
+        <ClientOnly>
+            <Teleport to=".vpj-portals-root">
+                <Transition>
+                    <div
+                        v-if="menuVisible && headerConfig.switch.subTheme && headerConfig.switch.enabled"
+                        @click="menuVisible = false"
+                        class="vpj-sidebar__header-switch-menu-overlay"
                     >
-                        <span class="vpj-text">{{ label.length ? label : name }}</span>
-                    </button>
-                </VPJOverlayScrollArea>
-            </div>
-        </Teleport>
+                        <VPJOverlayScrollArea
+                            @click.stop.prevent
+                            overflow="y"
+                            :inner-attrs="{
+                                class: 'vpj-sidebar__header-switch-menu-inner'
+                            }"
+                            :style="{
+                                bottom: menuPosition.bottom,
+                                left: menuPosition.left,
+                                right: menuPosition.right,
+                                top: menuPosition.top,
+                            }"
+                            class="vpj-sidebar__header-switch-menu-outer"
+                        >
+                            <button
+                                v-for="[name, label] in subThemeList"
+                                :key="name"
+                                @click.stop.prevent="() => selectSubTheme(name)"
+                                :disabled="name === subTheme"
+                                class="vpj-sidebar__header-switch-sub-theme-option"
+                            >
+                                <span class="vpj-text">{{ label.length ? label : name }}</span>
+                            </button>
+                        </VPJOverlayScrollArea>
+                    </div>
+                </Transition>
+            </Teleport>
+        </ClientOnly>
     </div>
 </template>
 
@@ -302,10 +312,6 @@ function toggleSubThemeMenu() {
         box-shadow: var(--vpj-sidebar-header-switch-menu-shadow);
         max-height: 355px;
         position: fixed;
-        bottom: v-bind("menuPosition.bottom");
-        left: v-bind("menuPosition.left");
-        right: v-bind("menuPosition.right");
-        top: v-bind("menuPosition.top");
     }
 
     :deep(.vpj-sidebar__header-switch-menu-inner) {
