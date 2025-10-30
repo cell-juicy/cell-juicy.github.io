@@ -30,38 +30,40 @@ const title = computed(() => {
 
 
 <template>
-    <Teleport
-        to=".vpj-portals-root"
-        :disabled="!isMobile"
-    >
-        <aside
-            :class="[
-                'vpj-panel',
-                { 'collapsed': panelCollapsed }
-            ]"
+    <ClientOnly>
+        <Teleport
+            to=".vpj-portals-root"
+            :disabled="!isMobile"
         >
-            <header class="vpj-panel__header">
-                <span class="vpj-panel__title vpj-text">
-                    {{ title }}
-                </span>
-                <VPJDynamicIconBtn
+            <aside
+                :class="[
+                    'vpj-panel',
+                    { 'collapsed': panelCollapsed }
+                ]"
+            >
+                <header class="vpj-panel__header">
+                    <span class="vpj-panel__title vpj-text">
+                        {{ title }}
+                    </span>
+                    <VPJDynamicIconBtn
+                        @click="panelClose"
+                        :icon="VPJIconCrossSmall"
+                        class="vpj-panel__close"
+                    />
+                </header>
+                <div class="vpj-panel__content">
+                    <VPJPanelHistoryPage v-if="panelTab === 'history'"/>
+                </div>
+            </aside>
+            <Transition>
+                <div
+                    v-if="!isDesktop && !panelCollapsed"
                     @click="panelClose"
-                    :icon="VPJIconCrossSmall"
-                    class="vpj-panel__close"
+                    class="vpj-panel__overlay"
                 />
-            </header>
-            <div class="vpj-panel__content">
-                <VPJPanelHistoryPage v-if="panelTab === 'history'"/>
-            </div>
-        </aside>
-        <Transition>
-            <div
-                v-if="!isDesktop && !panelCollapsed"
-                @click="panelClose"
-                class="vpj-panel__overlay"
-            />
-        </Transition>
-    </Teleport>
+            </Transition>
+        </Teleport>
+    </ClientOnly>
 </template>
 
 

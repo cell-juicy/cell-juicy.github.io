@@ -40,11 +40,13 @@ const { close } = store;
         </slot>
         <slot name="sidebar-bottom"/>
     </aside>
-    <Teleport to=".vpj-portals-root">
-        <Transition>
-            <div v-if="!collapsed" @click="close" class="vpj-sidebar__overlay"/>
-        </Transition>
-    </Teleport>
+    <ClientOnly>
+        <Teleport to=".vpj-portals-root">
+            <Transition>
+                <div v-if="!collapsed" @click="close" class="vpj-sidebar__overlay"/>
+            </Transition>
+        </Teleport>
+    </ClientOnly>
 </template>
 
 
