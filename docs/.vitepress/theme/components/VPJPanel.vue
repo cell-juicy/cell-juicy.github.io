@@ -10,6 +10,7 @@ import VPJDynamicIconBtn from './VPJDynamicIconBtn.vue';
 import VPJPanelHistoryPage from './VPJPanelHistoryPage.vue';
 
 import VPJIconCrossSmall from './icons/VPJIconCrossSmall.vue';
+import VPJPanelCommentPage from './VPJPanelCommentPage.vue';
 
 
 const store = useVPJLayout();
@@ -21,9 +22,11 @@ const {
 const title = computed(() => {
     switch (panelTab.value) {
         case "history":
-            return "历史提交"
+            return "历史提交";
+        case "comment":
+            return "评论";
         default:
-            return ""
+            return "";
     }
 })
 </script>
@@ -53,6 +56,7 @@ const title = computed(() => {
                 </header>
                 <div class="vpj-panel__content">
                     <VPJPanelHistoryPage v-if="panelTab === 'history'"/>
+                    <VPJPanelCommentPage v-if="panelTab === 'comment'"/>
                 </div>
             </aside>
             <Transition>

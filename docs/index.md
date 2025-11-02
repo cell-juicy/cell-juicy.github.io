@@ -8,6 +8,7 @@ import { useVPJLayout } from './.vitepress/theme/composables/useVPJLayout';
 
 
 const store = useVPJLayout();
+const { panelCollapsed } = storeToRefs(store);
 const { panelToggle } = store;
 </script>
 
@@ -34,8 +35,8 @@ const { panelToggle } = store;
         display: flex;
         justify-content: center;
         height: 40px;
-        width: 120px;
-        padding: auto;
+        width: max-content;
+        padding: 10px;
         text-decoration: none;
     }
 
@@ -52,7 +53,7 @@ const { panelToggle } = store;
     <div class="hero-content">
         <h1>这是Cell的网站</h1>
         <h3>欢迎每一个访客</h3>
-        <button class="button" @click="() => panelToggle('history')">点击我展开面板</button>
+        <button class="button" @click="() => panelToggle('comment')">点击我展开面板{{ panelCollapsed }}</button>
     </div>
 </VPJHeroImage>
 

@@ -155,7 +155,7 @@ const DEFAULT = {
     },
 };
 
-const PANEL_TAB = ["history"] as const;
+const PANEL_TAB = ["history", "comment"] as const;
 type PANEL_TAB_TYPE = typeof PANEL_TAB[number];
 
 export const useVPJLayout = defineStore("vpj-layout", () => {
