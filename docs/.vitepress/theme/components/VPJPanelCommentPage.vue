@@ -99,6 +99,11 @@ const giscusConfig = computed(() => {
         lang,
     };
 });
+
+const empty = computed(() => {
+    const message = theme.value.components?.panelTabComment?.empty;
+    return (typeof message === 'string') ? message : DEFAULT.EMPTY;
+});
 </script>
 
 
@@ -113,7 +118,7 @@ const giscusConfig = computed(() => {
             v-if="!provider"
             class="vpj-panel__fallback"
         >
-            empty
+            {{ empty }}
         </div>
         <div
             v-else
@@ -154,10 +159,6 @@ const giscusConfig = computed(() => {
 
     #comments {
         display: flex;
-        flex: 1
-    }
-
-    #comments::part(iframe) {
         flex: 1
     }
 </style>

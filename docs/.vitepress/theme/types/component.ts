@@ -523,6 +523,10 @@ export type ComponentFallbackConfig = {
         }, h: typeof import("vue").h) => VNode);
     };
 
+    panelTabComment?: {
+        empty?: string;
+    };
+
     switch?: {
         invalidSubThemeLabel?: string;
         lightModeSwitchTitle?: string;
