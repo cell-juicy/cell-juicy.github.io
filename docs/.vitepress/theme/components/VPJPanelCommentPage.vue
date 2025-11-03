@@ -15,7 +15,8 @@ const DEFAULT = {
         STRICT: "0",
         REACTIONSENABLED: "1",
         INPUTPOSITION: "bottom",
-        TERM: (r) => r.path,
+        MAPPING: "pathname",
+        TERM: undefined,
         THEME: {
             light: "light",
             dark: "dark",
@@ -49,17 +50,20 @@ const giscusConfig = computed(() => {
                 dark: isString(option.value.theme.dark) ? option.value.theme.dark : DEFAULT.GISCUS.THEME.dark,
             }
             : DEFAULT.GISCUS.THEME;
-    const termGenerator = isFunction(option.value.term)
-        ? option.value.term
-        : DEFAULT.GISCUS.TERM;
+    const mapping = ["pathname", "url", "title", "og:title", "specific", "number"].includes(option.value.mapping)
+            ? option.value.mapping
+            : DEFAULT.GISCUS.MAPPING
     let term;
-    try {
-        const product = termGenerator(route);
-        term = isString(product) ? product : route.path;
-    } catch(e) {
-        console.log(`[Juicy Theme] Giscus: Custom term function failed. Using fallback term: "${route.path}". Error:${e}`);
-        term = route.path;
-    };
+    if (["specific", "number"].includes(mapping)) {
+        if (isFunction(option.value.term)) {
+            try {
+                const product = option.value.term(route);
+                term = isString(product) ? product : route.path;
+            } catch(e) {};
+        } else if (isString(option.value.term)) {
+            term = option.value.term;
+        };
+    }
     const lang = [option.value.lang, site.value.lang, DEFAULT.GISCUS.LANG]
         .map((lang) => {
             if (!isString(lang)) return undefined;
@@ -90,6 +94,7 @@ const giscusConfig = computed(() => {
             ? option.value.inputPosition
             : DEFAULT.GISCUS.INPUTPOSITION,
         theme: isDark.value ? themeObject.dark : themeObject.light,
+        mapping,
         term,
         lang,
     };
@@ -108,7 +113,7 @@ const giscusConfig = computed(() => {
             v-if="!provider"
             class="vpj-panel__fallback"
         >
-            {{ empty }}
+            empty
         </div>
         <div
             v-else
@@ -117,8 +122,8 @@ const giscusConfig = computed(() => {
         >
             <Giscus
                 v-if="provider === 'giscus'"
+                :key="route.path"
                 id="comments"
-                mapping="specific"
                 v-bind="giscusConfig"
             />
         </div>

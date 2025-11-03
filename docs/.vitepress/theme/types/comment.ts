@@ -12,6 +12,13 @@ export interface GiscusOptions {
     inputPosition?:
         | "bottom"
         | "top";
+    mapping?:
+        | "pathname"
+        | "url"
+        | "title"
+        | "og:title"
+        | "specific"
+        | "number";
     term?:
         | string
         | ((route: Route) => string)

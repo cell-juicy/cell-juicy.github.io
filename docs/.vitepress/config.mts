@@ -220,7 +220,7 @@ export default defineConfigWithTheme<ThemeConfig>({
                 repoId: "R_kgDOQNoB2w",
                 category: "Announcements",
                 categoryId: "DIC_kwDOQNoB284CxWix",
-                strict: true
+                strict: true,
             }
         }
     },
