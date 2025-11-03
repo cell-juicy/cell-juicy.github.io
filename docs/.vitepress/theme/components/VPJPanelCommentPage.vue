@@ -1,17 +1,99 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, useTemplateRef } from 'vue';
 import { useData, useRoute } from 'vitepress';
 import Giscus from '@giscus/vue';
+
+import { isBoolean, isObject, isString, isFunction } from '../utils/common';
 
 import VPJOverlayScrollArea from './VPJOverlayScrollArea.vue';
 
 
 const DEFAULT = {
-    EMPTY: "没有评论",
+    EMPTY: "本站没有启用评论",
+    PROVIDER: ["giscus"],
+    GISCUS: {
+        STRICT: "0",
+        REACTIONSENABLED: "1",
+        INPUTPOSITION: "bottom",
+        TERM: (r) => r.path,
+        THEME: {
+            light: "light",
+            dark: "dark",
+        },
+        EMITMETADATA: "0",
+        LANG: "zh-CN",
+        LAZYLOADING: undefined,
+    },
 };
 
-const { theme } = useData();
+const { theme, site, isDark } = useData();
 const route = useRoute();
+
+// Config
+const themeConfig = computed(() =>
+    isObject(theme.value.comment) && DEFAULT.PROVIDER.includes(theme.value.comment.provider)
+        ? theme.value.comment
+        : {}
+);
+const provider = computed(() => themeConfig.value.provider);
+const option = computed(() => isObject(themeConfig.value.option) ? themeConfig.value.option : {});
+
+const giscusConfig = computed(() => {
+    if (provider.value !== "giscus") return {};
+
+    const themeObject = isString(option.value.theme)
+        ? { light: option.value.theme, dark: option.value.theme }
+        : isObject(option.value.theme)
+            ? {
+                light: isString(option.value.theme.light) ? option.value.theme.light : DEFAULT.GISCUS.THEME.light,
+                dark: isString(option.value.theme.dark) ? option.value.theme.dark : DEFAULT.GISCUS.THEME.dark,
+            }
+            : DEFAULT.GISCUS.THEME;
+    const termGenerator = isFunction(option.value.term)
+        ? option.value.term
+        : DEFAULT.GISCUS.TERM;
+    let term;
+    try {
+        const product = termGenerator(route);
+        term = isString(product) ? product : route.path;
+    } catch(e) {
+        console.log(`[Juicy Theme] Giscus: Custom term function failed. Using fallback term: "${route.path}". Error:${e}`);
+        term = route.path;
+    };
+    const lang = [option.value.lang, site.value.lang, DEFAULT.GISCUS.LANG]
+        .map((lang) => {
+            if (!isString(lang)) return undefined;
+            if (lang === "zh") return "zh-CN";
+            if (lang === "zh-Hans") return "zh-CN";
+            if (lang === "zh-Hant") return "zh-TW";
+            return lang;
+        })
+        .find(isString);
+    return {
+        repo: isString(option.value.repo) ? option.value.repo : undefined,
+        repoId: isString(option.value.repoId) ? option.value.repoId : undefined,
+        category: isString(option.value.category) ? option.value.category : undefined,
+        categoryId: isString(option.value.categoryId) ? option.value.categoryId : undefined,
+        strict: isBoolean(option.value.strict)
+            ? option.value.strict ? "1" : "0"
+            : DEFAULT.GISCUS.STRICT,
+        reactionsEnabled: isBoolean(option.value.reactionsEnabled)
+            ? option.value.reactionsEnabled ? "1" : "0"
+            : DEFAULT.GISCUS.REACTIONSENABLED,
+        emitMetadata: isBoolean(option.value.emitMetadata)
+            ? option.value.emitMetadata ? "1" : "0"
+            : DEFAULT.GISCUS.EMITMETADATA,
+        loading: isBoolean(option.value.lazyLoading)
+            ? option.value.lazyLoading ? "lazy" : undefined
+            : DEFAULT.GISCUS.LAZYLOADING,
+        inputPosition: ["bottom", "top"].includes(option.value.inputPosition)
+            ? option.value.inputPosition
+            : DEFAULT.GISCUS.INPUTPOSITION,
+        theme: isDark.value ? themeObject.dark : themeObject.light,
+        term,
+        lang,
+    };
+});
 </script>
 
 
@@ -22,28 +104,22 @@ const route = useRoute();
         :area-attrs="{ class: 'vpj-panel__tab-area' }"
         :inner-attrs="{ class: 'vpj-panel__tab-inner' }"
     >
-        <!-- <div
-            v-if="true"
+        <div
+            v-if="!provider"
             class="vpj-panel__fallback"
         >
             {{ empty }}
-        </div> -->
+        </div>
         <div
+            v-else
+            ref="comment"
             class="vpj-panel__comment"
         >
             <Giscus
-                id="comment"
-                repo="cell-juicy/giscus-comment-repository"
-                repo-id="R_kgDOQNoB2w"
-                category="Announcements"
-                category-id="DIC_kwDOQNoB284CxWix"
-                mapping="pathname"
-                strict="0"
-                reactions-enabled="1"
-                emit-metadata="0"
-                input-position="top"
-                theme="preferred_color_scheme"
-                lang="zh-CN"
+                v-if="provider === 'giscus'"
+                id="comments"
+                mapping="specific"
+                v-bind="giscusConfig"
             />
         </div>
     </VPJOverlayScrollArea>
@@ -71,12 +147,12 @@ const route = useRoute();
         padding: 0;
     }
 
-    #comment {
+    #comments {
         display: flex;
         flex: 1
     }
 
-    #comments iframe {
+    #comments::part(iframe) {
         flex: 1
     }
 </style>

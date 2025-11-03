@@ -213,5 +213,15 @@ export default defineConfigWithTheme<ThemeConfig>({
         subThemes: {
             default: "默认主题",
         },
+        comment: {
+            provider: "giscus",
+            option: {
+                repo: "cell-juicy/giscus-comment-repository",
+                repoId: "R_kgDOQNoB2w",
+                category: "Announcements",
+                categoryId: "DIC_kwDOQNoB284CxWix",
+                strict: true
+            }
+        }
     },
 })
