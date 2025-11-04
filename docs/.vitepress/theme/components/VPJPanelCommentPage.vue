@@ -150,11 +150,13 @@ const empty = computed(() => {
     }
 
     .vpj-panel__comment {
+        backdrop-filter: var(--vpj-panel-comment-backdrop-filter);
+        background: var(--vpj-panel-comment-bg);
         display: flex;
         flex: 1;
         flex-direction: column;
+        padding: var(--vpj-panel-comment-padding);
         width: 100%;
-        padding: 0;
     }
 
     #comments {
