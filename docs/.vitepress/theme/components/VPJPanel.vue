@@ -13,18 +13,39 @@ import VPJIconCrossSmall from './icons/VPJIconCrossSmall.vue';
 import VPJPanelCommentPage from './VPJPanelCommentPage.vue';
 
 
+DEFAULT = {
+    NOTAB: "",
+    TABTITLE: {
+        HISTORY: "历史提交",
+        COMMENT: "评论",
+    },
+};
+
 const store = useVPJLayout();
 const { panelCollapsed, panelTab } = storeToRefs(store);
 const {
     panelClose
 } = store;
 
+const noTab = computed(() => {
+    const message = theme.value.components?.panel?.noTab;
+    return (typeof message === 'string') ? message : DEFAULT.NOTAB;
+});
+const historyTitle = computed(() => {
+    const message = theme.value.components?.panel?.tabTitle?.history;
+    return (typeof message === 'string') ? message : DEFAULT.TABTITLE.HISTORY;
+});
+const commentTitle = computed(() => {
+    const message = theme.value.components?.panel?.tabTitle?.comment;
+    return (typeof message === 'string') ? message : DEFAULT.TABTITLE.COMMENT;
+});
+
 const title = computed(() => {
     switch (panelTab.value) {
         case "history":
-            return "历史提交";
+            return historyTitle.value;
         case "comment":
-            return "评论";
+            return commentTitle.value;
         default:
             return "";
     }
@@ -56,7 +77,13 @@ const title = computed(() => {
                 </header>
                 <div class="vpj-panel__content">
                     <VPJPanelHistoryPage v-if="panelTab === 'history'"/>
-                    <VPJPanelCommentPage v-if="panelTab === 'comment'"/>
+                    <VPJPanelCommentPage v-else-if="panelTab === 'comment'"/>
+                    <div
+                        v-else
+                        class="vpj-panel__fallback"
+                    >
+                        {{ noTab }}
+                    </div>
                 </div>
             </aside>
             <Transition>

@@ -501,6 +501,14 @@ export type ComponentFallbackConfig = {
         noSpace?: string;
     };
 
+    panel?: {
+        noTab?: string;
+        tabTitle?: {
+            history?: string;
+            comment?: string;
+        };
+    };
+
     panelTabHistory?: {
         interval?: "year" | "month" | "week" | "day" | "hour" | "minute" | "second";
         intervalFormat?:
