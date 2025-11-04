@@ -4,8 +4,18 @@ import type { Route } from "vitepress";
 export interface GiscusOptions {
     repo: string;
     repoId: string;
-    category: string;
-    categoryId: string;
+    category:
+        | string
+        | {
+            dev: string;
+            prod: string;
+        };
+    categoryId:
+        | string
+        | {
+            dev: string;
+            prod: string;
+        };
     strict?: boolean;
     reactionsEnabled?: boolean;
     emitMetadata?: boolean;

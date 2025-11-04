@@ -10,9 +10,6 @@ import vueDevTools from 'vite-plugin-vue-devtools';
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const REPORT_DIR = path.join(PROJECT_ROOT, 'reports');
 
-// @ts-ignore
-const isDev = !!import.meta.env.DEV;
-
 
 export default defineConfigWithTheme<ThemeConfig>({
     title: "Cell的个人站点",
@@ -221,8 +218,14 @@ export default defineConfigWithTheme<ThemeConfig>({
             option: {
                 repo: "cell-juicy/cell-juicy.github.io",
                 repoId: "R_kgDONmppLw",
-                category: isDev ? "Giscus Comment (Test)" : "Giscus Comment",
-                categoryId: isDev ? "DIC_kwDONmppL84Cxa-U" : "DIC_kwDONmppL84Cxa8D",
+                category: {
+                    dev: "Giscus Comment (Test)",
+                    prod: "Giscus Comment"
+                },
+                categoryId: {
+                    dev: "DIC_kwDONmppL84Cxa-U",
+                    prod: "DIC_kwDONmppL84Cxa8D",
+                },
                 mapping: "pathname",
                 strict: true,
             }

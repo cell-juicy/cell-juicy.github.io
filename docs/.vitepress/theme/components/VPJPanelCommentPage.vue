@@ -1,5 +1,5 @@
 <script setup>
-import { computed, useTemplateRef } from 'vue';
+import { computed } from 'vue';
 import { useData, useRoute } from 'vitepress';
 import Giscus from '@giscus/vue';
 
@@ -42,6 +42,24 @@ const option = computed(() => isObject(themeConfig.value.option) ? themeConfig.v
 const giscusConfig = computed(() => {
     if (provider.value !== "giscus") return {};
 
+    // category & categoryId
+    const isDev = import.meta.env.DEV;
+    let category, categoryId;
+    if (isString(option.value.category)) {
+        category = option.value.category;
+    } else if (isObject(option.value.category)) {
+        const { dev, prod } = option.value.category;
+        category = (isDev ? dev : prod) ?? (isDev ? prod : dev);
+        category = isString(category) ? category : undefined;
+    }
+    if (isString(option.value.categoryId)) {
+        categoryId = option.value.categoryId;
+    } else if (isObject(option.value.categoryId)) {
+        const { dev, prod } = option.value.categoryId;
+        categoryId = (isDev ? dev : prod) ?? (isDev ? prod : dev);
+        categoryId = isString(categoryId) ? categoryId : undefined;
+    };
+    // theme
     const themeObject = isString(option.value.theme)
         ? { light: option.value.theme, dark: option.value.theme }
         : isObject(option.value.theme)
@@ -50,6 +68,7 @@ const giscusConfig = computed(() => {
                 dark: isString(option.value.theme.dark) ? option.value.theme.dark : DEFAULT.GISCUS.THEME.dark,
             }
             : DEFAULT.GISCUS.THEME;
+    // mapping & term
     const mapping = ["pathname", "url", "title", "og:title", "specific", "number"].includes(option.value.mapping)
             ? option.value.mapping
             : DEFAULT.GISCUS.MAPPING
@@ -63,7 +82,8 @@ const giscusConfig = computed(() => {
         } else if (isString(option.value.term)) {
             term = option.value.term;
         };
-    }
+    };
+    // lang
     const lang = [option.value.lang, site.value.lang, DEFAULT.GISCUS.LANG]
         .map((lang) => {
             if (!isString(lang)) return undefined;
@@ -73,11 +93,17 @@ const giscusConfig = computed(() => {
             return lang;
         })
         .find(isString);
-    return {
+    // loading
+    const loading = isBoolean(option.value.lazyLoading)
+        ? option.value.lazyLoading ? "lazy" : undefined
+        : DEFAULT.GISCUS.LAZYLOADING;
+
+    // return
+    const base = {
         repo: isString(option.value.repo) ? option.value.repo : undefined,
         repoId: isString(option.value.repoId) ? option.value.repoId : undefined,
-        category: isString(option.value.category) ? option.value.category : undefined,
-        categoryId: isString(option.value.categoryId) ? option.value.categoryId : undefined,
+        category,
+        categoryId,
         strict: isBoolean(option.value.strict)
             ? option.value.strict ? "1" : "0"
             : DEFAULT.GISCUS.STRICT,
@@ -87,17 +113,16 @@ const giscusConfig = computed(() => {
         emitMetadata: isBoolean(option.value.emitMetadata)
             ? option.value.emitMetadata ? "1" : "0"
             : DEFAULT.GISCUS.EMITMETADATA,
-        loading: isBoolean(option.value.lazyLoading)
-            ? option.value.lazyLoading ? "lazy" : undefined
-            : DEFAULT.GISCUS.LAZYLOADING,
         inputPosition: ["bottom", "top"].includes(option.value.inputPosition)
             ? option.value.inputPosition
             : DEFAULT.GISCUS.INPUTPOSITION,
         theme: isDark.value ? themeObject.dark : themeObject.light,
         mapping,
-        term,
         lang,
     };
+    if (term) base.term = term;
+    if (loading) base.loading = loading;
+    return base;
 });
 
 const empty = computed(() => {
@@ -122,7 +147,6 @@ const empty = computed(() => {
         </div>
         <div
             v-else
-            ref="comment"
             class="vpj-panel__comment"
         >
             <Giscus
