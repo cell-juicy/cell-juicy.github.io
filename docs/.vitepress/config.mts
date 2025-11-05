@@ -215,7 +215,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         },
         comment: {
             provider: "giscus",
-            option: {
+            options: {
                 repo: "cell-juicy/cell-juicy.github.io",
                 repoId: "R_kgDONmppLw",
                 category: {
@@ -229,6 +229,6 @@ export default defineConfigWithTheme<ThemeConfig>({
                 mapping: "pathname",
                 strict: true,
             }
-        }
+        },
     },
 })

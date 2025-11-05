@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+import { useData } from 'vitepress';
 import { storeToRefs } from 'pinia';
 
 import { useVPJLayout } from '../composables/useVPJLayout';
@@ -13,7 +14,7 @@ import VPJIconCrossSmall from './icons/VPJIconCrossSmall.vue';
 import VPJPanelCommentPage from './VPJPanelCommentPage.vue';
 
 
-DEFAULT = {
+const DEFAULT = {
     NOTAB: "",
     TABTITLE: {
         HISTORY: "历史提交",
@@ -21,6 +22,7 @@ DEFAULT = {
     },
 };
 
+const { theme } = useData();
 const store = useVPJLayout();
 const { panelCollapsed, panelTab } = storeToRefs(store);
 const {

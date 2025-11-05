@@ -37,7 +37,7 @@ const themeConfig = computed(() =>
         : {}
 );
 const provider = computed(() => themeConfig.value.provider);
-const option = computed(() => isObject(themeConfig.value.option) ? themeConfig.value.option : {});
+const options = computed(() => isObject(themeConfig.value.options) ? themeConfig.value.options : {});
 
 const giscusConfig = computed(() => {
     if (provider.value !== "giscus") return {};
@@ -45,46 +45,46 @@ const giscusConfig = computed(() => {
     // category & categoryId
     const isDev = import.meta.env.DEV;
     let category, categoryId;
-    if (isString(option.value.category)) {
-        category = option.value.category;
-    } else if (isObject(option.value.category)) {
-        const { dev, prod } = option.value.category;
+    if (isString(options.value.category)) {
+        category = options.value.category;
+    } else if (isObject(options.value.category)) {
+        const { dev, prod } = options.value.category;
         category = (isDev ? dev : prod) ?? (isDev ? prod : dev);
         category = isString(category) ? category : undefined;
     }
-    if (isString(option.value.categoryId)) {
-        categoryId = option.value.categoryId;
-    } else if (isObject(option.value.categoryId)) {
-        const { dev, prod } = option.value.categoryId;
+    if (isString(options.value.categoryId)) {
+        categoryId = options.value.categoryId;
+    } else if (isObject(options.value.categoryId)) {
+        const { dev, prod } = options.value.categoryId;
         categoryId = (isDev ? dev : prod) ?? (isDev ? prod : dev);
         categoryId = isString(categoryId) ? categoryId : undefined;
     };
     // theme
-    const themeObject = isString(option.value.theme)
-        ? { light: option.value.theme, dark: option.value.theme }
-        : isObject(option.value.theme)
+    const themeObject = isString(options.value.theme)
+        ? { light: options.value.theme, dark: options.value.theme }
+        : isObject(options.value.theme)
             ? {
-                light: isString(option.value.theme.light) ? option.value.theme.light : DEFAULT.GISCUS.THEME.light,
-                dark: isString(option.value.theme.dark) ? option.value.theme.dark : DEFAULT.GISCUS.THEME.dark,
+                light: isString(options.value.theme.light) ? options.value.theme.light : DEFAULT.GISCUS.THEME.light,
+                dark: isString(options.value.theme.dark) ? options.value.theme.dark : DEFAULT.GISCUS.THEME.dark,
             }
             : DEFAULT.GISCUS.THEME;
     // mapping & term
-    const mapping = ["pathname", "url", "title", "og:title", "specific", "number"].includes(option.value.mapping)
-            ? option.value.mapping
+    const mapping = ["pathname", "url", "title", "og:title", "specific", "number"].includes(options.value.mapping)
+            ? options.value.mapping
             : DEFAULT.GISCUS.MAPPING
     let term;
     if (["specific", "number"].includes(mapping)) {
-        if (isFunction(option.value.term)) {
+        if (isFunction(options.value.term)) {
             try {
-                const product = option.value.term(route);
+                const product = options.value.term(route);
                 term = isString(product) ? product : route.path;
             } catch(e) {};
-        } else if (isString(option.value.term)) {
-            term = option.value.term;
+        } else if (isString(options.value.term)) {
+            term = options.value.term;
         };
     };
     // lang
-    const lang = [option.value.lang, site.value.lang, DEFAULT.GISCUS.LANG]
+    const lang = [options.value.lang, site.value.lang, DEFAULT.GISCUS.LANG]
         .map((lang) => {
             if (!isString(lang)) return undefined;
             if (lang === "zh") return "zh-CN";
@@ -94,27 +94,27 @@ const giscusConfig = computed(() => {
         })
         .find(isString);
     // loading
-    const loading = isBoolean(option.value.lazyLoading)
-        ? option.value.lazyLoading ? "lazy" : undefined
+    const loading = isBoolean(options.value.lazyLoading)
+        ? options.value.lazyLoading ? "lazy" : undefined
         : DEFAULT.GISCUS.LAZYLOADING;
 
     // return
     const base = {
-        repo: isString(option.value.repo) ? option.value.repo : undefined,
-        repoId: isString(option.value.repoId) ? option.value.repoId : undefined,
+        repo: isString(options.value.repo) ? options.value.repo : undefined,
+        repoId: isString(options.value.repoId) ? options.value.repoId : undefined,
         category,
         categoryId,
-        strict: isBoolean(option.value.strict)
-            ? option.value.strict ? "1" : "0"
+        strict: isBoolean(options.value.strict)
+            ? options.value.strict ? "1" : "0"
             : DEFAULT.GISCUS.STRICT,
-        reactionsEnabled: isBoolean(option.value.reactionsEnabled)
-            ? option.value.reactionsEnabled ? "1" : "0"
+        reactionsEnabled: isBoolean(options.value.reactionsEnabled)
+            ? options.value.reactionsEnabled ? "1" : "0"
             : DEFAULT.GISCUS.REACTIONSENABLED,
-        emitMetadata: isBoolean(option.value.emitMetadata)
-            ? option.value.emitMetadata ? "1" : "0"
+        emitMetadata: isBoolean(options.value.emitMetadata)
+            ? options.value.emitMetadata ? "1" : "0"
             : DEFAULT.GISCUS.EMITMETADATA,
-        inputPosition: ["bottom", "top"].includes(option.value.inputPosition)
-            ? option.value.inputPosition
+        inputPosition: ["bottom", "top"].includes(options.value.inputPosition)
+            ? options.value.inputPosition
             : DEFAULT.GISCUS.INPUTPOSITION,
         theme: isDark.value ? themeObject.dark : themeObject.light,
         mapping,

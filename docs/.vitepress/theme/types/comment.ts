@@ -44,5 +44,5 @@ export interface GiscusOptions {
 
 export type CommentProviderConfig = {
     provider: "giscus",
-    option: GiscusOptions,
+    options: GiscusOptions,
 }
