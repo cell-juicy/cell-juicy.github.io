@@ -1291,4 +1291,6 @@ export interface VPJBlogLayoutConfig {
         | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
     
     history?: ToolbarFeatureInput;
+
+    comment?: ToolbarFeatureInput;
 }

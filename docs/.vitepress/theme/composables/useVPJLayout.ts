@@ -79,6 +79,10 @@ const DEFAULT = {
             enabled: true,
             tooltip: "查看历史记录"
         },
+        COMMENT: {
+            enabled: true,
+            tooltip: "评论本页"
+        },
         ASIDETABS: {
             series: {name: "系列", component: "VPJArticleAsideSeriesPage", order: 0},
             tags: {name: "标签", component: "VPJArticleAsideTagsPage", order: 0},
@@ -127,6 +131,10 @@ const DEFAULT = {
             enabled: true,
             tooltip: "查看历史记录"
         },
+        COMMENT: {
+            enabled: true,
+            tooltip: "评论本页"
+        },
         ASIDETABS: {
             tree: {name: "目录", component: "VPJArticleAsideTreePage", order: 0},
             resources: {name: "资源", component: "VPJArticleAsideResourcesPage", order: 0},
@@ -155,7 +163,7 @@ const DEFAULT = {
     },
 };
 
-const PANEL_TAB = ["history"] as const;
+const PANEL_TAB = ["history", "comment"] as const;
 type PANEL_TAB_TYPE = typeof PANEL_TAB[number];
 
 export const useVPJLayout = defineStore("vpj-layout", () => {
@@ -435,6 +443,12 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 (layoutConfig.value as VPJBlogLayoutConfig|VPJDocLayoutConfig).history,
                 defaultConfig.value.HISTORY
             );
+            const comment = toolbarFeatureMerger(
+                frontmatter.value.comment,
+                specificConfig.value.comment,
+                (layoutConfig.value as VPJBlogLayoutConfig|VPJDocLayoutConfig).comment,
+                defaultConfig.value.COMMENT
+            );
 
             return {
                 headerTitle,
@@ -443,7 +457,8 @@ export const useVPJLayout = defineStore("vpj-layout", () => {
                 pdf,
                 md,
                 toolbar,
-                history
+                history,
+                comment
             }
         };
         return undefined;

@@ -501,6 +501,14 @@ export type ComponentFallbackConfig = {
         noSpace?: string;
     };
 
+    panel?: {
+        noTab?: string;
+        tabTitle?: {
+            history?: string;
+            comment?: string;
+        };
+    };
+
     panelTabHistory?: {
         interval?: "year" | "month" | "week" | "day" | "hour" | "minute" | "second";
         intervalFormat?:
@@ -521,6 +529,10 @@ export type ComponentFallbackConfig = {
             url?: string
             repository?: string
         }, h: typeof import("vue").h) => VNode);
+    };
+
+    panelTabComment?: {
+        empty?: string;
     };
 
     switch?: {

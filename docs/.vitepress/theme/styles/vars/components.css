@@ -249,6 +249,15 @@
 }
 
 /* ---------------------------------------------------------
+   Component: Panel Comment Page
+*/
+:root {
+    --vpj-panel-comment-backdrop-filter: none;
+    --vpj-panel-comment-bg: var(--vpj-c-bg);
+    --vpj-panel-comment-padding: .5rem;
+}
+
+/* ---------------------------------------------------------
    Component: VPJContent
 */
 :root {

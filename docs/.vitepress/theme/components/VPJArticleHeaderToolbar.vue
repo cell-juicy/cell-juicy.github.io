@@ -12,6 +12,7 @@ import VPJIconGithub from './icons/VPJIconGithub.vue';
 import VPJIconMarkdown from './icons/VPJIconMarkdown.vue';
 import VPJIconPDF from './icons/VPJIconPDF.vue';
 import VPJIconTimePast from './icons/VPJIconTimePast.vue';
+import VPJIconCommentAltDots from './icons/VPJIconCommentAltDots.vue'
 
 
 const store = useVPJLayout();
@@ -91,7 +92,16 @@ const features = computed(() => {
         callback: () => panelToggle("history"),
         order: history.order,
         key: "history",
-    })
+    });
+    // comment button
+    const comment = headerConfig.value.comment;
+    if (comment.enabled) result.push({
+        tooltip: comment.tooltip,
+        icon: VPJIconCommentAltDots,
+        callback: () => panelToggle("comment"),
+        order: comment.order,
+        key: "comment",
+    });
 
     return result.sort((a, b) => a.order - b.order);
 });

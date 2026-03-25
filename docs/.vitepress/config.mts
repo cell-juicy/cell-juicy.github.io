@@ -213,5 +213,22 @@ export default defineConfigWithTheme<ThemeConfig>({
         subThemes: {
             default: "默认主题",
         },
+        comment: {
+            provider: "giscus",
+            options: {
+                repo: "cell-juicy/cell-juicy.github.io",
+                repoId: "R_kgDONmppLw",
+                category: {
+                    dev: "Giscus Comment (Test)",
+                    prod: "Giscus Comment"
+                },
+                categoryId: {
+                    dev: "DIC_kwDONmppL84Cxa-U",
+                    prod: "DIC_kwDONmppL84Cxa8D",
+                },
+                mapping: "pathname",
+                strict: true,
+            }
+        },
     },
 })

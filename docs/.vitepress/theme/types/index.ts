@@ -6,6 +6,10 @@ import type {
 } from "./common";
 
 import type {
+    CommentProviderConfig
+} from "./comment";
+
+import type {
     ComponentFallbackConfig
 } from "./component"
 
@@ -399,4 +403,6 @@ export interface ThemeConfig {
         | ((lastUpdated: Date | undefined, createdAt: Date | undefined) => string | undefined);
 
     subThemes?: Record<string, string>;
+
+    comment?: CommentProviderConfig;
 }
