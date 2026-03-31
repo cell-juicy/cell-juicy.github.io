@@ -37,7 +37,7 @@ const sidebarStore = useVPJSidebar();
 const { panelCollapsed } = storeToRefs(layoutStore);
 const { collapsed: sidebarCollapsed } = storeToRefs(sidebarStore);
 
-const stopAnchorWatcher = watch(route, scrollToAnchor);
+const stopAnchorWatcher = watch(route, () => setTimeout(scrollToAnchor, 100));
 const stopPanelWatcher = watch(panelCollapsed, (newState) => {
     if (!newState && !sidebarCollapsed.value) sidebarStore.close();
 });
